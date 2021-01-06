@@ -14,7 +14,9 @@ const index = () => {
             src="/image/home/banner.png"
             alt="Picture of the author"
             className="banner view-desktop"
-            layout="fill"
+            layout="responsive"
+            width={700}
+      height={475}
           />
           <Image
             src="/image/home/banner-mobile.png"
