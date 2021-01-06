@@ -1,11 +1,10 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Container, Row, Col, Card, CardDeck } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-const index = () => {
+const Home = () => {
   return (
     <>
       <div className="fade-in animated">
@@ -16,7 +15,7 @@ const index = () => {
             className="banner view-desktop"
             layout="responsive"
             width={700}
-      height={475}
+            height={475}
           />
           <Image
             src="/image/home/banner-mobile.png"
@@ -802,4 +801,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Home;
