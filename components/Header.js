@@ -5,6 +5,7 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import Link from "next/Link";
 import Image from "next/image";
+
 const Header = () => {
   return (
     <>
@@ -14,8 +15,9 @@ const Header = () => {
             src="/image/header/burger.svg"
             alt="burger yesmom"
             className="burger-yesmom"
-            width={70}
-            height={70}
+            width={50}
+            height={50}
+            // layout="intrinsic"
           />
         </Navbar.Toggle>
 
@@ -26,6 +28,7 @@ const Header = () => {
             className="logo-yesmom "
             width={70}
             height={70}
+            // layout="responsive"
           />
         </Navbar.Brand>
         {/* <Nav.Link href="#link" className="item-navbar">
@@ -33,40 +36,42 @@ const Header = () => {
               <img src={cesta} alt="logo tienda yesmom" />
             </figure>
           </Nav.Link> */}
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Form inline className="ml-form-search">
+        <Navbar.Collapse id="basic-navbar-nav" className="">
+          {/* <Form inline className="ml-form-search">
             <Button variant="">
+              <div className="lupa-img">
               <Image
                 src="/image/header/lupa.svg"
                 alt="lupa yesmom"
-                className="lupa-img"
-                width={70}
-                height={70}
+                
+                width={20}
+                height={20}
               />
+              </div>
             </Button>
             <FormControl
               type="text"
               placeholder="¿Que es lo que buscas?"
               className="mr-sm-2 input-search"
             />
-          </Form>
-          <Nav className="nav-items-collapse">
+          </Form> */}
+          <Nav className="nav-items-collapse ">
             <Link
               href="/blog"
               className="item-navbar hover-efect"
               activeClassName="is-active"
             >
               <a>
-              <figure className="item-menu ">
-                <Image
-                  src="/image/header/blog.svg"
-                  alt="logo blog yesmom "
-                  //   className="lupa-img"
-                  width={70}
-                  height={70}
-                />
-              </figure>
-              <h6 className="">Blog</h6>
+                <figure className="item-menu ">
+                  <Image
+                    src="/image/header/blog.svg"
+                    alt="logo blog yesmom "
+                    //   className="lupa-img"
+                    width={70}
+                    height={70}
+                  />
+                </figure>
+                <h6 className="">Blog</h6>
               </a>
             </Link>
             <Link
@@ -75,16 +80,16 @@ const Header = () => {
               activeClassName="is-active"
             >
               <a>
-              <figure className="item-menu">
-                <Image
-                  src="/image/header/tienda.svg"
-                  alt="logo tienda yesmom"
-                  //   className="lupa-img"
-                  width={70}
-                  height={70}
-                />
-              </figure>
-              <h6>Tienda</h6>
+                <figure className="item-menu">
+                  <Image
+                    src="/image/header/tienda.svg"
+                    alt="logo tienda yesmom"
+                    //   className="lupa-img"
+                    width={70}
+                    height={70}
+                  />
+                </figure>
+                <h6>Tienda</h6>
               </a>
             </Link>
             <Link
@@ -93,16 +98,16 @@ const Header = () => {
               activeClassName="is-active"
             >
               <a>
-              <figure className="item-menu">
-                <Image
-                  src="/image/header/regalo.svg"
-                  alt="logo regalo yesmom"
-                  //   className="lupa-img"
-                  width={70}
-                  height={70}
-                />
-              </figure>
-              <h6>Regalos</h6>
+                <figure className="item-menu">
+                  <Image
+                    src="/image/header/regalo.svg"
+                    alt="logo regalo yesmom"
+                    //   className="lupa-img"
+                    width={70}
+                    height={70}
+                  />
+                </figure>
+                <h6>Regalos</h6>
               </a>
             </Link>
             {/* <Nav.Link href="#link" className="item-navbar">
@@ -119,16 +124,16 @@ const Header = () => {
               activeClassName="is-active"
             >
               <a>
-              <figure className="item-menu">
-                <Image
-                  src="/image/header/iniciar-sesion.svg"
-                  alt="logo iniciar sesión yesmom"
-                  //   className="lupa-img"
-                  width={70}
-                  height={70}
-                />
-              </figure>
-              <h6>Login</h6>
+                <figure className="item-menu">
+                  <Image
+                    src="/image/header/iniciar-sesion.svg"
+                    alt="logo iniciar sesión yesmom"
+                    //   className="lupa-img"
+                    width={70}
+                    height={70}
+                  />
+                </figure>
+                <h6>Login</h6>
               </a>
             </Link>
             {/* <NavLink to="/cesta" className="item-navbar"  activeClassName='is-active'>
@@ -147,6 +152,10 @@ const Header = () => {
             background: #fff;
             z-index: 99;
           }
+          .items-nabvar-right {
+            display: flex!important;
+            justify-content: flex-end!important
+          
 
           .logo-yesmom {
             width: 5rem;
