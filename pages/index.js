@@ -138,7 +138,8 @@ const Home = ({currentData}) => {
             </Col>
           </Row>
         </Container>
-        <Container fluid="true" className="section-lo-mejor-home">
+        <div  className="section-lo-mejor-home">
+        <Container fluid="true">
           <div className="nube-up">
             <Image
               src="/image/home/nube.svg"
@@ -245,6 +246,7 @@ const Home = ({currentData}) => {
           />
           </div>
         </Container>
+        </div>
         <Container fluid="true" className="section-blog-home">
           <Row className="sin-margin">
             {/* <Col xs={12} md={6} lg={6} xl={6}>
@@ -422,7 +424,7 @@ const Home = ({currentData}) => {
                 rgba(229, 209, 231, 0.5) 13.49%,
                 rgba(150, 199, 236, 0.5) 100%
               ),
-              url("../../assets/home/shop.svg") repeat;
+              url("../../image/home/shop.svg") repeat;
             padding: 6rem 0rem;
             position: relative;
             background-position: top bottom;
