@@ -3,37 +3,40 @@ import Link from "next/link";
 import { Container, Row, Col, Card, CardDeck } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+// import banner from "../public/image/home/banner.png";
+// import bannerM from "../public/image/home/banner-mobile.png";
 
 const Home = () => {
   return (
     <>
       <div className="fade-in animated">
         <section fluid="true" className="box-banner">
-          <Image
-            src="/image/home/banner.png"
-            alt="Picture of the author"
-            className="banner view-desktop"
-            layout="responsive"
-            width={700}
-            height={475}
-          />
-          <Image
-            src="/image/home/banner-mobile.png"
-            layout="fill"
-            alt="Picture of the author"
-            className="banner view-mobile"
-          />
+          <div className="banner view-desktop">
+            <Image
+              src="/image/home/banner.png"
+              alt="Picture of the author"
+              layout="responsive"
+              width={500}
+              height={210}
+            />
+          </div>
+          <div className="banner view-mobile">
+            <Image
+              src="/image/home/banner-mobile.png"
+              layout="fill"
+              alt="Picture of the author"
+            />
+          </div>
+          {/* <img src={banner} className="banner view-desktop" /> */}
+          {/* <img src={bannerM} alt="" className="banner view-mobile" /> */}
           <div className="box-banner-btns">
             <div className="box-banner-btns-group">
               <h3 className="title-fuxia w-80 m-auto">
                 Encuentra tu regalo soñado
               </h3>
-              <Image
-                src="/image/ondas.svg"
-                alt="ondas"
-                className="ondas d-block m-auto heartbeat"
-                layout="fill"
-              />
+              <div className="ondas d-block m-auto heartbeat">
+                <Image src="/image/ondas.svg" alt="ondas" layout="fill" />
+              </div>
               <div className="box-banner-regalos">
                 <div className="btn-regalos bg-fuxia hover-fuxia">
                   Crear lista de regalos
@@ -55,19 +58,13 @@ const Home = () => {
           <Row className="sin-margin">
             <Col xs={12} md={6} lg={6} xl={6}>
               <div className="box-text-title">
-                <Image
-                  src="/image/ondas.svg"
-                  alt="ondas"
-                  className="ondas d-block m-auto heartbeat"
-                  layout="fill"
-                />
+                <div className="ondas d-block m-auto heartbeat">
+                  <Image src="/image/ondas.svg" alt="ondas" layout="fill" />
+                </div>
                 <h4 className="text-title heartbeat">Sorteo</h4>
-                <Image
-                  src="/image/ondas.svg"
-                  alt="ondas"
-                  className="ondas d-block m-auto heartbeat"
-                  layout="fill"
-                />
+                <div className="ondas d-block m-auto heartbeat">
+                  <Image src="/image/ondas.svg" alt="ondas" layout="fill" />
+                </div>
               </div>
               <div className="box-sorteo-home">
                 <h3 className="title-fuxia">Gana un pack Yes Mom</h3>
@@ -116,12 +113,15 @@ const Home = () => {
           </Row>
         </Container>
         <Container fluid="true" className="section-lo-mejor-home">
-          <Image
-            src="/image/home/nube.svg"
-            alt="nube yesmom"
-            className="nube-up"
-            layout="fill"
-          />
+          <div className="nube-up">
+            <Image
+              src="/image/home/nube.svg"
+              alt="nube yesmom"
+              width={20}
+              height={50}
+              layout="responsive"
+            />
+          </div>
           <div className="box-title-lo-mejor-home">
             <FontAwesomeIcon
               icon={faStar}
@@ -133,12 +133,15 @@ const Home = () => {
               className="heartbeat"
             ></FontAwesomeIcon>
           </div>
-          <Image
-            src="/image/onda-rosa.svg"
-            alt="onda rosa yes mom"
-            className="onda-rosa heartbeat"
-            layout="fill"
-          />
+          <div className="onda-rosa heartbeat">
+            <Image
+              src="/image/onda-rosa.svg"
+              alt="onda rosa yes mom"
+              width={20}
+              height={50}
+              layout="responsive"
+            />
+          </div>
 
           <Row className="box-img-lo-mejor">
             <Col xs>
@@ -206,12 +209,15 @@ const Home = () => {
               </div>
             </Col>
           </Row>
+          <div className="nube-down">
           <Image
             src="/image/home/nube.svg"
             alt="nube yesmom"
-            className="nube-down"
-            layout="fill"
+            width={20}
+              height={50}
+              layout="responsive"
           />
+          </div>
         </Container>
         <Container fluid="true" className="section-blog-home">
           <Row className="sin-margin">

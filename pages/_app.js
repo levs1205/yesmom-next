@@ -22,6 +22,49 @@ function MyApp({ Component, pageProps }) {
               monospace;
           }
 
+          @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
+          @import url("https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap");
+
+          @font-face {
+            font-family: "mont-heavy";
+            src: url(fonts/Mont-Heavy.otf);
+          }
+
+          @font-face {
+            font-family: "omnes-bold";
+            src: url(fonts/OMNES-BOLD.OTF);
+          }
+
+          @font-face {
+            font-family: "omnes-regular";
+            src: url(fonts/Omnes-Regular.otf);
+          }
+
+          @font-face {
+            font-family: "mont-heavy";
+            src: url(fonts/Mont-Heavy.otf);
+          }
+
+          @font-face {
+            font-family: "mont-thin";
+            src: url(fonts/Mont-Thin.otf);
+          }
+
+          @font-face {
+            font-family: "mont-regular";
+            src: url(fonts/Mont-Regular.otf);
+          }
+
+          @font-face {
+            font-family: "mont-semibold";
+            src: url(fonts/Mont-SemiBold.otf);
+          }
+
+          @font-face {
+            font-family: "mont-light";
+            src: url(fonts/Mont-Light.otf);
+          }
+
           html {
             font-size: 0.98vw !important;
             font-family: "mont-heavy";
