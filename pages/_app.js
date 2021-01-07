@@ -6,17 +6,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Component {...pageProps} />
-      <style jsx global>
-        {`
-          body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-              "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-              "Helvetica Neue", sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-          }
 
+<<<<<<< HEAD
           code {
             font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
               monospace;
@@ -554,6 +545,8 @@ function MyApp({ Component, pageProps }) {
           }
         `}
       </style>
+=======
+>>>>>>> 167eb42b9c70858c99a452a2739225ea28b8f324
     </>
   );
 }

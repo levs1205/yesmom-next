@@ -8,7 +8,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
   return (
-    <>
+    <AppLayout>
       <div className="fade-in animated">
         <section fluid="true" className="box-banner">
           <div className="banner view-desktop">
@@ -803,7 +803,7 @@ const Home = () => {
           }
         `}
       </style>
-    </>
+    </AppLayout>
   );
 };
 
