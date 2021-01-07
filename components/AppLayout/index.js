@@ -1,9 +1,11 @@
 import React from "react";
-import Footer from "./../Footer"
+import Footer from "./../Footer";
+import Header from "./../Header"
 
 const appLayout = ({ children }) => {
   return (
     <>
+    <Header></Header>
       <main>{children}</main>
       <Footer></Footer>
       <style jsx global>
