@@ -426,7 +426,7 @@ const Home = ({ currentData }) => {
                 rgba(229, 209, 231, 0.5) 13.49%,
                 rgba(150, 199, 236, 0.5) 100%
               ),
-              url("../../public/image/home/shop.svg") repeat;
+              url("../../image/home/shop.svg") repeat;
             padding: 6rem 0rem;
             position: relative;
             background-position: top bottom;
