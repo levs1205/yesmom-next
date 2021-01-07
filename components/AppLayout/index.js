@@ -1,11 +1,11 @@
 import React from "react";
 import Footer from "./../Footer";
-import Header from "./../Header"
+import Header from "./../Header";
 
 const appLayout = ({ children }) => {
   return (
     <>
-    <Header></Header>
+      <Header></Header>
       <main>{children}</main>
       <Footer></Footer>
       <style jsx global>
@@ -136,26 +136,26 @@ const appLayout = ({ children }) => {
           .bg-gray {
             background-color: #575650 !important;
           }
-          /* @media (min-width: 576px) {
-  .box-web {
-    max-width: 900px !important;
-  }
-}
-@media (min-width: 900px) {
-  .box-web {
-    max-width: 992px !important;
-  }
-}
-@media (min-width: 992px) {
-  .box-web {
-    max-width: 1200px !important;
-  }
-}
-@media (min-width: 1200px) {
-  .box-web {
-    max-width: 1500px !important;
-  }
-} */
+          {/* @media (min-width: 576px) {
+            .box-web {
+              max-width: 900px !important;
+            }
+          }
+          @media (min-width: 900px) {
+            .box-web {
+              max-width: 992px !important;
+            }
+          }
+          @media (min-width: 992px) {
+            .box-web {
+              max-width: 1200px !important;
+            }
+          }
+          @media (min-width: 1200px) {
+            .box-web {
+              max-width: 1500px !important;
+            }
+          } */}
           .box-yesmom {
             max-width: 1800px;
             width: 100%;
