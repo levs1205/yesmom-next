@@ -4,8 +4,9 @@ import { Card, CardDeck, Container } from "react-bootstrap";
 import AppLayout from "../../components/AppLayout";
 import Image from "next/image";
 import Link from "next/link";
+import CardBlog from "../../components/CardBlog";
 
-const Blog = () => {
+const Blog = ({currentData}) => {
   return (
       <AppLayout>
     <div className="fade-in animated">
@@ -34,9 +35,9 @@ const Blog = () => {
         <div className="box-card-group">
           <Container>
             <CardDeck>
-              {/* {currentData.map((cardBlog) => (
+              {currentData.map((cardBlog) => (
                 <CardBlog blog={cardBlog} />
-              ))} */}
+              ))}
             </CardDeck>
           </Container>
         </div>
@@ -415,5 +416,19 @@ const Blog = () => {
     </AppLayout>
   );
 };
+export async function getStaticProps() {
+    // Call an external API endpoint to get posts.
+    // You can use any data fetching library
+    const res = await fetch("http://localhost:5000/getBlogAll/user?limit=all")
+    const currentData = await res.json()
+  
+    // By returning { props: posts }, the Blog component
+    // will receive `posts` as a prop at build time
+    return {
+      props: {
+        currentData,
+      },
+    }
+  }
 
 export default Blog;
