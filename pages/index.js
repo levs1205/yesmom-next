@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 // import banner from "../public/image/home/banner.png";
 // import bannerM from "../public/image/home/banner-mobile.png";
+import AppLayout from "../components/AppLayout"
 
 const Home = () => {
   return (
