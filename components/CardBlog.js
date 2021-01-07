@@ -203,11 +203,11 @@ const CardBlog = ({blog}) => {
           .font-semibold-mont {
             font-family: "mont-semibold";
           }
-          .jodit-status-bar {
+          :global(.jodit-status-bar) {
             display: none !important;
           }
 
-          .jodit-container {
+          :global(.jodit-container) {
             height: 10rem !important;
           }
 
