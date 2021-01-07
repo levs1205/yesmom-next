@@ -1,11 +1,21 @@
 import React from "react";
 import Footer from "./../Footer";
 import Header from "./../Header";
+import Head from "next/head";
+
 
 const appLayout = ({ children }) => {
   return (
     <div className="box-yesmom">
-    <Header></Header>
+      <Head>
+        <title>yesmom</title>
+        <link
+          rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/flatly/bootstrap.min.css"
+        />
+        <meta name="description" content="esto es descripcion"></meta>
+      </Head>
+      <Header></Header>
       <main>{children}</main>
       <Footer></Footer>
       <style jsx global>
@@ -136,7 +146,8 @@ const appLayout = ({ children }) => {
           .bg-gray {
             background-color: #575650 !important;
           }
-          {/* @media (min-width: 576px) {
+           {
+            /* @media (min-width: 576px) {
             .box-web {
               max-width: 900px !important;
             }
@@ -155,7 +166,8 @@ const appLayout = ({ children }) => {
             .box-web {
               max-width: 1500px !important;
             }
-          } */}
+          } */
+          }
           .box-yesmom {
             max-width: 1800px;
             width: 100%;

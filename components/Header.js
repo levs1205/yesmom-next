@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import Link from "next/Link";
 import Image from "next/image";
 
+
 const Header = () => {
   return (
     <>
@@ -25,7 +26,7 @@ const Header = () => {
           <Image
             src="/image/header/logo-yesmom.svg"
             alt="logo yesmom"
-            className="logo-yesmom "
+            className="logo-yesmom"
             width={70}
             height={70}
             // layout="responsive"
@@ -36,7 +37,8 @@ const Header = () => {
               <img src={cesta} alt="logo tienda yesmom" />
             </figure>
           </Nav.Link> */}
-        <Navbar.Collapse id="basic-navbar-nav" className="">
+
+        <Navbar.Collapse id="basic-navbar-nav" className="items-nabvar-righ">
           {/* <Form inline className="ml-form-search">
             <Button variant="">
               <div className="lupa-img">
@@ -145,6 +147,55 @@ const Header = () => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">
+            Navbar
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            {/* <span className="navbar-toggler-icon"></span> */}
+            <Image
+            src="/image/header/burger.svg"
+            alt="burger yesmom"
+            className="navbar-toggler-icon burger-yesmom"
+            width={50}
+            height={50}
+            // layout="intrinsic"
+          />
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div className="navbar-nav">
+              <a className="nav-link active" aria-current="page" href="#">
+                Home
+              </a>
+              <a className="nav-link" href="#">
+                Features
+              </a>
+              <a className="nav-link" href="#">
+                Pricing
+              </a>
+              <a
+                className="nav-link disabled"
+                href="#"
+                tabindex="-1"
+                aria-disabled="true"
+              >
+                Disabled
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
       <style jsx>
         {`
           .navbar {
@@ -152,11 +203,11 @@ const Header = () => {
             background: #fff;
             z-index: 99;
           }
-          .items-nabvar-right {
-            display: flex!important;
-            justify-content: flex-end!important
-          
 
+          .items-nabvar-right {
+            display: flex !important;
+            justify-content: flex-end !important;
+          }
           .logo-yesmom {
             width: 5rem;
           }
