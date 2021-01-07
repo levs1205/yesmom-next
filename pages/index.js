@@ -3,10 +3,11 @@ import Link from "next/link";
 import { Container, Row, Col, Card, CardDeck } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import AppLayout from "../components/AppLayout";
 
-const Home= () => {
+const Home = () => {
   return (
-    <>
+    <AppLayout>
       <div className="fade-in animated">
         <section fluid="true" className="box-banner">
           <Image
@@ -30,7 +31,8 @@ const Home= () => {
                 src="/image/ondas.svg"
                 alt="ondas"
                 className="ondas d-block m-auto heartbeat"
-                layout="fill"
+                height="10px"
+                width="10px"
               />
               <div className="box-banner-regalos">
                 <div className="btn-regalos bg-fuxia hover-fuxia">
@@ -57,14 +59,16 @@ const Home= () => {
                   src="/image/ondas.svg"
                   alt="ondas"
                   className="ondas d-block m-auto heartbeat"
-                  layout="fill"
+                  height="100px"
+                  width="100px"
                 />
                 <h4 className="text-title heartbeat">Sorteo</h4>
                 <Image
                   src="/image/ondas.svg"
                   alt="ondas"
                   className="ondas d-block m-auto heartbeat"
-                  layout="fill"
+                  height="100px"
+                  width="100px"
                 />
               </div>
               <div className="box-sorteo-home">
@@ -795,7 +799,7 @@ const Home= () => {
           }
         `}
       </style>
-    </>
+    </AppLayout>
   );
 };
 
