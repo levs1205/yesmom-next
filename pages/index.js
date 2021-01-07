@@ -1,3 +1,4 @@
+import React, { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Container, Row, Col, Card, CardDeck } from "react-bootstrap";
@@ -5,9 +6,33 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 // import banner from "../public/image/home/banner.png";
 // import bannerM from "../public/image/home/banner-mobile.png";
-import AppLayout from "../components/AppLayout"
+import AppLayout from "../components/AppLayout";
+import CardBlog from "../components/CardBlog";
 
-const Home = () => {
+
+// import clienteAxiosBusiness from "../config/axiosBusiness";
+import axios from "axios";
+// import fetch from 'isomorphic-fetch'
+const Home = ({currentData}) => {
+  console.log(currentData,"holis")
+    // const [currentData, setCurrentData] = useState([]);
+    // useEffect(() => {
+    //     blogHome();
+    //   }, []);
+    // const blogHome = async () => {
+    //   await axios
+    //     .get("http://localhost:5000/getBlogAll/user?limit=2")
+    //     .then((res) => {
+    //       if (res.data.MensajeRespuesta === "NO EXISTEN DATOS") {
+    //        setCurrentData([]);
+    //       } else {
+    //         setCurrentData(res.data);
+    //       }
+    //     })
+    //     .catch((e) => {
+    //       console.log(e, "error");
+    //     });
+    // };
   return (
     <AppLayout>
       <div className="fade-in animated">
@@ -269,7 +294,7 @@ const Home = () => {
                 </Container>
               </div>
             </Col>
-            {/* <Col xs={12} md={6} lg={6} xl={6} className="box-blog-card-home">
+            <Col xs={12} md={6} lg={6} xl={6} className="box-blog-card-home">
             <Container>
               <CardDeck>
                 {currentData.map((cardBlog) => (
@@ -278,7 +303,7 @@ const Home = () => {
               
               </CardDeck>
             </Container>
-          </Col> */}
+          </Col>
           </Row>
         </Container>
       </div>
@@ -809,5 +834,20 @@ const Home = () => {
     </AppLayout>
   );
 };
+
+export async function getStaticProps() {
+    // Call an external API endpoint to get posts.
+    // You can use any data fetching library
+    const res = await fetch("http://localhost:5000/getBlogAll/user?limit=2")
+    const currentData = await res.json()
+  
+    // By returning { props: posts }, the Blog component
+    // will receive `posts` as a prop at build time
+    return {
+      props: {
+        currentData,
+      },
+    }
+  }
 
 export default Home;
