@@ -4,7 +4,7 @@ import Header from "./../Header"
 
 const appLayout = ({ children }) => {
   return (
-    <>
+    <div className="box-yesmom">
     <Header></Header>
       <main>{children}</main>
       <Footer></Footer>
@@ -554,7 +554,7 @@ const appLayout = ({ children }) => {
           }
         `}
       </style>
-    </>
+    </div>
   );
 };
 
