@@ -6,11 +6,10 @@ import Button from "react-bootstrap/Button";
 import Link from "next/Link";
 import Image from "next/image";
 
-
 const Header = () => {
   return (
     <>
-      <Navbar expand="lg" className=" justify-content-between">
+     <Navbar expand="lg" className=" justify-content-between p-5">
         <Navbar.Toggle aria-controls="basic-navbar-nav">
           <Image
             src="/image/header/burger.svg"
@@ -37,8 +36,7 @@ const Header = () => {
               <img src={cesta} alt="logo tienda yesmom" />
             </figure>
           </Nav.Link> */}
-
-        <Navbar.Collapse id="basic-navbar-nav" className="items-nabvar-righ">
+<Navbar.Collapse id="basic-navbar-nav" >
           {/* <Form inline className="ml-form-search">
             <Button variant="">
               <div className="lupa-img">
@@ -146,55 +144,13 @@ const Header = () => {
               </NavLink> */}
           </Nav>
         </Navbar.Collapse>
+
+       
       </Navbar>
 
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            Navbar
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            {/* <span className="navbar-toggler-icon"></span> */}
-            <Image
-            src="/image/header/burger.svg"
-            alt="burger yesmom"
-            className="navbar-toggler-icon burger-yesmom"
-            width={50}
-            height={50}
-            // layout="intrinsic"
-          />
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div className="navbar-nav">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
-              <a className="nav-link" href="#">
-                Features
-              </a>
-              <a className="nav-link" href="#">
-                Pricing
-              </a>
-              <a
-                className="nav-link disabled"
-                href="#"
-                tabindex="-1"
-                aria-disabled="true"
-              >
-                Disabled
-              </a>
-            </div>
-          </div>
-        </div>
-      </nav>
+
+     
+
 
       <style jsx>
         {`
@@ -203,11 +159,11 @@ const Header = () => {
             background: #fff;
             z-index: 99;
           }
-
-          .items-nabvar-right {
-            display: flex !important;
-            justify-content: flex-end !important;
-          }
+          {/* :global(#basic-navbar-nav){
+            display: flex ;
+            justify-content: flex-end;
+          } */}
+         
           .logo-yesmom {
             width: 5rem;
           }
@@ -286,7 +242,11 @@ const Header = () => {
           .hover-efect:focus {
             transform: scale(1.2) !important;
           }
-
+          {/* @media (max-width: 992px) {
+            :global(#basic-navbar-nav){
+            justify-content:  flex-start;
+          } */}
+          }
           @media (min-width: 1800px) {
             .logo-yesmom {
               width: 3.5rem;
