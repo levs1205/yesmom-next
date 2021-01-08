@@ -1,16 +1,16 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import dynamic from "next/dynamic";
-import { Card, CardDeck, Container } from "react-bootstrap";
-import Image from "next/image";
-import Link from "next/Link";
-import {useRouter} from "next/router";
+import { Card} from "react-bootstrap";
+// import Image from "next/image";
+// import {useRouter} from "next/router";
 
 const importJodit = () => import("jodit-react");
 const JoditEditor = dynamic(importJodit, {
   ssr: false,
 });
 const CardBlog = ({ blog }) => {
-  const router = useRouter();
+  // const router = useRouter();
 
   const [config, setConfig] = useState({
     readonly: true,
@@ -35,16 +35,18 @@ const CardBlog = ({ blog }) => {
           </Card.Text>
         </Card.Body>
         <Card.Footer>
-          <a
-            onClick={() => {
-              router.push({
-                pathname: "/blog/[id]",
-                query: { id: blog.blog._id },
-              });
-            }}
-          >
-            Leer más &#8594;
-          </a>
+          <Link href={`/blog/${blog.blog._id}`}>
+            <a
+            // onClick={() => {
+            //   router.push({
+            //     pathname: "/blog/[id]",
+            //     query: { id: blog.blog._id },
+            //   });
+            // }}
+            >
+              Leer más &#8594;
+            </a>
+          </Link>
         </Card.Footer>
       </Card>
       <style jsx>

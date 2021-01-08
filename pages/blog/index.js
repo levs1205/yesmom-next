@@ -36,7 +36,7 @@ const Blog = ({ currentData }) => {
             <Container>
               <CardDeck>
                 {currentData.map((cardBlog) => (
-                  <CardBlog blog={cardBlog} />
+                  <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
                 ))}
               </CardDeck>
             </Container>

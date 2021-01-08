@@ -9,30 +9,29 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import AppLayout from "../components/AppLayout";
 import CardBlog from "../components/CardBlog";
 
-
 // import clienteAxiosBusiness from "../config/axiosBusiness";
 import axios from "axios";
 // import fetch from 'isomorphic-fetch'
-const Home = ({currentData}) => {
-  console.log(currentData,"holis")
-    // const [currentData, setCurrentData] = useState([]);
-    // useEffect(() => {
-    //     blogHome();
-    //   }, []);
-    // const blogHome = async () => {
-    //   await axios
-    //     .get("http://localhost:5000/getBlogAll/user?limit=2")
-    //     .then((res) => {
-    //       if (res.data.MensajeRespuesta === "NO EXISTEN DATOS") {
-    //        setCurrentData([]);
-    //       } else {
-    //         setCurrentData(res.data);
-    //       }
-    //     })
-    //     .catch((e) => {
-    //       console.log(e, "error");
-    //     });
-    // };
+const Home = ({ currentData }) => {
+  console.log(currentData, "holis");
+  // const [currentData, setCurrentData] = useState([]);
+  // useEffect(() => {
+  //     blogHome();
+  //   }, []);
+  // const blogHome = async () => {
+  //   await axios
+  //     .get("http://localhost:5000/getBlogAll/user?limit=2")
+  //     .then((res) => {
+  //       if (res.data.MensajeRespuesta === "NO EXISTEN DATOS") {
+  //        setCurrentData([]);
+  //       } else {
+  //         setCurrentData(res.data);
+  //       }
+  //     })
+  //     .catch((e) => {
+  //       console.log(e, "error");
+  //     });
+  // };
   return (
     <AppLayout>
       <div className="fade-in animated">
@@ -126,7 +125,9 @@ const Home = ({currentData}) => {
                   src="/image/home/img-sorteo-home.png"
                   alt="imagen sorteo yesmom home"
                   className="img-sorteo"
-                  layout="fill"
+                  width={8}
+                  height={6}
+                  layout="responsive"
                 />
                 <Image
                   src="/image/linea-rosa2.svg"
@@ -138,114 +139,114 @@ const Home = ({currentData}) => {
             </Col>
           </Row>
         </Container>
-        <div  className="section-lo-mejor-home">
-        <Container fluid="true">
-          <div className="nube-up">
-            <Image
-              src="/image/home/nube.svg"
-              alt="nube yesmom"
-              width={20}
-              height={50}
-              layout="responsive"
-            />
-          </div>
-          <div className="box-title-lo-mejor-home">
-            <FontAwesomeIcon
-              icon={faStar}
-              className="heartbeat"
-            ></FontAwesomeIcon>
-            <h3 className="title-fuxia">Lo mejor para tu bebé</h3>
-            <FontAwesomeIcon
-              icon={faStar}
-              className="heartbeat"
-            ></FontAwesomeIcon>
-          </div>
-          <div className="onda-rosa heartbeat">
-            <Image
-              src="/image/onda-rosa.svg"
-              alt="onda rosa yes mom"
-              width={20}
-              height={50}
-              layout="responsive"
-            />
-          </div>
+        <div className="section-lo-mejor-home">
+          <Container fluid="true">
+            <div className="nube-up">
+              <Image
+                src="/image/home/nube.svg"
+                alt="nube yesmom"
+                width={20}
+                height={50}
+                layout="responsive"
+              />
+            </div>
+            <div className="box-title-lo-mejor-home">
+              <FontAwesomeIcon
+                icon={faStar}
+                className="heartbeat"
+              ></FontAwesomeIcon>
+              <h3 className="title-fuxia">Lo mejor para tu bebé</h3>
+              <FontAwesomeIcon
+                icon={faStar}
+                className="heartbeat"
+              ></FontAwesomeIcon>
+            </div>
+            <div className="onda-rosa heartbeat">
+              <Image
+                src="/image/onda-rosa.svg"
+                alt="onda rosa yes mom"
+                width={20}
+                height={50}
+                layout="responsive"
+              />
+            </div>
 
-          <Row className="box-img-lo-mejor">
-            <Col xs>
-              <div className="img-lo-mejor ">
-                <Image
-                  src="/image/home/destacado.png"
-                  alt="destacado"
-                  layout="fill"
-                  // className="onda-rosa heartbeat"
-                />
-              </div>
-              <div>
-                <Link
-                  href="/pagina-en-construccion"
-                  className="btn-lo-mejor hover-amarillo"
-                >
-                  <a> Tiendas destacadas</a>
-                </Link>
-              </div>
-            </Col>
-            <Col xs>
-              <div className="img-lo-mejor">
-                <Image
-                  src="/image/home/buscado.png"
-                  alt="search"
-                  layout="fill"
-                  // className="onda-rosa heartbeat"
-                />
-              </div>
-              <div className="btn-lo-mejor bg-fuxia hover-fuxia">
-                <Link href="/pagina-en-construccion">
-                  <a>
-                    {" "}
-                    Lo + <br></br> buscado{" "}
-                  </a>
-                </Link>
-              </div>
-            </Col>
-            <Col xs>
-              <div className="img-lo-mejor">
-                <Image
-                  src="/image/home/sin-moverte.png"
-                  alt="sin moverte"
-                  layout="fill"
-                  // className="onda-rosa heartbeat"
-                />
-              </div>
-              <div className="btn-lo-mejor bg-verde hover-verde">
-                <Link href="/pagina-en-construccion">
-                  <a>Sin moverte de casa</a>
-                </Link>
-              </div>
-            </Col>
-            <Col xs>
-              <div className="img-lo-mejor">
-                <Image
-                  src="/image/home/juguetes.png"
-                  alt="juguetes"
-                  layout="fill"
-                  // className="onda-rosa heartbeat"
-                />
-              </div>
-              <div className="btn-lo-mejor bg-azul hover-azul">
-                <Link href="/pagina-en-construccion">Juguetes</Link>
-              </div>
-            </Col>
-          </Row>
-          <div className="nube-down">
-          <Image
-            src="/image/home/nube.svg"
-            alt="nube yesmom"
-            width={20}
-              height={50}
-              layout="responsive"
-          />
-          </div>
-        </Container>
+            <Row className="box-img-lo-mejor">
+              <Col xs>
+                <div className="img-lo-mejor ">
+                  <Image
+                    src="/image/home/destacado.png"
+                    alt="destacado"
+                    layout="fill"
+                    // className="onda-rosa heartbeat"
+                  />
+                </div>
+                <div>
+                  <Link
+                    href="/pagina-en-construccion"
+                    className="btn-lo-mejor hover-amarillo"
+                  >
+                    <a> Tiendas destacadas</a>
+                  </Link>
+                </div>
+              </Col>
+              <Col xs>
+                <div className="img-lo-mejor">
+                  <Image
+                    src="/image/home/buscado.png"
+                    alt="search"
+                    layout="fill"
+                    // className="onda-rosa heartbeat"
+                  />
+                </div>
+                <div className="btn-lo-mejor bg-fuxia hover-fuxia">
+                  <Link href="/pagina-en-construccion">
+                    <a>
+                      {" "}
+                      Lo + <br></br> buscado{" "}
+                    </a>
+                  </Link>
+                </div>
+              </Col>
+              <Col xs>
+                <div className="img-lo-mejor">
+                  <Image
+                    src="/image/home/sin-moverte.png"
+                    alt="sin moverte"
+                    layout="fill"
+                    // className="onda-rosa heartbeat"
+                  />
+                </div>
+                <div className="btn-lo-mejor bg-verde hover-verde">
+                  <Link href="/pagina-en-construccion">
+                    <a>Sin moverte de casa</a>
+                  </Link>
+                </div>
+              </Col>
+              <Col xs>
+                <div className="img-lo-mejor">
+                  <Image
+                    src="/image/home/juguetes.png"
+                    alt="juguetes"
+                    layout="fill"
+                    // className="onda-rosa heartbeat"
+                  />
+                </div>
+                <div className="btn-lo-mejor bg-azul hover-azul">
+                  <Link href="/pagina-en-construccion">Juguetes</Link>
+                </div>
+              </Col>
+            </Row>
+            <div className="nube-down">
+              <Image
+                src="/image/home/nube.svg"
+                alt="nube yesmom"
+                width={20}
+                height={50}
+                layout="responsive"
+              />
+            </div>
+          </Container>
         </div>
         <Container fluid="true" className="section-blog-home">
           <Row className="sin-margin">
@@ -267,7 +268,9 @@ const Home = ({currentData}) => {
                     src="/image/ondas.svg"
                     alt="ondas"
                     className="ondas"
-                    layout="fill"
+                    layout="responsive"
+                    width={200}
+                    height={300}
                   />
                   <h4 className="text-title heartbeat">Blog</h4>
                   <Image
@@ -295,15 +298,14 @@ const Home = ({currentData}) => {
               </div>
             </Col>
             <Col xs={12} md={6} lg={6} xl={6} className="box-blog-card-home">
-            <Container>
-              <CardDeck>
-                {currentData.map((cardBlog) => (
-                  <CardBlog blog={cardBlog} />
-                ))}
-              
-              </CardDeck>
-            </Container>
-          </Col>
+              <Container>
+                <CardDeck>
+                  {currentData.map((cardBlog) => (
+                    <CardBlog blog={cardBlog} key={cardBlog.blog._id}/>
+                  ))}
+                </CardDeck>
+              </Container>
+            </Col>
           </Row>
         </Container>
       </div>
@@ -836,18 +838,18 @@ const Home = ({currentData}) => {
 };
 
 export async function getStaticProps() {
-    // Call an external API endpoint to get posts.
-    // You can use any data fetching library
-    const res = await fetch("http://localhost:5000/getBlogAll/user?limit=2")
-    const currentData = await res.json()
-  
-    // By returning { props: posts }, the Blog component
-    // will receive `posts` as a prop at build time
-    return {
-      props: {
-        currentData,
-      },
-    }
-  }
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  const res = await fetch("http://localhost:5000/getBlogAll/user?limit=2");
+  const currentData = await res.json();
+
+  // By returning { props: posts }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      currentData,
+    },
+  };
+}
 
 export default Home;
