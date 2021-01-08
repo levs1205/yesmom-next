@@ -6,57 +6,57 @@ import Image from "next/image";
 import Link from "next/link";
 import CardBlog from "../../components/CardBlog";
 
-const Blog = ({currentData}) => {
+const Blog = ({ currentData }) => {
   return (
-      <AppLayout>
-    <div className="fade-in animated">
-      <div className="box-banner-blog">
-        <Image
-          src="/image/onda-blanca.svg"
-          alt="ondas"
-          className="ondas"
-          width="70px"
-          height="70px"
-        />
-        <h4 className="text-title-blog">Blog</h4>
-        <Image
-          src="/image/onda-blanca.svg"
-          alt="ondas"
-          className="ondas"
-          width="70px"
-          height="70px"
-        />
-      </div>
-      <div className="box-blog-general">
-        <h4 className="subtitle-dark-blog">
-          En este espacio compartiremos algunos tips que te servirán para cuidar
-          y engreir mucho más a tu bebé
-        </h4>
-        <div className="box-card-group">
-          <Container>
-            <CardDeck>
-              {currentData.map((cardBlog) => (
-                <CardBlog blog={cardBlog} />
-              ))}
-            </CardDeck>
-          </Container>
+    <AppLayout>
+      <div className="fade-in animated">
+        <div className="box-banner-blog">
+          <Image
+            src="/image/onda-blanca.svg"
+            alt="ondas"
+            className="ondas"
+            width="70px"
+            height="70px"
+          />
+          <h4 className="text-title-blog">Blog</h4>
+          <Image
+            src="/image/onda-blanca.svg"
+            alt="ondas"
+            className="ondas"
+            width="70px"
+            height="70px"
+          />
+        </div>
+        <div className="box-blog-general">
+          <h4 className="subtitle-dark-blog">
+            En este espacio compartiremos algunos tips que te servirán para
+            cuidar y engreir mucho más a tu bebé
+          </h4>
+          <div className="box-card-group">
+            <Container>
+              <CardDeck>
+                {currentData.map((cardBlog) => (
+                  <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
+                ))}
+              </CardDeck>
+            </Container>
+          </div>
+        </div>
+        <div className="box-green-blog">
+          <Image
+            src="/image/blog/fondo-verde.png"
+            layout="fill"
+            alt="Picture of the author"
+            lassName="w-100 box-green-blog-img-fondo"
+          />
+          <h6 className="text-bottom-blog ">
+            Para el mundo eres una mamá,<br></br>
+            <b>para tus hijos eres el mundo</b>
+          </h6>
         </div>
       </div>
-      <div className="box-green-blog">
-      <Image
-              src="/image/blog/fondo-verde.png"
-              layout="fill"
-              alt="Picture of the author"
-              lassName="w-100 box-green-blog-img-fondo"
-            />
-        <h6 className="text-bottom-blog ">
-          Para el mundo eres una mamá,<br></br>
-          <b>para tus hijos eres el mundo</b>
-        </h6>
-      </div>
-    </div>
-    <style jsx>
-    {`
+      <style jsx>
+        {`
           .box-banner-blog {
             height: 15rem;
             background: url(../../image/blog/blog.png) no-repeat center;
@@ -193,7 +193,7 @@ const Blog = ({currentData}) => {
             position: relative;
             z-index: 2;
           }
-          .jodit-container:not(.jodit_inline) {
+          :global(.jodit-container:not(.jodit_inline)) {
             border: none !important;
           }
           .box-blog-general {
@@ -417,18 +417,18 @@ const Blog = ({currentData}) => {
   );
 };
 export async function getStaticProps() {
-    // Call an external API endpoint to get posts.
-    // You can use any data fetching library
-    const res = await fetch("http://localhost:5000/getBlogAll/user?limit=all")
-    const currentData = await res.json()
-  
-    // By returning { props: posts }, the Blog component
-    // will receive `posts` as a prop at build time
-    return {
-      props: {
-        currentData,
-      },
-    }
-  }
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  const res = await fetch("http://localhost:5000/getBlogAll/user?limit=all");
+  const currentData = await res.json();
+
+  // By returning { props: posts }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      currentData,
+    },
+  };
+}
 
 export default Blog;

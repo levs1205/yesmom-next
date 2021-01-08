@@ -9,7 +9,7 @@ import Image from "next/image";
 const Header = () => {
   return (
     <>
-     <Navbar expand="lg" className=" justify-content-between">
+     <Navbar expand="lg" className=" justify-content-between p-5">
         <Navbar.Toggle aria-controls="basic-navbar-nav">
           <Image
             src="/image/header/burger.svg"
@@ -36,8 +36,7 @@ const Header = () => {
               <img src={cesta} alt="logo tienda yesmom" />
             </figure>
           </Nav.Link> */}
-
-        <Navbar.Collapse id="basic-navbar-nav" className="items-nabvar-righ">
+<Navbar.Collapse id="basic-navbar-nav" >
           {/* <Form inline className="ml-form-search">
             <Button variant="">
               <div className="lupa-img">
@@ -145,6 +144,8 @@ const Header = () => {
               </NavLink> */}
           </Nav>
         </Navbar.Collapse>
+
+       
       </Navbar>
 
 
@@ -158,7 +159,10 @@ const Header = () => {
             background: #fff;
             z-index: 99;
           }
-
+          {/* :global(#basic-navbar-nav){
+            display: flex ;
+            justify-content: flex-end;
+          } */}
          
           .logo-yesmom {
             width: 5rem;
@@ -238,7 +242,11 @@ const Header = () => {
           .hover-efect:focus {
             transform: scale(1.2) !important;
           }
-
+          {/* @media (max-width: 992px) {
+            :global(#basic-navbar-nav){
+            justify-content:  flex-start;
+          } */}
+          }
           @media (min-width: 1800px) {
             .logo-yesmom {
               width: 3.5rem;
