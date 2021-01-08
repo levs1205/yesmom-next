@@ -193,7 +193,7 @@ const Blog = ({ currentData }) => {
             position: relative;
             z-index: 2;
           }
-          .jodit-container:not(.jodit_inline) {
+          :global(.jodit-container:not(.jodit_inline)) {
             border: none !important;
           }
           .box-blog-general {
