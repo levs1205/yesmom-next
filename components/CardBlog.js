@@ -35,7 +35,7 @@ const CardBlog = ({ blog }) => {
           </Card.Text>
         </Card.Body>
         <Card.Footer>
-          <Link href={`/blog/${blog.blog._id}`}>
+          <Link href={`/blog/[blog]`} as={`/blog/${blog.blog._id}`}>
             <a
             // onClick={() => {
             //   router.push({
