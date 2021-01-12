@@ -9,35 +9,37 @@ import Image from "next/image";
 const Header = () => {
   return (
     <>
-     <Navbar expand="lg" className=" justify-content-between p-5">
-        <Navbar.Toggle aria-controls="basic-navbar-nav">
-          <Image
-            src="/image/header/burger.svg"
-            alt="burger yesmom"
-            className="burger-yesmom"
-            width={50}
-            height={50}
-            // layout="intrinsic"
-          />
-        </Navbar.Toggle>
+      <div className="header-yesmom">
+        <Navbar expand="lg" className=" justify-content-between ">
+          <Navbar.Toggle aria-controls="basic-navbar-nav">
+            <Image
+              src="/image/header/burger.svg"
+              alt="burger yesmom"
+              className="burger-yesmom"
+              width={50}
+              height={50}
+              // layout="intrinsic"
+            />
+          </Navbar.Toggle>
 
-        <Navbar.Brand href="/" className="hover-efect">
-          <Image
-            src="/image/header/logo-yesmom.svg"
-            alt="logo yesmom"
-            className="logo-yesmom"
-            width={70}
-            height={70}
-            // layout="responsive"
-          />
-        </Navbar.Brand>
-        {/* <Nav.Link href="#link" className="item-navbar">
+          <Navbar.Brand href="/" className="hover-efect">
+            <Image
+              src="/image/header/logo-yesmom.svg"
+              alt="logo yesmom"
+              className="logo-yesmom"
+              width={70}
+              height={70}
+              // layout="responsive"
+            />
+          </Navbar.Brand>
+          {/* <Nav.Link href="#link" className="item-navbar">
             <figure className="item-menu">
               <img src={cesta} alt="logo tienda yesmom" />
             </figure>
           </Nav.Link> */}
-<Navbar.Collapse id="basic-navbar-nav" >
-          {/* <Form inline className="ml-form-search">
+          <div className="items-right-navBar">
+            <Navbar.Collapse id="basic-navbar-nav">
+              {/* <Form inline className="ml-form-search">
             <Button variant="">
               <div className="lupa-img">
               <Image
@@ -55,62 +57,62 @@ const Header = () => {
               className="mr-sm-2 input-search"
             />
           </Form> */}
-          <Nav className="nav-items-collapse ">
-            <Link
-              href="/blog"
-              className="item-navbar hover-efect"
-              activeClassName="is-active"
-            >
-              <a>
-                <figure className="item-menu ">
-                  <Image
-                    src="/image/header/blog.svg"
-                    alt="logo blog yesmom "
-                    //   className="lupa-img"
-                    width={70}
-                    height={70}
-                  />
-                </figure>
-                <h6 className="">Blog</h6>
-              </a>
-            </Link>
-            <Link
-              href="/pagina-en-construccion"
-              className="item-navbar hover-efect"
-              activeClassName="is-active"
-            >
-              <a>
-                <figure className="item-menu">
-                  <Image
-                    src="/image/header/tienda.svg"
-                    alt="logo tienda yesmom"
-                    //   className="lupa-img"
-                    width={70}
-                    height={70}
-                  />
-                </figure>
-                <h6>Tienda</h6>
-              </a>
-            </Link>
-            <Link
-              href="/pagina-en-construccion"
-              className="item-navbar hover-efect"
-              activeClassName="is-active"
-            >
-              <a>
-                <figure className="item-menu">
-                  <Image
-                    src="/image/header/regalo.svg"
-                    alt="logo regalo yesmom"
-                    //   className="lupa-img"
-                    width={70}
-                    height={70}
-                  />
-                </figure>
-                <h6>Regalos</h6>
-              </a>
-            </Link>
-            {/* <Nav.Link href="#link" className="item-navbar">
+              <Nav className="nav-items-collapse ">
+                <Link
+                  href="/blog"
+                  className="item-navbar hover-efect"
+                  activeClassName="is-active"
+                >
+                  <a>
+                    <figure className="item-menu ">
+                      <Image
+                        src="/image/header/blog.svg"
+                        alt="logo blog yesmom "
+                        //   className="lupa-img"
+                        width={70}
+                        height={70}
+                      />
+                    </figure>
+                    <h6 className="">Blog</h6>
+                  </a>
+                </Link>
+                <Link
+                  href="/pagina-en-construccion"
+                  className="item-navbar hover-efect "
+                  activeClassName="is-active"
+                >
+                  <a>
+                    <figure className="item-menu ">
+                      <Image
+                        src="/image/header/tienda.svg"
+                        alt="logo tienda yesmom"
+                        //   className="lupa-img"
+                        width={70}
+                        height={70}
+                      />
+                    </figure>
+                    <h6>Tienda</h6>
+                  </a>
+                </Link>
+                <Link
+                  href="/pagina-en-construccion"
+                  className="item-navbar hover-efect"
+                  activeClassName="is-active"
+                >
+                  <a>
+                    <figure className="item-menu">
+                      <Image
+                        src="/image/header/regalo.svg"
+                        alt="logo regalo yesmom"
+                        //   className="lupa-img"
+                        width={70}
+                        height={70}
+                      />
+                    </figure>
+                    <h6>Regalos</h6>
+                  </a>
+                </Link>
+                {/* <Nav.Link href="#link" className="item-navbar">
                 <img
                   src={registrate}
                   alt="logo regrístrate yesmom"
@@ -118,47 +120,63 @@ const Header = () => {
                 />
                 <h6>Regístrate</h6>
               </Nav.Link> */}
-            <Link
-              href="/pagina-en-construccion"
-              className="item-navbar hover-efect"
-              activeClassName="is-active"
-            >
-              <a>
-                <figure className="item-menu">
-                  <Image
-                    src="/image/header/iniciar-sesion.svg"
-                    alt="logo iniciar sesión yesmom"
-                    //   className="lupa-img"
-                    width={70}
-                    height={70}
-                  />
-                </figure>
-                <h6>Login</h6>
-              </a>
-            </Link>
-            {/* <NavLink to="/cesta" className="item-navbar"  activeClassName='is-active'>
+                <Link
+                  href="/pagina-en-construccion"
+                  className="item-navbar hover-efect"
+                  activeClassName="is-active"
+                >
+                  <a>
+                    <figure className="item-menu">
+                      <Image
+                        src="/image/header/iniciar-sesion.svg"
+                        alt="logo iniciar sesión yesmom"
+                        //   className="lupa-img"
+                        width={70}
+                        height={70}
+                      />
+                    </figure>
+                    <h6>Login</h6>
+                  </a>
+                </Link>
+                {/* <NavLink to="/cesta" className="item-navbar"  activeClassName='is-active'>
                 <figure className="item-menu">
                   <img src={cesta} alt="logo cesta yesmom" />
                 </figure>
                 <h6>Cesta</h6>
               </NavLink> */}
-          </Nav>
-        </Navbar.Collapse>
-
-       
-      </Navbar>
-
+              </Nav>
+            </Navbar.Collapse>
+          </div>
+        </Navbar>
+      </div>
 
      
 
-
       <style jsx>
         {`
-          .navbar {
+
+        .header-yesmom{
+          padding: 0rem 5rem !important;
+            background: #fff;
+            z-index: 99;
+           
+            width: 100%
+        }
+
+        .items-right-navBar{
+          display: flex;
+          justify-content: flex-end;
+          
+        }
+
+        .jsx-1465798883{
+          margin-right:3rem
+        }
+          {/* .navbar {
             padding: 1rem 5rem !important;
             background: #fff;
             z-index: 99;
-          }
+          } */}
           {/* :global(#basic-navbar-nav){
             display: flex ;
             justify-content: flex-end;
