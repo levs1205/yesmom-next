@@ -22,7 +22,7 @@ const HeaderNuevo = () => {
           />
         </div>
         <Link href="/">
-          <a>
+          <a className="mr-2">
             <Image
               src="/image/header/logo-yesmom.svg"
               alt="logo yesmom"

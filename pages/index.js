@@ -79,16 +79,25 @@ const Home = ({ currentData }) => {
             </div>
           </div>
         </section>
-        <Container fluid="true" className="section-sorteo-home">
+        <div className="section-sorteo-home">
+        <Container fluid="true" >
           <Row className="sin-margin">
             <Col xs={12} md={6} lg={6} xl={6}>
               <div className="box-text-title">
-                <div className="ondas d-block m-auto heartbeat">
-                  <Image src="/image/ondas.svg" alt="ondas" layout="fill" />
+                <div className="ondas d-block  heartbeat">
+                  <Image 
+                  src="/image/ondas.svg" 
+                  alt="ondas" 
+                  width={50}
+                  height={50} />
                 </div>
                 <h4 className="text-title heartbeat">Sorteo</h4>
-                <div className="ondas d-block m-auto heartbeat">
-                  <Image src="/image/ondas.svg" alt="ondas" layout="fill" />
+                <div className="ondas d-block  heartbeat">
+                  <Image 
+                  src="/image/ondas.svg" 
+                  alt="ondas" 
+                  width={50}
+                  height={50} />
                 </div>
               </div>
               <div className="box-sorteo-home">
@@ -97,48 +106,57 @@ const Home = ({ currentData }) => {
                   Crea una lista de regalo y gana un pack de productos para ti y
                   tu bebé
                 </h6>
-                <div>
+                <div className="btn-yellow  hover-amarillo">
                   <Link
                     href="/pagina-en-construccion"
-                    className="btn-yellow  hover-amarillo"
                   >
                     <a> ¡Comenzar! </a>
                   </Link>
                 </div>
                 <Link
                   href="/terminos-condiciones"
-                  className="link-a hover-efect-letter"
+                  className=" link-a text-center hover-efect-letter"
                 >
-                  <a> ¡Comenzar! </a>
+                  <a> Términos-condiciones </a>
                 </Link>
+                
               </div>
             </Col>
             <Col xs={12} md={6} lg={6} xl={6}>
               <div className="box-img-sorteo-home">
+                <div className="line-up heartbeat">
                 <Image
                   src="/image/lineas-rosa1.svg"
                   alt="lineas"
-                  className="line-up heartbeat"
-                  layout="fill"
+                  
+                  width={30}
+                  height={30}
                 />
+                </div>
+                <div className="img-sorteo">
                 <Image
                   src="/image/home/img-sorteo-home.png"
                   alt="imagen sorteo yesmom home"
-                  className="img-sorteo"
-                  width={8}
-                  height={6}
                   layout="responsive"
+                  width={300}
+                  height={250}
+                  
                 />
+                </div>
+                <div className="line-down heartbeat">
                 <Image
                   src="/image/linea-rosa2.svg"
                   alt="lineas"
-                  className="line-down heartbeat"
-                  layout="fill"
+                  
+                  width={30}
+                  height={30}
                 />
+                </div>
               </div>
             </Col>
           </Row>
         </Container>
+        </div>
         <div className="section-lo-mejor-home">
           <Container fluid="true">
             <div className="nube-up">
@@ -312,7 +330,7 @@ const Home = ({ currentData }) => {
       <style jsx>
         {`
           .box-banner {
-            height: 40rem;
+            height: 43rem;
             width: auto;
             position: relative;
           }
@@ -334,7 +352,7 @@ const Home = ({ currentData }) => {
 
           .box-banner-btns-group {
             position: relative;
-            top: 25%;
+            top: 45%;
           }
 
           .box-banner-regalos {
@@ -382,6 +400,7 @@ const Home = ({ currentData }) => {
             justify-content: center;
             align-items: center;
             padding-top: 4rem;
+            text-align: center
           }
           .text-title {
             font-family: "Clicker Script", cursive;
@@ -405,6 +424,7 @@ const Home = ({ currentData }) => {
 
           .img-sorteo {
             width: 90%;
+            
           }
           .line-up {
             position: absolute;
