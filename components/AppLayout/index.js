@@ -2,6 +2,7 @@ import React from "react";
 import Footer from "./../Footer";
 import Header from "./../Header";
 import Head from "next/head";
+import HeaderNuevo from "../HeaderNuevo";
 
 
 const appLayout = ({ children }) => {
@@ -15,7 +16,8 @@ const appLayout = ({ children }) => {
         /> */}
         <meta name="description" content="esto es descripcion"></meta>
       </Head>
-      <Header></Header>
+      {/* <Header></Header> */}
+      <HeaderNuevo/>
       <main>{children}</main>
       <Footer></Footer>
       <style jsx global>
