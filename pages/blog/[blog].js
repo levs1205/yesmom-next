@@ -485,7 +485,6 @@ export async function getStaticPaths() {
   // Call an external API endpoint to get posts
   const res = await fetch("http://localhost:5000/getBlogAll/user?limit=all");
   const blogs = await res.json();
-  console.log(blogs.length, "ojitoa");
   // Get the paths we want to pre-render based on posts
   const paths = blogs.map((blog) => ({
     params: { blog: String(blog.blog._id) },
