@@ -89,6 +89,10 @@ const HeaderNuevo = () => {
             align-items: center;
             flex-wrap: wrap;
             padding: 1rem 4rem;
+            background:#fff;
+            position: fixed;
+            z-index: 9999;
+            width: 100%
           }
           .burger-yesmom {
             margin-right: auto;
