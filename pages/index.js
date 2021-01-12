@@ -37,7 +37,6 @@ const Home = ({ currentData }) => {
       <div className="fade-in animated">
         <section fluid="true" className="box-banner">
           <div className="banner view-desktop">
-            <img src="" alt=""/>
             <Image
               src="/image/home/banner.png"
               alt="Picture of the author"

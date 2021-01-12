@@ -1,10 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const HeaderNuevo = () => {
   const [active, setActive] = useState(false);
-
+  const router = useRouter();
   const handleClick = () => {
     console.log("click", active);
     setActive(!active);
