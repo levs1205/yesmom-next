@@ -1,10 +1,12 @@
 import Link from "next/link";
+import ActiveLink from "../components/ActiveLink";
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const HeaderNuevo = () => {
   const [active, setActive] = useState(false);
-
+  const router = useRouter();
   const handleClick = () => {
     console.log("click", active);
     setActive(!active);
@@ -21,7 +23,7 @@ const HeaderNuevo = () => {
             // layout="intrinsic"
           />
         </div>
-        <Link href="/">
+        <Link href="/"  prefetch>
           <a className="mr-2">
             <Image
               src="/image/header/logo-yesmom.svg"
@@ -32,10 +34,10 @@ const HeaderNuevo = () => {
           </a>
         </Link>
         <div
-          className={`${ active ? "" : "box-items-menu-desktop" } box-items-menu` }
+          className={`${active ? "" : "box-items-menu-desktop"} box-items-menu`}
         >
           <div className="box-items-menu-responsive">
-            <Link href="/">
+            <ActiveLink href="/" activeClassName="active"  prefetch >
               <a className="item-menu-yesmom">
                 <Image
                   src="/image/header/blog.svg"
@@ -45,8 +47,8 @@ const HeaderNuevo = () => {
                 />
                 <h6 className="text-navbar">Blog</h6>
               </a>
-            </Link>
-            <Link href="/">
+            </ActiveLink>
+            <ActiveLink href="/blog" activeClassName="active"  prefetch > 
               <a className="item-menu-yesmom">
                 <Image
                   src="/image/header/blog.svg"
@@ -56,8 +58,8 @@ const HeaderNuevo = () => {
                 />
                 <h6 className="text-navbar">Blog</h6>
               </a>
-            </Link>
-            <Link href="/">
+            </ActiveLink>
+            <ActiveLink href="/holitas" activeClassName="active">
               <a className="item-menu-yesmom">
                 <Image
                   src="/image/header/blog.svg"
@@ -67,8 +69,8 @@ const HeaderNuevo = () => {
                 />
                 <h6 className="text-navbar">Blog</h6>
               </a>
-            </Link>
-            <Link href="/">
+            </ActiveLink>
+            <ActiveLink href="/hola" activeClassName="active">
               <a className="item-menu-yesmom">
                 <Image
                   src="/image/header/blog.svg"
@@ -78,21 +80,27 @@ const HeaderNuevo = () => {
                 />
                 <h6 className="text-navbar">Blog</h6>
               </a>
-            </Link>
+            </ActiveLink>
           </div>
         </div>
       </nav>
       <style jsx>
         {`
+          .active {
+            color: red;
+            font-size: 2rem;
+            font-weight: 900;
+          }
+
           .navbar-yesmom {
             display: flex;
             align-items: center;
             flex-wrap: wrap;
             padding: 1rem 4rem;
-            background:#fff;
+            background: #fff;
             position: fixed;
             z-index: 9999;
-            width: 100%
+            width: 100%;
           }
           .burger-yesmom {
             margin-right: auto;
