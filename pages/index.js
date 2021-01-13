@@ -42,17 +42,13 @@ const Home = ({ currentData }) => {
         <meta property="og:type" content="website" />
         <meta property="og:title"  content="YesMom - Home"  />
         <meta property="og:description" content="YesMom es ..."/>
-        <meta property="og:image" content={currentData.imagenes[0].typeImage === "P"
-                    ? currentData.imagenes[0].url
-                    : currentData.imagenes[1].url} />
+        <meta property="og:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.es%2Fvector-premium%2Fmama-bebe-elefante-sosteniendo-globo_5186775.htm&psig=AOvVaw35dH9pk-kNaZ4wBMF87bS9&ust=1610582748885000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiyzbrOl-4CFQAAAAAdAAAAABAD" />
         <meta property="og:site_name" content="La Ganga" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
         <meta name="twitter:card" content="summary" /> 
         <meta name="twitter:title"  content="YesMom - Home" />
         <meta name="twitter:description"  content="YesMom es ..." />
-        <meta name="twitter:image" content={currentData.imagenes[0].typeImage === "P"
-                    ? currentData.imagenes[0].url
-                    : currentData.imagenes[1].url} />
+        <meta name="twitter:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.es%2Fvector-premium%2Fmama-bebe-elefante-sosteniendo-globo_5186775.htm&psig=AOvVaw35dH9pk-kNaZ4wBMF87bS9&ust=1610582748885000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiyzbrOl-4CFQAAAAAdAAAAABAD" />
         <meta name="twitter:site" content="@JudithCristinaQ" />
         <meta name="twitter:creator" content="@JudithCristinaQ" />
       </Head>
@@ -95,87 +91,84 @@ const Home = ({ currentData }) => {
               <p className="link-a text-center ">
                 ¿Ya registrado?
                 <span className="hover-efect-letter">
-                  <b>Inicia sesión</b>
+                  <b> Inicia sesión</b>
                 </span>
               </p>
             </div>
           </div>
         </section>
         <div className="section-sorteo-home">
-        <Container fluid="true" >
-          <Row className="sin-margin">
-            <Col xs={12} md={6} lg={6} xl={6}>
-              <div className="box-text-title">
-                <div className="ondas d-block  heartbeat">
-                  <Image 
-                  src="/image/ondas.svg" 
-                  alt="ondas" 
-                  width={50}
-                  height={50} />
+          <Container fluid="true">
+            <Row className="sin-margin">
+              <Col xs={12} md={6} lg={6} xl={6}>
+                <div className="box-text-title">
+                  <div className="ondas d-block  heartbeat">
+                    <Image
+                      src="/image/ondas.svg"
+                      alt="ondas"
+                      width={50}
+                      height={50}
+                    />
+                  </div>
+                  <h4 className="text-title heartbeat">Sorteo</h4>
+                  <div className="ondas d-block  heartbeat">
+                    <Image
+                      src="/image/ondas.svg"
+                      alt="ondas"
+                      width={50}
+                      height={50}
+                    />
+                  </div>
                 </div>
-                <h4 className="text-title heartbeat">Sorteo</h4>
-                <div className="ondas d-block  heartbeat">
-                  <Image 
-                  src="/image/ondas.svg" 
-                  alt="ondas" 
-                  width={50}
-                  height={50} />
-                </div>
-              </div>
-              <div className="box-sorteo-home">
-                <h3 className="title-fuxia">Gana un pack Yes Mom</h3>
-                <h6 className="subtitle-dark">
-                  Crea una lista de regalo y gana un pack de productos para ti y
-                  tu bebé
-                </h6>
-                <div className="btn-yellow  hover-amarillo">
-                  <Link
-                    href="/pagina-en-construccion"
-                  >
-                    <a> ¡Comenzar! </a>
+                <div className="box-sorteo-home">
+                  <h3 className="title-fuxia">Gana un pack Yes Mom</h3>
+                  <h6 className="subtitle-dark">
+                    Crea una lista de regalo y gana un pack de productos para ti
+                    y tu bebé
+                  </h6>
+                  <div className="btn-yellow  hover-amarillo">
+                    <Link href="/pagina-en-construccion">
+                      <a> ¡Comenzar! </a>
+                    </Link>
+                  </div>
+                  <Link href="/terminos-condiciones">
+                    <a className=" link-a text-center hover-efect-letter">
+                      Términos-condiciones
+                    </a>
                   </Link>
                 </div>
-                <Link href="/terminos-condiciones"
-                >
-                  <a className=" link-a text-center hover-efect-letter"> Términos-condiciones </a>
-                </Link>
-                
-              </div>
-            </Col>
-            <Col xs={12} md={6} lg={6} xl={6}>
-              <div className="box-img-sorteo-home">
-                <div className="line-up heartbeat">
-                <Image
-                  src="/image/lineas-rosa1.svg"
-                  alt="lineas"
-                  
-                  width={30}
-                  height={30}
-                />
+              </Col>
+              <Col xs={12} md={6} lg={6} xl={6}>
+                <div className="box-img-sorteo-home">
+                  <div className="line-up heartbeat">
+                    <Image
+                      src="/image/lineas-rosa1.svg"
+                      alt="lineas"
+                      width={30}
+                      height={30}
+                    />
+                  </div>
+                  <div className="img-sorteo">
+                    <Image
+                      src="/image/home/img-sorteo-home.png"
+                      alt="imagen sorteo yesmom home"
+                      layout="responsive"
+                      width={300}
+                      height={250}
+                    />
+                  </div>
+                  <div className="line-down heartbeat">
+                    <Image
+                      src="/image/linea-rosa2.svg"
+                      alt="lineas"
+                      width={30}
+                      height={30}
+                    />
+                  </div>
                 </div>
-                <div className="img-sorteo">
-                <Image
-                  src="/image/home/img-sorteo-home.png"
-                  alt="imagen sorteo yesmom home"
-                  layout="responsive"
-                  width={300}
-                  height={250}
-                  
-                />
-                </div>
-                <div className="line-down heartbeat">
-                <Image
-                  src="/image/linea-rosa2.svg"
-                  alt="lineas"
-                  
-                  width={30}
-                  height={30}
-                />
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Container>
+              </Col>
+            </Row>
+          </Container>
         </div>
         <div className="section-lo-mejor-home">
           <Container fluid="true">
@@ -183,8 +176,8 @@ const Home = ({ currentData }) => {
               <Image
                 src="/image/home/nube.svg"
                 alt="nube yesmom"
-                width={20}
-                height={50}
+                width={40}
+                height={30}
                 layout="responsive"
               />
             </div>
@@ -203,9 +196,9 @@ const Home = ({ currentData }) => {
               <Image
                 src="/image/onda-rosa.svg"
                 alt="onda rosa yes mom"
-                width={20}
-                height={50}
-                layout="responsive"
+                width={50}
+                height={20}
+                // layout="responsive"
               />
             </div>
 
@@ -215,15 +208,15 @@ const Home = ({ currentData }) => {
                   <Image
                     src="/image/home/destacado.png"
                     alt="destacado"
-                    layout="fill"
+                    width={400}
+                    height={400}
+                    // layout="responsive"
+
                     // className="onda-rosa heartbeat"
                   />
                 </div>
-                <div>
-                  <Link
-                    href="/pagina-en-construccion"
-                    className="btn-lo-mejor hover-amarillo"
-                  >
+                <div className="btn-lo-mejor hover-amarillo">
+                  <Link href="/pagina-en-construccion">
                     <a> Tiendas destacadas</a>
                   </Link>
                 </div>
@@ -233,7 +226,8 @@ const Home = ({ currentData }) => {
                   <Image
                     src="/image/home/buscado.png"
                     alt="search"
-                    layout="fill"
+                    width={400}
+                    height={400}
                     // className="onda-rosa heartbeat"
                   />
                 </div>
@@ -251,7 +245,8 @@ const Home = ({ currentData }) => {
                   <Image
                     src="/image/home/sin-moverte.png"
                     alt="sin moverte"
-                    layout="fill"
+                    width={400}
+                    height={400}
                     // className="onda-rosa heartbeat"
                   />
                 </div>
@@ -266,7 +261,8 @@ const Home = ({ currentData }) => {
                   <Image
                     src="/image/home/juguetes.png"
                     alt="juguetes"
-                    layout="fill"
+                    width={400}
+                    height={400}
                     // className="onda-rosa heartbeat"
                   />
                 </div>
@@ -279,8 +275,8 @@ const Home = ({ currentData }) => {
               <Image
                 src="/image/home/nube.svg"
                 alt="nube yesmom"
-                width={20}
-                height={50}
+                width={40}
+                height={20}
                 layout="responsive"
               />
             </div>
@@ -339,7 +335,7 @@ const Home = ({ currentData }) => {
               <Container>
                 <CardDeck>
                   {currentData.map((cardBlog) => (
-                    <CardBlog blog={cardBlog} key={cardBlog.blog._id}/>
+                    <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
                   ))}
                 </CardDeck>
               </Container>
@@ -420,7 +416,7 @@ const Home = ({ currentData }) => {
             justify-content: center;
             align-items: center;
             padding-top: 4rem;
-            text-align: center
+            text-align: center;
           }
           .text-title {
             font-family: "Clicker Script", cursive;
@@ -444,7 +440,6 @@ const Home = ({ currentData }) => {
 
           .img-sorteo {
             width: 90%;
-            
           }
           .line-up {
             position: absolute;
@@ -519,7 +514,7 @@ const Home = ({ currentData }) => {
           }
           .onda-rosa {
             width: 5rem;
-            margin: auto;
+            margin: 0 auto;
             display: block;
             position: relative;
             top: 0rem;

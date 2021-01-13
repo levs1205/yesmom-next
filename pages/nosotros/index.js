@@ -2,10 +2,28 @@ import React from "react";
 import AppLayout from "../../components/AppLayout";
 import Image from "next/image";
 import { Container, Row, Col } from "react-bootstrap";
-
+import Head from "next/head";
 const index = () => {
   return (
     <AppLayout>
+          <Head>
+        <title>
+          YesMom - Nosotros
+        </title>
+        <meta name="description" content="YesMom es ..."></meta>
+        <meta property="og:type" content="website" />
+        <meta property="og:title"  content="YesMom - Nostros"  />
+        <meta property="og:description" content="YesMom es ..."/>
+        <meta property="og:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vix.com%2Fes%2Fmadres%2F233275%2F19-nombres-para-nina-inspirados-en-la-mitologia-son-preciosos&psig=AOvVaw1x2U3pjFY7lk5JYZid72au&ust=1610582938997000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPCpoJnPl-4CFQAAAAAdAAAAABAD" />
+        <meta property="og:site_name" content="La Ganga" />
+        {/* <meta property="og:url" content={`${user.id}`} />  */}
+        <meta name="twitter:card" content="summary" /> 
+        <meta name="twitter:title"  content="YesMom - Nosotros" />
+        <meta name="twitter:description"  content="YesMom es ..." />
+        <meta name="twitter:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vix.com%2Fes%2Fmadres%2F233275%2F19-nombres-para-nina-inspirados-en-la-mitologia-son-preciosos&psig=AOvVaw1x2U3pjFY7lk5JYZid72au&ust=1610582938997000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPCpoJnPl-4CFQAAAAAdAAAAABAD" />
+        <meta name="twitter:site" content="@JudithCristinaQ" />
+        <meta name="twitter:creator" content="@JudithCristinaQ" />
+      </Head>
       <div className="box-banner-about">
         <Image
           src="/image/onda-blanca.svg"

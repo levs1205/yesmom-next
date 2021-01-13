@@ -5,10 +5,29 @@ import AppLayout from "../../components/AppLayout";
 import Image from "next/image";
 import Link from "next/link";
 import CardBlog from "../../components/CardBlog";
+import Head from "next/head";
 
 const Blog = ({ currentData }) => {
   return (
     <AppLayout>
+       <Head>
+        <title>
+          YesMom - Blog
+        </title>
+        <meta name="description" content="Visita nuestro blog ..."></meta>
+        <meta property="og:type" content="website" />
+        <meta property="og:title"  content="YesMom - Blog"  />
+        <meta property="og:description" content="Visita nuestro Blog ..."/>
+        <meta property="og:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fkueski.com%2Fblog%2Ftemporada%2Fmamas-emprendedoras-exitosas-de-mexico%2F&psig=AOvVaw1RsoqJmXdY6b9OYFATaTRQ&ust=1610583088240000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJj3nN_Pl-4CFQAAAAAdAAAAABAE" />
+        <meta property="og:site_name" content="La Ganga" />
+        {/* <meta property="og:url" content={`${user.id}`} />  */}
+        <meta name="twitter:card" content="summary" /> 
+        <meta name="twitter:title"  content="YesMom - Blog" />
+        <meta name="twitter:description"  content="Visitanuestro Blog ..." />
+        <meta name="twitter:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fkueski.com%2Fblog%2Ftemporada%2Fmamas-emprendedoras-exitosas-de-mexico%2F&psig=AOvVaw1RsoqJmXdY6b9OYFATaTRQ&ust=1610583088240000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJj3nN_Pl-4CFQAAAAAdAAAAABAE" />
+        <meta name="twitter:site" content="@JudithCristinaQ" />
+        <meta name="twitter:creator" content="@JudithCristinaQ" />
+      </Head>
       <div className="fade-in animated">
         <div className="box-banner-blog">
           <Image
