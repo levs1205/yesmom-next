@@ -3,7 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
-import Link from "next/Link";
+import Link from "next/link";
 import Image from "next/image";
 
 const Header = () => {
