@@ -36,6 +36,7 @@ const Home = ({ currentData }) => {
     <AppLayout>
       <Head>
         <title>YesMom - Home</title>
+        {/* <link rel="icon" type="image/x-icon"  href="/yesmom-favicon.png" /> */}
         <meta name="description" content="YesMom es ..."></meta>
         <meta property="og:type" content="website" />
         <meta property="og:title" content="YesMom - Home" />
