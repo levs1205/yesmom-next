@@ -8,7 +8,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 // import bannerM from "../public/image/home/banner-mobile.png";
 import AppLayout from "../components/AppLayout";
 import CardBlog from "../components/CardBlog";
-
+import Head from "next/head";
 // import clienteAxiosBusiness from "../config/axiosBusiness";
 import axios from "axios";
 // import fetch from 'isomorphic-fetch'
@@ -34,6 +34,28 @@ const Home = ({ currentData }) => {
   // };
   return (
     <AppLayout>
+      <Head>
+        <title>
+          YesMom - Home
+        </title>
+        <meta name="description" content="YesMom es ..."></meta>
+        <meta property="og:type" content="website" />
+        <meta property="og:title"  content="YesMom - Home"  />
+        <meta property="og:description" content="YesMom es ..."/>
+        <meta property="og:image" content={currentData.imagenes[0].typeImage === "P"
+                    ? currentData.imagenes[0].url
+                    : currentData.imagenes[1].url} />
+        <meta property="og:site_name" content="La Ganga" />
+        {/* <meta property="og:url" content={`${user.id}`} />  */}
+        <meta name="twitter:card" content="summary" /> 
+        <meta name="twitter:title"  content="YesMom - Home" />
+        <meta name="twitter:description"  content="YesMom es ..." />
+        <meta name="twitter:image" content={currentData.imagenes[0].typeImage === "P"
+                    ? currentData.imagenes[0].url
+                    : currentData.imagenes[1].url} />
+        <meta name="twitter:site" content="@JudithCristinaQ" />
+        <meta name="twitter:creator" content="@JudithCristinaQ" />
+      </Head>
       <div className="fade-in animated">
         <section fluid="true" className="box-banner">
           <div className="banner view-desktop">
@@ -113,11 +135,9 @@ const Home = ({ currentData }) => {
                     <a> ¡Comenzar! </a>
                   </Link>
                 </div>
-                <Link
-                  href="/terminos-condiciones"
-                  className=" link-a text-center hover-efect-letter"
+                <Link href="/terminos-condiciones"
                 >
-                  <a> Términos-condiciones </a>
+                  <a className=" link-a text-center hover-efect-letter"> Términos-condiciones </a>
                 </Link>
                 
               </div>
