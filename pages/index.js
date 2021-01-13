@@ -207,7 +207,7 @@ const Home = ({ currentData }) => {
               />
             </div>
             <div className="box-img-lo-mejor">
-              <Row>
+              <Row className="sin-margin">
                 <Col xs>
                   <div className="img-lo-mejor ">
                     <Image
@@ -817,7 +817,7 @@ const Home = ({ currentData }) => {
 
             .nube-down {
               width: 10rem;
-              right: -1rem;
+              right: 0rem;
               bottom: -2rem;
             }
 
