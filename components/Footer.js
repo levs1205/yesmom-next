@@ -1,4 +1,4 @@
-import Link from "next/Link"
+import Link from "next/link"
 import { Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
