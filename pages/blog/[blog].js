@@ -506,7 +506,7 @@ const CardBlogEspecific = ({ currentData }) => {
 
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
-  const res = await fetch("http://localhost:5000/getBlogAll/user?limit=all");
+  const res = await fetch("https://yesmom-backend.herokuapp.com/getBlogAll/user?limit=all");
   const blogs = await res.json();
   // Get the paths we want to pre-render based on posts
   const paths = blogs.map((blog) => ({
@@ -521,7 +521,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res = await fetch(`http://localhost:5000/getBlog/${params.blog}`);
+  const res = await fetch(`https://yesmom-backend.herokuapp.com/getBlog/${params.blog}`);
   const currentData = await res.json();
 
   // By returning { props: posts }, the Blog component
