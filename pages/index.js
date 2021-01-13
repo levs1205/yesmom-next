@@ -116,7 +116,7 @@ const Home = ({ currentData }) => {
                   <Link href="/terminos-condiciones">
                     <a className=" link-a text-center hover-efect-letter">
                       {" "}
-                      Términos-condiciones{" "}
+                      Términos y condiciones{" "}
                     </a>
                   </Link>
                 </div>
@@ -265,9 +265,10 @@ const Home = ({ currentData }) => {
             </div>
           </Container>
         </div>
-        <Container fluid="true" className="section-blog-home">
-          <Row className="sin-margin">
-            {/* <Col xs={12} md={6} lg={6} xl={6}>
+        <div className="section-blog-home">
+          <Container fluid="true">
+            <Row className="sin-margin">
+              {/* <Col xs={12} md={6} lg={6} xl={6}>
           <div className="box-img-blog-home">
             <img src={lineasAzul1} alt="lineas" className="line-up-azul" />
             <img
@@ -278,53 +279,58 @@ const Home = ({ currentData }) => {
             <img src={lineasAzul2} alt="lineas" className="line-down-azul" />
           </div>
         </Col> */}
-            <Col xs={12} md={6} lg={6} xl={6}>
-              <div className="box-true-history">
-                <div className="box-text-title">
-                  <Image
-                    src="/image/ondas.svg"
-                    alt="ondas"
-                    className="ondas"
-                    layout="responsive"
-                    width={200}
-                    height={300}
-                  />
-                  <h4 className="text-title heartbeat">Blog</h4>
-                  <Image
-                    src="/image/ondas.svg"
-                    alt="ondas"
-                    className="ondas"
-                    layout="fill"
-                  />
-                </div>
-                <h3 className="title-fuxia mt-2">#TrueStoryMom</h3>
-                <Container className="container-blog-home">
-                  <h6 className="subtitle-dark text-center">
-                    Historias reales de madres que tenían las mismas dudas que
-                    tú tienes en estos momentos. No te preocupes ¡Lo
-                    resolveremos juntas!
-                  </h6>
-                  <Link href="/blog">
-                    <a className="btn-yellow">Ver más</a>
-                  </Link>
+              <Col xs={12} md={6} lg={6} xl={6}>
+                <div className="box-true-history">
+                  <div className="box-text-title">
+                    <Image
+                      src="/image/ondas.svg"
+                      alt="ondas"
+                      className="ondas"
+                      width={50}
+                      height={50}
+                    />
+                    <h4 className="text-title heartbeat">Blog</h4>
+                    <Image
+                      src="/image/ondas.svg"
+                      alt="ondas"
+                      className="ondas"
+                      width={50}
+                      height={50}
+                    />
+                  </div>
+                  <h3 className="title-fuxia mt-2">#TrueStoryMom</h3>
+                  <div className="container-blog-home">
+                    <Container>
+                      <h6 className="subtitle-dark text-center">
+                        Historias reales de madres que tenían las mismas dudas
+                        que tú tienes en estos momentos. No te preocupes ¡Lo
+                        resolveremos juntas!
+                      </h6>
+                      <Link href="/blog">
+                        <a className="btn-yellow">Ver más</a>
+                      </Link>
 
-                  {/* <a href="/blog" className="link-a d-block text-center mt-4">
+                      {/* <a href="/blog" className="link-a d-block text-center mt-4">
                 Ver más &#8594;
               </a> */}
+                    </Container>
+                  </div>
+                </div>
+              </Col>
+              <Col xs={12} md={6} lg={6} xl={6} >
+                <div className="box-blog-card-home">
+                <Container>
+                  <CardDeck>
+                    {currentData.map((cardBlog) => (
+                      <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
+                    ))}
+                  </CardDeck>
                 </Container>
-              </div>
-            </Col>
-            <Col xs={12} md={6} lg={6} xl={6} className="box-blog-card-home">
-              <Container>
-                <CardDeck>
-                  {currentData.map((cardBlog) => (
-                    <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
-                  ))}
-                </CardDeck>
-              </Container>
-            </Col>
-          </Row>
-        </Container>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </div>
       </div>
       <style jsx>
         {`
