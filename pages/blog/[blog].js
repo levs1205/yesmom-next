@@ -50,49 +50,53 @@ const CardBlogEspecific = ({ currentData }) => {
       </Head>
       <div className="fade-in animated">
         <div className="box-banner-blog">
+          <div  className="ondas">
           <Image
             src="/image/onda-blanca.svg"
             alt="ondas"
-            width={20}
-            height={50}
-            layout="responsive"
-            className="ondas"
+            width={100}
+            height={20}
+            // layout="responsive"
           />
+          </div>
           <h4 className="text-title-blog">Detalles de blog</h4>
+          <div  className="ondas">
           <Image
             src="/image/onda-blanca.svg"
             alt="ondas"
-            width={20}
-            height={50}
-            layout="responsive"
-            className="ondas"
+            width={100}
+            height={20}
+            // layout="responsive"
+           
           />
+          </div>
         </div>
         <div className="box-blog-especifico">
-          <Image
+         <div  className="nube1 heartbeat">
+         <Image
             src="/image/blog/nube1.png"
-            className="nube1 heartbeat"
-            width={70}
-            height={70}
-            layout="responsive"
+            width={200}
+            height={150}
+            // layout="responsive"
             alt="nube"
           />
+         </div>
+          <div className="nube2 heartbeat">
           <Image
             src="/image/blog/nube2.png"
-            className="nube2 heartbeat"
-            width={70}
-            height={70}
-            layout="responsive"
+            width={200}
+            height={150}
             alt="nube"
           />
+          </div>
+          <div className="nube3 heartbeat">
           <Image
             src="/image/blog/nube3.png"
-            className="nube3 heartbeat"
-            width={70}
-            height={70}
-            layout="responsive"
+            width={200}
+            height={150}
             alt="nube"
           />
+          </div>
           <div className="box-autor-blog">
             <figure>
               <img
@@ -119,7 +123,7 @@ const CardBlogEspecific = ({ currentData }) => {
                     : currentData.imagenes[1].url
                 }
                 alt=""
-                className="w-100"
+                className="w-50 m-auto d-block"
               />
             </figure>
             <div className="box-articulo-title-blog">
@@ -145,12 +149,13 @@ const CardBlogEspecific = ({ currentData }) => {
       <style jsx>
         {`
           .box-banner-blog {
-            height: 15rem;
+            height: 25rem;
             background: url(../../image/blog/blog.png) no-repeat center;
             background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding-top:5rem
           }
 
           .text-title-blog {
@@ -213,7 +218,7 @@ const CardBlogEspecific = ({ currentData }) => {
             width: 100%;
             display: flex;
             padding: 4rem 9rem;
-            font-family: "mont-regular";
+            font-family: "mont-regular"!important;
           }
 
           .box-autor-blog {

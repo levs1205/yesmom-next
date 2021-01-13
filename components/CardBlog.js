@@ -21,7 +21,8 @@ const CardBlog = ({ blog }) => {
   );
   return (
     <>
-      <Card className=" card-blog">
+      <div className="card-blog">
+      <Card >
         <Card.Img variant="top" src={blog.imagenes[1].url} />
         <Card.Body>
           <Card.Title>{blog.blog.titulo}</Card.Title>
@@ -43,12 +44,13 @@ const CardBlog = ({ blog }) => {
             //     query: { id: blog.blog._id },
             //   });
             // }}
-            >
+            className=" link-a text-center hover-efect-letter">
               Leer más &#8594;
             </a>
           </Link>
         </Card.Footer>
       </Card>
+      </div>
       <style jsx>
         {`
           .box-banner-blog {
