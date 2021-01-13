@@ -35,20 +35,24 @@ const Home = ({ currentData }) => {
   return (
     <AppLayout>
       <Head>
-        <title>
-          YesMom - Home
-        </title>
+        <title>YesMom - Home</title>
         <meta name="description" content="YesMom es ..."></meta>
         <meta property="og:type" content="website" />
-        <meta property="og:title"  content="YesMom - Home"  />
-        <meta property="og:description" content="YesMom es ..."/>
-        <meta property="og:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.es%2Fvector-premium%2Fmama-bebe-elefante-sosteniendo-globo_5186775.htm&psig=AOvVaw35dH9pk-kNaZ4wBMF87bS9&ust=1610582748885000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiyzbrOl-4CFQAAAAAdAAAAABAD" />
+        <meta property="og:title" content="YesMom - Home" />
+        <meta property="og:description" content="YesMom es ..." />
+        <meta
+          property="og:image"
+          content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.es%2Fvector-premium%2Fmama-bebe-elefante-sosteniendo-globo_5186775.htm&psig=AOvVaw35dH9pk-kNaZ4wBMF87bS9&ust=1610582748885000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiyzbrOl-4CFQAAAAAdAAAAABAD"
+        />
         <meta property="og:site_name" content="La Ganga" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
-        <meta name="twitter:card" content="summary" /> 
-        <meta name="twitter:title"  content="YesMom - Home" />
-        <meta name="twitter:description"  content="YesMom es ..." />
-        <meta name="twitter:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.es%2Fvector-premium%2Fmama-bebe-elefante-sosteniendo-globo_5186775.htm&psig=AOvVaw35dH9pk-kNaZ4wBMF87bS9&ust=1610582748885000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiyzbrOl-4CFQAAAAAdAAAAABAD" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="YesMom - Home" />
+        <meta name="twitter:description" content="YesMom es ..." />
+        <meta
+          name="twitter:image"
+          content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.es%2Fvector-premium%2Fmama-bebe-elefante-sosteniendo-globo_5186775.htm&psig=AOvVaw35dH9pk-kNaZ4wBMF87bS9&ust=1610582748885000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiyzbrOl-4CFQAAAAAdAAAAABAD"
+        />
         <meta name="twitter:site" content="@JudithCristinaQ" />
         <meta name="twitter:creator" content="@JudithCristinaQ" />
       </Head>
@@ -202,76 +206,78 @@ const Home = ({ currentData }) => {
                 // layout="responsive"
               />
             </div>
+            <div className="box-img-lo-mejor">
+              <Row>
+                <Col xs>
+                  <div className="img-lo-mejor ">
+                    <Image
+                      src="/image/home/destacado.png"
+                      alt="destacado"
+                      width={400}
+                      height={400}
+                      // layout="responsive"
 
-            <Row className="box-img-lo-mejor">
-              <Col xs>
-                <div className="img-lo-mejor ">
-                  <Image
-                    src="/image/home/destacado.png"
-                    alt="destacado"
-                    width={400}
-                    height={400}
-                    // layout="responsive"
+                      // className="onda-rosa heartbeat"
+                    />
+                  </div>
+                  <div className="btn-lo-mejor hover-amarillo">
+                    <Link href="/pagina-en-construccion">
+                      <a> Tiendas destacadas</a>
+                    </Link>
+                  </div>
+                </Col>
+                <Col xs>
+                  <div className="img-lo-mejor">
+                    <Image
+                      src="/image/home/buscado.png"
+                      alt="search"
+                      width={400}
+                      height={400}
+                      // className="onda-rosa heartbeat"
+                    />
+                  </div>
+                  <div className="btn-lo-mejor bg-fuxia hover-fuxia">
+                    <Link href="/pagina-en-construccion">
+                      <a>
+                        {" "}
+                        Lo + <br></br> buscado{" "}
+                      </a>
+                    </Link>
+                  </div>
+                </Col>
+                <Col xs>
+                  <div className="img-lo-mejor">
+                    <Image
+                      src="/image/home/sin-moverte.png"
+                      alt="sin moverte"
+                      width={400}
+                      height={400}
+                      // className="onda-rosa heartbeat"
+                    />
+                  </div>
+                  <div className="btn-lo-mejor bg-verde hover-verde">
+                    <Link href="/pagina-en-construccion">
+                      <a>Sin moverte de casa</a>
+                    </Link>
+                  </div>
+                </Col>
+                <Col xs>
+                  <div className="img-lo-mejor">
+                    <Image
+                      src="/image/home/juguetes.png"
+                      alt="juguetes"
+                      width={400}
+                      height={400}
+                      // className="onda-rosa heartbeat"
+                    />
+                  </div>
+                  <div className="btn-lo-mejor bg-azul hover-azul">
+                    <Link href="/pagina-en-construccion">Juguetes</Link>
+                  </div>
+                </Col>
+              </Row>
+            </div>
 
-                    // className="onda-rosa heartbeat"
-                  />
-                </div>
-                <div className="btn-lo-mejor hover-amarillo">
-                  <Link href="/pagina-en-construccion">
-                    <a> Tiendas destacadas</a>
-                  </Link>
-                </div>
-              </Col>
-              <Col xs>
-                <div className="img-lo-mejor">
-                  <Image
-                    src="/image/home/buscado.png"
-                    alt="search"
-                    width={400}
-                    height={400}
-                    // className="onda-rosa heartbeat"
-                  />
-                </div>
-                <div className="btn-lo-mejor bg-fuxia hover-fuxia">
-                  <Link href="/pagina-en-construccion">
-                    <a>
-                      {" "}
-                      Lo + <br></br> buscado{" "}
-                    </a>
-                  </Link>
-                </div>
-              </Col>
-              <Col xs>
-                <div className="img-lo-mejor">
-                  <Image
-                    src="/image/home/sin-moverte.png"
-                    alt="sin moverte"
-                    width={400}
-                    height={400}
-                    // className="onda-rosa heartbeat"
-                  />
-                </div>
-                <div className="btn-lo-mejor bg-verde hover-verde">
-                  <Link href="/pagina-en-construccion">
-                    <a>Sin moverte de casa</a>
-                  </Link>
-                </div>
-              </Col>
-              <Col xs>
-                <div className="img-lo-mejor">
-                  <Image
-                    src="/image/home/juguetes.png"
-                    alt="juguetes"
-                    width={400}
-                    height={400}
-                    // className="onda-rosa heartbeat"
-                  />
-                </div>
-                <div className="btn-lo-mejor bg-azul hover-azul">
-                  <Link href="/pagina-en-construccion">Juguetes</Link>
-                </div>
-              </Col>
-            </Row>
             <div className="nube-down">
               <Image
                 src="/image/home/nube.svg"
@@ -297,7 +303,7 @@ const Home = ({ currentData }) => {
             <img src={lineasAzul2} alt="lineas" className="line-down-azul" />
           </div>
         </Col> */}
-              <Col xs={12} md={6} lg={6} xl={6}>
+              <Col xs={12} md={5} lg={5} xl={5}>
                 <div className="box-true-history">
                   <div className="box-text-title">
                     <Image
@@ -335,15 +341,15 @@ const Home = ({ currentData }) => {
                   </div>
                 </div>
               </Col>
-              <Col xs={12} md={6} lg={6} xl={6} >
+              <Col xs={12} md={7} lg={7} xl={7}>
                 <div className="box-blog-card-home">
-                <Container>
-                  <CardDeck>
-                    {currentData.map((cardBlog) => (
-                      <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
-                    ))}
-                  </CardDeck>
-                </Container>
+                  <Container>
+                    <CardDeck>
+                      {currentData.map((cardBlog) => (
+                        <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
+                      ))}
+                    </CardDeck>
+                  </Container>
                 </div>
               </Col>
             </Row>
@@ -473,6 +479,7 @@ const Home = ({ currentData }) => {
             position: relative;
             background-position: top bottom;
             background-size: cover;
+            width: 100%;
           }
 
           .box-title-lo-mejor-home {
