@@ -8,7 +8,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 // import bannerM from "../public/image/home/banner-mobile.png";
 import AppLayout from "../components/AppLayout";
 import CardBlog from "../components/CardBlog";
-
+import Head from "next/head";
 // import clienteAxiosBusiness from "../config/axiosBusiness";
 import axios from "axios";
 // import fetch from 'isomorphic-fetch'
@@ -34,6 +34,24 @@ const Home = ({ currentData }) => {
   // };
   return (
     <AppLayout>
+      <Head>
+        <title>
+          YesMom - Home
+        </title>
+        <meta name="description" content="YesMom es ..."></meta>
+        <meta property="og:type" content="website" />
+        <meta property="og:title"  content="YesMom - Home"  />
+        <meta property="og:description" content="YesMom es ..."/>
+        <meta property="og:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.es%2Fvector-premium%2Fmama-bebe-elefante-sosteniendo-globo_5186775.htm&psig=AOvVaw35dH9pk-kNaZ4wBMF87bS9&ust=1610582748885000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiyzbrOl-4CFQAAAAAdAAAAABAD" />
+        <meta property="og:site_name" content="La Ganga" />
+        {/* <meta property="og:url" content={`${user.id}`} />  */}
+        <meta name="twitter:card" content="summary" /> 
+        <meta name="twitter:title"  content="YesMom - Home" />
+        <meta name="twitter:description"  content="YesMom es ..." />
+        <meta name="twitter:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.es%2Fvector-premium%2Fmama-bebe-elefante-sosteniendo-globo_5186775.htm&psig=AOvVaw35dH9pk-kNaZ4wBMF87bS9&ust=1610582748885000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiyzbrOl-4CFQAAAAAdAAAAABAD" />
+        <meta name="twitter:site" content="@JudithCristinaQ" />
+        <meta name="twitter:creator" content="@JudithCristinaQ" />
+      </Head>
       <div className="fade-in animated">
         <section fluid="true" className="box-banner">
           <div className="banner view-desktop">

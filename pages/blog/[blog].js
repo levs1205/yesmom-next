@@ -5,6 +5,7 @@ import AppLayout from "../../components/AppLayout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import dynamic from "next/dynamic";
+import Head from "next/head";
 
 const importJodit = () => import("jodit-react");
 const JoditEditor = dynamic(importJodit, {
@@ -25,6 +26,28 @@ const CardBlogEspecific = ({ currentData }) => {
 
   return (
     <AppLayout>
+       <Head>
+        <title>
+        {currentData.blog.titulo}
+        </title>
+        <meta name="description" content="Esto es la descripción del blog"></meta>
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={currentData.blog.titulo} />
+        <meta property="og:description" content="Esto es la descripción del blog"/>
+        <meta property="og:image" content={currentData.imagenes[0].typeImage === "P"
+                    ? currentData.imagenes[0].url
+                    : currentData.imagenes[1].url} />
+        <meta property="og:site_name" content="La Ganga" />
+        {/* <meta property="og:url" content={`${user.id}`} />  */}
+        <meta name="twitter:card" content="summary" /> 
+        <meta name="twitter:title" content={currentData.blog.titulo} />
+        <meta name="twitter:description" content="Esto es la descripción del blog" />
+        <meta name="twitter:image" content={currentData.imagenes[0].typeImage === "P"
+                    ? currentData.imagenes[0].url
+                    : currentData.imagenes[1].url} />
+        <meta name="twitter:site" content="@JudithCristinaQ" />
+        <meta name="twitter:creator" content="@JudithCristinaQ" />
+      </Head>
       <div className="fade-in animated">
         <div className="box-banner-blog">
           <Image
