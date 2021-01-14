@@ -238,8 +238,10 @@ const CardBlog = ({ blog }) => {
           }
           :global(.jodit-container:not(.jodit_inline) .jodit-wysiwyg) {
             padding: 0px;
-
             overflow-x: hidden !important;
+          }
+          :global(.jodit-container:not(.jodit_inline)) {
+            border: none !important;
           }
           .box-blog-general {
             width: 100%;
