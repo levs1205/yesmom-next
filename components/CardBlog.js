@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { Card} from "react-bootstrap";
+import { Card } from "react-bootstrap";
 // import Image from "next/image";
 // import {useRouter} from "next/router";
 
@@ -21,35 +21,46 @@ const CardBlog = ({ blog }) => {
   );
   return (
     <>
-      <div className="card-blog">
-      <Card >
-        <Card.Img variant="top" src={blog.imagenes[1].url} />
-        <Card.Body>
-          <Card.Title>{blog.blog.titulo}</Card.Title>
-          <Card.Text>
-            <JoditEditor
-              config={config}
-              value={contenido}
-              name="contenido"
-              // onBlur={handleBlurAreaChange}
+      <div>
+        <Card>
+          <div className="card-blog">
+            <Card.Img
+              variant="top"
+              src={blog.imagenes[1].url}
+              className="card-img"
             />
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer>
-          <Link href={`/blog/[blog]`} as={`/blog/${blog.blog._id}`} passHref>
-            <a
-            // onClick={() => {
-            //   router.push({
-            //     pathname: "/blog/[id]",
-            //     query: { id: blog.blog._id },
-            //   });
-            // }}
-            className=" link-a text-center hover-efect-letter">
-              Leer más &#8594;
-            </a>
-          </Link>
-        </Card.Footer>
-      </Card>
+            <Card.Body>
+              <Card.Title>{blog.blog.titulo}</Card.Title>
+              <Card.Text>
+                <JoditEditor
+                  config={config}
+                  value={contenido}
+                  name="contenido"
+                  // onBlur={handleBlurAreaChange}
+                />
+              </Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              <Link
+                href={`/blog/[blog]`}
+                as={`/blog/${blog.blog._id}`}
+                passHref
+              >
+                <a
+                  // onClick={() => {
+                  //   router.push({
+                  //     pathname: "/blog/[id]",
+                  //     query: { id: blog.blog._id },
+                  //   });
+                  // }}
+                  className=" link-a text-center hover-efect-letter"
+                >
+                  Leer más &#8594;
+                </a>
+              </Link>
+            </Card.Footer>
+          </div>
+        </Card>
       </div>
       <style jsx>
         {`
@@ -84,7 +95,9 @@ const CardBlog = ({ blog }) => {
             top: 16rem;
             z-index: 10;
           }
-
+          :global(.card) {
+            border: 0px solid rgba(0, 0, 0, 0.125);
+          }
           .card-blog {
             text-align: center;
             background: #ffffff;
@@ -94,6 +107,10 @@ const CardBlog = ({ blog }) => {
             border-radius: 1.28rem !important;
             width: 18rem;
             height: auto;
+          }
+          :global(.card-img) {
+            height: 10rem;
+            width: 10rem;
           }
           .box-green-blog {
             position: relative;
@@ -189,8 +206,40 @@ const CardBlog = ({ blog }) => {
             position: relative;
             z-index: 2;
           }
-          :global(.jodit-container:not(.jodit_inline)) {
+
+          :global(.jodit-wysiwyg::-webkit-scrollbar) {
+            -webkit-appearance: none;
+          }
+
+          :global(.jodit-wysiwyg::-webkit-scrollbar:vertical) {
+            width: 10px;
+          }
+
+          :global(.jodit-wysiwyg::-webkit-scrollbar-button:increment),
+          :global(.jodit-wysiwyg::-webkit-scrollbar-button) {
+            display: none;
+          }
+
+          :global(.jodit-wysiwyg::-webkit-scrollbar:horizontal) {
+            height: 10px;
+          }
+
+          :global(.jodit-wysiwyg::-webkit-scrollbar-thumb) {
+            background-color: #797979;
+            border-radius: 20px;
+            border: 2px solid #f1f2f3;
+          }
+
+          :global(.jodit-wysiwyg::-webkit-scrollbar-track) {
+            border-radius: 10px;
+          }
+          :global(.jodit-wysiwyg:not(.jodit_inline)) {
             border: none !important;
+          }
+          :global(.jodit-container:not(.jodit_inline) .jodit-wysiwyg) {
+            padding: 0px;
+
+            overflow-x: hidden !important;
           }
           .box-blog-general {
             width: 100%;
