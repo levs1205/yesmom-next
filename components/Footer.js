@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "next/link";
 import { Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,13 +12,13 @@ const Footer = () => {
     <>
       <div className="footer">
         <Container>
-          <div></div>
           <Row>
             <Col xs={12} md={4}>
               <div className="padding-left text-left">
                 <h6 className="title-footer">
                   <b>CONTENIDO</b>
                 </h6>
+                <div className="box-contenido-footer">
                 <Link href="/nosotros">
                   <a>Blog</a>
                 </Link>
@@ -26,7 +26,7 @@ const Footer = () => {
                   <a>Tienda</a>
                 </Link>
                 <Link href="/nosotros">
-                  <p>Regalos</p>
+                  <a>Regalos</a>
                 </Link>
                 <Link href="/nosotros">
                   <a>Sobre nosotros</a>
@@ -40,6 +40,7 @@ const Footer = () => {
                 <Link href="/nosotros">
                   <a>Libro de reclamaciones</a>
                 </Link>
+                </div>
               </div>
             </Col>
             <Col xs={12} md={4}>
@@ -57,18 +58,19 @@ const Footer = () => {
                 <h6 className="title-footer">
                   <b>SÍGUENOS</b>
                 </h6>
-                <FontAwesomeIcon
-                  icon={faFacebookF}
-                  className="icon-redes"
-                ></FontAwesomeIcon>
-                <FontAwesomeIcon
-                  icon={faTwitter}
-                  className="icon-redes"
-                ></FontAwesomeIcon>
-                <FontAwesomeIcon
-                  icon={faInstagram}
-                  className="icon-redes"
-                ></FontAwesomeIcon>
+                <a className="icon-redes">
+                  <FontAwesomeIcon icon={faFacebookF}></FontAwesomeIcon>
+                </a>
+                <a className="icon-redes">
+                  <FontAwesomeIcon
+                    icon={faTwitter}
+                    className="icon-redes"
+                  ></FontAwesomeIcon>
+                </a>
+
+                <a className="icon-redes">
+                  <FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon>
+                </a>
               </div>
             </Col>
           </Row>
@@ -78,13 +80,22 @@ const Footer = () => {
         {`
           .footer {
             background: #556ea1;
-            background-image: url("../../assets/trama-footer.svg");
+            background-image: url("../../image/trama-footer.svg");
             color: #fff;
             background-position: top center;
             background-size: cover;
             padding: 5rem 0;
             background-repeat: no-repeat;
             font-family: "mont-regular";
+          }
+
+          .box-contenido-footer a{
+            display:block
+          }
+          .box-contenido-footer{
+            display:flex;
+            flex-direction: column
+
           }
 
           .footer a {
@@ -132,12 +143,11 @@ const Footer = () => {
           }
           @media (max-width: 768px) {
             .footer {
-              background-image: url("../../assets/trama-footer-responsive.svg");
+              background-image: url("../../image/trama-footer-responsive.svg");
               background-position: top center;
               background-size: cover;
               padding: 3rem 0;
               background-repeat: no-repeat;
-              font-family: "Montserrat", sans-serif;
             }
 
             .footer a {
