@@ -37,7 +37,7 @@ const HeaderNuevo = () => {
           className={`${active ? "" : "box-items-menu-desktop"} box-items-menu`}
         >
           <div className="box-items-menu-responsive">
-            <ActiveLink href="/" activeClassName="active"  prefetch >
+            <ActiveLink href="/blog" activeClassName="active"  prefetch >
               <a className="item-menu-yesmom">
                 <Image
                   src="/image/header/blog.svg"
@@ -48,37 +48,37 @@ const HeaderNuevo = () => {
                 <h6 className="text-navbar">Blog</h6>
               </a>
             </ActiveLink>
-            <ActiveLink href="/blog" activeClassName="active"  prefetch > 
+            <ActiveLink href="/construccion" activeClassName="active"  prefetch > 
               <a className="item-menu-yesmom">
                 <Image
-                  src="/image/header/blog.svg"
-                  alt="logo blog yesmom "
+                  src="/image/header/tienda.svg"
+                  alt="logo tienda yesmom "
                   width={22}
                   height={22}
                 />
-                <h6 className="text-navbar">Blog</h6>
+                <h6 className="text-navbar">Tienda</h6>
               </a>
             </ActiveLink>
-            <ActiveLink href="/holitas" activeClassName="active">
+            <ActiveLink href="/construccion" activeClassName="active">
               <a className="item-menu-yesmom">
                 <Image
-                  src="/image/header/blog.svg"
-                  alt="logo blog yesmom "
+                  src="/image/header/regalo.svg"
+                  alt="logo regalo yesmom "
                   width={22}
                   height={22}
                 />
-                <h6 className="text-navbar">Blog</h6>
+                <h6 className="text-navbar">Regalos</h6>
               </a>
             </ActiveLink>
-            <ActiveLink href="/hola" activeClassName="active">
+            <ActiveLink href="/construccion" activeClassName="active">
               <a className="item-menu-yesmom">
                 <Image
-                  src="/image/header/blog.svg"
+                  src="/image/header/iniciar-sesion.svg"
                   alt="logo blog yesmom "
                   width={22}
                   height={22}
                 />
-                <h6 className="text-navbar">Blog</h6>
+                <h6 className="text-navbar">Login</h6>
               </a>
             </ActiveLink>
           </div>

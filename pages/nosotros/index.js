@@ -69,7 +69,7 @@ const index = () => {
             />
           </div>
 
-          <Row>
+          <Row className="sin-margin">
             <Col xs={12} md={6} lg={6} xl={6}>
               <div className="box-somos-yesmom">
                 <div className="pb-3 subtitle-about">
@@ -116,7 +116,7 @@ const index = () => {
                   <Image
                     src="/image/about.png"
                     width={80}
-                    height={70}
+                    height={63}
                     layout="responsive"
                     alt="imagen sorteo yesmom home"
                   />
