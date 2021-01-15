@@ -32,12 +32,14 @@ const CardBlog = ({ blog }) => {
             <Card.Body>
               <Card.Title>{blog.blog.titulo}</Card.Title>
               <Card.Text>
-                <JoditEditor
+               <div>
+               <JoditEditor
                   config={config}
                   value={contenido}
                   name="contenido"
                   // onBlur={handleBlurAreaChange}
                 />
+               </div>
               </Card.Text>
             </Card.Body>
             <Card.Footer>
