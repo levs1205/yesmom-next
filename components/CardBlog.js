@@ -83,7 +83,7 @@ const CardBlog = ({ blog }) => {
 
           .subtitle-dark-blog {
             color: #575756;
-            font-family: "mont-regular";
+            font-family: "mont-regular"!important;
             font-size: 1.7rem;
             text-align: center;
             margin: 0rem 15rem;
@@ -98,16 +98,19 @@ const CardBlog = ({ blog }) => {
           :global(.card) {
             border: 0px solid rgba(0, 0, 0, 0.125);
           }
+          
           .card-blog {
             text-align: center;
             background: #ffffff;
             box-shadow: 0px 14px 20px -5px rgba(0, 0, 0, 0.2);
             border-radius: 20px;
-            font-family: "mont-regular";
+            font-family: "mont-regular"!important;
             border-radius: 1.28rem !important;
             width: 18rem;
             height: auto;
           }
+
+        
           :global(.card-img) {
             height: 10rem;
             width: 10rem;
@@ -139,7 +142,7 @@ const CardBlog = ({ blog }) => {
             width: 100%;
             display: flex;
             padding: 4rem 9rem;
-            font-family: "mont-regular";
+            font-family: "mont-regular"!important;
           }
 
           .box-autor-blog {
@@ -155,6 +158,7 @@ const CardBlog = ({ blog }) => {
           }
           .box-articulo-blog {
             width: 80%;
+            font-family: "mont-regular";
           }
           .text-autor {
             color: #575756;
@@ -209,6 +213,7 @@ const CardBlog = ({ blog }) => {
 
           :global(.jodit-wysiwyg::-webkit-scrollbar) {
             -webkit-appearance: none;
+            
           }
 
           :global(.jodit-wysiwyg::-webkit-scrollbar:vertical) {
@@ -249,7 +254,7 @@ const CardBlog = ({ blog }) => {
             justify-content: center;
             flex-direction: column;
             padding: 3rem 9rem;
-            font-family: "mont-regular";
+            font-family: "mont-regular"!important;
           }
 
           .card-title {
@@ -264,6 +269,9 @@ const CardBlog = ({ blog }) => {
           .jodit-container,
           .jodit-container * span {
             font-family: "mont-regular" !important;
+          }
+          :global(.jodit-container * span ) {
+            font-family: "mont-regular"!important;
           }
 
           .font-semibold-mont {

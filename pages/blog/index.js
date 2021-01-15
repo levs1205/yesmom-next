@@ -77,12 +77,13 @@ const Blog = ({ currentData }) => {
       <style jsx>
         {`
           .box-banner-blog {
-            height: 15rem;
+            height: 25rem;
             background: url(../../image/blog/blog.png) no-repeat center;
             background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding-top:5rem
           }
 
           .text-title-blog {

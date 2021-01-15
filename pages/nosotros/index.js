@@ -6,125 +6,137 @@ import Head from "next/head";
 const index = () => {
   return (
     <AppLayout>
-          <Head>
-        <title>
-          YesMom - Nosotros
-        </title>
+      <Head>
+        <title>YesMom - Nosotros</title>
         <meta name="description" content="YesMom es ..."></meta>
         <meta property="og:type" content="website" />
-        <meta property="og:title"  content="YesMom - Nostros"  />
-        <meta property="og:description" content="YesMom es ..."/>
-        <meta property="og:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vix.com%2Fes%2Fmadres%2F233275%2F19-nombres-para-nina-inspirados-en-la-mitologia-son-preciosos&psig=AOvVaw1x2U3pjFY7lk5JYZid72au&ust=1610582938997000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPCpoJnPl-4CFQAAAAAdAAAAABAD" />
+        <meta property="og:title" content="YesMom - Nostros" />
+        <meta property="og:description" content="YesMom es ..." />
+        <meta
+          property="og:image"
+          content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vix.com%2Fes%2Fmadres%2F233275%2F19-nombres-para-nina-inspirados-en-la-mitologia-son-preciosos&psig=AOvVaw1x2U3pjFY7lk5JYZid72au&ust=1610582938997000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPCpoJnPl-4CFQAAAAAdAAAAABAD"
+        />
         <meta property="og:site_name" content="La Ganga" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
-        <meta name="twitter:card" content="summary" /> 
-        <meta name="twitter:title"  content="YesMom - Nosotros" />
-        <meta name="twitter:description"  content="YesMom es ..." />
-        <meta name="twitter:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vix.com%2Fes%2Fmadres%2F233275%2F19-nombres-para-nina-inspirados-en-la-mitologia-son-preciosos&psig=AOvVaw1x2U3pjFY7lk5JYZid72au&ust=1610582938997000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPCpoJnPl-4CFQAAAAAdAAAAABAD" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="YesMom - Nosotros" />
+        <meta name="twitter:description" content="YesMom es ..." />
+        <meta
+          name="twitter:image"
+          content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vix.com%2Fes%2Fmadres%2F233275%2F19-nombres-para-nina-inspirados-en-la-mitologia-son-preciosos&psig=AOvVaw1x2U3pjFY7lk5JYZid72au&ust=1610582938997000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPCpoJnPl-4CFQAAAAAdAAAAABAD"
+        />
         <meta name="twitter:site" content="@JudithCristinaQ" />
         <meta name="twitter:creator" content="@JudithCristinaQ" />
       </Head>
       <div className="box-banner-about">
-        <Image
-          src="/image/onda-blanca.svg"
-          alt="ondas"
-          width={70}
-          height={70}
-        //   layout="responsive"
-          className="ondas"
-        />
+        <div className="ondas heartbeat">
+          <Image
+            src="/image/onda-blanca.svg"
+            alt="ondas"
+            width={70}
+            height={70}
+          />
+        </div>
         <h4 className="text-title-blog">Sobre nosotros</h4>
-        <Image
-          src="/image/onda-blanca.svg"
-          alt="ondas"
-          width={70}
-          height={70}
-        //   layout="responsive"
-          className="ondas"
-        />
+        <div className="ondas heartbeat">
+          <Image
+            src="/image/onda-blanca.svg"
+            alt="ondas"
+            width={70}
+            height={70}
+            //   layout="responsive"
+          />
+        </div>
       </div>
-      <Container fluid="true" className="section-sorteo-home">
-        <Image
-          src="/image/nube1.svg"
-          className="nube1-somos"
-          width={10}
-          height={10}
-        //   layout="responsive"
-          alt="nube"
-        />
-        <Image
-          src="/image/nube2.svg"
-          className="nube2-somos"
-          width={10}
-          height={10}
-        //   layout="responsive"
-          alt="nube"
-        />
+      <div className="section-somos-home">
+        <Container fluid="true">
+          <div className="nube1-somos heartbeat">
+            <Image
+              src="/image/nube1.svg"
+              width={150}
+              height={60}
+              // layout="responsive"
+              alt="nube"
+            />
+          </div>
+          <div className="nube2-somos heartbeat">
+            <Image
+              src="/image/nube2.svg"
+              width={150}
+              height={60}
+              //   layout="responsive"
+              alt="nube"
+            />
+          </div>
 
-        <Row>
-          <Col xs={12} md={6} lg={6} xl={6}>
-            <div className="box-somos-yesmom">
-              <Image
-                src="/image/somos-yesmom.svg"
-                className="pb-3 subtitle-about"
-                width={70}
-                height={70}
-                layout="responsive"
-                alt="yesmom"
-              />
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem mi
-                netus id elementum tellus mattis lorem ut scelerisque. Faucibus
-                leo tellus nam tincidunt lectus morbi eget elementum. Sed fames
-                mollis duis duis adipiscing nisi, eleifend orci, lacinia.
-                Feugiat elementum elementum sit arcu scelerisque aliquam quisque
-                imperdiet congue. Aliquam adipiscing amet netus ac habitant
-                faucibus ut morbi nam. Augue cursus vulputate pulvinar ut vitae
-                bibendum viverra nisi. Enim quam tellus, ipsum vitae id ultrices
-                feugiat.
-              </p>
-              <p>
-                Eget nulla elementum et, bibendum at adipiscing. Tempus lectus
-                accumsan morbi velit interdum ultrices odio sagittis Augue
-                cursus vulputate pulvinar ut vitae bibendum viverra nisi. Enim
-                quam tellus, ipsum vitae id ultrices feugiat. Eget nulla
-                elementum et, bibendum at adipiscing. Tempus lectus accumsan
-                morbi velit interdum ultrices odio sagittis.
-              </p>
-            </div>
-          </Col>
-          <Col xs={12} md={6} lg={6} xl={6}>
-            <div className="box-img-sorteo-home">
-              <Image
-                src="/image/lineas-azul1.svg"
-                className="line-up-somos"
-                width={40}
-                height={40}
-                layout="responsive"
-                alt="lineas"
-              />
-              <Image
-                src="/image/about.png"
-                className="img-sorteo"
-                width={150}
-                height={150}
-                layout="responsive"
-                alt="imagen sorteo yesmom home"
-              />
-              <Image
-                src="/image/lineas-azul2.svg"
-                className="line-down-somos"
-                width={40}
-                height={40}
-                layout="responsive"
-                alt="lineas"
-              />
-            </div>
-          </Col>
-        </Row>
-      </Container>
+          <Row>
+            <Col xs={12} md={6} lg={6} xl={6}>
+              <div className="box-somos-yesmom">
+                <div className="pb-3 subtitle-about">
+                  <Image
+                    src="/image/somos-yesmom.svg"
+                    width={200}
+                    height={100}
+                    alt="yesmom"
+                  />
+                </div>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem
+                  mi netus id elementum tellus mattis lorem ut scelerisque.
+                  Faucibus leo tellus nam tincidunt lectus morbi eget elementum.
+                  Sed fames mollis duis duis adipiscing nisi, eleifend orci,
+                  lacinia. Feugiat elementum elementum sit arcu scelerisque
+                  aliquam quisque imperdiet congue. Aliquam adipiscing amet
+                  netus ac habitant faucibus ut morbi nam. Augue cursus
+                  vulputate pulvinar ut vitae bibendum viverra nisi. Enim quam
+                  tellus, ipsum vitae id ultrices feugiat.
+                </p>
+                <p>
+                  Eget nulla elementum et, bibendum at adipiscing. Tempus lectus
+                  accumsan morbi velit interdum ultrices odio sagittis Augue
+                  cursus vulputate pulvinar ut vitae bibendum viverra nisi. Enim
+                  quam tellus, ipsum vitae id ultrices feugiat. Eget nulla
+                  elementum et, bibendum at adipiscing. Tempus lectus accumsan
+                  morbi velit interdum ultrices odio sagittis.
+                </p>
+              </div>
+            </Col>
+            <Col xs={12} md={6} lg={6} xl={6}>
+              <div className="box-img-somos-home">
+                <div className="line-up-somos ">
+                  <Image
+                    src="/image/lineas-azul1.svg"
+                    width={60}
+                    height={40}
+                    layout="responsive"
+                    alt="lineas"
+                  />
+                </div>
+                <div className="img-somos">
+                  <Image
+                    src="/image/about.png"
+                    width={80}
+                    height={70}
+                    layout="responsive"
+                    alt="imagen sorteo yesmom home"
+                  />
+                </div>
+                <div className="line-down-somos ">
+                  <Image
+                    src="/image/lineas-azul2.svg"
+                    width={40}
+                    height={40}
+                    layout="responsive"
+                    alt="lineas"
+                  />
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
       <div className="fondo-video-somos">
-        <h3 className="title-fuxia">&#9733; Nuestra historia &#9733;</h3>
+        <h3 className="title-fuxia"><span className="heartbeat"> &#9733;</span> Nuestra historia <span className="heartbeat"> &#9733;</span></h3>
         <div className="box-video-somos">
           <iframe
             src="https://www.youtube.com/embed/HmvCTcrR8fA"
@@ -137,17 +149,18 @@ const index = () => {
       <style jsx>
         {`
           .box-banner-about {
-            height: 15rem;
+            height: 25rem;
             background: url(../../../image/about-header.png) no-repeat center;
             background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding-top: 5rem
           }
 
           .box-somos-yesmom {
             padding: 3.5rem;
-            font-family: "Montserrat", sans-serif;
+            font-family: "mont-regular" !important;
             font-size: 1.1rem;
             position: relative;
           }
@@ -202,10 +215,32 @@ const index = () => {
             width: 50%;
             height: 50%;
           }
+          .section-somos-home {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+            position: relative;
+          }
+
+          .box-img-somos-home {
+            position: relative;
+          }
+
+          .img-somos {
+            width: 90%;
+          }
+
+          .text-title-blog {
+            font-family: "Clicker Script", cursive;
+            font-size: 2rem;
+            font-size: 2rem;
+            margin: 0rem 0.5rem 0rem;
+            color: #fff;
+          }
+
           @media (min-width: 1800px) {
             .box-somos-yesmom {
               padding: 1rem 3.5rem;
-              font-family: "Montserrat", sans-serif;
+              font-family: "mont-regular" !important;
               font-size: 0.8rem;
               position: relative;
             }
@@ -222,6 +257,10 @@ const index = () => {
               padding-top: 3.5rem;
               padding-bottom: 3.5rem;
             }
+
+            .img-somos {
+              width: 80%;
+            }
           }
           @media (max-width: 768px) {
             .box-banner-about {
@@ -235,12 +274,11 @@ const index = () => {
               flex-direction: column;
               align-items: center;
             }
-            .section-sorteo-home {
+            .section-somos-home {
               padding-top: 1rem;
               padding-bottom: 1rem;
             }
             .subtitle-about {
-              height: 4rem;
             }
             .nube1-somos {
               position: absolute;
@@ -274,6 +312,15 @@ const index = () => {
               position: absolute;
               width: 100%;
               height: 100%;
+            }
+            .box-img-somos-home {
+              margin: auto;
+              display: block;
+            }
+            .img-somos {
+              width: 80%;
+              display: block;
+              margin: auto;
             }
           }
         `}
