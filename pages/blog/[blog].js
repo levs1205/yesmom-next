@@ -73,8 +73,8 @@ const CardBlogEspecific = ({ currentData }) => {
          <div  className="nube1 heartbeat">
          <Image
             src="/image/blog/nube1.png"
-            width={200}
-            height={150}
+            width={190}
+            height={130}
             // layout="responsive"
             alt="nube"
           />
@@ -82,16 +82,16 @@ const CardBlogEspecific = ({ currentData }) => {
           <div className="nube2 heartbeat">
           <Image
             src="/image/blog/nube2.png"
-            width={200}
-            height={150}
+            width={190}
+            height={130}
             alt="nube"
           />
           </div>
           <div className="nube3 heartbeat">
           <Image
             src="/image/blog/nube3.png"
-            width={200}
-            height={150}
+            width={190}
+            height={130}
             alt="nube"
           />
           </div>

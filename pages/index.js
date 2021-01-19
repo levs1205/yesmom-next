@@ -305,7 +305,7 @@ const Home = ({ currentData }) => {
             <img src={lineasAzul2} alt="lineas" className="line-down-azul" />
           </div>
         </Col> */}
-              <Col xs={12} md={6} lg={6} xl={6}>
+              <Col xs={12} md={5} lg={5} xl={5}>
                 <div className="box-true-history">
                   <div className="box-text-title">
                     <Image
@@ -345,7 +345,7 @@ const Home = ({ currentData }) => {
                   </div>
                 </div>
               </Col>
-              <Col xs={12} md={6} lg={6} xl={6}>
+              <Col xs={12} md={7} lg={7} xl={7}>
                 <div className="box-blog-card-home">
                   <Container>
                     <CardDeck>
