@@ -93,7 +93,7 @@ const CardBlog = ({ blog }) => {
           :global(.card) {
             border: 0px solid rgba(0, 0, 0, 0.125);
           }
-          
+
           .card-blog {
             text-align: center;
             background: #ffffff;
@@ -105,7 +105,7 @@ const CardBlog = ({ blog }) => {
             height: auto;
           }
 
-{/*         
+{/*
           :global(.card-img) {
             width:10rem;
             height: 10rem;
@@ -209,7 +209,7 @@ const CardBlog = ({ blog }) => {
 
           :global(.jodit-wysiwyg::-webkit-scrollbar) {
             -webkit-appearance: none;
-            
+
           }
 
           :global(.jodit-wysiwyg::-webkit-scrollbar:vertical) {
