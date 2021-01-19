@@ -10,41 +10,47 @@ import Head from "next/head";
 const Blog = ({ currentData }) => {
   return (
     <AppLayout>
-       <Head>
-        <title>
-          YesMom - Blog
-        </title>
+      <Head>
+        <title>YesMom - Blog</title>
         <meta name="description" content="Visita nuestro blog ..."></meta>
         <meta property="og:type" content="website" />
-        <meta property="og:title"  content="YesMom - Blog"  />
-        <meta property="og:description" content="Visita nuestro Blog ..."/>
-        <meta property="og:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fkueski.com%2Fblog%2Ftemporada%2Fmamas-emprendedoras-exitosas-de-mexico%2F&psig=AOvVaw1RsoqJmXdY6b9OYFATaTRQ&ust=1610583088240000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJj3nN_Pl-4CFQAAAAAdAAAAABAE" />
+        <meta property="og:title" content="YesMom - Blog" />
+        <meta property="og:description" content="Visita nuestro Blog ..." />
+        <meta
+          property="og:image"
+          content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fkueski.com%2Fblog%2Ftemporada%2Fmamas-emprendedoras-exitosas-de-mexico%2F&psig=AOvVaw1RsoqJmXdY6b9OYFATaTRQ&ust=1610583088240000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJj3nN_Pl-4CFQAAAAAdAAAAABAE"
+        />
         <meta property="og:site_name" content="La Ganga" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
-        <meta name="twitter:card" content="summary" /> 
-        <meta name="twitter:title"  content="YesMom - Blog" />
-        <meta name="twitter:description"  content="Visitanuestro Blog ..." />
-        <meta name="twitter:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fkueski.com%2Fblog%2Ftemporada%2Fmamas-emprendedoras-exitosas-de-mexico%2F&psig=AOvVaw1RsoqJmXdY6b9OYFATaTRQ&ust=1610583088240000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJj3nN_Pl-4CFQAAAAAdAAAAABAE" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="YesMom - Blog" />
+        <meta name="twitter:description" content="Visitanuestro Blog ..." />
+        <meta
+          name="twitter:image"
+          content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fkueski.com%2Fblog%2Ftemporada%2Fmamas-emprendedoras-exitosas-de-mexico%2F&psig=AOvVaw1RsoqJmXdY6b9OYFATaTRQ&ust=1610583088240000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJj3nN_Pl-4CFQAAAAAdAAAAABAE"
+        />
         <meta name="twitter:site" content="@JudithCristinaQ" />
         <meta name="twitter:creator" content="@JudithCristinaQ" />
       </Head>
       <div className="fade-in animated">
         <div className="box-banner-blog">
-          <Image
-            src="/image/onda-blanca.svg"
-            alt="ondas"
-            className="ondas"
-            width="70px"
-            height="70px"
-          />
+          <div className="ondas">
+            <Image
+              src="/image/onda-blanca.svg"
+              alt="ondas"
+              width={70}
+              height={20}
+            />
+          </div>
           <h4 className="text-title-blog">Blog</h4>
-          <Image
-            src="/image/onda-blanca.svg"
-            alt="ondas"
-            className="ondas"
-            width="70px"
-            height="70px"
-          />
+          <div className="ondas">
+            <Image
+              src="/image/onda-blanca.svg"
+              alt="ondas"
+              width={70}
+              height={20}
+            />
+          </div>
         </div>
         <div className="box-blog-general">
           <h4 className="subtitle-dark-blog">
@@ -53,7 +59,7 @@ const Blog = ({ currentData }) => {
           </h4>
           <div className="box-card-group">
             <Container>
-              <CardDeck>
+              <CardDeck style={{justifyContent:"center"}}>
                 {currentData.map((cardBlog) => (
                   <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
                 ))}
@@ -62,12 +68,15 @@ const Blog = ({ currentData }) => {
           </div>
         </div>
         <div className="box-green-blog">
-          <Image
-            src="/image/blog/fondo-verde.png"
-            layout="fill"
-            alt="Picture of the author"
-            lassName="w-100 box-green-blog-img-fondo"
-          />
+          <div className="w-100 box-green-blog-img-fondo">
+            <Image
+              src="/image/blog/fondo-verde.png"
+              width={1920}
+              height={800}
+              layout="responsive"
+              alt="Picture of the author"
+            />
+          </div>
           <h6 className="text-bottom-blog ">
             Para el mundo eres una mamá,<br></br>
             <b>para tus hijos eres el mundo</b>
@@ -83,7 +92,7 @@ const Blog = ({ currentData }) => {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding-top:5rem
+            padding-top: 5rem;
           }
 
           .text-title-blog {
@@ -439,7 +448,9 @@ const Blog = ({ currentData }) => {
 export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res = await fetch("https://yesmom-backend.herokuapp.com/getBlogAll/user?limit=all");
+  const res = await fetch(
+    "https://yesmom-backend.herokuapp.com/getBlogAll/user?limit=all"
+  );
   const currentData = await res.json();
 
   // By returning { props: posts }, the Blog component
