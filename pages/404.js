@@ -27,7 +27,9 @@ export default function FourOhFour() {
           <p>
             Página no encontrada
           </p>
-          <Link  href="/"><a className="btn-error"> PÁGINA DE INICIO</a></Link>
+         <div className="btn-error">
+         <Link  href="/"><a > PÁGINA DE INICIO</a></Link>
+         </div>
         </div>
       </div>
     </div>
@@ -45,7 +47,7 @@ export default function FourOhFour() {
           justify-content: center;
           align-items: center;
           flex-direction: row;
-          padding:2rem
+          padding:12rem 8rem
         }
         .img-foto {
           height: 35rem;
@@ -81,8 +83,11 @@ export default function FourOhFour() {
           margin: 0.5rem 0rem;
           text-align:center;
           padding:1rem;
+          display:flex;
+          justify-content:center;
+          align-items:center
 }
-        }
+        
         .btn-error:hover {
           transition: all 0.3s ease;
           background: #dc6a8d;

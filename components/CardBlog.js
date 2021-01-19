@@ -22,11 +22,13 @@ const CardBlog = ({ blog }) => {
       <div>
         <Card>
           <div className="card-blog">
+            <div className="card-img">
             <Card.Img
               variant="top"
               src={blog.imagenes[1].url}
-              className="card-img"
+              className="card-img-blog"
             />
+            </div>
             <Card.Body>
               <Card.Title>{blog.blog.titulo}</Card.Title>
               <Card.Text>
@@ -103,11 +105,12 @@ const CardBlog = ({ blog }) => {
             height: auto;
           }
 
-        
+{/*         
           :global(.card-img) {
+            width:10rem;
             height: 10rem;
-            width: 10rem;
-          }
+            margin:auto
+          } */}
           .box-green-blog {
             position: relative;
           }

@@ -131,6 +131,10 @@ const appLayout = ({ children }) => {
             line-height: 1.3rem;
             display: block;
           }
+
+          .btn-yellow a{
+            color: #fff!important;
+          }
           .bg-fuxia {
             background: #ec608d !important;
           }

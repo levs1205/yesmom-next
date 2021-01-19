@@ -1,23 +1,32 @@
 import AppLayout from "../../components/AppLayout";
 import Image from "next/image";
+import Link from "next/link";
 
 const index = () => {
   return (
     <AppLayout>
       <div className="box-building fade-in animated">
         <div className="section-building">
-          <Image
+         <div className="img-foto">
+         <Image
             src="/image/construccion/proximamente.png"
             alt="mamá con su bebé"
-            className="img-foto"
+            
             width="550px"
             height="450px"
           />
+         </div>
           <div className="box-text-building">
             <h5 className="text-building">
               En YesMom te queremos ofrecer un mejor servicio web
             </h5>
-            <button className="btn-building">PÁGINA DE INICIO</button>
+           <div className="btn-building">
+           <Link href="/">
+            <a >
+            PÁGINA DE INICIO
+            </a>
+            </Link>
+           </div>
           </div>
         </div>
       </div>
@@ -35,7 +44,7 @@ const index = () => {
             justify-content: center;
             align-items: center;
             flex-direction: row;
-            padding: 8rem;
+            padding: 13rem 8rem;
           }
           .img-foto {
             height: 35rem;
@@ -64,6 +73,9 @@ const index = () => {
             line-height: 1.5rem;
             font-family: "Montserrat", sans-serif;
             margin: 2rem 0rem;
+            display: flex;
+            justify-content: center;
+            align-items:center
           }
           .box-text-building {
             display: flex;

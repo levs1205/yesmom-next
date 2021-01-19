@@ -12,7 +12,7 @@ const HeaderNuevo = () => {
     setActive(!active);
   };
   return (
-    <>
+    <div className="box-yesmom">
       <nav className="navbar-yesmom">
         <div className="burger-yesmom" onClick={handleClick}>
           <Image
@@ -23,13 +23,13 @@ const HeaderNuevo = () => {
             // layout="intrinsic"
           />
         </div>
-        <Link href="/"  prefetch>
+        <Link href="/" prefetch>
           <a className="mr-2">
             <Image
               src="/image/header/logo-yesmom.svg"
               alt="logo yesmom"
-              width={65}
-              height={65}
+              width={60}
+              height={60}
             />
           </a>
         </Link>
@@ -37,7 +37,7 @@ const HeaderNuevo = () => {
           className={`${active ? "" : "box-items-menu-desktop"} box-items-menu`}
         >
           <div className="box-items-menu-responsive">
-            <ActiveLink href="/blog" activeClassName="active"  prefetch >
+            <ActiveLink href="/blog" activeClassName="active" prefetch>
               <a className="item-menu-yesmom">
                 <Image
                   src="/image/header/blog.svg"
@@ -48,13 +48,13 @@ const HeaderNuevo = () => {
                 <h6 className="text-navbar">Blog</h6>
               </a>
             </ActiveLink>
-            <ActiveLink href="/construccion" activeClassName="active"  prefetch > 
+            <ActiveLink href="/construccion" activeClassName="active" prefetch>
               <a className="item-menu-yesmom">
                 <Image
                   src="/image/header/tienda.svg"
                   alt="logo tienda yesmom "
-                  width={22}
-                  height={22}
+                  width={23}
+                  height={23}
                 />
                 <h6 className="text-navbar">Tienda</h6>
               </a>
@@ -96,11 +96,13 @@ const HeaderNuevo = () => {
             display: flex;
             align-items: center;
             flex-wrap: wrap;
-            padding: 1rem 4rem;
+            padding: 0.3rem 4rem;
             background: #fff;
             position: fixed;
             z-index: 9999;
-            width: 100%;
+            width: inherit;
+            max-width: inherit;
+            box-shadow: 0px 1px 10px #999;
           }
           .burger-yesmom {
             margin-right: auto;
@@ -112,6 +114,11 @@ const HeaderNuevo = () => {
             justify-content: center;
             align-items: center;
             margin: 0rem 0.5rem;
+            color: #616160;
+            justify-content:flex-start
+          }
+          .text-navbar {
+            font-family: "mont-semibold";
           }
           .box-items-menu-responsive {
             display: flex;
@@ -155,7 +162,7 @@ const HeaderNuevo = () => {
           }
         `}
       </style>
-    </>
+    </div>
   );
 };
 
