@@ -30,14 +30,7 @@ const CardBlog = ({ blog }) => {
             <Card.Body>
               <Card.Title>{blog.blog.titulo}</Card.Title>
               <Card.Text>
-               <div>
-               <JoditEditor
-                  config={config}
-                  value= {blog.blog.contenido}
-                  name="contenido"
-                  // onBlur={handleBlurAreaChange}
-                />
-               </div>
+               {blog.blog.descripcion}
               </Card.Text>
             </Card.Body>
             <Card.Footer>
