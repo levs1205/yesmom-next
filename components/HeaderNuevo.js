@@ -37,7 +37,7 @@ const HeaderNuevo = () => {
           className={`${active ? "" : "box-items-menu-desktop"} box-items-menu`}
         >
           <div className="box-items-menu-responsive">
-            <ActiveLink href="/blog" activeClassName="active" prefetch>
+            <ActiveLink href="/blog" activeClassName="active">
               <a className="item-menu-yesmom">
                 <Image
                   src="/image/header/blog.svg"
@@ -48,7 +48,7 @@ const HeaderNuevo = () => {
                 <h6 className="text-navbar">Blog</h6>
               </a>
             </ActiveLink>
-            <ActiveLink href="/construccion" activeClassName="active" prefetch>
+            <ActiveLink href="/construccion" activeClassName="active">
               <a className="item-menu-yesmom">
                 <Image
                   src="/image/header/tienda.svg"
@@ -86,10 +86,8 @@ const HeaderNuevo = () => {
       </nav>
       <style jsx>
         {`
-          .active {
-            color: red;
-            font-size: 2rem;
-            font-weight: 900;
+          .active .text-navbar{
+            color: #556ea1!important;
           }
 
           .navbar-yesmom {

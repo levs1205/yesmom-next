@@ -31,15 +31,15 @@ const Footer = () => {
                 <Link href="/nosotros">
                   <a>Sobre nosotros</a>
                 </Link>
-                <Link href="/nosotros">
+                {/* <Link href="/nosotros">
                   <a>Términos y condiciones</a>
-                </Link>
-                <Link href="/nosotros">
+                </Link> */}
+                {/* <Link href="/nosotros">
                   <a>Política de privacidad</a>
-                </Link>
-                <Link href="/nosotros">
+                </Link> */}
+                {/* <Link href="/nosotros">
                   <a>Libro de reclamaciones</a>
-                </Link>
+                </Link> */}
                 </div>
               </div>
             </Col>
