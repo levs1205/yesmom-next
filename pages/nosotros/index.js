@@ -365,6 +365,9 @@ const index = () => {
             .video-nosotros {
             width: 100%;
           }
+          .text-title-blog{
+            font-size:1.5rem
+          }
 
           }
         `}
