@@ -151,12 +151,11 @@ const index = () => {
           ></FontAwesomeIcon>
         </div>
         <div className="box-video-somos">
-          <iframe
-            src="https://www.youtube.com/embed/HmvCTcrR8fA"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+          {/* <video src={require('./../../public/video-oficial.mp4')} /> */}
+          <video autoPlay loop muted controls width={560}
+            height={380}>
+            <source src="/video-oficial.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
       <style jsx>

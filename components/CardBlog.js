@@ -23,15 +23,17 @@ const CardBlog = ({ blog }) => {
         <Card>
           <div className="card-blog">
             <div className="card-img">
-              <Card.Img
-                variant="top"
-                src={blog.imagenes[1].url}
-                className="card-img-blog"
-              />
+            <Card.Img
+              variant="top"
+              src={blog.imagenes[1].url}
+              className="card-img-blog"
+            />
             </div>
             <Card.Body>
               <Card.Title>{blog.blog.titulo}</Card.Title>
-              <Card.Text>{blog.blog.descripcion}</Card.Text>
+              <Card.Text>
+               {blog.blog.descripcion}
+              </Card.Text>
             </Card.Body>
             <Card.Footer>
               <Link
@@ -76,7 +78,7 @@ const CardBlog = ({ blog }) => {
 
           .subtitle-dark-blog {
             color: #575756;
-            font-family: "mont-regular" !important;
+            font-family: "mont-regular"!important;
             font-size: 1.7rem;
             text-align: center;
             margin: 0rem 15rem;
@@ -98,8 +100,15 @@ const CardBlog = ({ blog }) => {
             background: #ffffff;
             box-shadow: 0px 14px 20px -5px rgba(0, 0, 0, 0.2);
             border-radius: 20px;
-            font-family: "mont-regular" !important;
+            font-family: "mont-regular"!important;
             border-radius: 1.28rem !important;
+<<<<<<< HEAD
+            width: 18rem;
+            height: auto;
+          }
+
+{/*
+=======
             width:20rem!important;
             height: auto!important;
             
@@ -107,10 +116,14 @@ const CardBlog = ({ blog }) => {
 
            {
             /*         
+>>>>>>> b59fe9f33f3763687a3feb44d3e31b129d25b9d8
           :global(.card-img) {
             width:10rem;
             height: 10rem;
             margin:auto
+<<<<<<< HEAD
+          } */}
+=======
           } */
           }
 
@@ -127,6 +140,7 @@ const CardBlog = ({ blog }) => {
             height:100%!important;
             width:auto!important;
           }
+>>>>>>> b59fe9f33f3763687a3feb44d3e31b129d25b9d8
           .box-green-blog {
             position: relative;
           }
@@ -154,7 +168,7 @@ const CardBlog = ({ blog }) => {
             width: 100%;
             display: flex;
             padding: 4rem 9rem;
-            font-family: "mont-regular" !important;
+            font-family: "mont-regular"!important;
           }
 
           .box-autor-blog {
@@ -225,10 +239,7 @@ const CardBlog = ({ blog }) => {
 
           :global(.jodit-wysiwyg::-webkit-scrollbar) {
             -webkit-appearance: none;
-<<<<<<< HEAD
 
-=======
->>>>>>> 74f1b7e1a69e1588737d860520ddd2502c765fba
           }
 
           :global(.jodit-wysiwyg::-webkit-scrollbar:vertical) {
@@ -269,7 +280,7 @@ const CardBlog = ({ blog }) => {
             justify-content: center;
             flex-direction: column;
             padding: 3rem 9rem;
-            font-family: "mont-regular" !important;
+            font-family: "mont-regular"!important;
           }
 
           .card-title {
@@ -285,8 +296,8 @@ const CardBlog = ({ blog }) => {
           .jodit-container * span {
             font-family: "mont-regular" !important;
           }
-          :global(.jodit-container * span) {
-            font-family: "mont-regular" !important;
+          :global(.jodit-container * span ) {
+            font-family: "mont-regular"!important;
           }
 
           .font-semibold-mont {
