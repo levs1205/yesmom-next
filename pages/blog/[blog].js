@@ -504,6 +504,7 @@ const CardBlogEspecific = ({ currentData }) => {
           }
 
           @media (max-width: 420px) {
+
             .nube1 {
               position: absolute;
               top: 100%;

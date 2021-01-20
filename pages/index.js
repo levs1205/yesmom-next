@@ -790,6 +790,11 @@ const Home = ({ currentData }) => {
             }
           }
           @media (max-width: 769px) {
+
+            .text-title{
+              font-size:1.5rem
+              }
+            }
             .section-sorteo-home {
               padding-top: 1rem;
             }
@@ -903,6 +908,9 @@ const Home = ({ currentData }) => {
               display: block;
               margin: auto;
             }
+            .ondas {
+            width: 2rem;
+          }
           }
         `}
       </style>

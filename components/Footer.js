@@ -143,7 +143,7 @@ const Footer = () => {
             }
           }
 
-          @media (max-width: 768px) {
+          @media (max-width: 769px) {
             .footer {
               background-image: url("../../image/trama-footer-responsive.svg");
               background-position: top center;
@@ -186,7 +186,6 @@ const Footer = () => {
          @media (min-width: 576px ) and (max-width: 768px) {
           .icon-redes {
             font-size: 1rem;
-
           }
           .footer .padding-left p {
             font-size: 0.65rem;
@@ -197,6 +196,7 @@ const Footer = () => {
            .footer a {
              font-size: 0.65rem;
           }
+        
          }
         `}
       </style>
