@@ -83,7 +83,8 @@ const Home = ({ currentData }) => {
                 Encuentra tu regalo soñado
               </h3>
               <div className="ondas d-block m-auto heartbeat">
-                <Image src="/image/ondas.svg" alt="ondas" layout="fill" />
+                <Image src="/image/ondas.svg" alt="ondas" width={90}
+                      height={30} />
               </div>
               <div className="box-banner-regalos">
                 <Link href="/construccion">
@@ -112,23 +113,23 @@ const Home = ({ currentData }) => {
             <Row className="sin-margin">
               <Col xs={12} md={12} lg={6} xl={6}>
                 <div className="box-text-title">
-                  <div className="ondas d-block  heartbeat">
+                  
                     <Image
                       src="/image/ondas.svg"
                       alt="ondas"
                       width={50}
                       height={50}
                     />
-                  </div>
+              
                   <h4 className="text-title heartbeat">Sorteo</h4>
-                  <div className="ondas d-block  heartbeat">
+                
                     <Image
                       src="/image/ondas.svg"
                       alt="ondas"
                       width={50}
                       height={50}
                     />
-                  </div>
+                 
                 </div>
                 <div className="box-sorteo-home">
                   <h3 className="title-fuxia">Gana un pack Yes Mom</h3>
@@ -454,7 +455,8 @@ const Home = ({ currentData }) => {
           }
 
           .ondas {
-            width: 6rem;
+            width: 8rem;
+            text-align:center
           }
 
           .box-sorteo-home {
@@ -791,9 +793,11 @@ const Home = ({ currentData }) => {
           }
           @media (max-width: 769px) {
 
-            .text-title{
-              font-size:1.5rem
-              }
+            .text-title {
+            font-size: 1.5rem;
+          }
+            .ondas{
+              width:4rem
             }
             .section-sorteo-home {
               padding-top: 1rem;
@@ -908,9 +912,6 @@ const Home = ({ currentData }) => {
               display: block;
               margin: auto;
             }
-            .ondas {
-            width: 2rem;
-          }
           }
         `}
       </style>
