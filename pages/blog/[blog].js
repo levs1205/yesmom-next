@@ -26,10 +26,7 @@ const CardBlogEspecific = ({ currentData }) => {
     <AppLayout>
       <Head>
         <title>{currentData.blog.titulo}</title>
-        <meta
-          name="description"
-          content={currentData.blog.descripcion}
-        ></meta>
+        <meta name="description" content={currentData.blog.descripcion}></meta>
         <meta property="og:type" content="website" />
         <meta property="og:title" content={currentData.blog.titulo} />
         <meta
@@ -139,18 +136,18 @@ const CardBlogEspecific = ({ currentData }) => {
                     : currentData.imagenes[1].url
                 }
                 alt=""
-                className="w-50 m-auto d-block"
+                className="img-blog-especific m-auto d-block"
               />
             </figure>
             <div className="box-articulo-title-blog">
               <FontAwesomeIcon
                 icon={faStar}
-                className="star-blog heartbeat"
+                className="star-blog heartbeat cl-fuxia"
               ></FontAwesomeIcon>
               <h2> {currentData.blog.titulo}</h2>
               <FontAwesomeIcon
                 icon={faStar}
-                className="star-blog heartbeat"
+                className="star-blog heartbeat cl-fuxia"
               ></FontAwesomeIcon>
             </div>
             <JoditEditor
@@ -340,6 +337,9 @@ const CardBlogEspecific = ({ currentData }) => {
           :global(.jodit-container * span) {
             font-family: "mont-regular" !important;
           }
+          :global(.jodit-container  p) {
+            margin-left: 0px!important;
+          }
           :global(.jodit-status-bar) {
             display: none !important;
           }
@@ -348,6 +348,10 @@ const CardBlogEspecific = ({ currentData }) => {
             /* :global(.jodit-container) {
             height: 10rem !important;
           } */
+          }
+
+          .img-blog-especific {
+            width: 50%;
           }
 
           @media (min-width: 1800px) {
@@ -510,6 +514,16 @@ const CardBlogEspecific = ({ currentData }) => {
             .card-deck .card-blog {
               margin-bottom: 1rem !important;
             }
+            .img-blog-especific {
+              width: 80%;
+            }
+            .figure-autor-blog {
+              height: 5rem;
+              width: 5rem;
+            }
+            .box-articulo-title-blog {
+              padding: 0rem 0rem;
+            }
           }
 
           @media (max-width: 420px) {
@@ -529,6 +543,9 @@ const CardBlogEspecific = ({ currentData }) => {
               width: 5rem;
               top: auto;
               bottom: -150%;
+            }
+            .img-blog-especific {
+              width: 100%;
             }
           }
         `}

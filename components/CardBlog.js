@@ -90,6 +90,7 @@ const CardBlog = ({ blog }) => {
           }
           :global(.card) {
             border: 0px solid rgba(0, 0, 0, 0.125);
+            margin-bottom:1rem!important
           }
 
           .card-blog {
@@ -101,14 +102,11 @@ const CardBlog = ({ blog }) => {
             border-radius: 1.28rem !important;
             width:20rem!important;
             height: auto!important;
+            
           }
 
-<<<<<<< HEAD
-{/*
-=======
            {
             /*         
->>>>>>> 74f1b7e1a69e1588737d860520ddd2502c765fba
           :global(.card-img) {
             width:10rem;
             height: 10rem;
@@ -302,7 +300,13 @@ const CardBlog = ({ blog }) => {
             height: 10rem !important;
             min-width: 100px;
           }
-
+  
+          @media (min-width: 2449px) {
+            .card-blog{
+              width: 18rem!important;
+              height: auto
+            }
+          }
           @media (min-width: 1800px) {
             .box-blog-general {
               padding: 2rem 0rem;

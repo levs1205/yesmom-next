@@ -192,7 +192,7 @@ const Home = ({ currentData }) => {
                 icon={faStar}
                 className="heartbeat"
               ></FontAwesomeIcon>
-              <h3 className="title-fuxia">Lo mejor para tu bebé</h3>
+              <div className="title-fuxia">Lo mejor para tu bebé</div>
               <FontAwesomeIcon
                 icon={faStar}
                 className="heartbeat"
@@ -202,7 +202,7 @@ const Home = ({ currentData }) => {
               <Image
                 src="/image/onda-rosa.svg"
                 alt="onda rosa yes mom"
-                width={50}
+                width={90}
                 height={20}
                 // layout="responsive"
               />
@@ -306,7 +306,7 @@ const Home = ({ currentData }) => {
             <img src={lineasAzul2} alt="lineas" className="line-down-azul" />
           </div>
         </Col> */}
-              <Col xs={12} md={5} lg={5} xl={6}>
+              <Col xs={12} md={5} lg={5} xl={5}>
                 <div className="box-true-history">
                   <div className="box-text-title">
                     <Image
@@ -346,7 +346,7 @@ const Home = ({ currentData }) => {
                   </div>
                 </div>
               </Col>
-              <Col xs={12} md={7} lg={7} xl={6}>
+              <Col xs={12} md={7} lg={7} xl={7}>
                 <div className="box-blog-card-home">
                   <Container>
                     <CardDeck>
@@ -438,7 +438,7 @@ const Home = ({ currentData }) => {
           }
           .text-title {
             font-family: "Clicker Script", cursive;
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin: 0rem 1rem 0rem;
             color: #4b66ae;
           }
@@ -618,7 +618,7 @@ const Home = ({ currentData }) => {
           }
 
           .box-true-history {
-            width: 32.5rem;
+            width: 80%;
             text-align: center;
             margin: auto;
           }
@@ -631,7 +631,7 @@ const Home = ({ currentData }) => {
             align-items: center!important;
             margin-bottom:1rem
           }
-
+        
           @media (min-width: 1800px) {
             .box-banner {
               height: 25rem;

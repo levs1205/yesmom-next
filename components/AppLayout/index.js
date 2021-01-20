@@ -4,7 +4,6 @@ import Header from "./../Header";
 import Head from "next/head";
 import HeaderNuevo from "../HeaderNuevo";
 
-
 const appLayout = ({ children }) => {
   return (
     <div className="box-yesmom">
@@ -17,12 +16,12 @@ const appLayout = ({ children }) => {
         <meta name="description" content="esto es descripcion"></meta>
       </Head>
       {/* <Header></Header> */}
-      <HeaderNuevo/>
+      <HeaderNuevo />
       <main>{children}</main>
       <Footer></Footer>
       <style jsx global>
         {`
-        html {
+          html {
             font-size: 0.98vw !important;
             font-family: "mont-heavy";
           }
@@ -83,8 +82,6 @@ const appLayout = ({ children }) => {
             src: url(fonts/Mont-Light.otf);
           }
 
-         
-
           .mt-views {
             padding-top: 0rem;
           }
@@ -111,7 +108,9 @@ const appLayout = ({ children }) => {
             padding: 0 1rem;
             text-align: center;
           }
-
+          .cl-fuxia {
+            color: #ec608d;
+          }
           .subtitle-dark {
             color: #575756;
             font-family: "mont-regular";
@@ -133,8 +132,8 @@ const appLayout = ({ children }) => {
             display: block;
           }
 
-          .btn-yellow a{
-            color: #fff!important;
+          .btn-yellow a {
+            color: #fff !important;
           }
           .bg-fuxia {
             background: #ec608d !important;
@@ -436,7 +435,6 @@ const appLayout = ({ children }) => {
               font-size: 1.2rem;
             }
           }
-       
 
           @media (max-width: 769px) {
             html {

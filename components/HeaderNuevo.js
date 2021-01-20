@@ -87,7 +87,8 @@ const HeaderNuevo = () => {
       <style jsx>
         {`
           .active .text-navbar{
-            color: #556ea1!important;
+            color: #ec608d!important;
+            text-decoration: none!important
           }
 
           .navbar-yesmom {
@@ -113,7 +114,11 @@ const HeaderNuevo = () => {
             align-items: center;
             margin: 0rem 0.5rem;
             color: #616160;
-            justify-content:flex-start
+            justify-content:flex-start;
+          }
+          .item-menu-yesmom:hover
+          {
+            text-decoration: none!important
           }
           .text-navbar {
             font-family: "mont-semibold";

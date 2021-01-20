@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="footer">
         <Container>
           <Row>
-            <Col xs={12} md={4}>
+            <Col xs={12} md={12} lg={4} xl={4}>
               <div className="padding-left text-left">
                 <h6 className="title-footer">
                   <b>CONTENIDO</b>
@@ -43,7 +43,7 @@ const Footer = () => {
                 </div>
               </div>
             </Col>
-            <Col xs={12} md={4}>
+            <Col xs={12} md={12} lg={4} xl={4}>
               <div className="padding-left text-center">
                 <h6 className="title-footer">
                   <b>CONTÁCTANOS</b>
@@ -53,7 +53,7 @@ const Footer = () => {
                 <p>123 Los Robles Miraflores</p>
               </div>
             </Col>
-            <Col xs={12} md={4}>
+            <Col xs={12} md={12} lg={4} xl={4}>
               <div className="padding-left text-center">
                 <h6 className="title-footer">
                   <b>SÍGUENOS</b>
@@ -61,12 +61,12 @@ const Footer = () => {
                 <a className="icon-redes">
                   <FontAwesomeIcon icon={faFacebookF}></FontAwesomeIcon>
                 </a>
-                <a className="icon-redes">
+                {/* <a className="icon-redes">
                   <FontAwesomeIcon
                     icon={faTwitter}
                     className="icon-redes"
                   ></FontAwesomeIcon>
-                </a>
+                </a> */}
 
                 <a className="icon-redes">
                   <FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon>
@@ -104,8 +104,9 @@ const Footer = () => {
           }
 
           .footer a:hover {
-            color: #000;
+            color: #ec608d;
             text-decoration: none;
+            font-weight:bolder
           }
 
           .tilte-footer {

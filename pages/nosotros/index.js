@@ -3,6 +3,9 @@ import AppLayout from "../../components/AppLayout";
 import Image from "next/image";
 import { Container, Row, Col } from "react-bootstrap";
 import Head from "next/head";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+
 const index = () => {
   return (
     <AppLayout>
@@ -136,7 +139,17 @@ const index = () => {
         </Container>
       </div>
       <div className="fondo-video-somos">
-        <h3 className="title-fuxia"><span className="heartbeat"> &#9733;</span> Nuestra historia <span className="heartbeat"> &#9733;</span></h3>
+        <div className="box-title-nuestra-historia">
+          <FontAwesomeIcon
+            icon={faStar}
+            className="cl-fuxia heartbeat"
+          ></FontAwesomeIcon>
+          <div className="title-fuxia">Nuestra historia</div>
+          <FontAwesomeIcon
+            icon={faStar}
+            className="cl-fuxia heartbeat"
+          ></FontAwesomeIcon>
+        </div>
         <div className="box-video-somos">
           <iframe
             src="https://www.youtube.com/embed/HmvCTcrR8fA"
@@ -155,13 +168,17 @@ const index = () => {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding-top: 5rem
+            padding-top: 5rem;
           }
-
+          .box-title-nuestra-historia {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
           .box-somos-yesmom {
             padding: 3.5rem;
             font-family: "mont-regular" !important;
-            font-size: 1.1rem;
+            font-size: 1rem;
             position: relative;
           }
 
@@ -231,8 +248,7 @@ const index = () => {
 
           .text-title-blog {
             font-family: "Clicker Script", cursive;
-            font-size: 2rem;
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin: 0rem 0.5rem 0rem;
             color: #fff;
           }
@@ -244,7 +260,7 @@ const index = () => {
               font-size: 0.8rem;
               position: relative;
             }
-            
+
             .fondo-video-somos {
               background: url(../../../image/fondo-verde-somos.png);
               height: 34rem;
@@ -316,17 +332,17 @@ const index = () => {
               display: block;
               margin: auto;
             }
-            .line-up-somos { 
-            top: -1.1rem;
-            right: 0.3rem;
-            width: 2rem;
-          }
+            .line-up-somos {
+              top: -1.1rem;
+              right: 0.3rem;
+              width: 2rem;
+            }
 
-          .line-down-somos {
-            bottom: -1.3rem;
-            left: 0.4rem;
-            width: 1.8rem;
-          }
+            .line-down-somos {
+              bottom: -1.3rem;
+              left: 0.4rem;
+              width: 1.8rem;
+            }
           }
         `}
       </style>

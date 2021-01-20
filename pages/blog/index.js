@@ -69,13 +69,13 @@ const Blog = ({ currentData }) => {
         </div>
         <div className="box-green-blog">
           <div className="w-100 box-green-blog-img-fondo">
-            <Image
+            {/* <Image
               src="/image/blog/fondo-verde.png"
               width={1920}
               height={800}
               layout="responsive"
               alt="Picture of the author"
-            />
+            /> */}
           </div>
           <h6 className="text-bottom-blog ">
             Para el mundo eres una mamá,<br></br>
@@ -130,6 +130,12 @@ const Blog = ({ currentData }) => {
           }
           .box-green-blog {
             position: relative;
+            background: url(../../../image/fondo-verde-somos.png);
+            height: 28rem;
+            background-position: center;
+            background-size: cover;
+            padding-top: 5rem;
+            padding-bottom: 5rem;
           }
 
           .text-bottom-blog {
