@@ -274,13 +274,29 @@ const index = () => {
               width: 87%;
             }
           }
+
+          @media (min-width: 769px) and (max-width: 991px) {
+            .box-img-somos-home{
+              width:60%;
+              margin:auto
+            }
+            .box-somos-yesmom{
+              width:70%;
+              margin:auto
+            }
+            .subtitle-about{
+              text-align:center
+            }
+
+          }
+
           @media (max-width: 768px) {
             .box-banner-about {
               height: 15rem;
             }
             .box-somos-yesmom {
               padding: 1rem 2rem;
-              font-size: 0.8rem;
+              font-size: 0.7rem;
               display: flex;
               justify-content: center;
               flex-direction: column;
@@ -291,6 +307,7 @@ const index = () => {
               padding-bottom: 1rem;
             }
             .subtitle-about {
+              width:8rem
             }
             .nube1-somos {
               position: absolute;
