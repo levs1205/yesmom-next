@@ -152,8 +152,7 @@ const index = () => {
         </div>
         <div className="box-video-somos">
           {/* <video src={require('./../../public/video-oficial.mp4')} /> */}
-          <video autoPlay loop muted controls width={560}
-            height={380}>
+          <video autoPlay loop muted controls className="video-nosotros">
             <source src="/video-oficial.mp4" type="video/mp4" />
           </video>
         </div>
@@ -179,6 +178,10 @@ const index = () => {
             font-family: "mont-regular" !important;
             font-size: 1rem;
             position: relative;
+          }
+          .video-nosotros {
+            width: 50%;
+            margin: auto
           }
 
           .line-up-somos {
@@ -342,6 +345,10 @@ const index = () => {
               left: 0.4rem;
               width: 1.8rem;
             }
+            .video-nosotros {
+            width: 100%;
+          }
+
           }
         `}
       </style>
