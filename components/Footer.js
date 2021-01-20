@@ -183,7 +183,7 @@ const Footer = () => {
               font-size: 0.8rem;
             }
           }
-         @media (min-width: 576px) {
+         @media (min-width: 576px ) and (max-width: 768px) {
           .icon-redes {
             font-size: 1rem;
 
