@@ -13,7 +13,7 @@ const index = () => {
         <title>YesMom - Nosotros</title>
         <meta name="description" content="YesMom es ..."></meta>
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="YesMom - Nostros" />
+        <meta property="og:title" content="YesMom - Nosotros" />
         <meta property="og:description" content="YesMom es ..." />
         <meta
           property="og:image"
@@ -167,7 +167,7 @@ const index = () => {
             justify-content: center;
             align-items: center;
             padding-top: 5rem;
-           
+
           }
           .box-title-nuestra-historia {
             display: flex;
