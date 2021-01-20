@@ -9,6 +9,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import AppLayout from "../components/AppLayout";
 import CardBlog from "../components/CardBlog";
 import Head from "next/head";
+
 // import clienteAxiosBusiness from "../config/axiosBusiness";
 import axios from "axios";
 // import fetch from 'isomorphic-fetch'
@@ -43,16 +44,18 @@ const Home = ({ currentData }) => {
         <meta property="og:description" content="YesMom es ..." />
         <meta
           property="og:image"
-          content="/public/image/header/logo-yesmom.png"
+          content="../public/image/header/logo-yesmom.png"
         />
-        <meta property="og:site_name" content="La Ganga" />
+        <meta property="og:site_name" content="YesMom" />
+        <meta property="og:type" content="YesMom" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="YesMom - Home" />
         <meta name="twitter:description" content="YesMom es ..." />
         <meta
           name="twitter:image"
-          content="/public/image/header/logo-yesmom.png"
+          itemprop="image"
+          content="../public/image/header/logo-yesmom.png"
         />
         <meta name="twitter:site" content="@JudithCristinaQ" />
         <meta name="twitter:creator" content="@JudithCristinaQ" />

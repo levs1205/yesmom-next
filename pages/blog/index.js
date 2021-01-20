@@ -18,6 +18,7 @@ const Blog = ({ currentData }) => {
         <meta property="og:description" content="Visita nuestro Blog ..." />
         <meta
           property="og:image"
+          itemprop="image"
           content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fkueski.com%2Fblog%2Ftemporada%2Fmamas-emprendedoras-exitosas-de-mexico%2F&psig=AOvVaw1RsoqJmXdY6b9OYFATaTRQ&ust=1610583088240000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJj3nN_Pl-4CFQAAAAAdAAAAABAE"
         />
         <meta property="og:site_name" content="La Ganga" />
