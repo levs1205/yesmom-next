@@ -918,14 +918,18 @@ const Home = ({ currentData }) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   const res = await fetch(
     "https://yesmom-backend.herokuapp.com/getBlogAll/user?limit=2"
   );
   const currentData = await res.json();
-
+  if (!currentData) {
+    return {
+      notFound: true,
+    }
+  }
   // By returning { props: posts }, the Blog component
   // will receive `posts` as a prop at build time
   return {
