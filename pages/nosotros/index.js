@@ -179,10 +179,7 @@ const index = () => {
             font-size: 1rem;
             position: relative;
           }
-          .video-nosotros {
-            width: 50%;
-            margin: auto
-          }
+         
 
           .line-up-somos {
             position: absolute;
@@ -225,9 +222,15 @@ const index = () => {
             display: flex;
             justify-content: center;
             position: relative;
-            padding-bottom: 56.25%; /* 16/9 ratio */
             overflow: hidden;
             margin: 3rem 2rem;
+            height: auto
+          }
+          .video-nosotros {
+            width: 50%;
+            margin: auto;
+            height:100%;
+            position:relative
           }
           .box-video-somos iframe {
             position: absolute;
