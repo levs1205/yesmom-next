@@ -8,7 +8,7 @@ export default function FourOhFour() {
     <AppLayout>
     <div className="box-error fade-in animated">
       <div className="section-error">
-        <div className="img-osito">
+        <div className="img-osito tilt-in-fwd-tr">
         <Image
           src="/image/error/osito_triste.png"
           alt="Osito triste, no encuentra la página"
@@ -41,13 +41,16 @@ export default function FourOhFour() {
           background-position: center;
           background-size: contain;
           height: 97vh;
+         
         }
         .section-error {
           display: flex;
           justify-content: center;
           align-items: center;
           flex-direction: row;
-          padding:12rem 8rem
+          position:relative;
+            top:50%;
+            transform: translateY(-50%)
         }
         .img-foto {
           height: 35rem;
@@ -97,9 +100,7 @@ export default function FourOhFour() {
           align-items: center;
         }
         @media (min-width: 1800px) {
-          .section-error {
-            padding: 8rem 4rem;
-          }
+        
           .img-foto {
             height: 30rem;
             width: auto;
@@ -123,7 +124,6 @@ export default function FourOhFour() {
           }
           .section-error {
             flex-direction: column;
-            padding: 4rem 1rem;
           }
           .img-foto {
             height: 18rem;

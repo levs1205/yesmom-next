@@ -60,7 +60,7 @@ const Home = ({ currentData }) => {
       </Head>
       <div className="fade-in animated">
         <section fluid="true" className="box-banner">
-          <div className="banner view-desktop">
+          <div className="banner view-desktop tilt-in-fwd-tr">
             <Image
               src="/image/home/banner.png"
               alt="Picture of the author"

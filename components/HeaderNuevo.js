@@ -24,7 +24,7 @@ const HeaderNuevo = () => {
           />
         </div>
         <Link href="/" prefetch>
-          <a className="mr-2">
+          <a className="mr-2 logo-yesmom">
             <Image
               src="/image/header/logo-yesmom.svg"
               alt="logo yesmom"
@@ -116,7 +116,10 @@ const HeaderNuevo = () => {
             color: #616160;
             justify-content: flex-start;
           }
-
+          .logo-yesmom:hover {
+            transform: scale(1.1);
+            animation: animateHeart 0.3s linear forwards !important;
+          }
           @keyframes animateHeart {
             0% {
               transform: scale(1);

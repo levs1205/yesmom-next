@@ -75,7 +75,7 @@ const index = () => {
           <Row className="sin-margin">
             <Col xs={12} md={12} lg={6} xl={6}>
               <div className="box-somos-yesmom">
-                <div className="pb-3 subtitle-about">
+                <div className="pb-3 subtitle-about ">
                   <Image
                     src="/image/somos-yesmom.svg"
                     width={200}
@@ -115,7 +115,7 @@ const index = () => {
                     alt="lineas"
                   />
                 </div>
-                <div className="img-somos">
+                <div className="img-somos tilt-in-fwd-tr">
                   <Image
                     src="/image/about.png"
                     width={80}
@@ -167,6 +167,7 @@ const index = () => {
             justify-content: center;
             align-items: center;
             padding-top: 5rem;
+           
           }
           .box-title-nuestra-historia {
             display: flex;
@@ -179,7 +180,6 @@ const index = () => {
             font-size: 1rem;
             position: relative;
           }
-         
 
           .line-up-somos {
             position: absolute;
@@ -224,13 +224,13 @@ const index = () => {
             position: relative;
             overflow: hidden;
             margin: 3rem 2rem;
-            height: auto
+            height: auto;
           }
           .video-nosotros {
             width: 50%;
             margin: auto;
-            height:100%;
-            position:relative
+            height: 100%;
+            position: relative;
           }
           .box-video-somos iframe {
             position: absolute;
@@ -279,18 +279,17 @@ const index = () => {
           }
 
           @media (min-width: 769px) and (max-width: 991px) {
-            .box-img-somos-home{
-              width:60%;
-              margin:auto
+            .box-img-somos-home {
+              width: 60%;
+              margin: auto;
             }
-            .box-somos-yesmom{
-              width:70%;
-              margin:auto
+            .box-somos-yesmom {
+              width: 70%;
+              margin: auto;
             }
-            .subtitle-about{
-              text-align:center
+            .subtitle-about {
+              text-align: center;
             }
-
           }
 
           @media (max-width: 768px) {
@@ -310,7 +309,7 @@ const index = () => {
               padding-bottom: 1rem;
             }
             .subtitle-about {
-              width:8rem
+              width: 8rem;
             }
             .nube1-somos {
               position: absolute;
@@ -366,12 +365,11 @@ const index = () => {
               width: 1.8rem;
             }
             .video-nosotros {
-            width: 100%;
-          }
-          .text-title-blog{
-            font-size:1.5rem
-          }
-
+              width: 100%;
+            }
+            .text-title-blog {
+              font-size: 1.5rem;
+            }
           }
         `}
       </style>

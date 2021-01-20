@@ -117,7 +117,7 @@ const CardBlogEspecific = ({ currentData }) => {
                     : currentData.imagenes[1].url
                 }
                 alt=""
-                className="w-100"
+                className="w-100 "
               />
             </figure>
             <div className="box-autor-text-blog">
@@ -136,7 +136,7 @@ const CardBlogEspecific = ({ currentData }) => {
                     : currentData.imagenes[1].url
                 }
                 alt=""
-                className="img-blog-especific m-auto d-block"
+                className="img-blog-especific m-auto d-block tilt-in-fwd-tr"
               />
             </figure>
             <div className="box-articulo-title-blog">
