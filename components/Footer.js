@@ -58,7 +58,7 @@ const Footer = () => {
                 <h6 className="title-footer">
                   <b>SÍGUENOS</b>
                 </h6>
-                <a className="icon-redes">
+                <a className="icon-redes" href="https://www.facebook.com/Yes-Mom-Per%C3%BA-104308198182894" target="blank">
                   <FontAwesomeIcon icon={faFacebookF}></FontAwesomeIcon>
                 </a>
                 {/* <a className="icon-redes">
@@ -68,7 +68,7 @@ const Footer = () => {
                   ></FontAwesomeIcon>
                 </a> */}
 
-                <a className="icon-redes">
+                <a className="icon-redes" href="https://www.instagram.com/yesmomperu/" target="blank">
                   <FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon>
                 </a>
               </div>
