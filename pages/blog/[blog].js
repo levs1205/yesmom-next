@@ -547,6 +547,9 @@ const CardBlogEspecific = ({ currentData }) => {
             .img-blog-especific {
               width: 100%;
             }
+            .card-blog{
+              width:100%!important;
+            }
           }
         `}
       </style>

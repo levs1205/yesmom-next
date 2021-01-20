@@ -445,6 +445,7 @@ const Blog = ({ currentData }) => {
               top: auto;
               bottom: -150%;
             }
+            
           }
         `}
       </style>

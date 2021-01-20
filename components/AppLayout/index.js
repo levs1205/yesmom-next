@@ -130,6 +130,7 @@ const appLayout = ({ children }) => {
             text-align: center;
             line-height: 1.3rem;
             display: block;
+            cursor:pointer
           }
 
           .btn-yellow a {

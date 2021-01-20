@@ -86,12 +86,17 @@ const Home = ({ currentData }) => {
                 <Image src="/image/ondas.svg" alt="ondas" layout="fill" />
               </div>
               <div className="box-banner-regalos">
-                <div className="btn-regalos bg-fuxia hover-fuxia">
-                  Crear lista de regalos
-                </div>
-                <div className="btn-regalos hover-amarillo">
-                  Buscar lista de regalos
-                </div>
+                <Link href="/construccion">
+                  <div className="btn-regalos bg-fuxia hover-fuxia">
+                    <a>Crear lista de regalos</a>
+                  </div>
+                </Link>
+
+                <Link href="/construccion">
+                  <div className="btn-regalos hover-amarillo">
+                    <a> Buscar lista de regalos</a>
+                  </div>
+                </Link>
               </div>
               <p className="link-a text-center ">
                 ¿Ya registrado?
@@ -105,7 +110,7 @@ const Home = ({ currentData }) => {
         <div className="section-sorteo-home">
           <Container fluid="true">
             <Row className="sin-margin">
-              <Col xs={12} md={6} lg={6} xl={6}>
+              <Col xs={12} md={12} lg={6} xl={6}>
                 <div className="box-text-title">
                   <div className="ondas d-block  heartbeat">
                     <Image
@@ -144,7 +149,7 @@ const Home = ({ currentData }) => {
                   </Link>
                 </div>
               </Col>
-              <Col xs={12} md={6} lg={6} xl={6}>
+              <Col xs={12} md={12} lg={6} xl={6}>
                 <div className="box-img-sorteo-home">
                   <div className="line-up heartbeat">
                     <Image
@@ -221,11 +226,11 @@ const Home = ({ currentData }) => {
                       // className="onda-rosa heartbeat"
                     />
                   </div>
-                  <div className="btn-lo-mejor hover-amarillo">
-                    <Link href="/construccion">
+                  <Link href="/construccion">
+                    <div className="btn-lo-mejor hover-amarillo">
                       <a> Tiendas destacadas</a>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 </Col>
                 <Col xs>
                   <div className="img-lo-mejor">
@@ -237,14 +242,14 @@ const Home = ({ currentData }) => {
                       // className="onda-rosa heartbeat"
                     />
                   </div>
-                  <div className="btn-lo-mejor bg-fuxia hover-fuxia">
-                    <Link href="/construccion">
+                  <Link href="/construccion">
+                    <div className="btn-lo-mejor bg-fuxia hover-fuxia">
                       <a>
                         {" "}
                         Lo + <br></br> buscado{" "}
-                      </a>
-                    </Link>
-                  </div>
+                      </a>{" "}
+                    </div>
+                  </Link>
                 </Col>
                 <Col xs>
                   <div className="img-lo-mejor">
@@ -256,11 +261,11 @@ const Home = ({ currentData }) => {
                       // className="onda-rosa heartbeat"
                     />
                   </div>
-                  <div className="btn-lo-mejor bg-verde hover-verde">
-                    <Link href="/construccion">
+                  <Link href="/construccion">
+                    <div className="btn-lo-mejor bg-verde hover-verde">
                       <a>Sin moverte de casa</a>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 </Col>
                 <Col xs>
                   <div className="img-lo-mejor">
@@ -272,11 +277,12 @@ const Home = ({ currentData }) => {
                       // className="onda-rosa heartbeat"
                     />
                   </div>
-                  <div className="btn-lo-mejor bg-azul hover-azul">
-                    <Link href="/construccion">
+
+                  <Link href="/construccion">
+                    <div className="btn-lo-mejor bg-azul hover-azul">
                       <a>Juguetes</a>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 </Col>
               </Row>
             </div>
@@ -306,7 +312,7 @@ const Home = ({ currentData }) => {
             <img src={lineasAzul2} alt="lineas" className="line-down-azul" />
           </div>
         </Col> */}
-              <Col xs={12} md={5} lg={5} xl={5}>
+              <Col xs={12} md={12} lg={5} xl={5}>
                 <div className="box-true-history">
                   <div className="box-text-title">
                     <Image
@@ -333,11 +339,12 @@ const Home = ({ currentData }) => {
                         que tú tienes en estos momentos. No te preocupes ¡Lo
                         resolveremos juntas!
                       </h6>
-                      <div className="btn-yellow hover-amarillo">
-                        <Link href="/blog">
+
+                      <Link href="/blog">
+                        <div className="btn-yellow hover-amarillo">
                           <a>Ver más</a>
-                        </Link>
-                      </div>
+                        </div>
+                      </Link>
 
                       {/* <a href="/blog" className="link-a d-block text-center mt-4">
                 Ver más &#8594;
@@ -346,7 +353,7 @@ const Home = ({ currentData }) => {
                   </div>
                 </div>
               </Col>
-              <Col xs={12} md={7} lg={7} xl={7}>
+              <Col xs={12} md={12} lg={7} xl={7}>
                 <div className="box-blog-card-home">
                   <Container>
                     <CardDeck>
@@ -417,7 +424,7 @@ const Home = ({ currentData }) => {
           .btn-regalos {
             background-color: #febf41;
             font-size: 1.31rem;
-            color: #fff;
+            color: #fff !important;
             padding: 1.5rem 0rem;
             margin: 1rem;
             width: 11rem;
@@ -427,6 +434,9 @@ const Home = ({ currentData }) => {
             font-family: "omnes-bold";
             position: relative;
             cursor: pointer;
+          }
+          .btn-regalos a {
+            color: #fff !important;
           }
 
           .box-text-title {
@@ -557,6 +567,7 @@ const Home = ({ currentData }) => {
             display: flex;
             justify-content: center;
             align-items: center;
+            cursor: pointer;
           }
 
           .btn-lo-mejor a {
@@ -626,12 +637,15 @@ const Home = ({ currentData }) => {
           .box-blog-card-home {
             flex: 0 0 46% !important;
           }
-
-          :global(.card-deck .card) {
-            align-items: center!important;
-            margin-bottom:1rem
+          :global(.card-deck) {
+            justify-content: center !important;
           }
-        
+          :global(.card-deck .card) {
+            align-items: center !important;
+            margin-bottom: 1rem;
+            justify-content: center !important;
+          }
+
           @media (min-width: 1800px) {
             .box-banner {
               height: 25rem;
