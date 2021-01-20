@@ -43,7 +43,7 @@ const Home = ({ currentData }) => {
         <meta property="og:description" content="YesMom es ..." />
         <meta
           property="og:image"
-          content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.es%2Fvector-premium%2Fmama-bebe-elefante-sosteniendo-globo_5186775.htm&psig=AOvVaw35dH9pk-kNaZ4wBMF87bS9&ust=1610582748885000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiyzbrOl-4CFQAAAAAdAAAAABAD"
+          content="/public/image/header/logo-yesmom.png"
         />
         <meta property="og:site_name" content="La Ganga" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
@@ -52,7 +52,7 @@ const Home = ({ currentData }) => {
         <meta name="twitter:description" content="YesMom es ..." />
         <meta
           name="twitter:image"
-          content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.es%2Fvector-premium%2Fmama-bebe-elefante-sosteniendo-globo_5186775.htm&psig=AOvVaw35dH9pk-kNaZ4wBMF87bS9&ust=1610582748885000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiyzbrOl-4CFQAAAAAdAAAAABAD"
+          content="/public/image/header/logo-yesmom.png"
         />
         <meta name="twitter:site" content="@JudithCristinaQ" />
         <meta name="twitter:creator" content="@JudithCristinaQ" />
