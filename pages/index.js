@@ -44,7 +44,7 @@ const Home = ({ currentData }) => {
         <meta property="og:description" content="YesMom es ..." />
         <meta
           property="og:image"
-          content="../public/image/header/logo-yesmom.png"
+          content="https://yesmom.vercel.app/_next/image?url=%2Fimage%2Fhome%2Fbanner.png&w=640&q=75"
         />
         <meta property="og:site_name" content="La Ganga" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
@@ -53,7 +53,7 @@ const Home = ({ currentData }) => {
         <meta name="twitter:description" content="YesMom es ..." />
         <meta
           name="twitter:image"
-          content="../public/image/header/logo-yesmom.png"
+          content="https://yesmom.vercel.app/_next/image?url=%2Fimage%2Fhome%2Fbanner.png&w=640&q=75"
         />
         <meta name="twitter:site" content="@JudithCristinaQ" />
         <meta name="twitter:creator" content="@JudithCristinaQ" />
