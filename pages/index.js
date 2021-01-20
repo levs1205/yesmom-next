@@ -46,8 +46,7 @@ const Home = ({ currentData }) => {
           property="og:image"
           content="../public/image/header/logo-yesmom.png"
         />
-        <meta property="og:site_name" content="YesMom" />
-        <meta property="og:type" content="YesMom" />
+        <meta property="og:site_name" content="La Ganga" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="YesMom - Home" />
