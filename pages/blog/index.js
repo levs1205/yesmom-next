@@ -118,16 +118,7 @@ const Blog = ({ currentData }) => {
             z-index: 10;
           }
 
-          .card-blog {
-            text-align: center;
-            background: #ffffff;
-            box-shadow: 0px 14px 20px -5px rgba(0, 0, 0, 0.2);
-            border-radius: 20px;
-            font-family: "mont-regular";
-            border-radius: 1.28rem !important;
-            width: 18rem;
-            height: auto;
-          }
+  
           .box-green-blog {
             position: relative;
             background: url(../../../image/fondo-verde-somos.png);
@@ -291,9 +282,8 @@ const Blog = ({ currentData }) => {
             .card-text {
               font-size: 0.8rem;
             }
-            .card-blog {
-              height: 26rem;
-            }
+      
+      
             .nube1 {
               top: 50%;
               left: 20%;
@@ -390,16 +380,6 @@ const Blog = ({ currentData }) => {
               z-index: 10;
             }
 
-            .card-blog {
-              text-align: center;
-              background: #ffffff;
-              box-shadow: 0px 14px 20px -5px rgba(0, 0, 0, 0.2);
-              border-radius: 20px;
-              font-family: "Montserrat", sans-serif;
-              border-radius: 1.28rem !important;
-              width: 18rem;
-              height: auto;
-            }
             .box-green-blog-img-fondo {
               position: absolute;
               height: 30rem;
@@ -422,9 +402,7 @@ const Blog = ({ currentData }) => {
               display: flex;
               flex-direction: column !important;
             }
-            .card-deck .card-blog {
-              margin-bottom: 1rem !important;
-            }
+    
           }
 
           @media (max-width: 420px) {

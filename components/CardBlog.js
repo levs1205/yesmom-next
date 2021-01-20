@@ -102,30 +102,16 @@ const CardBlog = ({ blog }) => {
             border-radius: 20px;
             font-family: "mont-regular"!important;
             border-radius: 1.28rem !important;
-<<<<<<< HEAD
             width: 18rem;
             height: auto;
           }
 
 {/*
-=======
-            width:20rem!important;
-            height: auto!important;
-            
-          }
-
-           {
-            /*         
->>>>>>> b59fe9f33f3763687a3feb44d3e31b129d25b9d8
           :global(.card-img) {
             width:10rem;
             height: 10rem;
             margin:auto
-<<<<<<< HEAD
           } */}
-=======
-          } */
-          }
 
           .card-img {
             width: 12rem;
@@ -140,7 +126,6 @@ const CardBlog = ({ blog }) => {
             height:100%!important;
             width:auto!important;
           }
->>>>>>> b59fe9f33f3763687a3feb44d3e31b129d25b9d8
           .box-green-blog {
             position: relative;
           }
@@ -493,6 +478,9 @@ const CardBlog = ({ blog }) => {
               width: 5rem;
               top: auto;
               bottom: -150%;
+            }
+            .card-blog{
+              width: 100%
             }
           }
         `}
