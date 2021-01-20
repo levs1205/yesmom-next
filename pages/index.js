@@ -84,7 +84,7 @@ const Home = ({ currentData }) => {
               </h3>
               <div className="ondas d-block m-auto heartbeat">
                 <Image src="/image/ondas.svg" alt="ondas" width={90}
-                      height={30} />
+                      height={9} />
               </div>
               <div className="box-banner-regalos">
                 <Link href="/construccion">

@@ -107,7 +107,7 @@ const CardBlog = ({ blog }) => {
             border-radius: 20px;
             font-family: "mont-regular" !important;
             border-radius: 1.28rem !important;
-            width: 18rem;
+            width: 22rem;
             height: auto;
           }
 
