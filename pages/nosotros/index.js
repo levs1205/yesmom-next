@@ -3,6 +3,8 @@ import AppLayout from "../../components/AppLayout";
 import Image from "next/image";
 import { Container, Row, Col } from "react-bootstrap";
 import Head from "next/head";
+
+
 const index = () => {
   return (
     <AppLayout>
@@ -138,12 +140,11 @@ const index = () => {
       <div className="fondo-video-somos">
         <h3 className="title-fuxia"><span className="heartbeat"> &#9733;</span> Nuestra historia <span className="heartbeat"> &#9733;</span></h3>
         <div className="box-video-somos">
-          <iframe
-            src="https://www.youtube.com/embed/HmvCTcrR8fA"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+          {/* <video src={require('./../../public/video-oficial.mp4')} /> */}
+          <video autoPlay loop muted controls width={560}
+            height={380}>
+            <source src="/video-oficial.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
       <style jsx>
