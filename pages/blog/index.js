@@ -118,7 +118,7 @@ const Blog = ({ currentData }) => {
             z-index: 10;
           }
 
-  
+
           .box-green-blog {
             position: relative;
             background: url(../../../image/fondo-verde-somos.png);
@@ -282,8 +282,8 @@ const Blog = ({ currentData }) => {
             .card-text {
               font-size: 0.8rem;
             }
-      
-      
+
+
             .nube1 {
               top: 50%;
               left: 20%;
@@ -402,7 +402,7 @@ const Blog = ({ currentData }) => {
               display: flex;
               flex-direction: column !important;
             }
-    
+
           }
 
           @media (max-width: 420px) {
@@ -423,21 +423,25 @@ const Blog = ({ currentData }) => {
               top: auto;
               bottom: -150%;
             }
-            
+
           }
         `}
       </style>
     </AppLayout>
   );
 };
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   const res = await fetch(
     "https://yesmom-backend.herokuapp.com/getBlogAll/user?limit=all"
   );
   const currentData = await res.json();
-
+  if (!currentData) {
+    return {
+      notFound: true,
+    }
+  }
   // By returning { props: posts }, the Blog component
   // will receive `posts` as a prop at build time
   return {
@@ -446,5 +450,6 @@ export async function getStaticProps() {
     },
   };
 }
+
 
 export default Blog;
