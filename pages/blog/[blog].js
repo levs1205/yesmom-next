@@ -194,7 +194,7 @@ const CardBlogEspecific = ({ currentData }) => {
             z-index: 10;
           }
 
-    
+
           .box-green-blog {
             position: relative;
           }
@@ -371,7 +371,7 @@ const CardBlogEspecific = ({ currentData }) => {
             .card-text {
               font-size: 0.8rem;
             }
-       
+
             .nube1 {
               top: 50%;
               left: 20%;
@@ -490,7 +490,7 @@ const CardBlogEspecific = ({ currentData }) => {
               display: flex;
               flex-direction: column !important;
             }
-     
+
             .img-blog-especific {
               width: 80%;
             }
@@ -525,7 +525,7 @@ const CardBlogEspecific = ({ currentData }) => {
             .img-blog-especific {
               width: 100%;
             }
-          
+
           }
         `}
       </style>
@@ -533,30 +533,35 @@ const CardBlogEspecific = ({ currentData }) => {
   );
 };
 
-export async function getStaticPaths() {
-  // Call an external API endpoint to get posts
-  const res = await fetch(
-    "https://yesmom-backend.herokuapp.com/getBlogAll/user?limit=all"
-  );
-  const blogs = await res.json();
-  // Get the paths we want to pre-render based on posts
-  const paths = blogs.map((blog) => ({
-    params: { blog: String(blog.blog._id) },
-  }));
+// export async function getStaticPaths() {
+//   // Call an external API endpoint to get posts
+//   const res = await fetch(
+//     "https://yesmom-backend.herokuapp.com/getBlogAll/user?limit=all"
+//   );
+//   const blogs = await res.json();
+//   // Get the paths we want to pre-render based on posts
+//   const paths = blogs.map((blog) => ({
+//     params: { blog: String(blog.blog._id) },
+//   }));
 
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
-  return { paths, fallback: false };
-}
+//   // We'll pre-render only these paths at build time.
+//   // { fallback: false } means other routes should 404.
+//   return { paths, fallback: false };
+// }
 
-export async function getStaticProps({ params }) {
+
+export async function getServerSideProps({ params }) {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   const res = await fetch(
     `https://yesmom-backend.herokuapp.com/getBlog/${params.blog}`
   );
   const currentData = await res.json();
-
+  if (!currentData) {
+    return {
+      notFound: true,
+    }
+  }
   // By returning { props: posts }, the Blog component
   // will receive `posts` as a prop at build time
   return {
@@ -565,5 +570,21 @@ export async function getStaticProps({ params }) {
     },
   };
 }
+// export async function getStaticProps({ params }) {
+//   // Call an external API endpoint to get posts.
+//   // You can use any data fetching library
+//   const res = await fetch(
+//     `https://yesmom-backend.herokuapp.com/getBlog/${params.blog}`
+//   );
+//   const currentData = await res.json();
+
+//   // By returning { props: posts }, the Blog component
+//   // will receive `posts` as a prop at build time
+//   return {
+//     props: {
+//       currentData: currentData[0],
+//     },
+//   };
+// }
 
 export default CardBlogEspecific;
