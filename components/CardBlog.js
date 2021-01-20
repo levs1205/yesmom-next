@@ -103,8 +103,12 @@ const CardBlog = ({ blog }) => {
             height: auto!important;
           }
 
+<<<<<<< HEAD
+{/*
+=======
            {
             /*         
+>>>>>>> 74f1b7e1a69e1588737d860520ddd2502c765fba
           :global(.card-img) {
             width:10rem;
             height: 10rem;
@@ -223,6 +227,10 @@ const CardBlog = ({ blog }) => {
 
           :global(.jodit-wysiwyg::-webkit-scrollbar) {
             -webkit-appearance: none;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 74f1b7e1a69e1588737d860520ddd2502c765fba
           }
 
           :global(.jodit-wysiwyg::-webkit-scrollbar:vertical) {
