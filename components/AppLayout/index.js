@@ -437,7 +437,7 @@ const appLayout = ({ children }) => {
             }
           }
 
-          @media (max-width: 769px) {
+          @media (max-width: 768px) {
             html {
               font-size: 4.6vw !important;
             }
