@@ -86,9 +86,9 @@ const HeaderNuevo = () => {
       </nav>
       <style jsx>
         {`
-          .active .text-navbar{
-            color: #ec608d!important;
-            text-decoration: none!important
+          .active .text-navbar {
+            color: #ec608d !important;
+            text-decoration: none !important;
           }
 
           .navbar-yesmom {
@@ -114,11 +114,25 @@ const HeaderNuevo = () => {
             align-items: center;
             margin: 0rem 0.5rem;
             color: #616160;
-            justify-content:flex-start;
+            justify-content: flex-start;
           }
-          .item-menu-yesmom:hover
-          {
-            text-decoration: none!important
+
+          @keyframes animateHeart {
+            0% {
+              transform: scale(1);
+            }
+            40% {
+              transform: scale(1.09);
+            }
+            100% {
+              transform: scale(1.1);
+            }
+          }
+
+          .item-menu-yesmom:hover {
+            text-decoration: none !important;
+            transform: scale(1.1);
+            animation: animateHeart 0.3s linear forwards !important;
           }
           .text-navbar {
             font-family: "mont-semibold";
