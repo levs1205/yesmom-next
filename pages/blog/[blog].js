@@ -24,79 +24,92 @@ const CardBlogEspecific = ({ currentData }) => {
 
   return (
     <AppLayout>
-       <Head>
-        <title>
-        {currentData.blog.titulo}
-        </title>
-        <meta name="description" content="Esto es la descripción del blog"></meta>
+      <Head>
+        <title>{currentData.blog.titulo}</title>
+        <meta name="description" content={currentData.blog.descripcion}></meta>
         <meta property="og:type" content="website" />
         <meta property="og:title" content={currentData.blog.titulo} />
-        <meta property="og:description" content="Esto es la descripción del blog"/>
-        <meta property="og:image" content={currentData.imagenes[0].typeImage === "P"
-                    ? currentData.imagenes[0].url
-                    : currentData.imagenes[1].url} />
+        <meta
+          property="og:description"
+          content={currentData.blog.descripcion}
+        />
+        <meta
+          property="og:image"
+          content={
+            currentData.imagenes[0].typeImage === "P"
+              ? currentData.imagenes[0].url
+              : currentData.imagenes[1].url
+          }
+        />
         <meta property="og:site_name" content="La Ganga" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
-        <meta name="twitter:card" content="summary" /> 
+        <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={currentData.blog.titulo} />
-        <meta name="twitter:description" content="Esto es la descripción del blog" />
-        <meta name="twitter:image" content={currentData.imagenes[0].typeImage === "P"
-                    ? currentData.imagenes[0].url
-                    : currentData.imagenes[1].url} />
+        <meta
+          name="twitter:description"
+          content={currentData.blog.descripcion}
+        />
+        <meta
+          name="twitter:image"
+          content={
+            currentData.imagenes[0].typeImage === "P"
+              ? currentData.imagenes[0].url
+              : currentData.imagenes[1].url
+          }
+        />
         <meta name="twitter:site" content="@JudithCristinaQ" />
         <meta name="twitter:creator" content="@JudithCristinaQ" />
       </Head>
       <div className="fade-in animated">
         <div className="box-banner-blog">
-          <div  className="ondas">
-          <Image
-            src="/image/onda-blanca.svg"
-            alt="ondas"
-            width={100}
-            height={20}
-            // layout="responsive"
-          />
+          <div className="ondas">
+            <Image
+              src="/image/onda-blanca.svg"
+              alt="ondas"
+              width={100}
+              height={20}
+              // layout="responsive"
+            />
           </div>
           <h4 className="text-title-blog">Detalles de blog</h4>
-          <div  className="ondas">
-          <Image
-            src="/image/onda-blanca.svg"
-            alt="ondas"
-            width={100}
-            height={20}
-            // layout="responsive"
-           
-          />
+          <div className="ondas">
+            <Image
+              src="/image/onda-blanca.svg"
+              alt="ondas"
+              width={100}
+              height={20}
+              // layout="responsive"
+            />
           </div>
         </div>
         <div className="box-blog-especifico">
-         <div  className="nube1 heartbeat">
-         <Image
-            src="/image/blog/nube1.png"
-            width={190}
-            height={130}
-            // layout="responsive"
-            alt="nube"
-          />
-         </div>
+          <div className="nube1 heartbeat">
+            <Image
+              src="/image/blog/nube1.png"
+              width={190}
+              height={130}
+              // layout="responsive"
+              alt="nube"
+            />
+          </div>
           <div className="nube2 heartbeat">
-          <Image
-            src="/image/blog/nube2.png"
-            width={190}
-            height={130}
-            alt="nube"
-          />
+            <Image
+              src="/image/blog/nube2.png"
+              width={190}
+              height={130}
+              alt="nube"
+            />
           </div>
           <div className="nube3 heartbeat">
-          <Image
-            src="/image/blog/nube3.png"
-            width={190}
-            height={130}
-            alt="nube"
-          />
+            <Image
+              src="/image/blog/nube3.png"
+              width={190}
+              height={130}
+              alt="nube"
+            />
           </div>
           <div className="box-autor-blog">
-            <figure>
+            <figure className="figure-autor-blog">
               <img
                 src={
                   currentData.imagenes[0].typeImage === "A"
@@ -109,7 +122,9 @@ const CardBlogEspecific = ({ currentData }) => {
             </figure>
             <div className="box-autor-text-blog">
               <h5 className="text-autor">{currentData.blog.autor}</h5>
-              <h5 className="text-fecha">{currentData.blog.fecha.substr(0,10)}</h5>
+              <h5 className="text-fecha">
+                {currentData.blog.fecha.substr(0, 10)}
+              </h5>
             </div>
           </div>
           <div className="box-articulo-blog">
@@ -121,23 +136,23 @@ const CardBlogEspecific = ({ currentData }) => {
                     : currentData.imagenes[1].url
                 }
                 alt=""
-                className="w-50 m-auto d-block"
+                className="img-blog-especific m-auto d-block"
               />
             </figure>
             <div className="box-articulo-title-blog">
               <FontAwesomeIcon
                 icon={faStar}
-                className="star-blog heartbeat"
+                className="star-blog heartbeat cl-fuxia"
               ></FontAwesomeIcon>
               <h2> {currentData.blog.titulo}</h2>
               <FontAwesomeIcon
                 icon={faStar}
-                className="star-blog heartbeat"
+                className="star-blog heartbeat cl-fuxia"
               ></FontAwesomeIcon>
             </div>
             <JoditEditor
               config={config}
-              value= {currentData.blog.contenido}
+              value={currentData.blog.contenido}
               name="contenido"
               // onBlur={handleBlurAreaChange}
             />
@@ -153,7 +168,7 @@ const CardBlogEspecific = ({ currentData }) => {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding-top:5rem
+            padding-top: 5rem;
           }
 
           .text-title-blog {
@@ -216,7 +231,7 @@ const CardBlogEspecific = ({ currentData }) => {
             width: 100%;
             display: flex;
             padding: 4rem 9rem;
-            font-family: "mont-regular"!important;
+            font-family: "mont-regular" !important;
           }
 
           .box-autor-blog {
@@ -226,6 +241,17 @@ const CardBlogEspecific = ({ currentData }) => {
             align-items: center;
             height: 7rem;
             width: 20%;
+          }
+
+          .figure-autor-blog {
+            height: 7rem;
+            width: 7rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #ec668d;
+            border-radius: 50%;
+            padding: 1rem;
           }
           .box-autor-text-blog {
             padding-left: 1rem;
@@ -306,18 +332,27 @@ const CardBlogEspecific = ({ currentData }) => {
           .jodit *,
           .jodit-container,
           .jodit-container * span {
-            font-family: "mont-regular"!important;
+            font-family: "mont-regular" !important;
           }
-          :global(.jodit-container * span ) {
-            font-family: "mont-regular"!important;
+          :global(.jodit-container * span) {
+            font-family: "mont-regular" !important;
+          }
+          :global(.jodit-container  p) {
+            margin-left: 0px!important;
           }
           :global(.jodit-status-bar) {
             display: none !important;
           }
 
-          {/* :global(.jodit-container) {
+           {
+            /* :global(.jodit-container) {
             height: 10rem !important;
-          } */}
+          } */
+          }
+
+          .img-blog-especific {
+            width: 50%;
+          }
 
           @media (min-width: 1800px) {
             .box-blog-general {
@@ -479,6 +514,16 @@ const CardBlogEspecific = ({ currentData }) => {
             .card-deck .card-blog {
               margin-bottom: 1rem !important;
             }
+            .img-blog-especific {
+              width: 80%;
+            }
+            .figure-autor-blog {
+              height: 5rem;
+              width: 5rem;
+            }
+            .box-articulo-title-blog {
+              padding: 0rem 0rem;
+            }
           }
 
           @media (max-width: 420px) {
@@ -499,6 +544,9 @@ const CardBlogEspecific = ({ currentData }) => {
               top: auto;
               bottom: -150%;
             }
+            .img-blog-especific {
+              width: 100%;
+            }
           }
         `}
       </style>
@@ -508,7 +556,9 @@ const CardBlogEspecific = ({ currentData }) => {
 
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
-  const res = await fetch("https://yesmom-backend.herokuapp.com/getBlogAll/user?limit=all");
+  const res = await fetch(
+    "https://yesmom-backend.herokuapp.com/getBlogAll/user?limit=all"
+  );
   const blogs = await res.json();
   // Get the paths we want to pre-render based on posts
   const paths = blogs.map((blog) => ({
@@ -523,7 +573,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res = await fetch(`https://yesmom-backend.herokuapp.com/getBlog/${params.blog}`);
+  const res = await fetch(
+    `https://yesmom-backend.herokuapp.com/getBlog/${params.blog}`
+  );
   const currentData = await res.json();
 
   // By returning { props: posts }, the Blog component

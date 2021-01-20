@@ -40,7 +40,7 @@ export default function FourOhFour() {
           background-color: #D9E1D7;
           background-position: center;
           background-size: contain;
-          height: 100vh;
+          height: 97vh;
         }
         .section-error {
           display: flex;
@@ -122,6 +122,9 @@ export default function FourOhFour() {
           }
         }
         @media (max-width: 768px) {
+          .box-error{
+            padding-top:7rem
+          }
           .section-error {
             flex-direction: column;
             padding: 4rem 1rem;

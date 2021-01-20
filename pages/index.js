@@ -132,7 +132,7 @@ const Home = ({ currentData }) => {
                     y tu bebé
                   </h6>
                   <div className="btn-yellow  hover-amarillo">
-                    <Link href="/pagina-en-construccion">
+                    <Link href="/construccion">
                       <a> ¡Comenzar! </a>
                     </Link>
                   </div>
@@ -192,7 +192,7 @@ const Home = ({ currentData }) => {
                 icon={faStar}
                 className="heartbeat"
               ></FontAwesomeIcon>
-              <h3 className="title-fuxia">Lo mejor para tu bebé</h3>
+              <div className="title-fuxia">Lo mejor para tu bebé</div>
               <FontAwesomeIcon
                 icon={faStar}
                 className="heartbeat"
@@ -202,7 +202,7 @@ const Home = ({ currentData }) => {
               <Image
                 src="/image/onda-rosa.svg"
                 alt="onda rosa yes mom"
-                width={50}
+                width={90}
                 height={20}
                 // layout="responsive"
               />
@@ -222,7 +222,7 @@ const Home = ({ currentData }) => {
                     />
                   </div>
                   <div className="btn-lo-mejor hover-amarillo">
-                    <Link href="/pagina-en-construccion">
+                    <Link href="/construccion">
                       <a> Tiendas destacadas</a>
                     </Link>
                   </div>
@@ -238,7 +238,7 @@ const Home = ({ currentData }) => {
                     />
                   </div>
                   <div className="btn-lo-mejor bg-fuxia hover-fuxia">
-                    <Link href="/pagina-en-construccion">
+                    <Link href="/construccion">
                       <a>
                         {" "}
                         Lo + <br></br> buscado{" "}
@@ -257,7 +257,7 @@ const Home = ({ currentData }) => {
                     />
                   </div>
                   <div className="btn-lo-mejor bg-verde hover-verde">
-                    <Link href="/pagina-en-construccion">
+                    <Link href="/construccion">
                       <a>Sin moverte de casa</a>
                     </Link>
                   </div>
@@ -273,8 +273,9 @@ const Home = ({ currentData }) => {
                     />
                   </div>
                   <div className="btn-lo-mejor bg-azul hover-azul">
-                    <Link href="/pagina-en-construccion"><a>
-                    Juguetes</a></Link>
+                    <Link href="/construccion">
+                      <a>Juguetes</a>
+                    </Link>
                   </div>
                 </Col>
               </Row>
@@ -333,9 +334,9 @@ const Home = ({ currentData }) => {
                         resolveremos juntas!
                       </h6>
                       <div className="btn-yellow hover-amarillo">
-                      <Link href="/blog">
-                        <a >Ver más</a>
-                      </Link>
+                        <Link href="/blog">
+                          <a>Ver más</a>
+                        </Link>
                       </div>
 
                       {/* <a href="/blog" className="link-a d-block text-center mt-4">
@@ -437,7 +438,7 @@ const Home = ({ currentData }) => {
           }
           .text-title {
             font-family: "Clicker Script", cursive;
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin: 0rem 1rem 0rem;
             color: #4b66ae;
           }
@@ -617,7 +618,7 @@ const Home = ({ currentData }) => {
           }
 
           .box-true-history {
-            width: 32.5rem;
+            width: 80%;
             text-align: center;
             margin: auto;
           }
@@ -626,6 +627,11 @@ const Home = ({ currentData }) => {
             flex: 0 0 46% !important;
           }
 
+          :global(.card-deck .card) {
+            align-items: center!important;
+            margin-bottom:1rem
+          }
+        
           @media (min-width: 1800px) {
             .box-banner {
               height: 25rem;
@@ -893,7 +899,9 @@ const Home = ({ currentData }) => {
 export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res = await fetch("https://yesmom-backend.herokuapp.com/getBlogAll/user?limit=2");
+  const res = await fetch(
+    "https://yesmom-backend.herokuapp.com/getBlogAll/user?limit=2"
+  );
   const currentData = await res.json();
 
   // By returning { props: posts }, the Blog component
