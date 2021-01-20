@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="footer">
         <Container>
           <Row>
-            <Col xs={12} md={12} lg={4} xl={4}>
+            <Col xs={12} sm={12} md={4} lg={4} xl={4}>
               <div className="padding-left text-left">
                 <h6 className="title-footer">
                   <b>CONTENIDO</b>
@@ -43,7 +43,7 @@ const Footer = () => {
                 </div>
               </div>
             </Col>
-            <Col xs={12} md={12} lg={4} xl={4}>
+            <Col xs={12} sm={12}  md={4} lg={4} xl={4}>
               <div className="padding-left text-center">
                 <h6 className="title-footer">
                   <b>CONTÁCTANOS</b>
@@ -53,7 +53,7 @@ const Footer = () => {
                 <p>123 Los Robles Miraflores</p>
               </div>
             </Col>
-            <Col xs={12} md={12} lg={4} xl={4}>
+            <Col xs={12}  sm={12} md={4} lg={4} xl={4}>
               <div className="padding-left text-center">
                 <h6 className="title-footer">
                   <b>SÍGUENOS</b>
@@ -142,6 +142,7 @@ const Footer = () => {
               font-size: 0.7rem;
             }
           }
+
           @media (max-width: 768px) {
             .footer {
               background-image: url("../../image/trama-footer-responsive.svg");
@@ -182,6 +183,21 @@ const Footer = () => {
               font-size: 0.8rem;
             }
           }
+         @media (min-width: 576px) {
+          .icon-redes {
+            font-size: 1rem;
+
+          }
+          .footer .padding-left p {
+            font-size: 0.65rem;
+          }
+          .title-footer {
+            font-size: 0.75rem;
+          }
+           .footer a {
+             font-size: 0.65rem;
+          }
+         }
         `}
       </style>
     </>
