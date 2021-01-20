@@ -22,6 +22,10 @@ const appLayout = ({ children }) => {
       <Footer></Footer>
       <style jsx global>
         {`
+        html {
+            font-size: 0.98vw !important;
+            font-family: "mont-heavy";
+          }
           body {
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
@@ -79,10 +83,7 @@ const appLayout = ({ children }) => {
             src: url(fonts/Mont-Light.otf);
           }
 
-          html {
-            font-size: 0.98vw !important;
-            font-family: "mont-heavy";
-          }
+         
 
           .mt-views {
             padding-top: 0rem;
@@ -430,6 +431,12 @@ const appLayout = ({ children }) => {
           .hover-efect-letter:hover:after {
             transform: scale(1.1);
           }
+          @media (min-width: 1800px) {
+            .subtitle-dark {
+              font-size: 1.2rem;
+            }
+          }
+       
 
           @media (max-width: 769px) {
             html {

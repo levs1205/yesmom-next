@@ -37,7 +37,7 @@ const index = () => {
             background-color: #febf41;
             background-position: center;
             background-size: cover;
-            height: 100vh;
+            height: 97vh;
           }
           .section-building {
             display: flex;
@@ -84,6 +84,9 @@ const index = () => {
             align-items: center;
           }
           @media (min-width: 1800px) {
+            .box-building{
+              padding-top:6rem
+            }
             .section-building {
               padding: 8rem 4rem;
             }
@@ -105,9 +108,13 @@ const index = () => {
             }
           }
           @media (max-width: 768px) {
+            .box-building{
+              padding-top:3rem
+            }
             .section-building {
               flex-direction: column;
-              padding: 2rem 1rem;
+              padding: 17rem 1rem;
+              height:100vh
             }
             .img-foto {
               height: 18rem;

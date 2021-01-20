@@ -132,7 +132,7 @@ const Home = ({ currentData }) => {
                     y tu bebé
                   </h6>
                   <div className="btn-yellow  hover-amarillo">
-                    <Link href="/pagina-en-construccion">
+                    <Link href="/construccion">
                       <a> ¡Comenzar! </a>
                     </Link>
                   </div>
@@ -222,7 +222,7 @@ const Home = ({ currentData }) => {
                     />
                   </div>
                   <div className="btn-lo-mejor hover-amarillo">
-                    <Link href="/pagina-en-construccion">
+                    <Link href="/construccion">
                       <a> Tiendas destacadas</a>
                     </Link>
                   </div>
@@ -238,7 +238,7 @@ const Home = ({ currentData }) => {
                     />
                   </div>
                   <div className="btn-lo-mejor bg-fuxia hover-fuxia">
-                    <Link href="/pagina-en-construccion">
+                    <Link href="/construccion">
                       <a>
                         {" "}
                         Lo + <br></br> buscado{" "}
@@ -257,7 +257,7 @@ const Home = ({ currentData }) => {
                     />
                   </div>
                   <div className="btn-lo-mejor bg-verde hover-verde">
-                    <Link href="/pagina-en-construccion">
+                    <Link href="/construccion">
                       <a>Sin moverte de casa</a>
                     </Link>
                   </div>
@@ -273,8 +273,9 @@ const Home = ({ currentData }) => {
                     />
                   </div>
                   <div className="btn-lo-mejor bg-azul hover-azul">
-                    <Link href="/pagina-en-construccion"><a>
-                    Juguetes</a></Link>
+                    <Link href="/construccion">
+                      <a>Juguetes</a>
+                    </Link>
                   </div>
                 </Col>
               </Row>
@@ -305,7 +306,7 @@ const Home = ({ currentData }) => {
             <img src={lineasAzul2} alt="lineas" className="line-down-azul" />
           </div>
         </Col> */}
-              <Col xs={12} md={5} lg={5} xl={5}>
+              <Col xs={12} md={5} lg={5} xl={6}>
                 <div className="box-true-history">
                   <div className="box-text-title">
                     <Image
@@ -333,9 +334,9 @@ const Home = ({ currentData }) => {
                         resolveremos juntas!
                       </h6>
                       <div className="btn-yellow hover-amarillo">
-                      <Link href="/blog">
-                        <a >Ver más</a>
-                      </Link>
+                        <Link href="/blog">
+                          <a>Ver más</a>
+                        </Link>
                       </div>
 
                       {/* <a href="/blog" className="link-a d-block text-center mt-4">
@@ -345,7 +346,7 @@ const Home = ({ currentData }) => {
                   </div>
                 </div>
               </Col>
-              <Col xs={12} md={7} lg={7} xl={7}>
+              <Col xs={12} md={7} lg={7} xl={6}>
                 <div className="box-blog-card-home">
                   <Container>
                     <CardDeck>
@@ -626,6 +627,11 @@ const Home = ({ currentData }) => {
             flex: 0 0 46% !important;
           }
 
+          :global(.card-deck .card) {
+            align-items: center!important;
+            margin-bottom:1rem
+          }
+
           @media (min-width: 1800px) {
             .box-banner {
               height: 25rem;
@@ -893,7 +899,9 @@ const Home = ({ currentData }) => {
 export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res = await fetch("https://yesmom-backend.herokuapp.com/getBlogAll/user?limit=2");
+  const res = await fetch(
+    "https://yesmom-backend.herokuapp.com/getBlogAll/user?limit=2"
+  );
   const currentData = await res.json();
 
   // By returning { props: posts }, the Blog component

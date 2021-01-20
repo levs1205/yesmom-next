@@ -70,7 +70,7 @@ const index = () => {
           </div>
 
           <Row className="sin-margin">
-            <Col xs={12} md={6} lg={6} xl={6}>
+            <Col xs={12} md={12} lg={6} xl={6}>
               <div className="box-somos-yesmom">
                 <div className="pb-3 subtitle-about">
                   <Image
@@ -101,7 +101,7 @@ const index = () => {
                 </p>
               </div>
             </Col>
-            <Col xs={12} md={6} lg={6} xl={6}>
+            <Col xs={12} md={12} lg={6} xl={6}>
               <div className="box-img-somos-home">
                 <div className="line-up-somos ">
                   <Image
@@ -167,8 +167,8 @@ const index = () => {
 
           .line-up-somos {
             position: absolute;
-            top: -2rem;
-            right: 2rem;
+            top: -1.5rem;
+            right: 2.5rem;
             width: 2.5rem;
             transform: rotate(90deg);
           }
@@ -244,13 +244,7 @@ const index = () => {
               font-size: 0.8rem;
               position: relative;
             }
-            .line-up-somos {
-              position: absolute;
-              top: -2rem;
-              right: 4.5rem;
-              width: 2.5rem;
-              transform: rotate(85deg);
-            }
+            
             .fondo-video-somos {
               background: url(../../../image/fondo-verde-somos.png);
               height: 34rem;
@@ -259,7 +253,7 @@ const index = () => {
             }
 
             .img-somos {
-              width: 80%;
+              width: 87%;
             }
           }
           @media (max-width: 768px) {
@@ -268,7 +262,7 @@ const index = () => {
             }
             .box-somos-yesmom {
               padding: 1rem 2rem;
-              font-size: 0.9rem;
+              font-size: 0.8rem;
               display: flex;
               justify-content: center;
               flex-direction: column;
@@ -322,6 +316,17 @@ const index = () => {
               display: block;
               margin: auto;
             }
+            .line-up-somos { 
+            top: -1.1rem;
+            right: 0.3rem;
+            width: 2rem;
+          }
+
+          .line-down-somos {
+            bottom: -1.3rem;
+            left: 0.4rem;
+            width: 1.8rem;
+          }
           }
         `}
       </style>
