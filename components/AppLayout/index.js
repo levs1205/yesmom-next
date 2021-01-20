@@ -439,7 +439,7 @@ const appLayout = ({ children }) => {
 
           @media (max-width: 768px) {
             html {
-              font-size: 4.6vw !important;
+              font-size: 4.6vw !important; 
             }
             .view-desktop {
               display: none;
@@ -464,6 +464,9 @@ const appLayout = ({ children }) => {
               font-size: 1rem;
               padding: 1.2rem 0rem;
               width: 10rem;
+            }
+            .link-a{
+              font-size: .8rem;
             }
           }
 
