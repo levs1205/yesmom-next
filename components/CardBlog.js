@@ -107,7 +107,7 @@ const CardBlog = ({ blog }) => {
             border-radius: 20px;
             font-family: "mont-regular" !important;
             border-radius: 1.28rem !important;
-            width: 18rem;
+            width: 22rem;
             height: auto;
           }
 
@@ -305,7 +305,7 @@ const CardBlog = ({ blog }) => {
 
           @media (min-width: 2449px) {
             .card-blog {
-              width: 18rem !important;
+              width: 18rem;
               height: auto;
             }
           }
@@ -439,6 +439,9 @@ const CardBlog = ({ blog }) => {
               border-radius: 20px;
               font-family: "Montserrat", sans-serif;
               border-radius: 1.28rem !important;
+            
+              width: 100%;
+            
             }
             .box-green-blog-img-fondo {
               position: absolute;

@@ -83,8 +83,12 @@ const Home = ({ currentData }) => {
                 Encuentra tu regalo soñado
               </h3>
               <div className="ondas d-block m-auto heartbeat">
-                <Image src="/image/ondas.svg" alt="ondas" width={90}
-                      height={30} />
+                <Image
+                  src="/image/ondas.svg"
+                  alt="ondas"
+                  width={90}
+                  height={9}
+                />
               </div>
               <div className="box-banner-regalos">
                 <Link href="/construccion">
@@ -111,25 +115,23 @@ const Home = ({ currentData }) => {
         <div className="section-sorteo-home">
           <Container fluid="true">
             <Row className="sin-margin">
-              <Col xs={12} md={12} lg={6} xl={6}>
+              <Col xs={12} sm={12} md={12} lg={6} xl={6}>
                 <div className="box-text-title">
-                  
-                    <Image
-                      src="/image/ondas.svg"
-                      alt="ondas"
-                      width={50}
-                      height={50}
-                    />
-              
+                  <Image
+                    src="/image/ondas.svg"
+                    alt="ondas"
+                    width={50}
+                    height={50}
+                  />
+
                   <h4 className="text-title heartbeat">Sorteo</h4>
-                
-                    <Image
-                      src="/image/ondas.svg"
-                      alt="ondas"
-                      width={50}
-                      height={50}
-                    />
-                 
+
+                  <Image
+                    src="/image/ondas.svg"
+                    alt="ondas"
+                    width={50}
+                    height={50}
+                  />
                 </div>
                 <div className="box-sorteo-home">
                   <h3 className="title-fuxia">Gana un pack Yes Mom</h3>
@@ -150,7 +152,7 @@ const Home = ({ currentData }) => {
                   </Link>
                 </div>
               </Col>
-              <Col xs={12} md={12} lg={6} xl={6}>
+              <Col xs={12} sm={12} md={12} lg={6} xl={6}>
                 <div className="box-img-sorteo-home">
                   <div className="line-up heartbeat">
                     <Image
@@ -456,7 +458,7 @@ const Home = ({ currentData }) => {
 
           .ondas {
             width: 8rem;
-            text-align:center
+            text-align: center;
           }
 
           .box-sorteo-home {
@@ -549,6 +551,7 @@ const Home = ({ currentData }) => {
             display: block;
             position: relative;
             top: 0rem;
+            text-align: center;
           }
 
           .btn-lo-mejor {
@@ -639,9 +642,7 @@ const Home = ({ currentData }) => {
           .box-blog-card-home {
             flex: 0 0 46% !important;
           }
-          :global(.card-deck) {
-            justify-content: center !important;
-          }
+
           :global(.card-deck .card) {
             align-items: center !important;
             margin-bottom: 1rem;
@@ -649,6 +650,9 @@ const Home = ({ currentData }) => {
           }
 
           @media (min-width: 1800px) {
+            :global(.card-deck) {
+              justify-content: center !important;
+            }
             .box-banner {
               height: 25rem;
               width: auto;
@@ -791,13 +795,40 @@ const Home = ({ currentData }) => {
               margin: 0rem 3rem 0rem 3rem !important;
             }
           }
-          @media (max-width: 769px) {
+
+          @media (min-width: 769px) and (max-width: 991px) {
+            :global(.card-deck) {
+              justify-content: center !important;
+            }
+
+            .box-banner-btns-group {
+              position: absolute;
+              top: 35%;
+              right: 10%;
+            }
 
             .text-title {
-            font-size: 1.5rem;
+              font-size: 3rem;
+            }
+            .img-sorteo {
+              width: 60%;
+              margin: auto;
+            }
+            .line-up,
+            .line-down {
+              display: none;
+            }
           }
-            .ondas{
-              width:4rem
+
+          @media (max-width: 768px) {
+            :global(.card-deck) {
+              justify-content: center !important;
+            }
+            .text-title {
+              font-size: 1.5rem;
+            }
+            .ondas {
+              width: 4rem;
             }
             .section-sorteo-home {
               padding-top: 1rem;
@@ -929,7 +960,7 @@ export async function getServerSideProps() {
   if (!currentData) {
     return {
       notFound: true,
-    }
+    };
   }
   // By returning { props: posts }, the Blog component
   // will receive `posts` as a prop at build time
