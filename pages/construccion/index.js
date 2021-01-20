@@ -7,7 +7,7 @@ const index = () => {
     <AppLayout>
       <div className="box-building fade-in animated">
         <div className="section-building">
-         <div className="img-foto">
+         <div className="img-foto tilt-in-fwd-tr">
          <Image
             src="/image/construccion/proximamente.png"
             alt="mamá con su bebé"
@@ -44,7 +44,9 @@ const index = () => {
             justify-content: center;
             align-items: center;
             flex-direction: row;
-            padding: 13rem 8rem;
+            position:relative;
+            top:50%;
+            transform: translateY(-50%)
           }
           .img-foto {
             height: 35rem;
@@ -87,9 +89,7 @@ const index = () => {
             .box-building{
               padding-top:6rem
             }
-            .section-building {
-              padding: 8rem 4rem;
-            }
+        
             .img-foto {
               height: 30rem;
               width: auto;
@@ -113,7 +113,6 @@ const index = () => {
             }
             .section-building {
               flex-direction: column;
-              padding: 17rem 1rem;
               height:100vh
             }
             .img-foto {
