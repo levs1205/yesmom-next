@@ -45,7 +45,7 @@ const Home = ({ currentData }) => {
         <meta
           property="og:image"
           itemprop="image"
-          content="https://yesmom.vercel.app/_next/image?url=%2Fimage%2Fhome%2Fbanner.png&w=640&q=75"
+          content="https://scontent.flim16-2.fna.fbcdn.net/v/t1.0-9/126792131_106928704587510_2836457564050845211_o.png?_nc_cat=102&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeFSSfa6-XY6Gr86bM0YLSnbg75GzBA7YvSDvkbMEDti9CbHT_bhgekVd4r0lJtcFek&_nc_ohc=WbH5Z7RjRSEAX_W02AR&_nc_ht=scontent.flim16-2.fna&oh=c348092596513f52dfca119589ab6c0b&oe=602D60C9"
         />
         <meta property="og:site_name" content="La Ganga" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
@@ -54,7 +54,7 @@ const Home = ({ currentData }) => {
         <meta name="twitter:description" content="YesMom es ..." />
         <meta
           name="twitter:image"
-          content="https://yesmom.vercel.app/_next/image?url=%2Fimage%2Fhome%2Fbanner.png&w=640&q=75"
+          content="https://scontent.flim16-2.fna.fbcdn.net/v/t1.0-9/126792131_106928704587510_2836457564050845211_o.png?_nc_cat=102&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeFSSfa6-XY6Gr86bM0YLSnbg75GzBA7YvSDvkbMEDti9CbHT_bhgekVd4r0lJtcFek&_nc_ohc=WbH5Z7RjRSEAX_W02AR&_nc_ht=scontent.flim16-2.fna&oh=c348092596513f52dfca119589ab6c0b&oe=602D60C9"
         />
         <meta name="twitter:site" content="@JudithCristinaQ" />
         <meta name="twitter:creator" content="@JudithCristinaQ" />
@@ -141,12 +141,14 @@ const Home = ({ currentData }) => {
                     Crea una lista de regalo y gana un pack de productos para ti
                     y tu bebé
                   </h6>
-                  <div className="btn-yellow  hover-amarillo">
-                    <Link href="/construccion">
+
+                  <Link href="/construccion">
+                    <div className="btn-yellow  hover-amarillo">
                       <a> ¡Comenzar! </a>
-                    </Link>
-                  </div>
-                  <Link href="/terminos-condiciones">
+                    </div>
+                  </Link>
+
+                  <Link href="/construccion">
                     <a className=" link-a text-center hover-efect-letter">
                       {" "}
                       Términos y condiciones{" "}
