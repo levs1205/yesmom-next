@@ -141,12 +141,14 @@ const Home = ({ currentData }) => {
                     Crea una lista de regalo y gana un pack de productos para ti
                     y tu bebé
                   </h6>
-                  <div className="btn-yellow  hover-amarillo">
-                    <Link href="/construccion">
+
+                  <Link href="/construccion">
+                    <div className="btn-yellow  hover-amarillo">
                       <a> ¡Comenzar! </a>
-                    </Link>
-                  </div>
-                  <Link href="/terminos-condiciones">
+                    </div>
+                  </Link>
+
+                  <Link href="/construccion">
                     <a className=" link-a text-center hover-efect-letter">
                       {" "}
                       Términos y condiciones{" "}
