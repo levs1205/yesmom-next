@@ -69,7 +69,7 @@ const Blog = ({ currentData }) => {
           </div>
         </div>
         <div className="box-green-blog">
-          <div className="w-100 box-green-blog-img-fondo">
+          {/* <div className="w-100 box-green-blog-img-fondo"> */}
             {/* <Image
               src="/image/blog/fondo-verde.png"
               width={1920}
@@ -77,7 +77,7 @@ const Blog = ({ currentData }) => {
               layout="responsive"
               alt="Picture of the author"
             /> */}
-          </div>
+          {/* </div> */}
           <h6 className="text-bottom-blog ">
             Para el mundo eres una mamá,<br></br>
             <b>para tus hijos eres el mundo</b>
@@ -387,6 +387,10 @@ const Blog = ({ currentData }) => {
               bottom: 10%;
             }
 
+            .box-green-blog {
+            height: 15rem;
+          }
+
             .text-bottom-blog {
               font-size: 1rem;
               padding-bottom: 2rem;
@@ -397,7 +401,7 @@ const Blog = ({ currentData }) => {
               display: flex;
               justify-content: center;
               flex-direction: column;
-              padding: 2rem 1.5rem 12rem;
+              padding: 2rem 1.5rem 0rem;
             }
             .card-deck {
               display: flex;
