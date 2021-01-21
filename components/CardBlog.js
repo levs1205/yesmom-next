@@ -43,8 +43,7 @@ const CardBlog = ({ blog }) => {
             <Card.Footer>
               <Link
                 href={`/blog/[blog]`}
-                as={`/blog/${blog.blog._id}`}
-                passHref
+                as={`/blog/${blog.blog.titulo}_${blog.blog._id}`}
               >
                 <a
                   // onClick={() => {
@@ -439,9 +438,9 @@ const CardBlog = ({ blog }) => {
               border-radius: 20px;
               font-family: "Montserrat", sans-serif;
               border-radius: 1.28rem !important;
-            
+
               width: 100%;
-            
+
             }
             .box-green-blog-img-fondo {
               position: absolute;
