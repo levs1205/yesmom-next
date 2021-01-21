@@ -150,8 +150,7 @@ const Home = ({ currentData }) => {
 
                   <Link href="/construccion">
                     <a className=" link-a text-center hover-efect-letter">
-                      {" "}
-                      Términos y condiciones{" "}
+                      Términos y condiciones
                     </a>
                   </Link>
                 </div>

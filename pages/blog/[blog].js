@@ -13,8 +13,6 @@ const JoditEditor = dynamic(importJodit, {
 });
 
 const CardBlogEspecific = ({ currentData }) => {
-  const router = useRouter();
-  console.log(router, "jacinta")
   const [config, setConfig] = useState({
     readonly: true,
     toolbar: false,
@@ -552,15 +550,16 @@ const CardBlogEspecific = ({ currentData }) => {
 // }
 
 
-export async function getServerSideProps( params ) {
+export async function getServerSideProps(params ) {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-
+  const routerParams = params
+  console.log(routerParams,"judith")
   const res = await fetch(
-    `https://yesmom-backend.herokuapp.com/getBlogParameters/admin?titulo=${params.blog}`
+    `http://yesmom-backend.herokuapp.com/getBlogParameters/admin?id=${routerParams.query.id}`
   );
+
   const currentData = await res.json();
-  console.log(currentData,"jojo")
   if (!currentData) {
     return {
       notFound: true,

@@ -42,8 +42,8 @@ const CardBlog = ({ blog }) => {
             </Card.Body>
             <Card.Footer>
               <Link
-                href={`/blog/[blog]`}
-                as={`/blog/${blog.blog.titulo}_${blog.blog._id}`}
+                href={`/blog/[blog]?id=${blog.blog._id}`}
+                as={`/blog/${blog.blog.titulo}?id=${blog.blog._id}`}
               >
                 <a
                   // onClick={() => {
