@@ -85,24 +85,16 @@ const index = () => {
                   />
                 </div>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem
-                  mi netus id elementum tellus mattis lorem ut scelerisque.
-                  Faucibus leo tellus nam tincidunt lectus morbi eget elementum.
-                  Sed fames mollis duis duis adipiscing nisi, eleifend orci,
-                  lacinia. Feugiat elementum elementum sit arcu scelerisque
-                  aliquam quisque imperdiet congue. Aliquam adipiscing amet
-                  netus ac habitant faucibus ut morbi nam. Augue cursus
-                  vulputate pulvinar ut vitae bibendum viverra nisi. Enim quam
-                  tellus, ipsum vitae id ultrices feugiat.
+                  Somos una una plataforma peruana que ayuda a las mamis a
+                  disfrutar su maternidad sin miedos. Queremos ser el aliado que
+                  todas estuvieron buscando, esa página web que reúne en un solo
+                  lugar todo lo que van a necesitar para la llegada de su bebé.
+                  Además, con nosotros podrán crear listas online de forma
+                  rápida, hacer compras de manera segura y tener la guía que
+                  necesitan para vivir esta etapa con ilusión, amor y
+                  tranquilidad.
                 </p>
-                <p>
-                  Eget nulla elementum et, bibendum at adipiscing. Tempus lectus
-                  accumsan morbi velit interdum ultrices odio sagittis Augue
-                  cursus vulputate pulvinar ut vitae bibendum viverra nisi. Enim
-                  quam tellus, ipsum vitae id ultrices feugiat. Eget nulla
-                  elementum et, bibendum at adipiscing. Tempus lectus accumsan
-                  morbi velit interdum ultrices odio sagittis.
-                </p>
+                <p>Yes Mom. Tus listas, listas.</p>
               </div>
             </Col>
             <Col xs={12} md={12} lg={6} xl={6}>
@@ -168,7 +160,6 @@ const index = () => {
             justify-content: center;
             align-items: center;
             padding-top: 5rem;
-           
           }
           .box-title-nuestra-historia {
             display: flex;
@@ -176,7 +167,7 @@ const index = () => {
             align-items: center;
           }
           .box-somos-yesmom {
-            padding: 3.5rem;
+            padding: 3.9rem 3.5rem;
             font-family: "mont-regular" !important;
             font-size: 1rem;
             position: relative;
