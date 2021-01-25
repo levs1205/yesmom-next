@@ -554,9 +554,9 @@ export async function getServerSideProps(params ) {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   const routerParams = params
-  console.log(routerParams,"judith")
+  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogParameters/admin?id=${routerParams.query.id}`
   const res = await fetch(
-    `http://yesmom-backend.herokuapp.com/getBlogParameters/admin?id=${routerParams.query.id}`
+    url
   );
 
   const currentData = await res.json();
