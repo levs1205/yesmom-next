@@ -956,8 +956,10 @@ const Home = ({ currentData }) => {
 export async function getServerSideProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
+  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=2`
+  console.log(url, "variable de entorno")
   const res = await fetch(
-    "https://yesmom-backend.herokuapp.com/getBlogAll/user?limit=2"
+    url
   );
   const currentData = await res.json();
   if (!currentData) {
