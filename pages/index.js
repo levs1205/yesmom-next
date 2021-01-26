@@ -171,7 +171,7 @@ const Home = ({ currentData }) => {
                       alt="imagen sorteo yesmom home"
                       layout="responsive"
                       width={300}
-                      height={250}
+                      height={240}
                     />
                   </div>
                   <div className="line-down heartbeat">
