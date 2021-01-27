@@ -146,9 +146,9 @@ const Home = ({ currentData }) => {
                   />
                 </div>
                 <div className="box-sorteo-home">
-                  <h3 className="title-fuxia">Gana un pack Yes Mom</h3>
+                  <h3 className="title-fuxia">Gana un kit Yes Mom</h3>
                   <h6 className="subtitle-dark">
-                    Crea una lista de regalo y gana un pack de productos para ti
+                    Crea una lista de regalo y gana un kit de productos para ti
                     y tu bebé
                   </h6>
 
