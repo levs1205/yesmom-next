@@ -48,9 +48,9 @@ const Footer = () => {
                 <h6 className="title-footer">
                   <b>CONTÁCTANOS</b>
                 </h6>
-                <p>mibebe@gmail.com</p>
-                <p>3333333333</p>
-                <p>123 Los Robles Miraflores</p>
+                <p>info@yesmom.com.pe</p>
+                <p>+51987827855</p>
+                <p>Calle Roma 316, Miraflores</p>
               </div>
             </Col>
             <Col xs={12}  sm={12} md={4} lg={4} xl={4}>
