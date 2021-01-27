@@ -48,6 +48,7 @@ const Footer = () => {
                 <h6 className="title-footer">
                   <b>CONTÁCTANOS</b>
                 </h6>
+                {/* <a href="info@yesmom.com.pe">info@yesmom.com.pe</a> */}
                 <p>info@yesmom.com.pe</p>
                 <p>+51987827855</p>
                 <p>Calle Roma 316, Miraflores</p>

@@ -351,7 +351,7 @@ const Home = ({ currentData }) => {
                   <div className="container-blog-home">
                     <Container>
                       <h6 className="subtitle-dark text-center">
-                        Historias reales de madres que tenían las mismas dudas
+                        Historias reales de mamis que tenían las mismas dudas
                         que tú tienes en estos momentos. No te preocupes ¡Lo
                         resolveremos juntas!
                       </h6>
