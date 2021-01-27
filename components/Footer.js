@@ -19,10 +19,10 @@ const Footer = () => {
                   <b>CONTENIDO</b>
                 </h6>
                 <div className="box-contenido-footer">
-                <Link href="/nosotros">
+                <Link href="/blog">
                   <a>Blog</a>
                 </Link>
-                <Link href="/nosotros">
+                <Link href="/construccion">
                   <a>Tienda</a>
                 </Link>
                 <Link href="/nosotros">
