@@ -158,11 +158,11 @@ const Home = ({ currentData }) => {
                     </div>
                   </Link>
 
-                  <Link href="/construccion">
+                  {/* <Link href="/construccion">
                     <a className=" link-a text-center hover-efect-letter">
                       Términos y condiciones
                     </a>
-                  </Link>
+                  </Link> */}
                 </div>
               </Col>
               <Col xs={12} sm={12} md={12} lg={6} xl={6}>
