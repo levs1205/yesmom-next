@@ -62,7 +62,7 @@ const CardBlogEspecific = ({ currentData }) => {
       </Head>
       <div className="fade-in animated">
         <div className="box-banner-blog">
-          <div className="ondas">
+          <div className="ondas heartbeat">
             <Image
               src="/image/onda-blanca.svg"
               alt="ondas"
@@ -72,7 +72,7 @@ const CardBlogEspecific = ({ currentData }) => {
             />
           </div>
           <h4 className="text-title-blog">Detalles de blog</h4>
-          <div className="ondas">
+          <div className="ondas heartbeat">
             <Image
               src="/image/onda-blanca.svg"
               alt="ondas"
