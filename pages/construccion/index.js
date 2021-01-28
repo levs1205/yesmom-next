@@ -55,8 +55,8 @@ const index = () => {
           .text-building {
             font-style: normal;
             font-weight: 700;
-            font-size: 2.5rem;
-            line-height: 2.5rem;
+            font-size: 2rem;
+            line-height: 2rem;
             align-items: center;
             text-align: center;
             color: #ffffff;
@@ -64,12 +64,12 @@ const index = () => {
 
           }
           .btn-building {
-            width: 20rem;
+            width: 30rem;
             height: 4rem;
             background: #ffffff;
             border-radius: 40px;
             border-color: #ffffff;
-            color: #dc6a8d;
+            
             font-weight: 700;
             font-style: normal;
             font-size: 1.2rem;
@@ -79,6 +79,9 @@ const index = () => {
             display: flex;
             justify-content: center;
             align-items:center
+          }
+          .btn-building  a{
+            color: #DC6A8D!important;
           }
           .box-text-building {
             display: flex;
