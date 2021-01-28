@@ -61,6 +61,7 @@ const index = () => {
             text-align: center;
             color: #ffffff;
             font-family: "mont-semibold";
+
           }
           .btn-building {
             width: 20rem;
@@ -84,6 +85,7 @@ const index = () => {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            width:40%
           }
           @media (min-width: 1800px) {
             .box-building{
@@ -105,6 +107,7 @@ const index = () => {
             }
             .box-text-building {
               padding: 2rem;
+            
             }
           }
           @media (max-width: 768px) {
@@ -132,6 +135,7 @@ const index = () => {
             }
             .box-text-building {
               margin-top: 1rem;
+              width: 80%
             }
           }
         `}
