@@ -17,7 +17,7 @@ const index = () => {
           </div>
           <div className="box-text-building">
             <h5 className="text-building">
-              En YesMom te queremos ofrecer un mejor servicio web
+              En Yes Mom te queremos ofrecer un mejor servicio web
             </h5>
             <div className="btn-building">
               <Link href="/">
