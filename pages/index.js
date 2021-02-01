@@ -41,7 +41,15 @@ const Home = ({ currentData }) => {
         <meta name="description" content="YesMom es ..."></meta>
         <meta property="og:type" content="website" />
         <meta property="og:title" content="YesMom - Home" />
-        <meta property="og:description" content="YesMom es ..." />
+        <meta
+          property="og:description"
+          content="Yes Mom es una plataforma digital peruana que ayuda a las
+                  mamis a disfrutar su maternidad sin preocupaciones. Queremos
+                  ser la marca aliada que todos los papás estuvieron buscando,
+                  una página web que reúne en un solo lugar todo lo que
+                  necesitan para la llegada de su bebé y acompañar su
+                  crecimiento."
+        />
         <meta
           property="og:image"
           itemprop="image"
@@ -51,7 +59,15 @@ const Home = ({ currentData }) => {
         {/* <meta property="og:url" content={`${user.id}`} />  */}
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="YesMom - Home" />
-        <meta name="twitter:description" content="YesMom es ..." />
+        <meta
+          name="twitter:description"
+          content="Yes Mom es una plataforma digital peruana que ayuda a las
+                  mamis a disfrutar su maternidad sin preocupaciones. Queremos
+                  ser la marca aliada que todos los papás estuvieron buscando,
+                  una página web que reúne en un solo lugar todo lo que
+                  necesitan para la llegada de su bebé y acompañar su
+                  crecimiento."
+        />
         <meta
           name="twitter:image"
           content="https://scontent.flim16-2.fna.fbcdn.net/v/t1.0-9/126792131_106928704587510_2836457564050845211_o.png?_nc_cat=102&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeFSSfa6-XY6Gr86bM0YLSnbg75GzBA7YvSDvkbMEDti9CbHT_bhgekVd4r0lJtcFek&_nc_ohc=WbH5Z7RjRSEAX_W02AR&_nc_ht=scontent.flim16-2.fna&oh=c348092596513f52dfca119589ab6c0b&oe=602D60C9"
@@ -136,9 +152,9 @@ const Home = ({ currentData }) => {
                   />
                 </div>
                 <div className="box-sorteo-home">
-                  <h3 className="title-fuxia">Gana un pack Yes Mom</h3>
+                  <h3 className="title-fuxia">Gana un kit Yes Mom</h3>
                   <h6 className="subtitle-dark">
-                    Crea una lista de regalo y gana un pack de productos para ti
+                    Crea una lista de regalo y gana un kit de productos para ti
                     y tu bebé
                   </h6>
 
@@ -148,11 +164,11 @@ const Home = ({ currentData }) => {
                     </div>
                   </Link>
 
-                  <Link href="/construccion">
+                  {/* <Link href="/construccion">
                     <a className=" link-a text-center hover-efect-letter">
                       Términos y condiciones
                     </a>
-                  </Link>
+                  </Link> */}
                 </div>
               </Col>
               <Col xs={12} sm={12} md={12} lg={6} xl={6}>
@@ -171,7 +187,7 @@ const Home = ({ currentData }) => {
                       alt="imagen sorteo yesmom home"
                       layout="responsive"
                       width={300}
-                      height={250}
+                      height={240}
                     />
                   </div>
                   <div className="line-down heartbeat">
@@ -341,8 +357,8 @@ const Home = ({ currentData }) => {
                   <div className="container-blog-home">
                     <Container>
                       <h6 className="subtitle-dark text-center">
-                        Historias reales de madres que tenían las mismas dudas
-                        que tú tienes en estos momentos. No te preocupes ¡Lo
+                        Historias reales de mamis que tenían las mismas dudas
+                        que tú en estos momentos. No te preocupes, ¡lo
                         resolveremos juntas!
                       </h6>
 

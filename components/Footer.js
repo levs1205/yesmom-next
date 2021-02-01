@@ -19,13 +19,13 @@ const Footer = () => {
                   <b>CONTENIDO</b>
                 </h6>
                 <div className="box-contenido-footer">
-                <Link href="/nosotros">
+                <Link href="/blog">
                   <a>Blog</a>
                 </Link>
-                <Link href="/nosotros">
+                <Link href="/construccion">
                   <a>Tienda</a>
                 </Link>
-                <Link href="/nosotros">
+                <Link href="/construccion">
                   <a>Regalos</a>
                 </Link>
                 <Link href="/nosotros">
@@ -48,9 +48,10 @@ const Footer = () => {
                 <h6 className="title-footer">
                   <b>CONTÁCTANOS</b>
                 </h6>
-                <p>mibebe@gmail.com</p>
-                <p>3333333333</p>
-                <p>123 Los Robles Miraflores</p>
+                {/* <a href="info@yesmom.com.pe">info@yesmom.com.pe</a> */}
+                <p>info@yesmom.com.pe</p>
+                <p>+51987827855</p>
+                <p>Calle Roma 316, Miraflores</p>
               </div>
             </Col>
             <Col xs={12}  sm={12} md={4} lg={4} xl={4}>

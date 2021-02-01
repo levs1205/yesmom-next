@@ -13,18 +13,36 @@ const index = () => {
         <title>YesMom - Nosotros</title>
         <meta name="description" content="YesMom es ..."></meta>
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="YesMom - Nostros" />
-        <meta property="og:description" content="YesMom es ..." />
+        <meta property="og:title" content="YesMom - Nosotros" />
+        <meta
+          property="og:description"
+          content="Yes Mom es una plataforma digital peruana que ayuda a las
+                  mamis a disfrutar su maternidad sin preocupaciones. Queremos
+                  ser la marca aliada que todos los papás estuvieron buscando,
+                  una página web que reúne en un solo lugar todo lo que
+                  necesitan para la llegada de su bebé y acompañar su
+                  crecimiento."
+        />
         <meta
           property="og:image"
           itemprop="image"
           content="https://yesmom.vercel.app/image/about-header.png"
         />
+        <meta property="og:image:width" content="1280" />
+        <meta property="og:image:height" content="855" />
         <meta property="og:site_name" content="La Ganga" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="YesMom - Nosotros" />
-        <meta name="twitter:description" content="YesMom es ..." />
+        <meta
+          name="twitter:description"
+          content="Yes Mom es una plataforma digital peruana que ayuda a las
+                  mamis a disfrutar su maternidad sin preocupaciones. Queremos
+                  ser la marca aliada que todos los papás estuvieron buscando,
+                  una página web que reúne en un solo lugar todo lo que
+                  necesitan para la llegada de su bebé y acompañar su
+                  crecimiento."
+        />
         <meta
           name="twitter:image"
           content="https://yesmom.vercel.app/image/about-header.png"
@@ -85,13 +103,15 @@ const index = () => {
                   />
                 </div>
                 <p>
-                  Somos una una plataforma peruana que ayuda a las mamis a
-                  disfrutar su maternidad sin miedos. Queremos ser el aliado que
-                  todas estuvieron buscando, esa página web que reúne en un solo
-                  lugar todo lo que van a necesitar para la llegada de su bebé.
-                  Además, con nosotros podrán crear listas online de forma
-                  rápida, hacer compras de manera segura y tener la guía que
-                  necesitan para vivir esta etapa con ilusión, amor y
+                  Yes Mom es una plataforma digital peruana que ayuda a las
+                  mamis a disfrutar su maternidad sin preocupaciones. Queremos
+                  ser la marca aliada que todos los papás estuvieron buscando,
+                  una página web que reúne en un solo lugar todo lo que
+                  necesitan para la llegada de su bebé y acompañar su
+                  crecimiento. Desde la comodidad de tu hogar podrás crear
+                  listas de bebé online de forma rápida para compartirla con tu
+                  familia y amigos, hacer compras de manera segura y tener la
+                  guía que necesitas, para vivir esta etapa con ilusión y
                   tranquilidad.
                 </p>
                 <p>Yes Mom. Tus listas, listas.</p>
