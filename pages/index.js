@@ -167,7 +167,7 @@ const Home = ({ currentData }) => {
                   </div>
                   <div className="img-sorteo">
                     <Image
-                      src="/image/home/regalo.png"
+                      src="/image/home/img-sorteo-home.png"
                       alt="imagen sorteo yesmom home"
                       layout="responsive"
                       width={300}
@@ -957,7 +957,6 @@ export async function getServerSideProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=2`
-  console.log(url, "variable de entorno")
   const res = await fetch(
     url
   );
