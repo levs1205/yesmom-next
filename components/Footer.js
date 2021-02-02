@@ -19,31 +19,31 @@ const Footer = () => {
                   <b>CONTENIDO</b>
                 </h6>
                 <div className="box-contenido-footer">
-                <Link href="/blog">
-                  <a>Blog</a>
-                </Link>
-                <Link href="/construccion">
-                  <a>Tienda</a>
-                </Link>
-                <Link href="/construccion">
-                  <a>Regalos</a>
-                </Link>
-                <Link href="/nosotros">
-                  <a>Sobre nosotros</a>
-                </Link>
-                {/* <Link href="/nosotros">
+                  <Link href="/blog">
+                    <a>Blog</a>
+                  </Link>
+                  <Link href="/construccion">
+                    <a>Tienda</a>
+                  </Link>
+                  <Link href="/construccion">
+                    <a>Regalos</a>
+                  </Link>
+                  <Link href="/nosotros">
+                    <a>Sobre nosotros</a>
+                  </Link>
+                  {/* <Link href="/nosotros">
                   <a>Términos y condiciones</a>
                 </Link> */}
-                {/* <Link href="/nosotros">
+                  {/* <Link href="/nosotros">
                   <a>Política de privacidad</a>
                 </Link> */}
-                {/* <Link href="/nosotros">
+                  {/* <Link href="/nosotros">
                   <a>Libro de reclamaciones</a>
                 </Link> */}
                 </div>
               </div>
             </Col>
-            <Col xs={12} sm={12}  md={4} lg={4} xl={4}>
+            <Col xs={12} sm={12} md={4} lg={4} xl={4}>
               <div className="padding-left text-center">
                 <h6 className="title-footer">
                   <b>CONTÁCTANOS</b>
@@ -54,12 +54,16 @@ const Footer = () => {
                 <p>Calle Roma 316, Miraflores</p>
               </div>
             </Col>
-            <Col xs={12}  sm={12} md={4} lg={4} xl={4}>
+            <Col xs={12} sm={12} md={4} lg={4} xl={4}>
               <div className="padding-left text-center">
                 <h6 className="title-footer">
                   <b>SÍGUENOS</b>
                 </h6>
-                <a className="icon-redes" href="https://www.facebook.com/Yes-Mom-Per%C3%BA-104308198182894" target="blank">
+                <a
+                  className="icon-redes"
+                  href="https://www.facebook.com/Yes-Mom-Per%C3%BA-104308198182894"
+                  target="blank"
+                >
                   <FontAwesomeIcon icon={faFacebookF}></FontAwesomeIcon>
                 </a>
                 {/* <a className="icon-redes">
@@ -69,7 +73,11 @@ const Footer = () => {
                   ></FontAwesomeIcon>
                 </a> */}
 
-                <a className="icon-redes" href="https://www.instagram.com/yesmomperu/" target="blank">
+                <a
+                  className="icon-redes"
+                  href="https://www.instagram.com/yesmomperu/"
+                  target="blank"
+                >
                   <FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon>
                 </a>
               </div>
@@ -90,13 +98,12 @@ const Footer = () => {
             font-family: "mont-regular";
           }
 
-          .box-contenido-footer a{
-            display:block
+          .box-contenido-footer a {
+            display: block;
           }
-          .box-contenido-footer{
-            display:flex;
-            flex-direction: column
-
+          .box-contenido-footer {
+            display: flex;
+            flex-direction: column;
           }
 
           .footer a {
@@ -107,7 +114,7 @@ const Footer = () => {
           .footer a:hover {
             color: #ec608d;
             text-decoration: none;
-            font-weight:bolder
+            font-weight: bolder;
           }
 
           .tilte-footer {
@@ -156,6 +163,7 @@ const Footer = () => {
             .footer a {
               color: #fff;
               text-decoration: none;
+              font-size:.8rem
             }
 
             .footer a:hover {
@@ -184,21 +192,20 @@ const Footer = () => {
               font-size: 0.8rem;
             }
           }
-         @media (min-width: 576px ) and (max-width: 769px) {
-          .icon-redes {
-            font-size: 1rem;
+          @media (min-width: 576px) and (max-width: 769px) {
+            .icon-redes {
+              font-size: 1rem;
+            }
+            .footer .padding-left p {
+              font-size: 0.65rem;
+            }
+            .title-footer {
+              font-size: 0.75rem;
+            }
+            .footer a {
+              font-size: 0.65rem;
+            }
           }
-          .footer .padding-left p {
-            font-size: 0.65rem;
-          }
-          .title-footer {
-            font-size: 0.75rem;
-          }
-           .footer a {
-             font-size: 0.65rem;
-          }
-        
-         }
         `}
       </style>
     </>
