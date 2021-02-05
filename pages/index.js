@@ -183,7 +183,7 @@ const Home = ({ currentData }) => {
                   </div>
                   <div className="img-sorteo">
                   <Image
-                      src="/image/home/regalo.png"
+                      src="/image/home/regalo2.png"
                       alt="imagen sorteo yesmom home"
                       layout="responsive"
                       width={300}
