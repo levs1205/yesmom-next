@@ -186,8 +186,8 @@ const Home = ({ currentData }) => {
                       src="/image/home/regalo2.png"
                       alt="imagen sorteo yesmom home"
                       layout="responsive"
-                      width={300}
-                      height={240}
+                      width={280}
+                      height={230}
                     />
                   </div>
                   <div className="line-down heartbeat">
@@ -494,14 +494,14 @@ const Home = ({ currentData }) => {
           }
           .line-up {
             position: absolute;
-            top: 3rem;
-            left: -2rem;
+            top: 2.5rem;
+            left: -1.5rem;
             width: 2.5rem;
           }
           .line-down {
             position: absolute;
             bottom: 2rem;
-            right: 2.8rem;
+            right: 2.5rem;
             width: 2.5rem;
           }
 
