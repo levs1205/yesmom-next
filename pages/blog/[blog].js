@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import { faFacebookF, faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 const importJodit = () => import("jodit-react");
 const JoditEditor = dynamic(importJodit, {
@@ -17,7 +18,7 @@ const CardBlogEspecific = ({ currentData }) => {
     readonly: true,
     toolbar: false,
   });
-
+  const router = useRouter();
   // if(router.isFallback){
   //     return <div>CARGANDO...</div>
   // }
@@ -156,6 +157,20 @@ const CardBlogEspecific = ({ currentData }) => {
               name="contenido"
               // onBlur={handleBlurAreaChange}
             />
+
+            <div className="box-fb">
+              <a
+                className="btn-cirle-especific"
+                href={`https://www.facebook.com/sharer/sharer.php?u=https://yesmom.com.pe${router.asPath}`}
+                target="_blank"
+              >
+                <FontAwesomeIcon
+                  icon={faFacebookF}
+                  className="btn-share-especific"
+                />
+                <span>Compartir</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -194,7 +209,6 @@ const CardBlogEspecific = ({ currentData }) => {
             z-index: 10;
           }
 
-
           .box-green-blog {
             position: relative;
           }
@@ -223,6 +237,7 @@ const CardBlogEspecific = ({ currentData }) => {
             display: flex;
             padding: 4rem 9rem;
             font-family: "mont-regular" !important;
+            padding-bottom: 1rem;
           }
 
           .box-autor-blog {
@@ -328,8 +343,8 @@ const CardBlogEspecific = ({ currentData }) => {
           :global(.jodit-container * span) {
             font-family: "mont-regular" !important;
           }
-          :global(.jodit-container  p) {
-            margin-left: 0px!important;
+          :global(.jodit-container p) {
+            margin-left: 0px !important;
           }
           :global(.jodit-status-bar) {
             display: none !important;
@@ -343,6 +358,34 @@ const CardBlogEspecific = ({ currentData }) => {
 
           .img-blog-especific {
             width: 50%;
+          }
+          .box-fb {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 3rem;
+          }
+          .btn-cirle-especific {
+            text-align: center;
+            background: #566ea1;
+            color: #fff;
+            padding: 0.7rem 1.5rem;
+            font-family: "mont-semibold";
+            border-radius: 5px;
+            font-size: 1.2rem;
+            box-shadow: 2px 2px 5px #566ea1;
+          }
+          .btn-cirle-especific span {
+            font-family: "mont-semibold";
+            margin-left: 0.5rem;
+            font-size: 1.1rem;
+          }
+          .btn-cirle-especific:hover {
+            text-decoration: none !important;
+            background: #3c4c6f;
+          }
+          .btn-cirle-especific span:hover {
+            text-decoration: none !important;
           }
 
           @media (min-width: 1800px) {
@@ -501,10 +544,22 @@ const CardBlogEspecific = ({ currentData }) => {
             .box-articulo-title-blog {
               padding: 0rem 0rem;
             }
+            .box-fb {
+              justify-content: center;
+              padding-bottom: 1rem;
+            }
+            :global(.jodit-container * span) {
+              font-size: 0.9rem !important;
+            }
+            :global(.jodit-container p) {
+              font-size: 0.9rem !important;
+            }
+            :global(.jodit-container ul, .jodit-container ul li) {
+              font-size: 0.9rem !important;
+            }
           }
 
           @media (max-width: 420px) {
-
             .nube1 {
               position: absolute;
               top: 100%;
@@ -525,7 +580,6 @@ const CardBlogEspecific = ({ currentData }) => {
             .img-blog-especific {
               width: 100%;
             }
-
           }
         `}
       </style>
@@ -549,21 +603,18 @@ const CardBlogEspecific = ({ currentData }) => {
 //   return { paths, fallback: false };
 // }
 
-
-export async function getServerSideProps(params ) {
+export async function getServerSideProps(params) {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const routerParams = params
-  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogParameters/user?id=${routerParams.query.id}`
-  const res = await fetch(
-    url
-  );
+  const routerParams = params;
+  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogParameters/user?id=${routerParams.query.id}`;
+  const res = await fetch(url);
 
   const currentData = await res.json();
   if (!currentData) {
     return {
       notFound: true,
-    }
+    };
   }
   // By returning { props: posts }, the Blog component
   // will receive `posts` as a prop at build time
