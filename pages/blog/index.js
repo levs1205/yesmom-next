@@ -8,6 +8,17 @@ import CardBlog from "../../components/CardBlog";
 import Head from "next/head";
 
 const Blog = ({ currentData }) => {
+
+console.log(currentData);
+
+  const sortFunction=(a, b)=> {
+    var dateA = new Date(a.blog.fecha).getTime();
+    console.log(dateA);
+    var dateB = new Date(b.blog.fecha).getTime();
+    return dateA < dateB ? 1 : -1;
+  }
+  currentData.sort(sortFunction)
+
   return (
     <AppLayout>
       <Head>
