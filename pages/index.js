@@ -38,7 +38,12 @@ const Home = ({ currentData }) => {
       <Head>
         <title>YesMom - Home</title>
         {/* <link rel="icon" type="image/x-icon"  href="/yesmom-favicon.png" /> */}
-        <meta name="description" content="YesMom es ..."></meta>
+        <meta name="description" content="Yes Mom es una plataforma digital peruana que ayuda a las
+                  mamis a disfrutar su maternidad sin preocupaciones. Queremos
+                  ser la marca aliada que todos los papás estuvieron buscando,
+                  una página web que reúne en un solo lugar todo lo que
+                  necesitan para la llegada de su bebé y acompañar su
+                  crecimiento."></meta>
         <meta property="og:type" content="website" />
         <meta property="og:title" content="YesMom - Home" />
         <meta
