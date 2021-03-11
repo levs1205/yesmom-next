@@ -83,6 +83,7 @@ const Home = ({ currentData }) => {
       <div className="fade-in animated">
         <section fluid="true" className="box-banner">
           <div className="banner view-desktop tilt-in-fwd-tr">
+            <div className="h-100">
             <Image
               src="/image/home/banner.png"
               alt="Picture of the author"
@@ -90,6 +91,7 @@ const Home = ({ currentData }) => {
               width={500}
               height={210}
             />
+            </div>
           </div>
           <div className="banner view-mobile">
             <Image
@@ -678,7 +680,7 @@ const Home = ({ currentData }) => {
               justify-content: center !important;
             }
             .box-banner {
-              height: 25rem;
+              height: 40rem;
               width: auto;
             }
 
@@ -978,10 +980,13 @@ export async function getServerSideProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=2`
+  console.log("**********",url);
+
   const res = await fetch(
     url
   );
   const currentData = await res.json();
+
   if (!currentData) {
     return {
       notFound: true,
