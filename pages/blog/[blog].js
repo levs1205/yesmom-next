@@ -357,7 +357,7 @@ const CardBlogEspecific = ({ currentData }) => {
           }
 
           .img-blog-especific {
-            width: 50%;
+            width: 90%;
           }
           .box-fb {
             display: flex;
