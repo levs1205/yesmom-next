@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="footer">
         <Container>
           <Row>
-            <Col xs={12} sm={12} md={4} lg={4} xl={4}>
+            <Col xs={12} sm={12} md={3} lg={3} xl={3}>
               <div className="padding-left text-left">
                 <h6 className="title-footer">
                   <b>CONTENIDO</b>
@@ -43,7 +43,29 @@ const Footer = () => {
                 </div>
               </div>
             </Col>
-            <Col xs={12} sm={12} md={4} lg={4} xl={4}>
+            <Col xs={12} sm={12} md={3} lg={3} xl={3}>
+              <div className="padding-left text-left pb-1">
+                <h6 className="title-footer">
+                  <b className="p-1"></b>
+                </h6>
+                <div className="box-contenido-footer">
+                 
+                  <Link href="/construccion">
+                  <a>Términos y condiciones</a>
+                </Link>
+                  <Link href="/construccion">
+                  <a>Política de privacidad</a>
+                </Link>
+                  <Link href="/construccion">
+                  <a>Libro de reclamaciones</a>
+                </Link>
+                <Link href="/construccion">
+                  <a>Políticas de campañas</a>
+                </Link>
+                </div>
+              </div>
+            </Col>
+            <Col xs={12} sm={12} md={3} lg={3} xl={3}>
               <div className="padding-left text-center">
                 <h6 className="title-footer">
                   <b>CONTÁCTANOS</b>
@@ -54,7 +76,7 @@ const Footer = () => {
                 <p>Calle Roma 316, Miraflores</p>
               </div>
             </Col>
-            <Col xs={12} sm={12} md={4} lg={4} xl={4}>
+            <Col xs={12} sm={12} md={3} lg={3} xl={3}>
               <div className="padding-left text-center">
                 <h6 className="title-footer">
                   <b>SÍGUENOS</b>

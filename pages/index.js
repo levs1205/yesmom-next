@@ -89,7 +89,7 @@ const Home = ({ currentData }) => {
               alt="Picture of the author"
               layout="responsive"
               width={500}
-              height={210}
+              height={245}
             />
             </div>
           </div>
@@ -171,11 +171,11 @@ const Home = ({ currentData }) => {
                     </div>
                   </Link>
 
-                  {/* <Link href="/construccion">
+                  <Link href="/construccion">
                     <a className=" link-a text-center hover-efect-letter">
                       Términos y condiciones
                     </a>
-                  </Link> */}
+                  </Link>
                 </div>
               </Col>
               <Col xs={12} sm={12} md={12} lg={6} xl={6}>
@@ -264,7 +264,7 @@ const Home = ({ currentData }) => {
                 <Col xs>
                   <div className="img-lo-mejor">
                     <Image
-                      src="/image/home/buscado.png"
+                      src="/image/home/vendido.png"
                       alt="search"
                       width={400}
                       height={400}
@@ -275,7 +275,7 @@ const Home = ({ currentData }) => {
                     <div className="btn-lo-mejor bg-fuxia hover-fuxia">
                       <a>
                         {" "}
-                        Lo + <br></br> buscado{" "}
+                        Lo + <br></br> vendido{" "}
                       </a>{" "}
                     </div>
                   </Link>
@@ -292,7 +292,7 @@ const Home = ({ currentData }) => {
                   </div>
                   <Link href="/construccion">
                     <div className="btn-lo-mejor bg-verde hover-verde">
-                      <a>Sin moverte de casa</a>
+                      <a>Servicios</a>
                     </div>
                   </Link>
                 </Col>
@@ -309,7 +309,7 @@ const Home = ({ currentData }) => {
 
                   <Link href="/construccion">
                     <div className="btn-lo-mejor bg-azul hover-azul">
-                      <a>Juguetes</a>
+                      <a>Solo en Yes Mom</a>
                     </div>
                   </Link>
                 </Col>
@@ -400,7 +400,7 @@ const Home = ({ currentData }) => {
       <style jsx>
         {`
           .box-banner {
-            height: 43rem;
+            height: 50rem;
             width: auto;
             position: relative;
           }
@@ -422,7 +422,7 @@ const Home = ({ currentData }) => {
 
           .box-banner-btns-group {
             position: relative;
-            top: 45%;
+            top: 38%;
           }
 
           .box-banner-regalos {

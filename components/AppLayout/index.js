@@ -3,6 +3,7 @@ import Footer from "./../Footer";
 import Header from "./../Header";
 import Head from "next/head";
 import HeaderNuevo from "../HeaderNuevo";
+import WsBtn from "../WsBtn";
 
 const appLayout = ({ children }) => {
   return (
@@ -18,6 +19,7 @@ const appLayout = ({ children }) => {
       {/* <Header></Header> */}
       <HeaderNuevo />
       <main>{children}</main>
+      <WsBtn/>
       <Footer></Footer>
       <style jsx global>
         {`
