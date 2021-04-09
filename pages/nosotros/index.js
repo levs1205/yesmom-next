@@ -30,7 +30,7 @@ const index = () => {
         />
         <meta property="og:image:width" content="1280" />
         <meta property="og:image:height" content="855" />
-        <meta property="og:site_name" content="La Ganga" />
+        <meta property="og:site_name" content="Yes Mom" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="YesMom - Nosotros" />

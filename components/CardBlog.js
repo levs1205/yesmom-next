@@ -120,17 +120,16 @@ const CardBlog = ({ blog }) => {
           }
 
           .card-img {
-            width: 12rem;
-            height: 12rem;
+            
             margin: auto;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 1rem;
+         
           }
           :global(.card-img img) {
-            height: 100% !important;
-            width: auto !important;
+            height: auto !important;
+            width: 100% !important;
           }
           .box-green-blog {
             position: relative;

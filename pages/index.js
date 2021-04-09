@@ -38,7 +38,12 @@ const Home = ({ currentData }) => {
       <Head>
         <title>YesMom - Home</title>
         {/* <link rel="icon" type="image/x-icon"  href="/yesmom-favicon.png" /> */}
-        <meta name="description" content="YesMom es ..."></meta>
+        <meta name="description" content="Yes Mom es una plataforma digital peruana que ayuda a las
+                  mamis a disfrutar su maternidad sin preocupaciones. Queremos
+                  ser la marca aliada que todos los papás estuvieron buscando,
+                  una página web que reúne en un solo lugar todo lo que
+                  necesitan para la llegada de su bebé y acompañar su
+                  crecimiento."></meta>
         <meta property="og:type" content="website" />
         <meta property="og:title" content="YesMom - Home" />
         <meta
@@ -55,7 +60,7 @@ const Home = ({ currentData }) => {
           itemprop="image"
           content="https://scontent.flim16-2.fna.fbcdn.net/v/t1.0-9/126792131_106928704587510_2836457564050845211_o.png?_nc_cat=102&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeFSSfa6-XY6Gr86bM0YLSnbg75GzBA7YvSDvkbMEDti9CbHT_bhgekVd4r0lJtcFek&_nc_ohc=WbH5Z7RjRSEAX_W02AR&_nc_ht=scontent.flim16-2.fna&oh=c348092596513f52dfca119589ab6c0b&oe=602D60C9"
         />
-        <meta property="og:site_name" content="La Ganga" />
+        <meta property="og:site_name" content="Yes Mom" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="YesMom - Home" />
@@ -78,13 +83,15 @@ const Home = ({ currentData }) => {
       <div className="fade-in animated">
         <section fluid="true" className="box-banner">
           <div className="banner view-desktop tilt-in-fwd-tr">
+            <div className="h-100">
             <Image
               src="/image/home/banner.png"
               alt="Picture of the author"
               layout="responsive"
               width={500}
-              height={210}
+              height={245}
             />
+            </div>
           </div>
           <div className="banner view-mobile">
             <Image
@@ -164,11 +171,11 @@ const Home = ({ currentData }) => {
                     </div>
                   </Link>
 
-                  {/* <Link href="/construccion">
+                  <Link href="/construccion">
                     <a className=" link-a text-center hover-efect-letter">
                       Términos y condiciones
                     </a>
-                  </Link> */}
+                  </Link>
                 </div>
               </Col>
               <Col xs={12} sm={12} md={12} lg={6} xl={6}>
@@ -182,12 +189,12 @@ const Home = ({ currentData }) => {
                     />
                   </div>
                   <div className="img-sorteo">
-                    <Image
-                      src="/image/home/img-sorteo-home.png"
+                  <Image
+                      src="/image/home/regalo2.png"
                       alt="imagen sorteo yesmom home"
                       layout="responsive"
-                      width={300}
-                      height={240}
+                      width={280}
+                      height={230}
                     />
                   </div>
                   <div className="line-down heartbeat">
@@ -257,7 +264,7 @@ const Home = ({ currentData }) => {
                 <Col xs>
                   <div className="img-lo-mejor">
                     <Image
-                      src="/image/home/buscado.png"
+                      src="/image/home/vendido.png"
                       alt="search"
                       width={400}
                       height={400}
@@ -268,7 +275,7 @@ const Home = ({ currentData }) => {
                     <div className="btn-lo-mejor bg-fuxia hover-fuxia">
                       <a>
                         {" "}
-                        Lo + <br></br> buscado{" "}
+                        Lo + <br></br> vendido{" "}
                       </a>{" "}
                     </div>
                   </Link>
@@ -285,7 +292,7 @@ const Home = ({ currentData }) => {
                   </div>
                   <Link href="/construccion">
                     <div className="btn-lo-mejor bg-verde hover-verde">
-                      <a>Sin moverte de casa</a>
+                      <a>Servicios</a>
                     </div>
                   </Link>
                 </Col>
@@ -302,7 +309,7 @@ const Home = ({ currentData }) => {
 
                   <Link href="/construccion">
                     <div className="btn-lo-mejor bg-azul hover-azul">
-                      <a>Juguetes</a>
+                      <a>Solo en Yes Mom</a>
                     </div>
                   </Link>
                 </Col>
@@ -393,7 +400,7 @@ const Home = ({ currentData }) => {
       <style jsx>
         {`
           .box-banner {
-            height: 43rem;
+            height: 50rem;
             width: auto;
             position: relative;
           }
@@ -415,7 +422,7 @@ const Home = ({ currentData }) => {
 
           .box-banner-btns-group {
             position: relative;
-            top: 45%;
+            top: 38%;
           }
 
           .box-banner-regalos {
@@ -494,14 +501,14 @@ const Home = ({ currentData }) => {
           }
           .line-up {
             position: absolute;
-            top: 3rem;
-            left: -2rem;
+            top: 2.5rem;
+            left: -1.5rem;
             width: 2.5rem;
           }
           .line-down {
             position: absolute;
             bottom: 2rem;
-            right: 2.8rem;
+            right: 2.5rem;
             width: 2.5rem;
           }
 
@@ -673,7 +680,7 @@ const Home = ({ currentData }) => {
               justify-content: center !important;
             }
             .box-banner {
-              height: 25rem;
+              height: 40rem;
               width: auto;
             }
 
@@ -973,10 +980,13 @@ export async function getServerSideProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=2`
+  console.log("**********",url);
+
   const res = await fetch(
     url
   );
   const currentData = await res.json();
+
   if (!currentData) {
     return {
       notFound: true,
