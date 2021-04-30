@@ -10,10 +10,6 @@ const appLayout = ({ children }) => {
     <div className="box-yesmom">
       <Head>
         <title>yesmom</title>
-        {/* <link
-          rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/flatly/bootstrap.min.css"
-        /> */}
         <meta name="description" content="esto es descripcion"></meta>
       </Head>
       {/* <Header></Header> */}
