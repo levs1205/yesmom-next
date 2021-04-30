@@ -1,11 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import AppLayout from '../../components/AppLayout'
 import Image from "next/image";
 import Head from "next/head";
+import axios from 'axios';
 import { CardDeck, Container } from "react-bootstrap";
 import CardProduct from "../../components/CardProduct";
 
-const index = () => {
+const Product = () => {
+
+    const [respuesta, setRespuesta] = useState([]);
+
+    useEffect(async () => {
+        const consulta = await axios('https://fakestoreapi.com/products');
+        setRespuesta(consulta.data);
+    }, []);
+
     return (
         <AppLayout>
             <Head>
@@ -57,7 +66,9 @@ const index = () => {
                     <div className="box-card-group">
                         <Container>
                             <CardDeck style={{justifyContent:"center"}}>
-                                <CardProduct/>
+                                {respuesta.map(cardProduct => (
+                                    <CardProduct product={cardProduct} key={cardProduct.id}/>
+                                ))}
                             </CardDeck>
                         </Container>
                     </div>
@@ -81,10 +92,10 @@ const index = () => {
                     border-bottom: 1px solid #5A5A5A;
                 }
                 .text-title-tienda {
-                    font-family: "Arial", cursive;
+                    font-family: "mont-regular" !important;
                     font-size: 20px;
                     font-weight: 600;
-                    margin: 0.5rem 0.5rem;
+                    margin: 3.5rem 0.5rem 0rem;
                     color: #5A5A5A;
                     border-bottom: 1px solid #5A5A5A;
                     padding: 0px 0px 5px 0px;
@@ -101,6 +112,9 @@ const index = () => {
                     .box-product-general {
                         padding: 2rem 0rem;
                     }
+                    .text-title-tienda {
+                        margin: 1.5rem 0.5rem 0rem;
+                    }
                 }
                 @media (max-width: 768px) {
                     .box-product-general {
@@ -115,6 +129,9 @@ const index = () => {
                         top: 0rem;
                         z-index: 10;
                     }
+                    .text-title-tienda {
+                        margin: 1.5rem 0.5rem 0rem;
+                    }
                 }
                 `}
             </style>
@@ -122,4 +139,4 @@ const index = () => {
     );
 };
 
-export default index;
+export default Product;
