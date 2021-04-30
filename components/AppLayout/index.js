@@ -20,6 +20,7 @@ const appLayout = ({ children }) => {
       <HeaderNuevo />
       <main>{children}</main>
       <WsBtn/>
+
       <Footer></Footer>
       <style jsx global>
         {`
@@ -661,3 +662,5 @@ const appLayout = ({ children }) => {
 };
 
 export default appLayout;
+
+
