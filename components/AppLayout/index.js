@@ -12,7 +12,6 @@ const appLayout = ({ children }) => {
         <title>yesmom</title>
         <meta name="description" content="esto es descripcion"></meta>
       </Head>
-      {/* <Header></Header> */}
       <HeaderNuevo />
       <main>{children}</main>
       <WsBtn/>
