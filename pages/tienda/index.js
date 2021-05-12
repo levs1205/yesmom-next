@@ -1,11 +1,11 @@
 import React, { Component, useEffect, useState } from "react";
 import AppLayout from '../../components/AppLayout'
-import Image from "next/image";
 import Head from "next/head";
 import axios from 'axios';
 import { CardDeck, Carousel, Col, Container, Row } from "react-bootstrap";
 import CardProduct from "../../components/CardProduct";
 import SidebarProducto from "./SidebarProducto";
+import BannerTienda from "./bannerTienda";
 
 const Product = () => {
 
@@ -92,17 +92,16 @@ const Product = () => {
                             </h4>
                             <div className="box-product-general">
                                 <div className="box-card-group">
-                                    <Container>
-                                        <CardDeck style={{justifyContent:"center"}}>
-                                            {respuesta.map(cardProduct => (
-                                                <CardProduct product={cardProduct} key={cardProduct.id}/>
-                                            ))}
-                                        </CardDeck>
-                                    </Container>
+                                    <CardDeck className="card-deck-h">
+                                        {respuesta.map(cardProduct => (
+                                            <CardProduct product={cardProduct} key={cardProduct.id}/>
+                                        ))}
+                                    </CardDeck>
                                 </div>
                             </div>
                         </Col>
                     </Row>
+                    <BannerTienda/>
                 </Container>
             </div>
             <style jsx>
@@ -110,7 +109,6 @@ const Product = () => {
                 .box-product-general {
                     width: 100%;
                     display: flex;
-                    justify-content: center;
                     flex-direction: column;
                     padding: 3rem 0rem;
                 }
@@ -137,7 +135,9 @@ const Product = () => {
                     position: relative;
                     top: 0rem;
                     z-index: 10;
+                    display: flex;
                 }
+
                 @media (min-width: 1024px) {
                     .box-product-general {
                         padding: 2rem 0rem;
@@ -146,6 +146,14 @@ const Product = () => {
                         max-height: 34rem !important;
                         margin-top: 0px !important;
                     }
+                    .box-card-group {
+                        position: relative;
+                        top: 0rem;
+                        z-index: 10;
+                    }
+                }
+                @media (max-width: 1023px){
+
                 }
                 @media (max-width: 480px) {
                     .box-product-general {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card } from "react-bootstrap";
+import Image from "next/image";
 
 const CardProduct = ({product}) => {
 
