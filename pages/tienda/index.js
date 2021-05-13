@@ -4,8 +4,8 @@ import Head from "next/head";
 import axios from 'axios';
 import { CardDeck, Carousel, Col, Container, Row } from "react-bootstrap";
 import CardProduct from "../../components/CardProduct";
-import SidebarProducto from "./SidebarProducto";
-import BannerTienda from "./bannerTienda";
+import SidebarProducto from "../../components/tienda/SidebarProducto";
+import BannerTienda from "../../components/tienda/BannerTienda";
 
 const Product = () => {
 
