@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card } from "react-bootstrap";
+import Link from "next/link";
 import Image from "next/image";
 
 const CardProduct = ({product}) => {
@@ -8,32 +9,37 @@ const CardProduct = ({product}) => {
         <>
             <div>
                 <Card>
-                    <div className="card-product">
-                        <div className="card-img">
-                            <Card.Img
-                                variant="top"
-                                src={product.image}
-                                className="card-img-product"
-                            />
-                        </div>
-                        <Card.Body>
-                            <Card.Title>
-                                <div className="card-product-title">{product.title}</div>
-                            </Card.Title>
 
-                            <Card.Text>
-                                <div className="card-product-description">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima velit.
-                                </div>
-                                <div className="card-product-descuento">
-                                    {product.id}% Sale
-                                </div>
-                                <div className="card-product-precio">
-                                    S/. {product.price}
-                                </div>
-                            </Card.Text>
-                        </Card.Body>
-                    </div>
+                    <Link
+                          href={`/tienda/${product.id}`}
+                        >
+                        <div className="card-product">
+                            <div className="card-img">
+                                <Card.Img
+                                    variant="top"
+                                    src={product.image}
+                                    className="card-img-product"
+                                />
+                            </div>
+                            <Card.Body>
+                                <Card.Title>
+                                    <div className="card-product-title">{product.title}</div>
+                                </Card.Title>
+
+                                <Card.Text>
+                                    <div className="card-product-description">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima velit.
+                                    </div>
+                                    <div className="card-product-descuento">
+                                        {product.id}% Sale
+                                    </div>
+                                    <div className="card-product-precio">
+                                        S/. {product.price}
+                                    </div>
+                                </Card.Text>
+                            </Card.Body>
+                        </div>
+                    </Link>
                 </Card>
             </div>
             <style jsx >
