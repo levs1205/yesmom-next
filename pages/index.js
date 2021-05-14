@@ -9,6 +9,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import AppLayout from "../components/AppLayout";
 import CardBlog from "../components/CardBlog";
 import Head from "next/head";
+import CardProduct from "../components/CardProduct";
 
 // import clienteAxiosBusiness from "../config/axiosBusiness";
 import axios from "axios";
@@ -33,6 +34,12 @@ const Home = ({ currentData }) => {
   //       console.log(e, "error");
   //     });
   // };
+  const [respuesta, setRespuesta] = useState([]);
+  useEffect(async () => {
+    const consulta = await axios("https://fakestoreapi.com/products");
+    setRespuesta(consulta.data);
+  }, []);
+
   return (
     <AppLayout>
       <Head>
@@ -355,6 +362,17 @@ const Home = ({ currentData }) => {
               mejor para tu pequeño!
             </h6>
           </Container>
+          <Container fluid="true">
+            <Col>
+              <div className="box-product-card-home">
+                <CardDeck className="card-deck-h">
+                  {respuesta.map((cardProduct) => (
+                    <CardProduct product={cardProduct} key={cardProduct.id} />
+                  ))}
+                </CardDeck>
+              </div>
+            </Col>
+          </Container>
         </div>
         <div className="section-blog-home">
           <div className="nube-blanca1">
@@ -668,7 +686,7 @@ const Home = ({ currentData }) => {
           .section-blog-home {
             padding: 6rem 0;
             background: #febf41;
-            position: relative
+            position: relative;
           }
 
           .nube-blanca1 {
@@ -678,17 +696,17 @@ const Home = ({ currentData }) => {
           .nube-blanca2 {
             position: absolute;
             right: 4%;
-            top:6%
+            top: 6%;
           }
           .nube-blanca3 {
             position: absolute;
             bottom: 5%;
-            left:5%
+            left: 5%;
           }
           .nube-blanca4 {
             position: absolute;
             right: 6%;
-            bottom:5%
+            bottom: 5%;
           }
           .box-img-blog-home {
             position: relative;
@@ -762,7 +780,14 @@ const Home = ({ currentData }) => {
             padding: 2rem 0rem 5rem 0rem;
           }
 
-        
+          .box-product-card-home {
+            margin-top: 2rem;
+          }
+          .box-product-card-home .card-deck-h {
+            margin: auto;
+            display:flex;
+            justify-content:center
+          }
 
           @media (min-width: 1800px) {
             :global(.card-deck) {

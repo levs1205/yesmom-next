@@ -49,7 +49,7 @@ const HeaderNuevo = () => {
                 <h6 className="text-navbar">Blog</h6>
               </a>
             </ActiveLink>
-            <ActiveLink href="/construccion" activeClassName="active">
+            <ActiveLink href="/tienda" activeClassName="active">
               <a className="item-menu-yesmom">
                 <Image
                   src="/image/header/tienda.svg"

@@ -8,7 +8,8 @@ import CardBlog from "../../components/CardBlog";
 import Head from "next/head";
 
 const Blog = ({ currentData }) => {
-  console.log(currentData);
+
+console.log('APIBlog',currentData);
 
   // const sortFunction=(a, b)=> {
   //   var dateA = new Date(a.blog.fecha).getTime();
