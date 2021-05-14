@@ -3,6 +3,7 @@ import ActiveLink from "../components/ActiveLink";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import SearchBlog from "./Search/SearchBlog";
 
 const HeaderNuevo = () => {
   const [active, setActive] = useState(false);
@@ -81,8 +82,21 @@ const HeaderNuevo = () => {
                 <h6 className="text-navbar">Login</h6>
               </a>
             </ActiveLink>
+            <ActiveLink href="/construccion" activeClassName="active">
+              <a className="item-menu-yesmom">
+                <Image
+                  src="/image/header/cesta.svg"
+                  alt="logo blog yesmom "
+                  width={22}
+                  height={22}
+                />
+                <h6 className="text-navbar">Carrito</h6>
+              </a>
+            </ActiveLink>
           </div>
         </div>
+   {/* <SearchBlog/> */}
+
       </nav>
       <style jsx>
         {`

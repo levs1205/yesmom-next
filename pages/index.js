@@ -38,12 +38,15 @@ const Home = ({ currentData }) => {
       <Head>
         <title>YesMom - Home</title>
         {/* <link rel="icon" type="image/x-icon"  href="/yesmom-favicon.png" /> */}
-        <meta name="description" content="Yes Mom es una plataforma digital peruana que ayuda a las
+        <meta
+          name="description"
+          content="Yes Mom es una plataforma digital peruana que ayuda a las
                   mamis a disfrutar su maternidad sin preocupaciones. Queremos
                   ser la marca aliada que todos los papás estuvieron buscando,
                   una página web que reúne en un solo lugar todo lo que
                   necesitan para la llegada de su bebé y acompañar su
-                  crecimiento."></meta>
+                  crecimiento."
+        ></meta>
         <meta property="og:type" content="website" />
         <meta property="og:title" content="YesMom - Home" />
         <meta
@@ -84,13 +87,13 @@ const Home = ({ currentData }) => {
         <section fluid="true" className="box-banner">
           <div className="banner view-desktop tilt-in-fwd-tr">
             <div className="h-100">
-            <Image
-              src="/image/home/banner.png"
-              alt="Picture of the author"
-              layout="responsive"
-              width={500}
-              height={245}
-            />
+              <Image
+                src="/image/home/banner.png"
+                alt="Picture of the author"
+                layout="responsive"
+                width={500}
+                height={245}
+              />
             </div>
           </div>
           <div className="banner view-mobile">
@@ -189,7 +192,7 @@ const Home = ({ currentData }) => {
                     />
                   </div>
                   <div className="img-sorteo">
-                  <Image
+                    <Image
                       src="/image/home/regalo2.png"
                       alt="imagen sorteo yesmom home"
                       layout="responsive"
@@ -327,7 +330,65 @@ const Home = ({ currentData }) => {
             </div>
           </Container>
         </div>
+        <div className="section-tienda-home">
+          <Container>
+            <div className="box-text-title">
+              <Image
+                src="/image/ondas.svg"
+                alt="ondas"
+                className="ondas"
+                width={50}
+                height={50}
+              />
+              <h4 className="text-title heartbeat">Tienda online</h4>
+              <Image
+                src="/image/ondas.svg"
+                alt="ondas"
+                className="ondas"
+                width={50}
+                height={50}
+              />
+            </div>
+            <h3 className="title-fuxia mt-2">Nuestros productos</h3>
+            <h6 className="subtitle-dark text-center">
+              ¡Explora nuestro marketplace y vive la experiencia de encontrar lo
+              mejor para tu pequeño!
+            </h6>
+          </Container>
+        </div>
         <div className="section-blog-home">
+          <div className="nube-blanca1">
+            <Image
+              src="/image/nube-blanca2.png"
+              alt="nube yes mom"
+              width={60}
+              height={30}
+            />
+          </div>
+          <div className="nube-blanca2">
+            <Image
+              src="/image/nube-blanca1.png"
+              alt="nube yes mom"
+              width={100}
+              height={60}
+            />
+          </div>
+          <div className="nube-blanca3">
+            <Image
+              src="/image/nube-blanca1.png"
+              alt="nube yes mom"
+              width={90}
+              height={60}
+            />
+          </div>
+          <div className="nube-blanca4">
+            <Image
+              src="/image/nube-blanca2.png"
+              alt="nube yes mom"
+              width={110}
+              height={60}
+            />
+          </div>
           <Container fluid="true">
             <Row className="sin-margin">
               {/* <Col xs={12} md={6} lg={6} xl={6}>
@@ -363,14 +424,14 @@ const Home = ({ currentData }) => {
                   <h3 className="title-fuxia mt-2">#TrueStoryMom</h3>
                   <div className="container-blog-home">
                     <Container>
-                      <h6 className="subtitle-dark text-center">
+                      <h6 className="subtitle-dark text-center cl-blanco ">
                         Historias reales de mamis que tenían las mismas dudas
                         que tú en estos momentos. No te preocupes, ¡lo
                         resolveremos juntas!
                       </h6>
 
                       <Link href="/blog">
-                        <div className="btn-yellow hover-amarillo">
+                        <div className="btn-yellow bg-fuxia hover-fuxia">
                           <a>Ver más</a>
                         </div>
                       </Link>
@@ -605,7 +666,29 @@ const Home = ({ currentData }) => {
             color: #fff !important;
           }
           .section-blog-home {
-            padding: 4rem 0;
+            padding: 6rem 0;
+            background: #febf41;
+            position: relative
+          }
+
+          .nube-blanca1 {
+            position: absolute;
+            left: 5%;
+          }
+          .nube-blanca2 {
+            position: absolute;
+            right: 4%;
+            top:6%
+          }
+          .nube-blanca3 {
+            position: absolute;
+            bottom: 5%;
+            left:5%
+          }
+          .nube-blanca4 {
+            position: absolute;
+            right: 6%;
+            bottom:5%
           }
           .box-img-blog-home {
             position: relative;
@@ -674,6 +757,12 @@ const Home = ({ currentData }) => {
             margin-bottom: 1rem;
             justify-content: center !important;
           }
+
+          .section-tienda-home {
+            padding: 2rem 0rem 5rem 0rem;
+          }
+
+        
 
           @media (min-width: 1800px) {
             :global(.card-deck) {
@@ -979,12 +1068,10 @@ const Home = ({ currentData }) => {
 export async function getServerSideProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=2`
-  console.log("**********",url);
+  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=2`;
+  console.log("**********", url);
 
-  const res = await fetch(
-    url
-  );
+  const res = await fetch(url);
   const currentData = await res.json();
 
   if (!currentData) {
