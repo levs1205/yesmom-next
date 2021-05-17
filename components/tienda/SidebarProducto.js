@@ -1,9 +1,9 @@
 import React from 'react'
-
+import {Container } from "react-bootstrap";
 const SidebarProducto = () => {
 
 return (
-    <>
+    <Container>
         <div className="side-bar">
             <div className="text-title-filtros">
                 Filtros
@@ -56,7 +56,7 @@ return (
                 }
             `}
         </style>
-    </>
+    </Container>
     )
 }
 

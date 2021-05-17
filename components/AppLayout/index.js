@@ -10,16 +10,12 @@ const appLayout = ({ children }) => {
     <div className="box-yesmom">
       <Head>
         <title>yesmom</title>
-        {/* <link
-          rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/flatly/bootstrap.min.css"
-        /> */}
         <meta name="description" content="esto es descripcion"></meta>
       </Head>
-      {/* <Header></Header> */}
       <HeaderNuevo />
       <main>{children}</main>
-      <WsBtn/>
+      <WsBtn />
+
       <Footer></Footer>
       <style jsx global>
         {`
@@ -112,6 +108,10 @@ const appLayout = ({ children }) => {
           }
           .cl-fuxia {
             color: #ec608d;
+          }
+
+          .cl-blanco {
+            color: #ffff !important;
           }
           .subtitle-dark {
             color: #575756;
@@ -433,6 +433,18 @@ const appLayout = ({ children }) => {
           .hover-efect-letter:hover:after {
             transform: scale(1.1);
           }
+          .card {
+            border-radius: 1rem !important;
+          }
+          .card-img,
+          .card-img-top {
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+          }
+          .card-footer{
+            background:none
+          }
+
           @media (min-width: 1800px) {
             .subtitle-dark {
               font-size: 1.2rem;
@@ -625,7 +637,7 @@ const appLayout = ({ children }) => {
             -webkit-animation: kenburns-top 5s ease-out both;
             animation: kenburns-top 5s ease-out both;
           }
-          
+
           @-webkit-keyframes kenburns-top {
             0% {
               -webkit-transform: scale(1) translateY(0);
