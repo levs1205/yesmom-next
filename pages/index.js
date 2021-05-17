@@ -365,14 +365,23 @@ const Home = ({ currentData }) => {
           <Container fluid="true">
             <Col>
               <div className="box-product-card-home">
-                <CardDeck className="card-deck-h">
+                <CardDeck
+                  className="card-deck-h"
+                  style={{ justifyContent: "center" }}
+                >
                   {respuesta.map((cardProduct) => (
                     <CardProduct product={cardProduct} key={cardProduct.id} />
                   ))}
                 </CardDeck>
               </div>
             </Col>
+            <Link href="/tienda">
+            <div className="btn-yellow bg-fuxia hover-fuxia">
+              <a>Ver más</a>
+            </div>
+          </Link>
           </Container>
+          
         </div>
         <div className="section-blog-home">
           <div className="nube-blanca1">
@@ -781,12 +790,12 @@ const Home = ({ currentData }) => {
           }
 
           .box-product-card-home {
-            margin-top: 2rem;
+            margin-top: 3rem;
           }
           .box-product-card-home .card-deck-h {
             margin: auto;
-            display:flex;
-            justify-content:center
+            display: flex;
+            justify-content: center;
           }
 
           @media (min-width: 1800px) {

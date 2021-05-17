@@ -61,16 +61,19 @@ const CardProduct = ({product}) => {
             align-items: center;
           }
           .card-product-title {
-            font-size: 18px;
+            font-size: 1.5rem;
             font-weight: 600;
             font-family: "mont-regular" !important;
             text-align: start;
+            letter-spacing:.01rem;
+            line-height:1.6rem
           }
           .card-product-description {
-            font-size: 14px;
+            font-size: 1.2rem;
             font-family: "mont-regular" !important;
             font-weight: 300;
             text-align: start;
+            line-height:1.5rem
           }
 
           :global(.card-img .card-img-product) {
@@ -84,7 +87,7 @@ const CardProduct = ({product}) => {
             border: 0px solid rgba(0, 0, 0, 0.125) !important;
           }
           .card-product-descuento {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             border: 2px solid #f22c74;
             margin: 1rem 0rem;
             text-align-last: start;
@@ -94,7 +97,7 @@ const CardProduct = ({product}) => {
             color: #f22c74;
           }
           .card-product-precio {
-            font-size: 30px;
+            font-size: 2.3rem;
             text-align-last: start;
             font-family: "mont-regular" !important;
             font-weight: 300;
