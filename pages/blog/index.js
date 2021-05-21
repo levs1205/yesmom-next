@@ -99,6 +99,7 @@ console.log('APIBlog',currentData);
         </div>
         <style jsx>
           {`
+         
             .box-banner-blog {
               height: 25rem;
               background: url(../../image/blog/blog.png) no-repeat center;
