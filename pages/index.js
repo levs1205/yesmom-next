@@ -381,7 +381,7 @@ const Home = ({ currentData }) => {
             </div>
           </Link>
           </Container>
-          
+
         </div>
         <div className="section-blog-home">
           <div className="nube-blanca1">
@@ -831,16 +831,6 @@ const Home = ({ currentData }) => {
             .box-sorteo-home .subtitle-dark {
               font-size: 1.2rem;
             }
-            /* .btn-yellow {
-    font-weight: 900;
-    font-size: 1rem;
-    color: #fff;
-    padding: 1rem 0rem;
-    margin: 1rem auto;
-    width: 8rem;
-    border-radius: 30px;
-    font-family: "omnes-bold";
-  } */
             .img-sorteo {
               width: 80%;
             }
