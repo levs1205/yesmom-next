@@ -42,42 +42,42 @@ const appLayout = ({ children }) => {
 
           @font-face {
             font-family: "mont-heavy";
-            src: url(fonts/Mont-Heavy.otf);
+            src: url(/fonts/Mont-Heavy.otf);
           }
 
           @font-face {
             font-family: "omnes-bold";
-            src: url(fonts/OMNES-BOLD.OTF);
+            src: url(/fonts/OMNES-BOLD.OTF);
           }
 
           @font-face {
             font-family: "omnes-regular";
-            src: url(fonts/Omnes-Regular.otf);
+            src: url(/fonts/Omnes-Regular.otf);
           }
 
           @font-face {
             font-family: "mont-heavy";
-            src: url(fonts/Mont-Heavy.otf);
+            src: url(/fonts/Mont-Heavy.otf);
           }
 
           @font-face {
             font-family: "mont-thin";
-            src: url(fonts/Mont-Thin.otf);
+            src: url(/fonts/Mont-Thin.otf);
           }
 
           @font-face {
             font-family: "mont-regular";
-            src: url(fonts/Mont-Regular.otf);
+            src: url(/fonts/Mont-Regular.otf);
           }
 
           @font-face {
             font-family: "mont-semibold";
-            src: url(fonts/Mont-SemiBold.otf);
+            src: url(/fonts/Mont-SemiBold.otf);
           }
 
           @font-face {
             font-family: "mont-light";
-            src: url(fonts/Mont-Light.otf);
+            src: url(/fonts/Mont-Light.otf);
           }
 
           .mt-views {
@@ -109,6 +109,7 @@ const appLayout = ({ children }) => {
           .cl-fuxia {
             color: #ec608d;
           }
+        
 
           .cl-blanco {
             color: #ffff !important;
