@@ -50,7 +50,7 @@ const CardProduct = ({product}) => {
             box-shadow: 0px 14px 20px -5px rgba(0, 0, 0, 0.2);
             border-radius: 20px;
             font-family: "mont-regular" !important;
-            width: 20rem;
+            width: 260px;
             height: auto;
             margin-bottom: 30px;
           }
