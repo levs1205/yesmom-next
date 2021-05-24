@@ -831,7 +831,6 @@ const Home = ({ currentData }) => {
             .box-sorteo-home .subtitle-dark {
               font-size: 1.2rem;
             }
-
             .img-sorteo {
               width: 80%;
             }
