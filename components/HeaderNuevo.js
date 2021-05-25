@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import SearchBlog from "./Search/SearchBlog";
 import MenuTienda from "./MenuTienda/MenuTienda";
+import PopupCart from "./Popup/PopupCart/PopupCart"
 
 const HeaderNuevo = () => {
   const [active, setActive] = useState(false);
@@ -87,7 +88,7 @@ const HeaderNuevo = () => {
                 </a>
               </ActiveLink>
               <ActiveLink href="/construccion" activeClassName="active">
-                <a className="item-menu-yesmom">
+                <a className="item-menu-yesmom-cart">
                   <Image
                     src="/image/header/cesta.svg"
                     alt="logo blog yesmom "
@@ -95,8 +96,12 @@ const HeaderNuevo = () => {
                     height={22}
                   />
                   <h6 className="text-navbar">Carrito</h6>
+                  <div className="hover-active">
+                    <PopupCart />
+                  </div>
                 </a>
               </ActiveLink>
+
             </div>
           </div>
           {/* <SearchBlog/> */}
@@ -106,6 +111,9 @@ const HeaderNuevo = () => {
 
       <style jsx>
         {`
+        .hover-active{
+          visibility:hidden
+        }
           .active .text-navbar {
             color: #ec608d !important;
             text-decoration: none !important;
@@ -140,9 +148,20 @@ const HeaderNuevo = () => {
             color: #616160;
             justify-content: flex-start;
           }
+           .item-menu-yesmom-cart {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0rem 0.5rem;
+            color: #616160;
+            justify-content: flex-start;
+          }
+
           .logo-yesmom:hover {
             transform: scale(1.1);
             animation: animateHeart 0.3s linear forwards !important;
+
           }
           @keyframes animateHeart {
             0% {
@@ -160,6 +179,14 @@ const HeaderNuevo = () => {
             text-decoration: none !important;
             transform: scale(1.1);
             animation: animateHeart 0.3s linear forwards !important;
+          }
+          .item-menu-yesmom-cart:hover{
+            text-decoration: none !important;
+            transform: scale(1.1);
+            animation: animateHeart 0.3s linear forwards !important;
+          }
+          .item-menu-yesmom-cart .text-navbar:hover ~ .hover-active{
+            visibility:visible
           }
           .text-navbar {
             font-family: "mont-semibold";
@@ -194,6 +221,10 @@ const HeaderNuevo = () => {
               margin: 1.5rem 0;
             }
             .item-menu-yesmom {
+              margin: 0.5rem 1rem;
+              flex-direction: row;
+            }
+            . .item-menu-yesmom-cart {
               margin: 0.5rem 1rem;
               flex-direction: row;
             }
