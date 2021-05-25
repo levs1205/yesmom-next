@@ -1,4 +1,5 @@
 import React from "react";
+import SearchStore from "../../components/Search/SearchStore"
 
 const MenuTienda = () => {
   return (
@@ -14,12 +15,13 @@ const MenuTienda = () => {
           <h5>Ayuda</h5>
         </div>
         <div>
+        <SearchStore/>
 
         </div>
       </div>
       <style jsx>{`
         .box-menu-tienda {
-          padding: 1.8rem 3rem;
+          padding: 1.5rem 3rem;
           background: #e4ede1;
           background-blend-mode: multiply;
           mix-blend-mode: normal;
@@ -27,6 +29,7 @@ const MenuTienda = () => {
         .submenu-tienda {
           display: flex;
           justify-content: center;
+          margin-bottom:1rem
         }
         .submenu-tienda h5{
             margin: 0rem 1rem;

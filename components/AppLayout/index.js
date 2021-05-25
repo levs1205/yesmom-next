@@ -42,42 +42,42 @@ const appLayout = ({ children }) => {
 
           @font-face {
             font-family: "mont-heavy";
-            src: url(fonts/Mont-Heavy.otf);
+            src: url(/fonts/Mont-Heavy.otf);
           }
 
           @font-face {
             font-family: "omnes-bold";
-            src: url(fonts/OMNES-BOLD.OTF);
+            src: url(/fonts/OMNES-BOLD.OTF);
           }
 
           @font-face {
             font-family: "omnes-regular";
-            src: url(fonts/Omnes-Regular.otf);
+            src: url(/fonts/Omnes-Regular.otf);
           }
 
           @font-face {
             font-family: "mont-heavy";
-            src: url(fonts/Mont-Heavy.otf);
+            src: url(/fonts/Mont-Heavy.otf);
           }
 
           @font-face {
             font-family: "mont-thin";
-            src: url(fonts/Mont-Thin.otf);
+            src: url(/fonts/Mont-Thin.otf);
           }
 
           @font-face {
             font-family: "mont-regular";
-            src: url(fonts/Mont-Regular.otf);
+            src: url(/fonts/Mont-Regular.otf);
           }
 
           @font-face {
             font-family: "mont-semibold";
-            src: url(fonts/Mont-SemiBold.otf);
+            src: url(/fonts/Mont-SemiBold.otf);
           }
 
           @font-face {
             font-family: "mont-light";
-            src: url(fonts/Mont-Light.otf);
+            src: url(/fonts/Mont-Light.otf);
           }
 
           .mt-views {
@@ -441,8 +441,30 @@ const appLayout = ({ children }) => {
             border-top-left-radius: 1rem;
             border-top-right-radius: 1rem;
           }
-          .card-footer{
-            background:none
+          .card-footer {
+            background: none;
+          }
+
+           {
+            /* style INPUT */
+          }
+         
+          input {
+            text-align: center;
+          }
+          input:focus {
+            outline: none;
+            box-shadow: 0px 0px 3px #dc6a8d;
+          }
+          input::placeholder {
+            background-image: url("/image/header/lupa.svg");
+            background-size:contain;
+            background-position: 26rem;
+            background-repeat: no-repeat;
+            font-family: "mont-light";
+            color: #5a5a5a;
+            font-size: 0.9rem;
+            text-align: center;
           }
 
           @media (min-width: 1800px) {
