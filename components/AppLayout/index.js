@@ -109,7 +109,6 @@ const appLayout = ({ children }) => {
           .cl-fuxia {
             color: #ec608d;
           }
-        
 
           .cl-blanco {
             color: #ffff !important;
@@ -442,8 +441,30 @@ const appLayout = ({ children }) => {
             border-top-left-radius: 1rem;
             border-top-right-radius: 1rem;
           }
-          .card-footer{
-            background:none
+          .card-footer {
+            background: none;
+          }
+
+           {
+            /* style INPUT */
+          }
+         
+          input {
+            text-align: center;
+          }
+          input:focus {
+            outline: none;
+            box-shadow: 0px 0px 3px #dc6a8d;
+          }
+          input::placeholder {
+            background-image: url("/image/header/lupa.svg");
+            background-size:contain;
+            background-position: 26rem;
+            background-repeat: no-repeat;
+            font-family: "mont-light";
+            color: #5a5a5a;
+            font-size: 0.9rem;
+            text-align: center;
           }
 
           @media (min-width: 1800px) {
