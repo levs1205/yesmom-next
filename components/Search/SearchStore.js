@@ -29,7 +29,11 @@ const SearchStore = () => {
             outline-color: #dc6a8d;
           }
 
-          
+          @media (max-width: 768px) {
+            .box-search-tienda input {
+              width: 100%;
+          }
+        }
         `}
       </style>
     </>

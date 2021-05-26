@@ -3,45 +3,40 @@ import { Card } from "react-bootstrap";
 import Link from "next/link";
 import Image from "next/image";
 
-const CardProduct = ({product}) => {
+const CardProduct = ({ product }) => {
+  return (
+    <>
+      <div>
+        <Card>
+          <Link href={`/tienda/${product.id}`}>
+            <div className="card-product">
+              <div className="card-img">
+                <Card.Img
+                  variant="top"
+                  src={product.image}
+                  className="card-img-product"
+                />
+              </div>
+              <Card.Body>
+                <Card.Title>
+                  <div className="card-product-title title-yesmom">{product.title}</div>
+                </Card.Title>
 
-    return(
-        <>
-            <div>
-                <Card>
-
-                    <Link
-                          href={`/tienda/${product.id}`}
-                        >
-                        <div className="card-product">
-                            <div className="card-img">
-                                <Card.Img
-                                    variant="top"
-                                    src={product.image}
-                                    className="card-img-product"
-                                />
-                            </div>
-                            <Card.Body>
-                                <Card.Title>
-                                    <div className="card-product-title">{product.title}</div>
-                                </Card.Title>
-
-                                <Card.Text>
-                                    <div className="card-product-description">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima velit.
-                                    </div>
-                                    <div className="card-product-descuento">
-                                        {product.id}% Sale
-                                    </div>
-                                    <div className="card-product-precio">
-                                        S/. {product.price}
-                                    </div>
-                                </Card.Text>
-                            </Card.Body>
-                        </div>
-                    </Link>
-                </Card>
+                <Card.Text>
+                  <div className="card-product-description">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Minima velit.
+                  </div>
+                  <div className="card-product-descuento">
+                    {product.id}% Sale
+                  </div>
+                  <div className="card-product-precio">S/. {product.price}</div>
+                </Card.Text>
+              </Card.Body>
             </div>
+          </Link>
+        </Card>
+      </div>
       <style jsx>
         {`
           .card-product {
@@ -61,22 +56,26 @@ const CardProduct = ({product}) => {
             align-items: center;
           }
           .card-product-title {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 600;
             font-family: "mont-regular" !important;
             text-align: start;
-            letter-spacing:.01rem;
-            line-height:1.6rem
+            letter-spacing: 0.01rem;
+            line-height: 1.2rem;
           }
           .card-product-description {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-family: "mont-regular" !important;
             font-weight: 300;
             text-align: start;
-            line-height:1.5rem
+            line-height: 1.2rem;
+          }
+          :global(.card-product .card-img){
+            width :100%;
+            height:12rem
           }
 
-          :global(.card-img .card-img-product) {
+          :global(.card-product .card-img .card-img-product) {
             height: auto !important;
             width: auto !important;
             max-width: 150px;
@@ -87,7 +86,7 @@ const CardProduct = ({product}) => {
             border: 0px solid rgba(0, 0, 0, 0.125) !important;
           }
           .card-product-descuento {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             border: 2px solid #f22c74;
             margin: 1rem 0rem;
             text-align-last: start;
@@ -97,7 +96,7 @@ const CardProduct = ({product}) => {
             color: #f22c74;
           }
           .card-product-precio {
-            font-size: 2.3rem;
+            font-size: 1.8rem;
             text-align-last: start;
             font-family: "mont-regular" !important;
             font-weight: 300;
@@ -105,7 +104,7 @@ const CardProduct = ({product}) => {
           }
           @media (min-width: 2449px) {
             .card-product {
-              width: 18rem;
+              width: 16rem;
               height: auto;
             }
             .card-product-description {

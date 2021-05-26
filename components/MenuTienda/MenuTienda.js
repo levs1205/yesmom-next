@@ -36,6 +36,15 @@ const MenuTienda = () => {
             font-family: "mont-regular";
             font-size: .95rem
         }
+
+        @media (max-width: 768px) {
+          .submenu-tienda{
+            display:none
+          }
+          .box-menu-tienda {
+            padding: 1rem;
+          }
+        }
       `}</style>
     </>
   );

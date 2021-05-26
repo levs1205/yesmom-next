@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import AppLayout from "../../components/AppLayout";
@@ -111,14 +111,14 @@ const Product = () => {
         <div className="box--title__similarProducts">
           <FontAwesomeIcon
             icon={faStar}
-            className="styleStart"
+            className="star-blog heartbeat cl-yellow"
           ></FontAwesomeIcon>
           <div className="title__similarProducts">
             Otros productos que te pueden interesar
           </div>
           <FontAwesomeIcon
             icon={faStar}
-            className="styleStart"
+            className="star-blog heartbeat cl-yellow"
           ></FontAwesomeIcon>
         </div>
         <div className="box-card-group">
@@ -135,7 +135,9 @@ const Product = () => {
             width: 100%;
             display: flex;
             flex-direction: column;
-            padding: 6rem 1rem 1rem 1rem;
+            padding: 1rem;
+            position: relative;
+            top: 4rem;
           }
           .firstProductBlock--carousel {
             width: 100%;
@@ -348,7 +350,7 @@ const Product = () => {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 0rem 2rem;
+            padding: 3rem;
           }
           :global(.styleStart) {
             color: #febf41;
@@ -357,16 +359,20 @@ const Product = () => {
           .title__similarProducts {
             font-family: "mont-semibold";
             font-weight: bold;
-            font-size: 35px;
-            line-height: 40px;
-            text-align:center;
-            color: #506DA5;
+            font-size: 1rem;
+            line-height: 1rem;
+            text-align: center;
+            color: #506da5;
+            margin:0rem 1rem
           }
           :global(.card-deck) {
-              padding: 0rem 8rem!important;
-              justify-content: center;
-              /* margin-right: -15px; */
-              /* margin-left: -15px; */
+            padding: 0rem 8rem !important;
+            justify-content: center;
+            /* margin-right: -15px; */
+            /* margin-left: -15px; */
+          }
+          .box-card-group {
+            padding: 0rem 2rem;
           }
           @media (min-width: 768px) {
             .container--firstProductBlock {
@@ -432,7 +438,7 @@ const Product = () => {
               font-weight: 800;
             }
             :global(.styleStart) {
-              font-size:1.8rem;
+              font-size: 1.8rem;
             }
             .title__similarProducts {
               font-size: 30px;

@@ -13,7 +13,7 @@ const appLayout = ({ children }) => {
         <meta name="description" content="esto es descripcion"></meta>
       </Head>
       <HeaderNuevo />
-      <main>{children}</main>
+      <main className="main-yesmom">{children}</main>
       <WsBtn />
 
       <Footer></Footer>
@@ -79,7 +79,9 @@ const appLayout = ({ children }) => {
             font-family: "mont-light";
             src: url(/fonts/Mont-Light.otf);
           }
-
+          .main-yesmom {
+            padding-top: 3rem;
+          }
           .mt-views {
             padding-top: 0rem;
           }
@@ -109,6 +111,9 @@ const appLayout = ({ children }) => {
           .cl-fuxia {
             color: #ec608d;
           }
+          .cl-yellow {
+            color: #febf41;
+          }
 
           .cl-blanco {
             color: #ffff !important;
@@ -117,6 +122,15 @@ const appLayout = ({ children }) => {
             color: #575756;
             font-family: "mont-regular";
             font-size: 2rem;
+          }
+
+          .title-yesmom {
+            font-family: "mont-regular";
+            font-size: 1.2rem;
+          }
+          .subtitle-yesmom {
+            font-family: "mont-regular";
+            font-size: 1rem;
           }
 
           .btn-yellow {
@@ -448,7 +462,7 @@ const appLayout = ({ children }) => {
            {
             /* style INPUT */
           }
-         
+
           input {
             text-align: center;
           }
@@ -458,7 +472,7 @@ const appLayout = ({ children }) => {
           }
           input::placeholder {
             background-image: url("/image/header/lupa.svg");
-            background-size:contain;
+            background-size: contain;
             background-position: 26rem;
             background-repeat: no-repeat;
             font-family: "mont-light";
@@ -470,6 +484,9 @@ const appLayout = ({ children }) => {
           @media (min-width: 1800px) {
             .subtitle-dark {
               font-size: 1.2rem;
+            }
+            input::placeholder {
+              background-position: 16rem;
             }
           }
 
@@ -503,6 +520,9 @@ const appLayout = ({ children }) => {
             }
             .link-a {
               font-size: 0.8rem;
+            }
+            input::placeholder {
+              background-position: 1rem;
             }
           }
 
