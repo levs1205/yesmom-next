@@ -305,7 +305,6 @@ const shoppingCart = () => {
           }
 
         }
-
         `}
       </style>
     </AppLayout>
