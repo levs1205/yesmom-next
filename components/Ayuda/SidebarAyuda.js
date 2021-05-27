@@ -52,6 +52,7 @@ return (
                 .side-bar-ayuda {
                     margin: 0;
                     padding: 1rem;
+                    margin-top: 10rem;
                 }
                 .side-bar-ayuda ul {
                     list-style-type: none;

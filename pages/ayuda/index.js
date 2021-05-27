@@ -1,14 +1,14 @@
 import Head from "next/head";
 import React, { Component, useEffect, useState } from "react";
 import { CardDeck, Col, Container, Row } from "react-bootstrap";
-import appLayout from "../../components/AppLayout";
+import AppLayout from "../../components/AppLayout";
 import CardProduct from "../../components/CardProduct";
 import BannerTienda from "../../components/tienda/BannerTienda";
 import SidebarAyuda from "../../components/Ayuda/SidebarAyuda";
 
 const Ayuda = () => {
     return (
-        <appLayout>
+        <AppLayout>
             <Head>
                 <title>YesMom - Ayuda</title>
                 <meta name="description" content="YesMom es ..."></meta>
@@ -60,7 +60,7 @@ const Ayuda = () => {
                             <div className="container-ayuda">
                                 <h4 className="text-title-ayuda">Tengo un registro</h4>
                                 <h4 className="text-subtitle-ayuda">Aquí encontrarás información sobre el registro y su proceso</h4>
-                                <div className="box-ayuda">
+                                <div className="">
                                     <div className="box-group-ayuda">
                                         <h5 className="title-group-ayuda">Construyendo su registro</h5>
                                         <Row>
@@ -177,6 +177,7 @@ const Ayuda = () => {
                 .container-ayuda{
                     margin: 0;
                     padding: 1rem;
+                    margin-top: 10rem;
                 }
                 .box-ayuda {
                     background-size: cover;
@@ -185,33 +186,37 @@ const Ayuda = () => {
                 }
                 .text-title-ayuda {
                     font-family: "mont-regular" !important;
-                    font-size: 25px;
+                    font-size: 1.5rem;
                     font-weight: 600;
                     margin: 1rem 0rem 0rem;
                     color: #5a5a5a;
-                    padding: 0px 0px 5px 0px;
+                    padding: 0rem 0rem 0.3rem 0rem;
                 }
                 .text-subtitle-ayuda{
                     font-family: "mont-regular" !important;
                     border-bottom: 1px solid #575650;
-                    font-size: 15px;
+                    font-size: 1rem;
                     font-weight: 300;
-                    margin: 0.5rem 0.5rem 0rem orem;
+                    margin: 0.5rem 0.5rem 0rem 0rem;
                     color: #5a5a5a;
-                    padding: 0px 0px 15px 0px;
+                    padding: 0rem 0rem 1rem 0rem;
                 }
                 .title-group-ayuda{
-                    padding: 10px 0px 20px 0px;
+                    padding: 0.6rem 0rem 1.3rem 0rem;
                 }
                 .articulos-link{
                     text-align: center;
-                    padding: 25px 0px 0px 0px;
-                    font-size: 15px;
+                    padding: 1.5rem 0rem 0rem 0rem;
+                    font-size: 1rem;
                     text-decoration: none;
+                }
+                .box-group-ayuda a {
+                    color: #556EA1 !important;
+
                 }
                 `}
             </style>
-        </appLayout>
+        </AppLayout>
     );
 };
 
