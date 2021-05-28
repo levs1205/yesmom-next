@@ -134,7 +134,62 @@ const shoppingCart = () => {
               </div>
             </div>
           </div>
-          <div className="shopping-cart-block__checkout"></div>
+          <div className="shopping-cart-block__checkout">
+            <section className="discount-coupon__text">
+              <p className="discount-coupon__text">
+                ¿Tienes un código de descuento?
+              </p>
+              <div className="discount-coupon__input">
+                <input
+                  type="text"
+                  placeholder="Ingresa código"
+                  className="discount-coupon__input-text"
+                />
+                <input
+                  type="submit"
+                  name=""
+                  id=""
+                  value="Aplicar"
+                  className="discount-coupon__input-submit"
+                />
+              </div>
+            </section>
+            <section className="price-table">
+              <table className=" price-table__table">
+                <tbody className="price-table__tbody">
+                  <tr className="price-table__tbody--fount-padding">
+                    <td className="price-table__tbody--text-align-left">Subtotal</td>
+                    <td className="price-table__tbody--text-align-right">S/ XX.XX</td>
+                  </tr>
+                  <tr className="price-table__tbody--fount-padding">
+                    <td className="price-table__tbody--text-align-left">IGV</td>
+                    <td className="price-table__tbody--text-align-right">S/ XX.XX</td>
+                  </tr>
+                  <tr className="price-table__tbody--fount-bold-padding price-table__tbody--border-top">
+                    <td className="price-table__tbody--text-align-left">
+                      <strong>Total</strong>
+                    </td>
+                    <td className="price-table__tbody--text-align-right">
+                      <strong>S/ XX.XX</strong>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+            <section>
+              <input type="checkbox" id="term" name="term" />
+              <label for="term">
+                He leído y acepto los nuevos Términos y Condiciones de compra
+                del sitio. Acepto también la Política de Privacidad y Seguridad
+                y la Política de Cookies.
+              </label>
+            </section>
+            <button>Comprar</button>
+            <p>
+              *Pueden aplicarse restricciones. No todos los productos son
+              elegibles. Pueden aplicarse recargas por manejo y ubicaciónes
+            </p>
+          </div>
         </section>
       </div>
       <style jsx>
@@ -181,7 +236,7 @@ const shoppingCart = () => {
           .shopping-cart-block__card .card{
             display:flex;
             justify-content:center;
-            align-content:center;
+            align-items:center;
             flex-direction:column;
             border: 0px solid rgba(0,0,0,.125)!important;
             border-bottom: 1px solid rgba(0,0,0,.125)!important;
@@ -248,13 +303,13 @@ const shoppingCart = () => {
         .card__block-second{
           display:flex;
           justify-content:center;
-          align-content:center;
-          flex-direction:row
+          align-items:  center!important;
+          flex-direction:row;
         }
         .block-second__block-store-text{
            display:flex;
           justify-content:center;
-          align-content:center;
+          align-items: center;
           flex-direction:row;
           width:60%
         }
@@ -265,7 +320,7 @@ const shoppingCart = () => {
         }
         .block-store-text__text{
           width: 80%;
-          padding-left:0.5rem;
+           padding-left:0.5rem;
            font-family: "mont-light";
           font-style: normal;
           font-weight: 300;
@@ -275,12 +330,63 @@ const shoppingCart = () => {
         }
         .block-second__block-store-price{
              font-family: "mont-regular";
+             padding-top:0.5rem;
             font-style: normal;
             font-weight: 300;
             font-size: 18px;
           color: #4B64A4;
         }
+        .shopping-cart-block__checkout{
+          padding:2rem 0rem
+        }
+        .discount-coupon__text{
+           font-family: "mont-light";
+          font-style: normal;
+          font-weight: 300;
+          font-size: 13px;
+          color: #575650;
+        }
+        .discount-coupon__input-text{
+          border:1px solid #FEBF41;
+          box-sizing:border-box;
+          box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+          border-radius:10px;
+          width:200px;
+          height:39px
+        }
+        .discount-coupon__input-submit{
+          font-family:"omnes-regular";
+          background:#FEBF41;
+          font-size:18px;
+          color:#FFf;
+          border-radius:10px;
+          border:0px;
+          height:38px;
+          width:102px;
+          margin-left:0.5rem
+        }
+        .price-table{
+         padding:2rem 0rem;
+        }
+         .price-table__tbody--fount-padding {
+          font-family: "mont-regular";
+         }
+         .price-table__tbody--text-align-left{
+           text-align:left
+         }
+         .price-table__tbody--text-align-right{
+           text-align:right
+         }
+         .price-table__tbody--fount-bold-padding{
+           font-family: "mont-semibold";
+         }
+        .price-table__tbody--border-top{
 
+          border-top:1px solid #DADADA
+        }
+        .price-table__table{
+          width:100%
+        }
          @media (min-width: 768px) {
           .shopping-cart-block__card {
             display:flex;
@@ -303,7 +409,6 @@ const shoppingCart = () => {
             width:80%;
             padding:1rem
           }
-
         }
 
         `}
