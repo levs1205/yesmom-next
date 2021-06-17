@@ -157,7 +157,7 @@ const shoppingCart = () => {
             <section className="price-table">
               <table className=" price-table__table">
                 <tbody className="price-table__tbody">
-                  <tr className="price-table__tbody--fount-padding">
+                  <tr className="price-table__tbody--fount-padding ">
                     <td className="price-table__tbody--text-align-left">Subtotal</td>
                     <td className="price-table__tbody--text-align-right">S/ XX.XX</td>
                   </tr>
@@ -176,16 +176,16 @@ const shoppingCart = () => {
                 </tbody>
               </table>
             </section>
-            <section>
-              <input type="checkbox" id="term" name="term" />
-              <label for="term">
+            <section className="box-terms">
+              <input type="checkbox" id="term" name="term" className="box-terms__checkbox" />
+              <label for="term" className="box-terms__text">
                 He leído y acepto los nuevos Términos y Condiciones de compra
                 del sitio. Acepto también la Política de Privacidad y Seguridad
                 y la Política de Cookies.
               </label>
             </section>
-            <button>Comprar</button>
-            <p>
+            <button className="buy-button">Comprar</button>
+            <p className="restriction-text">
               *Pueden aplicarse restricciones. No todos los productos son
               elegibles. Pueden aplicarse recargas por manejo y ubicaciónes
             </p>
@@ -361,7 +361,7 @@ const shoppingCart = () => {
           color:#FFf;
           border-radius:10px;
           border:0px;
-          height:38px;
+          height:39px;
           width:102px;
           margin-left:0.5rem
         }
@@ -370,6 +370,7 @@ const shoppingCart = () => {
         }
          .price-table__tbody--fount-padding {
           font-family: "mont-regular";
+          height: 40px;
          }
          .price-table__tbody--text-align-left{
            text-align:left
@@ -379,6 +380,7 @@ const shoppingCart = () => {
          }
          .price-table__tbody--fount-bold-padding{
            font-family: "mont-semibold";
+          height: 40px;
          }
         .price-table__tbody--border-top{
 
@@ -387,7 +389,79 @@ const shoppingCart = () => {
         .price-table__table{
           width:100%
         }
+        .box-terms{
+          display:flex;
+          align-items:top;
+           cursor: pointer;
+        }
+        .box-terms__text{
+          font-family: "mont-light";
+          font-style: normal;
+          font-weight: 300;
+          font-size: 13px;
+          line-height: 25px;
+          color:#575650;
+          padding:0 5px
+        }
+        .box-terms__checkbox{
+          position:absolute;
+          padding:0;
+          border:0;
+          height:1px;
+          width:1px;
+          overflow:hidden
+        }
+         .box-terms__text:before{
+           content:"";
+           display:inline-block;
+           width:22px;
+           height:22px;
+           border: 2px solid #4B64A4;
+          border-radius: 5px;
+          margin-right:8px;
+          line-height:24px;
+          vertical-align:text-top
+         }
+         .box-terms__checkbox:checked + .box-terms__text:before{
+           border:2px solid #F22C74;
+           background:url('/image/icon/check-pink.svg') center/16px no-repeat
+         }
+        .buy-button {
+          margin: 2.5rem auto;
+          text-align: center;
+          font-family: "omnes-regular";
+          font-weight: 500;
+          font-size: 1.3rem;
+          width: 310px;
+          height: 60px;
+          background-color: #ec608d;
+          border-radius: 20px;
+          color: #fff !important;
+          line-height: 1.3rem;
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 1px solid #ec608d;
+          cursor: pointer;
+        }
+        .restriction-text{
+          font-family: "mont-light";
+          font-size: 13px;
+          line-height: 25px;
+          text-align: center;
+          color: #575650;
+
+        }
+
          @media (min-width: 768px) {
+           .shopping-cart-block {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            flex-direction: row;
+            width:100%
+          }
           .shopping-cart-block__card {
             display:flex;
             justify-content:center;
@@ -408,6 +482,10 @@ const shoppingCart = () => {
            .card__block-first .card__block-text{
             width:80%;
             padding:1rem
+          }
+          .shopping-cart-block__checkout{
+            width:40%;
+            padding:20px
           }
         }
 
