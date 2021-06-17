@@ -183,6 +183,111 @@ const index = () => {
                             margin-top:1rem;
                         }
                     }
+                    @media (min-width:769px){
+                        .all-content{
+                            width:500px;
+                        }
+                        .forgot-password{
+                            font-size:25px;
+                        }
+                        .contenedor{
+                            padding-top:15rem;
+                            padding-bottom:10rem;
+                        }
+                        .text{
+                            padding:0 9rem;
+                        }
+                        .container-form{
+                            margin-top:2rem;
+                            padding:4rem 4rem;
+                        }
+                        .wrapper-input label{
+                            margin-bottom:1rem;
+                        }
+                        .wrapper-input input{
+                            border: 1px solid #556EA1;
+                            box-sizing: border-box;
+                            border-radius: 15px;
+                            padding:1.5rem 2rem;
+                            font-family:"mont-regular"!important;
+                            color:#556EA1;
+                        }
+                        .boton{
+                            border-radius:15px;
+                            margin-top:3rem;
+                            padding:1.5rem 0;
+                        }
+                        .boton p{
+                            font-family:"omnes-bold"!important;
+                            font-size:20px;
+                        }
+                    }
+                    @media (min-width:992px){
+                        .forgot-password{
+                            font-size:30px;
+                        }
+                        .wrapper-input input{
+                            padding:1.1rem 2rem;
+                        }
+                        .boton{
+                            border-radius:15px;
+                            margin-top:3rem;
+                            padding:1.1rem 0;
+                        }
+                    }
+                    @media (min-width:1200px){
+                        .container-form{
+                            padding:3rem 2rem;
+                        }
+                        .contenedor{
+                            padding-top:8rem;
+                        }
+                        .forgot-password{
+                            font-size:35px;
+                        }
+                        .text{
+                            padding:0 3rem;
+                            font-size:15px;
+                        }
+                        .wrapper-input label{
+                            font-size:15px;
+                        }
+                        .wrapper-input input{
+                            padding:1rem;
+                            font-size:15px;
+                        }
+                        .boton{
+                            margin-top:1.5rem;
+                            padding:1rem 0;
+                        }
+                    }
+
+                    @media (min-width:1800px){
+                        .all-content{
+                            min-width:600px;
+                        }
+                        .forgot-password{
+                            font-size:45px;
+                        }
+                        .text{
+                            font-size:18px;
+                        }
+                        .wrapper-input label{
+                            font-size:18px;
+                        }
+                        .wrapper-input input{
+                            font-size:20px;
+                        }
+                        .container-form{
+                            margin-top:2rem;
+                            padding-left:2rem;
+                            padding-right:2rem;
+                        }
+                        .boton p{
+                            font-size:23px;
+                        }
+                    }
+                    
 
                 `}
             </style>
