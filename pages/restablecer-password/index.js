@@ -1,6 +1,5 @@
 import AppLayout from "../../components/AppLayout";
 import Head from 'next/head';
-import Link from "next/link";
 
 
 const index = () => {
@@ -58,16 +57,16 @@ const index = () => {
                         <div className="container-center">
                             <div className="container-text">
                                 <p className="forgot-password">¿Olvidaste tu contraseña?</p>
-                                <p className="text">Este es el último paso para que puedas restablecer tu contraseña</p>
+                                <p className="texto">Este es el último paso para que puedas restablecer tu contraseña</p>
                             </div>
                             <div className="container-form">
                                 <form>
                                     <div className="wrapper-input">
-                                        <label htmlFor="email" >Por favor ingresa una nueva contraseña:</label>
-                                        <input placeholder="Ingresar contraseña" type="password" id="password" name="password"/>
+                                        <label htmlFor="email" >Por favor ingresa una nueva contraseña</label>
+                                        <input placeholder="Nueva contraseña" type="password" id="password" name="password"/>
                                         <div className="eye-icon">
                                             <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M13.5384 5.25857C13.8534 5.70143 13.8534 6.29929 13.5384 6.74143C12.5463 8.13357 10.1662 11 7.38741 11C4.6086 11 2.22847 8.13357 1.23642 6.74143C1.08318 6.52938 1 6.26851 1 6C1 5.73149 1.08318 5.47062 1.23642 5.25857C2.22847 3.86643 4.6086 1 7.38741 1C10.1662 1 12.5463 3.86643 13.5384 5.25857V5.25857Z" stroke="#575650" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M13.5384 5.25857C13.8534 5.70143 13.8534 6.29929 13.5384 6.74143C12.5463 8.13357 10.1662 11 7.38741 11C4.6086 11 2.22847 8.13357 1.23642 6.74143C1.08318 6.52938 1 6.26851 1 6C1 5.73149 1.08318 5.47062 1.23642 5.25857C2.22847 3.86643 4.6086 1 7.38741 1C10.1662 1 12.5463 3.86643 13.5384 5.25857V5.25857Z" stroke="#575650" strokeLinecap="round" strokeLinejoin="round"/>
                                                 <path d="M7.38745 8.14289C8.48838 8.14289 9.38086 7.1835 9.38086 6.00003C9.38086 4.81657 8.48838 3.85718 7.38745 3.85718C6.28652 3.85718 5.39404 4.81657 5.39404 6.00003C5.39404 7.1835 6.28652 8.14289 7.38745 8.14289Z" stroke="#575650" strokeLinecap="round" strokeLinejoin="round"/>
                                             </svg>
                                         </div>
@@ -77,17 +76,14 @@ const index = () => {
                                         <input placeholder="Repetir contraseña" type="password" id="new_password" name="new_password"/>
                                         <div className="eye-icon">
                                             <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M13.5384 5.25857C13.8534 5.70143 13.8534 6.29929 13.5384 6.74143C12.5463 8.13357 10.1662 11 7.38741 11C4.6086 11 2.22847 8.13357 1.23642 6.74143C1.08318 6.52938 1 6.26851 1 6C1 5.73149 1.08318 5.47062 1.23642 5.25857C2.22847 3.86643 4.6086 1 7.38741 1C10.1662 1 12.5463 3.86643 13.5384 5.25857V5.25857Z" stroke="#575650" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M7.38745 8.14289C8.48838 8.14289 9.38086 7.1835 9.38086 6.00003C9.38086 4.81657 8.48838 3.85718 7.38745 3.85718C6.28652 3.85718 5.39404 4.81657 5.39404 6.00003C5.39404 7.1835 6.28652 8.14289 7.38745 8.14289Z" stroke="#575650" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M13.5384 5.25857C13.8534 5.70143 13.8534 6.29929 13.5384 6.74143C12.5463 8.13357 10.1662 11 7.38741 11C4.6086 11 2.22847 8.13357 1.23642 6.74143C1.08318 6.52938 1 6.26851 1 6C1 5.73149 1.08318 5.47062 1.23642 5.25857C2.22847 3.86643 4.6086 1 7.38741 1C10.1662 1 12.5463 3.86643 13.5384 5.25857V5.25857Z" stroke="#575650" strokeLinecap="round" strokeLinejoin="round"/>
+                                                <path d="M7.38745 8.14289C8.48838 8.14289 9.38086 7.1835 9.38086 6.00003C9.38086 4.81657 8.48838 3.85718 7.38745 3.85718C6.28652 3.85718 5.39404 4.81657 5.39404 6.00003C5.39404 7.1835 6.28652 8.14289 7.38745 8.14289Z" stroke="#575650" strokeLinecap="round" strokeLinejoin="round"/>
                                             </svg>
                                         </div>
                                     </div>
-
-                                    <Link href="/restablecer-contraseña">
-                                        <div className="boton pink">
-                                            <p>Continuar</p>
-                                        </div>
-                                    </Link>
+                                    <div className="boton pink">
+                                        <p>Confirmar contraseña</p>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -124,7 +120,7 @@ const index = () => {
                         font-size:20px;
                     }
 
-                    .text{
+                    .texto{
                         margin:0.2rem 0;
                         font-family:"mont-regular"!important;
                         color: #575650;
@@ -190,6 +186,9 @@ const index = () => {
                     }
 
                     @media (min-width:600px){
+                        .forgot-password{
+                            font-size:22.5px;
+                        }
                         .contenedor{
                             padding-top:5rem;
                             padding-bottom:3rem;
@@ -202,9 +201,125 @@ const index = () => {
                         }
                         .container-form{
                             margin-top:1rem;
+                            padding-top:1.5rem;
+                            padding-bottom:1.5rem;
                         }
+                        
                     }
 
+                    @media (min-width:769px){
+                        .forgot-password{
+                            font-size:25px;
+                        }
+                        .contenedor{
+                            padding-top:11rem;
+                            padding-bottom:10rem;
+                        }
+
+                        .texto{
+                            padding:0 9rem;
+                        }
+                        .container-form{
+                            padding:4rem 4rem;
+                        }
+                        .wrapper-input label{
+                            margin-bottom:1rem;
+                        }
+                        .wrapper-input input{
+                            border: 1px solid #556EA1;
+                            box-sizing: border-box;
+                            border-radius: 15px;
+                            padding:1.5rem 2rem;
+                            font-family:"mont-regular"!important;
+                            color:#556EA1;
+                        }
+                        .boton{
+                            border-radius:15px;
+                            margin-top:3rem;
+                            padding:1.5rem 0;
+                        }
+                        .boton p{
+                            font-family:"omnes-bold"!important;
+                            font-size:20px;
+                        }
+                        .eye-icon{
+                            right:2.25rem;
+                            bottom:2rem;
+                        }
+                    }
+                    @media (min-width:992px){
+                        .forgot-password{
+                            font-size:30px;
+                        }
+                        .wrapper-input input{
+                            padding:1.1rem 2rem;
+                        }
+                        .boton{
+                            border-radius:15px;
+                            margin-top:3rem;
+                            padding:1.1rem 0;
+                        }
+                        .eye-icon{
+                            right:1.75rem;
+                            bottom:1.5rem;
+                        }
+                    }
+                    @media (min-width:1200px){
+                        .container-form{
+                            padding:3rem 2rem;
+                        }
+                        .contenedor{
+                            padding-top:8rem;
+                        }
+                        .forgot-password{
+                            font-size:35px;
+                        }
+                        .texto{
+                            padding:0 5rem;
+                            font-size:15px;
+                        }
+                        .wrapper-input label{
+                            font-size:15px;
+                        }
+                        .wrapper-input input{
+                            padding:1rem;
+                            font-size:15px;
+                        }
+                        .boton{
+                            padding:1rem 0;
+                        }
+                        .eye-icon{
+                            right:1.5rem;
+                            bottom:1.25rem;
+                        }
+                    }
+                    @media (min-width:1800px){
+                        .all-content{
+                            min-width:600px;
+                        }
+                        .forgot-password{
+                            font-size:45px;
+                        }
+                        .texto{
+                            font-size:18px;
+                        }
+                        .wrapper-input label{
+                            font-size:18px;
+                        }
+                        .wrapper-input input{
+                            font-size:20px;
+                        }
+                        .container-form{
+                            padding-left:2rem;
+                            padding-right:2rem;
+                        }
+                        .boton p{
+                            font-size:23px;
+                        }
+                        .eye-icon{
+                            font-size:20px;
+                        }
+                    }
                 `}
             </style>
         </AppLayout>
