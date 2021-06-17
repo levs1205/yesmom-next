@@ -7,10 +7,10 @@ const index = () => {
     return ( 
         <AppLayout>
             <Head>
-                <title>YesMom - Recuperar contraseña</title>
+                <title>YesMom - Restablecer contraseña</title>
                 <meta name="description" content="YesMom es ..."></meta>
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="YesMom - Recuperar contraseña" />
+                <meta property="og:title" content="YesMom - Restablecer contraseña" />
                 <meta
                 property="og:description"
                 content="Yes Mom es una plataforma digital peruana que ayuda a las
@@ -30,7 +30,7 @@ const index = () => {
                 <meta property="og:site_name" content="Yes Mom" />
                 {/* <meta property="og:url" content={`${user.id}`} />  */}
                 <meta name="twitter:card" content="summary" />
-                <meta name="twitter:title" content="YesMom - Recuperar_contraseña" />
+                <meta name="twitter:title" content="YesMom - Restablecer-contraseña" />
                 <meta
                 name="twitter:description"
                 content="Yes Mom es una plataforma digital peruana que ayuda a las
@@ -58,23 +58,36 @@ const index = () => {
                         <div className="container-center">
                             <div className="container-text">
                                 <p className="forgot-password">¿Olvidaste tu contraseña?</p>
-                                <p className="text">Te enviaremos un correo electrónico con los pasos a seguir para que puedas restablecer tu contraseña</p>
+                                <p className="text">Este es el último paso para que puedas restablecer tu contraseña</p>
                             </div>
                             <div className="container-form">
                                 <form>
                                     <div className="wrapper-input">
-                                        <label htmlFor="email" >Por favor ingresa tu correo electronico</label>
-                                        <input type="email" id="email" name="email"/>
+                                        <label htmlFor="email" >Por favor ingresa una nueva contraseña:</label>
+                                        <input placeholder="Ingresar contraseña" type="password" id="password" name="password"/>
+                                        <div className="eye-icon">
+                                            <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M13.5384 5.25857C13.8534 5.70143 13.8534 6.29929 13.5384 6.74143C12.5463 8.13357 10.1662 11 7.38741 11C4.6086 11 2.22847 8.13357 1.23642 6.74143C1.08318 6.52938 1 6.26851 1 6C1 5.73149 1.08318 5.47062 1.23642 5.25857C2.22847 3.86643 4.6086 1 7.38741 1C10.1662 1 12.5463 3.86643 13.5384 5.25857V5.25857Z" stroke="#575650" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M7.38745 8.14289C8.48838 8.14289 9.38086 7.1835 9.38086 6.00003C9.38086 4.81657 8.48838 3.85718 7.38745 3.85718C6.28652 3.85718 5.39404 4.81657 5.39404 6.00003C5.39404 7.1835 6.28652 8.14289 7.38745 8.14289Z" stroke="#575650" strokeLinecap="round" strokeLinejoin="round"/>
+                                            </svg>
+                                        </div>
+
+                                    </div>
+                                    <div className="wrapper-input">
+                                        <input placeholder="Repetir contraseña" type="password" id="new_password" name="new_password"/>
+                                        <div className="eye-icon">
+                                            <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M13.5384 5.25857C13.8534 5.70143 13.8534 6.29929 13.5384 6.74143C12.5463 8.13357 10.1662 11 7.38741 11C4.6086 11 2.22847 8.13357 1.23642 6.74143C1.08318 6.52938 1 6.26851 1 6C1 5.73149 1.08318 5.47062 1.23642 5.25857C2.22847 3.86643 4.6086 1 7.38741 1C10.1662 1 12.5463 3.86643 13.5384 5.25857V5.25857Z" stroke="#575650" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M7.38745 8.14289C8.48838 8.14289 9.38086 7.1835 9.38086 6.00003C9.38086 4.81657 8.48838 3.85718 7.38745 3.85718C6.28652 3.85718 5.39404 4.81657 5.39404 6.00003C5.39404 7.1835 6.28652 8.14289 7.38745 8.14289Z" stroke="#575650" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
                                     </div>
 
-                                    <Link href="/restablecer-password">
+                                    <Link href="/restablecer-contraseña">
                                         <div className="boton pink">
                                             <p>Continuar</p>
                                         </div>
                                     </Link>
-                                    <div className="boton yellow">
-                                        <p>Cancelar</p>
-                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -110,32 +123,40 @@ const index = () => {
                         font-weight:600;
                         font-size:20px;
                     }
+
                     .text{
                         margin:0.2rem 0;
                         font-family:"mont-regular"!important;
                         color: #575650;
                         font-weight:500;
                         font-size:13px;
+                        padding:0 1rem;
                     }
                     .container-form{
                         margin:1.5rem 0;
-                        padding:1rem 0.5rem;
+                        padding:2rem 0.5rem;
                         border: 10px solid #FFFFFF;
                         box-shadow: 0px 0px 33px rgba(0, 0, 0, 0.13);
                         border-radius: 20px;
                     }
                     .wrapper-input{
+                        position:relative;
                         display:flex;
                         flex-direction:column;
                         margin-bottom:1.5rem;
-                        font-family:"mont-regular"!important;
+                    }
+                    .eye-icon{
+                        position:absolute;
+                        right:0.5rem;
+                        bottom:0.1rem;
                     }
                     .wrapper-input label{
                         font-family:"mont-light"!important;
                         color: #575650;
                         opacity: 0.8;
                         font-size:13px;
-                        margin:0.1rem;
+                        margin-bottom:0.4rem;
+                        
                     }
                     .wrapper-input input{
                         border:none;
