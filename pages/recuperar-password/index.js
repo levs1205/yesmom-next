@@ -7,10 +7,10 @@ const index = () => {
     return ( 
         <AppLayout>
             <Head>
-                <title>YesMom - Registro</title>
+                <title>YesMom - Recuperar_contraseña</title>
                 <meta name="description" content="YesMom es ..."></meta>
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="YesMom - Registro" />
+                <meta property="og:title" content="YesMom - Recuperar contraseña" />
                 <meta
                 property="og:description"
                 content="Yes Mom es una plataforma digital peruana que ayuda a las

@@ -38,7 +38,7 @@ const index = () => {
                 <meta property="og:site_name" content="Yes Mom" />
                 {/* <meta property="og:url" content={`${user.id}`} />  */}
                 <meta name="twitter:card" content="summary" />
-                <meta name="twitter:title" content="YesMom - Nosotros" />
+                <meta name="twitter:title" content="YesMom - Login" />
                 <meta
                 name="twitter:description"
                 content="Yes Mom es una plataforma digital peruana que ayuda a las
