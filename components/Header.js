@@ -5,6 +5,7 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import Link from "next/link";
 import Image from "next/image";
+import PopupCart from "./Popup/PopupCart/PopupCart"
 
 const Header = () => {
   return (
@@ -45,7 +46,7 @@ const Header = () => {
               <Image
                 src="/image/header/lupa.svg"
                 alt="lupa yesmom"
-                
+
                 width={20}
                 height={20}
               />
@@ -150,7 +151,7 @@ const Header = () => {
         </Navbar>
       </div>
 
-     
+
 
       <style jsx>
         {`
@@ -159,14 +160,14 @@ const Header = () => {
           padding: 0rem 5rem !important;
             background: #fff;
             z-index: 99;
-           
+
             width: 100%
         }
 
         .items-right-navBar{
           display: flex;
           justify-content: flex-end;
-          
+
         }
 
         .jsx-1465798883{
@@ -181,7 +182,7 @@ const Header = () => {
             display: flex ;
             justify-content: flex-end;
           } */}
-         
+
           .logo-yesmom {
             width: 5rem;
           }

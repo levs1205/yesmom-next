@@ -105,6 +105,7 @@ const Footer = () => {
               </div>
             </Col>
           </Row>
+          
         </Container>
       </div>
       <style jsx>
