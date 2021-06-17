@@ -66,7 +66,7 @@ const index = () => {
                                         <label htmlFor="email" >Por favor ingresa tu correo electronico</label>
                                         <input type="email" id="email" name="email"/>
                                     </div>
-
+                                    
                                     <Link href="/restablecer-password">
                                         <div className="boton pink">
                                             <p>Continuar</p>
