@@ -79,7 +79,10 @@ const index = () => {
                                 {/* Country code picker */}
                                 <div className="wrapper-input">
                                     <label>Número de teléfono:</label>
-                                    <p>COUNTRY - PICKER</p>   
+                                    <div className="flex-country">
+                                        <input className="country" type="select" placeholder="pick" disabled/>
+                                        <input className="phone" type="tel"/>  
+                                    </div>
                                 </div>
 
                                 <div className="wrapper-input">
@@ -111,12 +114,30 @@ const index = () => {
                                     <label htmlFor="checkbox">Tengo más de un hijo.</label>
                                 </div>
                                 
-                                <div className="wrapper-date">
-                                    <p>Date select</p>
-                                </div>
+                                
                                 {/* Control - class : opacity y disabled */}
                                 <div className="opacity">
 
+                                    <div className="container-select">  
+                                        <p>Fecha de nacimiento de tú bebé</p>
+                                        <div className="wrapper-date">
+                                            <div className="select-input">
+                                                <select placeholder="Dia">
+                                                    <option selected>Dia</option>
+                                                </select>
+                                            </div>
+                                            <div className="select-input">
+                                                <select placeholder="Mes">
+                                                    <option selected>Mes</option>
+                                                </select>
+                                            </div>
+                                            <div className="select-input">
+                                                <select placeholder="Año">
+                                                    <option selected>Año</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div className="wrapper-input">
                                         <label>Sexo de tú bebé</label>
                                         <div className="contenedor-buttons">
@@ -290,6 +311,57 @@ const index = () => {
                     }
                     .terminos span{
                         color:#556EA1;
+                    }
+                    .flex-country{
+                        display:flex;
+                    }
+                    .country{
+                        width:4rem;
+                        margin-right:1rem;
+                    }
+                    .country::placeholder{
+                        background:none!important;
+                    }
+                    .phone{
+                        flex-grow:1;
+                    }
+                    .container-select{
+                        margin:1rem 0;
+                        display:flex;
+                        flex-direction:column;
+                    }
+                    .container-select p{
+                        margin:0;
+                        font-family:"mont-light"!important;
+                        font-size:13px;
+                        font-weight:300;
+                    }
+
+                    .wrapper-date{
+                        margin-top:0.5rem;
+                        display:flex;
+                        justify-content:space-between;
+                        flex-wrap:wrap;
+                    }
+                    .wrapper-date .select-input{
+                        flex-basis:calc( 50% - 0.25rem);
+                    }
+                    .select-input select{
+                        width:100%;
+                        border: 1px solid #575756;
+                        box-sizing: border-box;
+                        border-radius: 10px;
+                        outline:none;
+                        font-family:"mont-light"!important;
+                        font-size:13px;
+                        padding:0.5rem 0.8rem;
+                        margin:0.5rem 0;
+                        /** */
+                        background: url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png") no-repeat right #ffffff;
+                        -webkit-appearance: none;
+                        -moz-appearance:    none;
+                        appearance:         none;
+                        background-position-x: calc(7rem);
                     }
                     /********Bloquear******/
                     .opacity{
