@@ -37,7 +37,7 @@ const SearchBlog = () => {
             align-items: center;
           }
           input#search {
-            background-image: url("/image/header/lupa.svg");
+
             background-size: contain;
             background-repeat: no-repeat;
             text-indent: 20px;

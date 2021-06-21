@@ -3,13 +3,12 @@ import AppLayout from "../../components/AppLayout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import Image from 'next/image';
-
+import Image from "next/image";
 
 const Identification = () => {
   return (
     <AppLayout>
-      <div className="container">
+      <div className="container-checkout">
         <div className="container__text">
           <Link href="/shopping-cart">
             <a className="container__text--link">
@@ -22,34 +21,100 @@ const Identification = () => {
           </Link>
         </div>
         <div className="icon-checkout">
-          <Image src="/image/icon/checkout-first-step.svg" alt="Checkout primer paso" width={200}
-            height={50} />
-       </div>
-        <section className="checkout-identification-block">
-          <div className="checkout-identification-block__card">
-            <div className="checkout-identification-block__text">
-              <p className="checkout-identification-block__text--font-size-and-bold" >1. Identificación:</p>
-              <p className="checkout-identification-block__text--font-size">Solicitamos únicamente la información esencial para la finalización de la compra.</p>
-           </div>
+          <Image
+            src="/image/icon/checkout-first-step.svg"
+            alt="Checkout primer paso"
+            width={200}
+            height={50}
+          />
+        </div>
+        <section className="checkout-block">
+          <div className="checkout-block__card">
+            <div className="checkout-block__text">
+              <p className="checkout-block__text--font-size-and-bold">
+                1. Identificación:
+              </p>
+              <p className="checkout-block__text--font-size">
+                Solicitamos únicamente la información esencial para la
+                finalización de la compra.
+              </p>
+            </div>
+            <form action="" className="identification-form">
+              <div className="identification-form__wrapper">
+                <label for="email" className="identification-form__label" >Dirección de correo electrónico:</label>
+                <input
+                  type="text"
+                  className="identification-form__input"
+                  name="email"
+                  id="email"
+                />
+              </div>
+              <div className="identification-form__wrapper">
+                <label for="name" className="identification-form__label" >Nombre y Apellido:</label>
+                <input
+                  type="text"
+                  className="identification-form__input"
+                  name="name"
+                  id="name"
+                />
+              </div>
+              <div className="identification-form__wrapper">
+                <label for="identity" className="identification-form__label">Documento de identidad:</label>
+                <input
+                  type="text"
+                  className="identification-form__input"
+                  name="identity"
+                  id="identity"
+                />
+              </div>
+              <div className="identification-form__wrapper">
+                <label for="phone" className="identification-form__label">Teléfono / Móvil:</label>
+                <input
+                  type="text"
+                  className="identification-form__input"
+                  name="phone"
+                  id="phone"
+                />
+              </div>
+            </form>
+            <div className="checkout-block__text">
+              <p className="checkout-block__text--font-size-and-bold">
+                2. Datos para la entrega:
+              </p>
+              <p className="checkout-block__text--font-size">
+                Aún falta llenar algunos datos.
+              </p>
+            </div>
+            <div className="checkout-block__text">
+              <p className="checkout-block__text--font-size-and-bold">
+                3. Método de pago:
+              </p>
+              <p className="checkout-block__text--font-size">
+                Aún falta llenar algunos datos.
+              </p>
+            </div>
           </div>
           <div className="shopping-cart-block__checkout">
             <section className="discount-coupon__text">
-              <p className="discount-coupon__text">
-                ¿Tienes un código de descuento?
-              </p>
               <div className="discount-coupon__input">
-                <input
-                  type="text"
-                  placeholder="Ingresa código"
-                  className="discount-coupon__input-text"
-                />
-                <input
-                  type="submit"
-                  name=""
-                  id=""
-                  value="Aplicar"
-                  className="discount-coupon__input-submit"
-                />
+                <label for="coupon" className="discount-coupon__text">
+                  ¿Tienes un código de descuento?
+                </label>
+                <div className="discount-coupon__group-input">
+                  <input
+                    type="text"
+                    placeholder="Ingresa código"
+                    className="discount-coupon__input-text"
+                    id="coupon"
+                  />
+                  <input
+                    type="submit"
+                    name=""
+                    id=""
+                    value="Aplicar"
+                    className="discount-coupon__input-submit"
+                  />
+               </div>
               </div>
             </section>
             <section className="price-table">
@@ -85,8 +150,10 @@ const Identification = () => {
       </div>
       <style jsx>
         {`
-        .container {
+        .container-checkout {
           padding: 8rem 1rem;
+          max-width:1500px;
+          margin: 0 auto
         }
         .container__text {
           font-family: "mont-semibold";
@@ -109,17 +176,20 @@ const Identification = () => {
           margin:40px auto;
           text-align:center
         }
-        .checkout-identification-block__text{
+        .checkout-block__text{
           color: #575650;
            font-family: "mont-regular";
            text-align:left;
            border-bottom:1px solid #DADADA;
+           padding-top:20px
+
         }
-        .checkout-identification-block__text--font-size-and-bold{
+        .checkout-block__text--font-size-and-bold{
            font-size: 16px;
+           font-family: "mont-semibold";
         }
-         .checkout-identification-block__text--font-size{
-           font-size: 14px;
+         .checkout-block__text--font-size{
+           font-size: 13px;
         }
         .container__text-items {
           font-family: "mont-regular";
@@ -129,13 +199,13 @@ const Identification = () => {
           line-height: 13px;
           color: #5a5a5a;
         }
-        .checkout-identification-block {
+        .checkout-block {
           display: flex;
           justify-content: center;
           align-content: center;
           flex-direction: column;
         }
-        .checkout-identification-block__card {
+        .checkout-block__card {
           display:flex;
           justify-content:center;
           align-content:center;
@@ -183,30 +253,7 @@ const Identification = () => {
         margin-bottom: 0rem;
         }
       }
-      .block-text__select {
-        display: block;
-        font-size: 12px;
-        font-family: "mont-regular" !important;
-        color: #556ea1;
-        line-height: 1.3;
-        padding: 0.4em 1.4em 0.3em 0.8em;
-        width: 120px;
-        box-sizing: border-box;
-        border: 1px solid #556ea1;
-        box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.03);
-        border-radius: 10px;
-        -moz-appearance: none;
-        -webkit-appearance: none;
-        appearance: none;
-        background-color: #fff;
-        background-image: url("https://www.pinclipart.com/picdir/middle/186-1864292_select-the-law-down-to-the-single-arrow.png"),
-          linear-gradient(to bottom, #ffffff 0%, #f7f7f7 100%);
-        background-repeat: no-repeat, repeat;
-        background-position: right 0.7em top 50%, 0 0;
-        background-size: 0.65em auto, 100%;
-        outline: none;
-        margin-right: 0.5rem;
-      }
+
       .card__block-second{
         display:flex;
         justify-content:center;
@@ -253,13 +300,22 @@ const Identification = () => {
         font-size: 13px;
         color: #575650;
       }
+      .discount-coupon__group-input{
+        display:flex;
+
+      }
       .discount-coupon__input-text{
         border:1px solid #FEBF41;
         box-sizing:border-box;
         box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
         border-radius:10px;
-        width:200px;
-        height:39px
+        width:190px;
+        height:39px;
+        font-size:18px;
+      }
+      .discount-coupon__input-text::placeholder{
+        color: #575650;
+        font-size:14px;
       }
       .discount-coupon__input-submit{
         font-family:"omnes-regular";
@@ -269,7 +325,7 @@ const Identification = () => {
         border-radius:10px;
         border:0px;
         height:39px;
-        width:102px;
+        width:90px;
         margin-left:0.5rem
       }
       .price-table{
@@ -360,9 +416,43 @@ const Identification = () => {
         color: #575650;
 
       }
+      .identification-form__label{
+         font-family: "mont-light";
+        color: #575650;
+        font-size: 14px;
+        line-height: 15px;
+        padding-top:30px
+      }
+      .identification-form__input{
+         font-family: "mont-regular";
+        color: #556EA1;
+        border:1px solid #556EA1;
+        border-radius: 20px;
+        width:100%;
+        padding:5px;
+        font-size: 14px;
+      }
+      @media (min-width: 480px) {
+         .discount-coupon__input-text{
+          width:300px;
+        }
 
+        .discount-coupon__input-submit{
+          width:150px;
+        }
+      }
        @media (min-width: 768px) {
+         .container-checkout {
+          padding: 8rem 3rem;
+        }
          .shopping-cart-block {
+          display: flex;
+          justify-content: center;
+          align-content: center;
+          flex-direction: row;
+          width:100%
+        }
+         .checkout-block {
           display: flex;
           justify-content: center;
           align-content: center;
@@ -374,7 +464,7 @@ const Identification = () => {
           justify-content:center;
           align-content:center;
           flex-direction:column;
-          width: 60%;
+          width: 50%;
           height: auto;
           background: #ffffff;
           border: 10px solid #ffffff;
@@ -391,9 +481,20 @@ const Identification = () => {
           padding:1rem
         }
         .shopping-cart-block__checkout{
-          width:40%;
-          padding:20px
+          width:50%;
+          padding:40px
         }
+        .checkout-block__card {
+         padding:3rem
+        }
+         .discount-coupon__input-text{
+          width:200px;
+        }
+
+        .discount-coupon__input-submit{
+          width:100px;
+        }
+
       }
       `}
       </style>

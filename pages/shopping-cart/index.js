@@ -454,7 +454,7 @@ const shoppingCart = () => {
 
         }
 
-         @media (min-width: 768px) {
+         @media  (min-width: 769px) {
            .shopping-cart-block {
             display: flex;
             justify-content: center;
