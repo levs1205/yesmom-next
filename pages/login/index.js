@@ -344,7 +344,7 @@ const index = () => {
                             min-width:550px;
                         }
                         .contenedor{
-                            padding-top:16rem;
+                            padding-top:18rem;
                             padding-bottom:6rem;
                         }
                         .iniciar-sesion{
@@ -352,7 +352,7 @@ const index = () => {
                             font-size:23px;
                         }
                         .container-form{
-                            padding:1rem 2rem;
+                            padding:3rem 5rem;
                         }
                         .wrapper-input{
                             position:relative;
@@ -369,7 +369,7 @@ const index = () => {
                             border: 1px solid #556EA1;
                             box-sizing: border-box;
                             border-radius: 20px;
-                            padding:0.5rem 1rem;
+                            padding:0.8rem 1rem;
                         }
                         .boton-normal,.boton-icon{
                             margin:1.5rem 4rem;
@@ -402,17 +402,17 @@ const index = () => {
 
                     @media (min-width: 1024px){
                         .contenedor{
-                            padding-top:14rem;
+                            padding-top:16rem;
                         }
                         .boton-normal,.boton-icon{
-                            padding-left:1rem;
-                            padding-right:1rem;
+                            padding-left:3rem;
+                            padding-right:3rem;
                         }
                     }
 
                     @media(min-width:1280px){
                         .contenedor{
-                            padding-top:12rem;
+                            padding-top:13rem;
                         }
                         .container-form{
                             padding:3rem 4rem;
@@ -423,7 +423,7 @@ const index = () => {
                         .boton-normal,.boton-icon{
                             margin:1.5rem 2.5rem;
                             border-radius: 15px; 
-                            padding:1rem 0;     
+                            padding:1rem 4rem;     
                         }
 
                         .boton-normal,.boton-icon p{
