@@ -80,7 +80,7 @@ const index = () => {
                                 <div className="wrapper-input">
                                     <label>Número de teléfono:</label>
                                     <div className="flex-country">
-                                        <input className="country" type="select" placeholder="pick" disabled/>
+                                        <input className="country" type="select" placeholder="pick"/>
                                         <input className="phone" type="tel"/>  
                                     </div>
                                 </div>
@@ -189,6 +189,13 @@ const index = () => {
                     input{
                         text-align:left;
                         
+                    }
+                    input:focus{
+                        outline:none;
+                        box-shadow:none;
+                    }
+                    input::placeholder{
+                        background:none;
                     }
                     input:focus{
                         outline:none;
@@ -320,7 +327,7 @@ const index = () => {
                         margin-right:1rem;
                     }
                     .country::placeholder{
-                        background:none!important;
+                        
                     }
                     .phone{
                         flex-grow:1;
