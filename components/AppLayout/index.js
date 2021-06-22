@@ -20,7 +20,8 @@ const appLayout = ({ children }) => {
       <style jsx global>
         {`
           html {
-            font-size: 0.98vw !important;
+
+            font-family:62.5%;
             font-family: "mont-heavy";
           }
           body {
@@ -169,28 +170,7 @@ const appLayout = ({ children }) => {
           .bg-gray {
             background-color: #575650 !important;
           }
-           {
-            /* @media (min-width: 576px) {
-            .box-web {
-              max-width: 900px !important;
-            }
-          }
-          @media (min-width: 900px) {
-            .box-web {
-              max-width: 992px !important;
-            }
-          }
-          @media (min-width: 992px) {
-            .box-web {
-              max-width: 1200px !important;
-            }
-          }
-          @media (min-width: 1200px) {
-            .box-web {
-              max-width: 1500px !important;
-            }
-          } */
-          }
+
           .box-yesmom {
             max-width: 1800px;
             width: 100%;
@@ -491,9 +471,6 @@ const appLayout = ({ children }) => {
           }
 
           @media (max-width: 768px) {
-            html {
-              font-size: 4.6vw !important;
-            }
             .view-desktop {
               display: none;
             }
