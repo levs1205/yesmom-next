@@ -118,11 +118,11 @@ const index = () => {
                         align-items:center;
                     }
                     .contenedor{
-                        padding-top:8rem;
-                        padding-bottom:8rem;
-                        margin-left:1rem;
-                        margin-right:1rem;
-                        margin-top:0;
+                        padding-top: 15rem;
+                        padding-bottom: 8rem;
+                        margin-left: 2rem;
+                        margin-right: 2rem;
+                        margin-top: 0;
                     }
                     .container-contenido{
                         display:flex;

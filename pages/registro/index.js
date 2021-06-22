@@ -51,7 +51,9 @@ const index = () => {
                     <div className="all-content">
                         <div className="container-text">
                             <p className="text-create">Crea una cuenta</p>
-                            <p className="text-second">¡Tranquil@! Crear una cuenta en Yes Mom es gratis y toma menos de un minuto</p>
+                            <div>
+                                <p className="text-second">¡Tranquil@! Crear una cuenta en Yes Mom es gratis y toma menos de un minuto</p>
+                            </div>
                         </div>
                         <div className="container-form">
                             <form>
@@ -66,8 +68,8 @@ const index = () => {
                                 </div>
 
                                 <div className="wrapper-input password">
-                                    <label htmlFor="email" >Contraseña:</label>
-                                    <input type="text" id="email" name="email"/>
+                                    <label htmlFor="password" >Contraseña:</label>
+                                    <input type="password" id="password" name="password"/>
                                     <div className="eye-icon">
                                         <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M13.5384 5.25857C13.8534 5.70143 13.8534 6.29929 13.5384 6.74143C12.5463 8.13357 10.1662 11 7.38741 11C4.6086 11 2.22847 8.13357 1.23642 6.74143C1.08318 6.52938 1 6.26851 1 6C1 5.73149 1.08318 5.47062 1.23642 5.25857C2.22847 3.86643 4.6086 1 7.38741 1C10.1662 1 12.5463 3.86643 13.5384 5.25857V5.25857Z" stroke="#575650" strokeLinecap="round" strokeLinejoin="round"/>
@@ -86,7 +88,7 @@ const index = () => {
                                 </div>
 
                                 <div className="wrapper-input">
-                                    <label>Tienes hijos?</label>
+                                    <label>¿Tienes hijos?</label>
                                     <div className="contenedor-buttons">
                                         <BotonInput type="filled">
                                             Si
@@ -98,7 +100,7 @@ const index = () => {
                                 </div>
 
                                 <div className="wrapper-input">
-                                    <label>Eres primeriza?</label>
+                                    <label>¿Eres primeriza?</label>
                                     <div className="contenedor-buttons">
                                         <BotonInput type="outlined">
                                             No
@@ -122,18 +124,18 @@ const index = () => {
                                         <p>Fecha de nacimiento de tú bebé</p>
                                         <div className="wrapper-date">
                                             <div className="select-input">
-                                                <select placeholder="Dia">
-                                                    <option selected>Dia</option>
+                                                <select  placeholder="Mes">
+                                                    <option>Mes</option>
                                                 </select>
                                             </div>
                                             <div className="select-input">
-                                                <select placeholder="Mes">
-                                                    <option selected>Mes</option>
+                                                <select  placeholder="Dia">
+                                                    <option>Dia</option>
                                                 </select>
                                             </div>
                                             <div className="select-input">
-                                                <select placeholder="Año">
-                                                    <option selected>Año</option>
+                                                <select  placeholder="Año">
+                                                    <option>Año</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -162,8 +164,8 @@ const index = () => {
                                         </div>
                                     </div>
                                     <div className="wrapper-input">
-                                        <label htmlFor="email">Ingresa su dirección de correo electrónico</label>
-                                        <input type="email" id="email" name="email"/>
+                                        <label htmlFor="email_2">Ingresa su dirección de correo electrónico</label>
+                                        <input type="email" id="email_2" name="email_2"/>
                                     </div>
                                 </div>
 
@@ -201,8 +203,11 @@ const index = () => {
                         outline:none;
                     }
                     /** */
+                    .container-text{
+                        margin:0 2rem;
+                    }
                     .contenedor{
-                        padding:8rem 0;
+                        padding:14rem 1rem;
                         margin:0 1rem;
                     }
                     .container-contenido{
@@ -218,23 +223,20 @@ const index = () => {
                         font-family:"mont-regular"!important;
                         color: #EC668D;
                         font-weight:600;
-                        font-size:20px;
+                        font-size:2rem;
                     }
                     .text-second{
                         font-family:"mont-regular"!important;
                         color: #5A5A5A;
                         font-weight:600;
-                        font-size:15px;
-                    }
-                    .text-second{
-                        padding:0 1.5rem;
+                        font-size:1.5rem;
                     }
                     .container-form{
                         background: #FFFFFF;
                         border: 10px solid #FFFFFF;
                         box-shadow: 0px 0px 33px rgba(0, 0, 0, 0.13);
                         border-radius: 20px;
-                        padding:1.25rem 0.5rem;
+                        padding:2rem 0.5rem;
                         margin-bottom:3rem;
                     }
                     .wrapper-input{
@@ -247,7 +249,7 @@ const index = () => {
                         font-family:"mont-light"!important;
                         color: #575650;
                         opacity: 0.8;
-                        font-size:13px;
+                        font-size:1.3rem;
                         margin-bottom:0.4rem;
                         
                     }
@@ -258,7 +260,8 @@ const index = () => {
                         font-family:"mont-regular"!important;
                         font-weight:600;
                         color:#575756;
-                        font-size:13px;
+                        font-size:1.3rem;
+                        margin-top:0.5rem;
                     }
                     /*Solo para el password */
                     .password{
@@ -266,11 +269,11 @@ const index = () => {
                     }
 
                     .eye-icon{
+                        cursor:pointer;
                         position:absolute;
                         right:0.5rem;
                         top: 50%;
                         transform: translate(0, -20%);
-
                     }
                     .contenedor-buttons{
                         width:100%;
@@ -290,7 +293,7 @@ const index = () => {
                         margin-bottom:0;
                         margin-left:0.5rem;
                         font-family: "mont-light"!important;
-                        font-size:11px;
+                        font-size:1.1rem;
                         color: #575650;
                         mix-blend-mode: normal;
                         opacity: 0.8;
@@ -298,22 +301,22 @@ const index = () => {
                     .boton-purple{
                         background: #EC608D;
                         border-radius: 30px;
-                        padding: 0.5rem 0;
-                        margin-left:1rem;
-                        margin-right:1rem;
+                        padding: 1rem 0;
+                        margin:3rem;
                     }
                     .boton-purple p{
                         margin:0;
                         text-align:center;
                         font-family:"omnes-regular";
                         font-weight:500;
-                        color:#FFFFFF;       
+                        color:#FFFFFF;
+                        font-size:2.3rem;    
                     }
                     .terminos{
                         text-align:center;
                         margin:1rem 0;
                         font-family:"mont-light"!important;
-                        font-size:13px;
+                        font-size:1.3rem;
                         font-weight:300;
                     }
                     .terminos span{
@@ -326,9 +329,6 @@ const index = () => {
                         width:4rem;
                         margin-right:1rem;
                     }
-                    .country::placeholder{
-                        
-                    }
                     .phone{
                         flex-grow:1;
                     }
@@ -340,7 +340,7 @@ const index = () => {
                     .container-select p{
                         margin:0;
                         font-family:"mont-light"!important;
-                        font-size:13px;
+                        font-size:1.3rem;
                         font-weight:300;
                     }
 
@@ -351,7 +351,7 @@ const index = () => {
                         flex-wrap:wrap;
                     }
                     .wrapper-date .select-input{
-                        flex-basis:calc( 50% - 0.25rem);
+                        flex-basis:calc( 50% - 1rem);
                     }
                     .select-input select{
                         width:100%;
@@ -360,7 +360,7 @@ const index = () => {
                         border-radius: 10px;
                         outline:none;
                         font-family:"mont-light"!important;
-                        font-size:13px;
+                        font-size:1.3rem;
                         padding:0.5rem 0.8rem;
                         margin:0.5rem 0;
                         /** */
@@ -368,12 +368,136 @@ const index = () => {
                         -webkit-appearance: none;
                         -moz-appearance:    none;
                         appearance:         none;
-                        background-position-x: calc(7rem);
+                        background-position-x: 90%;
                     }
                     /********Bloquear******/
                     .opacity{
                         opacity:0.5;
                     }
+                    @media(min-width:480px){
+                        .all-content{
+                            width:45rem;
+                        }
+                    }
+                    @media (min-width:769px){
+                        .all-content{
+                            width:420px;
+                        }
+                        .contenedor{
+                            padding-top:17rem;
+                            padding-bottom:10rem;
+                        }
+                        .text-create{
+                            font-family:"omnes-regular"!important;
+                            color:#DC6A8D;
+                            font-size:2rem;
+                        }
+                        .text-second{
+                            font-size:1.70rem;
+                            padding: 0 1rem;
+                        }
+                        .container-form{
+                            padding-top:2rem;
+                            padding-right:3.5rem;
+                            padding-left:3.5rem;
+                        }
+                        .wrapper-input label{
+                            font-size:1.1rem;
+                            color: #575650;
+                            opacity: 0.8;
+                        }
+                        .wrapper-input input{
+                            border: 1px solid rgba(85, 110, 161, 1);
+                            box-sizing: border-box;
+                            border-radius: 15px;
+                            font-size:1.75rem;
+                            opacity:0.8;
+                            padding:0.5rem 1rem;
+                            margin-top:0.5rem;
+                        }
+                        .wrapper-checkbox label{
+                            font-size:1.1rem;
+                        }
+                        .eye-icon{
+                            top: 60%;
+                            right: 1rem;
+                        }
+                        .contenedor-buttons{
+                            justify-content:flex-start;
+                        }
+                        .wrapper-date .select-input{
+                            flex-basis: calc(33.3% - 1rem);
+                        }
+                        .select-input{
+                            margin-right:0.5rem;
+                        }
+                        .select-input select{
+                            font-size:1.1rem;
+                        }
+                        .container-select p{
+                            font-size:1.1rem
+                        }
+                        .contenedor-cuenta{
+                            margin: 0 4rem;
+                        }
+                        .boton-purple{
+                            cursor:pointer;
+                            padding:1.1rem 0;
+                            background-color:#DC6A8D;
+                        }
+                        .boton-purple p{
+                            font-family:"omnes-bold"!important;
+                            font-size:1.8rem;
+                        }
+                        .terminos{
+                            font-size:1rem;
+                        }
+                    }
+                    @media (min-width:1024px){
+                        .contenedor-cuenta{
+                            margin: 0 5rem;
+                        }
+                        .all-content{
+                            width:475px;
+                        }
+                        .select-input select{
+                            font-size:1.1rem;
+                        }
+                        .boton-purple{
+                            padding:1.2rem 0;
+                            background-color:#DC6A8D;
+                        }
+                        .boton-purple p{
+                            font-family:"omnes-bold"!important;
+                            font-size:1.9rem;
+                        }
+                    }
+
+                    @media (min-width:1280px){
+                        .all-content{
+                            width:60rem;
+                        }
+                        .text-create{
+                            font-size:3.5rem;
+                        }
+                        .text-second{
+                            font-size:2rem;
+                        }
+                        .wrapper-input label{
+                            font-size:1.2rem;
+                        }
+                        .boton-purple{
+                            padding:1.3rem 0;
+                            background-color:#DC6A8D;
+                        }
+                        .boton-purple p{
+                            font-family:"omnes-bold"!important;
+                            font-size:1.3rem;
+                        }
+                        .terminos{
+                            font-size:0.5rem;
+                        }
+                    } 
                 `}
             </style>
         </AppLayout>

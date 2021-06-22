@@ -21,7 +21,7 @@ const appLayout = ({ children }) => {
         {`
           html {
 
-            font-family:62.5%;
+            font-size:62.5%;
             font-family: "mont-heavy";
           }
           body {

@@ -100,10 +100,10 @@ const index = () => {
                         align-items:center;
                     }
                     .contenedor{
-                        padding-top:8rem;
+                        padding-top:15rem;
                         padding-bottom:8rem;
-                        margin-left:1rem;
-                        margin-right:1rem;
+                        margin-left:2rem;
+                        margin-right:2rem;
                         margin-top:0;
                     }
                     .container-contenido{
@@ -119,18 +119,18 @@ const index = () => {
                         font-family:"mont-regular"!important;
                         color: #EC668D;
                         font-weight:600;
-                        font-size:20px;
+                        font-size:2rem;
                     }
                     .text{
                         margin:0.2rem 0;
                         font-family:"mont-regular"!important;
                         color: #575650;
                         font-weight:500;
-                        font-size:13px;
+                        font-size:1.3rem;
                     }
                     .container-form{
-                        margin:1.5rem 0;
-                        padding:1rem 0.5rem;
+                        margin:3rem 0;
+                        padding:3rem 1rem;
                         border: 10px solid #FFFFFF;
                         box-shadow: 0px 0px 33px rgba(0, 0, 0, 0.13);
                         border-radius: 20px;
@@ -138,14 +138,14 @@ const index = () => {
                     .wrapper-input{
                         display:flex;
                         flex-direction:column;
-                        margin-bottom:1.5rem;
+                        margin-bottom:3rem;
                         font-family:"mont-regular"!important;
                     }
                     .wrapper-input label{
                         font-family:"mont-light"!important;
                         color: #575650;
                         opacity: 0.8;
-                        font-size:13px;
+                        font-size:1.3rem;
                         margin:0.1rem;
                     }
                     .wrapper-input input{
@@ -156,19 +156,20 @@ const index = () => {
                         font-family:"mont-regular"!important;
                         font-weight:600;
                         color:#575756;
-                        font-size:13px;
+                        font-size:1.3rem;
+                        margin-top:1rem;
                     }
                     .boton{
                         text-align:center;
                         border-radius:30px;
-                        padding:0.5rem 0;
-                        margin-bottom:1rem;
+                        padding:1rem 0;
+                        margin-bottom:2rem;
                         cursor:pointer;
                     }
                     .boton p{
                         font-family:"omnes-regular"!important;
                         color:#FFFFFF;
-                        font-size:23px;
+                        font-size:2.3rem;
                         margin:0;
                     }
                     .pink{
@@ -181,29 +182,20 @@ const index = () => {
 
                     @media (min-width:480px){
                         .contenedor{
-                            padding-top:8rem;
+                            padding-top:15rem;
                             padding-bottom:4rem;
                         }
                         .all-content{
-                            max-width:450px;
-                        }
-                        .boton{
-                            padding: 0.2rem 0;
-                        }
-                        .container-form{
-                            margin-top:1rem;
+                            max-width:50rem;
                         }
                     }
                     @media (min-width:769px){
-                    
-                        .all-content{
-                            width:500px;
-                        }
                         .forgot-password{
-                            font-size:20px;
+                            font-size:3rem;
+                            color:#DC6A8D;
                         }
                         .contenedor{
-                            padding-top:19rem;
+                            padding-top:17rem;
                             padding-bottom:10rem;
                         }
                         .text{
@@ -226,24 +218,26 @@ const index = () => {
                         }
                         .boton{
                             border-radius:15px;
-                            margin-top:3rem;
+                            margin-top:0;
                             padding:1.5rem 0;
                         }
                         .boton p{
                             font-family:"omnes-bold"!important;
-                            font-size:20px;
+                            font-size:2rem;
+                        }
+                        .pink{
+                            background-color:#DC6A8D;
                         }
                     }
-
                     @media (min-width:1024px){
-                        .all-content{
-                            min-width:550px;
+
+                        .forgot-password{
+                            font-size:3.5rem;
                         }
                     }
-
                     @media (min-width:1280px){
                         .all-content{
-                            min-width:600px;
+                            min-width:60rem;
                         }
                         .container-form{
                             padding:3rem 2rem;
@@ -252,22 +246,21 @@ const index = () => {
                             padding-top:15rem;
                         }
                         .forgot-password{
-                            font-size:35px;
-                        }
-                        .text{
-                            padding:0 7rem;
-                            font-size:15px;
+                            font-size:4.5rem;
                         }
                         .wrapper-input label{
-                            font-size:15px;
+                            font-size:1.5rem;
                         }
                         .wrapper-input input{
                             padding:1rem;
-                            font-size:15px;
+                            font-size:1.5rem;
                         }
                         .boton{
                             margin-top:1.5rem;
-                            padding:1rem 0;
+                            padding:2rem 0;
+                        }
+                        .text{
+                            font-size:1.8rem;
                         }
                     }
 
