@@ -5,7 +5,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Image from "next/image";
 
-const Identification = () => {
+const Location = () => {
   return (
     <AppLayout>
       <div className="container-checkout">
@@ -22,71 +22,109 @@ const Identification = () => {
         </div>
         <div className="icon-checkout">
           <Image
-            src="/image/icon/checkout-first-step.svg"
-            alt="Checkout primer paso"
+            src="/image/icon/checkout-second-step.svg"
+            alt="Checkout segundo paso"
             width={200}
             height={50}
           />
         </div>
         <section className="checkout-block">
           <div className="checkout-block__card">
-            <div className="checkout-block__text">
-              <p className="checkout-block__text--font-size-and-bold">
-                1. Identificación:
-              </p>
-              <p className="checkout-block__text--font-size">
-                Solicitamos únicamente la información esencial para la
-                finalización de la compra.
-              </p>
+            <div className="checkout-identification-block">
+              <div className="checkout-identification-block__text">
+                <p className="checkout-identification-block__text--font-size-and-bold">
+                  1. Identificación:
+                </p>
+                <p className="checkout-identification-block__text--font-size">
+                  Email: lucia@henribarrett.com
+                </p>
+                <p className="checkout-identification-block__text--font-size">
+                  Nombre: Lucia Quiñones
+                </p>
+                <p className="checkout-identification-block__text--font-size">
+                  DNI: 48294601
+                </p>
+                <p className="checkout-identification-block__text--font-size">
+                  Teléfono / Móvil: 957 996 586
+                </p>
+              </div>
+              <button className="checkout-identification-block__button">
+                Editar
+              </button>
             </div>
-            <form action="" className="identification-form">
-              <div className="identification-form__wrapper">
-                <label for="email" className="identification-form__label" >Dirección de correo electrónico:</label>
-                <input
-                  type="text"
-                  className="identification-form__input"
-                  name="email"
-                  id="email"
-                />
-              </div>
-              <div className="identification-form__wrapper">
-                <label for="name" className="identification-form__label" >Nombre y Apellido:</label>
-                <input
-                  type="text"
-                  className="identification-form__input"
-                  name="name"
-                  id="name"
-                />
-              </div>
-              <div className="identification-form__wrapper">
-                <label for="identity" className="identification-form__label">Documento de identidad:</label>
-                <input
-                  type="text"
-                  className="identification-form__input"
-                  name="identity"
-                  id="identity"
-                />
-              </div>
-              <div className="identification-form__wrapper">
-                <label for="phone" className="identification-form__label">Teléfono / Móvil:</label>
-                <input
-                  type="text"
-                  className="identification-form__input"
-                  name="phone"
-                  id="phone"
-                />
-              </div>
-            </form>
-            <div className="checkout-block__text">
-              <p className="checkout-block__text--font-size-and-bold">
+
+            <div className="checkout-location-block__text">
+              <p className="checkout-location-block__text--font-size-and-bold">
                 2. Datos para la entrega:
               </p>
-              <p className="checkout-block__text--font-size">
-                Aún falta llenar algunos datos.
+              <p className="checkout-location-block__text--font-size">
+                Ingrese una dirección de referencia, donde desee recibir y/o recoger sus productos.
               </p>
+              <form action="" className="checkout-location-form">
+                <div className="checkout-location-form__wrapper">
+                  <p className="checkout-location-form__label">Departamento</p>
+                  <select name="" id="" className="checkout-location-form__select">
+                    <option value="">sdssd</option>
+                    <option value="">sdsdsd</option>
+                    <option value="">sds</option>
+                  </select>
+                </div>
+                <div className="checkout-location-form__wrapper">
+                  <p className="checkout-location-form__label">Provincia</p>
+                  <select name="" id="" className="checkout-location-form__select">
+                    <option value="">sdssd</option>
+                    <option value="">sdsdsd</option>
+                    <option value="">sds</option>
+                  </select>
+                </div>
+                <div className="checkout-location-form__wrapper">
+                  <p className="checkout-location-form__label">Distrito</p>
+                  <select name="" id="" className="checkout-location-form__select">
+                    <option value="">sdssd</option>
+                    <option value="">sdsdsd</option>
+                    <option value="">sds</option>
+                  </select>
+                </div>
+                <div className="checkout-location-form__wrapper">
+                  <label for="email" className="checkout-location-form__label" >Av/Jirón/Calle:</label>
+                  <input
+                    type="text"
+                    className="checkout-location-form__input"
+                    name="email"
+                    id="email"
+                  />
+                </div>
+                <div className="checkout-location-form__wrapper">
+                  <label for="name" className="checkout-location-form__label" >Nro.:</label>
+                  <input
+                    type="text"
+                    className="checkout-location-form__input"
+                    name="name"
+                    id="name"
+                  />
+                </div>
+                <div className="checkout-location-form__wrapper">
+                  <label for="identity" className="checkout-location-form__label">Interior:</label>
+                  <input
+                    type="text"
+                    className="checkout-location-form__input"
+                    name="identity"
+                    id="identity"
+                  />
+                </div>
+                <div className="checkout-location-form__wrapper">
+                  <label for="phone" className="checkout-location-form__label">Referencia de Dirección*:</label>
+                  <input
+                    type="text"
+                    className="checkout-location-form__input"
+                    name="phone"
+                    id="phone"
+                  />
+                </div>
+              </form>
             </div>
-            <div className="checkout-block__text">
-              <p className="checkout-block__text--font-size-and-bold">
+            <div className="checkout-location-block__text">
+              <p className="checkout-location-block__text--font-size-and-bold">
                 3. Método de pago:
               </p>
               <p className="checkout-block__text--font-size">
@@ -114,7 +152,7 @@ const Identification = () => {
                     value="Aplicar"
                     className="discount-coupon__input-submit"
                   />
-               </div>
+                </div>
               </div>
             </section>
             <section className="price-table">
@@ -176,29 +214,7 @@ const Identification = () => {
           margin:40px auto;
           text-align:center
         }
-        .checkout-block__text{
-          color: #575650;
-           font-family: "mont-regular";
-           text-align:left;
-           border-bottom:1px solid #DADADA;
-           padding-top:20px
 
-        }
-        .checkout-block__text--font-size-and-bold{
-           font-size: 16px;
-           font-family: "mont-semibold";
-        }
-         .checkout-block__text--font-size{
-           font-size: 13px;
-        }
-        .container__text-items {
-          font-family: "mont-regular";
-          font-style: normal;
-          font-weight: 600;
-          font-size: 13px;
-          line-height: 13px;
-          color: #5a5a5a;
-        }
         .checkout-block {
           display: flex;
           justify-content: center;
@@ -218,80 +234,91 @@ const Identification = () => {
           border-radius: 20px;
           padding:1rem
         }
-
-        .card__block-first{
-          display:flex;
-          justify-content:center;
-          align-content:center;
-          flex-direction:row;
-        }
-      .card__block-first .card__img{
-        width:35%;
-        height: 104px;
-        border-radius: 15px;
-      }
-       .card__block-first .card__block-text{
-        width:65%;
-        padding:0.5rem
-      }
-      .block-text__title{
-        font-family: "mont-regular";
-        font-style: normal;
-        font-weight: 600;
-        font-size: 13px;
-        line-height: 17px;
-        color: #575650;
-        margin-bottom: 0rem;
-      }
-      .block-text__short-description{
-        font-family: "mont-light";
-        font-style: normal;
-        font-weight: 300;
-        font-size: 13px;
-        line-height: 40px;
-        color: #575650;
-        margin-bottom: 0rem;
-        }
-
-
-      .card__block-second{
+      .checkout-identification-block {
         display:flex;
-        justify-content:center;
-        align-items:  center!important;
         flex-direction:row;
+        justify-content:space-between;
+        align-items:top;
+        border-bottom: 1px solid #DADADA;
       }
-      .block-second__block-store-text{
-         display:flex;
-        justify-content:center;
-        align-items: center;
-        flex-direction:row;
-        width:60%
+      .checkout-identification-block__text--font-size-and-bold{
+         font-family: "mont-semibold";
+        color: #575650;
+        opacity: 0.5;
       }
-      .block-store-text__img{
-        width: 20%;
-        height: 40px;
-         border-radius: 50%;
+      .checkout-identification-block__text--font-size{
+        font-family: "mont-light";
+        margin-bottom:0;
+        font-size:12px;
+        color: #575650;
+        opacity: 0.5;
       }
-      .block-store-text__text{
-        width: 80%;
-         padding-left:0.5rem;
-         font-family: "mont-light";
+      .checkout-location-block__text{
+        margin-top:10px
+      }
+       .checkout-location-block__text--font-size-and-bold{
+         font-family: "mont-semibold";
+        color: #575650;
+      }
+      .checkout-location-block__text--font-size{
+        font-family: "mont-light";
+        margin-bottom:0;
+        font-size:12px;
+        color: #575650;
+      }
+      .checkout-identification-block__button{
+        text-align: center;
+        font-family: "mont-regular";
+        font-size: 14px;
+        width: 100px;
+        height: 38px;
+        background-color: #ec608d;
+        border-radius: 15px;
+        color: #fff;
+        border: 1px solid #ec608d;
+        cursor: pointer;
+      }
+      .checkout-location-form__select{
+        display: block;
+        font-size: 14px;
+        font-family: "mont-regular";
+        color: #556ea1;
+        padding: 0.4em 1.4em 0.3em 0.8em;
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #556ea1;
+        box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.03);
+        border-radius: 15px;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: #fff;
+        background-image: url("https://www.pinclipart.com/picdir/middle/186-1864292_select-the-law-down-to-the-single-arrow.png"),
+          linear-gradient(to bottom, #ffffff 0%, #f7f7f7 100%);
+        background-repeat: no-repeat, repeat;
+        background-position: right 0.7em top 50%, 0 0;
+        background-size: 0.65em auto, 100%;
+        outline: none;
+        margin-right: 0.5rem;
+      }
+      .checkout-location-form__label{
+        font-size: 12px;
+        font-family: "mont-light";
+        margin-bottom:0;
+        margin-top:10px;
         font-style: normal;
         font-weight: 300;
-        font-size: 10px;
+        line-height: 34px;
         color: #575650;
-        margin-bottom: 0rem;
       }
-      .block-second__block-store-price{
-           font-family: "mont-regular";
-           padding-top:0.5rem;
-          font-style: normal;
-          font-weight: 300;
-          font-size: 18px;
-        color: #4B64A4;
-      }
-      .shopping-cart-block__checkout{
-        padding:2rem 0rem
+        .checkout-location-form__input{
+         font-family: "mont-regular";
+        color: #556EA1;
+        border:1px solid #556EA1;
+        border-radius: 20px;
+        width:100%;
+        padding:5px;
+        font-size: 14px;
       }
       .discount-coupon__text{
          font-family: "mont-light";
@@ -352,43 +379,7 @@ const Identification = () => {
       .price-table__table{
         width:100%
       }
-      .box-terms{
-        display:flex;
-        align-items:top;
-         cursor: pointer;
-      }
-      .box-terms__text{
-        font-family: "mont-light";
-        font-style: normal;
-        font-weight: 300;
-        font-size: 13px;
-        line-height: 25px;
-        color:#575650;
-        padding:0 5px
-      }
-      .box-terms__checkbox{
-        position:absolute;
-        padding:0;
-        border:0;
-        height:1px;
-        width:1px;
-        overflow:hidden
-      }
-       .box-terms__text:before{
-         content:"";
-         display:inline-block;
-         width:22px;
-         height:22px;
-         border: 2px solid #4B64A4;
-        border-radius: 5px;
-        margin-right:8px;
-        line-height:24px;
-        vertical-align:text-top
-       }
-       .box-terms__checkbox:checked + .box-terms__text:before{
-         border:2px solid #F22C74;
-         background:url('/image/icon/check-pink.svg') center/16px no-repeat
-       }
+
       .buy-button {
         margin: 2.5rem auto;
         text-align: center;
@@ -502,4 +493,4 @@ const Identification = () => {
   );
 };
 
-export default Identification;
+export default Location;
