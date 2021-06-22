@@ -82,7 +82,18 @@ const index = () => {
                 </div>
             </div>
             <style jsx>
-                {`
+                {`  
+                    input{
+                        text-align:left;
+                        border:none;
+                    }
+                    input:focus{
+                        outline:none;
+                        box-shadow:none;
+                    }
+                    input::placeholder{
+                        background:none;
+                    }
                     .center{
                         display:flex;
                         justify-content:center;
@@ -168,13 +179,13 @@ const index = () => {
                         background-color:#FEBF41;
                     }
 
-                    @media (min-width:600px){
+                    @media (min-width:480px){
                         .contenedor{
-                            padding-top:5rem;
-                            padding-bottom:3rem;
+                            padding-top:8rem;
+                            padding-bottom:4rem;
                         }
                         .all-content{
-                            max-width:500px;
+                            max-width:450px;
                         }
                         .boton{
                             padding: 0.2rem 0;
@@ -184,18 +195,19 @@ const index = () => {
                         }
                     }
                     @media (min-width:769px){
+                    
                         .all-content{
                             width:500px;
                         }
                         .forgot-password{
-                            font-size:25px;
+                            font-size:20px;
                         }
                         .contenedor{
-                            padding-top:15rem;
+                            padding-top:19rem;
                             padding-bottom:10rem;
                         }
                         .text{
-                            padding:0 9rem;
+                            padding:0 5rem;
                         }
                         .container-form{
                             margin-top:2rem;
@@ -222,31 +234,28 @@ const index = () => {
                             font-size:20px;
                         }
                     }
-                    @media (min-width:992px){
-                        .forgot-password{
-                            font-size:30px;
-                        }
-                        .wrapper-input input{
-                            padding:1.1rem 2rem;
-                        }
-                        .boton{
-                            border-radius:15px;
-                            margin-top:3rem;
-                            padding:1.1rem 0;
+
+                    @media (min-width:1024px){
+                        .all-content{
+                            min-width:550px;
                         }
                     }
-                    @media (min-width:1200px){
+
+                    @media (min-width:1280px){
+                        .all-content{
+                            min-width:600px;
+                        }
                         .container-form{
                             padding:3rem 2rem;
                         }
                         .contenedor{
-                            padding-top:8rem;
+                            padding-top:15rem;
                         }
                         .forgot-password{
                             font-size:35px;
                         }
                         .text{
-                            padding:0 3rem;
+                            padding:0 7rem;
                             font-size:15px;
                         }
                         .wrapper-input label{
@@ -261,33 +270,6 @@ const index = () => {
                             padding:1rem 0;
                         }
                     }
-
-                    @media (min-width:1800px){
-                        .all-content{
-                            min-width:600px;
-                        }
-                        .forgot-password{
-                            font-size:45px;
-                        }
-                        .text{
-                            font-size:18px;
-                        }
-                        .wrapper-input label{
-                            font-size:18px;
-                        }
-                        .wrapper-input input{
-                            font-size:20px;
-                        }
-                        .container-form{
-                            margin-top:2rem;
-                            padding-left:2rem;
-                            padding-right:2rem;
-                        }
-                        .boton p{
-                            font-size:23px;
-                        }
-                    }
-                    
 
                 `}
             </style>

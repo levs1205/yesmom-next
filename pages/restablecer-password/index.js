@@ -82,7 +82,8 @@ const index = () => {
                                         </div>
                                     </div>
                                     <div className="boton pink">
-                                        <p>Confirmar contraseña</p>
+                                        <p className="show">Continuar</p>
+                                        <p className="hide">Confirmar contraseña</p>
                                     </div>
                                 </form>
                             </div>
@@ -91,7 +92,26 @@ const index = () => {
                 </div>
             </div>
             <style jsx>
-                {`
+                {`  
+                    .hide{
+                        display:none;
+                    }
+                    input{
+                        text-align:left;
+                        border:none;
+                    }
+                    input:focus{
+                        outline:none;
+                        box-shadow:none;
+                    }
+                    input::placeholder{
+                        background:none;
+                        text-align:left;
+                        font-family: "mont-regular"!important;
+                        font-weight: 600;
+                        font-size: 0.6rem;
+                        color: #556EA1;
+                    }
                     .center{
                         display:flex;
                         justify-content:center;
@@ -121,6 +141,7 @@ const index = () => {
                     }
 
                     .texto{
+                        text-align:center;
                         margin:0.2rem 0;
                         font-family:"mont-regular"!important;
                         color: #575650;
@@ -142,6 +163,7 @@ const index = () => {
                         margin-bottom:1.5rem;
                     }
                     .eye-icon{
+                        cursor:pointer;
                         position:absolute;
                         right:0.5rem;
                         bottom:0.1rem;
@@ -174,7 +196,7 @@ const index = () => {
                     .boton p{
                         font-family:"omnes-regular"!important;
                         color:#FFFFFF;
-                        font-size:23px;
+                        font-size:0.9rem;
                         margin:0;
                     }
                     .pink{
@@ -185,38 +207,53 @@ const index = () => {
                         background-color:#FEBF41;
                     }
 
-                    @media (min-width:600px){
-                        .forgot-password{
-                            font-size:22.5px;
-                        }
+                    @media(min-width:480px){
                         .contenedor{
-                            padding-top:5rem;
-                            padding-bottom:3rem;
-                        }
-                        .all-content{
-                            max-width:500px;
-                        }
-                        .boton{
-                            padding: 0.2rem 0;
+                            padding-top: 8rem;
+                            padding-bottom: 6rem;
                         }
                         .container-form{
-                            margin-top:1rem;
-                            padding-top:1.5rem;
-                            padding-bottom:1.5rem;
+                            padding:1rem 0.5rem;
                         }
-                        
+                        .boton{
+                            padding:0.25rem 0;
+                        }
+
+                        .forgot-password{
+                            font-size:1rem;
+                        }
+                        .texto{
+                            font-size:0.6rem;
+                        }
+                        .wrapper-input label{
+                            font-size:0.6rem;
+                        }
+                        .wrapper-input input{
+                            font-size:0.6rem;
+                        }
+
                     }
 
                     @media (min-width:769px){
+                        .all-content{
+                            max-width:400px;
+                        }
+                        .show{
+                            display:none;
+                        }
+                        .hide{
+                            display:block;
+                        }
                         .forgot-password{
                             font-size:25px;
                         }
                         .contenedor{
-                            padding-top:11rem;
+                            padding-top:17rem;
                             padding-bottom:10rem;
                         }
 
                         .texto{
+                            font-size:1rem;
                             padding:0 9rem;
                         }
                         .container-form{
@@ -224,6 +261,7 @@ const index = () => {
                         }
                         .wrapper-input label{
                             margin-bottom:1rem;
+                            font-size:1rem;
                         }
                         .wrapper-input input{
                             border: 1px solid #556EA1;
@@ -232,6 +270,10 @@ const index = () => {
                             padding:1.5rem 2rem;
                             font-family:"mont-regular"!important;
                             color:#556EA1;
+                            font-size:1rem;
+                        }
+                        .wrapper-input input::placeholder{
+                            font-size:1rem;
                         }
                         .boton{
                             border-radius:15px;
@@ -240,86 +282,35 @@ const index = () => {
                         }
                         .boton p{
                             font-family:"omnes-bold"!important;
-                            font-size:20px;
+                            font-size:1.5rem;
                         }
                         .eye-icon{
-                            right:2.25rem;
-                            bottom:2rem;
+                            right:2rem;
+                            bottom:1.75rem;
                         }
                     }
-                    @media (min-width:992px){
-                        .forgot-password{
-                            font-size:30px;
-                        }
-                        .wrapper-input input{
-                            padding:1.1rem 2rem;
-                        }
-                        .boton{
-                            border-radius:15px;
-                            margin-top:3rem;
-                            padding:1.1rem 0;
-                        }
-                        .eye-icon{
-                            right:1.75rem;
-                            bottom:1.5rem;
-                        }
-                    }
-                    @media (min-width:1200px){
-                        .container-form{
-                            padding:3rem 2rem;
-                        }
-                        .contenedor{
-                            padding-top:8rem;
-                        }
-                        .forgot-password{
-                            font-size:35px;
-                        }
-                        .texto{
-                            padding:0 5rem;
-                            font-size:15px;
-                        }
-                        .wrapper-input label{
-                            font-size:15px;
-                        }
-                        .wrapper-input input{
-                            padding:1rem;
-                            font-size:15px;
-                        }
-                        .boton{
-                            padding:1rem 0;
-                        }
-                        .eye-icon{
-                            right:1.5rem;
-                            bottom:1.25rem;
-                        }
-                    }
-                    @media (min-width:1800px){
+
+                    @media (min-width:1024px){
                         .all-content{
-                            min-width:600px;
-                        }
-                        .forgot-password{
-                            font-size:45px;
+                            max-width:40rem;
                         }
                         .texto{
-                            font-size:18px;
+                            font-size:1.2rem;
+                            padding:0 0.4rem;
                         }
                         .wrapper-input label{
-                            font-size:18px;
-                        }
-                        .wrapper-input input{
-                            font-size:20px;
-                        }
-                        .container-form{
-                            padding-left:2rem;
-                            padding-right:2rem;
-                        }
-                        .boton p{
-                            font-size:23px;
-                        }
-                        .eye-icon{
-                            font-size:20px;
+                            font-size:1.2rem;
                         }
                     }
+                    @media (min-width:1280px){
+                        .contenedor{
+                            padding-top:13rem;
+                        }
+                        .all-content{
+                            max-width:60rem;
+                        }
+                    }
+                    
                 `}
             </style>
         </AppLayout>
