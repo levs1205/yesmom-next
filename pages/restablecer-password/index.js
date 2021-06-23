@@ -63,7 +63,8 @@ const index = () => {
                                 <form>
                                     <div className="wrapper-input">
                                         <label htmlFor="email" >Por favor ingresa una nueva contraseña</label>
-                                        <input placeholder="Nueva contraseña" type="password" id="password" name="password"/>
+                                        <input className="show color-input" placeholder="Ingresar contraseña" type="password" id="password" name="password"/>
+                                        <input className="hide color-input" placeholder="Nueva contraseña" type="password" id="password" name="password"/>
                                         <div className="eye-icon">
                                             <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.5384 5.25857C13.8534 5.70143 13.8534 6.29929 13.5384 6.74143C12.5463 8.13357 10.1662 11 7.38741 11C4.6086 11 2.22847 8.13357 1.23642 6.74143C1.08318 6.52938 1 6.26851 1 6C1 5.73149 1.08318 5.47062 1.23642 5.25857C2.22847 3.86643 4.6086 1 7.38741 1C10.1662 1 12.5463 3.86643 13.5384 5.25857V5.25857Z" stroke="#575650" strokeLinecap="round" strokeLinejoin="round"/>
@@ -73,7 +74,7 @@ const index = () => {
 
                                     </div>
                                     <div className="wrapper-input">
-                                        <input placeholder="Repetir contraseña" type="password" id="new_password" name="new_password"/>
+                                        <input className="color-input" placeholder="Repetir contraseña" type="password" id="new_password" name="new_password"/>
                                         <div className="eye-icon">
                                             <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.5384 5.25857C13.8534 5.70143 13.8534 6.29929 13.5384 6.74143C12.5463 8.13357 10.1662 11 7.38741 11C4.6086 11 2.22847 8.13357 1.23642 6.74143C1.08318 6.52938 1 6.26851 1 6C1 5.73149 1.08318 5.47062 1.23642 5.25857C2.22847 3.86643 4.6086 1 7.38741 1C10.1662 1 12.5463 3.86643 13.5384 5.25857V5.25857Z" stroke="#575650" strokeLinecap="round" strokeLinejoin="round"/>
@@ -110,7 +111,7 @@ const index = () => {
                         font-family: "mont-regular"!important;
                         font-weight: 600;
                         font-size: 0.6rem;
-                        color: #556EA1;
+                        color: #575756;
                     }
                     .center{
                         display:flex;
@@ -137,7 +138,7 @@ const index = () => {
                         font-family:"mont-regular"!important;
                         color: #EC668D;
                         font-weight:600;
-                        font-size:20px;
+                        font-size:2rem;
                     }
 
                     .texto{
@@ -146,8 +147,8 @@ const index = () => {
                         font-family:"mont-regular"!important;
                         color: #575650;
                         font-weight:500;
-                        font-size:13px;
-                        padding:0 1rem;
+                        font-size:1.3rem;
+                        padding:0 4rem;
                     }
                     .container-form{
                         margin:1.5rem 0;
@@ -160,20 +161,20 @@ const index = () => {
                         position:relative;
                         display:flex;
                         flex-direction:column;
-                        margin-bottom:1.5rem;
+                        margin-bottom:3rem;
                     }
                     .eye-icon{
                         cursor:pointer;
                         position:absolute;
                         right:0.5rem;
-                        bottom:0.1rem;
+                        bottom:0.6rem;
                     }
                     .wrapper-input label{
                         font-family:"mont-light"!important;
                         color: #575650;
                         opacity: 0.8;
-                        font-size:13px;
-                        margin-bottom:0.4rem;
+                        font-size:1.3rem;
+                        margin-bottom:1rem;
                         
                     }
                     .wrapper-input input{
@@ -184,7 +185,10 @@ const index = () => {
                         font-family:"mont-regular"!important;
                         font-weight:600;
                         color:#575756;
-                        font-size:13px;
+                        font-size:1.3rem;
+                    }
+                    .wrapper-input input::placeholder{
+                        font-size:1.3rem;
                     }
                     .boton{
                         text-align:center;
@@ -196,7 +200,7 @@ const index = () => {
                     .boton p{
                         font-family:"omnes-regular"!important;
                         color:#FFFFFF;
-                        font-size:0.9rem;
+                        font-size:2.3rem;
                         margin:0;
                     }
                     .pink{
@@ -208,35 +212,38 @@ const index = () => {
                     }
 
                     @media(min-width:480px){
+                        .all-content{
+                            width:40rem;
+                        }
                         .contenedor{
-                            padding-top: 8rem;
+                            padding-top: 13rem;
                             padding-bottom: 6rem;
                         }
                         .container-form{
                             padding:1rem 0.5rem;
                         }
                         .boton{
-                            padding:0.25rem 0;
+                            padding:1rem 0;
                         }
 
                         .forgot-password{
-                            font-size:1rem;
+                            font-size:3rem;
                         }
                         .texto{
-                            font-size:0.6rem;
+                            font-size:1.4rem;
                         }
                         .wrapper-input label{
-                            font-size:0.6rem;
+                            font-size:1.4rem;
                         }
                         .wrapper-input input{
-                            font-size:0.6rem;
+                            font-size:1.4rem;
                         }
 
                     }
 
                     @media (min-width:769px){
                         .all-content{
-                            max-width:400px;
+                            width:45rem;
                         }
                         .show{
                             display:none;
@@ -244,36 +251,25 @@ const index = () => {
                         .hide{
                             display:block;
                         }
-                        .forgot-password{
-                            font-size:25px;
-                        }
                         .contenedor{
                             padding-top:17rem;
                             padding-bottom:10rem;
                         }
-
-                        .texto{
-                            font-size:1rem;
-                            padding:0 9rem;
-                        }
                         .container-form{
                             padding:4rem 4rem;
-                        }
-                        .wrapper-input label{
-                            margin-bottom:1rem;
-                            font-size:1rem;
                         }
                         .wrapper-input input{
                             border: 1px solid #556EA1;
                             box-sizing: border-box;
                             border-radius: 15px;
-                            padding:1.5rem 2rem;
+                            padding:1rem;
                             font-family:"mont-regular"!important;
                             color:#556EA1;
-                            font-size:1rem;
+                            font-size:1.4rem;
                         }
                         .wrapper-input input::placeholder{
-                            font-size:1rem;
+                            font-size:1.4rem;
+                            color:#556EA1;
                         }
                         .boton{
                             border-radius:15px;
@@ -291,23 +287,26 @@ const index = () => {
                     }
 
                     @media (min-width:1024px){
-                        .all-content{
-                            max-width:40rem;
-                        }
-                        .texto{
-                            font-size:1.2rem;
-                            padding:0 0.4rem;
+                        .forgot-password{
+                            font-size:3rem;
                         }
                         .wrapper-input label{
                             font-size:1.2rem;
                         }
                     }
                     @media (min-width:1280px){
-                        .contenedor{
-                            padding-top:13rem;
-                        }
                         .all-content{
-                            max-width:60rem;
+                            min-width:50rem;
+                        }
+                        .forgot-password{
+                            font-size:3.5rem;
+                        }
+                        .texto{
+                            font-size:2rem;
+                        }
+                        .eye-icon{
+                            right:1.25rem;
+                            bottom:1.5rem;
                         }
                     }
                     

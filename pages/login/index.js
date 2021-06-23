@@ -3,8 +3,6 @@ import AppLayout from "../../components/AppLayout";
 import Head from 'next/head';
 import Link from "next/link";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 
 
 const index = () => {
@@ -150,8 +148,6 @@ const index = () => {
                     }
                     .yellow{
                         background-color: #FEBF41;
-                        margin-left:0.5rem!important;
-                        margin-right:0.5rem!important;
                     }
                     input{
                         text-align:left;
@@ -174,10 +170,10 @@ const index = () => {
                         align-items:center;
                     }
                     .contenedor{
-                        padding-top:8rem;
+                        padding-top:12rem;
                         padding-bottom:8rem;
-                        margin-left:1rem;
-                        margin-right:1rem;
+                        margin-left:2rem;
+                        margin-right:2rem;
                         margin-top:0;
                     }
                     .container-contenido{
@@ -188,14 +184,14 @@ const index = () => {
                     .iniciar-sesion{
                         font-family:"mont-regular"!important;
                         font-weight:600;
-                        font-size:20px;
+                        font-size:2rem;
                         color:#EC668D;
                     }
                     .bienvenido{
                         font-family:"mont-regular"!important;
                         font-weight:600;
                         color:#5A5A5A;
-                        font-size:15px;
+                        font-size:1.5rem;
                     }
                     .container-form{
                         margin:1.5rem 0;
@@ -213,7 +209,7 @@ const index = () => {
                         font-family:"mont-light"!important;
                         color: #575650;
                         opacity: 0.8;
-                        font-size:13px;
+                        font-size:1.3rem;
                         margin-bottom:0.4rem; 
                     }
                     .wrapper-input input{
@@ -224,8 +220,9 @@ const index = () => {
                         font-family:"mont-regular"!important;
                         font-weight:600;
                         color:#575756;
-                        font-size:13px;
+                        font-size:1.3rem;
                         text-align:left;
+                        margin-top:1rem;
                     }
                     .container-checkbox{
                         display:flex;
@@ -238,14 +235,14 @@ const index = () => {
                         flex-wrap:wrap;
                     }
                     .wrapper-checkbox input{
-                        height:24px;
-                        width:24px;
+                        height:2.4rem;
+                        width:2.4rem;
                     }
                     .wrapper-checkbox label{
                         margin-bottom:0;
                         margin-left:0.5rem;
                         font-family: "mont-light"!important;
-                        font-size:11px;
+                        font-size:1.1rem;
                         color: #575650;
                         mix-blend-mode: normal;
                         opacity: 0.8;
@@ -253,24 +250,26 @@ const index = () => {
                     .forgot-password{
                         font-family:"mont-regular";
                         font-weight:600;
-                        font-size:13px;
+                        font-size:1.3rem;
                         color:#556EA1;
                     }
                     .boton-normal{
                         cursor:pointer;
                         border-radius:30px;
-                        padding:0.8rem 0;
+                        padding:1rem 0;
                         margin:2rem 0 1rem 0;
                         text-align:center;
                         color:#FFFFFF;
                     }
                     .boton-normal{
                         font-family:"omnes-regular"!important;
-                        font-size:23px;
+                        font-size:2.3rem;
+                        margin-top:3rem;
                     }
                     .container-line{
                         display:flex;
                         align-items:center;
+                        margin:2rem 0;
                     }
                     .container-line hr{
                         flex-grow:1;
@@ -281,7 +280,7 @@ const index = () => {
                         margin-left:1rem;
                         color: #575650;
                         opacity:0.6;
-                        font-size:13px;
+                        font-size:1.3rem;
                         font-weight:600;
                         font-family:"mont-regular"!important;
                     }
@@ -296,8 +295,8 @@ const index = () => {
                     .boton-icon{
                         cursor:pointer;
                         border-radius:30px;
-                        padding:0.8rem 0;
-                        margin:1rem 0;
+                        padding:1.4rem 0;
+                        margin:1rem 0 2rem 0;
                         text-align:center;
                         display:flex;
                         justify-content:center;
@@ -306,7 +305,7 @@ const index = () => {
                     .boton-icon p{
                         font-family:"omnes-regular";
                         font-weight:500;
-                        font-size:18px;
+                        font-size:1.8rem;
                     }
                     .icon{
                         margin-right:1rem;
@@ -318,41 +317,41 @@ const index = () => {
                     /**480 - 768 - 1024 -1280 */
                     @media (min-width: 480px){
                         .contenedor{
-                            padding-top:6rem;
+                            padding-top:12rem;
                             padding-bottom:6rem;
                         }
-                        .all-content{
-                            min-width:450px;
+                        .container-form{
+                            padding:3rem 2rem;
                         }
                         .boton-normal{
-                            padding:0.4rem 0;
+                            padding:1rem 0;
                         }
                         .boton-icon{
-                            padding:0.2rem 0;
+                            padding:1rem 0;
                         }
                         .yellow{
-                            margin:0;
-                            margin-top:0.5rem;
+                            margin-left:1.5rem;
+                            margin-right:1.5rem;
                         }
                     }
 
                     @media (min-width: 769px){
                         .pink{
                             background-color:#DC6A8D;
-                        }
-                        .all-content{
-                            min-width:550px;
+                            margin-top:3rem!important;
                         }
                         .contenedor{
                             padding-top:18rem;
-                            padding-bottom:6rem;
+                            padding-bottom:10rem;
                         }
                         .iniciar-sesion{
                             font-family:"mont-heavy"!important;
-                            font-size:23px;
+                            font-size:2.3rem;
                         }
                         .container-form{
                             padding:3rem 5rem;
+                            margin-top:2rem;
+                            margin-bottom:4rem;
                         }
                         .wrapper-input{
                             position:relative;
@@ -372,9 +371,9 @@ const index = () => {
                             padding:0.8rem 1rem;
                         }
                         .boton-normal,.boton-icon{
-                            margin:1.5rem 4rem;
+                            margin:2rem 4rem;
                             border-radius: 15px; 
-                            padding:1rem 0;     
+                            padding:1rem 5rem;     
                         }
                         .boton-normal,.boton-icon p{
                             font-family:'omnes-bold'!important;
@@ -392,8 +391,8 @@ const index = () => {
                             margin-right:4rem;
                         }
                         .yellow{
-                            margin-right:5rem!important;
-                            margin-left:5rem!important;
+                            margin-right:6rem;
+                            margin-left:6rem;
                         }
                         .icon{
                             margin-right:4rem;
@@ -401,6 +400,9 @@ const index = () => {
                     }  
 
                     @media (min-width: 1024px){
+                        .all-content{
+                            min-width:55rem;
+                        }
                         .contenedor{
                             padding-top:16rem;
                         }
@@ -412,7 +414,7 @@ const index = () => {
 
                     @media(min-width:1280px){
                         .contenedor{
-                            padding-top:13rem;
+                            padding-top:18rem;
                         }
                         .container-form{
                             padding:3rem 4rem;
