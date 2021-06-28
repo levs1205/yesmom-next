@@ -3,6 +3,10 @@ import Head from 'next/head';
 import Link from "next/link";
 import BotonInput from "../../components/Registro/BotonInput";
 
+/**PHONEINPUT */
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/bootstrap.css'
+/** */
 
 const index = () => {
     return ( 
@@ -64,7 +68,7 @@ const index = () => {
 
                                 <div className="wrapper-input">
                                     <label htmlFor="email" >Dirección de correo electrónico:</label>
-                                    <input type="text" id="email" name="email"/>
+                                    <input type="email" id="email" name="email"/>
                                 </div>
 
                                 <div className="wrapper-input password">
@@ -79,12 +83,23 @@ const index = () => {
                                 </div>
 
                                 {/* Country code picker */}
+                                
                                 <div className="wrapper-input">
-                                    <label>Número de teléfono:</label>
-                                    <div className="flex-country">
-                                        <input className="country" type="select" placeholder="pick"/>
-                                        <input className="phone" type="tel"/>  
-                                    </div>
+                                    <label className="mb-4">Número de teléfono:</label>
+                                    <PhoneInput
+                                        countryCodeEditable={false}
+                                        country="pe"
+                                        inputClass="code-picker" 
+                                        inputStyle={
+                                            {
+                                                width:"100%",
+                                                textAlign:"left",
+                                                borderRadius:"10px",
+                                                color:"#575650",
+                                                opacity: 0.8
+                                            }
+                                        }
+                                    />
                                 </div>
 
                                 <div className="wrapper-input">
@@ -188,9 +203,9 @@ const index = () => {
             <style jsx>
                 {`
                     /*RESET*/
+                    /********/
                     input{
-                        text-align:left;
-                        
+                        text-align:left!important;
                     }
                     input:focus{
                         outline:none;
@@ -202,6 +217,14 @@ const index = () => {
                     input:focus{
                         outline:none;
                     }
+                    /** COUNTRY PICKER **/
+                            /* .react-tel-input .form-control{
+                                text-align:left!important;
+                            }
+                            input[type="tel"]{
+                                text-align:left;
+                                width:100%;
+                            } */
                     /** */
                     .container-text{
                         margin:0 2rem;
@@ -484,7 +507,13 @@ const index = () => {
                             font-size:2rem;
                         }
                         .wrapper-input label{
-                            font-size:1.2rem;
+                            font-size:1.6rem;
+                        }
+                        .container-select p {
+                            font-size:1.6rem;
+                        }
+                        .wrapper-checkbox label{
+                            font-size:1.4rem;
                         }
                         .boton-purple{
                             padding:1.3rem 0;

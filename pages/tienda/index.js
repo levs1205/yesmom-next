@@ -2,8 +2,9 @@ import React, { Component, useEffect, useState } from "react";
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import axios from "axios";
-import { CardDeck, Carousel, Col, Container, Row } from "react-bootstrap";
-import CardProduct from "../../components/CardProduct";
+import { CardDeck, CardColumns , Carousel, Col, Container, Row } from "react-bootstrap";
+/* import CardProduct from "../../components/CardProduct"; */
+import CardProduct from "../../components/tienda/CardProductN";
 import SidebarProducto from "../../components/tienda/SidebarProducto";
 import BannerTienda from "../../components/tienda/BannerTienda";
 
@@ -11,12 +12,16 @@ const Product = () => {
   const initialState = [
     {
       id: 1,
-      image: "/image/tienda/banner1.svg",
+      image: "/image/tienda/banner-first.svg",
     },
     {
       id: 2,
-      image: "/image/tienda/banner1.svg",
+      image: "/image/tienda/banner-first.svg",
     },
+    {
+      id:3,
+      image: "/image/tienda/banner-first.svg",
+    }
   ];
 
   const [banner, setBanner] = useState(initialState);
@@ -67,8 +72,6 @@ const Product = () => {
           name="twitter:image"
           content="https://yesmom.vercel.app/image/about-header.png"
         />
-        <meta name="twitter:site" content="@JudithCristinaQ" />
-        <meta name="twitter:creator" content="@JudithCristinaQ" />
       </Head>
       <div className="box-producto">
         <Carousel className="box-carousel">
@@ -80,7 +83,7 @@ const Product = () => {
           ))}
         </Carousel>
         <Container fluid="true">
-          <Row>
+          {/* <Row>
             <Col sm={3}>
               <SidebarProducto />
             </Col>
@@ -92,17 +95,91 @@ const Product = () => {
                     {respuesta.map((cardProduct) => (
                       <CardProduct product={cardProduct} key={cardProduct.id} />
                     ))}
+                    
                   </CardDeck>
+                  
                 </div>
               </div>
+              <div className="test-products">
+                      <CardProduct />
+                      <CardProduct />
+                      <CardProduct />
+                      <CardProduct />
+              </div>  
             </Col>
-          </Row>
-          <BannerTienda />
+          </Row> */}
+          <div className="all-content">
+
+            <div className="contenedor">
+                <h4 className="text-title-tienda">Lo + vendido</h4>
+                <div className="all-products">
+                    <CardProduct />
+                    <CardProduct discount/>
+                    <CardProduct />
+                    <CardProduct />
+                    <CardProduct discount/>
+                    <CardProduct />
+                </div>
+            </div> 
+            <BannerTienda />
+            <div className="contenedor">
+                <div className="all-products">
+                    <CardProduct />
+                    <CardProduct discount/>
+                    <CardProduct />
+                    <CardProduct />
+                    <CardProduct discount/>
+                    <CardProduct />
+                </div>
+            </div> 
+          </div>
+          
         </Container>
       </div>
       <style jsx>
         {`
-          .box-product-general {
+          :global(.carousel-control-next-icon){
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23556EA1' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5L3.75 4l-2.5 2.5L2.75 8l4-4-4-4z'/%3e%3c/svg%3e");
+          }
+          :global(.carousel-control-prev-icon){
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23556EA1' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5L4.25 4l2.5-2.5L5.25 0z'/%3e%3c/svg%3e");
+          }
+          :global(.carousel-indicators li){
+            background-color:#DC6A8D;
+          }
+        .all-content{
+          margin-bottom:8rem;
+        }
+        .box-producto {
+            background-size: cover;
+            justify-content: left;
+            align-items: right;
+            padding-top: 5rem;
+            border-bottom: 1px solid #5a5a5a;
+          }
+        .text-title-tienda {
+            font-family: "mont-regular" !important;
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 3.5rem 0.5rem 0rem;
+            color: #5a5a5a;
+            border-bottom: 1px solid #5a5a5a;
+            padding: 0px 0px 5px 0px;
+          }
+        .contenedor{
+          padding:0 1.5rem;
+        }
+        .all-products{
+          padding:3rem 0;
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          flex-wrap:wrap;
+        }
+
+
+
+          /* .box-product-general {
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -117,7 +194,7 @@ const Product = () => {
           }
           .text-title-tienda {
             font-family: "mont-regular" !important;
-            font-size: 20px;
+            font-size: 2rem;
             font-weight: 600;
             margin: 3.5rem 0.5rem 0rem;
             color: #5a5a5a;
@@ -132,7 +209,7 @@ const Product = () => {
             top: 0rem;
             z-index: 10;
             display: flex;
-          }
+          } */
 
           @media (min-width: 1024px) {
             .box-product-general {
@@ -148,6 +225,8 @@ const Product = () => {
               z-index: 10;
             }
           }
+
+          /* 
           @media (max-width: 1023px) {
           }
           @media (max-width: 480px) {
@@ -171,7 +250,7 @@ const Product = () => {
               max-height: 32rem !important;
               margin-top: 0px !important;
             }
-          }
+          } */
         `}
       </style>
     </AppLayout>
