@@ -17,14 +17,14 @@ function CardProduct({discount}) {
                         <Card.Text>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac 
                         </Card.Text>
-                        <Card.Text>
+                        <div className="card-text">
                             <div className="container-prices">
                                 <p className={`hide ${discount && "price-before"}`}>S/ XX.XX</p>
                                 <div className={`text-price ${discount && "discount" }`}>
                                     <p className={`${discount ? "price-now" :"price"}`}>S/ XX.XX</p>
                                 </div>
                             </div>
-                        </Card.Text>
+                        </div>
                     </Card.Body>
                 </Card>
             </div>
@@ -94,6 +94,11 @@ function CardProduct({discount}) {
                             padding:0 0.8rem;
                         }
                         
+                    }
+                    @media (min-width:768px){
+                        .card-container{
+                            flex-basis:calc( 33.3% - 1rem);
+                        }
                     }
 
                 `}
