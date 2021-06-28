@@ -20,7 +20,6 @@ const appLayout = ({ children }) => {
       <style jsx global>
         {`
           html {
-
             font-size:62.5%;
             font-family: "mont-heavy";
           }
