@@ -3,10 +3,10 @@ import { Card } from "react-bootstrap";
 
 
 
-function CardProduct({discount}) {
+function CardProduct({discount,size}) {
     return (
         <>  
-            <div className="card-container">
+            <div className={`card-container size-${size}`}>
                 <Card border="light">
                     {/* https://picsum.photos/200/300 
                     https://thumbs.dreamstime.com/b/beb%C3%A9-muy-disgustado-con-el-pelo-travieso-parado-en-pajama-rosa-ilustraci%C3%B3n-vectorial-al-estilo-de-las-caricaturas-planas-un-164575107.jpg
@@ -98,6 +98,14 @@ function CardProduct({discount}) {
                     @media (min-width:768px){
                         .card-container{
                             flex-basis:calc( 33.3% - 1rem);
+                        }
+                        .size-4{
+                            flex-basis:calc( 50% - 1rem);
+                        }
+                    }
+                    @media (min-width:1024px){
+                        .size-4{
+                            flex-basis:calc( 25% - 1rem);
                         }
                     }
 

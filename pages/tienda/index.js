@@ -4,7 +4,7 @@ import Head from "next/head";
 import axios from "axios";
 import { CardDeck, CardColumns , Carousel, Col, Container, Row } from "react-bootstrap";
 /* import CardProduct from "../../components/CardProduct"; */
-import CardProduct from "../../components/tienda/CardProduct";
+import CardProduct from "../../components/CardProduct";
 import SidebarProducto from "../../components/tienda/SidebarProducto";
 import BannerTienda from "../../components/tienda/BannerTienda";
 
