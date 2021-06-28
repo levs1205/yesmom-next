@@ -4,7 +4,7 @@ import Head from "next/head";
 import axios from "axios";
 import { CardDeck, CardColumns , Carousel, Col, Container, Row } from "react-bootstrap";
 /* import CardProduct from "../../components/CardProduct"; */
-import CardProduct from "../../components/tienda/CardProductN";
+import CardProduct from "../../components/tienda/CardProduct";
 import SidebarProducto from "../../components/tienda/SidebarProducto";
 import BannerTienda from "../../components/tienda/BannerTienda";
 
@@ -157,6 +157,12 @@ const Product = () => {
       </div>
       <style jsx>
         {`
+
+          :global(.carousel-indicators li){
+            border-radius:50%;
+            height:1.5rem;
+            width:1.5rem;
+          }
           hr{
             margin:0;
           }
