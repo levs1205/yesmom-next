@@ -57,142 +57,152 @@ const index = () => {
             <div className="contenedor">
                 <div className="container-contenido">
                     <div className="all-content">
-                        
-                        <TitlePerfil name="Lucia" email="lucia@henribarrett.com" />
-                        <Description path="Mi perfil" description="Aquí encontrarás tus datos personales"/>
-                        <div className="about-account">
-                            <p className="ft-m-regular">Información de la cuenta</p>
-                            <div className="icon-pencil">
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.5642 1.69742C13.646 1.77942 13.6919 1.8905 13.6919 2.00629C13.6919 2.12209 13.646 2.23316 13.5642 2.31517L12.6516 3.22867L10.9016 1.47867L11.8142 0.565167C11.8963 0.483148 12.0075 0.437073 12.1236 0.437073C12.2396 0.437073 12.3508 0.483148 12.4329 0.565167L13.5642 1.69654V1.69742ZM12.033 3.84642L10.283 2.09642L4.32162 8.05867C4.27346 8.10681 4.23721 8.16554 4.21575 8.23017L3.51137 10.3424C3.4986 10.3809 3.49678 10.4222 3.50613 10.4617C3.51548 10.5012 3.53563 10.5373 3.56431 10.566C3.593 10.5947 3.6291 10.6148 3.66858 10.6242C3.70806 10.6335 3.74936 10.6317 3.78787 10.6189L5.90012 9.91454C5.96466 9.89333 6.02338 9.85738 6.07162 9.80954L12.033 3.84729V3.84642Z" fill="#575650"/>
-                                    <path fillRule="evenodd" clipRule="evenodd" d="M0.875 11.8125C0.875 12.1606 1.01328 12.4944 1.25942 12.7406C1.50556 12.9867 1.8394 13.125 2.1875 13.125H11.8125C12.1606 13.125 12.4944 12.9867 12.7406 12.7406C12.9867 12.4944 13.125 12.1606 13.125 11.8125V6.5625C13.125 6.44647 13.0789 6.33519 12.9969 6.25314C12.9148 6.17109 12.8035 6.125 12.6875 6.125C12.5715 6.125 12.4602 6.17109 12.3781 6.25314C12.2961 6.33519 12.25 6.44647 12.25 6.5625V11.8125C12.25 11.9285 12.2039 12.0398 12.1219 12.1219C12.0398 12.2039 11.9285 12.25 11.8125 12.25H2.1875C2.07147 12.25 1.96019 12.2039 1.87814 12.1219C1.79609 12.0398 1.75 11.9285 1.75 11.8125V2.1875C1.75 2.07147 1.79609 1.96019 1.87814 1.87814C1.96019 1.79609 2.07147 1.75 2.1875 1.75H7.875C7.99103 1.75 8.10231 1.70391 8.18436 1.62186C8.26641 1.53981 8.3125 1.42853 8.3125 1.3125C8.3125 1.19647 8.26641 1.08519 8.18436 1.00314C8.10231 0.921094 7.99103 0.875 7.875 0.875H2.1875C1.8394 0.875 1.50556 1.01328 1.25942 1.25942C1.01328 1.50556 0.875 1.8394 0.875 2.1875V11.8125Z" fill="#575650"/>
-                                </svg>
+                        <div className="contenedor-flex">
+                            <div className="flex-left">
+                                <TitlePerfil name="Lucia" email="lucia@henribarrett.com" />
+                            </div>
+                            <div className="flex-right">
+                                <Description path="Mi perfil" description="Aquí encontrarás tus datos personales"/>
+                                <div className="about-account">
+                                    <p className="ft-m-regular">Información de la cuenta</p>
+                                    <div className="icon-pencil">
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M13.5642 1.69742C13.646 1.77942 13.6919 1.8905 13.6919 2.00629C13.6919 2.12209 13.646 2.23316 13.5642 2.31517L12.6516 3.22867L10.9016 1.47867L11.8142 0.565167C11.8963 0.483148 12.0075 0.437073 12.1236 0.437073C12.2396 0.437073 12.3508 0.483148 12.4329 0.565167L13.5642 1.69654V1.69742ZM12.033 3.84642L10.283 2.09642L4.32162 8.05867C4.27346 8.10681 4.23721 8.16554 4.21575 8.23017L3.51137 10.3424C3.4986 10.3809 3.49678 10.4222 3.50613 10.4617C3.51548 10.5012 3.53563 10.5373 3.56431 10.566C3.593 10.5947 3.6291 10.6148 3.66858 10.6242C3.70806 10.6335 3.74936 10.6317 3.78787 10.6189L5.90012 9.91454C5.96466 9.89333 6.02338 9.85738 6.07162 9.80954L12.033 3.84729V3.84642Z" fill="#575650"/>
+                                            <path fillRule="evenodd" clipRule="evenodd" d="M0.875 11.8125C0.875 12.1606 1.01328 12.4944 1.25942 12.7406C1.50556 12.9867 1.8394 13.125 2.1875 13.125H11.8125C12.1606 13.125 12.4944 12.9867 12.7406 12.7406C12.9867 12.4944 13.125 12.1606 13.125 11.8125V6.5625C13.125 6.44647 13.0789 6.33519 12.9969 6.25314C12.9148 6.17109 12.8035 6.125 12.6875 6.125C12.5715 6.125 12.4602 6.17109 12.3781 6.25314C12.2961 6.33519 12.25 6.44647 12.25 6.5625V11.8125C12.25 11.9285 12.2039 12.0398 12.1219 12.1219C12.0398 12.2039 11.9285 12.25 11.8125 12.25H2.1875C2.07147 12.25 1.96019 12.2039 1.87814 12.1219C1.79609 12.0398 1.75 11.9285 1.75 11.8125V2.1875C1.75 2.07147 1.79609 1.96019 1.87814 1.87814C1.96019 1.79609 2.07147 1.75 2.1875 1.75H7.875C7.99103 1.75 8.10231 1.70391 8.18436 1.62186C8.26641 1.53981 8.3125 1.42853 8.3125 1.3125C8.3125 1.19647 8.26641 1.08519 8.18436 1.00314C8.10231 0.921094 7.99103 0.875 7.875 0.875H2.1875C1.8394 0.875 1.50556 1.01328 1.25942 1.25942C1.01328 1.50556 0.875 1.8394 0.875 2.1875V11.8125Z" fill="#575650"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div className="container-form">
+                                    <form>
+                                        <div className="flex-desktop">
+                                            <div className="wrapper-input">
+                                                <label htmlFor="name" >Nombre y Apellido:</label>
+                                                <input type="text" id="name" name="name"/>  
+                                            </div>
+
+                                            <div className="wrapper-input">
+                                                <label htmlFor="email" >Dirección de correo electrónico:</label>
+                                                <input type="email" id="email" name="email"/>
+                                            </div>
+                                        </div>
+
+                                        {/* Country code picker */}
+                                        
+                                        <div className="wrapper-input">
+                                            <label className="mb-4">Número de teléfono:</label>
+                                            <PhoneInput
+                                                countryCodeEditable={false}
+                                                country="pe"
+                                                inputClass="code-picker" 
+                                                inputStyle={
+                                                    {
+                                                        width:"100%",
+                                                        textAlign:"left",
+                                                        borderRadius:"10px",
+                                                        color:"#575650",
+                                                        opacity: 0.8
+                                                    }
+                                                }
+                                            />
+                                        </div>
+
+                                        <div className="flex-desktop">
+                                            <div className="wrapper-input">
+                                                <label className="change-color">¿Tienes hijos?</label>
+                                                <div className="contenedor-buttons">
+                                                    <BotonInput type="filled">
+                                                        Si
+                                                    </BotonInput>
+                                                    <BotonInput type="outlined">
+                                                        No
+                                                    </BotonInput>
+                                                </div>
+                                            </div>
+                                            <div className="w-45p">
+                                                <div className="wrapper-input">
+                                                    <label className="change-color">¿Eres primeriza?</label>
+                                                    <div className="contenedor-buttons">
+                                                        <BotonInput type="outlined">
+                                                            No
+                                                        </BotonInput>
+                                                        <BotonInput type="filled">
+                                                            Si
+                                                        </BotonInput>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div className="wrapper-checkbox">
+                                                    <input type="checkbox" id="checkbox"/>
+                                                    <label htmlFor="checkbox">Tengo más de un hijo.</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        {/* Control - class : opacity y disabled */}
+                                        <div className="opacity">
+
+                                            <div className="container-select">  
+                                                <p>Fecha de nacimiento de tú bebé</p>
+                                                <div className="wrapper-date">
+                                                    <div className="select-input">
+                                                        <select  placeholder="Mes">
+                                                            <option>Dia</option>
+                                                        </select>
+                                                    </div>
+                                                    <div className="select-input">
+                                                        <select  placeholder="Dia">
+                                                            <option>Mes</option>
+                                                        </select>
+                                                    </div>
+                                                    <div className="select-input">
+                                                        <select  placeholder="Año">
+                                                            <option>Año</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="wrapper-input">
+                                                <label>Sexo de tú bebé</label>
+                                                <div className="contenedor-buttons">
+                                                    <BotonInput type="outlined">
+                                                        Niña
+                                                    </BotonInput>
+                                                    <BotonInput type="filled">
+                                                        Niño
+                                                    </BotonInput>
+                                                </div>
+                                            </div>
+
+                                            <div className="wrapper-input">
+                                                <label>¿Quieres compartir tu perfil con alguien?</label>
+                                                <div className="contenedor-buttons">
+                                                    <BotonInput type="outlined">
+                                                        No
+                                                    </BotonInput>
+                                                    <BotonInput type="filled">
+                                                        Si
+                                                    </BotonInput>
+                                                </div>
+                                            </div>
+                                            <div className="wrapper-input">
+                                                <label htmlFor="email_2">Ingresa su dirección de correo electrónico</label>
+                                                <input type="email" id="email_2" name="email_2"/>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div className="container-save">
+                                    <CustomButton >
+                                        Guardar
+                                    </CustomButton>
+                                    <CustomButton outline>
+                                        Cancelar
+                                    </CustomButton>
+                                </div>       
                             </div>
                         </div>
-                        <div className="container-form">
-                            <form>
-                                <div className="wrapper-input">
-                                    <label htmlFor="name" >Nombre y Apellido:</label>
-                                    <input type="text" id="name" name="name"/>  
-                                </div>
-
-                                <div className="wrapper-input">
-                                    <label htmlFor="email" >Dirección de correo electrónico:</label>
-                                    <input type="email" id="email" name="email"/>
-                                </div>
-
-                                {/* Country code picker */}
-                                
-                                <div className="wrapper-input">
-                                    <label className="mb-4">Número de teléfono:</label>
-                                    <PhoneInput
-                                        countryCodeEditable={false}
-                                        country="pe"
-                                        inputClass="code-picker" 
-                                        inputStyle={
-                                            {
-                                                width:"100%",
-                                                textAlign:"left",
-                                                borderRadius:"10px",
-                                                color:"#575650",
-                                                opacity: 0.8
-                                            }
-                                        }
-                                    />
-                                </div>
-
-                                <div className="wrapper-input">
-                                    <label>¿Tienes hijos?</label>
-                                    <div className="contenedor-buttons">
-                                        <BotonInput type="filled">
-                                            Si
-                                        </BotonInput>
-                                        <BotonInput type="outlined">
-                                            No
-                                        </BotonInput>
-                                    </div>
-                                </div>
-
-                                <div className="wrapper-input">
-                                    <label>¿Eres primeriza?</label>
-                                    <div className="contenedor-buttons">
-                                        <BotonInput type="outlined">
-                                            No
-                                        </BotonInput>
-                                        <BotonInput type="filled">
-                                            Si
-                                        </BotonInput>
-                                    </div>
-                                </div>
-                                
-                                <div className="wrapper-checkbox">
-                                    <input type="checkbox" id="checkbox"/>
-                                    <label htmlFor="checkbox">Tengo más de un hijo.</label>
-                                </div>
-                                
-                                
-                                {/* Control - class : opacity y disabled */}
-                                <div className="opacity">
-
-                                    <div className="container-select">  
-                                        <p>Fecha de nacimiento de tú bebé</p>
-                                        <div className="wrapper-date">
-                                            <div className="select-input">
-                                                <select  placeholder="Mes">
-                                                    <option>Dia</option>
-                                                </select>
-                                            </div>
-                                            <div className="select-input">
-                                                <select  placeholder="Dia">
-                                                    <option>Mes</option>
-                                                </select>
-                                            </div>
-                                            <div className="select-input">
-                                                <select  placeholder="Año">
-                                                    <option>Año</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="wrapper-input">
-                                        <label>Sexo de tú bebé</label>
-                                        <div className="contenedor-buttons">
-                                            <BotonInput type="outlined">
-                                                Niña
-                                            </BotonInput>
-                                            <BotonInput type="filled">
-                                                Niño
-                                            </BotonInput>
-                                        </div>
-                                    </div>
-
-                                    <div className="wrapper-input">
-                                        <label>¿Quieres compartir tu perfil con alguien?</label>
-                                        <div className="contenedor-buttons">
-                                            <BotonInput type="outlined">
-                                                No
-                                            </BotonInput>
-                                            <BotonInput type="filled">
-                                                Si
-                                            </BotonInput>
-                                        </div>
-                                    </div>
-                                    <div className="wrapper-input">
-                                        <label htmlFor="email_2">Ingresa su dirección de correo electrónico</label>
-                                        <input type="email" id="email_2" name="email_2"/>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
-                        <div className="container-save">
-                            <CustomButton>
-                                Guardar
-                            </CustomButton>
-                            <CustomButton outline>
-                                Cancelar
-                            </CustomButton>
-                        </div>       
                     </div>
                 </div>
             </div>
@@ -233,11 +243,7 @@ const index = () => {
                         padding:14rem 1rem;
                         margin:0 1rem;
                     }
-                    /* .container-contenido{
-                        display:flex;
-                        justify-content:center;
-                        align-items:center;
-                    } */
+                    
                     
                     /**about de la cuenta */
 
@@ -367,6 +373,65 @@ const index = () => {
                     /********Bloquear******/
                     .opacity{
                         opacity:0.5;
+                    }
+
+                    @media (min-width:480px ) and (max-width:767px){
+                        .container-contenido{
+                            display:flex;
+                            justify-content:center;
+                            align-items:center;
+                        } 
+                        .all-content{
+                            width:45rem;
+                        }
+                    }
+
+                    @media (min-width: 768px){
+                        .container-form{
+                            width:95%;
+                        }
+                        .contenedor-flex{
+                            display:flex;
+                            justify-content:space-between;
+                        }
+                        hr{
+                            margin-left:0;
+                            margin-right:0;
+                        }
+                        .flex-desktop{
+                            display:flex;
+                            justify-content:space-between;
+                        }
+                        .flex-left{
+                            flex-basis:20%;
+                        }
+                        .flex-right{
+                            flex-basis:70%;
+                        }
+                        .wrapper-input{
+                            width:45%;
+                        }
+                        .wrapper-input input{
+                            background: #FFFFFF;
+                            border: 1px solid #556EA1;
+                            box-sizing: border-box;
+                            border-radius: 20px;
+                            font-size:1.4rem;
+                            padding:1rem 1.5rem;
+                            color:#556EA1;
+                        }
+                        .contenedor-buttons{
+                            justify-content:flex-start;
+                        }
+
+                        .wrapper-date .select-input{
+                            flex-basis:calc( 33.3% - 1rem);
+                        }
+                        .change-color{
+                            font-family:"mont-regular"!important;
+                            opacity:1!important;
+                            color:#5A5A5A!important;
+                        }
                     }
                 `}
             </style>

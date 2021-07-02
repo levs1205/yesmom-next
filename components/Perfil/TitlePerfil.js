@@ -13,8 +13,10 @@ function TitlePerfil({ name, email}) {
                         <circle cx="38" cy="38" r="37" stroke="#DC6A8D" strokeWidth="2" strokeDasharray="10 10"/>
                     </svg>    
                 </div>
-                <p className="p-primary ft-m-600">{`¡Hola ${name}!`}</p>
-                <p className="p-secondary ft-m-regular">{`${email}`}</p>
+                <div className="contenedor-data">
+                    <p className="p-primary ft-m-600">{`¡Hola ${name}!`}</p>
+                    <p className="p-secondary ft-m-regular">{`${email}`}</p>
+                </div>
             </div>
 
             <style jsx>
@@ -57,6 +59,32 @@ function TitlePerfil({ name, email}) {
                     .p-secondary{
                         font-size:1.5rem;
                         color: #DC6A8D;
+                    }
+                    .contenedor-data{
+                        text-align:center;
+                    }
+
+                    @media (min-width:768px){
+                        .container-title{
+                            margin-top:0.5rem;
+                            display:flex;
+                            flex-direction:row;
+                        
+                        }
+                        .contenedor-data{
+                            margin-left:1rem;
+                        }
+                        .p-primary{
+                            font-family:"mont-heavy"!important;
+                        }
+                        .p-secondary{
+                            font-size:1.3rem;
+                        }
+                    }
+                    @media (min-width:1024px){
+                        .container-title{
+                            margin-top:3rem;
+                        }
                     }
                 `}
             </style>

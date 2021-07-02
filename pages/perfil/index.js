@@ -52,8 +52,8 @@ const index = () => {
                         <div className="welcome-user">
                             <TitlePerfil name="Lucia" email="lucia@henribarrett.com" />
                             <div className="container-options">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item selected">
+                                <ul className="list-group list-group-flush">
+                                    <li className="list-group-item selected">
                                         Mi Perfil
                                         <div className="star-icon">
                                             <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,9 +61,9 @@ const index = () => {
                                             </svg>
                                         </div>
                                     </li>
-                                    <li class="list-group-item">Contraseña</li>
-                                    <li class="list-group-item">Desactivar cuenta</li>
-                                    <li class="list-group-item">Mis compras</li>
+                                    <li className="list-group-item">Contraseña</li>
+                                    <li className="list-group-item">Desactivar cuenta</li>
+                                    <li className="list-group-item">Mis compras</li>
                                 </ul>
                             </div>
                         </div>

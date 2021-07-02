@@ -31,6 +31,26 @@ function CustomButton({outline , children}) {
                         color:${outline ? "#EC608D" : "#FFFFFF"};
                         font-size:2.3rem; 
                     }
+
+                    @media (min-width:768px){
+                        .boton{
+                            border-radius:15px;
+                            background-color:${outline ? "#FFFFFF" : "#DC6A8D"};
+                            padding:1.5rem;
+                            margin:auto 1rem;
+                        }
+                        p{
+                            font-family:"omnes-bold";
+                            font-weight:500;
+                            color:${outline ? "#DC6A8D" : "#FFFFFF"};
+                            font-size:1.5rem;
+                        }
+                    }
+                    @media (min-width:1024px){
+                        p{
+                            font-size:1.8rem;
+                        }
+                    }
                 `
                 }
             </style>

@@ -10,6 +10,9 @@ function Description({ path , description}) {
             <hr />
             <style jsx>
                 {`
+                    p{
+                        margin:0;
+                    }
                     .ft-m-heavy{
                         font-family:"mont-heavy"!important;
                         font-weight:800;
@@ -30,6 +33,23 @@ function Description({ path , description}) {
                     }
                     hr{
                         margin:1.5rem -2rem;                       
+                    }
+
+                    @media (min-width:768px){
+                        hr{
+                            margin-left:0;
+                            margin-right:0;
+                        }
+                    }
+                    @media(min-width:1024px){
+                        .p-description-primary{
+                            font-family:"mont-semibold"!important;
+                            font-size:3.5rem;
+                        }
+                        .p-description-secondary{
+                            font-size:1.5rem;
+                        }
+                        
                     }
                 `}
             </style>
