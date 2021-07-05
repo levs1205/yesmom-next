@@ -1,10 +1,10 @@
 import React from 'react'
 
-function CustomButton({outline , children}) {
+function CustomButton({outline , children, fxClick}) {
 
     return (
         <>
-            <div className="boton">
+            <div onClick={fxClick} className="boton">
                 <p>
                     {children}
                 </p>
@@ -51,8 +51,7 @@ function CustomButton({outline , children}) {
                             font-size:1.8rem;
                         }
                     }
-                `
-                }
+                `}
             </style>
         </>
     )

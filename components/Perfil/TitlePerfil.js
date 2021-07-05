@@ -1,9 +1,9 @@
 import React from 'react'
 
-function TitlePerfil({ name, email}) {
+function TitlePerfil({ name, email, main}) {
     return (
         <>
-            <div className="container-title">
+            <div className={`container-title ${main ? "center" : ""}`}>
                 <div className="image-title">
                     <svg width="76" height="76" viewBox="0 0 76 76" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M29.5105 40.8604V42.2647C29.5105 42.7035 29.8616 43.1424 30.3882 43.1424C30.827 43.1424 31.2659 42.7913 31.2659 42.2647V40.8604C31.2659 40.4215 30.9148 39.9827 30.3882 39.9827C29.8616 39.9827 29.5105 40.3337 29.5105 40.8604Z" fill="#DC6A8D"/>
@@ -65,6 +65,9 @@ function TitlePerfil({ name, email}) {
                     }
 
                     @media (min-width:768px){
+                        .center{
+                            justify-content:center;
+                        }
                         .container-title{
                             margin-top:0.5rem;
                             display:flex;

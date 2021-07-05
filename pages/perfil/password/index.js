@@ -6,6 +6,7 @@ import AppLayout from '../../../components/AppLayout'
 import CustomButton from '../../../components/Perfil/CustomButton'
 import TitlePerfil from '../../../components/Perfil/TitlePerfil'
 import Description from '../../../components/Perfil/Description'
+import Sidebar from '../../../components/Perfil/Sidebar'
 
 
 const index = () => {
@@ -53,9 +54,20 @@ const index = () => {
             <div className="contenedor">
                 <div className="container-contenido">
                     <div className="all-content">
+                        <Link href="/perfil">
+                            <div className="show return">
+                                <div className="icon-return">
+                                    <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fillRule="evenodd" clipRule="evenodd" d="M6.73017 12.8055C7.02875 13.0722 7.50353 13.0635 7.79062 12.7862C8.07772 12.5089 8.06841 12.0679 7.76983 11.8012L1.83439 6.5L7.76983 1.19882C8.06841 0.932146 8.07772 0.491136 7.79062 0.213797C7.50353 -0.0635432 7.02875 -0.0721905 6.73017 0.194482C6.73017 0.194482 0.232731 5.99252 0.209376 6.01508C0.0689399 6.15075 -0.000572481 6.32557 3.53057e-06 6.5C-0.000572496 6.67443 0.0689399 6.84925 0.209376 6.98492C0.232731 7.00748 6.73017 12.8055 6.73017 12.8055Z" fill="#EC668D"/>
+                                    </svg>
+                                </div>
+                                <p className="ft-m-regular">Volver</p>
+                            </div>
+                        </Link>
                         <div className="contenedor-flex">
                             <div className="flex-left">
                                 <TitlePerfil name="Lucia" email="lucia@henribarrett.com" />
+                                <Sidebar active="password" />
                             </div>
                             <div className="flex-right">
                                 <Description path="Contraseña" description="Aquí encontrarás tu contraseña. Si la quieres modificar asegúrate de que sea segura" />
@@ -113,7 +125,7 @@ const index = () => {
                                     </form>
                                 </div>
                                 <div className="container-save">
-                                    <hr />
+                                    <hr className="hide" />
                                     <div className="f-to-right">
                                         <CustomButton>
                                             Guardar
@@ -165,11 +177,28 @@ const index = () => {
                         font-family:"mont-light"!important;
                     }
                     .contenedor{
-                        padding:14rem 1rem;
+                        padding:10rem 1rem;
                         margin:0 1rem;
                     }
                     
-                    
+                    /**Return */
+                    .return{
+                        cursor:pointer;
+                        display:flex;
+                        align-items:center;
+                        margin-bottom:2rem;
+                    }
+                    .return:hover{
+                        transform:translateY(-1px);
+                    }
+                    .return p{
+                        margin-left:1rem;
+                        color:#EC668D;
+                        font-size:1.3rem;
+                        margin-top:0.5rem;
+                    }
+
+
                     /**about de la cuenta */
 
                     .about-account{
@@ -214,6 +243,9 @@ const index = () => {
                         display:flex;
                         flex-direction:column;
                         margin-bottom:2.5rem;
+                    }
+                    .wrapper-input:nth-child(2),.wrapper-input:nth-child(3){
+                        margin-bottom:1rem;
                     }
                     .eye-icon{
                         cursor:pointer;
@@ -260,6 +292,9 @@ const index = () => {
                         }
                     }
                     @media (min-width: 768px){
+                        .contenedor{
+                            padding:12rem 0;
+                        }
                         .show{
                             display:none;
                         }
@@ -267,7 +302,7 @@ const index = () => {
                             display:block;
                         }
                         .container-form{
-                            width:50%;
+                            width:25rem;
                         }
                         .contenedor-flex{
                             display:flex;
