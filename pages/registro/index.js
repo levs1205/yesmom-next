@@ -6,6 +6,7 @@ import BotonInput from "../../components/Registro/BotonInput";
 /**PHONEINPUT */
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/bootstrap.css'
+import CustomButton from "../../components/Perfil/CustomButton";
 /** */
 
 const index = () => {
@@ -118,10 +119,10 @@ const index = () => {
                                     <label>¿Eres primeriza?</label>
                                     <div className="contenedor-buttons">
                                         <BotonInput type="outlined">
-                                            No
+                                            Si
                                         </BotonInput>
                                         <BotonInput type="filled">
-                                            Si
+                                            No
                                         </BotonInput>
                                     </div>
                                 </div>
@@ -186,11 +187,11 @@ const index = () => {
 
                             </form>
                         </div>
-
+                        
                         <div className="contenedor-cuenta">
-                            <div className="boton-purple">
-                                <p>Crear cuenta</p>
-                            </div>
+                            <CustomButton>
+                                Crear cuenta
+                            </CustomButton>
                             <p className="terminos">¡Al hacer clic en crear cuenta! aceptas los 
                                 <span> términos de uso y la política de privacidad </span> 
                                 de Yes Mom.
@@ -294,9 +295,8 @@ const index = () => {
                     .eye-icon{
                         cursor:pointer;
                         position:absolute;
-                        right:0.5rem;
-                        top: 50%;
-                        transform: translate(0, -20%);
+                        right:1rem;
+                        bottom:1rem;
                     }
                     .contenedor-buttons{
                         width:100%;
@@ -321,20 +321,7 @@ const index = () => {
                         mix-blend-mode: normal;
                         opacity: 0.8;
                     }
-                    .boton-purple{
-                        background: #EC608D;
-                        border-radius: 30px;
-                        padding: 1rem 0;
-                        margin:3rem;
-                    }
-                    .boton-purple p{
-                        margin:0;
-                        text-align:center;
-                        font-family:"omnes-regular";
-                        font-weight:500;
-                        color:#FFFFFF;
-                        font-size:2.3rem;    
-                    }
+
                     .terminos{
                         text-align:center;
                         margin:1rem 0;
@@ -351,6 +338,9 @@ const index = () => {
                     .country{
                         width:4rem;
                         margin-right:1rem;
+                    }
+                    :global(.code-picker){
+                        width:65%!important;
                     }
                     .phone{
                         flex-grow:1;
@@ -402,7 +392,7 @@ const index = () => {
                             width:45rem;
                         }
                     }
-                    @media (min-width:769px){
+                    @media (min-width:768px){
                         .all-content{
                             width:420px;
                         }
@@ -442,8 +432,8 @@ const index = () => {
                             font-size:1.1rem;
                         }
                         .eye-icon{
-                            top: 60%;
-                            right: 1rem;
+                            right:1.4rem;
+                            bottom:1.2rem;
                         }
                         .contenedor-buttons{
                             justify-content:flex-start;
@@ -463,17 +453,12 @@ const index = () => {
                         .contenedor-cuenta{
                             margin: 0 4rem;
                         }
-                        .boton-purple{
-                            cursor:pointer;
-                            padding:1.1rem 0;
-                            background-color:#DC6A8D;
-                        }
-                        .boton-purple p{
-                            font-family:"omnes-bold"!important;
-                            font-size:1.8rem;
-                        }
+
                         .terminos{
-                            font-size:1rem;
+                            font-size:1.2rem;
+                        }
+                        :global(.code-picker){
+                            width:70%!important;
                         }
                     }
                     @media (min-width:1024px){
@@ -484,19 +469,23 @@ const index = () => {
                             width:475px;
                         }
                         .select-input select{
-                            font-size:1.1rem;
+                            font-size:1.3rem;
+                            padding-top:1rem;
+                            padding-bottom:1rem;
                         }
-                        .boton-purple{
-                            padding:1.2rem 0;
-                            background-color:#DC6A8D;
+
+                        .terminos{
+                            font-size:1.3rem;
                         }
-                        .boton-purple p{
-                            font-family:"omnes-bold"!important;
-                            font-size:1.9rem;
+                        :global(.code-picker){
+                            width:60%!important;
                         }
                     }
 
                     @media (min-width:1280px){
+                        .contenedor-cuenta{
+                            margin: 0 8rem;
+                        }
                         .all-content{
                             width:60rem;
                         }
@@ -515,16 +504,12 @@ const index = () => {
                         .wrapper-checkbox label{
                             font-size:1.4rem;
                         }
-                        .boton-purple{
-                            padding:1.3rem 0;
-                            background-color:#DC6A8D;
-                        }
-                        .boton-purple p{
-                            font-family:"omnes-bold"!important;
-                            font-size:1.3rem;
-                        }
+
                         .terminos{
-                            font-size:0.5rem;
+                            font-size:1.5rem;
+                        }
+                        :global(.code-picker){
+                            width:50%!important;
                         }
                     } 
                 `}

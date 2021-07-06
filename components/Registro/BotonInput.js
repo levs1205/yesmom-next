@@ -35,11 +35,12 @@ function BotonInput({children , type }) {
                         color:#FEBF41;
                     }
 
-                    @media (min-width:769px){
+                    @media (min-width:768px){
                         .boton{
-                            padding:1.4rem 1.4rem;
+                            border-radius:15px;
+                            padding:1.6rem;
                             font-size:1.3rem;
-                            flex-basis:calc( 20% - 0.25rem);
+                            flex-basis:8rem;
                             margin-right:1rem;
                             border-radius:2rem;
                         }
@@ -47,6 +48,12 @@ function BotonInput({children , type }) {
                             font-family:"omnes-bold"!important;
                         }
 
+                    }
+                    @media(min-width:1024px){
+                        .boton{
+                            padding:1.8rem;
+                            font-size:2rem;
+                        }
                     }
                 `}
             </style>
