@@ -15,6 +15,8 @@ import BotonInput from '../../../components/Registro/BotonInput';
 
 
 const index = () => {
+ 
+
     return (
         <AppLayout>
             <Head>
@@ -120,25 +122,27 @@ const index = () => {
                                         </div>
 
                                         <div className="flex-desktop">
-                                            <div className="wrapper-input">
-                                                <label className="change-color">¿Tienes hijos?</label>
-                                                <div className="contenedor-buttons">
-                                                    <BotonInput type="filled">
-                                                        Si
-                                                    </BotonInput>
-                                                    <BotonInput type="outlined">
-                                                        No
-                                                    </BotonInput>
+                                            <div className="w-28r">
+                                                <div className="wrapper-input">
+                                                    <label className="change-color">¿Tienes hijos?</label>
+                                                    <div className="contenedor-buttons" large="small">
+                                                        <BotonInput type="filled">
+                                                            Si
+                                                        </BotonInput>
+                                                        <BotonInput type="outlined" large="small">
+                                                            No
+                                                        </BotonInput>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div className="w-45p">
+                                            <div className="w-28r">
                                                 <div className="wrapper-input">
                                                     <label className="change-color">¿Eres primeriza?</label>
                                                     <div className="contenedor-buttons">
-                                                        <BotonInput type="outlined">
+                                                        <BotonInput type="outlined" large="small">
                                                             No
                                                         </BotonInput>
-                                                        <BotonInput type="filled">
+                                                        <BotonInput type="filled" large="small">
                                                             Si
                                                         </BotonInput>
                                                     </div>
@@ -208,7 +212,7 @@ const index = () => {
                                 </div>
                                 <div className="container-save">
                                     <div className="btn-save">
-                                        <CustomButton >
+                                        <CustomButton type="confirm">
                                             Guardar
                                         </CustomButton>
                                     </div>
@@ -303,7 +307,6 @@ const index = () => {
                         padding:2rem 0.5rem 0 0.5rem;
                     }
                     .wrapper-input{
-                        position:relative;
                         display:flex;
                         flex-direction:column;
                         margin-bottom:2.5rem;
@@ -407,6 +410,7 @@ const index = () => {
                     .opacity{
                         opacity:0.5;
                     }
+                    
 
                     @media (min-width:480px ) and (max-width:767px){
                         .container-contenido{
@@ -437,10 +441,6 @@ const index = () => {
                             margin-left:0;
                             margin-right:0;
                         }
-                        {/* .flex-desktop{
-                            display:flex;
-                            justify-content:space-between;
-                        } */}
                         .flex-left{
                             flex-basis:20%;
                         }
@@ -449,7 +449,7 @@ const index = () => {
                             flex-basis:70%;
                         }
                         .wrapper-input input{
-                            width:70%;
+                            width:35rem;
                             background: #FFFFFF;
                             border: 1px solid #556EA1;
                             box-sizing: border-box;
@@ -461,22 +461,30 @@ const index = () => {
                         .contenedor-buttons{
                             justify-content:flex-start;
                         }
-
-                        .wrapper-date .select-input{
-                            flex-basis:calc( 33.3% - 1rem);
+                        .wrapper-date{
+                            justify-content:flex-start;
                         }
+                        .wrapper-date .select-input{
+                            max-width:15rem;
+                            margin-right:1rem;
+                        }
+    
                         .change-color{
                             font-family:"mont-regular"!important;
                             opacity:1!important;
                             color:#5A5A5A!important;
                         }
                         :global(.code-picker){
-                            width:70%!important;
+                            width:35rem!important;
+                        }
+                        .container-save{
+                            display:flex;
+                            justify-content:center;
                         }
                         .btn-save,.btn-cancel{
                             margin-bottom:1rem;
-                            padding:0 15rem;
                         }
+                       
                     }
 
                     @media (min-width:1024px){
@@ -487,6 +495,20 @@ const index = () => {
                         .flex-right{
                             flex-basis:60%;
                         }
+                        .flex-desktop{
+                            display:flex;
+                            flex-wrap:wrap;
+                            justify-content:space-between;
+                        }
+                        .wrapper-input input, .w-28r{
+                            width:28rem;
+                        }
+                        .container-save{
+                            width:95%;
+                            flex-direction:row-reverse;
+                            justify-content:flex-start;
+                        }
+
                     }
                     @media (min-width:1280px){
                         .contenedor-flex{
@@ -495,6 +517,16 @@ const index = () => {
                         .flex-right{
                             flex-basis:60%;
                         }
+                        .wrapper-checkbox label{
+                            font-size:1.3rem;
+                        }
+                        .wrapper-input input{
+                            font-size:1.6rem;
+                        }
+                        .wrapper-date .select-input{
+                            max-width:14rem;
+                        }
+                       
                     }
                 `}
             </style>

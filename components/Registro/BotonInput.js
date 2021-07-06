@@ -1,11 +1,11 @@
 
 
-function BotonInput({children , type }) {
+function BotonInput({children , type , width }) {
     //type -> filled - outlined
 
     return (
         <>
-            <div className={`boton ${type}`}>
+            <div className={`boton ${type} ${width ? width : ""}`}>
                 <p>
                     {children}
                 </p>
@@ -17,8 +17,12 @@ function BotonInput({children , type }) {
                         border-radius: 10px;
                         letter-spacing: 0.222222px;
                         text-align:center;
-                        flex-basis:calc( 50% - 1rem);
+                        width:calc( 50% - 1rem);
                         padding:0.5rem 0;
+                        transition:0.3s ease-in-out;
+                    }
+                    .boton:hover{
+                        transform: scale(1.05);
                     }
                     p{
                         font-family:"omnes-regular"!important;
@@ -40,7 +44,7 @@ function BotonInput({children , type }) {
                             border-radius:15px;
                             padding:1.6rem;
                             font-size:1.3rem;
-                            flex-basis:8rem;
+                            width:8rem;
                             margin-right:1rem;
                             border-radius:2rem;
                         }
@@ -51,9 +55,14 @@ function BotonInput({children , type }) {
                     }
                     @media(min-width:1024px){
                         .boton{
+                            width:
                             padding:1.8rem;
                             font-size:2rem;
                         }
+                        .small{
+                            width:8rem;
+                        }
+                        
                     }
                 `}
             </style>
