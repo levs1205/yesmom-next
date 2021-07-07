@@ -7,6 +7,7 @@ import TitlePerfil from '../../../components/Perfil/TitlePerfil'
 import Description from '../../../components/Perfil/Description'
 import Sidebar from '../../../components/Perfil/Sidebar'
 import Pagination from '../../../components/Pagination'
+import AccordionCompras from '../../../components/Perfil/compras/AccordionCompras'
 
 
 const index = () => {
@@ -68,16 +69,24 @@ const index = () => {
                         <div className="contenedor-flex">
                             <div className="flex-left">
                                 <TitlePerfil name="Lucia" email="lucia@henribarrett.com" />
-                                <Sidebar active="compras" />
+                                <Sidebar active="miscompras" />
                             </div>
                             <div className="flex-right">
                                 <Description path="Mis compras" description="Aquí podrás encontrar todas tus compras y sus estados" /> 
                                 <div className="container-select">
-                                    SELECT
+                                    <select>
+                                        <option value="">Ordenar por </option>
+                                        <option value="">Precio de mayor a menor </option>
+                                        <option value="">Precio de menor a mayor </option>
+                                        <option value="">A-Z (alfabéticamente) </option>
+                                        <option value="">Z-A (alfabéticamente) </option>
+                                        <option value="">Últimos 30 días </option>
+                                        <option value="">Últimos 6 meses </option>
+                                    </select>
                                 </div>
 
                                  <div className="container-accordion">
-                                    ACORDION
+                                    <AccordionCompras />
                                  </div>
                                  <div className="box-pagination">
                                     <Pagination />
@@ -140,6 +149,31 @@ const index = () => {
                         font-size:1.3rem;
                         margin-top:0.5rem;
                     }
+
+                    select{
+                        cursor:pointer;
+                        border: 1px solid #556EA1;
+                        box-sizing: border-box;
+                        border-radius: 15px;
+                        outline:none;
+                        font-family:"mont-regular"!important;
+                        font-size:1.3rem;
+                        color:#556EA1;
+                        padding:1rem 4rem 1rem 1rem;
+                        margin:2rem 1rem 0 0;
+                        /** */
+                        background: url("https://i.ibb.co/7WKxh8s/image.png") no-repeat right #ffffff;
+                        background-size:1.25rem;
+                        -webkit-appearance: none;
+                        -moz-appearance:none;
+                        appearance:none;
+                        background-position-x: 92.5%;
+                        width:15rem;
+                    }
+                    .container-accordion{
+                        margin:3rem 0 5rem 0;
+                        padding: 0 1rem;
+                    }
                     .box-pagination{
                         display:flex;
                         align-items:center;
@@ -190,7 +224,10 @@ const index = () => {
                             align-items:center;
                             justify-content:flex-start; 
                         }
-                   
+                        .container-select{
+                            display:flex;
+                            justify-content:flex-end;
+                        }
                     }
                     @media (min-width:1024px){
                         .contenedor-flex{
@@ -198,7 +235,7 @@ const index = () => {
                             padding:0 3rem;
                         }
                         .flex-right{
-                            flex-basis:60%;
+                            flex-basis:80%;
                         }
 
                     }
@@ -211,7 +248,7 @@ const index = () => {
                             padding:0 6rem;
                         }
                         .flex-right{
-                            flex-basis:60%;
+                            flex-basis:87.5%;
                         }
                     }
                 `}
