@@ -160,18 +160,22 @@ const Footer = () => {
             .footer {
               padding: 2.5rem 0;
             }
+            .footer a{
+              font-size:1.8rem;
+            }
             .footer .padding-left {
               padding-left: 0rem;
             }
             .title-footer {
               margin-bottom: 1rem;
               margin-top: 1rem;
-              font-size: 0.8rem;
+              font-size: 2.3rem;
             }
             .footer .padding-left p {
               margin-bottom: 0.2rem;
-              font-size: 0.7rem;
+              font-size: 1.8rem;
             }
+            
           }
 
           @media (max-width: 769px) {
@@ -186,7 +190,7 @@ const Footer = () => {
             .footer a {
               color: #fff;
               text-decoration: none;
-              font-size:.8rem
+              font-size:1.5rem
             }
 
             .footer a:hover {
@@ -197,7 +201,7 @@ const Footer = () => {
             .title-footer {
               margin-bottom: 0.5rem;
               margin-top: 1rem;
-              font-size: 0.9rem;
+              font-size: 2rem;
             }
 
             .icon-redes {
@@ -212,13 +216,14 @@ const Footer = () => {
             }
             .footer .padding-left p {
               margin-bottom: 0.4rem;
-              font-size: 0.8rem;
+              font-size: 1.5rem;
             }
           }
           @media (min-width: 576px) and (max-width: 769px) {
             .icon-redes {
               font-size: 1rem;
             }
+            /* 
             .footer .padding-left p {
               font-size: 0.65rem;
             }
@@ -227,7 +232,7 @@ const Footer = () => {
             }
             .footer a {
               font-size: 0.65rem;
-            }
+            } */
           }
         `}
       </style>
