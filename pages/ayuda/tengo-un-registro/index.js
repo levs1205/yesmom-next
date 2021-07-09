@@ -55,7 +55,7 @@ const Ayuda = () => {
                     <div className="all-content">
                         <div className="contenedor">
                             <div className="sidebar show-desktop">
-                                <SidebarAyuda />
+                                <SidebarAyuda active="registro"/>
                             </div>
                             <div className="container-ayuda">
                                 <h4 className="text-title-ayuda">Tengo un registro</h4>
@@ -68,12 +68,12 @@ const Ayuda = () => {
                                             <Col sm={6}>
                                                 <ul>
                                                     <li>
-                                                        <Link href=""><p>¿Cómo empiezo a crear mi registro?</p></Link>
+                                                        <Link href="/ayuda/tengo-un-registro/construyendo-registro/creacion-registro"><p>¿Cómo empiezo a crear mi registro?</p></Link>
                                                     </li>
                                                 </ul>
                                                 <ul>
                                                     <li>
-                                                        <Link href=""><p>¿Cuánto tiempo permanecerá activo mi registro?</p></Link>
+                                                        <Link href="/"><p>¿Cuánto tiempo permanecerá activo mi registro?</p></Link>
                                                     </li>
                                                 </ul>
                                                 <ul>

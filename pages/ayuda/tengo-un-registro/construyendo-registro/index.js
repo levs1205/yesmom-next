@@ -2,8 +2,8 @@ import Head from "next/head";
 import Link from "next/link";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import AppLayout from "../../../components/AppLayout";
-import SidebarAyuda from "../../../components/Ayuda/SidebarAyuda";
+import AppLayout from "../../../../components/AppLayout";
+import SidebarAyuda from "../../../../components/Ayuda/SidebarAyuda";
 
 const Ayuda = () => {
     return (
@@ -55,7 +55,7 @@ const Ayuda = () => {
                     <div className="all-content">
                         <div className="contenedor">
                             <div className="sidebar show-desktop">
-                                <SidebarAyuda />
+                                <SidebarAyuda active="registro"/>
                             </div>
                             <div className="container-ayuda">
                                 <h4 className="text-title-ayuda">Construyendo su registro</h4>
@@ -63,7 +63,7 @@ const Ayuda = () => {
                                 <div className="">
                                     <div className="box-group-ayuda">
                                         <div className="container-item-ayuda">
-                                            <p className="title-item-ayuda">¿Cómo empiezo a crear mi registro?</p>
+                                            <Link href="/ayuda/tengo-un-registro/construyendo-registro/creacion-registro"><p className="title-item-ayuda">¿Cómo empiezo a crear mi registro?</p></Link>
                                             <p className="text-item-ayuda">Si está usando una computadora: Haga clic aquí para agregar el botón Babylist. Deberá hacer clic y ...</p>
                                         </div>
                                         <div className="container-item-ayuda">
