@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import SearchBlog from "./Search/SearchBlog";
 import MenuTienda from "./MenuTienda/MenuTienda";
 import PopupCart from "./Popup/PopupCart/PopupCart"
+import DropMenuMobile from "./DropMenuMobile";
 
 const HeaderNuevo = () => {
   const [active, setActive] = useState(false);
@@ -38,9 +39,9 @@ const HeaderNuevo = () => {
             </a>
           </Link>
           <div
-            className={`${
+            className={`box-items-menu ${
               active ? "" : "box-items-menu-desktop"
-            } box-items-menu`}
+            }`}
           >
             <div className="box-items-menu-responsive">
               <ActiveLink href="/blog" activeClassName="active">
@@ -107,8 +108,9 @@ const HeaderNuevo = () => {
           {/* <SearchBlog/> */}
         </nav>
         <MenuTienda />
+        
       </div>
-
+      <DropMenuMobile active={active} setActive={handleClick}/>
       <style jsx>
         {`
         .hover-active{
@@ -206,6 +208,11 @@ const HeaderNuevo = () => {
             display: block;
           }
 
+          @media (min-width:993px){
+            .box-items-menu{
+              display:block;
+            }
+          }
           @media (max-width: 992px) {
             .burger-yesmom {
               display: block;
@@ -228,9 +235,13 @@ const HeaderNuevo = () => {
               margin: 0.5rem 1rem;
               flex-direction: row;
             }
-            .box-items-menu-desktop {
+            .box-items-menu-desktop{
               display: none;
             }
+            .box-items-menu{
+              display:none!important;
+            }
+            
             .text-navbar {
               margin: 0;
               margin-left: 0.5rem;
