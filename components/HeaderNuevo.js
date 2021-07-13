@@ -85,7 +85,7 @@ const HeaderNuevo = () => {
                     width={22}
                     height={22}
                   />
-                  <h6 className="text-navbar">Login</h6>
+                  <h6 className="text-navbar">Iniciar sesión</h6>
                 </a>
               </ActiveLink>
               <ActiveLink href="/construccion" activeClassName="active">
