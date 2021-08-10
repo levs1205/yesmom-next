@@ -18,8 +18,13 @@ const SearchStore = () => {
             margin-top: 0rem;
             margin-bottom: 0rem;
           }
+          .box-search-tienda input::placeholder , .box-search-tienda input{
+            font-size:1.3rem;
+            font-family:"mont-regular"!important;
+          }
           .box-search-tienda input {
             width: 70%;
+            height:3rem;
             margin: auto;
             border: none;
             padding: 0.2rem;

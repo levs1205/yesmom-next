@@ -1,7 +1,7 @@
 import Link from "next/link";
 import ActiveLink from "../components/ActiveLink";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import SearchBlog from "./Search/SearchBlog";
 import MenuTienda from "./MenuTienda/MenuTienda";
@@ -10,11 +10,39 @@ import DropMenuMobile from "./DropMenuMobile";
 
 const HeaderNuevo = () => {
   const [active, setActive] = useState(false);
-  const router = useRouter();
+
+  const [onlyStore , setOnlyStore] = useState(false);
+  const [onlyBlog , setOnlyBlog] = useState(false);
+
+
+  const { pathname } = useRouter();
+
+  
+
   const handleClick = () => {
     console.log("click", active);
     setActive(!active);
   };
+
+  const validateSeekerStore = () => {
+    if(pathname==="/tienda") {
+      setOnlyStore(true);
+    }else{
+      setOnlyStore(false);
+    }
+  }
+  const validateSeekerBlog = () => {
+    if(pathname==="/blog") {
+      setOnlyBlog(true);
+    }else{
+      setOnlyBlog(false);
+    }
+  }
+  useEffect(()=>{
+    validateSeekerStore();
+    validateSeekerBlog();
+  },[])
+
   return (
     <div className="box-yesmom">
       <div className="box-nav">
@@ -105,9 +133,9 @@ const HeaderNuevo = () => {
 
             </div>
           </div>
-          {/* <SearchBlog/> */}
         </nav>
-        <MenuTienda />
+        {onlyBlog && <SearchBlog/> }
+        {onlyStore && <MenuTienda /> }
         
       </div>
       <DropMenuMobile active={active} setActive={handleClick}/>

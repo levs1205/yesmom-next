@@ -4,44 +4,48 @@ import Image from "next/image";
 const SearchBlog = () => {
   return (
     <div className="box-yesmom">
-      <div className="search-Blog">
-        <span className="box-search">
-          {/* <Image
-            src="/image/header/lupa.svg"
-            alt="burger yesmom"
-            width={28}
-            height={28}
-          /> */}
-          <input
-            type="text"
-            placeholder="¿Qué es lo que buscas?"
-            id="search"
-            name="search"
-          />
-        </span>
+      <div className="box-menu-tienda">
+            <div className="box-search-tienda">
+            <input
+              type="text"
+              placeholder="¿Qué es lo que buscas?"
+              id="search"
+              name="search"
+            />
+          </div>
       </div>
       <style jsx>
-        {`
-          .search-Blog {
-            background-color: rgba(254, 191, 65, 1);
-            padding-bottom: 1rem;
-            padding-top: 6.5rem;
-            position: fixed;
-            width: 100%;
-            z-index: 99;
+      {`
+          .box-menu-tienda{
+            background: #FEBF41;
+            padding:1.5rem;
           }
-          .box-search {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
+          .box-search-tienda {
+            text-align: center;
+            margin-top: 0rem;
+            margin-bottom: 0rem;
           }
-          input#search {
+          .box-search-tienda input::placeholder , .box-search-tienda input{
+            font-size:1.3rem;
+            font-family:"mont-regular"!important;
+          }
+          .box-search-tienda input {
+            width: 70%;
+            height:3rem;
+            margin: auto;
+            border: none;
+            padding: 0.2rem;
+            border-radius: 1rem;
+          }
+          .box-search-tienda input:focus-visible {
+            outline-color: #dc6a8d;
+          }
 
-            background-size: contain;
-            background-repeat: no-repeat;
-            text-indent: 20px;
+          @media (max-width: 768px) {
+            .box-search-tienda input {
+              width: 100%;
           }
+        }
         `}
       </style>
     </div>
