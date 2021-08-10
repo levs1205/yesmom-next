@@ -10,14 +10,12 @@ import DropMenuMobile from "./DropMenuMobile";
 
 const HeaderNuevo = () => {
   const [active, setActive] = useState(false);
+  const [isVisibleSubMenu, setIsVisibleSubMenu] = useState(false);
 
-  const [onlyStore , setOnlyStore] = useState(false);
-  const [onlyBlog , setOnlyBlog] = useState(false);
-
+  const [onlyStore, setOnlyStore] = useState(false);
+  const [onlyBlog, setOnlyBlog] = useState(false);
 
   const { pathname } = useRouter();
-
-  
 
   const handleClick = () => {
     console.log("click", active);
@@ -25,23 +23,23 @@ const HeaderNuevo = () => {
   };
 
   const validateSeekerStore = () => {
-    if(pathname==="/tienda") {
+    if (pathname === "/tienda") {
       setOnlyStore(true);
-    }else{
+    } else {
       setOnlyStore(false);
     }
   }
   const validateSeekerBlog = () => {
-    if(pathname.includes("/blog")) {
+    if (pathname.includes("/blog")) {
       setOnlyBlog(true);
-    }else{
+    } else {
       setOnlyBlog(false);
     }
   }
-  useEffect(()=>{
+  useEffect(() => {
     validateSeekerStore();
     validateSeekerBlog();
-  },[])
+  }, [])
 
   return (
     <div className="box-yesmom">
@@ -53,7 +51,7 @@ const HeaderNuevo = () => {
               alt="burger yesmom"
               width={40}
               height={40}
-              // layout="intrinsic"
+            // layout="intrinsic"
             />
           </div>
           <Link href="/" prefetch>
@@ -67,83 +65,93 @@ const HeaderNuevo = () => {
             </a>
           </Link>
           <div
-            className={`box-items-menu ${
-              active ? "" : "box-items-menu-desktop"
-            }`}
+            className={`box-items-menu ${active ? "" : "box-items-menu-desktop"
+              }`}
           >
             <div className="box-items-menu-responsive">
               <ActiveLink href="/blog" activeClassName="active">
-                <a className="item-menu-yesmom">
-                  <Image
-                    src="/image/header/blog.svg"
-                    alt="logo blog yesmom "
-                    width={22}
-                    height={22}
-                  />
-                  <h6 className="text-navbar">Blog</h6>
-                </a>
+                <div onClick={() => isVisibleSubMenu === true && setIsVisibleSubMenu(false)}>
+                  <a className="item-menu-yesmom">
+                    <Image
+                      src="/image/header/blog.svg"
+                      alt="logo blog yesmom "
+                      width={22}
+                      height={22}
+                    />
+                    <h6 className="text-navbar">Blog</h6>
+                  </a>
+                </div>
               </ActiveLink>
               <ActiveLink href="/tienda" activeClassName="active">
-                <a className="item-menu-yesmom">
-                  <Image
-                    src="/image/header/tienda.svg"
-                    alt="logo tienda yesmom "
-                    width={23}
-                    height={23}
-                  />
-                  <h6 className="text-navbar">Tienda</h6>
-                </a>
+                <div onClick={() => isVisibleSubMenu === true && setIsVisibleSubMenu(false)}>
+                  <a className="item-menu-yesmom">
+                    <Image
+                      src="/image/header/tienda.svg"
+                      alt="logo tienda yesmom "
+                      width={23}
+                      height={23}
+                    />
+                    <h6 className="text-navbar">Tienda</h6>
+                  </a>
+                </div>
               </ActiveLink>
               <ActiveLink href="/construccion" activeClassName="active">
-                <a className="item-menu-yesmom">
-                  <Image
-                    src="/image/header/regalo.svg"
-                    alt="logo regalo yesmom "
-                    width={22}
-                    height={22}
-                  />
-                  <h6 className="text-navbar">Regalos</h6>
-                </a>
+                <div onClick={() => isVisibleSubMenu === true && setIsVisibleSubMenu(false)}>
+                  <a className="item-menu-yesmom">
+                    <Image
+                      src="/image/header/regalo.svg"
+                      alt="logo regalo yesmom "
+                      width={22}
+                      height={22}
+                    />
+                    <h6 className="text-navbar">Regalos</h6>
+                  </a>
+                </div>
               </ActiveLink>
               <ActiveLink href="/construccion" activeClassName="active">
-                <a className="item-menu-yesmom">
-                  <Image
-                    src="/image/header/iniciar-sesion.svg"
-                    alt="logo blog yesmom "
-                    width={22}
-                    height={22}
-                  />
-                  <h6 className="text-navbar">Iniciar sesión</h6>
-                </a>
+                <div onClick={() => isVisibleSubMenu === true && setIsVisibleSubMenu(false)}>
+                  <a className="item-menu-yesmom">
+                    <Image
+                      src="/image/header/iniciar-sesion.svg"
+                      alt="logo blog yesmom "
+                      width={22}
+                      height={22}
+                    />
+                    <h6 className="text-navbar">Iniciar sesión</h6>
+                  </a>
+                </div>
               </ActiveLink>
               <ActiveLink href="/construccion" activeClassName="active">
-                <a className="item-menu-yesmom-cart">
-                  <Image
-                    src="/image/header/cesta.svg"
-                    alt="logo blog yesmom "
-                    width={22}
-                    height={22}
-                  />
-                  <h6 className="text-navbar">Carrito</h6>
-                  <div className="hover-active">
-                    <PopupCart />
-                  </div>
-                </a>
-              </ActiveLink>
+                <div onClick={() => setIsVisibleSubMenu(!isVisibleSubMenu)}>
+                  <a className="item-menu-yesmom-cart">
+                    <Image
+                      src="/image/header/cesta.svg"
+                      alt="logo blog yesmom "
+                      width={22}
+                      height={22}
 
+                    />
+                    <h6 className="text-navbar">Carrito</h6>
+
+                  </a>
+                </div>
+              </ActiveLink>
             </div>
           </div>
         </nav>
-        {onlyBlog && <SearchBlog/> }
-        {onlyStore && <MenuTienda /> }
-        
+        <div>
+          {isVisibleSubMenu && <PopupCart />}
+        </div>
+        {onlyBlog && <SearchBlog />}
+        {onlyStore && <MenuTienda />}
+
       </div>
-      <DropMenuMobile active={active} setActive={handleClick}/>
+      <DropMenuMobile active={active} setActive={handleClick} />
       <style jsx>
         {`
-        .hover-active{
-          visibility:hidden
-        }
+          .hover-active{
+            visibility:hidden
+          }
           .active .text-navbar {
             color: #ec608d !important;
             text-decoration: none !important;
