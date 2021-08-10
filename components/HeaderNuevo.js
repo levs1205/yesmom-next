@@ -32,7 +32,7 @@ const HeaderNuevo = () => {
     }
   }
   const validateSeekerBlog = () => {
-    if(pathname==="/blog") {
+    if(pathname.includes("/blog")) {
       setOnlyBlog(true);
     }else{
       setOnlyBlog(false);
