@@ -23,7 +23,7 @@ const HeaderNuevo = () => {
   };
 
   const validateSeekerStore = () => {
-    if (pathname === "/tienda") {
+    if (pathname.includes("/tienda")) {
       setOnlyStore(true);
     } else {
       setOnlyStore(false);

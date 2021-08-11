@@ -131,9 +131,15 @@ const Footer = () => {
 
           .footer a {
             color: #fff;
+            font-size:1.5rem;
             text-decoration: none;
           }
-
+          .title-footer{
+            font-size:2rem;
+          }
+          .footer .padding-left p {
+            font-size:1.5rem;
+          }
           .footer a:hover {
             color: #ec608d;
             text-decoration: none;
@@ -145,7 +151,7 @@ const Footer = () => {
           }
 
           .icon-redes {
-            font-size: 1.5rem;
+            font-size: 2rem!important;
             margin-right: 0.7rem;
             margin-left: 0.7rem;
           }

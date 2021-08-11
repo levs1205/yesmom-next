@@ -48,24 +48,27 @@ console.log('APIBlog',currentData);
          
 
           <div className="box-banner-blog">
-            <div className="ondas heartbeat">
-              <Image
-                src="/image/onda-blanca.svg"
-                alt="ondas"
-                width={70}
-                height={20}
-              />
-            </div>
-            <h4 className="text-title-blog">Blog</h4>
-            <div className="ondas heartbeat">
-              <Image
-                src="/image/onda-blanca.svg"
-                alt="ondas"
-                width={70}
-                height={20}
-              />
+            <div className="container-content-center">
+              <div className="ondas heartbeat">
+                <Image
+                  src="/image/onda-blanca.svg"
+                  alt="ondas"
+                  width={70}
+                  height={20}
+                />
+              </div>
+              <h4 className="text-title-blog">Blog</h4>
+              <div className="ondas heartbeat">
+                <Image
+                  src="/image/onda-blanca.svg"
+                  alt="ondas"
+                  width={70}
+                  height={20}
+                />
+              </div>
             </div>
           </div>
+
           <div className="box-blog-general">
             <h4 className="subtitle-dark-blog">
               En este espacio compartiremos algunos tips que te servirán para
@@ -99,7 +102,12 @@ console.log('APIBlog',currentData);
         </div>
         <style jsx>
           {`
-         
+            .container-content-centered{
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
             .box-banner-blog {
               height: 25rem;
               background: url(../../image/blog/blog.png) no-repeat center;
@@ -107,9 +115,18 @@ console.log('APIBlog',currentData);
               display: flex;
               justify-content: center;
               align-items: center;
-              padding-top: 5rem;
+              margin-top:10rem;
             }
-
+            .container-content-center{
+              display : flex;
+              align-items :center;
+            }
+            .container-content-center h4{
+              font-size:3rem;
+            }
+            .container-content-center div{
+              width:5rem;
+            }
             .text-title-blog {
               font-family: "Clicker Script", cursive;
               font-size: 2.5rem;
@@ -312,6 +329,9 @@ console.log('APIBlog',currentData);
             }
 
             @media (max-width: 768px) {
+              .subtitle-dark-blog {
+                font-size:1.5rem;
+              }
               .box-blog-especifico {
                 padding: 1rem 1.5rem 3rem;
                 display: flex;
@@ -362,7 +382,9 @@ console.log('APIBlog',currentData);
                 right: 1%;
               }
               .box-banner-blog {
-                height: 12rem;
+                margin-top:10rem;
+                padding-top:0;
+                height: 25rem;
               }
 
               .text-title-blog {
@@ -371,9 +393,6 @@ console.log('APIBlog',currentData);
               }
               .ondas {
                 width: 3rem;
-              }
-              .box-banner-blog {
-                height: 12rem;
               }
               .text-title-blog {
                 font-family: "Clicker Script", cursive;
@@ -422,6 +441,9 @@ console.log('APIBlog',currentData);
             }
 
             @media (max-width: 420px) {
+              .subtitle-dark-blog{
+                font-size:1.3rem;
+              }
               .nube1 {
                 position: absolute;
                 top: 100%;

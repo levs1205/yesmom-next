@@ -141,7 +141,9 @@ const Home = ({ currentData }) => {
               <p className="link-a text-center text-iniciar-sesion">
                 ¿Ya registrado?
                 <span className="hover-efect-letter">
-                  <b> Inicia sesión</b>
+                  <Link href="/login" >
+                    <b> Inicia sesión</b>
+                  </Link>
                 </span>
               </p>
             </div>
@@ -176,8 +178,8 @@ const Home = ({ currentData }) => {
                   </h6>
 
                   <Link href="/construccion">
-                    <div className="btn-yellow  hover-amarillo mb-5">
-                      <a> ¡Comenzar! </a>
+                    <div className="btn-yellow hover-amarillo mb-5">
+                      <a className="text-change-font"> ¡Comenzar! </a>
                     </div>
                   </Link>
 
@@ -485,6 +487,19 @@ const Home = ({ currentData }) => {
       </div>
       <style jsx>
         {`
+          :global(.card-blog){
+              width:30rem!important;
+            }
+          .text-change-font{
+            font-family:"omnes-bold"!important;
+            font-size:1.6rem;
+          }
+          .text-omnes{
+            width:17.5rem;
+          }
+          .text-omnes a {
+            font-size:2rem;
+          }
 
           .all-products{
               width : 75%;
@@ -655,7 +670,7 @@ const Home = ({ currentData }) => {
           }
 
           .img-lo-mejor {
-            border: 1px #575756;
+            border: 2px #575756;
             border-style: dashed;
             padding: 0.6rem;
             margin: auto;
@@ -682,7 +697,7 @@ const Home = ({ currentData }) => {
           .btn-lo-mejor {
             padding: 1.5rem;
             text-align: center;
-            font-family: "omnes-regular";
+            font-family: "omnes-bold";
             font-weight: 1000;
             font-size: 1.3rem;
             width: 13rem;
@@ -702,6 +717,7 @@ const Home = ({ currentData }) => {
 
           .btn-lo-mejor a {
             color: #fff !important;
+            font-size:1.7rem;
           }
           .section-blog-home {
             padding: 6rem 0;
@@ -814,7 +830,7 @@ const Home = ({ currentData }) => {
               justify-content: center !important;
             }
             .box-banner {
-              height: 40rem;
+              height: 100vh;
               width: auto;
             }
 
@@ -1077,9 +1093,12 @@ const Home = ({ currentData }) => {
               border-radius: 20px;
             }
             .btn-lo-mejor a{
+              font-family:"omnes-regular"!important;
               font-size:1.8rem;
             }
-
+            .text-change-font {
+              font-family:"omnes-regular"!important;
+            }
             .box-img-blog-home {
               padding: 1rem;
             }
