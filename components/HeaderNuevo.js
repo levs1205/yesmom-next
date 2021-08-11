@@ -70,59 +70,51 @@ const HeaderNuevo = () => {
           >
             <div className="box-items-menu-responsive">
               <ActiveLink href="/blog" activeClassName="active">
-                <div onClick={() => isVisibleSubMenu === true && setIsVisibleSubMenu(false)}>
-                  <a className="item-menu-yesmom">
-                    <Image
-                      src="/image/header/blog.svg"
-                      alt="logo blog yesmom "
-                      width={22}
-                      height={22}
-                    />
-                    <h6 className="text-navbar">Blog</h6>
-                  </a>
-                </div>
+                <a className="item-menu-yesmom">
+                  <Image
+                    src="/image/header/blog.svg"
+                    alt="logo blog yesmom "
+                    width={22}
+                    height={22}
+                  />
+                  <h6 className="text-navbar">Blog</h6>
+                </a>
               </ActiveLink>
               <ActiveLink href="/tienda" activeClassName="active">
-                <div onClick={() => isVisibleSubMenu === true && setIsVisibleSubMenu(false)}>
-                  <a className="item-menu-yesmom">
-                    <Image
-                      src="/image/header/tienda.svg"
-                      alt="logo tienda yesmom "
-                      width={23}
-                      height={23}
-                    />
-                    <h6 className="text-navbar">Tienda</h6>
-                  </a>
-                </div>
+                <a className="item-menu-yesmom">
+                  <Image
+                    src="/image/header/tienda.svg"
+                    alt="logo tienda yesmom "
+                    width={23}
+                    height={23}
+                  />
+                  <h6 className="text-navbar">Tienda</h6>
+                </a>
               </ActiveLink>
               <ActiveLink href="/construccion" activeClassName="active">
-                <div onClick={() => isVisibleSubMenu === true && setIsVisibleSubMenu(false)}>
-                  <a className="item-menu-yesmom">
-                    <Image
-                      src="/image/header/regalo.svg"
-                      alt="logo regalo yesmom "
-                      width={22}
-                      height={22}
-                    />
-                    <h6 className="text-navbar">Regalos</h6>
-                  </a>
-                </div>
+                <a className="item-menu-yesmom">
+                  <Image
+                    src="/image/header/regalo.svg"
+                    alt="logo regalo yesmom "
+                    width={22}
+                    height={22}
+                  />
+                  <h6 className="text-navbar">Regalos</h6>
+                </a>
               </ActiveLink>
               <ActiveLink href="/construccion" activeClassName="active">
-                <div onClick={() => isVisibleSubMenu === true && setIsVisibleSubMenu(false)}>
-                  <a className="item-menu-yesmom">
-                    <Image
-                      src="/image/header/iniciar-sesion.svg"
-                      alt="logo blog yesmom "
-                      width={22}
-                      height={22}
-                    />
-                    <h6 className="text-navbar">Iniciar sesión</h6>
-                  </a>
-                </div>
+                <a className="item-menu-yesmom">
+                  <Image
+                    src="/image/header/iniciar-sesion.svg"
+                    alt="logo blog yesmom "
+                    width={22}
+                    height={22}
+                  />
+                  <h6 className="text-navbar">Iniciar sesión</h6>
+                </a>
               </ActiveLink>
               <ActiveLink href="/construccion" activeClassName="active">
-                <div onClick={() => setIsVisibleSubMenu(!isVisibleSubMenu)}>
+                <div className="container-cart-submenu">
                   <a className="item-menu-yesmom-cart">
                     <Image
                       src="/image/header/cesta.svg"
@@ -134,14 +126,16 @@ const HeaderNuevo = () => {
                     <h6 className="text-navbar">Carrito</h6>
 
                   </a>
+                  <div className="dropdown-content">
+                    <PopupCart />
+                    {/* {isVisibleSubMenu && <PopupCart />} */}
+                  </div>
                 </div>
               </ActiveLink>
             </div>
           </div>
         </nav>
-        <div>
-          {isVisibleSubMenu && <PopupCart />}
-        </div>
+
         {onlyBlog && <SearchBlog />}
         {onlyStore && <MenuTienda />}
 
@@ -149,6 +143,20 @@ const HeaderNuevo = () => {
       <DropMenuMobile active={active} setActive={handleClick} />
       <style jsx>
         {`
+          .container-cart-submenu{
+            position: relative;
+            display: inline-block;
+            
+          }
+          .dropdown-content {
+            display: none;
+            position: absolute;
+            
+            z-index: 1;
+            right:0;
+            top: 20;
+          }
+          .container-cart-submenu:hover .dropdown-content {display: block;}
           .hover-active{
             visibility:hidden
           }
@@ -185,6 +193,7 @@ const HeaderNuevo = () => {
             margin: 0rem 0.5rem;
             color: #616160;
             justify-content: flex-start;
+            cursor:pointer;
           }
            .item-menu-yesmom-cart {
             display: flex;
@@ -194,6 +203,7 @@ const HeaderNuevo = () => {
             margin: 0rem 0.5rem;
             color: #616160;
             justify-content: flex-start;
+            cursor:pointer;
           }
 
           .logo-yesmom:hover {
