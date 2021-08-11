@@ -99,9 +99,9 @@ function CardProduct({discount,size}) {
                         .card-container{
                             flex-basis:calc( 33.3% - 1rem);
                         }
-                        .size-4{
+                        {/* .size-4{
                             flex-basis:calc( 50% - 1rem);
-                        }
+                        } */}
                     }
                     @media (min-width:1024px){
                         .size-4{
