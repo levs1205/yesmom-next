@@ -34,11 +34,11 @@ const Home = ({ currentData }) => {
   //       console.log(e, "error");
   //     });
   // };
-  const [respuesta, setRespuesta] = useState([]);
+  /* const [respuesta, setRespuesta] = useState([]);
   useEffect(async () => {
     const consulta = await axios("https://fakestoreapi.com/products");
     setRespuesta(consulta.data);
-  }, []);
+  }, []); */
 
   return (
     <AppLayout>
@@ -369,9 +369,22 @@ const Home = ({ currentData }) => {
                   className="card-deck-h"
                   style={{ justifyContent: "center" }}
                 >
-                  {respuesta.map((cardProduct) => (
-                    <CardProduct product={cardProduct} key={cardProduct.id} />
-                  ))}
+                      <Container>
+                        <Row>
+                          <Col md={3}>
+                            <CardProduct />
+                          </Col>
+                          <Col md={3}>
+                            <CardProduct discount/>
+                          </Col>
+                          <Col md={3}>
+                            <CardProduct discount />
+                          </Col>
+                          <Col md={3}>
+                            <CardProduct />
+                          </Col>
+                        </Row>
+                      </Container>
                 </CardDeck>
               </div>
             </Col>
