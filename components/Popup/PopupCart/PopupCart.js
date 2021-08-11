@@ -6,11 +6,15 @@ const PopupCart = () => {
       <div className="box-cart">
         <p className="popup--title">Tu carrito - 4 productos</p>
         <div className="card--shopping-cart">
-          <div className="card--shopping-cart__iconDelete"></div>
-          <img
-            src="https://i.blogs.es/ee0424/ropa-bebe-rosa/450_1000.jpeg"
-            alt=""
-          />
+          <div className="container--shopping-card">
+            <div className="card--shopping-cart__image">
+              <div className="card--shopping-cart__iconDelete"></div>
+              <img
+                src="https://i.blogs.es/ee0424/ropa-bebe-rosa/450_1000.jpeg"
+                alt=""
+              />
+            </div>
+          </div>
           <div className="card--shopping-cart__text">
             <p className="card--shopping-cart__title">
               Coche de bebé + funda - blanca{" "}
@@ -19,11 +23,15 @@ const PopupCart = () => {
           </div>
         </div>
         <div className="card--shopping-cart">
-          <div className="card--shopping-cart__iconDelete"></div>
-          <img
-            src="https://i.blogs.es/ee0424/ropa-bebe-rosa/450_1000.jpeg"
-            alt=""
-          />
+          <div className="container--shopping-card">
+            <div className="card--shopping-cart__image">
+              <div className="card--shopping-cart__iconDelete"></div>
+              <img
+                src="https://i.blogs.es/ee0424/ropa-bebe-rosa/450_1000.jpeg"
+                alt=""
+              />
+            </div>
+          </div>
           <div className="card--shopping-cart__text">
             <p className="card--shopping-cart__title">
               Coche de bebé + funda - blanca{" "}
@@ -32,11 +40,15 @@ const PopupCart = () => {
           </div>
         </div>
         <div className="card--shopping-cart">
-          <div className="card--shopping-cart__iconDelete"></div>
-          <img
-            src="https://i.blogs.es/ee0424/ropa-bebe-rosa/450_1000.jpeg"
-            alt=""
-          />
+          <div className="container--shopping-card">
+            <div className="card--shopping-cart__image">
+              <div className="card--shopping-cart__iconDelete"></div>
+              <img
+                src="https://i.blogs.es/ee0424/ropa-bebe-rosa/450_1000.jpeg"
+                alt=""
+              />
+            </div>
+          </div>
           <div className="card--shopping-cart__text">
             <p className="card--shopping-cart__title">
               Coche de bebé + funda - blanca{" "}
@@ -54,17 +66,13 @@ const PopupCart = () => {
       <style jsx>
         {`
           .box-cart {
-            position: absolute;
-            z-index: 10000;
             background: #ffffff;
             box-shadow: 0px 9px 21px rgba(0, 0, 0, 0.15);
             border-radius: 0px 0px 44px 44px;
             height: 800px;
             width: 420px;
-            top: 70px;
-            right: 0px;
+            top: 80px;
             padding: 25px;
-            
             transition: all 0.8s;
           }
           .popup--title {
@@ -81,15 +89,29 @@ const PopupCart = () => {
             display: flex;
             justify-content: center;
             align-content: center;
+            align-items: center;
             flex-direction: row;
             padding-bottom: 1rem;
             padding-top: 1rem;
             border-bottom: 1px solid #dadada;
           }
+          .container--shopping-card{
+            width: 165px;
+            height: 150px;
+            display: flex;
+          }
+          .card--shopping-cart__image{
+            position:relative;
+            width: 130px;
+            height: 130px;
+            margin: auto;
+          }
           .card--shopping-cart img {
-            width: 30%;
-            height: auto;
+            width:100%;
+            height: 100%;
             border-radius: 20px;
+            object-fit: cover;
+            object-position: center center;
           }
           .card--shopping-cart__text {
             padding: 0rem 0.5rem;
@@ -171,7 +193,8 @@ const PopupCart = () => {
             background-position: contain;
             height: 20px;
             width: 20px;
-            left: 15px;
+            left: -8px;
+            top: -8px;
           }
         `}
       </style>
