@@ -514,6 +514,7 @@ const Home = ({ currentData }) => {
             height: 100vh;
             width: auto;
             position: relative;
+            overflow:hidden;
           }
 
           .box-banner-btns {
@@ -562,6 +563,7 @@ const Home = ({ currentData }) => {
           }
 
           .btn-regalos {
+            max-width:90%;
             background-color: #febf41;
             font-size: 1.31rem;
             color: #fff !important;
@@ -1154,6 +1156,9 @@ const Home = ({ currentData }) => {
               width: 85%;
               display: block;
               margin: auto;
+            }
+            :global(.card-blog){
+              width:100%!important;
             }
           }
         `}

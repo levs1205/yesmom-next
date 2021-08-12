@@ -1,9 +1,21 @@
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React from 'react'
 import ActiveLink from './ActiveLink'
 
 function DropMenuMobile({active , setActive}) {
 
+
+    const { pathname } = useRouter();
+
+    const linksPush = [
+        { src : "/image/header/nosotros.svg" , to  : "/nosotros" , name :"Nosotros"},
+        { src : "/image/header/blog.svg" , to  : "/blog", name :"Blog" },
+        { src : "/image/header/tienda.svg" , to  : "/tienda", name :"Tienda" },
+        { src : "/image/header/regalo.svg" , to  : "/regalo", name :"Lista" },
+        { src : "/image/header/iniciar-sesion.svg" , to  : "/login" , name :"Iniciar sesión"},
+    ]
     return (
         <>
             <div className={`drop-menu ${active ? "" : "drop-menu-off"}`}>
@@ -25,71 +37,22 @@ function DropMenuMobile({active , setActive}) {
                 <div className="contenedor-items">
                     <div className="container-options">
                         <ul className="list-group list-group-flush">
-                            <li className="list-group-item">
-                                <ActiveLink href="/nosotros" activeClassName="active">
-                                    <a className="item-menu-yesmom">
-                                    <Image
-                                        src="/image/header/nosotros.svg"
-                                        alt="logo nosotros yesmom "
-                                        width={30}
-                                        height={30}
-                                    />
-                                    <h6 className="text-navbar">Nosotros</h6>
-                                    </a>
-                                </ActiveLink>
-                            </li>
-                            <li className="list-group-item">
-                                <ActiveLink href="/blog" activeClassName="active">
-                                    <a className="item-menu-yesmom">
-                                    <Image
-                                        src="/image/header/blog.svg"
-                                        alt="logo blog yesmom "
-                                        width={30}
-                                        height={30}
-                                    />
-                                    <h6 className="text-navbar">Blog</h6>
-                                    </a>
-                                </ActiveLink>
-                            </li>
-                            <li className="list-group-item">
-                                <ActiveLink href="/tienda" activeClassName="active">
-                                    <a className="item-menu-yesmom">
-                                    <Image
-                                        src="/image/header/tienda.svg"
-                                        alt="logo tienda yesmom "
-                                        width={30}
-                                        height={30}
-                                    />
-                                    <h6 className="text-navbar">Tienda</h6>
-                                    </a>
-                                </ActiveLink>
-                            </li>
-                            <li className="list-group-item">
-                                <ActiveLink href="/regalo" activeClassName="active">
-                                    <a className="item-menu-yesmom">
-                                    <Image
-                                        src="/image/header/regalo.svg"
-                                        alt="logo blog yesmom "
-                                        width={30}
-                                        height={30}
-                                    />
-                                    <h6 className="text-navbar">Lista</h6>
-                                    </a>
-                                </ActiveLink>
-                            </li>
-                            <li className="list-group-item">
-                                <ActiveLink href="/iniciar-sesion" activeClassName="active">
-                                    <a className="item-menu-yesmom">
-                                    <Image
-                                        src="/image/header/iniciar-sesion.svg"
-                                        alt="logo blog yesmom "
-                                        width={30}
-                                        height={30}
-                                    />
-                                    <h6 className="text-navbar">Iniciar sesión</h6>
-                                    </a>
-                                </ActiveLink>
-                            </li>
+
+                            {linksPush.map(({src , name , to} , i)=> (
+                                <Link key={i} href={to}>
+                                    <li  className="list-group-item">
+                                        <div>
+                                            <Image
+                                                    src={src}
+                                                    alt={`logo ${name.toLocaleLowerCase()} yesmom`}
+                                                    width={30}
+                                                    height={30}
+                                            />
+                                        </div>
+                                        <h6 className={`text-navbar ${pathname === to ? "active" : ""}`}>{name}</h6>
+                                    </li>
+                                </Link> 
+                            ))} 
                         </ul>
                     </div>
                 </div>
@@ -97,14 +60,21 @@ function DropMenuMobile({active , setActive}) {
             </div>
             <style jsx>
                 {`
+                    
                     :global(.list-group-flush>.list-group-item){
                         padding:1.5rem;
+                        display:flex;
+                        align-items:center;
+                        flex-direction:row;
+                    }
+                    .list-group-item h6{
+                        margin-left:1rem;
                     }
                     .drop-menu{
                         padding:4rem 0;
                         position:fixed;
                         z-index:999999;
-                        width:90%;
+                        width:75%;
                         height:100%;
                         left:0;
                         background:white;
@@ -147,10 +117,23 @@ function DropMenuMobile({active , setActive}) {
                     .item-menu-yesmom h6{
                         margin-left:2rem;
                     }
-
+                    .active{
+                        font-family:"mont-regular"!important;
+                    }
                     @media (min-width:993px){
                         .drop-menu{
                             visibility:hidden;
+                        }
+                    }
+
+                    @media (min-width: 480px){
+                        .drop-menu{
+                            width:35rem;
+                        }
+                    }
+                    @media (min-width:769px){
+                        .drop-menu{
+                            width: 40rem;
                         }
                     }
                 `}
