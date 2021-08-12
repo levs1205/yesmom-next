@@ -102,7 +102,7 @@ const HeaderNuevo = () => {
                   <h6 className="text-navbar">Regalos</h6>
                 </a>
               </ActiveLink>
-              <ActiveLink href="/construccion" activeClassName="active">
+              <ActiveLink href="/login" activeClassName="active">
                 <a className="item-menu-yesmom">
                   <Image
                     src="/image/header/iniciar-sesion.svg"
@@ -113,7 +113,7 @@ const HeaderNuevo = () => {
                   <h6 className="text-navbar">Iniciar sesión</h6>
                 </a>
               </ActiveLink>
-              <ActiveLink href="/construccion" activeClassName="active">
+              <ActiveLink href="/shopping-cart" activeClassName="active">
                 <div className="container-cart-submenu">
                   <a className="item-menu-yesmom-cart">
                     <Image

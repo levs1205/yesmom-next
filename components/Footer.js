@@ -22,7 +22,7 @@ const Footer = () => {
                   <Link href="/blog">
                     <a>Blog</a>
                   </Link>
-                  <Link href="/construccion">
+                  <Link href="/tienda">
                     <a>Tienda</a>
                   </Link>
                   <Link href="/construccion">
@@ -51,17 +51,17 @@ const Footer = () => {
                 <div className="box-contenido-footer">
 
                   <Link href="/construccion">
-                  <a>Términos y condiciones</a>
-                </Link>
+                    <a>Términos y condiciones</a>
+                  </Link>
                   <Link href="/construccion">
-                  <a>Política de privacidad</a>
-                </Link>
+                    <a>Política de privacidad</a>
+                  </Link>
                   <Link href="/construccion">
-                  <a>Libro de reclamaciones</a>
-                </Link>
-                <Link href="/construccion">
-                  <a>Políticas de campañas</a>
-                </Link>
+                    <a>Libro de reclamaciones</a>
+                  </Link>
+                  <Link href="/construccion">
+                    <a>Políticas de campañas</a>
+                  </Link>
                 </div>
               </div>
             </Col>
@@ -105,7 +105,7 @@ const Footer = () => {
               </div>
             </Col>
           </Row>
-          
+
         </Container>
       </div>
       <style jsx>
