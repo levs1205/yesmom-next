@@ -14,6 +14,8 @@ import CardProduct from "../components/CardProduct";
 // import clienteAxiosBusiness from "../config/axiosBusiness";
 import axios from "axios";
 // import fetch from 'isomorphic-fetch'
+
+
 const Home = ({ currentData }) => {
   console.log(currentData, "holis");
   // const [currentData, setCurrentData] = useState([]);
@@ -104,11 +106,12 @@ const Home = ({ currentData }) => {
             </div>
           </div>
           <div className="banner view-mobile">
-            <Image
+            <img src="/image/home/banner-mobile.png" />
+            {/* <Image
               src="/image/home/banner-mobile.png"
               layout="fill"
               alt="Picture of the author"
-            />
+            /> */}
           </div>
           {/* <img src={banner} className="banner view-desktop" /> */}
           {/* <img src={bannerM} alt="" className="banner view-mobile" /> */}

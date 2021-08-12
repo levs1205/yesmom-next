@@ -7,8 +7,11 @@ import SearchBlog from "./Search/SearchBlog";
 import MenuTienda from "./MenuTienda/MenuTienda";
 import PopupCart from "./Popup/PopupCart/PopupCart"
 import DropMenuMobile from "./DropMenuMobile";
+import AvatarLogged from "./AvatarLogged";
 
 const HeaderNuevo = () => {
+
+  const [logged,setLogged] = useState(true);
   const [active, setActive] = useState(false);
   const [isVisibleSubMenu, setIsVisibleSubMenu] = useState(false);
 
@@ -102,16 +105,33 @@ const HeaderNuevo = () => {
                   <h6 className="text-navbar">Regalos</h6>
                 </a>
               </ActiveLink>
-              <ActiveLink href="/login" activeClassName="active">
-                <a className="item-menu-yesmom">
-                  <Image
-                    src="/image/header/iniciar-sesion.svg"
-                    alt="logo blog yesmom "
-                    width={22}
-                    height={22}
-                  />
-                  <h6 className="text-navbar">Iniciar sesión</h6>
-                </a>
+              
+              {logged ? 
+                <AvatarLogged />
+                : 
+                  <ActiveLink href="/login" activeClassName="active">
+                    <a className="item-menu-yesmom">
+                      <Image
+                        src="/image/header/iniciar-sesion.svg"
+                        alt="logo blog yesmom "
+                        width={22}
+                        height={22}
+                      />
+                      <h6 className="text-navbar">Iniciar sesión</h6>
+                    </a>
+                </ActiveLink>
+               }
+              
+              <ActiveLink href="/ayuda" activeClassName="active">
+                    <a className="item-menu-yesmom">
+                    <Image
+                        src="/image/header/ayuda.svg"
+                        alt="logo ayuda yesmom "
+                        width={22}
+                        height={22}
+                    />
+                    <h6 className="text-navbar">Ayuda</h6>
+                    </a>
               </ActiveLink>
               <ActiveLink href="/shopping-cart" activeClassName="active">
                 <div className="container-cart-submenu">
@@ -140,7 +160,11 @@ const HeaderNuevo = () => {
         {onlyStore && <MenuTienda />}
 
       </div>
-      <DropMenuMobile active={active} setActive={handleClick} />
+      <DropMenuMobile 
+        active={active} 
+        setActive={handleClick} 
+        logged={logged}
+      />
       <style jsx>
         {`
           .container-cart-submenu{
@@ -242,6 +266,7 @@ const HeaderNuevo = () => {
           .box-items-menu-responsive {
             display: flex;
             flex-direction: row;
+            align-items:center;
           }
           .box-items-menu {
             margin-left: auto;

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import ActiveLink from './ActiveLink'
 
-function DropMenuMobile({active , setActive}) {
+function DropMenuMobile({active , setActive , logged}) {
 
 
     const { pathname } = useRouter();
@@ -14,7 +14,6 @@ function DropMenuMobile({active , setActive}) {
         { src : "/image/header/blog.svg" , to  : "/blog", name :"Blog" },
         { src : "/image/header/tienda.svg" , to  : "/tienda", name :"Tienda" },
         { src : "/image/header/regalo.svg" , to  : "/regalo", name :"Lista" },
-        { src : "/image/header/iniciar-sesion.svg" , to  : "/login" , name :"Iniciar sesión"},
     ]
     return (
         <>
@@ -30,7 +29,9 @@ function DropMenuMobile({active , setActive}) {
                     </div>
                 </div>
                 <div className="container-title">
-                    <h6 className="title-drop-menu">Inicio</h6>
+                    <Link href="/">
+                        <h6 className="title-drop-menu">Inicio</h6>
+                    </Link>
                     <hr className="line-under-title"/>
                 </div>
                 
@@ -52,10 +53,39 @@ function DropMenuMobile({active , setActive}) {
                                         <h6 className={`text-navbar ${pathname === to ? "active" : ""}`}>{name}</h6>
                                     </li>
                                 </Link> 
-                            ))} 
+                            ))}
+
+                            {!logged ?
+                                <Link href="/image/header/iniciar-sesion.svg">
+                                    <li  className="list-group-item">
+                                        <div>
+                                            <Image
+                                                    src="/image/header/iniciar-sesion.svg"
+                                                    alt="logo login yesmom"
+                                                    width={30}
+                                                    height={30}
+                                            />
+                                        </div>
+                                        <h6 className={`text-navbar ${pathname === "/image/header/iniciar-sesion.svg" ? "active" : ""}`}>Iniciar sesión</h6>
+                                    </li>
+                                </Link> 
+                            :
+                                <li  className="list-group-item">
+                                    <div>
+                                        <Image
+                                                src="/image/header/skinbaby-mob.svg"
+                                                alt="logo login yesmom"
+                                                width={30}
+                                                height={30}
+                                        />
+                                    </div>
+                                    <h6 className="text-navbar">Perfil - Lucia Q.</h6>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>
+
                 
             </div>
             <style jsx>

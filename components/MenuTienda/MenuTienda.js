@@ -37,6 +37,7 @@ const MenuTienda = () => {
           margin-bottom:1rem
         }
         .submenu-tienda h5{
+            text-align:center;
             cursor:pointer;
             margin: 0rem 1rem;
             font-family: "mont-regular";
@@ -49,7 +50,7 @@ const MenuTienda = () => {
             padding:1rem;
             border-radius:10px;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 767px) {
           .submenu-tienda{
             display:none
           }

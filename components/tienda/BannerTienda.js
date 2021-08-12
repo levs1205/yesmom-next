@@ -16,7 +16,7 @@ return (
                         height={800}
                     /> */}
                     <div className="all-content">
-                        <div className="image-baby">
+                        <div className="image-baby tilt-in-fwd-tr">
                             <Image
                                 src="/image/tienda/image-mobile-banner.png"
                                 alt="baby plaza"
@@ -36,7 +36,7 @@ return (
                                     height="240"
                                 />
                             </div>
-                            <div className="img-discount center">
+                            <div className="img-discount center tilt-in-fwd-tr">
                                 <Image 
                                     src="/image/tienda/discount.png"
                                     alt="descuento"

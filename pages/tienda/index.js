@@ -76,14 +76,13 @@ const Product = () => {
               {imagesMobile.map((ban) => (
                 <Carousel.Item key={ban.id} className="carousel-item">
                   <img src={ban.image} alt="" className="w-100" />
-                  {/* <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Siula_Grande_072530032013.jpg/1200px-Siula_Grande_072530032013.jpg" alt=""/> */}
                 </Carousel.Item>
               ))}
             </Carousel>
         </div>
         {/* Carousel desktop */}
 
-        <div className="show-desktop">
+        <div className="show-desktop mt-5r">
             <Carousel className="box-carousel">
               {imagesDesktop.map((ban) => (
                 <Carousel.Item key={ban.id} className="carousel-item">
@@ -95,31 +94,6 @@ const Product = () => {
         </div>
 
         <Container fluid="true">
-          {/* <Row>
-            <Col sm={3}>
-              <SidebarProducto />
-            </Col>
-            <Col sm={9}>
-              <h4 className="text-title-tienda">Lo + vendido</h4>
-              <div className="box-product-general">
-                <div className="box-card-group">
-                  <CardDeck className="card-deck-h">
-                    {respuesta.map((cardProduct) => (
-                      <CardProduct product={cardProduct} key={cardProduct.id} />
-                    ))}
-                    
-                  </CardDeck>
-                  
-                </div>
-              </div>
-              <div className="test-products">
-                      <CardProduct />
-                      <CardProduct />
-                      <CardProduct />
-                      <CardProduct />
-              </div>  
-            </Col>
-          </Row> */}
           <div className="all-content">
             <div className="contenedor">
                 <div className="sidebar show-desktop">
@@ -238,7 +212,11 @@ const Product = () => {
             margin-bottom:5rem;
           }
         }
-
+        @media(min-width:768px){
+          .mt-5r{
+            margin-top:9.5rem;
+          }
+        }
         @media(min-width:1024px){
           .contenedor{
             padding-left:8rem;
