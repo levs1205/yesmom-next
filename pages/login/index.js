@@ -170,10 +170,10 @@ const index = () => {
                         align-items:center;
                     }
                     .contenedor{
-                        padding-top:12rem;
+                        padding-top:8rem;
                         padding-bottom:8rem;
-                        margin-left:2rem;
-                        margin-right:2rem;
+                        margin-left:2.5rem;
+                        margin-right:2.5rem;
                         margin-top:0;
                     }
                     .container-contenido{
@@ -249,6 +249,7 @@ const index = () => {
                     }
                     .forgot-password{
                         font-family:"mont-regular";
+                        text-decoration : underline;
                         font-weight:600;
                         font-size:1.3rem;
                         color:#556EA1;
@@ -257,9 +258,13 @@ const index = () => {
                         cursor:pointer;
                         border-radius:30px;
                         padding:1rem 0;
-                        margin:2rem 0 1rem 0;
+                        margin:2rem 1rem 1rem 1rem;
                         text-align:center;
                         color:#FFFFFF;
+                    }
+                    .yellow{
+                        margin-left:2.5rem ;
+                        margin-right:2.5rem;
                     }
                     .boton-normal{
                         font-family:"omnes-regular"!important;
@@ -275,9 +280,8 @@ const index = () => {
                         flex-grow:1;
                     }
                     .container-line p{
-                        margin-top:-0.25rem;
-                        margin-right:1rem;
-                        margin-left:1rem;
+                        margin-right:1.5em;
+                        margin-left:1.5rem;
                         color: #575650;
                         opacity:0.6;
                         font-size:1.3rem;
@@ -296,7 +300,7 @@ const index = () => {
                         cursor:pointer;
                         border-radius:30px;
                         padding:1.4rem 0;
-                        margin:1rem 0 2rem 0;
+                        margin:1rem 1rem 2rem 1rem;
                         text-align:center;
                         display:flex;
                         justify-content:center;
@@ -317,8 +321,8 @@ const index = () => {
                     /**480 - 768 - 1024 -1280 */
                     @media (min-width: 480px){
                         .contenedor{
-                            padding-top:12rem;
-                            padding-bottom:6rem;
+                            padding-top:8rem;
+                            padding-bottom:10rem;
                         }
                         .container-form{
                             padding:3rem 2rem;
@@ -330,18 +334,21 @@ const index = () => {
                             padding:1rem 0;
                         }
                         .yellow{
-                            margin-left:1.5rem;
-                            margin-right:1.5rem;
+                            margin-left:4rem;
+                            margin-right:4rem;
                         }
                     }
 
                     @media (min-width: 769px){
+                        .google{
+                            border:1px solid #dadada;
+                        }
                         .pink{
                             background-color:#DC6A8D;
                             margin-top:3rem!important;
                         }
                         .contenedor{
-                            padding-top:18rem;
+                            padding-top:8rem;
                             padding-bottom:10rem;
                         }
                         .iniciar-sesion{
@@ -367,7 +374,7 @@ const index = () => {
                             opacity:0.8;
                             border: 1px solid #556EA1;
                             box-sizing: border-box;
-                            border-radius: 20px;
+                            border-radius: 10px;
                             padding:0.8rem 1rem;
                         }
                         .boton-normal,.boton-icon{
@@ -400,11 +407,8 @@ const index = () => {
                     }  
 
                     @media (min-width: 1024px){
-                        .all-content{
-                            min-width:55rem;
-                        }
-                        .contenedor{
-                            padding-top:16rem;
+                        .wrapper-input input {
+                            height:4rem;
                         }
                         .boton-normal,.boton-icon{
                             padding-left:3rem;
@@ -413,14 +417,12 @@ const index = () => {
                     }
 
                     @media(min-width:1280px){
-                        .contenedor{
-                            padding-top:18rem;
+                        .yellow{
+                            margin-left:3.5rem!important;
+                            margin-right:3.5rem!important;
                         }
                         .container-form{
                             padding:3rem 4rem;
-                        }
-                        .wrapper-input input{
-                            height:3rem;
                         }
                         .boton-normal,.boton-icon{
                             margin:1.5rem 2.5rem;

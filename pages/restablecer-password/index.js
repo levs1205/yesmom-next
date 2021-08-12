@@ -57,7 +57,7 @@ const index = () => {
                         <div className="container-center">
                             <div className="container-text">
                                 <p className="forgot-password">¿Olvidaste tu contraseña?</p>
-                                <p className="texto">Este es el último paso para que puedas restablecer tu contraseña</p>
+                                <p className="texto">Este es el último paso para que <br/> restablecer tu contraseña</p>
                             </div>
                             <div className="container-form">
                                 <form>
@@ -119,17 +119,17 @@ const index = () => {
                         align-items:center;
                     }
                     .contenedor{
-                        padding-top: 15rem;
+                        padding-top: 8rem;
                         padding-bottom: 8rem;
-                        margin-left: 2rem;
-                        margin-right: 2rem;
+                        margin-left: 2.5rem;
+                        margin-right: 2.5rem;
                         margin-top: 0;
                     }
-                    .container-contenido{
+                    /* .container-contenido{
                         display:flex;
                         justify-content:center;
                         align-items:center;
-                    }
+                    } */
                     .container-text{
                         text-align:center;
                     }
@@ -148,7 +148,6 @@ const index = () => {
                         color: #575650;
                         font-weight:500;
                         font-size:1.3rem;
-                        padding:0 4rem;
                     }
                     .container-form{
                         margin:1.5rem 0;
@@ -212,11 +211,15 @@ const index = () => {
                     }
 
                     @media(min-width:480px){
+                        .container-contenido{
+                        display:flex;
+                        justify-content:center;
+                        align-items:center;
+                        }
                         .all-content{
                             width:40rem;
                         }
                         .contenedor{
-                            padding-top: 13rem;
                             padding-bottom: 6rem;
                         }
                         .container-form{
@@ -227,10 +230,7 @@ const index = () => {
                         }
 
                         .forgot-password{
-                            font-size:3rem;
-                        }
-                        .texto{
-                            font-size:1.4rem;
+                            font-size:2rem;
                         }
                         .wrapper-input label{
                             font-size:1.4rem;
@@ -243,7 +243,7 @@ const index = () => {
 
                     @media (min-width:769px){
                         .all-content{
-                            width:45rem;
+                            width:40rem;
                         }
                         .show{
                             display:none;
@@ -252,7 +252,6 @@ const index = () => {
                             display:block;
                         }
                         .contenedor{
-                            padding-top:17rem;
                             padding-bottom:10rem;
                         }
                         .container-form{
@@ -295,15 +294,6 @@ const index = () => {
                         }
                     }
                     @media (min-width:1280px){
-                        .all-content{
-                            min-width:50rem;
-                        }
-                        .forgot-password{
-                            font-size:3.5rem;
-                        }
-                        .texto{
-                            font-size:2rem;
-                        }
                         .eye-icon{
                             right:1.25rem;
                             bottom:1.5rem;

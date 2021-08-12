@@ -58,7 +58,7 @@ const index = () => {
                         <div className="container-center">
                             <div className="container-text">
                                 <p className="forgot-password">¿Olvidaste tu contraseña?</p>
-                                <p className="text">Te enviaremos un correo electrónico con los pasos a seguir para que puedas restablecer tu contraseña</p>
+                                <p className="text">Te enviaremos un correo electrónico con los pasos a<br/> seguir para que puedas restablecer tu contraseña</p>
                             </div>
                             <div className="container-form">
                                 <form>
@@ -100,7 +100,7 @@ const index = () => {
                         align-items:center;
                     }
                     .contenedor{
-                        padding-top:15rem;
+                        padding-top:8rem;
                         padding-bottom:8rem;
                         margin-left:2rem;
                         margin-right:2rem;
@@ -182,24 +182,17 @@ const index = () => {
 
                     @media (min-width:480px){
                         .contenedor{
-                            padding-top:15rem;
-                            padding-bottom:4rem;
-                        }
-                        .all-content{
-                            max-width:50rem;
+                            padding-top:8rem;
+                            padding-bottom:10rem;
                         }
                     }
                     @media (min-width:769px){
+                        .all-content{
+                            width:40rem;
+                        }
                         .forgot-password{
-                            font-size:3rem;
+                            font-size:2.5rem;
                             color:#DC6A8D;
-                        }
-                        .contenedor{
-                            padding-top:17rem;
-                            padding-bottom:10rem;
-                        }
-                        .text{
-                            padding:0 5rem;
                         }
                         .container-form{
                             margin-top:2rem;
@@ -211,7 +204,7 @@ const index = () => {
                         .wrapper-input input{
                             border: 1px solid #556EA1;
                             box-sizing: border-box;
-                            border-radius: 15px;
+                            border-radius: 10px;
                             padding:1.5rem 2rem;
                             font-family:"mont-regular"!important;
                             color:#556EA1;
@@ -219,34 +212,26 @@ const index = () => {
                         .boton{
                             border-radius:15px;
                             margin-top:0;
-                            padding:1.5rem 0;
                         }
                         .boton p{
                             font-family:"omnes-bold"!important;
-                            font-size:2rem;
+                            font-size:1.5rem;
                         }
                         .pink{
                             background-color:#DC6A8D;
                         }
                     }
                     @media (min-width:1024px){
-
+                        .all-content{
+                            width:40rem;
+                        }
                         .forgot-password{
-                            font-size:3.5rem;
+                            font-size:3rem;
                         }
                     }
                     @media (min-width:1280px){
-                        .all-content{
-                            min-width:60rem;
-                        }
                         .container-form{
                             padding:3rem 2rem;
-                        }
-                        .contenedor{
-                            padding-top:15rem;
-                        }
-                        .forgot-password{
-                            font-size:4.5rem;
                         }
                         .wrapper-input label{
                             font-size:1.5rem;
@@ -257,10 +242,6 @@ const index = () => {
                         }
                         .boton{
                             margin-top:1.5rem;
-                            padding:2rem 0;
-                        }
-                        .text{
-                            font-size:1.8rem;
                         }
                     }
 
