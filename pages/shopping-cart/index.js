@@ -239,8 +239,13 @@ const shoppingCart = () => {
             align-items:center;
             flex-direction:column;
             border: 0px solid rgba(0,0,0,.125)!important;
-            border-bottom: 1px solid rgba(0,0,0,.125)!important;
             padding:1rem 0rem
+          }
+          .shopping-cart-block__card > .card{
+            border-bottom-left-radius: 0px !important;
+            border-bottom-right-radius: 0px !important;
+            border-bottom: 1px solid rgba(0,0,0,.125)!important;
+            
           }
           .card__block-first{
             display:flex;
