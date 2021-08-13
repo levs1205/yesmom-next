@@ -70,7 +70,7 @@ const PopupCart = () => {
             box-shadow: 0px 9px 21px rgba(0, 0, 0, 0.15);
             border-radius: 0px 0px 44px 44px;
             height: 800px;
-            width: 420px;
+            width: 360px;
             top: 80px;
             padding: 25px;
             transition: all 0.8s;
@@ -96,14 +96,14 @@ const PopupCart = () => {
             border-bottom: 1px solid #dadada;
           }
           .container--shopping-card{
-            width: 165px;
-            height: 150px;
+            width: 135px;
+            height: 125px;
             display: flex;
           }
           .card--shopping-cart__image{
             position:relative;
-            width: 130px;
-            height: 130px;
+            width: 110px;
+            height: 110px;
             margin: auto;
           }
           .card--shopping-cart img {

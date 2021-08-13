@@ -97,6 +97,13 @@ const appLayout = ({ children }) => {
             margin-left: 0px !important;
             margin-right: 0px !important;
           }
+          .sin-margin-flex {
+            margin-left: 0px !important;
+            margin-right: 0px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
           .pl-10 {
             padding-left: 6rem;
           }

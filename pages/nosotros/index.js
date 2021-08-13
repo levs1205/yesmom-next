@@ -66,7 +66,7 @@ const index = () => {
             alt="ondas"
             width={70}
             height={70}
-            //   layout="responsive"
+          //   layout="responsive"
           />
         </div>
       </div>
@@ -91,10 +91,10 @@ const index = () => {
             />
           </div>
 
-          <Row className="sin-margin">
-            <Col xs={12} md={12} lg={6} xl={6}>
+          <Row className="sin-margin-flex">
+            <Col xs={12} md={12} lg={5} xl={5}>
               <div className="box-somos-yesmom">
-                <div className="pb-3 subtitle-about ">
+                <div className="pb-3 subtitle-about">
                   <Image
                     src="/image/somos-yesmom.svg"
                     width={200}
@@ -102,32 +102,25 @@ const index = () => {
                     alt="yesmom"
                   />
                 </div>
-                <p>
-                  Yes Mom es una plataforma digital peruana que ayuda a las
-                  mamis a disfrutar su maternidad sin preocupaciones. Queremos
-                  ser la marca aliada que todos los papás estuvieron buscando,
-                  una página web que reúne en un solo lugar todo lo que
-                  necesitan para la llegada de su bebé y acompañar su
-                  crecimiento. Desde la comodidad de tu hogar podrás crear
-                  listas de bebé online de forma rápida para compartirla con tu
-                  familia y amigos, hacer compras de manera segura y tener la
-                  guía que necesitas, para vivir esta etapa con ilusión y
-                  tranquilidad.
-                </p>
-                <p>Yes Mom. Tus listas, listas.</p>
+                <div>
+                  <p>
+                    Yes Mom es una plataforma digital peruana que ayuda a las
+                    mamis a disfrutar su maternidad sin preocupaciones. Queremos
+                    ser la marca aliada que todos los papás estuvieron buscando,
+                    una página web que reúne en un solo lugar todo lo que
+                    necesitan para la llegada de su bebé y acompañar su
+                    crecimiento. Desde la comodidad de tu hogar podrás crear
+                    listas de bebé online de forma rápida para compartirla con tu
+                    familia y amigos, hacer compras de manera segura y tener la
+                    guía que necesitas, para vivir esta etapa con ilusión y
+                    tranquilidad.
+                  </p>
+                  <p>Yes Mom. Tus listas, listas.</p>
+                </div>
               </div>
             </Col>
             <Col xs={12} md={12} lg={6} xl={6}>
               <div className="box-img-somos-home">
-                <div className="line-up-somos ">
-                  <Image
-                    src="/image/lineas-azul1.svg"
-                    width={60}
-                    height={40}
-                    layout="responsive"
-                    alt="lineas"
-                  />
-                </div>
                 <div className="img-somos tilt-in-fwd-tr">
                   <Image
                     src="/image/about.png"
@@ -137,15 +130,6 @@ const index = () => {
                     alt="imagen sorteo yesmom home"
                   />
                 </div>
-                <div className="line-down-somos ">
-                  <Image
-                    src="/image/lineas-azul2.svg"
-                    width={40}
-                    height={40}
-                    layout="responsive"
-                    alt="lineas"
-                  />
-                </div>
               </div>
             </Col>
           </Row>
@@ -153,15 +137,19 @@ const index = () => {
       </div>
       <div className="fondo-video-somos">
         <div className="box-title-nuestra-historia">
-          <FontAwesomeIcon
-            icon={faStar}
-            className="cl-fuxia heartbeat"
-          ></FontAwesomeIcon>
+          <div className="icon-title-video">
+            <FontAwesomeIcon
+              icon={faStar}
+              className="cl-yellow heartbeat"
+            ></FontAwesomeIcon>
+          </div>
           <div className="title-fuxia">Nuestra historia</div>
-          <FontAwesomeIcon
-            icon={faStar}
-            className="cl-fuxia heartbeat"
-          ></FontAwesomeIcon>
+          <div className="icon-title-video">
+            <FontAwesomeIcon
+              icon={faStar}
+              className="cl-yellow heartbeat"
+            ></FontAwesomeIcon>
+          </div>
         </div>
         <div className="box-video-somos">
           {/* <video src={require('./../../public/video-oficial.mp4')} /> */}
@@ -186,202 +174,203 @@ const index = () => {
             justify-content: center;
             align-items: center;
           }
+          .box-title-nuestra-historia .title-fuxia{
+            font-size: 2rem;
+            color: #556EA1;
+          }
+          .box-title-nuestra-historia>.icon-title-video:first-child {
+            transform: rotate(30.86deg);
+            font-size:22px;
+          }
+          .box-title-nuestra-historia>.icon-title-video:last-child {
+            transform: rotate(36.46deg);
+            font-size:22px;
+          }
           .box-somos-yesmom {
-            padding: 3.9rem 3.5rem;
+            padding: 3.9rem 3.2rem;
             font-family: "mont-regular" !important;
             font-size: 1rem;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
           }
-
-          .line-up-somos {
-            position: absolute;
-            top: -1.5rem;
-            right: 2.5rem;
-            width: 2.5rem;
-            transform: rotate(90deg);
+          .box-somos-yesmom p {
+            font-size: 1.5rem;
           }
-
-          .line-down-somos {
-            position: absolute;
-            bottom: -2rem;
-            left: -2rem;
-            width: 2.5rem;
-            transform: rotate(90deg);
+          .box-somos-yesmom p:first-child {
+            margin-bottom: 3rem;
           }
-
+          .box-somos-yesmom > .subtitle-about {
+            width: 9.8rem;
+            height: auto;
+          }
           .nube1-somos {
             position: absolute;
             top: 5%;
             left: 2%;
           }
-
           .nube2-somos {
             position: absolute;
             right: 2%;
             bottom: 5%;
           }
-
           .fondo-video-somos {
-            background: url(../../../image/fondo-verde-somos.png);
-            height: 50rem;
+            background: url(../../../image/fondo-verde-video.png);
+            height: 40rem;
             background-position: center;
             background-size: cover;
-            padding-top: 5rem;
+            padding-top: 7.2rem;
             padding-bottom: 5rem;
           }
-
           .box-video-somos {
             display: flex;
             justify-content: center;
             position: relative;
             overflow: hidden;
-            margin: 3rem 2rem;
+            margin: 2.9rem 4.5rem 0 4.5rem;
+            padding: auto;
             height: auto;
           }
           .video-nosotros {
-            width: 50%;
-            margin: auto;
-            height: 100%;
+            height: calc(100% - 1rem);
+            max-height: 180px;
             position: relative;
-          }
-          .box-video-somos iframe {
-            position: absolute;
-            width: 50%;
-            height: 50%;
           }
           .section-somos-home {
             padding-top: 5rem;
             padding-bottom: 5rem;
             position: relative;
           }
-
           .box-img-somos-home {
             position: relative;
           }
-
           .img-somos {
-            width: 90%;
+            padding: 3rem 3.2rem;
           }
-
           .text-title-blog {
             font-family: "Clicker Script", cursive;
             font-size: 2.5rem;
             margin: 0rem 0.5rem 0rem;
             color: #fff;
           }
-
-          @media (min-width: 1800px) {
-            .box-somos-yesmom {
-              padding: 1rem 3.5rem;
-              font-family: "mont-regular" !important;
-              font-size: 0.8rem;
-              position: relative;
-            }
-
+          
+          @media (min-width : 768px){
             .fondo-video-somos {
-              background: url(../../../image/fondo-verde-somos.png);
-              height: 34rem;
-              padding-top: 3.5rem;
-              padding-bottom: 3.5rem;
-            }
-
-            .img-somos {
-              width: 87%;
-            }
-          }
-
-          @media (min-width: 769px) and (max-width: 991px) {
-            .box-img-somos-home {
-              width: 60%;
-              margin: auto;
-            }
-            .box-somos-yesmom {
-              width: 70%;
-              margin: auto;
-            }
-            .subtitle-about {
-              text-align: center;
-            }
-          }
-
-          @media (max-width: 768px) {
-            .box-banner-about {
-              height: 15rem;
-            }
-            .box-somos-yesmom {
-              padding: 1rem 2rem;
-              font-size: 0.7rem;
-              display: flex;
-              justify-content: center;
-              flex-direction: column;
-              align-items: center;
-            }
-            .section-somos-home {
-              padding-top: 1rem;
-              padding-bottom: 1rem;
-            }
-            .subtitle-about {
-              width: 8rem;
-            }
-            .nube1-somos {
-              position: absolute;
-              top: 5%;
-              left: 0%;
-              height: 3rem;
-            }
-
-            .nube2-somos {
-              position: absolute;
-              right: 2%;
-              bottom: 3%;
-              height: 2rem;
-            }
-            .fondo-video-somos {
-              background: url(../../../image/fondo-verde-somos-responsive.png);
-              height: 20rem;
+              background: url(../../../image/fondo-verde-video.png);
+              height: 50rem;
               background-position: center;
               background-size: cover;
-              padding-top: 2rem;
+              padding-top: 4.2rem;
               padding-bottom: 5rem;
             }
-            .box-video-somos {
-              position: relative;
-              padding-bottom: 56.25%; /* 16/9 ratio */
-              padding-top: 1rem; /* IE6 workaround*/
-              overflow: hidden;
-              margin: 2rem;
-            }
-            .box-video-somos iframe {
-              position: absolute;
-              width: 100%;
-              height: 100%;
-            }
-            .box-img-somos-home {
-              margin: auto;
-              display: block;
+            .box-somos-yesmom > .subtitle-about {
+              width: 13rem;
+              height: auto;
+              margin-bottom: 2.8px;
             }
             .img-somos {
-              width: 80%;
-              display: block;
-              margin: auto;
+              padding: 0rem 15.2rem;
             }
-            .line-up-somos {
-              top: -1.1rem;
-              right: 0.3rem;
-              width: 2rem;
-            }
-
-            .line-down-somos {
-              bottom: -1.3rem;
-              left: 0.4rem;
-              width: 1.8rem;
+            .box-video-somos {
+              margin: 6rem 20rem 0 20rem;
             }
             .video-nosotros {
-              width: 100%;
+              width: calc(100% - 1rem);
+              max-height: 30rem;
+              position: relative;
             }
-            .text-title-blog {
+            
+          }          
+          @media (min-width : 1024px){
+            .fondo-video-somos {
+              background: url(../../../image/fondo-verde-video.png);
+              height: 60rem;
+              background-position: center;
+              background-size: cover;
+              padding-top: 7.2rem;
+              padding-bottom: 5rem;
+            }
+            .box-title-nuestra-historia .title-fuxia{
+              font-size: 3.5rem;
+            }
+            .box-title-nuestra-historia>.icon-title-video:first-child {
+              transform: rotate(30.86deg);
+            }
+            .box-title-nuestra-historia>.icon-title-video:last-child {
+              transform: rotate(36.46deg);
+            }
+            .box-somos-yesmom {
+              padding: 3.9rem 3.2rem;
+              font-family: "mont-regular" !important;
+              font-size: 1rem;
+              position: relative;
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+            }
+            .box-somos-yesmom > .subtitle-about {
+              width: 19rem;
+              height: auto;
+              margin-bottom: 2.8px;
+            }
+            .box-somos-yesmom p {
               font-size: 1.5rem;
             }
+            .box-video-somos {
+              margin: 5rem 32rem 0 32rem;
+            }
+            .video-nosotros {
+              height: calc(100% - 1rem);
+              max-height: 40rem;
+              position: relative;
+            }
+          }
+          @media (min-width : 1280px){
+            .fondo-video-somos {
+              background: url(../../../image/fondo-verde-video.png);
+              height: 70rem;
+              background-position: center;
+              background-size: cover;
+              padding-top: 6.2rem;
+              padding-bottom: 4.5rem;
+            }
+            .box-title-nuestra-historia .title-fuxia{
+              font-size: 4.5rem;
+            }
+            .box-title-nuestra-historia>.icon-title-video:first-child {
+              transform: rotate(30.86deg);
+            }
+            .box-title-nuestra-historia>.icon-title-video:last-child {
+              transform: rotate(36.46deg);
+            }
+            .box-somos-yesmom {
+              padding: 3.9rem 3.2rem;
+              font-family: "mont-regular" !important;
+              font-size: 1rem;
+              position: relative;
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              
+            }
+            .box-somos-yesmom > .subtitle-about {
+              width: 23rem;
+              height: auto;
+              margin-bottom: 2.8px;
+            }
+            .box-somos-yesmom p {
+              font-size: 1.8rem;
+            }
+            .box-video-somos {
+              max-width: 65rem;
+              margin: 5.6rem auto 0 auto;
+            }
+            .video-nosotros {
+              height: calc(100% - 1rem);
+              max-height: 64rem;
+              position: relative;
+            }    
           }
         `}
       </style>
