@@ -1,14 +1,25 @@
 // import App from 'next/app'
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Provider } from "react-redux";
+import store from "../redux/store";
+import { createWrapper } from "next-redux-wrapper";
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
     </>
   );
 }
+
+const makeStore = () => store;
+const wrapper = createWrapper(makeStore);
+
+
+
 
 // Only uncomment this method if you have blocking data requirements for
 // every single page in your application. This disables the ability to
@@ -22,4 +33,4 @@ function MyApp({ Component, pageProps }) {
 //   return { ...appProps }
 // }
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);

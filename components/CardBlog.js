@@ -349,6 +349,7 @@ const CardBlog = ({ blog }) => {
           }
 
           @media (max-width: 768px) {
+
             .box-blog-especifico {
               padding: 1rem 1.5rem 3rem;
               display: flex;
@@ -464,14 +465,19 @@ const CardBlog = ({ blog }) => {
               flex-direction: column !important;
             }
             .card-blog-title {
-              font-size: 1rem ;
+              font-size: 2rem ;
               font-weight:bold
             }
             .card-blog-descripcion {
-              font-size: 0.8rem ;
+              font-size: 1.5rem ;
+              color:#000000;
             }
             .leer-mas{
-              font-size: 1rem ;
+              font-size: 1.5rem ;
+              color:#575756;
+            }
+            :global(.card-footer){
+              padding: 1rem 0!important;
             }
           }
 
@@ -496,6 +502,7 @@ const CardBlog = ({ blog }) => {
             .card-blog {
               width: 100%;
             }
+            
           }
         `}
       </style>

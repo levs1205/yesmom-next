@@ -12,11 +12,19 @@
     "bootstrap": "^4.5.3",
     "jodit-react": "^1.0.70",
     "next": "^10.0.4",
+    "next-redux-wrapper": "^7.0.2",
     "react": "^17.0.1",
+    "react-alice-carousel": "^2.5.1",
     "react-bootstrap": "^1.4.0",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-phone-input-2": "^2.14.0",
+    "react-redux": "^7.2.4",
+    "react-responsive-carousel": "^3.2.18",
+    "redux": "^4.1.1",
+    "redux-thunk": "^2.3.0",
+    "sweetalert2": "^11.0.18",
+    "sweetalert2-react-content": "^4.1.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next",

@@ -9,10 +9,13 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import AppLayout from "../components/AppLayout";
 import CardBlog from "../components/CardBlog";
 import Head from "next/head";
+import CardProduct from "../components/CardProduct";
 
 // import clienteAxiosBusiness from "../config/axiosBusiness";
 import axios from "axios";
 // import fetch from 'isomorphic-fetch'
+
+
 const Home = ({ currentData }) => {
   console.log(currentData, "holis");
   // const [currentData, setCurrentData] = useState([]);
@@ -33,17 +36,26 @@ const Home = ({ currentData }) => {
   //       console.log(e, "error");
   //     });
   // };
+  /* const [respuesta, setRespuesta] = useState([]);
+  useEffect(async () => {
+    const consulta = await axios("https://fakestoreapi.com/products");
+    setRespuesta(consulta.data);
+  }, []); */
+
   return (
     <AppLayout>
       <Head>
         <title>YesMom - Home</title>
         {/* <link rel="icon" type="image/x-icon"  href="/yesmom-favicon.png" /> */}
-        <meta name="description" content="Yes Mom es una plataforma digital peruana que ayuda a las
+        <meta
+          name="description"
+          content="Yes Mom es una plataforma digital peruana que ayuda a las
                   mamis a disfrutar su maternidad sin preocupaciones. Queremos
                   ser la marca aliada que todos los papás estuvieron buscando,
                   una página web que reúne en un solo lugar todo lo que
                   necesitan para la llegada de su bebé y acompañar su
-                  crecimiento."></meta>
+                  crecimiento."
+        ></meta>
         <meta property="og:type" content="website" />
         <meta property="og:title" content="YesMom - Home" />
         <meta
@@ -84,21 +96,22 @@ const Home = ({ currentData }) => {
         <section fluid="true" className="box-banner">
           <div className="banner view-desktop tilt-in-fwd-tr">
             <div className="h-100">
-            <Image
-              src="/image/home/banner.png"
-              alt="Picture of the author"
-              layout="responsive"
-              width={500}
-              height={245}
-            />
+              <Image
+                src="/image/home/banner.png"
+                alt="Picture of the author"
+                layout="responsive"
+                width={500}
+                height={245}
+              />
             </div>
           </div>
           <div className="banner view-mobile">
-            <Image
+            <img src="/image/home/banner-mobile.png" />
+            {/* <Image
               src="/image/home/banner-mobile.png"
               layout="fill"
               alt="Picture of the author"
-            />
+            /> */}
           </div>
           {/* <img src={banner} className="banner view-desktop" /> */}
           {/* <img src={bannerM} alt="" className="banner view-mobile" /> */}
@@ -128,10 +141,12 @@ const Home = ({ currentData }) => {
                   </div>
                 </Link>
               </div>
-              <p className="link-a text-center ">
+              <p className="link-a text-center text-iniciar-sesion">
                 ¿Ya registrado?
                 <span className="hover-efect-letter">
-                  <b> Inicia sesión</b>
+                  <Link href="/login" >
+                    <b> Inicia sesión</b>
+                  </Link>
                 </span>
               </p>
             </div>
@@ -161,18 +176,18 @@ const Home = ({ currentData }) => {
                 <div className="box-sorteo-home">
                   <h3 className="title-fuxia">Gana un kit Yes Mom</h3>
                   <h6 className="subtitle-dark">
-                    Crea una lista de regalo y gana un kit de productos para ti
+                    Crea una lista de regalo y gana<br/> un kit de productos para ti
                     y tu bebé
                   </h6>
 
                   <Link href="/construccion">
-                    <div className="btn-yellow  hover-amarillo">
-                      <a> ¡Comenzar! </a>
+                    <div className="btn-yellow hover-amarillo mb-5">
+                      <a className="text-change-font"> ¡Comenzar! </a>
                     </div>
                   </Link>
 
                   <Link href="/construccion">
-                    <a className=" link-a text-center hover-efect-letter">
+                    <a className="ft-3 link-a text-center hover-efect-letter mb-5">
                       Términos y condiciones
                     </a>
                   </Link>
@@ -189,7 +204,7 @@ const Home = ({ currentData }) => {
                     />
                   </div>
                   <div className="img-sorteo">
-                  <Image
+                    <Image
                       src="/image/home/regalo2.png"
                       alt="imagen sorteo yesmom home"
                       layout="responsive"
@@ -242,78 +257,80 @@ const Home = ({ currentData }) => {
               />
             </div>
             <div className="box-img-lo-mejor">
-              <Row className="sin-margin">
-                <Col xs>
-                  <div className="img-lo-mejor ">
-                    <Image
-                      src="/image/home/destacado.png"
-                      alt="destacado"
-                      width={400}
-                      height={400}
-                      // layout="responsive"
+              <Container>
+                <Row className="sin-margin">
+                  <Col className="mt-5" sm={12} md={6} lg={3}>
+                    <div className="img-lo-mejor ">
+                      <Image
+                        src="/image/home/destacado.png"
+                        alt="destacado"
+                        width={400}
+                        height={400}
+                        // layout="responsive"
 
-                      // className="onda-rosa heartbeat"
-                    />
-                  </div>
-                  <Link href="/construccion">
-                    <div className="btn-lo-mejor hover-amarillo">
-                      <a> Tiendas destacadas</a>
+                        // className="onda-rosa heartbeat"
+                      />
                     </div>
-                  </Link>
-                </Col>
-                <Col xs>
-                  <div className="img-lo-mejor">
-                    <Image
-                      src="/image/home/vendido.png"
-                      alt="search"
-                      width={400}
-                      height={400}
-                      // className="onda-rosa heartbeat"
-                    />
-                  </div>
-                  <Link href="/construccion">
-                    <div className="btn-lo-mejor bg-fuxia hover-fuxia">
-                      <a>
-                        {" "}
-                        Lo + <br></br> vendido{" "}
-                      </a>{" "}
+                    <Link href="/construccion">
+                      <div className="btn-lo-mejor hover-amarillo">
+                        <a> Tiendas destacadas</a>
+                      </div>
+                    </Link>
+                  </Col>
+                  <Col className="mt-5" sm={12} md={6} lg={3}>
+                    <div className="img-lo-mejor">
+                      <Image
+                        src="/image/home/vendido.png"
+                        alt="search"
+                        width={400}
+                        height={400}
+                        // className="onda-rosa heartbeat"
+                      />
                     </div>
-                  </Link>
-                </Col>
-                <Col xs>
-                  <div className="img-lo-mejor">
-                    <Image
-                      src="/image/home/sin-moverte.png"
-                      alt="sin moverte"
-                      width={400}
-                      height={400}
-                      // className="onda-rosa heartbeat"
-                    />
-                  </div>
-                  <Link href="/construccion">
-                    <div className="btn-lo-mejor bg-verde hover-verde">
-                      <a>Servicios</a>
+                    <Link href="/construccion">
+                      <div className="btn-lo-mejor bg-fuxia hover-fuxia">
+                        <a>
+                          {" "}
+                          Lo + vendido{" "}
+                        </a>{" "}
+                      </div>
+                    </Link>
+                  </Col>
+                  <Col className="mt-5" sm={12} md={6} lg={3}>
+                    <div className="img-lo-mejor">
+                      <Image
+                        src="/image/home/sin-moverte.png"
+                        alt="sin moverte"
+                        width={400}
+                        height={400}
+                        // className="onda-rosa heartbeat"
+                      />
                     </div>
-                  </Link>
-                </Col>
-                <Col xs>
-                  <div className="img-lo-mejor">
-                    <Image
-                      src="/image/home/juguetes.png"
-                      alt="juguetes"
-                      width={400}
-                      height={400}
-                      // className="onda-rosa heartbeat"
-                    />
-                  </div>
+                    <Link href="/construccion">
+                      <div className="btn-lo-mejor bg-verde hover-verde">
+                        <a>Servicios</a>
+                      </div>
+                    </Link>
+                  </Col>
+                  <Col className="mt-5" sm={12} md={6} lg={3}>
+                    <div className="img-lo-mejor">
+                      <Image
+                        src="/image/home/juguetes.png"
+                        alt="juguetes"
+                        width={400}
+                        height={400}
+                        // className="onda-rosa heartbeat"
+                      />
+                    </div>
 
-                  <Link href="/construccion">
-                    <div className="btn-lo-mejor bg-azul hover-azul">
-                      <a>Solo en Yes Mom</a>
-                    </div>
-                  </Link>
-                </Col>
-              </Row>
+                    <Link href="/construccion">
+                      <div className="btn-lo-mejor bg-azul hover-azul">
+                        <a>Solo en Yes Mom</a>
+                      </div>
+                    </Link>
+                  </Col>
+                </Row>
+              </Container>
             </div>
 
             <div className="nube-down">
@@ -327,7 +344,81 @@ const Home = ({ currentData }) => {
             </div>
           </Container>
         </div>
+        <div className="section-tienda-home">
+          <Container>
+            <div className="box-text-title">
+              <Image
+                src="/image/ondas.svg"
+                alt="ondas"
+                className="ondas"
+                width={50}
+                height={50}
+              />
+              <h4 className="text-title heartbeat">Tienda online</h4>
+              <Image
+                src="/image/ondas.svg"
+                alt="ondas"
+                className="ondas"
+                width={50}
+                height={50}
+              />
+            </div>
+            <h3 className="title-fuxia mt-2">Nuestros productos</h3>
+            <h6 className="text-explora subtitle-dark text-center">
+              ¡Explora nuestro marketplace y vive la experiencia de encontrar lo
+              mejor para tu pequeño!
+            </h6>
+          </Container>
+          <Container fluid="true">
+            <Col>
+                <div className="all-products">
+                    <CardProduct size="4"/>
+                    <CardProduct discount size="4"/>
+                    <CardProduct discount size="4"/>
+                    <CardProduct size="4"/>
+                </div>
+            </Col>
+            <Link href="/tienda">
+            <div className="btn-yellow bg-fuxia hover-fuxia text-omnes">
+              <a>Ver más</a>
+            </div>
+          </Link>
+          </Container>
+
+        </div>
         <div className="section-blog-home">
+          <div className="nube-blanca1">
+            <Image
+              src="/image/nube-blanca2.png"
+              alt="nube yes mom"
+              width={60}
+              height={30}
+            />
+          </div>
+          <div className="nube-blanca2">
+            <Image
+              src="/image/nube-blanca1.png"
+              alt="nube yes mom"
+              width={100}
+              height={60}
+            />
+          </div>
+          <div className="nube-blanca3">
+            <Image
+              src="/image/nube-blanca1.png"
+              alt="nube yes mom"
+              width={90}
+              height={60}
+            />
+          </div>
+          <div className="nube-blanca4">
+            <Image
+              src="/image/nube-blanca2.png"
+              alt="nube yes mom"
+              width={110}
+              height={60}
+            />
+          </div>
           <Container fluid="true">
             <Row className="sin-margin">
               {/* <Col xs={12} md={6} lg={6} xl={6}>
@@ -363,14 +454,14 @@ const Home = ({ currentData }) => {
                   <h3 className="title-fuxia mt-2">#TrueStoryMom</h3>
                   <div className="container-blog-home">
                     <Container>
-                      <h6 className="subtitle-dark text-center">
+                      <h6 className="subtitle-dark text-center cl-blanco ">
                         Historias reales de mamis que tenían las mismas dudas
                         que tú en estos momentos. No te preocupes, ¡lo
                         resolveremos juntas!
                       </h6>
 
                       <Link href="/blog">
-                        <div className="btn-yellow hover-amarillo">
+                        <div className="btn-yellow bg-fuxia hover-fuxia text-omnes">
                           <a>Ver más</a>
                         </div>
                       </Link>
@@ -399,10 +490,34 @@ const Home = ({ currentData }) => {
       </div>
       <style jsx>
         {`
+          :global(.card-blog){
+              width:30rem!important;
+            }
+          .text-change-font{
+            font-family:"omnes-bold"!important;
+            font-size:1.6rem;
+          }
+          .text-omnes{
+            width:17.5rem;
+          }
+          .text-omnes a {
+            font-size:2rem;
+          }
+
+          .all-products{
+              width : 75%;
+              margin : 0 auto;
+              padding:3rem 0;
+              display:flex;
+              justify-content:center;
+              align-items:center;
+              flex-wrap:wrap;
+            }
           .box-banner {
-            height: 50rem;
+            height: 100vh;
             width: auto;
             position: relative;
+            overflow:hidden;
           }
 
           .box-banner-btns {
@@ -451,12 +566,13 @@ const Home = ({ currentData }) => {
           }
 
           .btn-regalos {
+            max-width:90%;
             background-color: #febf41;
             font-size: 1.31rem;
             color: #fff !important;
             padding: 1.5rem 0rem;
             margin: 1rem;
-            width: 11rem;
+            width: 15rem;
             border-radius: 30px;
             text-align: center;
             line-height: 1.3rem;
@@ -466,8 +582,11 @@ const Home = ({ currentData }) => {
           }
           .btn-regalos a {
             color: #fff !important;
+            font-size:1.6rem;
           }
-
+          .text-iniciar-sesion{
+            font-size:1.5rem;
+          }
           .box-text-title {
             display: flex;
             justify-content: center;
@@ -477,7 +596,7 @@ const Home = ({ currentData }) => {
           }
           .text-title {
             font-family: "Clicker Script", cursive;
-            font-size: 2.5rem;
+            font-size:4rem;
             margin: 0rem 1rem 0rem;
             color: #4b66ae;
           }
@@ -488,7 +607,7 @@ const Home = ({ currentData }) => {
           }
 
           .box-sorteo-home {
-            width: 31.5rem;
+            width: 35rem;
             text-align: center;
             margin: 1rem auto;
           }
@@ -556,15 +675,15 @@ const Home = ({ currentData }) => {
           }
 
           .img-lo-mejor {
-            border: 1px #575756;
+            border: 2px #575756;
             border-style: dashed;
             padding: 0.6rem;
             margin: auto;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 20rem;
-            height: 20rem;
+            width: 22.5rem;
+            height: 22.5rem;
             border-radius: 50%;
           }
 
@@ -603,9 +722,32 @@ const Home = ({ currentData }) => {
 
           .btn-lo-mejor a {
             color: #fff !important;
+            font-size:1.7rem;
           }
           .section-blog-home {
-            padding: 4rem 0;
+            padding: 6rem 0;
+            background: #febf41;
+            position: relative;
+          }
+
+          .nube-blanca1 {
+            position: absolute;
+            left: 5%;
+          }
+          .nube-blanca2 {
+            position: absolute;
+            right: 4%;
+            top: 6%;
+          }
+          .nube-blanca3 {
+            position: absolute;
+            bottom: 5%;
+            left: 5%;
+          }
+          .nube-blanca4 {
+            position: absolute;
+            right: 6%;
+            bottom: 5%;
           }
           .box-img-blog-home {
             position: relative;
@@ -675,12 +817,25 @@ const Home = ({ currentData }) => {
             justify-content: center !important;
           }
 
+          .section-tienda-home {
+            padding: 2rem 0rem 5rem 0rem;
+          }
+
+          .box-product-card-home {
+            margin-top: 3rem;
+          }
+          .box-product-card-home .card-deck-h {
+            margin: auto;
+            display: flex;
+            justify-content: center;
+          }
+
           @media (min-width: 1800px) {
             :global(.card-deck) {
               justify-content: center !important;
             }
             .box-banner {
-              height: 40rem;
+              height: 100vh;
               width: auto;
             }
 
@@ -708,16 +863,6 @@ const Home = ({ currentData }) => {
             .box-sorteo-home .subtitle-dark {
               font-size: 1.2rem;
             }
-            /* .btn-yellow {
-    font-weight: 900;
-    font-size: 1rem;
-    color: #fff;
-    padding: 1rem 0rem;
-    margin: 1rem auto;
-    width: 8rem;
-    border-radius: 30px;
-    font-family: "omnes-bold";
-  } */
             .img-sorteo {
               width: 80%;
             }
@@ -764,11 +909,6 @@ const Home = ({ currentData }) => {
               margin-left: 15rem !important;
               margin-right: 15rem !important;
               margin: 3rem 0;
-            }
-
-            .img-lo-mejor {
-              width: 15rem;
-              height: 15rem;
             }
 
             .onda-rosa {
@@ -826,7 +966,10 @@ const Home = ({ currentData }) => {
             :global(.card-deck) {
               justify-content: center !important;
             }
-
+            .all-products{
+              width:70%;
+              margin: 0 auto;
+            }
             .box-banner-btns-group {
               position: absolute;
               top: 35%;
@@ -850,8 +993,45 @@ const Home = ({ currentData }) => {
             :global(.card-deck) {
               justify-content: center !important;
             }
+            .subtitle-dark{
+              font-size:2rem;
+            }
+            .text-iniciar-sesion{
+              font-size:1.2rem;
+              margin-top:1rem;
+            }
+            .text-omnes{
+              width:15rem;
+            }
+            .text-omnes a{
+              font-family:"omnes-regular"!important;
+              font-size:1.8rem;
+              font-weight:500;
+            }
             .text-title {
-              font-size: 1.5rem;
+              font-size: 4rem;
+            }
+            .ft-3{
+              font-size:1.3rem;
+            }
+            .text-explora{
+              font-size:1.5rem;
+              padding: 0 2rem;
+            }
+            .box-sorteo-home .subtitle-dark {
+              font-size: 1.4rem;
+            }
+            .title-fuxia{
+              font-size:2rem;
+            }
+            .all-products{
+              width : 90%;
+              margin : 0 auto;
+              padding:3rem 0;
+              display:flex;
+              justify-content:center;
+              align-items:center;
+              flex-wrap:wrap;
             }
             .ondas {
               width: 4rem;
@@ -883,8 +1063,8 @@ const Home = ({ currentData }) => {
             }
 
             .img-lo-mejor {
-              width: 12rem;
-              height: 12rem;
+              width: 17.5rem;
+              height: 17.5rem;
             }
 
             .line-up {
@@ -913,11 +1093,17 @@ const Home = ({ currentData }) => {
 
             .btn-lo-mejor {
               font-size: 1rem;
-              width: 11rem;
-              height: 4rem;
+              width: 14rem;
+              height: 5rem;
               border-radius: 20px;
             }
-
+            .btn-lo-mejor a{
+              font-family:"omnes-regular"!important;
+              font-size:1.8rem;
+            }
+            .text-change-font {
+              font-family:"omnes-regular"!important;
+            }
             .box-img-blog-home {
               padding: 1rem;
             }
@@ -959,15 +1145,23 @@ const Home = ({ currentData }) => {
             }
 
             .btn-regalos {
-              width: 15rem;
+              width: 25rem;
               margin: 0.8rem auto;
+              padding-left : 0.5rem;
+              padding-right:0.5rem;
               font-size: 1rem;
             }
-
+            .btn-regalos a{
+              font-family:"omnes-regular"!important;
+              font-size:1.8rem;
+            }
             .box-true-history {
-              width: 80%;
+              width: 85%;
               display: block;
               margin: auto;
+            }
+            :global(.card-blog){
+              width:100%!important;
             }
           }
         `}
@@ -979,12 +1173,10 @@ const Home = ({ currentData }) => {
 export async function getServerSideProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=2`
-  console.log("**********",url);
+  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=2`;
+  console.log("**********", url);
 
-  const res = await fetch(
-    url
-  );
+  const res = await fetch(url);
   const currentData = await res.json();
 
   if (!currentData) {

@@ -10,21 +10,17 @@ const appLayout = ({ children }) => {
     <div className="box-yesmom">
       <Head>
         <title>yesmom</title>
-        {/* <link
-          rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/flatly/bootstrap.min.css"
-        /> */}
         <meta name="description" content="esto es descripcion"></meta>
       </Head>
-      {/* <Header></Header> */}
       <HeaderNuevo />
-      <main>{children}</main>
-      <WsBtn/>
+      <main className="main-yesmom">{children}</main>
+      <WsBtn />
+
       <Footer></Footer>
       <style jsx global>
         {`
           html {
-            font-size: 0.98vw !important;
+            font-size:62.5%;
             font-family: "mont-heavy";
           }
           body {
@@ -83,7 +79,9 @@ const appLayout = ({ children }) => {
             font-family: "mont-light";
             src: url(/fonts/Mont-Light.otf);
           }
-
+          .main-yesmom {
+            padding-top: 3rem;
+          }
           .mt-views {
             padding-top: 0rem;
           }
@@ -113,10 +111,26 @@ const appLayout = ({ children }) => {
           .cl-fuxia {
             color: #ec608d;
           }
+          .cl-yellow {
+            color: #febf41;
+          }
+
+          .cl-blanco {
+            color: #ffff !important;
+          }
           .subtitle-dark {
             color: #575756;
             font-family: "mont-regular";
             font-size: 2rem;
+          }
+
+          .title-yesmom {
+            font-family: "mont-regular";
+            font-size: 1.2rem;
+          }
+          .subtitle-yesmom {
+            font-family: "mont-regular";
+            font-size: 1rem;
           }
 
           .btn-yellow {
@@ -155,28 +169,7 @@ const appLayout = ({ children }) => {
           .bg-gray {
             background-color: #575650 !important;
           }
-           {
-            /* @media (min-width: 576px) {
-            .box-web {
-              max-width: 900px !important;
-            }
-          }
-          @media (min-width: 900px) {
-            .box-web {
-              max-width: 992px !important;
-            }
-          }
-          @media (min-width: 992px) {
-            .box-web {
-              max-width: 1200px !important;
-            }
-          }
-          @media (min-width: 1200px) {
-            .box-web {
-              max-width: 1500px !important;
-            }
-          } */
-          }
+
           .box-yesmom {
             max-width: 1800px;
             width: 100%;
@@ -433,16 +426,50 @@ const appLayout = ({ children }) => {
           .hover-efect-letter:hover:after {
             transform: scale(1.1);
           }
+          .card {
+            border-radius: 1rem !important;
+          }
+          .card-img,
+          .card-img-top {
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+          }
+          .card-footer {
+            background: none;
+          }
+
+           {
+            /* style INPUT */
+          }
+
+          input {
+            text-align: center;
+          }
+          input:focus {
+            outline: none;
+            box-shadow: 0px 0px 3px #dc6a8d;
+          }
+          input::placeholder {
+            background-image: url("/image/header/lupa.svg");
+            background-size: contain;
+            background-position: 26rem;
+            background-repeat: no-repeat;
+            font-family: "mont-light";
+            color: #5a5a5a;
+            font-size: 0.9rem;
+            text-align: center;
+          }
+
           @media (min-width: 1800px) {
             .subtitle-dark {
               font-size: 1.2rem;
             }
+            input::placeholder {
+              background-position: 16rem;
+            }
           }
 
           @media (max-width: 768px) {
-            html {
-              font-size: 4.6vw !important;
-            }
             .view-desktop {
               display: none;
             }
@@ -469,6 +496,9 @@ const appLayout = ({ children }) => {
             }
             .link-a {
               font-size: 0.8rem;
+            }
+            input::placeholder {
+              background-position: 1rem;
             }
           }
 
@@ -625,7 +655,7 @@ const appLayout = ({ children }) => {
             -webkit-animation: kenburns-top 5s ease-out both;
             animation: kenburns-top 5s ease-out both;
           }
-          
+
           @-webkit-keyframes kenburns-top {
             0% {
               -webkit-transform: scale(1) translateY(0);
