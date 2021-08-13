@@ -121,10 +121,8 @@ const HeaderNuevo = () => {
                       alt="logo blog yesmom "
                       width={22}
                       height={22}
-
                     />
                     <h6 className="text-navbar">Carrito</h6>
-
                   </a>
                   <div className="dropdown-content">
                     <PopupCart />
@@ -146,12 +144,10 @@ const HeaderNuevo = () => {
           .container-cart-submenu{
             position: relative;
             display: inline-block;
-            
           }
           .dropdown-content {
             display: none;
             position: absolute;
-            
             z-index: 1;
             right:0;
             top: 20;
