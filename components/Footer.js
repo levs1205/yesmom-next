@@ -26,7 +26,10 @@ const Footer = () => {
                     <a>Tienda</a>
                   </Link>
                   <Link href="/construccion">
-                    <a>Regalos</a>
+                    <a>Lista</a>
+                  </Link>
+                  <Link href="/construccion">
+                    <a>Ayuda</a>
                   </Link>
                   <Link href="/nosotros">
                     <a>Sobre nosotros</a>
@@ -45,7 +48,7 @@ const Footer = () => {
             </Col>
             <Col xs={12} sm={12} md={3} lg={3} xl={3}>
               <div className="padding-left text-left pb-1">
-                <h6 className="title-footer">
+                <h6 className="title-footer off-mobile">
                   <b className="p-1"></b>
                 </h6>
                 <div className="box-contenido-footer">
@@ -60,7 +63,7 @@ const Footer = () => {
                     <a>Libro de reclamaciones</a>
                   </Link>
                   <Link href="/construccion">
-                    <a>Políticas de campañas</a>
+                    <a>Terminos de campañas</a>
                   </Link>
                 </div>
               </div>
@@ -131,14 +134,14 @@ const Footer = () => {
 
           .footer a {
             color: #fff;
-            font-size:1.5rem;
+            font-size:1.3rem;
             text-decoration: none;
           }
           .title-footer{
-            font-size:2rem;
+            font-size:1.6rem;
           }
           .footer .padding-left p {
-            font-size:1.5rem;
+            font-size:1.3rem;
           }
           .footer a:hover {
             color: #ec608d;
@@ -224,11 +227,15 @@ const Footer = () => {
               margin-bottom: 0.4rem;
               font-size: 1.5rem;
             }
+            .off-mobile{
+              display:none!important;
+            }
           }
           @media (min-width: 576px) and (max-width: 769px) {
             .icon-redes {
               font-size: 1rem;
             }
+            
             /* 
             .footer .padding-left p {
               font-size: 0.65rem;
