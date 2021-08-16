@@ -122,6 +122,14 @@ const index = () => {
             <Col xs={12} md={12} lg={6} xl={6}>
               <div className="box-img-somos-home">
                 <div className="img-somos tilt-in-fwd-tr">
+                  <div className="blue-lines-right heartbeat">
+                    <Image
+                      src="/image/blue-lines-top-right.svg"
+                      width={23}
+                      height={22}
+                      alt="imagen sorteo yesmom home"
+                    />
+                  </div>
                   <Image
                     src="/image/about.png"
                     width={80}
@@ -129,6 +137,14 @@ const index = () => {
                     layout="responsive"
                     alt="imagen sorteo yesmom home"
                   />
+                  <div className="blue-lines-left heartbeat">
+                    <Image
+                      src="/image/blue-lines-bottom-left.svg"
+                      width={23}
+                      height={22}
+                      alt="imagen sorteo yesmom home"
+                    />
+                  </div>
                 </div>
               </div>
             </Col>
@@ -247,6 +263,18 @@ const index = () => {
           }
           .img-somos {
             padding: 3rem 3.2rem;
+            position: relative;
+          }
+          .blue-lines-left, .blue-lines-right {
+            position: absolute;
+          }
+          .blue-lines-right {
+            right: 15px; 
+            top: 10px;
+          }
+          .blue-lines-left {
+            left: 15px; 
+            bottom: 12px;
           }
           .text-title-blog {
             font-family: "Clicker Script", cursive;
@@ -270,7 +298,9 @@ const index = () => {
               margin-bottom: 2.8px;
             }
             .img-somos {
-              padding: 0rem 15.2rem;
+              max-width: 58rem;
+              padding: 0rem auto;
+              margin: auto;
             }
             .box-video-somos {
               margin: 6rem 20rem 0 20rem;
