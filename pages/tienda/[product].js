@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Head from 'next/head';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import AppLayout from "../../components/AppLayout";
@@ -17,11 +18,50 @@ const Product = () => {
 
   return (
     <AppLayout>
+      <Head>
+        <title>YesMom - Detalles</title>
+        <meta name="description" content="YesMom es ..."></meta>
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="YesMom - Detalles" />
+        <meta
+        property="og:description"
+        content="Yes Mom es una plataforma digital peruana que ayuda a las
+                        mamis a disfrutar su maternidad sin preocupaciones. Queremos
+                        ser la marca aliada que todos los papás estuvieron buscando,
+                        una página web que reúne en un solo lugar todo lo que
+                        necesitan para la llegada de su bebé y acompañar su
+                        crecimiento."
+        />
+        <meta
+        property="og:image"
+        itemprop="image"
+        content="https://yesmom.vercel.app/image/about-header.png"
+        />
+        <meta property="og:image:width" content="1280" />
+        <meta property="og:image:height" content="855" />
+        <meta property="og:site_name" content="Yes Mom" />
+        {/* <meta property="og:url" content={`${user.id}`} />  */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="YesMom - Detalles" />
+        <meta
+        name="twitter:description"
+        content="Yes Mom es una plataforma digital peruana que ayuda a las
+                        mamis a disfrutar su maternidad sin preocupaciones. Queremos
+                        ser la marca aliada que todos los papás estuvieron buscando,
+                        una página web que reúne en un solo lugar todo lo que
+                        necesitan para la llegada de su bebé y acompañar su
+                        crecimiento."
+        />
+        <meta
+        name="twitter:image"
+        content="https://yesmom.vercel.app/image/about-header.png"
+        />
+    </Head>
       <div className="container--firstProductBlock">
         <section className="firstProductBlock--carousel">
           <Carousel>
             <div>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT33_pESsQm9_ibShiVq11PuPcNIuR3w4JOf8_oTFubhYW81Kj7Ux8fc6Mr1qwT6DF76i0&usqp=CAU" />
+              <img src="https://i.blogs.es/ee0424/ropa-bebe-rosa/450_1000.jpeg" />
             </div>
             <div>
               <img src="https://kinsta.com/es/wp-content/uploads/sites/8/2017/04/cambiar-url-wordpress.jpg" />
@@ -138,6 +178,7 @@ const Product = () => {
             padding: 1rem;
             position: relative;
             top: 4rem;
+            margin-top:12.5rem;
           }
           .firstProductBlock--carousel {
             width: 100%;

@@ -1,24 +1,23 @@
 import React from "react";
-import AppLayout from "../../components/AppLayout";
+import AppLayout from "../../../components/AppLayout";
 import Head from "next/head";
 import Image from 'next/image';
 
 import { Container } from "react-bootstrap";
-import CardProduct from "../../components/CardProduct";
-import SidebarTienda from "../../components/perfil-tienda/SidebarPerfilTienda";
+import CardProduct from "../../../components/CardProduct";
 
-import Pagination from '../../components/Pagination';
-const Product = () => {
-
+import Pagination from '../../../components/Pagination';
+import SidebarProducto from "../../../components/tienda/SidebarProducto";
+const Categoria = () => {
 
 
   return (
     <AppLayout>
       <Head>
-        <title>YesMom - Perfil-tienda</title>
+        <title>YesMom - Tienda-categoria</title>
         <meta name="description" content="YesMom es ..."></meta>
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="YesMom - Perfil-Tienda" />
+        <meta property="og:title" content="YesMom - Tienda-categoria" />
         <meta
           property="og:description"
           content="Yes Mom es una plataforma digital peruana que ayuda a las
@@ -38,7 +37,7 @@ const Product = () => {
         <meta property="og:site_name" content="Yes Mom" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="YesMom - Perfil-Tienda" />
+        <meta name="twitter:title" content="YesMom - Tienda-categoria" />
         <meta
           name="twitter:description"
           content="Yes Mom es una plataforma digital peruana que ayuda a las
@@ -79,29 +78,31 @@ const Product = () => {
           <div className="all-content">
             <div className="contenedor">
                 <div className="sidebar show-desktop">
-                  <SidebarTienda />
+                    <SidebarProducto />
                 </div>
                 <div className="products">
                     <div className="inline-desktop">
-                        <h4 className="text-title-tienda">Solo en Baby Plaza Store</h4>
+                        <h4 className="text-title-tienda">Solo en Yesmom</h4>
                         <div className="show-mobile">
                                 <hr />
                         </div>
                         <div className="container-selects">
                                 <div className="show-mobile">
-                                    <select>
-                                        <option>Mostrar del 1 al 20</option>
-                                        <option>Mostrar del 1 al 20</option>
-                                        <option>Mostrar del 1 al 20</option>
-                                    </select>
+                                    <p className="show-between">Mostrar del 1 al 20</p>
                                 </div>
                                 <div className="show-desktop">
                                     <p className="show-quantity-desktop">Mostrar del 1 al 20 de 100</p>
                                 </div>
                                 <select>
-                                    <option>Ordenar por </option>
-                                    <option>Ordenar por </option>
-                                    <option>Ordenar por </option>
+                                    <option selected disabled>Ordenar por </option>
+                                    <option>Precio de mayor a menor </option>
+                                    <option>Precio de menor a mayor </option>
+                                    <option>Recomendaciones </option>
+                                    <option>A-Z (alfabéticamente) </option>
+                                    <option>Z-A (alfabéticamente </option>
+                                    <option>Los más vendidos </option>
+                                    <option>Últimos 30 días </option>
+                                    <option> Últimos 6 meses </option>
                                 </select>
                         </div>
                     </div>
@@ -130,8 +131,19 @@ const Product = () => {
         </Container>
       </div>
       <style jsx>
-        {`
-
+        {`  
+            .container-selects{
+                display: flex;
+                align-items:center;
+                justify-content:space-between;
+            }
+            .show-between{
+                font-family:"mont-regular"!important;
+                font-size:1.3rem;
+                color:#5A5A5A;
+                margin: 0;
+                margin-top:2rem;
+            }
             hr{
                 margin:0;
                 border-top:3px solid rgba(0,0,0,.1);
@@ -143,6 +155,7 @@ const Product = () => {
             }
             .banner-baby{
                 position:relative;
+                margin-top:5rem;
             }
             .img-baby{
                 width:100%;
@@ -175,6 +188,7 @@ const Product = () => {
                 background-size: cover;
                 justify-content: left;
                 align-items: right;
+                padding-top: 8rem;
                 border-bottom: 1px solid #5a5a5a;
             }
             .text-title-tienda {
@@ -249,8 +263,11 @@ const Product = () => {
             }
 
             @media (min-width:768px){
+                .banner-baby{
+                    margin-top:7.5rem;
+                }
                 .box-producto{
-                    padding-top:4rem;
+                    padding-top:8.4rem;
                 }
                 .all-products{
                     padding-top:0;
@@ -296,6 +313,9 @@ const Product = () => {
             }
 
             @media(min-width:1024px){
+                .banner-baby{
+                    margin-top:6rem;
+                }
                 .sidebar{
                     flex-basis:30%;
                 }
@@ -310,19 +330,12 @@ const Product = () => {
                 .show-quantity-desktop{
                     font-size:1.5rem;
                 }
-                .text-title{
-                    font-size:5rem;
-                }
                 select{
                     padding-right: 5rem ;
                 }
 
             }
             @media(min-width:1280px){
-
-                .text-title{
-                    font-size:6rem;
-                }
                 
                 select{
                     padding-right:6rem;
@@ -336,4 +349,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default Categoria;

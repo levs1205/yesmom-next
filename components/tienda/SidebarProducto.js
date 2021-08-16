@@ -60,7 +60,7 @@ return (
                     list-style-type: none;
                     margin: 0;
                     padding: 0;
-                    font-size: 1.6rem;
+                    font-size: 1.3rem;
                 }
                 .side-bar li a {
                     display: block;

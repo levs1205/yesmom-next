@@ -3,51 +3,57 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react'
-import { Button, Collapse, Dropdown } from 'react-bootstrap'
 
 function SelectFilterStore() {
     
+    const [isVisible , setIsVisible ] = useState(false)
     const { pathname } = useRouter();
     const types = [
-        { name : "Todos", path : "/"},
-        { name : "Solo en Yes Mom", path : "/"},
-        { name : "Lo + vendido", path : "/"},
-        { name : "Lo + seleccionado", path : "/"},
-        { name : "Packs de regalo", path : "/"},
-        { name : "Promociones", path : "/"},
-        { name : "Pañales y toallitas", path : "/"},
-        { name : "Coches", path : "/"},
-        { name : "Paseo y Organizacion", path : "/"},
-        { name : "Sillas para Auto", path : "/"},
-        { name : "Lactancia y Alimentación", path : "/"},
-        { name : "Baño", path : "/"},
+        { name : "Todos", path : "/a"},
+        { name : "Solo en Yes Mom", path : "/b"},
+        { name : "Lo + vendido", path : "/tienda"},
+        { name : "Lo + seleccionado", path : "/d"},
+        { name : "Packs de regalo", path : "/e"},
+        { name : "Promociones", path : "/f"},
+        { name : "Pañales y toallitas", path : "/g"},
+        { name : "Coches", path : "/h"},
+        { name : "Paseo y Organizacion", path : "/i"},
+        { name : "Sillas para Auto", path : "/j"},
+        { name : "Lactancia y Alimentación", path : "/k"},
+        { name : "Baño", path : "/l"},
     ];
 
+
+    const handleExpandFilters = () => {
+        setIsVisible( state => !state);
+    }
 
     return (
         <>
             <div className="select-filter-store">
                 <p className="text-select-filter">Selecciona una categoría</p>
-                <div className="expand-icon">
+                <div className="expand-icon" onClick={handleExpandFilters}>
                     <img src="/image/header/search-store.svg" alt="icon-expand" />
                 </div>
             </div>
-
-            <div className="container-options-select-filter">
-                 <div className="select-filter">
-                     <div className="options">
-                        {
-                            types.map((link)=>(
-                                <Link href="">
-                                   <a>
-
-                                   </a> 
-                                </Link>
-                            ))
-                        }
-                     </div>
-                 </div>
-            </div>
+            {
+                isVisible &&
+                <div className="container-options-select-filter">
+                    <div className="select-filter">
+                        <div className="options">
+                            {
+                                types.map((link)=>(
+                                    <Link key={link.name} href={link.path}>
+                                    <a className={`link-to ${pathname===link.path ? "active-link-to" :""}`}>
+                                            {link.name}
+                                    </a> 
+                                    </Link>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
 
             <style jsx>{`
                 .expand-icon{
@@ -64,36 +70,50 @@ function SelectFilterStore() {
                 }    
                 .text-select-filter{
                     margin: 0;
-                    font-family:"mont-semibold"!important;
+                    font-family:"mont-heavy"!important;
                     font-size:1.3rem;
                     color : #5A5A5A;
                 }
                 .container-options-select-filter{
+                    margin-top:15.5rem;
                     z-index:999999999999;
                     position:fixed;
                     top:0;
                     left:0;
-                    height:100vh;
+                    height:100%;
                     width:100%;
 
-                    display:flex;
-                    align-items:center;
-                    justify-content:center;
                 }
 
                 .select-filter{
-                    margin-top:6.5rem;
+                    margin: 0 auto;
                     background:#ffffff;
-                    width:65%;
-                    height:50%;
+                    width:25rem;
+                    max-width:80%;
+                    height:70%;
                 }
                 .options{
-                    padding : 1rem 2rem;
-                    max-height:100%;
+                    padding : 3rem 3rem;
+                    height:100%;
                     overflow-y:scroll;
+
+                    display:flex;
+                    flex-direction:column;
+                }
+                .link-to:hover{
+                    text-decoration:none;
+                }
+                .link-to{
+                    font-family:"mont-regular"!important;
+                    font-size:1.5rem;
+                    color:#5A5A5A;
+                    margin:1rem 0;
+                }
+                .active-link-to{
+                    font-family:"mont-semibold"!important;
                 }
                 @media (min-width:768px){
-                    .select-filter-store{
+                    .select-filter-store ,.container-options-select-filter{
                         display:none;
                     }
                 }

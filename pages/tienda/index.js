@@ -211,6 +211,9 @@ const Product = () => {
             padding-right:2.5rem;
             margin-bottom:5rem;
           }
+          .text-title-tienda{
+            font-size:1.8rem;
+          }
         }
         @media(min-width:768px){
           .mt-5r{
@@ -224,78 +227,6 @@ const Product = () => {
           }
         }
 
-          /* .box-product-general {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            padding: 3rem 0rem;
-          }
-          .box-producto {
-            background-size: cover;
-            justify-content: left;
-            align-items: right;
-            padding-top: 5rem;
-            border-bottom: 1px solid #5a5a5a;
-          }
-          .text-title-tienda {
-            font-family: "mont-regular" !important;
-            font-size: 2rem;
-            font-weight: 600;
-            margin: 3.5rem 0.5rem 0rem;
-            color: #5a5a5a;
-            border-bottom: 1px solid #5a5a5a;
-            padding: 0px 0px 5px 0px;
-          }
-          .card-product {
-            height: 22rem;
-          }
-          .box-card-group {
-            position: relative;
-            top: 0rem;
-            z-index: 10;
-            display: flex;
-          } 
-
-          @media (min-width: 1024px) {
-            .box-product-general {
-              padding: 2rem 0rem;
-            }
-            .carousel-item {
-              max-height: 34rem !important;
-              margin-top: 0px !important;
-            }
-            .box-card-group {
-              position: relative;
-              top: 0rem;
-              z-index: 10;
-            }
-          }
-          */
-          /* 
-          @media (max-width: 1023px) {
-          }
-          @media (max-width: 480px) {
-            .box-product-general {
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              flex-direction: column;
-              padding: 2rem 1.5rem 0rem;
-            }
-            .box-card-group {
-              position: relative;
-              top: 0rem;
-              z-index: 10;
-            }
-            .carousel-item {
-              max-height: 32rem !important;
-              margin-top: 0px !important;
-            }
-            .carousel-item img {
-              max-height: 32rem !important;
-              margin-top: 0px !important;
-            }
-          } */
         `}
       </style>
     </AppLayout>

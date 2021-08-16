@@ -138,17 +138,6 @@ const index = () => {
                         }
                     }
 
-                    @media (min-width:480px){
-                        .container-contenido{
-                            display:flex;
-                            justify-content:center;
-                            align-items:center;
-                        } 
-                        .all-content{
-                            width:45rem;
-                        }
-                    }
-
                 `}
             </style>
 
