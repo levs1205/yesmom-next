@@ -69,7 +69,7 @@ const PopupCart = () => {
             background: #ffffff;
             box-shadow: 0px 9px 21px rgba(0, 0, 0, 0.15);
             border-radius: 0px 0px 44px 44px;
-            height: 800px;
+            height: 100%;
             width: 360px;
             top: 80px;
             padding: 25px;
@@ -96,14 +96,14 @@ const PopupCart = () => {
             border-bottom: 1px solid #dadada;
           }
           .container--shopping-card{
-            width: 135px;
-            height: 125px;
+            width: 105px;
+            height: 95px;
             display: flex;
           }
           .card--shopping-cart__image{
             position:relative;
-            width: 110px;
-            height: 110px;
+            width: 90px;
+            height: 90px;
             margin: auto;
           }
           .card--shopping-cart img {
@@ -196,6 +196,29 @@ const PopupCart = () => {
             left: -8px;
             top: -8px;
           }
+          @media (min-width : 1366px){
+            .container--shopping-card{
+              width: 135px;
+              height: 125px;
+              display: flex;
+            }
+            .card--shopping-cart__image{
+              position:relative;
+              width: 110px;
+              height: 110px;
+              margin: auto;
+            }
+            .card--shopping-cart__iconDelete {
+              position: absolute;
+              background-image: url("/image/icon/delete.svg");
+              background-position: contain;
+              height: 20px;
+              width: 20px;
+              left: -8px;
+              top: -8px;
+            }
+          }
+          
         `}
       </style>
     </>

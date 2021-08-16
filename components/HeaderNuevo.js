@@ -11,7 +11,7 @@ import AvatarLogged from "./AvatarLogged";
 
 const HeaderNuevo = () => {
 
-  const [logged,setLogged] = useState(true);
+  const [logged, setLogged] = useState(true);
   const [active, setActive] = useState(false);
   const [isVisibleSubMenu, setIsVisibleSubMenu] = useState(false);
 
@@ -105,33 +105,33 @@ const HeaderNuevo = () => {
                   <h6 className="text-navbar">Regalos</h6>
                 </a>
               </ActiveLink>
-              
-              {logged ? 
+
+              {logged ?
                 <AvatarLogged />
-                : 
-                  <ActiveLink href="/login" activeClassName="active">
-                    <a className="item-menu-yesmom">
-                      <Image
-                        src="/image/header/iniciar-sesion.svg"
-                        alt="logo blog yesmom "
-                        width={25}
-                        height={25}
-                      />
-                      <h6 className="text-navbar">Iniciar sesión</h6>
-                    </a>
-                </ActiveLink>
-               }
-              
-              <ActiveLink href="/ayuda" activeClassName="active">
-                    <a className="item-menu-yesmom">
+                :
+                <ActiveLink href="/login" activeClassName="active">
+                  <a className="item-menu-yesmom">
                     <Image
-                        src="/image/header/ayuda.svg"
-                        alt="logo ayuda yesmom "
-                        width={25}
-                        height={25}
+                      src="/image/header/iniciar-sesion.svg"
+                      alt="logo blog yesmom "
+                      width={25}
+                      height={25}
                     />
-                    <h6 className="text-navbar">Ayuda</h6>
-                    </a>
+                    <h6 className="text-navbar">Iniciar sesión</h6>
+                  </a>
+                </ActiveLink>
+              }
+
+              <ActiveLink href="/ayuda" activeClassName="active">
+                <a className="item-menu-yesmom">
+                  <Image
+                    src="/image/header/ayuda.svg"
+                    alt="logo ayuda yesmom "
+                    width={25}
+                    height={25}
+                  />
+                  <h6 className="text-navbar">Ayuda</h6>
+                </a>
               </ActiveLink>
               <ActiveLink href="/shopping-cart" activeClassName="active">
                 <div className="container-cart-submenu">
@@ -158,9 +158,9 @@ const HeaderNuevo = () => {
         {onlyStore && <MenuTienda />}
 
       </div>
-      <DropMenuMobile 
-        active={active} 
-        setActive={handleClick} 
+      <DropMenuMobile
+        active={active}
+        setActive={handleClick}
         logged={logged}
       />
       <style jsx>
@@ -175,8 +175,11 @@ const HeaderNuevo = () => {
             z-index: 1;
             right:0;
             top: 20;
+            max-height: calc(100% - 7rem);
           }
-          .container-cart-submenu:hover .dropdown-content {display: block;}
+          .container-cart-submenu:hover .dropdown-content {
+            display: block;
+          }
           .hover-active{
             visibility:hidden
           }
