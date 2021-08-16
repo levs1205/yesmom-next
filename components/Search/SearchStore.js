@@ -1,4 +1,5 @@
 import React from "react";
+import SelectFilterStore from "./SelectFilterStore";
 
 const SearchStore = () => {
   return (
@@ -10,6 +11,9 @@ const SearchStore = () => {
           id="search"
           name="search"
         />
+      </div>
+      <div className="container-search-filter">
+        <SelectFilterStore />
       </div>
       <style jsx>
         {`
@@ -35,6 +39,9 @@ const SearchStore = () => {
           }
 
           @media (max-width: 768px) {
+            .container-search-filter{
+              padding: 0 2rem;
+            }
             .box-search-tienda input {
               width: 100%;
           }
