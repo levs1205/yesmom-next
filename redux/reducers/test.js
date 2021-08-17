@@ -2,7 +2,7 @@ import { types } from "../types/types";
 
 
 const initialState = {
-    test : "Testeando"
+    logged: true
 }
 export const testReducer = ( state = initialState , action ) => {
 

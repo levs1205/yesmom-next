@@ -77,7 +77,7 @@ const index = () => {
                                 <Description path="Mis compras" description="Aquí podrás encontrar todas tus compras y sus estados" /> 
                                 <div className="container-select">
                                     <select>
-                                        <option value="">Ordenar por </option>
+                                        <option selected disabled>Ordenar por </option>
                                         <option value="">Precio de mayor a menor </option>
                                         <option value="">Precio de menor a mayor </option>
                                         <option value="">A-Z (alfabéticamente) </option>
@@ -173,7 +173,7 @@ const index = () => {
                         -moz-appearance:none;
                         appearance:none;
                         background-position-x: 92.5%;
-                        width:15rem;
+                        width:17rem;
                     }
                     .container-accordion{
                         margin:3rem 0 5rem 0;
@@ -232,6 +232,10 @@ const index = () => {
                         .container-select{
                             display:flex;
                             justify-content:flex-end;
+                        }
+
+                        select{
+                            width:20rem;
                         }
                     }
                     @media (min-width:1024px){

@@ -8,9 +8,12 @@ import CardProduct from "../../../components/CardProduct";
 
 import Pagination from '../../../components/Pagination';
 import SidebarProducto from "../../../components/tienda/SidebarProducto";
+import { useRouter } from "next/router";
 const Categoria = () => {
 
+    const { query } = useRouter();
 
+    console.log("Categoria : ",query.category);
   return (
     <AppLayout>
       <Head>
