@@ -9,7 +9,7 @@ import Head from "next/head";
 
 const Blog = ({ currentData }) => {
 
-console.log('APIBlog',currentData);
+  console.log('APIBlog', currentData);
 
   // const sortFunction=(a, b)=> {
   //   var dateA = new Date(a.blog.fecha).getTime();
@@ -20,88 +20,117 @@ console.log('APIBlog',currentData);
   // currentData.sort(sortFunction)
 
   return (
-      <AppLayout>
-        <Head>
-          <title>YesMom - Blog</title>
-          <meta name="description" content="Visita nuestro blog ..."></meta>
-          <meta property="og:type" content="website" />
-          <meta property="og:title" content="YesMom - Blog" />
-          <meta property="og:description" content="Visita nuestro Blog ..." />
-          <meta
-            property="og:image"
-            itemprop="image"
-            content="https://yesmom.vercel.app/image/blog/blog.png"
-          />
-          <meta property="og:site_name" content="Yes Mom" />
-          {/* <meta property="og:url" content={`${user.id}`} />  */}
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:title" content="YesMom - Blog" />
-          <meta name="twitter:description" content="Visitanuestro Blog ..." />
-          <meta
-            name="twitter:image"
-            content="https://yesmom.vercel.app/image/blog/blog.png"
-          />
-          <meta name="twitter:site" content="@JudithCristinaQ" />
-          <meta name="twitter:creator" content="@JudithCristinaQ" />
-        </Head>
-        <div className="fade-in animated">
-         
-
-          <div className="box-banner-blog">
-            <div className="container-content-center">
-              <div className="ondas heartbeat">
-                <Image
-                  src="/image/onda-blanca.svg"
-                  alt="ondas"
-                  width={70}
-                  height={20}
-                />
-              </div>
-              <h4 className="text-title-blog">Blog</h4>
-              <div className="ondas heartbeat">
-                <Image
-                  src="/image/onda-blanca.svg"
-                  alt="ondas"
-                  width={70}
-                  height={20}
-                />
-              </div>
+    <AppLayout>
+      <Head>
+        <title>YesMom - Blog</title>
+        <meta name="description" content="Visita nuestro blog ..."></meta>
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="YesMom - Blog" />
+        <meta property="og:description" content="Visita nuestro Blog ..." />
+        <meta
+          property="og:image"
+          itemprop="image"
+          content="https://yesmom.vercel.app/image/blog/blog.png"
+        />
+        <meta property="og:site_name" content="Yes Mom" />
+        {/* <meta property="og:url" content={`${user.id}`} />  */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="YesMom - Blog" />
+        <meta name="twitter:description" content="Visitanuestro Blog ..." />
+        <meta
+          name="twitter:image"
+          content="https://yesmom.vercel.app/image/blog/blog.png"
+        />
+        <meta name="twitter:site" content="@JudithCristinaQ" />
+        <meta name="twitter:creator" content="@JudithCristinaQ" />
+      </Head>
+      <div className="fade-in animated box-container-blog">
+        <div className="box-banner-blog">
+          <div className="container-content-center">
+            <div className="ondas heartbeat">
+              <Image
+                src="/image/onda-blanca.svg"
+                alt="ondas"
+                width={70}
+                height={20}
+              />
+            </div>
+            <h4 className="text-title-blog">Blog</h4>
+            <div className="ondas heartbeat">
+              <Image
+                src="/image/onda-blanca.svg"
+                alt="ondas"
+                width={70}
+                height={20}
+              />
             </div>
           </div>
+        </div>
 
-          <div className="box-blog-general">
-            <h4 className="subtitle-dark-blog">
-              En este espacio compartiremos algunos tips que te servirán para
-              cuidar y engreir mucho más a tu bebé
-            </h4>
-            <div className="box-card-group">
-              <Container>
-                <CardDeck style={{ justifyContent: "center" }}>
-                  {currentData.map((cardBlog) => (
-                    <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
-                  ))}
-                </CardDeck>
-              </Container>
-            </div>
+        <div className="box-blog-general">
+          <h4 className="subtitle-dark-blog">
+            En este espacio compartiremos algunos tips que te servirán para
+            cuidar y engreir mucho más a tu bebé
+          </h4>
+          <div className="box-card-group">
+            <Container>
+              <CardDeck style={{ justifyContent: "center" }}>
+                {currentData.map((cardBlog) => (
+                  <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
+                ))}
+              </CardDeck>
+            </Container>
           </div>
-          <div className="box-green-blog">
-            {/* <div className="w-100 box-green-blog-img-fondo"> */}
-            {/* <Image
+        </div>
+
+        <div className="box-green-blog">
+          {/* <div className="w-100 box-green-blog-img-fondo"> */}
+          {/* <Image
               src="/image/blog/fondo-verde.png"
               width={1920}
               height={800}
               layout="responsive"
               alt="Picture of the author"
             /> */}
-            {/* </div> */}
-            <h6 className="text-bottom-blog ">
-              Para el mundo eres una mamá,<br></br>
-              <b>para tus hijos eres el mundo</b>
-            </h6>
-          </div>
+          {/* </div> */}
+          <h6 className="text-bottom-blog ">
+            Para el mundo eres una mamá,
+            <br />
+            <b>para tus hijos eres el mundo</b>
+            <div className="waves-blog heartbeat">
+              <Image
+                src="/image/blog/waves-blog.png"
+                width={68}
+                height={9}
+                alt="ondas blog"
+              />
+            </div>
+          </h6>
         </div>
-        <style jsx>
-          {`
+      </div>
+      <style jsx>
+        {`
+            .box-container-blog {
+              margin-bottom: -32.5rem;
+            }
+            :global(.box-card-group .container-card-blog) {
+              margin-bottom: 5rem;
+            }
+            :global(.box-card-group .card-blog) {
+              min-height: 52rem;
+            }
+            :global(.box-card-group .card-blog-title) {
+              font-family: "mont-semibold";
+              font-size: 2rem;
+              line-height: 20px;
+              color: #575756;
+            }
+            :global(.box-card-group .card-blog-descripcion) {
+              font-family: "mont-light";
+              font-size: 1.5rem;
+              line-height: 21px;
+              color: #000000;
+            }
             .container-content-centered{
               position: absolute;
               top: 50%;
@@ -109,6 +138,7 @@ console.log('APIBlog',currentData);
               transform: translate(-50%, -50%);
             }
             .box-banner-blog {
+              border:1px solid black;
               height: 25rem;
               background: url(../../image/blog/blog.png) no-repeat center;
               background-size: cover;
@@ -152,12 +182,13 @@ console.log('APIBlog',currentData);
 
             .box-green-blog {
               position: relative;
-              background: url(../../../image/fondo-verde-somos.png);
-              height: 28rem;
+              background: url(../../../image/fondo-verde-blog-mobile.png);
+              height: 60rem;
               background-position: center;
               background-size: cover;
               padding-top: 5rem;
               padding-bottom: 5rem;
+              bottom: 32.5rem;
             }
 
             .text-bottom-blog {
@@ -170,10 +201,15 @@ console.log('APIBlog',currentData);
               bottom: 16%;
               left: 50%;
               transform: translateX(-50%);
+              width: 32rem;
             }
 
             .text-bottom-blog b {
-              font-family: "mont-semibold";
+              font-family: "mont-heavy";
+              margin-bottom: 0.8rem;
+            }
+            .text-bottom-blog .waves-blog {
+              margin-top: 0.8rem;
             }
             .font-mont-regular {
               font-family: "mont-regular";
@@ -419,12 +455,14 @@ console.log('APIBlog',currentData);
               }
 
               .box-green-blog {
-                height: 15rem;
+                height: 52rem;
               }
 
               .text-bottom-blog {
-                font-size: 1rem;
-                padding-bottom: 2rem;
+                font-size: 2rem;
+                text-align: center;
+                font-weight:600;
+                line-height: 20px;
               }
 
               .box-blog-general {
@@ -463,8 +501,8 @@ console.log('APIBlog',currentData);
               }
             }
           `}
-        </style>
-      </AppLayout>
+      </style>
+    </AppLayout>
   );
 };
 export async function getServerSideProps() {
