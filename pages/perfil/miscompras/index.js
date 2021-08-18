@@ -56,16 +56,18 @@ const index = () => {
             <div className="contenedor">
                 <div className="container-contenido">
                     <div className="all-content">
-                        <Link href="/perfil">
-                            <div className="show return">
-                                <div className="icon-return">
-                                    <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fillRule="evenodd" clipRule="evenodd" d="M6.73017 12.8055C7.02875 13.0722 7.50353 13.0635 7.79062 12.7862C8.07772 12.5089 8.06841 12.0679 7.76983 11.8012L1.83439 6.5L7.76983 1.19882C8.06841 0.932146 8.07772 0.491136 7.79062 0.213797C7.50353 -0.0635432 7.02875 -0.0721905 6.73017 0.194482C6.73017 0.194482 0.232731 5.99252 0.209376 6.01508C0.0689399 6.15075 -0.000572481 6.32557 3.53057e-06 6.5C-0.000572496 6.67443 0.0689399 6.84925 0.209376 6.98492C0.232731 7.00748 6.73017 12.8055 6.73017 12.8055Z" fill="#EC668D"/>
-                                    </svg>
-                                </div>
-                                <p className="ft-m-regular">Volver</p>
-                            </div>
-                        </Link>
+                        <div className="show return">
+                                <Link href="/perfil">
+                                    <div className="link-to-back">
+                                        <div className="icon-return">
+                                            <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fillRule="evenodd" clipRule="evenodd" d="M6.73017 12.8055C7.02875 13.0722 7.50353 13.0635 7.79062 12.7862C8.07772 12.5089 8.06841 12.0679 7.76983 11.8012L1.83439 6.5L7.76983 1.19882C8.06841 0.932146 8.07772 0.491136 7.79062 0.213797C7.50353 -0.0635432 7.02875 -0.0721905 6.73017 0.194482C6.73017 0.194482 0.232731 5.99252 0.209376 6.01508C0.0689399 6.15075 -0.000572481 6.32557 3.53057e-06 6.5C-0.000572496 6.67443 0.0689399 6.84925 0.209376 6.98492C0.232731 7.00748 6.73017 12.8055 6.73017 12.8055Z" fill="#EC668D"/>
+                                            </svg>
+                                        </div>
+                                        <p className="ft-m-regular">Volver</p>
+                                    </div>
+                                </Link>
+                        </div>
                         <div className="contenedor-flex">
                             <div className="flex-left">
                                 <TitlePerfil name="Lucia" email="lucia@henribarrett.com" />
@@ -75,7 +77,7 @@ const index = () => {
                                 <Description path="Mis compras" description="Aquí podrás encontrar todas tus compras y sus estados" /> 
                                 <div className="container-select">
                                     <select>
-                                        <option value="">Ordenar por </option>
+                                        <option selected disabled>Ordenar por </option>
                                         <option value="">Precio de mayor a menor </option>
                                         <option value="">Precio de menor a mayor </option>
                                         <option value="">A-Z (alfabéticamente) </option>
@@ -138,16 +140,19 @@ const index = () => {
                         cursor:pointer;
                         display:flex;
                         align-items:center;
+                        flex-direction:flex-start;
                         margin-bottom:2rem;
                     }
-                    .return:hover{
+                    .link-to-back{
+                        display:flex;
+                    }
+                    .link-to-back:hover{
                         transform:translateY(-1px);
                     }
-                    .return p{
+                    .link-to-back p{
                         margin-left:1rem;
                         color:#EC668D;
                         font-size:1.3rem;
-                        margin-top:0.5rem;
                     }
 
                     select{
@@ -168,7 +173,7 @@ const index = () => {
                         -moz-appearance:none;
                         appearance:none;
                         background-position-x: 92.5%;
-                        width:15rem;
+                        width:17rem;
                     }
                     .container-accordion{
                         margin:3rem 0 5rem 0;
@@ -194,7 +199,7 @@ const index = () => {
 
                     @media (min-width: 768px){
                         .contenedor{
-                            padding:12rem 0;
+                            padding:8rem 0 12rem 0;
                         }
                         .show{
                             display:none;
@@ -227,6 +232,10 @@ const index = () => {
                         .container-select{
                             display:flex;
                             justify-content:flex-end;
+                        }
+
+                        select{
+                            width:20rem;
                         }
                     }
                     @media (min-width:1024px){

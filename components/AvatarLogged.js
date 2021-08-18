@@ -12,7 +12,8 @@ const AvatarLogged = () => {
             <Dropdown as={ButtonGroup}>
                 <Dropdown.Toggle id="dropdown-custom-1">
                     <div className="dropdown-logged">
-                        <img src="/image/header/skinbaby.svg" />
+                        <img src="/image/header/skinbaby.svg" 
+                        width={30}/>
                         <p className="name-logged">Admin</p>
                     </div>
                 </Dropdown.Toggle>

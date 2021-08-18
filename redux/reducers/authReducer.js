@@ -2,14 +2,14 @@ import { types } from "../types/types";
 
 
 const initialState = {
-    test : "Testeando"
+    logged: false
 }
-export const testReducer = ( state = initialState , action ) => {
+export const authReducer = ( state = initialState , action ) => {
 
     switch (action.type) {
-        case types.test:
+        case types.login:
             return {
-                test : "TEST PASSED"
+                logged:true
             };
     
         default:

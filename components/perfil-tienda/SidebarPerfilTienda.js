@@ -33,7 +33,7 @@ function SidebarProveedor() {
                         font-family: "mont-heavy" !important;
                         font-size: 2rem;
                         font-weight: 700;
-                        margin: 3.5rem 0.5rem 0rem;
+                        margin: 0rem 0.5rem 0rem;
                         color: #5A5A5A;
                         /* border-bottom: 1px solid #5A5A5A; */
                         padding: 0 0 0.5rem 0;
@@ -46,7 +46,7 @@ function SidebarProveedor() {
                         list-style-type: none;
                         margin: 0;
                         padding: 0;
-                        font-size: 1.6rem;
+                        font-size: 1.3rem;
                     }
                     .side-bar li a {
                         display: block;

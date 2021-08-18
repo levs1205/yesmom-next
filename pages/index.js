@@ -106,7 +106,7 @@ const Home = ({ currentData }) => {
             </div>
           </div>
           <div className="banner view-mobile">
-            <img src="/image/home/banner-mobile.png" />
+            <img src="/image/home/banner-mobile.png" className="w-100"/>
             {/* <Image
               src="/image/home/banner-mobile.png"
               layout="fill"
