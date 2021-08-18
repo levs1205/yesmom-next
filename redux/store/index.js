@@ -1,22 +1,39 @@
 import { 
     createStore, 
     applyMiddleware, 
-    compose, 
-    combineReducers 
+    combineReducers, 
 } from "redux"
+
+import { HYDRATE ,createWrapper } from "next-redux-wrapper";
+
+import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from "redux-thunk"
 
 import { testReducer } from "../reducers/test";
 
 
-const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+const bindMiddleware = (middleware) => {
+    return composeWithDevTools(applyMiddleware(...middleware));
+}
+
+const reducer = combineReducers({
+    test :testReducer
+}) 
+
+const generalReducer = (state,action) => {
+    if(action.type === HYDRATE){
+        return {
+            ...state,
+            ...action.payload,
+        }
+    }else{
+        return reducer(state,action);
+    }
+}
 
 
-const reducers = combineReducers({
-    test : testReducer,
-})
-const enhancer = composeEnhancers(applyMiddleware(thunk));
+const initStore = () => {
+    return createStore(generalReducer, bindMiddleware([thunk]))
+}
 
-const store = createStore(reducers, enhancer);
-
-export default store;
+export const wrapper = createWrapper(initStore);
