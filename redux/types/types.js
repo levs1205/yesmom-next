@@ -1,5 +1,6 @@
 
 export const types = {
 
-    test : "[TEST] test",
+    login : "[AUTH] login",
+    
 }

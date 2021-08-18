@@ -9,7 +9,7 @@ import { HYDRATE ,createWrapper } from "next-redux-wrapper";
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from "redux-thunk"
 
-import { testReducer } from "../reducers/test";
+import { authReducer } from "../reducers/authReducer";
 
 
 const bindMiddleware = (middleware) => {
@@ -17,7 +17,7 @@ const bindMiddleware = (middleware) => {
 }
 
 const reducer = combineReducers({
-    test :testReducer
+    auth : authReducer
 }) 
 
 const generalReducer = (state,action) => {
