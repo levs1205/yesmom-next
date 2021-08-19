@@ -1,15 +1,19 @@
 // import App from 'next/app'
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Provider from "../context/Provider";
 
-import { wrapper } from '../redux/store/index';
  
 function MyApp({ Component, pageProps }) {
   
-  return <Component {...pageProps} />
+  return (
+      <Provider>
+          <Component {...pageProps} />
+      </Provider>
+  )
 }
 
-export default wrapper.withRedux(MyApp);
+export default MyApp;
 
 
 

@@ -7,7 +7,7 @@ import { Card } from "react-bootstrap";
 function CardProduct({discount,size}) {
     return (
         <>  
-            <Link href="tienda/detalles/[product]" as="tienda/detalles/id_producto">
+            <Link href="tienda/detalles">
                 <div className={`card-container size-${size}`}>
                     <Card border="light">
                         {/* https://picsum.photos/200/300 

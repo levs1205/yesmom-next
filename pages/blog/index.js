@@ -73,7 +73,7 @@ const Blog = ({ currentData }) => {
             cuidar y engreir mucho más a tu bebé
           </h4>
           <div className="box-card-group">
-            <Container>
+            <Container fluid={true}>
               <CardDeck style={{ justifyContent: "center" }}>
                 {currentData.map((cardBlog) => (
                   <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
