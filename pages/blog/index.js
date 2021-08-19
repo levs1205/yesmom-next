@@ -9,7 +9,7 @@ import Head from "next/head";
 
 const Blog = ({ currentData }) => {
 
-console.log('APIBlog',currentData);
+  console.log('APIBlog', currentData);
 
   // const sortFunction=(a, b)=> {
   //   var dateA = new Date(a.blog.fecha).getTime();
@@ -20,34 +20,33 @@ console.log('APIBlog',currentData);
   // currentData.sort(sortFunction)
 
   return (
-      <AppLayout>
-        <Head>
-          <title>YesMom - Blog</title>
-          <meta name="description" content="Visita nuestro blog ..."></meta>
-          <meta property="og:type" content="website" />
-          <meta property="og:title" content="YesMom - Blog" />
-          <meta property="og:description" content="Visita nuestro Blog ..." />
-          <meta
-            property="og:image"
-            itemprop="image"
-            content="https://yesmom.vercel.app/image/blog/blog.png"
-          />
-          <meta property="og:site_name" content="Yes Mom" />
-          {/* <meta property="og:url" content={`${user.id}`} />  */}
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:title" content="YesMom - Blog" />
-          <meta name="twitter:description" content="Visitanuestro Blog ..." />
-          <meta
-            name="twitter:image"
-            content="https://yesmom.vercel.app/image/blog/blog.png"
-          />
-          <meta name="twitter:site" content="@JudithCristinaQ" />
-          <meta name="twitter:creator" content="@JudithCristinaQ" />
-        </Head>
-        <div className="fade-in animated">
-         
-
-          <div className="box-banner-blog">
+    <AppLayout>
+      <Head>
+        <title>YesMom - Blog</title>
+        <meta name="description" content="Visita nuestro blog ..."></meta>
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="YesMom - Blog" />
+        <meta property="og:description" content="Visita nuestro Blog ..." />
+        <meta
+          property="og:image"
+          itemprop="image"
+          content="https://yesmom.vercel.app/image/blog/blog.png"
+        />
+        <meta property="og:site_name" content="Yes Mom" />
+        {/* <meta property="og:url" content={`${user.id}`} />  */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="YesMom - Blog" />
+        <meta name="twitter:description" content="Visitanuestro Blog ..." />
+        <meta
+          name="twitter:image"
+          content="https://yesmom.vercel.app/image/blog/blog.png"
+        />
+        <meta name="twitter:site" content="@JudithCristinaQ" />
+        <meta name="twitter:creator" content="@JudithCristinaQ" />
+      </Head>
+      <div className="fade-in animated box-container-blog">
+        <div className="box-banner-blog">
+          <div className="container-content-center">
             <div className="ondas heartbeat">
               <Image
                 src="/image/onda-blanca.svg"
@@ -66,50 +65,96 @@ console.log('APIBlog',currentData);
               />
             </div>
           </div>
-          <div className="box-blog-general">
-            <h4 className="subtitle-dark-blog">
-              En este espacio compartiremos algunos tips que te servirán para
-              cuidar y engreir mucho más a tu bebé
-            </h4>
-            <div className="box-card-group">
-              <Container>
-                <CardDeck style={{ justifyContent: "center" }}>
-                  {currentData.map((cardBlog) => (
-                    <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
-                  ))}
-                </CardDeck>
-              </Container>
-            </div>
+        </div>
+
+        <div className="box-blog-general">
+          <h4 className="subtitle-dark-blog">
+            En este espacio compartiremos algunos tips que te servirán para
+            cuidar y engreir mucho más a tu bebé
+          </h4>
+          <div className="box-card-group">
+            <Container fluid="true">
+              <CardDeck style={{ justifyContent: "center" }}>
+                {currentData.map((cardBlog) => (
+                  <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
+                ))}
+              </CardDeck>
+            </Container>
           </div>
-          <div className="box-green-blog">
-            {/* <div className="w-100 box-green-blog-img-fondo"> */}
-            {/* <Image
+        </div>
+
+        <div className="box-green-blog">
+          {/* <div className="w-100 box-green-blog-img-fondo"> */}
+          {/* <Image
               src="/image/blog/fondo-verde.png"
               width={1920}
               height={800}
               layout="responsive"
               alt="Picture of the author"
             /> */}
-            {/* </div> */}
-            <h6 className="text-bottom-blog ">
-              Para el mundo eres una mamá,<br></br>
-              <b>para tus hijos eres el mundo</b>
-            </h6>
-          </div>
+          {/* </div> */}
+          <h6 className="text-bottom-blog ">
+            Para el mundo eres una mamá,
+            <br />
+            <b>para tus hijos eres el mundo</b>
+            <div className="waves-blog heartbeat">
+              <Image
+                src="/image/blog/waves-blog.png"
+                width={68}
+                height={9}
+                alt="ondas blog"
+              />
+            </div>
+          </h6>
         </div>
-        <style jsx>
-          {`
-         
+      </div>
+      <style jsx>
+        {`
+            .box-container-blog {
+              margin-bottom: -32.5rem;
+            }
+            :global(.box-card-group .container-card-blog) {
+              margin-bottom: 5rem;
+            }
+            
+            :global(.box-card-group .card-blog-title) {
+              font-family: "mont-semibold";
+              font-size: 1.6rem;
+              line-height: 20px;
+              color: #575756;
+            }
+            :global(.box-card-group .card-blog-descripcion) {
+              font-family: "mont-light";
+              font-size: 1.3rem;
+              line-height: 21px;
+              color: #000000;
+            }
+            .container-content-centered{
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
             .box-banner-blog {
+              border:1px solid black;
               height: 25rem;
               background: url(../../image/blog/blog.png) no-repeat center;
               background-size: cover;
               display: flex;
               justify-content: center;
               align-items: center;
-              padding-top: 5rem;
+              margin-top:10rem;
             }
-
+            .container-content-center{
+              display : flex;
+              align-items :center;
+            }
+            .container-content-center h4{
+              font-size:3rem;
+            }
+            .container-content-center div{
+              width:5rem;
+            }
             .text-title-blog {
               font-family: "Clicker Script", cursive;
               font-size: 2.5rem;
@@ -135,12 +180,13 @@ console.log('APIBlog',currentData);
 
             .box-green-blog {
               position: relative;
-              background: url(../../../image/fondo-verde-somos.png);
-              height: 28rem;
+              background: url(../../../image/fondo-verde-blog-mobile.png);
+              height: 60rem;
               background-position: center;
               background-size: cover;
               padding-top: 5rem;
               padding-bottom: 5rem;
+              bottom: 32.5rem;
             }
 
             .text-bottom-blog {
@@ -153,10 +199,15 @@ console.log('APIBlog',currentData);
               bottom: 16%;
               left: 50%;
               transform: translateX(-50%);
+              width: 32rem;
             }
 
             .text-bottom-blog b {
-              font-family: "mont-semibold";
+              font-family: "mont-heavy";
+              margin-bottom: 0.8rem;
+            }
+            .text-bottom-blog .waves-blog {
+              margin-top: 0.8rem;
             }
             .font-mont-regular {
               font-family: "mont-regular";
@@ -310,8 +361,16 @@ console.log('APIBlog',currentData);
                 right: 15%;
               }
             }
+            @media (max-width: 789px) {
+              .box-blog-general {
+                padding: 3rem 3rem;
+              }
+            } 
 
             @media (max-width: 768px) {
+              .subtitle-dark-blog {
+                font-size:1.5rem;
+              }
               .box-blog-especifico {
                 padding: 1rem 1.5rem 3rem;
                 display: flex;
@@ -362,7 +421,9 @@ console.log('APIBlog',currentData);
                 right: 1%;
               }
               .box-banner-blog {
-                height: 12rem;
+                margin-top:10rem;
+                padding-top:0;
+                height: 25rem;
               }
 
               .text-title-blog {
@@ -371,9 +432,6 @@ console.log('APIBlog',currentData);
               }
               .ondas {
                 width: 3rem;
-              }
-              .box-banner-blog {
-                height: 12rem;
               }
               .text-title-blog {
                 font-family: "Clicker Script", cursive;
@@ -400,12 +458,14 @@ console.log('APIBlog',currentData);
               }
 
               .box-green-blog {
-                height: 15rem;
+                height: 52rem;
               }
 
               .text-bottom-blog {
-                font-size: 1rem;
-                padding-bottom: 2rem;
+                font-size: 2rem;
+                text-align: center;
+                font-weight:600;
+                line-height: 20px;
               }
 
               .box-blog-general {
@@ -422,6 +482,9 @@ console.log('APIBlog',currentData);
             }
 
             @media (max-width: 420px) {
+              .subtitle-dark-blog{
+                font-size:1.3rem;
+              }
               .nube1 {
                 position: absolute;
                 top: 100%;
@@ -441,8 +504,8 @@ console.log('APIBlog',currentData);
               }
             }
           `}
-        </style>
-      </AppLayout>
+      </style>
+    </AppLayout>
   );
 };
 export async function getServerSideProps() {

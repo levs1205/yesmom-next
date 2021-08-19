@@ -1,19 +1,50 @@
 import Link from "next/link";
 import ActiveLink from "../components/ActiveLink";
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import SearchBlog from "./Search/SearchBlog";
 import MenuTienda from "./MenuTienda/MenuTienda";
 import PopupCart from "./Popup/PopupCart/PopupCart"
+import DropMenuMobile from "./DropMenuMobile";
+import AvatarLogged from "./AvatarLogged";
+import YesmomContext from "../context/Context";
 
 const HeaderNuevo = () => {
+
+  const { auth : { logged } } = useContext(YesmomContext);
   const [active, setActive] = useState(false);
-  const router = useRouter();
+  const [isVisibleSubMenu, setIsVisibleSubMenu] = useState(false);
+
+  const [onlyStore, setOnlyStore] = useState(false);
+  const [onlyBlog, setOnlyBlog] = useState(false);
+
+  const { pathname } = useRouter();
+
   const handleClick = () => {
     console.log("click", active);
     setActive(!active);
   };
+
+  const validateSeekerStore = () => {
+    if (pathname.includes("/tienda")) {
+      setOnlyStore(true);
+    } else {
+      setOnlyStore(false);
+    }
+  }
+  const validateSeekerBlog = () => {
+    if (pathname.includes("/blog")) {
+      setOnlyBlog(true);
+    } else {
+      setOnlyBlog(false);
+    }
+  }
+  useEffect(() => {
+    validateSeekerStore();
+    validateSeekerBlog();
+  }, [])
+
   return (
     <div className="box-yesmom">
       <div className="box-nav">
@@ -24,7 +55,7 @@ const HeaderNuevo = () => {
               alt="burger yesmom"
               width={40}
               height={40}
-              // layout="intrinsic"
+            // layout="intrinsic"
             />
           </div>
           <Link href="/" prefetch>
@@ -38,9 +69,8 @@ const HeaderNuevo = () => {
             </a>
           </Link>
           <div
-            className={`${
-              active ? "" : "box-items-menu-desktop"
-            } box-items-menu`}
+            className={`box-items-menu ${active ? "" : "box-items-menu-desktop"
+              }`}
           >
             <div className="box-items-menu-responsive">
               <ActiveLink href="/blog" activeClassName="active">
@@ -48,8 +78,8 @@ const HeaderNuevo = () => {
                   <Image
                     src="/image/header/blog.svg"
                     alt="logo blog yesmom "
-                    width={22}
-                    height={22}
+                    width={25}
+                    height={25}
                   />
                   <h6 className="text-navbar">Blog</h6>
                 </a>
@@ -59,8 +89,8 @@ const HeaderNuevo = () => {
                   <Image
                     src="/image/header/tienda.svg"
                     alt="logo tienda yesmom "
-                    width={23}
-                    height={23}
+                    width={25}
+                    height={25}
                   />
                   <h6 className="text-navbar">Tienda</h6>
                 </a>
@@ -70,50 +100,110 @@ const HeaderNuevo = () => {
                   <Image
                     src="/image/header/regalo.svg"
                     alt="logo regalo yesmom "
-                    width={22}
-                    height={22}
+                    width={25}
+                    height={25}
                   />
                   <h6 className="text-navbar">Regalos</h6>
                 </a>
               </ActiveLink>
-              <ActiveLink href="/construccion" activeClassName="active">
+
+              {logged ?
+                <AvatarLogged />
+                :
+                <ActiveLink href="/login" activeClassName="active">
+                  <a className="item-menu-yesmom">
+                    <Image
+                      src="/image/header/iniciar-sesion.svg"
+                      alt="logo blog yesmom "
+                      width={25}
+                      height={25}
+                    />
+                    <h6 className="text-navbar">Iniciar sesión</h6>
+                  </a>
+                </ActiveLink>
+              }
+
+              <ActiveLink href="/ayuda" activeClassName="active">
                 <a className="item-menu-yesmom">
                   <Image
-                    src="/image/header/iniciar-sesion.svg"
-                    alt="logo blog yesmom "
-                    width={22}
-                    height={22}
+                    src="/image/header/ayuda.svg"
+                    alt="logo ayuda yesmom "
+                    width={25}
+                    height={25}
                   />
-                  <h6 className="text-navbar">Login</h6>
+                  <h6 className="text-navbar">Ayuda</h6>
                 </a>
               </ActiveLink>
-              <ActiveLink href="/construccion" activeClassName="active">
-                <a className="item-menu-yesmom-cart">
-                  <Image
-                    src="/image/header/cesta.svg"
-                    alt="logo blog yesmom "
-                    width={22}
-                    height={22}
-                  />
-                  <h6 className="text-navbar">Carrito</h6>
-                  <div className="hover-active">
+              <ActiveLink href="/shopping-cart" activeClassName="active">
+                <div className="container-cart-submenu">
+                  <a className="item-menu-yesmom-cart">
+                    <Image
+                      src="/image/header/cesta.svg"
+                      alt="logo blog yesmom "
+                      width={25}
+                      height={25}
+                    />
+                    <h6 className="text-navbar">Carrito</h6>
+                  </a>
+                  <div className="dropdown-content scale-up-tr ">
                     <PopupCart />
+                    {/* {isVisibleSubMenu && <PopupCart />} */}
                   </div>
-                </a>
+                </div>
               </ActiveLink>
-
             </div>
           </div>
-          {/* <SearchBlog/> */}
         </nav>
-        <MenuTienda />
-      </div>
 
+        {onlyBlog && <SearchBlog />}
+        {onlyStore && <MenuTienda />}
+
+      </div>
+      <DropMenuMobile
+        active={active}
+        setActive={handleClick}
+        logged={logged}
+      />
       <style jsx>
         {`
-        .hover-active{
-          visibility:hidden
-        }
+          .container-cart-submenu{
+            position: relative;
+            display: inline-block;
+          }
+          .dropdown-content {
+            visibility:hidden;
+            position: absolute;
+            z-index: 1;
+            right:0;
+            top: 20;
+            max-height: calc(100% - 7rem);
+          }
+          .container-cart-submenu:hover .dropdown-content {
+            visibility:visible;
+            
+          }
+          .container-cart-submenu:hover .box-cart {
+            visibility:visible;
+            
+          }
+          .container-cart-submenu:hover .scale-up-tr {
+            animation: scale-up-tr 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) ;
+          }
+
+          @keyframes scale-up-tr {
+            0% {
+              transform: scale(0.7);
+              transform-origin: 100% 0%;
+            }
+            100% {
+              transform: scale(1);
+              transform-origin: 100% 0%;
+            }
+          }
+
+          .hover-active{
+            visibility:hidden
+          }
           .active .text-navbar {
             color: #ec608d !important;
             text-decoration: none !important;
@@ -147,6 +237,7 @@ const HeaderNuevo = () => {
             margin: 0rem 0.5rem;
             color: #616160;
             justify-content: flex-start;
+            cursor:pointer;
           }
            .item-menu-yesmom-cart {
             display: flex;
@@ -156,6 +247,7 @@ const HeaderNuevo = () => {
             margin: 0rem 0.5rem;
             color: #616160;
             justify-content: flex-start;
+            cursor:pointer;
           }
 
           .logo-yesmom:hover {
@@ -189,11 +281,14 @@ const HeaderNuevo = () => {
             visibility:visible
           }
           .text-navbar {
+            font-size:1.4rem;
             font-family: "mont-semibold";
+            margin-top:0.2rem;
           }
           .box-items-menu-responsive {
             display: flex;
             flex-direction: row;
+            align-items:center;
           }
           .box-items-menu {
             margin-left: auto;
@@ -206,6 +301,11 @@ const HeaderNuevo = () => {
             display: block;
           }
 
+          @media (min-width:993px){
+            .box-items-menu{
+              display:block;
+            }
+          }
           @media (max-width: 992px) {
             .burger-yesmom {
               display: block;
@@ -228,9 +328,13 @@ const HeaderNuevo = () => {
               margin: 0.5rem 1rem;
               flex-direction: row;
             }
-            .box-items-menu-desktop {
+            .box-items-menu-desktop{
               display: none;
             }
+            .box-items-menu{
+              display:none!important;
+            }
+            
             .text-navbar {
               margin: 0;
               margin-left: 0.5rem;

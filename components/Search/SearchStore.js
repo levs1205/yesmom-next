@@ -1,4 +1,5 @@
 import React from "react";
+import SelectFilterStore from "./SelectFilterStore";
 
 const SearchStore = () => {
   return (
@@ -11,6 +12,9 @@ const SearchStore = () => {
           name="search"
         />
       </div>
+      <div className="container-search-filter">
+        <SelectFilterStore />
+      </div>
       <style jsx>
         {`
           .box-search-tienda {
@@ -18,8 +22,13 @@ const SearchStore = () => {
             margin-top: 0rem;
             margin-bottom: 0rem;
           }
+          .box-search-tienda input::placeholder , .box-search-tienda input{
+            font-size:1.3rem;
+            font-family:"mont-regular"!important;
+          }
           .box-search-tienda input {
             width: 70%;
+            height:3rem;
             margin: auto;
             border: none;
             padding: 0.2rem;
@@ -29,7 +38,14 @@ const SearchStore = () => {
             outline-color: #dc6a8d;
           }
 
-          
+          @media (max-width: 768px) {
+            .container-search-filter{
+              padding: 0 2rem;
+            }
+            .box-search-tienda input {
+              width: 100%;
+          }
+        }
         `}
       </style>
     </>
