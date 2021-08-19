@@ -962,9 +962,18 @@ const Home = ({ currentData }) => {
             }
           }
 
+          @media (min-width:992px) and (max-width: 1023px){
+            .box-banner{
+              height:70vh;
+            }
+          }
+
           @media (min-width: 769px) and (max-width: 991px) {
             :global(.card-deck) {
               justify-content: center !important;
+            }
+            .box-banner{
+              height:70vh;
             }
             .all-products{
               width:70%;

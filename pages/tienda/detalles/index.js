@@ -1,14 +1,32 @@
+import Link from 'next/link';
+import Image from 'next/image';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Head from 'next/head'
-import React from 'react'
+import React, { useState } from 'react'
 import AppLayout from "../../../components/AppLayout";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import CardProduct from '../../../components/CardProduct';
-import Link from 'next/link';
 
 const Detalles = () => {
+
+    const [ amount , setAmount] = useState(0);
+
+    const handleAdd = () => {
+        setAmount( amount => amount +1);
+    }
+
+    const handleMinus = () => {
+        if( amount > 0 ){
+            setAmount( amount => amount - 1);
+        }
+    }
+
+    const handleChange = (e) => {
+        setAmount(e.target.value);
+    }
+
     return (
         <>
             <AppLayout>
@@ -108,16 +126,34 @@ const Detalles = () => {
                                                     <div className="show--container-cantidad">
                                                         <p className="show--text-label">Cantidad</p>
                                                         <div className="show--control-buttons">
-                                                            <div className="show--control-cantidad">
-                                                                <svg width="24" height="4" viewBox="0 0 24 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.33333 0.659668C0.596953 0.659668 0 1.25662 0 1.993C0 2.72938 0.596953 3.32633 1.33333 3.32633H22.6667C23.403 3.32633 24 2.72938 24 1.993C24 1.25662 23.403 0.659668 22.6667 0.659668L1.33333 0.659668Z" fill="#D3DEE3"/>
-                                                                </svg>
+                                                            <div className="show--control-cantidad" 
+                                                                onClick={ handleMinus }
+                                                            >
+                                                            
+                                                                <Image 
+                                                                    src="/image/tienda/icon-minus.svg" 
+                                                                    height={25} 
+                                                                    width={25}
+                                                                />    
                                                             </div>
-                                                            <p>1</p>
-                                                            <div className="show--control-cantidad">
-                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.500001 10.6597C0.223858 10.6597 0 10.8836 0 11.1597V12.8403C0 13.1164 0.223858 13.3403 0.5 13.3403H10.6597V23.5C10.6597 23.7761 10.8836 24 11.1597 24H12.8403C13.1164 24 13.3403 23.7761 13.3403 23.5V13.3403H23.5C23.7761 13.3403 24 13.1164 24 12.8403V11.1597C24 10.8836 23.7761 10.6597 23.5 10.6597H13.3403V0.500001C13.3403 0.223858 13.1164 0 12.8403 0H11.1597C10.8836 0 10.6597 0.223858 10.6597 0.5V10.6597H0.500001Z" fill="#D3DEE3"/>
-                                                                </svg>
+
+                                                            <input 
+                                                                type="number" 
+                                                                className="input-amount"
+                                                                value = { amount}
+                                                                onChange={ handleChange }
+                                                                min={0}
+                                                            />
+
+                                                            <div 
+                                                                className="show--control-cantidad" 
+                                                                onClick={ handleAdd }
+                                                            >
+                                                                <Image 
+                                                                    src="/image/tienda/icon-add.svg" 
+                                                                    height={25} 
+                                                                    width={25}
+                                                                /> 
                                                             </div>
                                                         </div>
                                                     </div>
@@ -128,7 +164,7 @@ const Detalles = () => {
                                                             </div>
                                                         </div>
                                                         <div className="show--btn-normal">
-                                                            <Link href="/perfil-proveedor">
+                                                            <Link href="/perfil-tienda">
                                                                 <div className="btn-detalle bg-amarillo" color="gray">
                                                                     Ver la tienda
                                                                 </div>
@@ -221,6 +257,30 @@ const Detalles = () => {
             </AppLayout>
             <style jsx>
                 {`  
+                    .input-amount{
+                        border:none;
+                        border: 1px solid #556EA1;
+
+                        font-family:"mont-light";
+                        font-size:2rem;
+                        color:#5A5A5A;
+                        width:4rem;
+                        border-radius:10px;
+                    }
+                    .input-amount:focus{
+                        outline:none;
+                        box-shadow:none;
+                    }
+                    .input-amount::-webkit-inner-spin-button, 
+                    .input-amount::-webkit-outer-spin-button { 
+                        -webkit-appearance: none; 
+                        margin: 0; 
+                    }
+
+                    .input-amount { 
+                        -moz-appearance:textfield; 
+                    }
+
                     :global(.carousel li img) {
                         border-radius: 10px !important;
                         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);

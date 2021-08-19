@@ -144,7 +144,7 @@ const HeaderNuevo = () => {
                     />
                     <h6 className="text-navbar">Carrito</h6>
                   </a>
-                  <div className="dropdown-content">
+                  <div className="dropdown-content scale-up-tr ">
                     <PopupCart />
                     {/* {isVisibleSubMenu && <PopupCart />} */}
                   </div>
@@ -170,7 +170,7 @@ const HeaderNuevo = () => {
             display: inline-block;
           }
           .dropdown-content {
-            display: none;
+            visibility:hidden;
             position: absolute;
             z-index: 1;
             right:0;
@@ -178,8 +178,28 @@ const HeaderNuevo = () => {
             max-height: calc(100% - 7rem);
           }
           .container-cart-submenu:hover .dropdown-content {
-            display: block;
+            visibility:visible;
+            
           }
+          .container-cart-submenu:hover .box-cart {
+            visibility:visible;
+            
+          }
+          .container-cart-submenu:hover .scale-up-tr {
+            animation: scale-up-tr 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) ;
+          }
+
+          @keyframes scale-up-tr {
+            0% {
+              transform: scale(0.7);
+              transform-origin: 100% 0%;
+            }
+            100% {
+              transform: scale(1);
+              transform-origin: 100% 0%;
+            }
+          }
+
           .hover-active{
             visibility:hidden
           }
