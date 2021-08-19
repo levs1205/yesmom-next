@@ -55,18 +55,6 @@ const index = () => {
             <div className="contenedor">
                 <div className="container-contenido">
                     <div className="all-content">
-                         <div className="show return">
-                                <Link href="/perfil">
-                                    <div className="link-to-back">
-                                        <div className="icon-return">
-                                            <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path fillRule="evenodd" clipRule="evenodd" d="M6.73017 12.8055C7.02875 13.0722 7.50353 13.0635 7.79062 12.7862C8.07772 12.5089 8.06841 12.0679 7.76983 11.8012L1.83439 6.5L7.76983 1.19882C8.06841 0.932146 8.07772 0.491136 7.79062 0.213797C7.50353 -0.0635432 7.02875 -0.0721905 6.73017 0.194482C6.73017 0.194482 0.232731 5.99252 0.209376 6.01508C0.0689399 6.15075 -0.000572481 6.32557 3.53057e-06 6.5C-0.000572496 6.67443 0.0689399 6.84925 0.209376 6.98492C0.232731 7.00748 6.73017 12.8055 6.73017 12.8055Z" fill="#EC668D"/>
-                                            </svg>
-                                        </div>
-                                        <p className="ft-m-regular">Volver</p>
-                                    </div>
-                                </Link>
-                        </div>
                         <div className="contenedor-flex">
                             <div className="flex-left">
                                 <TitlePerfil name="Lucia" email="lucia@henribarrett.com" />
@@ -176,38 +164,7 @@ const index = () => {
                         justify-content:center;
                         align-items:center;
                     } */
-                    /**Return */
-                    .return{
-                        cursor:pointer;
-                        display:flex;
-                        align-items:center;
-                        flex-direction:flex-start;
-                        margin-bottom:2rem;
-                    }
-                    .link-to-back{
-                        display:flex;
-                    }
-                    .link-to-back:hover{
-                        transform:translateY(-1px);
-                    }
-                    .link-to-back p{
-                        margin-left:1rem;
-                        color:#EC668D;
-                        font-size:1.3rem;
-                    }
-                    /**Descriptiom */
-                    .description{
-                        margin-top:2.5rem;
-                    }
-                    .p-description-secondary{
-                        margin:1rem 0;
-                        font-size:1.3rem;
-                        color: #575650;
-                    }
-                    .p-description-primary{
-                        font-size:1.8rem;
-                        color: #5A5A5A;
-                    }
+                    
                     /**about de la cuenta */
 
                     .about-account{
