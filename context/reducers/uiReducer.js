@@ -5,10 +5,15 @@ import { types } from "../types";
 export const uiReducer = ( state = {} , action) => {
 
     switch (action.type) {
-        case types.loadBlogs:
+        case types.uiSetError:
+            return {
+               ...state,
+               mssgError: action.payload
+            }
+        case types.uiRemoveError:
             return {
                 ...state,
-                blogs : action.payload
+                mssgError: null
             }
         
         default:

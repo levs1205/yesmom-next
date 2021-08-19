@@ -68,7 +68,7 @@ function DropMenuMobile({active , setActive , logged}) {
                             ))}
 
                             {!logged ?
-                                <Link href="/image/header/iniciar-sesion.svg">
+                                <Link href="/login">
                                     <li className="list-group-item">
                                         <div>
                                             <Image

@@ -1,19 +1,36 @@
 
+import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
-import { ButtonGroup, Dropdown, DropdownButton } from 'react-bootstrap'
+import { useRouter } from 'next/router'
+import React, { useContext } from 'react'
+import { ButtonGroup, Dropdown } from 'react-bootstrap'
+import { startLogout } from '../context/actions/auth'
+import YesmomContext from '../context/Context'
 
 
 
 const AvatarLogged = () => {
+
+    const router = useRouter();
+    const { dispatchAuth } =useContext(YesmomContext); 
+
+    const handleLogout = () => {
+        router.push('/');
+        dispatchAuth(startLogout);
+        
+    }
+
     return (
         <>
             <div className="container-logged">
             <Dropdown as={ButtonGroup}>
                 <Dropdown.Toggle id="dropdown-custom-1">
                     <div className="dropdown-logged">
-                        <img src="/image/header/skinbaby.svg" 
-                        width={30}/>
+                        <Image
+                            src="/image/header/skinbaby.svg"
+                            width={30}
+                            height={30}
+                        />
                         <p className="name-logged">Admin</p>
                     </div>
                 </Dropdown.Toggle>
@@ -31,7 +48,10 @@ const AvatarLogged = () => {
                         <p className="items-dropdown-menu cursor-pointer">Ayuda</p>
                     </Link>
                     <Dropdown.Divider />
-                    <p className="items-dropdown-menu-2 cursor-pointer">Cerrar sesión</p>
+                    <p 
+                        className="items-dropdown-menu-2 cursor-pointer"
+                        onClick= { handleLogout }
+                    >Cerrar sesión</p>
                 </Dropdown.Menu>
             </Dropdown>
             </div>
