@@ -73,7 +73,6 @@ const PopupCart = () => {
             width: 360px;
             top: 80px;
             padding: 25px;
-            transition: all 0.8s;
           }
           .popup--title {
             font-family: "mont-semibold";
