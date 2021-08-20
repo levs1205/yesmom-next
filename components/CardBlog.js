@@ -89,7 +89,6 @@ const CardBlog = ({ blog }) => {
           }
           :global(.card) {
             border: 0px solid rgba(0, 0, 0, 0.125);
-            margin-bottom: 1rem !important;
           }
           .card-blog {
             text-align: center;
@@ -559,7 +558,6 @@ const CardBlog = ({ blog }) => {
               position: relative;
               display: flex;
               flex-direction: column;
-              outline: 1px solid yellow;
             }           
             .card-blog-title{
               display: block;

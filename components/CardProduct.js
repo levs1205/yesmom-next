@@ -4,40 +4,39 @@ import { Card } from "react-bootstrap";
 
 
 
-function CardProduct({discount,size}) {
-    return (
-        <>  
-            <Link href="tienda/detalles">
-                <div className={`card-container size-${size}`}>
-                    <Card border="light">
-                        {/* https://picsum.photos/200/300 
+function CardProduct({ discount, size }) {
+  return (
+    <>
+      <Link href="tienda/detalles">
+        <div className={`card-container size-${size}`}>
+          <Card border="light">
+            {/* https://picsum.photos/200/300 
                         https://thumbs.dreamstime.com/b/beb%C3%A9-muy-disgustado-con-el-pelo-travieso-parado-en-pajama-rosa-ilustraci%C3%B3n-vectorial-al-estilo-de-las-caricaturas-planas-un-164575107.jpg
                         */}
-                        <Card.Img variant="top" src="https://thumbs.dreamstime.com/b/beb%C3%A9-muy-disgustado-con-el-pelo-travieso-parado-en-pajama-rosa-ilustraci%C3%B3n-vectorial-al-estilo-de-las-caricaturas-planas-un-164575107.jpg" />
-                        <Card.Body>
-                            <Card.Title className="title">baby clothes</Card.Title>
-                            <Card.Text>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac 
-                            </Card.Text>
-                            <div className="card-text">
-                                <div className="container-prices">
-                                    <p className={`hide ${discount && "price-before"}`}>S/ XX.XX</p>
-                                    <div className={`text-price ${discount && "discount" }`}>
-                                        <p className={`${discount ? "price-now" :"price"}`}>S/ XX.XX</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </Card.Body>
-                    </Card>
+            <Card.Img variant="top" src="https://thumbs.dreamstime.com/b/beb%C3%A9-muy-disgustado-con-el-pelo-travieso-parado-en-pajama-rosa-ilustraci%C3%B3n-vectorial-al-estilo-de-las-caricaturas-planas-un-164575107.jpg" />
+            <Card.Body>
+              <Card.Title className="title">baby clothes</Card.Title>
+              <Card.Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac
+              </Card.Text>
+              <div className="card-text">
+                <div className="container-prices">
+                  <p className={`hide ${discount && "price-before"}`}>S/ XX.XX</p>
+                  <div className={`text-price ${discount && "discount"}`}>
+                    <p className={`${discount ? "price-now" : "price"}`}>S/ XX.XX</p>
+                  </div>
                 </div>
-            </Link>
-            <style jsx>
-                {`  
+              </div>
+            </Card.Body>
+          </Card>
+        </div>
+      </Link>
+      <style jsx>
+        {`  
                     p{
                         margin:0;
                     }
                     :global(.card){
-                        border:1px solid #333333;
                         box-shadow:0px 10px 20px -3px rgba(0, 0, 0, 0.13);
                         border-radius:3rem!important;
                     }
@@ -114,9 +113,9 @@ function CardProduct({discount,size}) {
                     }
 
                 `}
-            </style>
-        </>
-    )
+      </style>
+    </>
+  )
 }
 
 export default CardProduct

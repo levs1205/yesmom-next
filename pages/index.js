@@ -106,7 +106,7 @@ const Home = ({ currentData }) => {
             </div>
           </div>
           <div className="banner view-mobile">
-            <img src="/image/home/banner-mobile.png" className="w-100"/>
+            <img src="/image/home/banner-mobile.png" className="w-100" />
             {/* <Image
               src="/image/home/banner-mobile.png"
               layout="fill"
@@ -176,7 +176,7 @@ const Home = ({ currentData }) => {
                 <div className="box-sorteo-home">
                   <h3 className="title-fuxia">Gana un kit Yes Mom</h3>
                   <h6 className="subtitle-dark">
-                    Crea una lista de regalo y gana<br/> un kit de productos para ti
+                    Crea una lista de regalo y gana<br /> un kit de productos para ti
                     y tu bebé
                   </h6>
 
@@ -253,7 +253,7 @@ const Home = ({ currentData }) => {
                 alt="onda rosa yes mom"
                 width={90}
                 height={20}
-                // layout="responsive"
+              // layout="responsive"
               />
             </div>
             <div className="box-img-lo-mejor">
@@ -266,9 +266,9 @@ const Home = ({ currentData }) => {
                         alt="destacado"
                         width={400}
                         height={400}
-                        // layout="responsive"
+                      // layout="responsive"
 
-                        // className="onda-rosa heartbeat"
+                      // className="onda-rosa heartbeat"
                       />
                     </div>
                     <Link href="/construccion">
@@ -284,7 +284,7 @@ const Home = ({ currentData }) => {
                         alt="search"
                         width={400}
                         height={400}
-                        // className="onda-rosa heartbeat"
+                      // className="onda-rosa heartbeat"
                       />
                     </div>
                     <Link href="/construccion">
@@ -303,7 +303,7 @@ const Home = ({ currentData }) => {
                         alt="sin moverte"
                         width={400}
                         height={400}
-                        // className="onda-rosa heartbeat"
+                      // className="onda-rosa heartbeat"
                       />
                     </div>
                     <Link href="/construccion">
@@ -319,7 +319,7 @@ const Home = ({ currentData }) => {
                         alt="juguetes"
                         width={400}
                         height={400}
-                        // className="onda-rosa heartbeat"
+                      // className="onda-rosa heartbeat"
                       />
                     </div>
 
@@ -371,18 +371,18 @@ const Home = ({ currentData }) => {
           </Container>
           <Container fluid="true">
             <Col>
-                <div className="all-products">
-                    <CardProduct size="4"/>
-                    <CardProduct discount size="4"/>
-                    <CardProduct discount size="4"/>
-                    <CardProduct size="4"/>
-                </div>
+              <div className="all-products">
+                <CardProduct size="4" />
+                <CardProduct discount size="4" />
+                <CardProduct discount size="4" />
+                <CardProduct size="4" />
+              </div>
             </Col>
             <Link href="/tienda">
-            <div className="btn-yellow bg-fuxia hover-fuxia text-omnes">
-              <a>Ver más</a>
-            </div>
-          </Link>
+              <div className="btn-yellow bg-fuxia hover-fuxia text-omnes">
+                <a>Ver más</a>
+              </div>
+            </Link>
           </Container>
 
         </div>
@@ -420,7 +420,7 @@ const Home = ({ currentData }) => {
             />
           </div>
           <Container fluid="true">
-            <Row className="sin-margin">
+            <Row className="sin-margin container-sin-margin">
               {/* <Col xs={12} md={6} lg={6} xl={6}>
           <div className="box-img-blog-home">
             <img src={lineasAzul1} alt="lineas" className="line-up-azul" />
@@ -473,9 +473,9 @@ const Home = ({ currentData }) => {
                   </div>
                 </div>
               </Col>
-              <Col xs={12} md={12} lg={7} xl={7}>
+              <Col xs={12} md={12} lg={9} xl={7}>
                 <div className="box-blog-card-home">
-                  <Container>
+                  <Container className="container-card-bolg">
                     <CardDeck>
                       {currentData.map((cardBlog) => (
                         <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
@@ -834,24 +834,32 @@ const Home = ({ currentData }) => {
             :global(.card-deck) {
               justify-content: center !important;
             }
+            :global(.card-deck .card-blog-title){
+              font-family: "mont-semibold";
+              font-size: 1.6rem;
+              line-height: 20px;
+              color: #575756;
+            }
+            :global(.card-deck .card-blog-descripcion){
+              font-family: "mont-light";
+              font-size: 1.4rem;
+              line-height: 21px;
+              color: #000000;
+            }
             .box-banner {
               height: 100vh;
               width: auto;
             }
-
             .section-sorteo-home {
               padding-top: 3rem;
               padding-bottom: 5rem;
             }
-
             .box-text-title {
               padding-top: 5rem;
             }
-
             .ondas {
               width: 6rem;
             }
-
             .box-sorteo-home {
               width: 31.5rem;
               text-align: center;
@@ -878,25 +886,21 @@ const Home = ({ currentData }) => {
               right: 4.5rem;
               width: 2.5rem;
             }
-
             .section-lo-mejor-home {
               padding: 4rem 0rem;
             }
-
             .box-title-lo-mejor-home {
               font-size: 0.7rem;
             }
             .box-title-lo-mejor-home .title-fuxia {
               font-size: 1.5rem;
             }
-
             .nube-up {
               position: absolute;
               top: -5%;
               left: 5%;
               width: 15rem;
             }
-
             .nube-down {
               position: absolute;
               transform: rotate(180deg);
@@ -904,17 +908,14 @@ const Home = ({ currentData }) => {
               right: 5%;
               bottom: -6%;
             }
-
             .box-img-lo-mejor {
               margin-left: 15rem !important;
               margin-right: 15rem !important;
               margin: 3rem 0;
             }
-
             .onda-rosa {
               width: 4rem;
             }
-
             .btn-lo-mejor {
               padding: 1.5rem;
               font-weight: 1000;
@@ -928,37 +929,72 @@ const Home = ({ currentData }) => {
             .box-img-blog-home {
               padding: 5rem 0;
             }
-
             .line-up-azul {
               top: 3rem;
               left: 5.5rem;
             }
-
             .line-down-azul {
               bottom: 3rem;
               right: 1.5rem;
             }
-
             .img-blog {
               width: 80%;
             }
-
             .container-blog-home {
               padding: 1rem 0;
             }
-
             .title-fuxia {
               font-size: 1.5rem;
             }
-
             .btn-blog-home {
               width: auto;
               height: 4.5rem;
               font-size: 0.8rem;
             }
-
             .box-btn-blog {
               margin: 0rem 3rem 0rem 3rem !important;
+            }
+            .box-true-history{
+              margin-top: 12.5rem;
+            }
+            .box-true-history .box-text-title {
+              padding-top: 0 !important;
+            }
+            .section-blog-home {
+              padding: 6rem 0 10rem;
+            }
+          }
+          @media (min-width:1024px) and (max-width: 1799px){  
+            :global(.section-blog-home .container-sin-margin){
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center ;
+            }
+            :global(.container-card-bolg .card-deck) {
+              margin-right: -15px;
+              margin-left: -15px;
+              justify-content: center;
+            }
+            :global(.card-deck .card-blog-title){
+              font-family: "mont-semibold";
+              font-size: 1.6rem;
+              line-height: 20px;
+              color: #575756;
+            }
+            :global(.card-deck .card-blog-descripcion){
+              font-family: "mont-light";
+              font-size: 1.4rem;
+              line-height: 21px;
+              color: #000000;
+            }
+            .box-true-history{
+              margin-top: 9.5rem;
+            }
+            .box-true-history .box-text-title {
+              padding-top: 0 !important;
+            }
+            .section-blog-home {
+              padding: 6rem 0 10rem;
             }
           }
 
@@ -966,11 +1002,50 @@ const Home = ({ currentData }) => {
             .box-banner{
               height:70vh;
             }
+            :global(.section-blog-home .container-sin-margin){
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center ;
+            }
+            :global(.container-card-bolg .card-deck) {
+              margin-right: -15px;
+              margin-left: -15px;
+              justify-content: center;
+            }
+            :global(.card-deck .card-blog-title){
+              font-family: "mont-semibold";
+              font-size: 1.6rem;
+              line-height: 20px;
+              color: #575756;
+            }
+            :global(.card-deck .card-blog-descripcion){
+              font-family: "mont-light";
+              font-size: 1.3rem;
+              line-height: 21px;
+              color: #000000;
+            }
           }
 
           @media (min-width: 769px) and (max-width: 991px) {
             :global(.card-deck) {
               justify-content: center !important;
+            }
+            :global(.card-deck .card-blog-title){
+              font-family: "mont-semibold";
+              font-size: 1.6rem;
+              line-height: 20px;
+              color: #575756;
+            }
+            :global(.card-deck .card-blog-descripcion){
+              font-family: "mont-light";
+              font-size: 1.3rem;
+              line-height: 21px;
+              color: #000000;
+            }
+            .section-blog-home {
+              padding: 6rem 0 10rem;
+              background: #febf41;
+              position: relative;
             }
             .box-banner{
               height:70vh;
@@ -997,10 +1072,30 @@ const Home = ({ currentData }) => {
               display: none;
             }
           }
-
           @media (max-width: 768px) {
+            .box-blog-card-home .container-card-blog{
+              width: 32rem !important;
+            }
             :global(.card-deck) {
               justify-content: center !important;
+              max-width: 32rem;
+              margin-right: auto;
+              margin-left: auto;
+            }
+            :global(.card-deck .card){
+              margin-bottom: 5.6rem;
+            }
+            :global(.card-deck .card-blog-title){
+              font-family: "mont-semibold";
+              font-size: 1.6rem;
+              line-height: 20px;
+              color: #575756;
+            }
+            :global(.card-deck .card-blog-descripcion){
+              font-family: "mont-light";
+              font-size: 1.3rem;
+              line-height: 21px;
+              color: #000000;
             }
             .subtitle-dark{
               font-size:2rem;
