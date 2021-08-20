@@ -268,7 +268,7 @@ const index = () => {
                         font-family:"mont-regular"!important;
                         color: #5A5A5A;
                         font-weight:600;
-                        font-size:1.5rem;
+                        font-size:1.3rem;
                     }
                     .container-form{
                         background: #FFFFFF;
@@ -431,8 +431,8 @@ const index = () => {
                             font-size:2rem;
                         }
                         .text-second{
-                            font-size:1.70rem;
                             padding: 0 1rem;
+                            font-size:1.5rem;
                         }
                         .container-form{
                             padding-top:2rem;
@@ -529,11 +529,9 @@ const index = () => {
                             width:80rem;
                         }
                         .text-create{
-                            font-size:3.5rem;
+                            font-size:2.5rem;
                         }
-                        .text-second{
-                            font-size:2rem;
-                        }
+                        
                         .wrapper-input label{
                             font-size:1.6rem;
                         }

@@ -145,7 +145,7 @@ const HeaderNuevo = () => {
                     />
                     <h6 className="text-navbar">Carrito</h6>
                   </a>
-                  <div className="dropdown-content scale-up-tr ">
+                  <div className="dropdown-content scale-up-tr scale-down-tr">
                     <PopupCart />
                     {/* {isVisibleSubMenu && <PopupCart />} */}
                   </div>
@@ -187,20 +187,18 @@ const HeaderNuevo = () => {
             
           }
           .container-cart-submenu:hover .scale-up-tr {
-            animation: scale-up-tr 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) ;
+            transform: scale(1) ;
+            transform-origin: 100% 0%;
           }
-
-          @keyframes scale-up-tr {
-            0% {
-              transform: scale(0.7);
-              transform-origin: 100% 0%;
-            }
-            100% {
-              transform: scale(1);
-              transform-origin: 100% 0%;
-            }
+          .container-cart-submenu .scale-down-tr {
+            -webkit-transform: scale(0);
+            -moz-transform: scale(0);
+            -ms-transform: scale(0);
+            -o-transform: scale(0);
+            transform: scale(0);
+            transition: all 1.6s;
+            transform-origin: 100% 0%;
           }
-
           .hover-active{
             visibility:hidden
           }
