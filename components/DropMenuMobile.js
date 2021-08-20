@@ -68,7 +68,7 @@ function DropMenuMobile({active , setActive , logged}) {
                             ))}
 
                             {!logged ?
-                                <Link href="/image/header/iniciar-sesion.svg">
+                                <Link href="/login">
                                     <li className="list-group-item">
                                         <div>
                                             <Image
@@ -114,15 +114,28 @@ function DropMenuMobile({active , setActive , logged}) {
                                         <div className="expanded-options">
                                             {
                                                 linkPushPerfil.map((link)=>(
-                                                    <Link href={link.path}>
-                                                        <a>
-                                                            <p 
-                                                                className={`name-link ${pathname===link.path ?"link-perfil-active" :""}`}
-                                                            >
-                                                                {link.name}
-                                                            </p>
-                                                        </a>
-                                                    </Link>
+                                                    <div className="flex-active-link">
+                                                        <Link href={link.path}>
+                                                            <a>
+                                                                <p 
+                                                                    className={`name-link ${pathname===link.path ?"link-perfil-active" :""}`}
+                                                                >
+                                                                    {link.name}
+                                                                </p>
+                                                            </a>
+                                                        </Link>
+                                                        {
+                                                            pathname===link.path &&
+                                                            <div className="star-active">
+                                                                <Image 
+                                                                src="/image/header/star-active.svg"
+                                                                width={15}
+                                                                height={15}
+                                                                />
+                                                            </div>
+                                                        }
+                                                        
+                                                    </div>
                                                 ))
                                             }
                                         </div>
@@ -137,6 +150,14 @@ function DropMenuMobile({active , setActive , logged}) {
             </div>
             <style jsx>
                 {`  
+                    .flex-active-link{
+                        display:flex;
+                        align-items:center;
+                        margin-bottom:1rem;
+                    }
+                    .star-active{
+                        margin-top:-0.15rem;
+                    }
                     .name-link{
                         font-family:"mont-light";
                         font-size:1.5rem;
@@ -147,6 +168,7 @@ function DropMenuMobile({active , setActive , logged}) {
                     }
                     .flex{
                         display:flex;
+                        align-items:center;
                     }
                     .justify-content{
                         display:flex;
@@ -154,7 +176,6 @@ function DropMenuMobile({active , setActive , logged}) {
                     }
                     .expand-more-options{
                         margin-right:1rem;
-                        margin-top:-1rem;
                     }
                     .expanded-options{
                         padding:1rem 0;
@@ -162,10 +183,12 @@ function DropMenuMobile({active , setActive , logged}) {
                         display:flex;
                         flex-direction:column;
                     }
-                    .expanded-options p:focus,a:focus{
+                    .expanded-options p{
                         margin:0;
-                        text-decoration:none!important;
-                        
+                        margin-right:0.5rem;
+                    }
+                    .expanded-options p:focus,a:focus{
+                        text-decoration:none!important;            
                     }
                     .list-group-item{
                         padding:0.8rem 1.5rem!important;

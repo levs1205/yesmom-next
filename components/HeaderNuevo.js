@@ -1,17 +1,18 @@
 import Link from "next/link";
 import ActiveLink from "../components/ActiveLink";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import SearchBlog from "./Search/SearchBlog";
 import MenuTienda from "./MenuTienda/MenuTienda";
 import PopupCart from "./Popup/PopupCart/PopupCart"
 import DropMenuMobile from "./DropMenuMobile";
 import AvatarLogged from "./AvatarLogged";
+import YesmomContext from "../context/Context";
 
 const HeaderNuevo = () => {
 
-  const [logged, setLogged] = useState(true);
+  const { auth : { logged } } = useContext(YesmomContext);
   const [active, setActive] = useState(false);
   const [isVisibleSubMenu, setIsVisibleSubMenu] = useState(false);
 
