@@ -157,6 +157,7 @@ const CardBlogEspecific = ({ currentData }) => {
               name="contenido"
             // onBlur={handleBlurAreaChange}
             />
+            
 
             <div className="box-fb">
               <a
