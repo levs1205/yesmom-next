@@ -44,10 +44,10 @@ const index = () => {
                 alert("No existe usuario con esos accesos");
             }
             if(data?.mensaje === "Autenticación Correcta"){
-                router.back();
+                router.push("/");
                 dispatchAuth( startLogin(data) );
             }
-            
+
         }catch(e){
             console.log(e.message);
         }

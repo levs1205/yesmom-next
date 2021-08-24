@@ -14,7 +14,6 @@ const HeaderNuevo = () => {
 
   const { auth : { logged } } = useContext(YesmomContext);
   const [active, setActive] = useState(false);
-  const [isVisibleSubMenu, setIsVisibleSubMenu] = useState(false);
 
   const [onlyStore, setOnlyStore] = useState(false);
   const [onlyBlog, setOnlyBlog] = useState(false);
@@ -68,6 +67,18 @@ const HeaderNuevo = () => {
               />
             </a>
           </Link>
+          <div className="hide-desktop">
+            <Link href="/tienda" prefetch>
+              <a className="mr-2 logo-yesmom">
+                <Image
+                  src="/image/header/cesta.svg"
+                  alt="logo tienda yesmom"
+                  width={35}
+                  height={35}
+                />
+              </a>
+            </Link>
+          </div>
           <div
             className={`box-items-menu ${active ? "" : "box-items-menu-desktop"
               }`}
@@ -145,7 +156,7 @@ const HeaderNuevo = () => {
                     />
                     <h6 className="text-navbar">Carrito</h6>
                   </a>
-                  <div className="dropdown-content scale-up-tr ">
+                  <div className="dropdown-content scale-up-tr scale-down-tr">
                     <PopupCart />
                     {/* {isVisibleSubMenu && <PopupCart />} */}
                   </div>
@@ -166,6 +177,7 @@ const HeaderNuevo = () => {
       />
       <style jsx>
         {`
+          
           .container-cart-submenu{
             position: relative;
             display: inline-block;
@@ -187,20 +199,18 @@ const HeaderNuevo = () => {
             
           }
           .container-cart-submenu:hover .scale-up-tr {
-            animation: scale-up-tr 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) ;
+            transform: scale(1) ;
+            transform-origin: 100% 0%;
           }
-
-          @keyframes scale-up-tr {
-            0% {
-              transform: scale(0.7);
-              transform-origin: 100% 0%;
-            }
-            100% {
-              transform: scale(1);
-              transform-origin: 100% 0%;
-            }
+          .container-cart-submenu .scale-down-tr {
+            -webkit-transform: scale(0);
+            -moz-transform: scale(0);
+            -ms-transform: scale(0);
+            -o-transform: scale(0);
+            transform: scale(0);
+            transition: all 1.6s;
+            transform-origin: 100% 0%;
           }
-
           .hover-active{
             visibility:hidden
           }
@@ -218,6 +228,7 @@ const HeaderNuevo = () => {
           .navbar-yesmom {
             display: flex;
             align-items: center;
+            justify-content:space-between;
             flex-wrap: wrap;
             padding: 0.3rem 4rem;
             background: #fff;
@@ -226,7 +237,6 @@ const HeaderNuevo = () => {
             box-shadow: 0px 1px 10px #999;
           }
           .burger-yesmom {
-            margin-right: auto;
             display: none;
           }
           .item-menu-yesmom {
@@ -304,6 +314,9 @@ const HeaderNuevo = () => {
           @media (min-width:993px){
             .box-items-menu{
               display:block;
+            }
+            .hide-desktop{
+              display:none;
             }
           }
           @media (max-width: 992px) {
