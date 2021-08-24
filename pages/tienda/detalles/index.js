@@ -300,6 +300,10 @@ const Detalles = () => {
                     }
                     :global(.carousel .thumb.selected, .carousel .thumb:hover){
                         border-color:#EC608D;
+                        border-radius:15px;
+                    }
+                    .global(.thub.selected){
+                        border-radius:15px!important;
                     }
                     .bg-pink{
                         background: #EC608D;

@@ -27,7 +27,6 @@ const Blog = ({ currentData }) => {
 
   useEffect(()=>{
     const query = q.toLowerCase().trim();
-    console.log(query);
     const filterData = currentData.filter( ({blog}) => blog.titulo.toLowerCase().trim().includes(query) || blog.descripcion.toLowerCase().trim().includes(query) );
     if(filterData.length === 0){
       setBlogsFiltered(currentData);

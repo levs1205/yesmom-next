@@ -3,9 +3,11 @@ import AppLayout from "../../components/AppLayout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import Image from "next/image";
+import Stepper from "../../components/Stepper";
+import BotonInput from "../../components/Registro/BotonInput";
 
 const Identification = () => {
+
   return (
     <AppLayout>
       <div className="container-checkout">
@@ -21,12 +23,7 @@ const Identification = () => {
           </Link>
         </div>
         <div className="icon-checkout">
-          <Image
-            src="/image/icon/checkout-first-step.svg"
-            alt="Checkout primer paso"
-            width={200}
-            height={50}
-          />
+          <Stepper selected={0} />
         </div>
         <section className="checkout-block">
           <div className="checkout-block__card">
@@ -76,23 +73,29 @@ const Identification = () => {
                   id="phone"
                 />
               </div>
+
+              <div className="only-button-submit"> 
+                  <div className="btn-checkout btn-yellow">
+                    Continuar
+                  </div>
+              </div>
             </form>
-            <div className="checkout-block__text">
+            {/* <div className="checkout-block__text">
               <p className="checkout-block__text--font-size-and-bold">
                 2. Datos para la entrega:
               </p>
               <p className="checkout-block__text--font-size">
                 Aún falta llenar algunos datos.
               </p>
-            </div>
-            <div className="checkout-block__text">
+            </div> */}
+            {/* <div className="checkout-block__text">
               <p className="checkout-block__text--font-size-and-bold">
                 3. Método de pago:
               </p>
               <p className="checkout-block__text--font-size">
                 Aún falta llenar algunos datos.
               </p>
-            </div>
+            </div> */}
           </div>
           <div className="shopping-cart-block__checkout">
             <section className="discount-coupon__text">
@@ -136,10 +139,10 @@ const Identification = () => {
                   </tr>
                   <tr className="price-table__tbody--fount-bold-padding price-table__tbody--border-top">
                     <td className="price-table__tbody--text-align-left">
-                      <strong>Total</strong>
+                      <strong className="ft-15">Total</strong>
                     </td>
                     <td className="price-table__tbody--text-align-right">
-                      <strong>S/ XX.XX</strong>
+                      <strong className="ft-15">S/ XX.XX</strong>
                     </td>
                   </tr>
                 </tbody>
@@ -150,6 +153,27 @@ const Identification = () => {
       </div>
       <style jsx>
         {`
+        .only-button-submit{
+          padding : 0 3rem;
+        }
+        .btn-checkout {
+          width:100%;
+          cursor: pointer;
+          padding:2rem 3.5rem;
+          border-radius: 3rem;
+          display:flex;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.3s ease-in-out;
+
+          font-family:"mont-regular"!important;
+        }
+        .btn-yellow{
+          background-color:#FEBF41;
+        }
+        .btn-checkout{
+          font-size:2rem;
+        }
         .container-checkout {
           padding: 8rem 1rem;
           max-width:1500px;
@@ -157,7 +181,7 @@ const Identification = () => {
         }
         .container__text {
           font-family: "mont-semibold";
-          font-size: 14px;
+          font-size: 1.4rem;
           line-height: 26px;
           color: #575650;
           text-align:right;
@@ -174,7 +198,13 @@ const Identification = () => {
         }
         .icon-checkout{
           margin:40px auto;
-          text-align:center
+          text-align:center;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+        }
+        .checkout-block {
+          padding: 0 1rem;
         }
         .checkout-block__text{
           color: #575650;
@@ -185,17 +215,17 @@ const Identification = () => {
 
         }
         .checkout-block__text--font-size-and-bold{
-           font-size: 16px;
+           font-size: 1.6rem;
            font-family: "mont-semibold";
         }
          .checkout-block__text--font-size{
-           font-size: 13px;
+           font-size: 1.3rem;
         }
         .container__text-items {
           font-family: "mont-regular";
           font-style: normal;
           font-weight: 600;
-          font-size: 13px;
+          font-size: 1.3rem;
           line-height: 13px;
           color: #5a5a5a;
         }
@@ -238,7 +268,7 @@ const Identification = () => {
         font-family: "mont-regular";
         font-style: normal;
         font-weight: 600;
-        font-size: 13px;
+        font-size: 1.3rem;
         line-height: 17px;
         color: #575650;
         margin-bottom: 0rem;
@@ -247,7 +277,7 @@ const Identification = () => {
         font-family: "mont-light";
         font-style: normal;
         font-weight: 300;
-        font-size: 13px;
+        font-size: 1.3rem;
         line-height: 40px;
         color: #575650;
         margin-bottom: 0rem;
@@ -287,7 +317,7 @@ const Identification = () => {
            padding-top:0.5rem;
           font-style: normal;
           font-weight: 300;
-          font-size: 18px;
+          font-size: 1.8rem;
         color: #4B64A4;
       }
       .shopping-cart-block__checkout{
@@ -297,53 +327,73 @@ const Identification = () => {
          font-family: "mont-light";
         font-style: normal;
         font-weight: 300;
-        font-size: 13px;
+        font-size: 1.3rem;
         color: #575650;
       }
       .discount-coupon__group-input{
         display:flex;
 
       }
+      .discount-coupon__input{
+        display:flex;
+        flex-direction:column;
+      }
       .discount-coupon__input-text{
+        text-align:left;
         border:1px solid #FEBF41;
         box-sizing:border-box;
-        box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
         border-radius:10px;
-        width:190px;
         height:39px;
-        font-size:18px;
+        flex-basis:75%;
+        font-size:1.4rem;
+        padding : 0.5rem 1rem;
+      }
+      .discount-coupon__input-text:focus{
+        outline:none;
+        box-shadow:none;
       }
       .discount-coupon__input-text::placeholder{
+        text-align:left;
+        background-image:none!important;
         color: #575650;
-        font-size:14px;
+        font-size:1.4rem;
+        opacity: 0.5;
       }
       .discount-coupon__input-submit{
         font-family:"omnes-regular";
         background:#FEBF41;
-        font-size:18px;
+        font-size:1.8rem;
         color:#FFf;
         border-radius:10px;
-        border:0px;
-        height:39px;
-        width:90px;
+        border:0;
+        width:100%;
+        flex-basis:25%;
+        height:3.9rem;
         margin-left:0.5rem
+      }
+      .discount-coupon__input-submit:focus{
+        outline:none;
+        box-shadow:none;
       }
       .price-table{
        padding:2rem 0rem;
       }
        .price-table__tbody--fount-padding {
         font-family: "mont-regular";
-        height: 40px;
+        height: 4rem;
+        font-size:1.3rem;
        }
        .price-table__tbody--text-align-left{
+         font-size:1.4rem;
          text-align:left
        }
        .price-table__tbody--text-align-right{
+        font-size:1.3rem;
          text-align:right
        }
        .price-table__tbody--fount-bold-padding{
          font-family: "mont-semibold";
-        height: 40px;
+        height: 4rem;
        }
       .price-table__tbody--border-top{
 
@@ -351,6 +401,9 @@ const Identification = () => {
       }
       .price-table__table{
         width:100%
+      }
+      .ft-15{
+        font-size:1.5rem!important;
       }
       .box-terms{
         display:flex;
@@ -361,8 +414,8 @@ const Identification = () => {
         font-family: "mont-light";
         font-style: normal;
         font-weight: 300;
-        font-size: 13px;
-        line-height: 25px;
+        font-size: 1.3rem;
+        line-height: 2.5rem;
         color:#575650;
         padding:0 5px
       }
@@ -377,8 +430,8 @@ const Identification = () => {
        .box-terms__text:before{
          content:"";
          display:inline-block;
-         width:22px;
-         height:22px;
+         width:2.2rem;
+         height:2.2rem;
          border: 2px solid #4B64A4;
         border-radius: 5px;
         margin-right:8px;
@@ -410,7 +463,7 @@ const Identification = () => {
       }
       .restriction-text{
         font-family: "mont-light";
-        font-size: 13px;
+        font-size: 1.3rem;
         line-height: 25px;
         text-align: center;
         color: #575650;
@@ -419,18 +472,24 @@ const Identification = () => {
       .identification-form__label{
          font-family: "mont-light";
         color: #575650;
-        font-size: 14px;
+        font-size: 1.3rem;
         line-height: 15px;
         padding-top:30px
       }
       .identification-form__input{
          font-family: "mont-regular";
+        text-align:left;
         color: #556EA1;
         border:1px solid #556EA1;
-        border-radius: 20px;
+        border-radius: 10px;
         width:100%;
-        padding:5px;
-        font-size: 14px;
+        padding:0.5rem 1rem;
+        font-size: 1.4rem;
+        height:3.5rem;
+      }
+      .identification-form__input:focus{
+        outline:none!important;
+        box-shadow:none!important;
       }
       @media (min-width: 480px) {
          .discount-coupon__input-text{

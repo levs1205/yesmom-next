@@ -80,6 +80,7 @@ const appLayout = ({ children }) => {
             src: url(/fonts/Mont-Light.otf);
           }
           .main-yesmom {
+            overflow:hidden;
             padding-top: 3rem;
           }
           .mt-views {

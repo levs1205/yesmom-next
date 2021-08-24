@@ -9,6 +9,8 @@ import PopupCart from "./Popup/PopupCart/PopupCart"
 import DropMenuMobile from "./DropMenuMobile";
 import AvatarLogged from "./AvatarLogged";
 import YesmomContext from "../context/Context";
+import MenuProveedor from "./Proveedor/MenuProveedor";
+
 
 const HeaderNuevo = () => {
 
@@ -17,6 +19,7 @@ const HeaderNuevo = () => {
 
   const [onlyStore, setOnlyStore] = useState(false);
   const [onlyBlog, setOnlyBlog] = useState(false);
+  const [onlyProveedor, setOnlyProveedor] = useState(false);
 
   const { pathname } = useRouter();
 
@@ -39,9 +42,20 @@ const HeaderNuevo = () => {
       setOnlyBlog(false);
     }
   }
-  useEffect(() => {
+  const validateSelectProveedor = () => {
+    if (pathname.includes("/proveedor")) {
+      setOnlyProveedor(true);
+    } else {
+      setOnlyProveedor(false);
+    }
+  }
+  const validateShow = () => {
     validateSeekerStore();
     validateSeekerBlog();
+    validateSelectProveedor();
+  }
+  useEffect(() => {
+    validateShow();
   }, [])
 
   return (
@@ -168,6 +182,7 @@ const HeaderNuevo = () => {
 
         {onlyBlog && <SearchBlog />}
         {onlyStore && <MenuTienda />}
+        {onlyProveedor && <MenuProveedor />}
 
       </div>
       <DropMenuMobile
