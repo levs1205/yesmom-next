@@ -2,10 +2,58 @@ import AppLayout from "../../components/AppLayout";
 
 import Head from 'next/head';
 import Link from "next/link";
+import { useForm } from "../../hooks/useForm";
+import axios from "axios";
+import { useContext, useState } from "react";
+import YesmomContext from "../../context/Context";
+import { startLogin } from "../../context/actions/auth";
+import { useRouter } from "next/router";
+import { isValidLogin } from "../../helpers/isValidLogin";
+import Swal from "sweetalert2";
 
 
 
 const index = () => {
+
+    const router = useRouter();
+    const initialForm = {
+        email: '',
+        password: '',
+    };
+    const [ formValues, handleInputChange ] = useForm( initialForm );
+
+    const { email , password } = formValues;
+
+    const { dispatchAuth } = useContext(YesmomContext);
+
+    const handleSubmit = async (e) => {
+        const error = isValidLogin(formValues);
+        console.log(error);
+        if(error.trim().length!==0){
+            Swal.fire('Error',error,"error");
+            return ;
+        }
+
+        try{
+            const { data } = await axios({
+                method: 'POST',
+                url: `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_TEST_LOGIN}/autenticar?email=1`,
+                data : formValues
+            });
+            if (data?.MensajeRespuesta === "REQUEST INVÁLIDO"){
+                alert("No existe usuario con esos accesos");
+            }
+            if(data?.mensaje === "Autenticación Correcta"){
+                router.back();
+                dispatchAuth( startLogin(data) );
+            }
+            
+        }catch(e){
+            console.log(e.message);
+        }
+    }
+    
+
     return (
         <AppLayout>
             <Head>
@@ -61,15 +109,29 @@ const index = () => {
                         </div>
                         <div className="container-center">
                             <div className="container-form">
-                                    <form>
+                                    <form
+                                        /* onSubmit={ handleSubmit } */
+                                    >
                                         <div className="wrapper-input">
                                             <label htmlFor="email" >Dirección de correo electrónico o numero de teléfono:</label>
-                                            <input type="email" id="email" name="email"/>
+                                            <input 
+                                                type="email" 
+                                                id="email" 
+                                                name="email"
+                                                value={email}
+                                                onChange={handleInputChange}
+                                            />
                                         </div>
 
                                         <div className="wrapper-input">
                                             <label htmlFor="password">Contraseña:</label>
-                                            <input type="password" id="password" name="password"/>
+                                            <input 
+                                                type="password" 
+                                                id="password" 
+                                                name="password"
+                                                value={password}
+                                                onChange={handleInputChange}
+                                            />
                                             <div className="eye-icon">
                                             <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.5384 5.25857C13.8534 5.70143 13.8534 6.29929 13.5384 6.74143C12.5463 8.13357 10.1662 11 7.38741 11C4.6086 11 2.22847 8.13357 1.23642 6.74143C1.08318 6.52938 1 6.26851 1 6C1 5.73149 1.08318 5.47062 1.23642 5.25857C2.22847 3.86643 4.6086 1 7.38741 1C10.1662 1 12.5463 3.86643 13.5384 5.25857V5.25857Z" stroke="#556EA1" strokeLinecap="round" strokeLinejoin="round"/>
@@ -90,7 +152,10 @@ const index = () => {
                                             </Link> 
                                         </div>
 
-                                        <div className="boton-normal pink">
+                                        <div 
+                                            className="boton-normal pink"
+                                            onClick ={ handleSubmit }
+                                        >
                                             <p>Ingresar</p>
                                         </div>
 
