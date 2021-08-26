@@ -91,3 +91,10 @@ const data = [
     peso: "20"
   },
 ];
+
+
+export default (req,res) =>{
+  setTimeout(()=>{
+    res.status(200).json(data);
+  },500)
+}
