@@ -93,11 +93,12 @@ const data = [
   ];
   
   
-  export default (req,res) =>{
+  export default (req, res) => {
     const {
       query: { id },
     } = req
-    setTimeout(()=>{
-      res.status(200).json(data.filter(product => product.id===id));
-    },500)
+    
+    console.log(req.query.id);
+    const product = data.find(x => x.id === id);
+    res.status(200).json(product);
   }
