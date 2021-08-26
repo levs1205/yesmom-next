@@ -108,7 +108,9 @@ const CardBlog = ({ blog }) => {
           }
           :global(.card-img img) {
             height: auto !important;
-            width: 100% !important;
+            width:100%!important;
+            object-fit:cover;
+             object-position:center center
           }
           .box-green-blog {
             position: relative;
@@ -457,7 +459,7 @@ const CardBlog = ({ blog }) => {
               margin-left: auto;
             }
             .card-img{
-              height: 17.9rem;
+              height: 20rem;
             }
             .card-body{
               height:26rem;

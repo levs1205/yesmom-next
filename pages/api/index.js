@@ -91,3 +91,11 @@ const data = [
     peso: "20"
   },
 ];
+
+
+const dataApi = (req,res) => {
+   res.status(200).json(data)
+}
+
+export default dataApi
+
