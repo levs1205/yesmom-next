@@ -143,7 +143,7 @@ const HeaderNuevo = () => {
                       width={25}
                       height={25}
                     />
-                    <h6 className="text-navbar">Iniciar sesión</h6>
+                    <h6 className="text-navbar">Login</h6>
                   </a>
                 </ActiveLink>
               }
@@ -259,7 +259,7 @@ const HeaderNuevo = () => {
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 0rem 0.5rem;
+            margin: 0rem 0.6rem;
             color: #616160;
             justify-content: flex-start;
             cursor:pointer;
@@ -306,7 +306,7 @@ const HeaderNuevo = () => {
             visibility:visible
           }
           .text-navbar {
-            font-size:1.4rem;
+            font-size:1.3rem;
             font-family: "mont-semibold";
             margin-top:0.2rem;
           }

@@ -186,7 +186,7 @@ const appLayout = ({ children }) => {
           .link-a {
             color: #575756 !important;
             font-family: "mont-regular";
-            font-size: 1.1rem;
+            font-size: 1.5rem;
             text-decoration: none !important;
           }
           .link-a b {

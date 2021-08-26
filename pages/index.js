@@ -187,7 +187,7 @@ const Home = ({ currentData }) => {
                   </Link>
 
                   <Link href="/construccion">
-                    <a className="ft-3 link-a text-center hover-efect-letter mb-5">
+                    <a className="ft-3   text-center hover-efect-letter mb-5">
                       Términos y condiciones
                     </a>
                   </Link>
@@ -208,8 +208,8 @@ const Home = ({ currentData }) => {
                       src="/image/home/regalo2.png"
                       alt="imagen sorteo yesmom home"
                       layout="responsive"
-                      width={280}
-                      height={230}
+                      width={210}
+                      height={150}
                     />
                   </div>
                   <div className="line-down heartbeat">
@@ -505,7 +505,7 @@ const Home = ({ currentData }) => {
           }
 
           .all-products{
-              width : 75%;
+              width : 80%;
               margin : 0 auto;
               padding:3rem 0;
               display:flex;
@@ -514,7 +514,7 @@ const Home = ({ currentData }) => {
               flex-wrap:wrap;
             }
           .box-banner {
-            height: 100vh;
+            height: 84vh;
             width: auto;
             position: relative;
             overflow:hidden;
@@ -591,7 +591,7 @@ const Home = ({ currentData }) => {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding-top: 4rem;
+            padding-top: 8rem;
             text-align: center;
           }
           .text-title {
@@ -607,7 +607,7 @@ const Home = ({ currentData }) => {
           }
 
           .box-sorteo-home {
-            width: 35rem;
+            width: 46rem;
             text-align: center;
             margin: 1rem auto;
           }

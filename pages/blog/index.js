@@ -101,7 +101,7 @@ const Blog = ({ currentData }) => {
             cuidar y engreir mucho más a tu bebé
           </h4>
           <div className="box-card-group">
-            <Container fluid="true">
+            <Container>
               <CardDeck style={{ justifyContent: "center" }}>
                 {
                 /* currentData.map((cardBlog) => (
@@ -150,7 +150,9 @@ const Blog = ({ currentData }) => {
             :global(.box-card-group .container-card-blog) {
               margin-bottom: 5rem;
             }
-            
+            :global(.box-card-group .card-blog) {
+              min-height: 52rem;
+            }
             :global(.box-card-group .card-blog-title) {
               font-family: "mont-semibold";
               font-size: 1.6rem;
@@ -159,9 +161,10 @@ const Blog = ({ currentData }) => {
             }
             :global(.box-card-group .card-blog-descripcion) {
               font-family: "mont-light";
-              font-size: 1.3rem;
+              font-size: 1.5rem;
               line-height: 21px;
               color: #000000;
+              margin-top: 1rem;
             }
             .container-content-centered{
               position: absolute;
@@ -395,11 +398,6 @@ const Blog = ({ currentData }) => {
                 right: 15%;
               }
             }
-            @media (max-width: 789px) {
-              .box-blog-general {
-                padding: 3rem 3rem;
-              }
-            } 
 
             @media (max-width: 768px) {
               .subtitle-dark-blog {
