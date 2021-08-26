@@ -9,6 +9,8 @@ import PopupCart from "./Popup/PopupCart/PopupCart"
 import DropMenuMobile from "./DropMenuMobile";
 import AvatarLogged from "./AvatarLogged";
 import YesmomContext from "../context/Context";
+import MenuProveedor from "./Proveedor/MenuProveedor";
+
 
 const HeaderNuevo = () => {
 
@@ -17,6 +19,7 @@ const HeaderNuevo = () => {
 
   const [onlyStore, setOnlyStore] = useState(false);
   const [onlyBlog, setOnlyBlog] = useState(false);
+  const [onlyProveedor, setOnlyProveedor] = useState(false);
 
   const { pathname } = useRouter();
 
@@ -39,9 +42,20 @@ const HeaderNuevo = () => {
       setOnlyBlog(false);
     }
   }
-  useEffect(() => {
+  const validateSelectProveedor = () => {
+    if (pathname.includes("/proveedor")) {
+      setOnlyProveedor(true);
+    } else {
+      setOnlyProveedor(false);
+    }
+  }
+  const validateShow = () => {
     validateSeekerStore();
     validateSeekerBlog();
+    validateSelectProveedor();
+  }
+  useEffect(() => {
+    validateShow();
   }, [])
 
   return (
@@ -129,7 +143,7 @@ const HeaderNuevo = () => {
                       width={25}
                       height={25}
                     />
-                    <h6 className="text-navbar">Iniciar sesión</h6>
+                    <h6 className="text-navbar">Login</h6>
                   </a>
                 </ActiveLink>
               }
@@ -168,6 +182,7 @@ const HeaderNuevo = () => {
 
         {onlyBlog && <SearchBlog />}
         {onlyStore && <MenuTienda />}
+        {onlyProveedor && <MenuProveedor />}
 
       </div>
       <DropMenuMobile
@@ -244,7 +259,7 @@ const HeaderNuevo = () => {
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 0rem 0.5rem;
+            margin: 0rem 0.6rem;
             color: #616160;
             justify-content: flex-start;
             cursor:pointer;
@@ -291,7 +306,7 @@ const HeaderNuevo = () => {
             visibility:visible
           }
           .text-navbar {
-            font-size:1.4rem;
+            font-size:1.3rem;
             font-family: "mont-semibold";
             margin-top:0.2rem;
           }

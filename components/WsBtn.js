@@ -21,7 +21,7 @@ const WsBtn = () => {
           bottom: 5%;
           right: 4%;
           background: #fff;
-          padding: 0.8rem;
+          padding: 1.2rem;
           border-radius: 50%;
           display: flex;
           justify-content: center;
