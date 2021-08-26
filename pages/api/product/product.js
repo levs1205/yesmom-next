@@ -93,9 +93,17 @@ const data = [
 ];
 
 
+<<<<<<< HEAD:pages/api/index.js
 const dataApi = (req,res) => {
    res.status(200).json(data)
 }
 
 export default dataApi
 
+=======
+export default (req,res) =>{
+  setTimeout(()=>{
+    res.status(200).json(data);
+  },500)
+}
+>>>>>>> 7ffb13bd35021e79086547a67a17c90f82808bcb:pages/api/product/product.js

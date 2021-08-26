@@ -8,7 +8,23 @@ import CardProduct from "../../components/CardProduct";
 import SidebarProducto from "../../components/tienda/SidebarProducto";
 import BannerTienda from "../../components/tienda/BannerTienda";
 
-const Product = () => {
+
+export async function getServerSideProps( {query} ){
+
+  const id = query.id;
+  const res = await fetch(`http://localhost:3000/api/product/${id}`);
+  const product = await res.json();
+
+
+  return {
+    props : {
+      product
+    }
+  }
+
+}
+const Product = ({ product}) => {
+  console.log(product);
   const imagesMobile = [
     { id: 1, image: "/image/tienda/banner-first.svg" },
     { id: 2, image: "/image/tienda/banner-first.svg" },
@@ -103,12 +119,17 @@ const Product = () => {
                   <h4 className="text-title-tienda">Lo + vendido</h4>
                   <hr />
                   <div className="all-products">
-                      <CardProduct />
+                    {
+                      product.map(( product , i)=>(
+                        <CardProduct key={i} {...product}/>
+                      ))
+                    }
+                      {/* <CardProduct />
                       <CardProduct discount/>
                       <CardProduct />
                       <CardProduct />
                       <CardProduct discount/>
-                      <CardProduct />
+                      <CardProduct /> */}
                   </div>
                 </div>
             </div> 
