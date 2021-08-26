@@ -36,7 +36,7 @@ const AvatarLogged = () => {
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                     <div>
-                        <Link href="/perfil" >
+                        <Link href="/perfil/miperfil" >
                             <p className="items-dropdown-menu cursor-pointer">Mi perfil</p>
                         </Link>
                         <p className="items-dropdown-menu-2">Admin</p>
@@ -44,7 +44,7 @@ const AvatarLogged = () => {
                     <Link href="/perfil/miscompras">
                         <p className="items-dropdown-menu cursor-pointer">Mis compras</p>
                     </Link>
-                    <Link href="/ayuda">
+                    <Link href="#">
                         <p className="items-dropdown-menu cursor-pointer">Ayuda</p>
                     </Link>
                     <Dropdown.Divider />

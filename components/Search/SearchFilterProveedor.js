@@ -2,26 +2,16 @@
 import OutsideClickHandler from 'react-outside-click-handler';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 
-function SelectFilterStore() {
+function SearchFilterProveedor() {
     
     const [isVisible , setIsVisible ] = useState(false);
-    const clickOutside = useRef(null);
     const { pathname } = useRouter();
     const types = [
         { name : "Todos", path : "/a"},
-        { name : "Solo en Yes Mom", path : "/b"},
-        { name : "Lo + vendido", path : "/tienda"},
-        { name : "Lo + seleccionado", path : "/d"},
-        { name : "Packs de regalo", path : "/e"},
-        { name : "Promociones", path : "/f"},
-        { name : "Pañales y toallitas", path : "/g"},
-        { name : "Coches", path : "/h"},
-        { name : "Paseo y Organizacion", path : "/i"},
-        { name : "Sillas para Auto", path : "/j"},
-        { name : "Lactancia y Alimentación", path : "/k"},
-        { name : "Baño", path : "/l"},
+        { name : "Solo en Baby Plaza Store", path : "/b"},
+        { name : "Promociones", path : "/c"},
     ];
 
 
@@ -102,10 +92,10 @@ function SelectFilterStore() {
                     background:#ffffff;
                     width:25rem;
                     max-width:80%;
-                    height:70%;
+
                 }
                 .options{
-                    padding : 3rem 3rem;
+                    padding : 1rem 3rem;
                     height:100%;
                     overflow-y:scroll;
 
@@ -135,4 +125,4 @@ function SelectFilterStore() {
     )
 }
 
-export default SelectFilterStore
+export default SearchFilterProveedor
