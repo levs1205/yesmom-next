@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
@@ -9,7 +9,19 @@ import Description from '../../../components/Perfil/Description'
 import Sidebar from '../../../components/Perfil/Sidebar'
 
 
-const index = () => {
+const PerfilDesactivarCuenta = () => {
+
+    const refPassword = useRef();
+    const [ password , setPassword] = useState();
+
+    const handleInputChange = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const handleRef = () => {
+        const type = refPassword.current.type;
+        type==="password" ? refPassword.current.type="text" : refPassword.current.type="password" 
+    }
 
     return (
         <AppLayout>
@@ -82,13 +94,18 @@ const index = () => {
                                     <form>
                                         <div className="wrapper-input">
                                             <label className="show" htmlFor="password" >Ingresar contraseña actual:</label>
-                                            <input className="show color-input" type="password" id="password" name="password"/>
-                                            <input className="hide color-input" type="password" id="password" name="password" placeholder="Ingresa la contraseña"/>
-                                            <div className="eye-icon">
-                                                <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M13.5384 5.25857C13.8534 5.70143 13.8534 6.29929 13.5384 6.74143C12.5463 8.13357 10.1662 11 7.38741 11C4.6086 11 2.22847 8.13357 1.23642 6.74143C1.08318 6.52938 1 6.26851 1 6C1 5.73149 1.08318 5.47062 1.23642 5.25857C2.22847 3.86643 4.6086 1 7.38741 1C10.1662 1 12.5463 3.86643 13.5384 5.25857V5.25857Z" stroke="#575650" strokeLinecap="round" strokeLinejoin="round"/>
-                                                    <path d="M7.38745 8.14289C8.48838 8.14289 9.38086 7.1835 9.38086 6.00003C9.38086 4.81657 8.48838 3.85718 7.38745 3.85718C6.28652 3.85718 5.39404 4.81657 5.39404 6.00003C5.39404 7.1835 6.28652 8.14289 7.38745 8.14289Z" stroke="#575650" strokeLinecap="round" strokeLinejoin="round"/>
-                                                </svg>
+                                            <input 
+                                                className="color-input input-placeholder" 
+                                                type="password" 
+                                                id="password" 
+                                                name="password"
+                                                ref = { refPassword }
+                                                value={ password }
+                                                onChange={ handleInputChange }
+                                                placeholder="Ingresa la contraseña"
+                                            />
+                                            <div className="eye-icon" onClick={ () => handleRef(refPassword)}>
+                                                <img src="/image/login/eye-reset.svg" alt="eye-icon" />
                                             </div>
                                         </div>
                                         <div className="forgot-password">
@@ -118,6 +135,10 @@ const index = () => {
 
             <style jsx>
                 {`  
+                    .input-placeholder::placeholder{
+                        background-color:#FFFFFF;
+                        color:#FFFFFF;
+                    }
                     /*RESET*/
                     /********/
                     .hide{
@@ -130,7 +151,7 @@ const index = () => {
                         text-align:left!important;
                     }
                     input::placeholder{
-                        background:none;
+                        background:none!important;
                     }
                     input:focus{
                         outline:none;
@@ -257,6 +278,10 @@ const index = () => {
                     }
 
                     @media (min-width: 768px){
+
+                        .input-placeholder::placeholder{
+                            color:#556EA1;
+                        }
                         .contenedor{
                             padding:8rem 0 12rem 0;
                         }
@@ -376,4 +401,4 @@ const index = () => {
     )
 }
 
-export default index
+export default PerfilDesactivarCuenta

@@ -40,7 +40,7 @@ const CheckoutStep3 = ({ formValues , setSelected}) => {
                         </p>
                         <div 
                             className="checkout-identification-block__button" 
-                            onClick={ () => setSelected(0)}
+                            onClick={ () => setSelected(1)}
                         >
                             Editar
                         </div>

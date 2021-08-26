@@ -208,7 +208,7 @@ const Checkout = () => {
             padding: 1rem;
           }
           .container-checkout {
-            padding: 8rem 1rem;
+            padding: 6.5rem 1rem;
             max-width: 1500px;
             margin: 0 auto;
           }
@@ -550,7 +550,7 @@ const Checkout = () => {
               width: 100%;
             }
             .container-checkout {
-              padding: 8rem 3rem;
+              padding: 6.5rem 3rem;
             }
             .shopping-cart-block {
               display: flex;
@@ -608,6 +608,9 @@ const Checkout = () => {
           }
 
           @media (min-width: 1024px) {
+            .container-checkout{
+              width:85%;
+            }
               .btn-checkout{
                   width:50%;
               }
@@ -621,6 +624,9 @@ const Checkout = () => {
             }
           }
           @media (min-width: 1280px) {
+            .container-checkout{
+              width:82.5%;
+            }
           }
         `}
       </style>

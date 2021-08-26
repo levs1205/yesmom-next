@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
@@ -7,9 +7,28 @@ import CustomButton from '../../../components/Perfil/CustomButton'
 import TitlePerfil from '../../../components/Perfil/TitlePerfil'
 import Description from '../../../components/Perfil/Description'
 import Sidebar from '../../../components/Perfil/Sidebar'
+import { useForm } from '../../../hooks/useForm'
 
 
-const index = () => {
+const PerfilPassword = () => {
+
+    const refCurrentPassword = useRef();
+    const refNewPassword = useRef();
+    const refNewPassword_2 = useRef();
+
+    const initialForm ={
+        password : "",
+        new_password :"",
+        repeat_password : "",
+    }
+    const [ formValues , handleInputChange ] = useForm(initialForm);
+
+    const { password , new_password , repeat_password} = formValues;
+
+    const handleRef = (ref) => {
+        const type = ref.current.type;
+        type==="password" ? ref.current.type="text" : ref.current.type="password"
+    }
     return (
         <AppLayout>
             <Head>
@@ -64,23 +83,26 @@ const index = () => {
                                 <div className="about-account">
                                     <p className="ft-m-regular">Cambiar contraseña actual</p>
                                     <div className="icon-pencil">
-                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M13.5642 1.69742C13.646 1.77942 13.6919 1.8905 13.6919 2.00629C13.6919 2.12209 13.646 2.23316 13.5642 2.31517L12.6516 3.22867L10.9016 1.47867L11.8142 0.565167C11.8963 0.483148 12.0075 0.437073 12.1236 0.437073C12.2396 0.437073 12.3508 0.483148 12.4329 0.565167L13.5642 1.69654V1.69742ZM12.033 3.84642L10.283 2.09642L4.32162 8.05867C4.27346 8.10681 4.23721 8.16554 4.21575 8.23017L3.51137 10.3424C3.4986 10.3809 3.49678 10.4222 3.50613 10.4617C3.51548 10.5012 3.53563 10.5373 3.56431 10.566C3.593 10.5947 3.6291 10.6148 3.66858 10.6242C3.70806 10.6335 3.74936 10.6317 3.78787 10.6189L5.90012 9.91454C5.96466 9.89333 6.02338 9.85738 6.07162 9.80954L12.033 3.84729V3.84642Z" fill="#575650"/>
-                                            <path fillRule="evenodd" clipRule="evenodd" d="M0.875 11.8125C0.875 12.1606 1.01328 12.4944 1.25942 12.7406C1.50556 12.9867 1.8394 13.125 2.1875 13.125H11.8125C12.1606 13.125 12.4944 12.9867 12.7406 12.7406C12.9867 12.4944 13.125 12.1606 13.125 11.8125V6.5625C13.125 6.44647 13.0789 6.33519 12.9969 6.25314C12.9148 6.17109 12.8035 6.125 12.6875 6.125C12.5715 6.125 12.4602 6.17109 12.3781 6.25314C12.2961 6.33519 12.25 6.44647 12.25 6.5625V11.8125C12.25 11.9285 12.2039 12.0398 12.1219 12.1219C12.0398 12.2039 11.9285 12.25 11.8125 12.25H2.1875C2.07147 12.25 1.96019 12.2039 1.87814 12.1219C1.79609 12.0398 1.75 11.9285 1.75 11.8125V2.1875C1.75 2.07147 1.79609 1.96019 1.87814 1.87814C1.96019 1.79609 2.07147 1.75 2.1875 1.75H7.875C7.99103 1.75 8.10231 1.70391 8.18436 1.62186C8.26641 1.53981 8.3125 1.42853 8.3125 1.3125C8.3125 1.19647 8.26641 1.08519 8.18436 1.00314C8.10231 0.921094 7.99103 0.875 7.875 0.875H2.1875C1.8394 0.875 1.50556 1.01328 1.25942 1.25942C1.01328 1.50556 0.875 1.8394 0.875 2.1875V11.8125Z" fill="#575650"/>
-                                        </svg>
+                                        <img src="/image/perfil/icon-pencil.svg" alt="icon pencil" />
                                     </div>
                                 </div>
                                 <div className="container-form">
                                     <form>
                                         <div className="wrapper-input">
                                             <label className="show" htmlFor="hide password" >Ingresar contraseña actual:</label>
-                                            <input className="show color-input" type="password" id="password" name="password"/>
-                                            <input className="hide color-input" type="password" id="password" name="password" placeholder="Ingresa contraseña actual"/>
-                                            <div className="eye-icon">
-                                                <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M13.5384 5.25857C13.8534 5.70143 13.8534 6.29929 13.5384 6.74143C12.5463 8.13357 10.1662 11 7.38741 11C4.6086 11 2.22847 8.13357 1.23642 6.74143C1.08318 6.52938 1 6.26851 1 6C1 5.73149 1.08318 5.47062 1.23642 5.25857C2.22847 3.86643 4.6086 1 7.38741 1C10.1662 1 12.5463 3.86643 13.5384 5.25857V5.25857Z" stroke="#575650" strokeLinecap="round" strokeLinejoin="round"/>
-                                                    <path d="M7.38745 8.14289C8.48838 8.14289 9.38086 7.1835 9.38086 6.00003C9.38086 4.81657 8.48838 3.85718 7.38745 3.85718C6.28652 3.85718 5.39404 4.81657 5.39404 6.00003C5.39404 7.1835 6.28652 8.14289 7.38745 8.14289Z" stroke="#575650" strokeLinecap="round" strokeLinejoin="round"/>
-                                                </svg>
+                                            {/* Input mobile */}
+                                            <input 
+                                                className="color-input input-placeholder"
+                                                placeholder="Ingresa contraseña actual" 
+                                                type="password" 
+                                                id="password"
+                                                name="password"
+                                                ref={ refCurrentPassword }
+                                                value={ password } 
+                                                onChange={ handleInputChange }
+                                            />
+                                            <div className="eye-icon" onClick={ () => handleRef(refCurrentPassword)}>
+                                                <img src="/image/login/eye-reset.svg" alt="icon-eye" />
                                             </div>
                                         </div>
                                         <div className="forgot-password">
@@ -90,25 +112,36 @@ const index = () => {
                                         </div>
                                         <div className="wrapper-input">
                                             <label className="show" htmlFor="new_password" >Nueva contraseña:</label>
-                                            <input className="show color-input" type="password" id="new_password" name="new_password"/>
-                                            <input className="hide color-input" type="password" id="new_password" name="new_password" placeholder="Nueva contraseña"/>
-                                            <div className="eye-icon">
-                                                <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M13.5384 5.25857C13.8534 5.70143 13.8534 6.29929 13.5384 6.74143C12.5463 8.13357 10.1662 11 7.38741 11C4.6086 11 2.22847 8.13357 1.23642 6.74143C1.08318 6.52938 1 6.26851 1 6C1 5.73149 1.08318 5.47062 1.23642 5.25857C2.22847 3.86643 4.6086 1 7.38741 1C10.1662 1 12.5463 3.86643 13.5384 5.25857V5.25857Z" stroke="#575650" strokeLinecap="round" strokeLinejoin="round"/>
-                                                    <path d="M7.38745 8.14289C8.48838 8.14289 9.38086 7.1835 9.38086 6.00003C9.38086 4.81657 8.48838 3.85718 7.38745 3.85718C6.28652 3.85718 5.39404 4.81657 5.39404 6.00003C5.39404 7.1835 6.28652 8.14289 7.38745 8.14289Z" stroke="#575650" strokeLinecap="round" strokeLinejoin="round"/>
-                                                </svg>
+                                            {/* Input mobile */}
+                                            <input 
+                                                className="color-input input-placeholder" 
+                                                type="password" 
+                                                id="new_password" 
+                                                name="new_password"
+                                                placeholder="Nueva contraseña"
+                                                ref={refNewPassword}
+                                                value={ new_password } 
+                                                onChange={ handleInputChange }
+                                            />
+                                            <div className="eye-icon" onClick={ () => handleRef(refNewPassword)}>
+                                                <img src="/image/login/eye-reset.svg" alt="icon-eye" />
                                             </div>
                                         </div>
 
                                         <div className="wrapper-input">
                                             <label className="show" htmlFor="repeat_password" >Repetir nueva contraseña:</label>
-                                            <input className="show color-input" type="password" id="repeat_password" name="repeat_password"/>
-                                            <input className="hide color-input" type="password" id="repeat_password" name="repeat_password" placeholder="Repetir nueva contraseña"/>
-                                            <div className="eye-icon">
-                                                <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M13.5384 5.25857C13.8534 5.70143 13.8534 6.29929 13.5384 6.74143C12.5463 8.13357 10.1662 11 7.38741 11C4.6086 11 2.22847 8.13357 1.23642 6.74143C1.08318 6.52938 1 6.26851 1 6C1 5.73149 1.08318 5.47062 1.23642 5.25857C2.22847 3.86643 4.6086 1 7.38741 1C10.1662 1 12.5463 3.86643 13.5384 5.25857V5.25857Z" stroke="#575650" strokeLinecap="round" strokeLinejoin="round"/>
-                                                    <path d="M7.38745 8.14289C8.48838 8.14289 9.38086 7.1835 9.38086 6.00003C9.38086 4.81657 8.48838 3.85718 7.38745 3.85718C6.28652 3.85718 5.39404 4.81657 5.39404 6.00003C5.39404 7.1835 6.28652 8.14289 7.38745 8.14289Z" stroke="#575650" strokeLinecap="round" strokeLinejoin="round"/>
-                                                </svg>
+                                            <input 
+                                                className="color-input input-placeholder" 
+                                                type="password" 
+                                                id="repeat_password" 
+                                                name="repeat_password"
+                                                placeholder="Repetir nueva contraseña"
+                                                ref={refNewPassword_2}
+                                                value={ repeat_password } 
+                                                onChange={ handleInputChange }
+                                            />
+                                            <div className="eye-icon" onClick={ () => handleRef(refNewPassword_2)}>
+                                                <img src="/image/login/eye-reset.svg" alt="icon-eye" />
                                             </div>
                                         </div>
 
@@ -135,15 +168,19 @@ const index = () => {
                 {`  
                     /*RESET*/
                     /********/
+                    .input-placeholder::placeholder{
+                        color:#FFFFFF;
+                        background:#FFFFFF;
+                    }
                     .hide{
                         display:none;
                     }
                     input{
                         text-align:left!important;
                     }
-                    input::placeholder{
+                    /* input::placeholder{
                         background:none;
-                    }
+                    } */
                     input:focus{
                         outline:none;
                         box-shadow:none;
@@ -265,6 +302,9 @@ const index = () => {
                         }
                     }
                     @media (min-width: 768px){
+                        .input-placeholder::placeholder{
+                            color:#556EA1;
+                        }
                         .contenedor{
                             padding:8rem 0 12rem 0;
                         }
@@ -374,4 +414,4 @@ const index = () => {
     )
 }
 
-export default index
+export default PerfilPassword
