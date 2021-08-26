@@ -15,7 +15,7 @@ const RecuperarPassword = () => {
     }
 
     const handleRecoverPassword = (e) => {
-        alert("holaa");
+        console.log("disparado");
         e.preventDefault();
 
         if(validator.isEmail(email)){
@@ -80,6 +80,7 @@ const RecuperarPassword = () => {
                                 <form
                                     /* onSubmit={ handleRecoverPassword } */
                                     noValidate={true}
+                                    onSubmit={ handleRecoverPassword }
                                 >
                                     <div className="wrapper-input">
                                         <label htmlFor="email" >Por favor ingresa tu correo electronico</label>
@@ -87,14 +88,13 @@ const RecuperarPassword = () => {
                                             type="email" 
                                             id="email" 
                                             name="email"
-                                            onChange={ handleInputChange }
                                             value = { email }
+                                            onChange={ handleInputChange }
                                         />
                                     </div>
-                                    <input type="submit" value="enviar" />
                                     
                                     {/* <Link href="/restablecer-password"> */}
-                                    <div className="boton pink">
+                                    <div className="boton pink" onClick={ handleRecoverPassword }>
                                         <p>Continuar</p>
                                     </div>
                                     {/* </Link> */}

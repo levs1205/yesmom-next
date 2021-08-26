@@ -28,6 +28,7 @@ const index = () => {
     const { dispatchAuth } = useContext(YesmomContext);
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
         const error = isValidLogin(formValues);
         console.log(error);
         if(error.trim().length!==0){
@@ -112,12 +113,15 @@ const index = () => {
                         <div className="container-center">
                             <div className="container-form">
                                     <form
+                                        /* onSubmit={ handleSubmit } */
+                                        noValidate={true}
                                         onSubmit={ handleSubmit }
                                     >
+                                        {/* <input type="submit" /> */}
                                         <div className="wrapper-input">
                                             <label htmlFor="email" >Dirección de correo electrónico o numero de teléfono:</label>
                                             <input 
-                                                type="email" 
+                                                type="text" 
                                                 id="email" 
                                                 name="email"
                                                 value={email}
@@ -150,6 +154,7 @@ const index = () => {
                                             </Link> 
                                         </div>
 
+                                        <input type="submit" style={{display:"none"}} />
                                         <div 
                                             className="boton-normal pink"
                                             onClick ={ handleSubmit }
@@ -177,7 +182,6 @@ const index = () => {
                                             <p>Ingresar con Google</p>
 
                                         </div>
-
                                     </form>
                                 </div>
                                 <div className="wrapper-end">
