@@ -14,27 +14,27 @@ import Swal from "sweetalert2";
 const Blog = ({ currentData }) => {
 
   //controlar valor del query
-  const { query : { q="" } } = useRouter();
+  const { query: { q = "" } } = useRouter();
 
   const { dispatchUi } = useContext(YesmomContext);
-  
-  const [ blogsFiltered ,setBlogsFiltered] = useState([]);
+
+  const [blogsFiltered, setBlogsFiltered] = useState([]);
   //setear los blogs totales
 
-  useEffect(()=>{
-    dispatchUi ( setBlogs(currentData) );
-  },[])
+  useEffect(() => {
+    dispatchUi(setBlogs(currentData));
+  }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     const query = q.toLowerCase().trim();
-    const filterData = currentData.filter( ({blog}) => blog.titulo.toLowerCase().trim().includes(query) || blog.descripcion.toLowerCase().trim().includes(query) );
-    if(filterData.length === 0){
+    const filterData = currentData.filter(({ blog }) => blog.titulo.toLowerCase().trim().includes(query) || blog.descripcion.toLowerCase().trim().includes(query));
+    if (filterData.length === 0) {
       setBlogsFiltered(currentData);
-      Swal.fire('No encontrado',"No existen blogs asociados con la búsqueda!","info")
-    }else{
+      Swal.fire('No encontrado', "No existen blogs asociados con la búsqueda!", "info")
+    } else {
       setBlogsFiltered(filterData);
     }
-  },[q])
+  }, [q])
 
 
   /* console.log('APIBlog', currentData); */
@@ -104,12 +104,12 @@ const Blog = ({ currentData }) => {
             <Container>
               <CardDeck style={{ justifyContent: "center" }}>
                 {
-                /* currentData.map((cardBlog) => (
-                  <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
-                )) */
-                blogsFiltered.map((cardBlog) => (
-                  <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
-                ))
+                  /* currentData.map((cardBlog) => (
+                    <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
+                  )) */
+                  blogsFiltered.map((cardBlog) => (
+                    <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
+                  ))
                 }
               </CardDeck>
             </Container>
@@ -151,7 +151,7 @@ const Blog = ({ currentData }) => {
               margin-bottom: 5rem;
             }
             :global(.box-card-group .card-blog) {
-              min-height: 52rem;
+              min-height: 44.2rem;
             }
             :global(.box-card-group .card-blog-title) {
               font-family: "mont-semibold";
