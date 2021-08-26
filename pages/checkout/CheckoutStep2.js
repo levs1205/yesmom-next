@@ -124,21 +124,6 @@ const CheckoutStep2 = ({ formValues , handleInputChange , setSelected}) => {
                 <label className="checkout-location-form__label-radio" for="f-option2">Otra persona</label>
             </div>
             </div>
-            <div className="checkout-location-form__wrapper">
-            <label
-                for="identity"
-                className="checkout-location-form__label"
-            >
-                Nombre y Apellidos:
-            </label>
-            <input
-                type="text"
-                className="checkout-location-form__input"
-                name="identity"
-                id="identity"
-            />
-            </div>
-            
             <style jsx>
                 {`
                     .container-checkout {
