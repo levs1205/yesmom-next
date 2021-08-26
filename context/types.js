@@ -7,7 +7,8 @@ export const types = {
     authLogout : "LOGOUT",
 
     //ui
-    loadBlogs : "LOAD_BLOGS",
+    setBlogs : "SET_BLOGS",
+    setQueryBlog : "SET_QUERY_BLOG",
     
     //errors
     uiSetError: "SET_ERROR",

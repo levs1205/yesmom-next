@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Card, CardDeck, Container } from "react-bootstrap";
 // import CardBlog from "./CardBlog";
 import AppLayout from "../../components/AppLayout";
@@ -6,10 +6,38 @@ import Image from "next/image";
 import Link from "next/link";
 import CardBlog from "../../components/CardBlog";
 import Head from "next/head";
+import YesmomContext from "../../context/Context";
+import { setBlogs } from "../../context/actions/ui";
+import { useRouter } from "next/router";
+import Swal from "sweetalert2";
 
 const Blog = ({ currentData }) => {
 
-  console.log('APIBlog', currentData);
+  //controlar valor del query
+  const { query : { q="" } } = useRouter();
+
+  const { dispatchUi } = useContext(YesmomContext);
+  
+  const [ blogsFiltered ,setBlogsFiltered] = useState([]);
+  //setear los blogs totales
+
+  useEffect(()=>{
+    dispatchUi ( setBlogs(currentData) );
+  },[])
+
+  useEffect(()=>{
+    const query = q.toLowerCase().trim();
+    const filterData = currentData.filter( ({blog}) => blog.titulo.toLowerCase().trim().includes(query) || blog.descripcion.toLowerCase().trim().includes(query) );
+    if(filterData.length === 0){
+      setBlogsFiltered(currentData);
+      Swal.fire('No encontrado',"No existen blogs asociados con la búsqueda!","info")
+    }else{
+      setBlogsFiltered(filterData);
+    }
+  },[q])
+
+
+  /* console.log('APIBlog', currentData); */
 
   // const sortFunction=(a, b)=> {
   //   var dateA = new Date(a.blog.fecha).getTime();
@@ -73,11 +101,16 @@ const Blog = ({ currentData }) => {
             cuidar y engreir mucho más a tu bebé
           </h4>
           <div className="box-card-group">
-            <Container fluid="true">
+            <Container>
               <CardDeck style={{ justifyContent: "center" }}>
-                {currentData.map((cardBlog) => (
+                {
+                /* currentData.map((cardBlog) => (
                   <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
-                ))}
+                )) */
+                blogsFiltered.map((cardBlog) => (
+                  <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
+                ))
+                }
               </CardDeck>
             </Container>
           </div>
@@ -111,12 +144,15 @@ const Blog = ({ currentData }) => {
       <style jsx>
         {`
             .box-container-blog {
+              overflow:hidden;
               margin-bottom: -32.5rem;
             }
             :global(.box-card-group .container-card-blog) {
               margin-bottom: 5rem;
             }
-            
+            :global(.box-card-group .card-blog) {
+              min-height: 52rem;
+            }
             :global(.box-card-group .card-blog-title) {
               font-family: "mont-semibold";
               font-size: 1.6rem;
@@ -125,9 +161,10 @@ const Blog = ({ currentData }) => {
             }
             :global(.box-card-group .card-blog-descripcion) {
               font-family: "mont-light";
-              font-size: 1.3rem;
+              font-size: 1.5rem;
               line-height: 21px;
               color: #000000;
+              margin-top: 1rem;
             }
             .container-content-centered{
               position: absolute;
@@ -361,11 +398,6 @@ const Blog = ({ currentData }) => {
                 right: 15%;
               }
             }
-            @media (max-width: 789px) {
-              .box-blog-general {
-                padding: 3rem 3rem;
-              }
-            } 
 
             @media (max-width: 768px) {
               .subtitle-dark-blog {

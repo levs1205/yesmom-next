@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Link from "next/link";
 import { useForm } from "../../hooks/useForm";
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import YesmomContext from "../../context/Context";
 import { startLogin } from "../../context/actions/auth";
 import { useRouter } from "next/router";
@@ -16,6 +16,7 @@ import Swal from "sweetalert2";
 const index = () => {
 
     const router = useRouter();
+    const refPassword = useRef();
     const initialForm = {
         email: '',
         password: '',
@@ -27,6 +28,7 @@ const index = () => {
     const { dispatchAuth } = useContext(YesmomContext);
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
         const error = isValidLogin(formValues);
         console.log(error);
         if(error.trim().length!==0){
@@ -51,6 +53,11 @@ const index = () => {
         }catch(e){
             console.log(e.message);
         }
+    }
+
+    const handleRef = () => {
+        const type = refPassword.current.type;
+        type==="password" ? refPassword.current.type="text" : refPassword.current.type="password" 
     }
     
 
@@ -99,11 +106,7 @@ const index = () => {
                 <div className="container-contenido">
                     <div className="all-content">
                         <div className="center">
-                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M23.6059 0C10.6008 0 0 10.6008 0 23.6059C0 26.7752 0.655717 29.9446 1.85787 32.786C2.07644 33.2232 2.40431 33.4417 2.84145 33.4417C2.95074 33.4417 3.16931 33.4417 3.2786 33.3324C3.82503 33.1139 4.04361 32.4581 3.82503 31.9117C2.73217 29.2888 2.07645 26.4474 2.07645 23.4966C2.07645 11.6937 11.6937 2.07645 23.4966 2.07645C35.2996 2.07645 44.9168 11.6937 44.9168 23.4966C44.9168 26.3381 44.3704 29.1795 43.2775 31.8024C43.059 32.3489 43.2775 33.0046 43.824 33.2232C44.3704 33.4417 45.0261 33.2232 45.2447 32.6767C46.4468 29.726 47.1026 26.666 47.1026 23.4966C47.2119 10.6008 36.611 0 23.6059 0Z" fill="#EC668D"/>
-                                    <path d="M32.6768 17.8137C32.6768 12.7865 28.6331 8.74292 23.606 8.74292C18.5788 8.74292 14.5352 12.7865 14.5352 17.8137C14.5352 22.8409 18.5788 26.8845 23.606 26.8845C28.6331 26.8845 32.6768 22.8409 32.6768 17.8137ZM16.6116 17.8137C16.6116 13.9887 19.7809 10.8194 23.606 10.8194C27.431 10.8194 30.6003 13.9887 30.6003 17.8137C30.6003 21.6388 27.431 24.8081 23.606 24.8081C19.7809 24.8081 16.6116 21.6388 16.6116 17.8137Z" fill="#EC668D"/>
-                                    <path d="M23.6059 31.256C14.863 31.256 9.28936 35.846 6.88506 38.6875C6.5572 39.1246 6.5572 39.7803 6.88506 40.1082C11.3658 44.589 17.2673 47.1026 23.6059 47.1026C29.9445 47.1026 35.9553 44.589 40.4361 40.1082C40.8732 39.6711 40.8732 39.0153 40.4361 38.6875C37.9225 35.846 32.3489 31.256 23.6059 31.256ZM23.6059 45.0261C18.1416 45.0261 13.1144 43.0589 9.07079 39.3432C11.9122 36.5017 16.6116 33.4417 23.6059 33.4417C30.491 33.4417 35.1903 36.5017 38.1411 39.3432C34.2067 42.9497 29.0703 45.0261 23.6059 45.0261Z" fill="#EC668D"/>
-                            </svg>
+                            <img src="/image/login/icon-user.svg" alt="user yesmom" />
                             <p className="iniciar-sesion">Iniciar Sesión</p>
                             <p className="bienvenido">¡Hola, Bienvenid@ a Yes Mom!</p>
                         </div>
@@ -111,11 +114,14 @@ const index = () => {
                             <div className="container-form">
                                     <form
                                         /* onSubmit={ handleSubmit } */
+                                        noValidate={true}
+                                        onSubmit={ handleSubmit }
                                     >
+                                        {/* <input type="submit" /> */}
                                         <div className="wrapper-input">
                                             <label htmlFor="email" >Dirección de correo electrónico o numero de teléfono:</label>
                                             <input 
-                                                type="email" 
+                                                type="text" 
                                                 id="email" 
                                                 name="email"
                                                 value={email}
@@ -129,16 +135,12 @@ const index = () => {
                                                 type="password" 
                                                 id="password" 
                                                 name="password"
+                                                ref={ refPassword}
                                                 value={password}
                                                 onChange={handleInputChange}
                                             />
-                                            <div className="eye-icon">
-                                            <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M13.5384 5.25857C13.8534 5.70143 13.8534 6.29929 13.5384 6.74143C12.5463 8.13357 10.1662 11 7.38741 11C4.6086 11 2.22847 8.13357 1.23642 6.74143C1.08318 6.52938 1 6.26851 1 6C1 5.73149 1.08318 5.47062 1.23642 5.25857C2.22847 3.86643 4.6086 1 7.38741 1C10.1662 1 12.5463 3.86643 13.5384 5.25857V5.25857Z" stroke="#556EA1" strokeLinecap="round" strokeLinejoin="round"/>
-                                                <path d="M7.38745 8.14289C8.48838 8.14289 9.38086 7.1835 9.38086 6.00003C9.38086 4.81657 8.48838 3.85718 7.38745 3.85718C6.28652 3.85718 5.39404 4.81657 5.39404 6.00003C5.39404 7.1835 6.28652 8.14289 7.38745 8.14289Z" stroke="#556EA1" strokeLinecap="round" strokeLinejoin="round"/>
-                                            </svg>
-
-
+                                            <div className="eye-icon" onClick= { handleRef }>
+                                                <img src="/image/login/eye-login.svg" />
                                             </div>
                                         </div>
 
@@ -152,6 +154,7 @@ const index = () => {
                                             </Link> 
                                         </div>
 
+                                        <input type="submit" style={{display:"none"}} />
                                         <div 
                                             className="boton-normal pink"
                                             onClick ={ handleSubmit }
@@ -167,27 +170,18 @@ const index = () => {
 
                                         <div className="boton-icon facebook">
                                             <div className="icon">
-                                            <svg width="13" height="25" viewBox="0 0 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M14.9515 16.875L15.7812 11.4457H10.5935V7.92246C10.5935 6.43711 11.3182 4.98926 13.6416 4.98926H16V0.366797C16 0.366797 13.8598 0 11.8136 0C7.54139 0 4.74889 2.60039 4.74889 7.30781V11.4457H0V16.875H4.74889V30H10.5935V16.875H14.9515Z" fill="white"/>
-                                            </svg>
-
+                                                <img src="/image/login/facebook-login.svg" alt="fb login" />
                                             </div>
                                             <p>Ingresar con Facebook</p>
                                         </div>
 
                                         <div className="boton-icon google">
                                             <div className="icon">
-                                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M17.8249 7.23731H17.1V7.19996H9V10.7999H14.0864C13.3443 12.8956 11.3503 14.3999 9 14.3999C6.01785 14.3999 3.6 11.9821 3.6 8.99996C3.6 6.01782 6.01785 3.59998 9 3.59998C10.3765 3.59998 11.6289 4.11928 12.5824 4.96753L15.1281 2.42189C13.5207 0.923845 11.3706 0 9 0C4.02975 0 0 4.02973 0 8.99996C0 13.9702 4.02975 17.9999 9 17.9999C13.9703 17.9999 18 13.9702 18 8.99996C18 8.39651 17.9379 7.80746 17.8249 7.23731Z" fill="#FFC107"/>
-                                                    <path d="M1.0376 4.81093L3.99455 6.97947C4.79465 4.99857 6.73235 3.59998 8.9999 3.59998C10.3764 3.59998 11.6288 4.11928 12.5823 4.96752L15.128 2.42189C13.5206 0.923845 11.3705 0 8.9999 0C5.543 0 2.5451 1.95164 1.0376 4.81093Z" fill="#FF3D00"/>
-                                                    <path d="M8.99992 18.0001C11.3246 18.0001 13.4369 17.1105 15.034 15.6637L12.2485 13.3067C11.3145 14.0169 10.1733 14.4011 8.99992 14.4001C6.65902 14.4001 4.67137 12.9075 3.92257 10.8245L0.987671 13.0857C2.47717 16.0003 5.50207 18.0001 8.99992 18.0001Z" fill="#4CAF50"/>
-                                                    <path d="M17.825 7.23742H17.1V7.20007H9V10.8001H14.0864C13.7314 11.7974 13.092 12.669 12.2472 13.307L12.2485 13.3061L15.034 15.6632C14.8369 15.8423 18 13.5 18 9.00006C18 8.39662 17.9379 7.80757 17.825 7.23742Z" fill="#1976D2"/>
-                                                </svg>
+                                                <img src="/image/login/google-login.svg" alt="google login" />
                                             </div>
                                             <p>Ingresar con Google</p>
 
                                         </div>
-
                                     </form>
                                 </div>
                                 <div className="wrapper-end">
@@ -478,6 +472,9 @@ const index = () => {
                         .boton-normal,.boton-icon{
                             padding-left:3rem;
                             padding-right:3rem;
+                        }
+                        .eye-icon{
+                            bottom:0.25rem;
                         }
                     }
 

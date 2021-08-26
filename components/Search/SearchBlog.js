@@ -1,17 +1,45 @@
 import React from "react";
-import Image from "next/image";
+import { useRouter } from "next/dist/client/router";
+import { useForm } from "../../hooks/useForm";
+
 
 const SearchBlog = () => {
+
+  const router = useRouter();
+  //si no existe query , string vacio
+  const { query : {q=""} } = router;
+  
+  //Controlar cambio del input
+  const initialForm = {
+    nameBlog : q,
+  }
+  const [ formValues , handleInputChange ] = useForm(initialForm);
+
+  const { nameBlog } = formValues;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(nameBlog.trim()===""){
+      router.push("",undefined,{ shallow: true });  
+    }else{
+      router.push(`/blog?q=${nameBlog}`,undefined,{ shallow: true });
+    }
+  }
+  
   return (
     <div className="box-yesmom">
       <div className="box-menu-tienda">
             <div className="box-search-tienda">
-            <input
-              type="text"
-              placeholder="¿Qué es lo que buscas?"
-              id="search"
-              name="search"
-            />
+              <form onSubmit={ handleSubmit }>
+                <input
+                  type="text"
+                  placeholder="¿Qué es lo que buscas?"
+                  id="search"
+                  name="nameBlog"
+                  onChange={ handleInputChange }
+                  value={nameBlog}
+                />
+              </form>
           </div>
       </div>
       <style jsx>
