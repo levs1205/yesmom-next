@@ -5,8 +5,22 @@ import YesmomContext from './Context'
 import { authReducer } from './reducers/authReducer';
 import { uiReducer } from './reducers/uiReducer';
 
-const Provider = ({children }) => {
-    
+
+export async function getServerSideProps(){
+    const res = await fetch("http://localhost:3000/api/product");
+    const product = await res.json();
+  
+  
+    return {
+      props : {
+        product
+      }
+    }
+  
+  }
+
+const Provider = ({children,product }) => {
+    console.log(product);
     const initialState = {};
     const [ auth , dispatchAuth ] = useReducer( authReducer , initialState);
     const [ ui , dispatchUi ] = useReducer( uiReducer , initialState );
@@ -33,7 +47,8 @@ const Provider = ({children }) => {
             auth,
             ui,
             dispatchAuth,
-            dispatchUi
+            dispatchUi,
+            product
         }
         }>
             { children }
