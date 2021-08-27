@@ -15,7 +15,6 @@ import CardProduct from "../components/CardProduct";
 import axios from "axios";
 // import fetch from 'isomorphic-fetch'
 
-
 const Home = ({ currentData }) => {
   console.log(currentData, "holis");
   // const [currentData, setCurrentData] = useState([]);
@@ -144,7 +143,7 @@ const Home = ({ currentData }) => {
               <p className="link-a text-center text-iniciar-sesion">
                 ¿Ya registrado?
                 <span className="hover-efect-letter">
-                  <Link href="/login" >
+                  <Link href="/login">
                     <b> Inicia sesión</b>
                   </Link>
                 </span>
@@ -176,8 +175,8 @@ const Home = ({ currentData }) => {
                 <div className="box-sorteo-home">
                   <h3 className="title-fuxia">Gana un kit Yes Mom</h3>
                   <h6 className="subtitle-dark">
-                    Crea una lista de regalo y gana<br /> un kit de productos para ti
-                    y tu bebé
+                    Crea una lista de regalo y gana
+                    <br /> un kit de productos para ti y tu bebé
                   </h6>
 
                   <Link href="/construccion">
@@ -253,7 +252,7 @@ const Home = ({ currentData }) => {
                 alt="onda rosa yes mom"
                 width={90}
                 height={20}
-              // layout="responsive"
+                // layout="responsive"
               />
             </div>
             <div className="box-img-lo-mejor">
@@ -266,9 +265,9 @@ const Home = ({ currentData }) => {
                         alt="destacado"
                         width={400}
                         height={400}
-                      // layout="responsive"
+                        // layout="responsive"
 
-                      // className="onda-rosa heartbeat"
+                        // className="onda-rosa heartbeat"
                       />
                     </div>
                     <Link href="/construccion">
@@ -284,15 +283,12 @@ const Home = ({ currentData }) => {
                         alt="search"
                         width={400}
                         height={400}
-                      // className="onda-rosa heartbeat"
+                        // className="onda-rosa heartbeat"
                       />
                     </div>
                     <Link href="/construccion">
                       <div className="btn-lo-mejor bg-fuxia hover-fuxia">
-                        <a>
-                          {" "}
-                          Lo + vendido{" "}
-                        </a>{" "}
+                        <a> Lo + vendido </a>{" "}
                       </div>
                     </Link>
                   </Col>
@@ -303,7 +299,7 @@ const Home = ({ currentData }) => {
                         alt="sin moverte"
                         width={400}
                         height={400}
-                      // className="onda-rosa heartbeat"
+                        // className="onda-rosa heartbeat"
                       />
                     </div>
                     <Link href="/construccion">
@@ -319,7 +315,7 @@ const Home = ({ currentData }) => {
                         alt="juguetes"
                         width={400}
                         height={400}
-                      // className="onda-rosa heartbeat"
+                        // className="onda-rosa heartbeat"
                       />
                     </div>
 
@@ -384,7 +380,6 @@ const Home = ({ currentData }) => {
               </div>
             </Link>
           </Container>
-
         </div>
         <div className="section-blog-home">
           <div className="nube-blanca1">
@@ -490,34 +485,34 @@ const Home = ({ currentData }) => {
       </div>
       <style jsx>
         {`
-          :global(.card-blog){
-              width:30rem!important;
-            }
-          .text-change-font{
-            font-family:"omnes-bold"!important;
-            font-size:1.6rem;
+          :global(.card-blog) {
+            width: 30rem !important;
           }
-          .text-omnes{
-            width:17.5rem;
+          .text-change-font {
+            font-family: "omnes-bold" !important;
+            font-size: 1.6rem;
+          }
+          .text-omnes {
+            width: 17.5rem;
           }
           .text-omnes a {
-            font-size:2rem;
+            font-size: 2rem;
           }
 
-          .all-products{
-              width : 80%;
-              margin : 0 auto;
-              padding:3rem 0;
-              display:flex;
-              justify-content:center;
-              align-items:center;
-              flex-wrap:wrap;
-            }
+          .all-products {
+            width: 85%;
+            margin: 0 auto;
+            padding: 3rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+          }
           .box-banner {
             height: 84vh;
             width: auto;
             position: relative;
-            overflow:hidden;
+            overflow: hidden;
           }
 
           .box-banner-btns {
@@ -566,7 +561,7 @@ const Home = ({ currentData }) => {
           }
 
           .btn-regalos {
-            max-width:90%;
+            max-width: 90%;
             background-color: #febf41;
             font-size: 1.31rem;
             color: #fff !important;
@@ -582,10 +577,10 @@ const Home = ({ currentData }) => {
           }
           .btn-regalos a {
             color: #fff !important;
-            font-size:1.6rem;
+            font-size: 1.6rem;
           }
-          .text-iniciar-sesion{
-            font-size:1.5rem;
+          .text-iniciar-sesion {
+            font-size: 1.5rem;
           }
           .box-text-title {
             display: flex;
@@ -596,7 +591,7 @@ const Home = ({ currentData }) => {
           }
           .text-title {
             font-family: "Clicker Script", cursive;
-            font-size:4rem;
+            font-size: 4rem;
             margin: 0rem 1rem 0rem;
             color: #4b66ae;
           }
@@ -722,7 +717,7 @@ const Home = ({ currentData }) => {
 
           .btn-lo-mejor a {
             color: #fff !important;
-            font-size:1.7rem;
+            font-size: 1.7rem;
           }
           .section-blog-home {
             padding: 6rem 0;
@@ -830,24 +825,30 @@ const Home = ({ currentData }) => {
             justify-content: center;
           }
 
+          {/* @media (max-width: 1200px) {
+            .box-banner {
+              height: 60vh;
+              width: auto;
+            }
+          } */}
           @media (min-width: 1800px) {
             :global(.card-deck) {
               justify-content: center !important;
             }
-            :global(.card-deck .card-blog-title){
+            :global(.card-deck .card-blog-title) {
               font-family: "mont-semibold";
               font-size: 1.6rem;
               line-height: 20px;
               color: #575756;
             }
-            :global(.card-deck .card-blog-descripcion){
+            :global(.card-deck .card-blog-descripcion) {
               font-family: "mont-light";
               font-size: 1.4rem;
               line-height: 21px;
               color: #000000;
             }
             .box-banner {
-              height: 100vh;
+              height: 60vh;
               width: auto;
             }
             .section-sorteo-home {
@@ -954,7 +955,7 @@ const Home = ({ currentData }) => {
             .box-btn-blog {
               margin: 0rem 3rem 0rem 3rem !important;
             }
-            .box-true-history{
+            .box-true-history {
               margin-top: 12.5rem;
             }
             .box-true-history .box-text-title {
@@ -964,30 +965,30 @@ const Home = ({ currentData }) => {
               padding: 6rem 0 10rem;
             }
           }
-          @media (min-width:1024px) and (max-width: 1799px){  
-            :global(.section-blog-home .container-sin-margin){
+          @media (min-width: 1024px) and (max-width: 1799px) {
+            :global(.section-blog-home .container-sin-margin) {
               display: flex;
               flex-wrap: wrap;
-              justify-content: center ;
+              justify-content: center;
             }
             :global(.container-card-bolg .card-deck) {
               margin-right: -15px;
               margin-left: -15px;
               justify-content: center;
             }
-            :global(.card-deck .card-blog-title){
+            :global(.card-deck .card-blog-title) {
               font-family: "mont-semibold";
               font-size: 1.6rem;
               line-height: 20px;
               color: #575756;
             }
-            :global(.card-deck .card-blog-descripcion){
+            :global(.card-deck .card-blog-descripcion) {
               font-family: "mont-light";
               font-size: 1.4rem;
               line-height: 21px;
               color: #000000;
             }
-            .box-true-history{
+            .box-true-history {
               margin-top: 9.5rem;
             }
             .box-true-history .box-text-title {
@@ -998,27 +999,27 @@ const Home = ({ currentData }) => {
             }
           }
 
-          @media (min-width:992px) and (max-width: 1023px){
-            .box-banner{
-              height:70vh;
+          @media (min-width: 992px) and (max-width: 1023px) {
+            .box-banner {
+              height: 50vh;
             }
-            :global(.section-blog-home .container-sin-margin){
+            :global(.section-blog-home .container-sin-margin) {
               display: flex;
               flex-wrap: wrap;
-              justify-content: center ;
+              justify-content: center;
             }
             :global(.container-card-bolg .card-deck) {
               margin-right: -15px;
               margin-left: -15px;
               justify-content: center;
             }
-            :global(.card-deck .card-blog-title){
+            :global(.card-deck .card-blog-title) {
               font-family: "mont-semibold";
               font-size: 1.6rem;
               line-height: 20px;
               color: #575756;
             }
-            :global(.card-deck .card-blog-descripcion){
+            :global(.card-deck .card-blog-descripcion) {
               font-family: "mont-light";
               font-size: 1.3rem;
               line-height: 21px;
@@ -1030,13 +1031,13 @@ const Home = ({ currentData }) => {
             :global(.card-deck) {
               justify-content: center !important;
             }
-            :global(.card-deck .card-blog-title){
+            :global(.card-deck .card-blog-title) {
               font-family: "mont-semibold";
               font-size: 1.6rem;
               line-height: 20px;
               color: #575756;
             }
-            :global(.card-deck .card-blog-descripcion){
+            :global(.card-deck .card-blog-descripcion) {
               font-family: "mont-light";
               font-size: 1.3rem;
               line-height: 21px;
@@ -1047,11 +1048,11 @@ const Home = ({ currentData }) => {
               background: #febf41;
               position: relative;
             }
-            .box-banner{
-              height:70vh;
+            .box-banner {
+              height: 70vh;
             }
-            .all-products{
-              width:70%;
+            .all-products {
+              width: 70%;
               margin: 0 auto;
             }
             .box-banner-btns-group {
@@ -1073,7 +1074,7 @@ const Home = ({ currentData }) => {
             }
           }
           @media (max-width: 768px) {
-            .box-blog-card-home .container-card-blog{
+            .box-blog-card-home .container-card-blog {
               width: 32rem !important;
             }
             :global(.card-deck) {
@@ -1082,60 +1083,60 @@ const Home = ({ currentData }) => {
               margin-right: auto;
               margin-left: auto;
             }
-            :global(.card-deck .card){
+            :global(.card-deck .card) {
               margin-bottom: 5.6rem;
             }
-            :global(.card-deck .card-blog-title){
+            :global(.card-deck .card-blog-title) {
               font-family: "mont-semibold";
               font-size: 1.6rem;
               line-height: 20px;
               color: #575756;
             }
-            :global(.card-deck .card-blog-descripcion){
+            :global(.card-deck .card-blog-descripcion) {
               font-family: "mont-light";
               font-size: 1.3rem;
               line-height: 21px;
               color: #000000;
             }
-            .subtitle-dark{
-              font-size:2rem;
+            .subtitle-dark {
+              font-size: 2rem;
             }
-            .text-iniciar-sesion{
-              font-size:1.2rem;
-              margin-top:1rem;
+            .text-iniciar-sesion {
+              font-size: 1.2rem;
+              margin-top: 1rem;
             }
-            .text-omnes{
-              width:15rem;
+            .text-omnes {
+              width: 15rem;
             }
-            .text-omnes a{
-              font-family:"omnes-regular"!important;
-              font-size:1.8rem;
-              font-weight:500;
+            .text-omnes a {
+              font-family: "omnes-regular" !important;
+              font-size: 1.8rem;
+              font-weight: 500;
             }
             .text-title {
               font-size: 4rem;
             }
-            .ft-3{
-              font-size:1.3rem;
+            .ft-3 {
+              font-size: 1.3rem;
             }
-            .text-explora{
-              font-size:1.5rem;
+            .text-explora {
+              font-size: 1.5rem;
               padding: 0 2rem;
             }
             .box-sorteo-home .subtitle-dark {
               font-size: 1.4rem;
             }
-            .title-fuxia{
-              font-size:2rem;
+            .title-fuxia {
+              font-size: 2rem;
             }
-            .all-products{
-              width : 90%;
-              margin : 0 auto;
-              padding:3rem 0;
-              display:flex;
-              justify-content:center;
-              align-items:center;
-              flex-wrap:wrap;
+            .all-products {
+              width: 90%;
+              margin: 0 auto;
+              padding: 3rem 0;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-wrap: wrap;
             }
             .ondas {
               width: 4rem;
@@ -1201,12 +1202,12 @@ const Home = ({ currentData }) => {
               height: 5rem;
               border-radius: 20px;
             }
-            .btn-lo-mejor a{
-              font-family:"omnes-regular"!important;
-              font-size:1.8rem;
+            .btn-lo-mejor a {
+              font-family: "omnes-regular" !important;
+              font-size: 1.8rem;
             }
             .text-change-font {
-              font-family:"omnes-regular"!important;
+              font-family: "omnes-regular" !important;
             }
             .box-img-blog-home {
               padding: 1rem;
@@ -1251,21 +1252,21 @@ const Home = ({ currentData }) => {
             .btn-regalos {
               width: 25rem;
               margin: 0.8rem auto;
-              padding-left : 0.5rem;
-              padding-right:0.5rem;
+              padding-left: 0.5rem;
+              padding-right: 0.5rem;
               font-size: 1rem;
             }
-            .btn-regalos a{
-              font-family:"omnes-regular"!important;
-              font-size:1.8rem;
+            .btn-regalos a {
+              font-family: "omnes-regular" !important;
+              font-size: 1.8rem;
             }
             .box-true-history {
               width: 85%;
               display: block;
               margin: auto;
             }
-            :global(.card-blog){
-              width:100%!important;
+            :global(.card-blog) {
+              width: 100% !important;
             }
           }
         `}

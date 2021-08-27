@@ -108,7 +108,9 @@ const CardBlog = ({ blog }) => {
           }
           :global(.card-img img) {
             height: auto !important;
-            width: 100% !important;
+            width:100%!important;
+            object-fit:cover;
+             object-position:center center
           }
           .box-green-blog {
             position: relative;
@@ -309,7 +311,7 @@ const CardBlog = ({ blog }) => {
               display: -webkit-box;
               width: 100%;
               line-height: 1.2;
-              -webkit-line-clamp: 6;
+              -webkit-line-clamp: 2;
               -webkit-box-orient: vertical;
               overflow: hidden;
               text-overflow: ellipsis;
@@ -319,7 +321,7 @@ const CardBlog = ({ blog }) => {
               display: -webkit-box;
               width: 100%;
               line-height: 1.5;
-              -webkit-line-clamp: 5;
+              -webkit-line-clamp: 2;
               -webkit-box-orient: vertical;
               overflow: hidden;
               text-overflow: ellipsis;
@@ -457,10 +459,10 @@ const CardBlog = ({ blog }) => {
               margin-left: auto;
             }
             .card-img{
-              height: 17.9rem;
+              height: 20rem;
             }
             .card-body{
-              height:26rem;
+              height:20rem;
               position: relative;
               display: flex;
               flex-direction: column;
@@ -472,7 +474,7 @@ const CardBlog = ({ blog }) => {
               height: auto !important;
               max-height: 10rem;
               line-height: 1.3;
-              -webkit-line-clamp: 5;
+              -webkit-line-clamp: 2;
               -webkit-box-orient: vertical;
               overflow: hidden;
               text-overflow: ellipsis;           
@@ -554,7 +556,7 @@ const CardBlog = ({ blog }) => {
               height: 16.5rem;
             }
             .card-body{
-              height: 25rem;
+              height: 18.1rem;
               position: relative;
               display: flex;
               flex-direction: column;
@@ -566,7 +568,7 @@ const CardBlog = ({ blog }) => {
               height: auto !important;
               max-height: 12rem;
               line-height: 1.3;
-              -webkit-line-clamp: 5;
+              -webkit-line-clamp: 2;
               -webkit-box-orient: vertical;
               overflow: hidden;
               text-overflow: ellipsis;

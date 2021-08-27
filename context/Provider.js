@@ -6,8 +6,8 @@ import { authReducer } from './reducers/authReducer';
 import { uiReducer } from './reducers/uiReducer';
 
 
-export async function getServerSideProps(){
-    const res = await fetch("http://localhost:3003/api/product");
+/* export async function getServerSideProps(){
+    const res = await fetch("http://localhost:3000/api/product");
     const product = await res.json();
   
   
@@ -17,10 +17,9 @@ export async function getServerSideProps(){
       }
     }
   
-  }
+  } */
 
-const Provider = ({children,product }) => {
-    console.log(product);
+const Provider = ({children }) => {
     const initialState = {};
     const [ auth , dispatchAuth ] = useReducer( authReducer , initialState);
     const [ ui , dispatchUi ] = useReducer( uiReducer , initialState );
@@ -48,7 +47,6 @@ const Provider = ({children,product }) => {
             ui,
             dispatchAuth,
             dispatchUi,
-            product
         }
         }>
             { children }

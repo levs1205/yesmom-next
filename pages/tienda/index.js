@@ -24,7 +24,7 @@ export async function getServerSideProps( {query} ){
 
 }
 const Product = ({ product}) => {
-  console.log(product);
+  /* console.log(product); */
   const imagesMobile = [
     { id: 1, image: "/image/tienda/banner-first.svg" },
     { id: 2, image: "/image/tienda/banner-first.svg" },

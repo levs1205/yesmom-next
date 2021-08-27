@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AppLayout from "../../../components/AppLayout";
 import Head from "next/head";
 import Image from 'next/image';
@@ -9,11 +9,42 @@ import CardProduct from "../../../components/CardProduct";
 import Pagination from '../../../components/Pagination';
 import SidebarProducto from "../../../components/tienda/SidebarProducto";
 import { useRouter } from "next/router";
-const Categoria = () => {
 
-    const { query } = useRouter();
 
-    console.log("Categoria : ",query.category);
+export async function getServerSideProps( { query } ){
+
+    const { category="" , sort="" } = query;
+    return {
+        props : {
+            category,
+            sort
+        }
+    }
+}
+
+
+const Categoria = ({ category , sort }) => {
+
+    /* console.log("QUERY ALGO ",queryAlgo); */
+    /* const { query:{ category } } = useRouter(); */
+
+    const [ productsFiltered , setProductsFiltered ] = useState([]);
+/*     console.log(query.category); */
+    useEffect(()=>{
+        if(category){
+            /* alert(category) */
+            alert(category)
+            /* alert(sort) */
+            console.log(category);
+
+            const newFilterProducs = handleFilterProducts()
+        }
+    }, [category])
+
+    const handleFilterProducts = () => {
+        
+    }
+
   return (
     <AppLayout>
       <Head>

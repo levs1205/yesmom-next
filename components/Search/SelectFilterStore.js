@@ -10,18 +10,18 @@ function SelectFilterStore() {
     const clickOutside = useRef(null);
     const { pathname } = useRouter();
     const types = [
-        { name : "Todos", path : "/a"},
-        { name : "Solo en Yes Mom", path : "/b"},
-        { name : "Lo + vendido", path : "/tienda"},
-        { name : "Lo + seleccionado", path : "/d"},
-        { name : "Packs de regalo", path : "/e"},
-        { name : "Promociones", path : "/f"},
-        { name : "Pañales y toallitas", path : "/g"},
-        { name : "Coches", path : "/h"},
-        { name : "Paseo y Organizacion", path : "/i"},
-        { name : "Sillas para Auto", path : "/j"},
-        { name : "Lactancia y Alimentación", path : "/k"},
-        { name : "Baño", path : "/l"},
+        { name : "Todos", path : "/tienda/categoria/todos"},
+        { name : "Solo en Yes Mom", path : "/tienda/categoria/Solo en YesMom"},
+        { name : "Lo + vendido", path : "/tienda/categoria/Lo+vendido"},
+        { name : "Lo + seleccionado", path : "/tienda/categoria/Lo+seleccionado"},
+        { name : "Packs de regalo", path : "/tienda/categoria/pack de regalos"},
+        { name : "Promociones", path : "/tienda/categoria/promociones"},
+        { name : "Pañales y toallitas", path : "/tienda/categoria/pañales y toallitas"},
+        { name : "Coches", path : "/tienda/categoria/coches"},
+        { name : "Paseo y Organizacion", path : "/tienda/categoria/paseo y organizacion"},
+        { name : "Sillas para Auto", path : "/tienda/categoria/sillas para auto"},
+        { name : "Lactancia y Alimentación", path : "/tienda/categoria/lactancia y alimentacion"},
+        { name : "Baño", path : "/tienda/categoria/baño"},
     ];
 
 

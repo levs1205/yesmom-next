@@ -1,6 +1,34 @@
+import Link from 'next/link';
 import React from 'react'
 import {Container } from "react-bootstrap";
 const SidebarProducto = () => {
+
+    const linksMobile = [
+        { path : "/tienda/categoria/todos" , name : "Todos"},
+        { path : "/tienda/categoria/solo en yesmom" , name : "Solo en YesMom"},
+        { path : "/tienda/categoria/lo+vendido" , name : "Lo + vendido"},
+        { path : "/tienda/categoria/lo+seleccionado" , name : "Lo + seleccionado"},
+        { path : "/tienda/categoria/pack de regalos" , name : "Pack de regalos"},
+        { path : "/tienda/categoria/promociones" , name : "Promociones"},
+        { path : "/tienda/categoria/pañales y toallitas" , name : "Pañales y Toallitas"},
+        { path : "/tienda/categoria/coches" , name : "Coches"},
+        { path : "/tienda/categoria/paseo y organizacion" , name : "Paseo y Organización"},
+        { path : "/tienda/categoria/sillas para auto" , name : "Sillas para Auto"},
+        { path : "/tienda/categoria/lactancia y alimentacion" , name : "Lactancia y Alimentación"},
+        { path : "/tienda/categoria/baño" , name : "Baño"},
+    ]
+
+    const linksDesktop = [
+        {path : "/tienda/categoria/salud y cuidado" , name :"Salud y Cuidado"},
+        {path : "/tienda/categoria/juguetes" , name :"Juguetes"},
+        {path : "/tienda/categoria/ropa y zapatos" , name :"Ropa y Zapatos"},
+        {path : "/tienda/categoria/accesorios" , name :"Accesorios"},
+        {path : "/tienda/categoria/dormitorio y decoracion" , name :"Dormitorio y Decoración"},
+        {path : "/tienda/categoria/seguridad" , name :"Seguridad"},
+        {path : "/tienda/categoria/maternidad" , name :"Maternidad"},
+        {path : "/tienda/categoria/servicios" , name :"Servicios"},
+        {path : "/tienda/categoria/educativo" , name :"Educativo"},
+    ]
 
 return (
     <Container>
@@ -10,28 +38,29 @@ return (
             </div>
             <hr />
             <ul>
-                <li><a href="#home">Todos</a></li>
-                <li><a href="#news">Solo en Yes Mom</a></li>
-                <li><a href="#contact">Lo + Vendido</a></li>
-                <li><a href="#about">Lo + seleccionado</a></li>
-                <li><a href="#home">Pack de regalos</a></li>
-                <li><a href="#news">Promociones</a></li>
-                <li><a href="#contact">Pañales y Toallitas</a></li>
-                <li><a href="#about">Coches</a></li>
-                <li><a href="#home">Paseo y Organización</a></li>
-                <li><a href="#">Sillas para Auto</a></li>
-                <li><a href="#">Lactancia y Alimentación</a></li>
-                <li><a href="#">Baño</a></li>
+                {
+                    linksMobile.map(({path, name} , i) => (
+                        <li key={name}>
+                            <Link href={path}>
+                                <a>
+                                    {name}
+                                </a>
+                            </Link>
+                        </li>
+                    ))
+                }
                 <div className="show-desktop">
-                    <li><a href="#">Salud y Cuidado</a></li>
-                    <li><a href="#">Juguetes</a></li>
-                    <li><a href="#">Ropa y Zapatos</a></li>
-                    <li><a href="#">Accesorios</a></li>
-                    <li><a href="#">Dormitorio y Decoración</a></li>
-                    <li><a href="#">Seguridad</a></li>
-                    <li><a href="#">Maternidad</a></li>
-                    <li><a href="#">Servicios</a></li>
-                    <li><a href="#">Educativo</a></li>
+                {
+                    linksDesktop.map(({path, name} , i) => (
+                        <li key={name}>
+                            <Link href={path}>
+                                <a>
+                                    {name}
+                                </a>
+                            </Link>
+                        </li>
+                    ))
+                }
                 </div>
             </ul>
         </div>
