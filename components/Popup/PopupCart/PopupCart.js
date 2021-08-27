@@ -115,20 +115,23 @@ const PopupCart = () => {
           .card--shopping-cart__text {
             padding: 0rem 0.5rem;
             width: 65%;
-          }
-          .card--shopping-cart__title {
-            font-family: "mont-regular";
-            font-style: normal;
-            font-weight: 500;
-            font-size: 1rem;
-            line-height: 1.2rem;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+  }
+  .card--shopping-cart__title {
+    font-family: "mont-regular";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.2rem;
+    text-align: left;
           }
           .card--shopping-cart__price {
             font-family: "mont-semibold";
             font-style: normal;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 14px;
             line-height: 1.2rem;
             color: #4b64a4;
             text-align: center;
@@ -137,7 +140,7 @@ const PopupCart = () => {
             font-family: "mont-regular";
             font-style: normal;
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 1.3rem;
             line-height: 1rem;
             text-align: center;
             color: #4b64a4;
@@ -149,12 +152,13 @@ const PopupCart = () => {
             display: flex;
             justify-content: space-around;
             align-items: center;
+            padding-top: 0.8rem;
           }
           .popup--total-price__letter {
             font-family: "mont-semibold";
             font-style: normal;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             line-height: 1.2rem;
             color: #5a5a5a;
           }
@@ -162,7 +166,7 @@ const PopupCart = () => {
             font-family: "mont-regular";
             font-style: normal;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             line-height: 1.2rem;
             color: #4b64a4;
           }
@@ -171,7 +175,7 @@ const PopupCart = () => {
             text-align: center;
             font-family: "omnes-regular";
             font-weight: 500;
-            font-size: 1.1rem;
+            font-size: 1.5rem;
             padding: 1rem 0rem;
             margin: 2rem auto;
             width: 13rem;
