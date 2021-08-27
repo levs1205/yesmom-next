@@ -33,7 +33,7 @@ export const uiReducer = ( state = {} , action) => {
         case types.addToCart:
 
         //Añades uno
-            const cart = state.cart ? [...state.cart,action.payload] : action.payload ;  
+            const cart = state.cart ? [...state.cart,action.payload] : [ action.payload] ;  
             localStorage.setItem('cart',JSON.stringify(cart));
             return {
                 ...state,
