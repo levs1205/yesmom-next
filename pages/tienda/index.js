@@ -116,7 +116,7 @@ const Product = ({ product}) => {
                   <SidebarProducto />
                 </div>
                 <div className="products">
-                  <h4 className="text-title-tienda">Lo + vendido</h4>
+                  <h4 className="text-title-tienda">Destacados</h4>
                   <hr />
                   <div className="all-products">
                     {

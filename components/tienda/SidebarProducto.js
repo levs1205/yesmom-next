@@ -1,34 +1,13 @@
 import Link from 'next/link';
 import React from 'react'
 import {Container } from "react-bootstrap";
+import { categorysMobile, categorysDesktop } from '../../public/data/categorys';
+
+
 const SidebarProducto = () => {
 
-    const linksMobile = [
-        { path : "/tienda/categoria/todos" , name : "Todos"},
-        { path : "/tienda/categoria/solo en yesmom" , name : "Solo en YesMom"},
-        { path : "/tienda/categoria/lo+vendido" , name : "Lo + vendido"},
-        { path : "/tienda/categoria/lo+seleccionado" , name : "Lo + seleccionado"},
-        { path : "/tienda/categoria/pack de regalos" , name : "Pack de regalos"},
-        { path : "/tienda/categoria/promociones" , name : "Promociones"},
-        { path : "/tienda/categoria/pañales y toallitas" , name : "Pañales y Toallitas"},
-        { path : "/tienda/categoria/coches" , name : "Coches"},
-        { path : "/tienda/categoria/paseo y organizacion" , name : "Paseo y Organización"},
-        { path : "/tienda/categoria/sillas para auto" , name : "Sillas para Auto"},
-        { path : "/tienda/categoria/lactancia y alimentacion" , name : "Lactancia y Alimentación"},
-        { path : "/tienda/categoria/baño" , name : "Baño"},
-    ]
+    const path = "/tienda/categoria";
 
-    const linksDesktop = [
-        {path : "/tienda/categoria/salud y cuidado" , name :"Salud y Cuidado"},
-        {path : "/tienda/categoria/juguetes" , name :"Juguetes"},
-        {path : "/tienda/categoria/ropa y zapatos" , name :"Ropa y Zapatos"},
-        {path : "/tienda/categoria/accesorios" , name :"Accesorios"},
-        {path : "/tienda/categoria/dormitorio y decoracion" , name :"Dormitorio y Decoración"},
-        {path : "/tienda/categoria/seguridad" , name :"Seguridad"},
-        {path : "/tienda/categoria/maternidad" , name :"Maternidad"},
-        {path : "/tienda/categoria/servicios" , name :"Servicios"},
-        {path : "/tienda/categoria/educativo" , name :"Educativo"},
-    ]
 
 return (
     <Container>
@@ -38,10 +17,22 @@ return (
             </div>
             <hr />
             <ul>
+                <li>
+                    <Link href="/tienda">
+                        <a>Destacados</a>
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/tienda/categoria/todos">
+                        <a>Todos</a>
+                    </Link>
+                </li>
+
+
                 {
-                    linksMobile.map(({path, name} , i) => (
-                        <li key={name}>
-                            <Link href={path}>
+                    categorysMobile.map(({id,name} , i) => (
+                        <li key={id}>
+                            <Link href={`${path}/${id}`}>
                                 <a>
                                     {name}
                                 </a>
@@ -51,9 +42,9 @@ return (
                 }
                 <div className="show-desktop">
                 {
-                    linksDesktop.map(({path, name} , i) => (
-                        <li key={name}>
-                            <Link href={path}>
+                    categorysDesktop.map(({id,name} , i) => (
+                        <li key={id}>
+                            <Link href={`${path}/${id}`}>
                                 <a>
                                     {name}
                                 </a>
@@ -91,7 +82,11 @@ return (
                     padding: 0;
                     font-size: 1.3rem;
                 }
-                .side-bar li a {
+                .link-off{
+                    margin: 0;
+                    cursor:pointer;
+                }
+                .side-bar li a , .link-off{
                     display: block;
                     color: #5A5A5A;
                     font-weight: 700;
@@ -99,7 +94,7 @@ return (
                     text-decoration: none;
                     font-family: "mont-regular" !important;
                 }
-                .side-bar li a:hover {
+                .side-bar li a:hover, .link-off:hover {
                     background-color: #555;
                     color: white;
                 }

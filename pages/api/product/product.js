@@ -10,7 +10,9 @@ const data = [
       "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
     ],
     precio: 200,
-    peso: "20"
+    peso: "20",
+    discount: true,
+    categoria : "juguetes",
   },
   {
     id: "2",
@@ -23,7 +25,8 @@ const data = [
       "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
     ],
     precio: 200,
-    peso: "20"
+    peso: "20",
+    categoria : "juguetes",
   },
   {
     id: "3",
@@ -36,7 +39,8 @@ const data = [
       "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
     ],
     precio: 200,
-    peso: "20"
+    peso: "20",
+    categoria : "sillas para auto",
   },
   {
     id: "4",
@@ -49,7 +53,8 @@ const data = [
       "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
     ],
     precio: 200,
-    peso: "20"
+    peso: "20",
+    categoria : "lactancia y alimentacion",
   },
   {
     id: "5",
@@ -62,7 +67,9 @@ const data = [
       "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
     ],
     precio: 200,
-    peso: "20"
+    discount: true,
+    peso: "20",
+    categoria : "lactancia y alimentacion",
   },
   {
     id: "6",
@@ -75,7 +82,8 @@ const data = [
       "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
     ],
     precio: 200,
-    peso: "20"
+    peso: "20",
+    categoria : "paseo y organizacion",
   },
   {
     id: "7",
@@ -88,7 +96,8 @@ const data = [
       "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
     ],
     precio: 200,
-    peso: "20"
+    peso: "20",
+    categoria : "baño",
   },
   {
     id: "8",
@@ -101,7 +110,8 @@ const data = [
       "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
     ],
     precio: 200,
-    peso: "20"
+    peso: "20",
+    categoria : "salud y cuidado",
   },
   {
     id: "9",
@@ -114,7 +124,8 @@ const data = [
       "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
     ],
     precio: 200,
-    peso: "20"
+    peso: "20",
+    categoria : "sillas para auto",
   },
   {
     id: "10",
@@ -127,7 +138,8 @@ const data = [
       "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
     ],
     precio: 200,
-    peso: "20"
+    peso: "20",
+    categoria : "maternidad",
   },
   {
     id: "11",
@@ -140,7 +152,8 @@ const data = [
       "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
     ],
     precio: 200,
-    peso: "20"
+    peso: "20",
+    categoria : "maternidad",
   },
   {
     id: "12",
@@ -153,7 +166,9 @@ const data = [
       "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
     ],
     precio: 200,
-    peso: "20"
+    peso: "20",
+    discount: true,
+    categoria : "educativo",
   },
   {
     id: "13",
@@ -166,7 +181,9 @@ const data = [
       "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
     ],
     precio: 200,
-    peso: "20"
+    peso: "20",
+    discount: true,
+    categoria : "accesorios",
   },
   {
     id: "14",
@@ -179,7 +196,9 @@ const data = [
       "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
     ],
     precio: 200,
-    peso: "20"
+    peso: "20",
+    discount: true,
+    categoria : "dormitorio y decoracion",
   },
   {
     id: "15",
@@ -192,9 +211,152 @@ const data = [
       "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
     ],
     precio: 200,
-    peso: "20"
+    peso: "20",
+    discount: true,
+    categoria : "pañales y toallitas",
+  },
+  {
+    id: "16",
+    nombre: "producto16",
+    decripcion: "producto1gggfgb  fbhghgtj hnnjhgj",
+    color: ["#746464", "#875548", "22222"],
+    talla: "s",
+    imagen: [
+      "https://educacioninicial.mx/wp-content/uploads/2017/06/porque_muerden.jpg",
+      "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
+    ],
+    precio: 200,
+    peso: "20",
+    categoria : "pañales y toallitas",
+  },
+  {
+    id: "17",
+    nombre: "producto17",
+    decripcion: "producto1gggfgb  fbhghgtj hnnjhgj",
+    color: ["#746464", "#875548", "22222"],
+    talla: "s",
+    imagen: [
+      "https://educacioninicial.mx/wp-content/uploads/2017/06/porque_muerden.jpg",
+      "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
+    ],
+    precio: 200,
+    peso: "20",
+    categoria : "coches",
+  },
+  {
+    id: "18",
+    nombre: "producto18",
+    decripcion: "producto1gggfgb  fbhghgtj hnnjhgj",
+    color: ["#746464", "#875548", "22222"],
+    talla: "s",
+    imagen: [
+      "https://educacioninicial.mx/wp-content/uploads/2017/06/porque_muerden.jpg",
+      "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
+    ],
+    precio: 200,
+    peso: "20",
+    categoria : "coches",
+  },
+  {
+    id: "19",
+    nombre: "producto19",
+    decripcion: "producto1gggfgb  fbhghgtj hnnjhgj",
+    color: ["#746464", "#875548", "22222"],
+    talla: "s",
+    imagen: [
+      "https://educacioninicial.mx/wp-content/uploads/2017/06/porque_muerden.jpg",
+      "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
+    ],
+    precio: 200,
+    peso: "20",
+    categoria : "pañales y toallitas",
+  },
+  {
+    id: "20",
+    nombre: "producto20",
+    decripcion: "producto1gggfgb  fbhghgtj hnnjhgj",
+    color: ["#746464", "#875548", "22222"],
+    talla: "s",
+    imagen: [
+      "https://educacioninicial.mx/wp-content/uploads/2017/06/porque_muerden.jpg",
+      "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
+    ],
+    precio: 200,
+    peso: "20",
+    categoria : "servicios",
+  },
+  {
+    id: "21",
+    nombre: "producto21",
+    decripcion: "producto1gggfgb  fbhghgtj hnnjhgj",
+    color: ["#746464", "#875548", "22222"],
+    talla: "s",
+    imagen: [
+      "https://educacioninicial.mx/wp-content/uploads/2017/06/porque_muerden.jpg",
+      "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
+    ],
+    precio: 200,
+    peso: "20",
+    categoria : "servicios",
+  },
+  {
+    id: "21",
+    nombre: "producto21",
+    decripcion: "producto1gggfgb  fbhghgtj hnnjhgj",
+    color: ["#746464", "#875548", "22222"],
+    talla: "s",
+    imagen: [
+      "https://educacioninicial.mx/wp-content/uploads/2017/06/porque_muerden.jpg",
+      "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
+    ],
+    precio: 200,
+    peso: "20",
+    categoria : "ropa y zapatos",
+  },
+  {
+    id: "22",
+    nombre: "producto22",
+    decripcion: "producto1gggfgb  fbhghgtj hnnjhgj",
+    color: ["#746464", "#875548", "22222"],
+    talla: "s",
+    imagen: [
+      "https://educacioninicial.mx/wp-content/uploads/2017/06/porque_muerden.jpg",
+      "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
+    ],
+    precio: 200,
+    peso: "20",
+    categoria : "ropa y zapatos",
+  },
+  {
+    id: "23",
+    nombre: "producto23",
+    decripcion: "producto1gggfgb  fbhghgtj hnnjhgj",
+    color: ["#746464", "#875548", "22222"],
+    talla: "s",
+    imagen: [
+      "https://educacioninicial.mx/wp-content/uploads/2017/06/porque_muerden.jpg",
+      "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
+    ],
+    precio: 200,
+    peso: "20",
+    categoria : "ropa y zapatos",
+  },
+  {
+    id: "24",
+    nombre: "producto24",
+    decripcion: "producto1gggfgb  fbhghgtj hnnjhgj",
+    color: ["#746464", "#875548", "22222"],
+    talla: "s",
+    imagen: [
+      "https://educacioninicial.mx/wp-content/uploads/2017/06/porque_muerden.jpg",
+      "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
+    ],
+    precio: 200,
+    peso: "20",
+    categoria : "ropa y zapatos",
   },
 ];
+
 
 
 export default (req,res) =>{
