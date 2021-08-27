@@ -7,7 +7,7 @@ import { uiReducer } from './reducers/uiReducer';
 
 
 export async function getServerSideProps(){
-    const res = await fetch("http://localhost:3000/api/product");
+    const res = await fetch("http://localhost:3003/api/product");
     const product = await res.json();
   
   

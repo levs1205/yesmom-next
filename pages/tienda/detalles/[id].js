@@ -13,7 +13,7 @@ import CardProduct from '../../../components/CardProduct';
 export async function getServerSideProps( {query} ){
 
     const id = query.id;
-    const res = await fetch(`http://localhost:3000/api/product/product/${id}`);
+    const res = await fetch(`http://localhost:3003/api/product/${id}`);
     const product = await res.json();
   
   
@@ -25,9 +25,11 @@ export async function getServerSideProps( {query} ){
   
 }
 
-const DetallesID = () => {
+const DetallesID = ({ product }) => {
+    console.log('product', product)
 
-    
+    const { imagen, decripcion, nombre, precio } = product;
+    console.log('imagen', imagen)
 
     const [ amount , setAmount] = useState(0);
 
@@ -98,10 +100,14 @@ const DetallesID = () => {
                                         <div className="show--flex-content-product">
                                             <div className="show--container-images">
                                                 <Carousel>
-                                                    <div>
-                                                        <img src="https://i.blogs.es/ee0424/ropa-bebe-rosa/450_1000.jpeg" />
-                                                    </div>
-                                                    <div>
+                                                            {
+                                                                imagen.map((img) => {
+                                                                    <div>
+                                                                        <img src={img} />
+                                                                    </div>
+                                                                })
+                                                            }
+                                                    {/* <div>
                                                         <img src="https://i.pinimg.com/474x/db/aa/4f/dbaa4f8dcc505eea26e4a63345a268a0.jpg" />
                                                     </div>
                                                     <div>
@@ -112,15 +118,15 @@ const DetallesID = () => {
                                                     </div>
                                                     <div>
                                                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXIpd46yUOqR48PkSAuv2_uTopoVggJy7bGg&usqp=CAU" />
-                                                    </div>
+                                                    </div> */}
                                                 </Carousel>
                                             </div>
                                             <div className="show--container-details"> 
                                                 <section className="show--some-info-product">
-                                                    <h5 className="show--ft-semibold">Conjunto Bebe 4 piezas</h5>
-                                                    <h6 className="show--ft-light">Único - Baby plaza</h6>
+                                                    <h5 className="show--ft-semibold">{nombre}</h5>
+                                                    <h6 className="show--ft-light">{decripcion}</h6>
                                                     <p className="show--text-description">Hermoso conjunto 4 piezas super fresco importado Contiene pantalón, polo body , gorro, vincha.</p>
-                                                    <p className="show--price">S/ 68.00</p>
+                                                    <p className="show--price">S/ {precio}.00</p>
                                                     <div className="show--container-selects"> 
                                                         <div className="show--group-select">
                                                             <label className="show--text-label" htmlFor="talla">Color</label>
