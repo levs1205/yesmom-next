@@ -1,6 +1,7 @@
 
 import React, { useEffect, useReducer, useState } from 'react'
 import { startLogin } from './actions/auth';
+import { startAddToCart } from './actions/ui';
 import YesmomContext from './Context'
 import { authReducer } from './reducers/authReducer';
 import { uiReducer } from './reducers/uiReducer';
@@ -25,10 +26,12 @@ const Provider = ({children }) => {
     const [ ui , dispatchUi ] = useReducer( uiReducer , initialState );
 
     useEffect(() => {
-        getInitialState();
+        getInitialAuthState();
+        getInitialCartState();
+
     }, [])
 
-    const getInitialState = () => {
+    const getInitialAuthState = () => {
         const token = localStorage.getItem('YesmomToken');
         if(token){
             console.log("Autenticado de nuevo");
@@ -37,6 +40,14 @@ const Provider = ({children }) => {
             }))
         }else{
             dispatchAuth({})
+        }
+    }
+
+    const getInitialCartState = () =>{
+        const cart = JSON.parse(localStorage.getItem('cart'));
+        if(cart){
+            console.log("Existe cart");
+            dispatchUi(startAddToCart(cart));
         }
     }
 

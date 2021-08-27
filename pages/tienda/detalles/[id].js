@@ -3,11 +3,13 @@ import Image from "next/image";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AppLayout from "../../../components/AppLayout";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import CardProduct from "../../../components/CardProduct";
+import YesmomContext from "../../../context/Context";
+import { startAddToCart } from "../../../context/actions/ui";
 
 export async function getServerSideProps({ query }) {
   const id = query.id;
@@ -21,7 +23,10 @@ export async function getServerSideProps({ query }) {
   };
 }
 
-const DetallesID = () => {
+const DetallesID = ({ product }) => {
+
+  //Disparador para state UI
+  const { dispatchUi } = useContext(YesmomContext);
   const [amount, setAmount] = useState(0);
 
   const handleAdd = () => {
@@ -37,6 +42,13 @@ const DetallesID = () => {
   const handleChange = (e) => {
     setAmount(e.target.value);
   };
+
+  //CART
+
+  const handleAddCart = () => {
+    console.log(product);
+    dispatchUi(startAddToCart(product));
+  }
 
   return (
     <>
@@ -187,7 +199,7 @@ const DetallesID = () => {
                           </div>
                         </div>
                         <div className="show--container-buttons">
-                          <div className="show--btn-normal btn-fix">
+                          <div className="show--btn-normal btn-fix" onClick= { handleAddCart }>
                             <div className="btn-detalle bg-pink" color="gray">
                               Agregar al carrito
                             </div>
