@@ -13,7 +13,7 @@ import CardProduct from '../../../components/CardProduct';
 export async function getServerSideProps( {query} ){
 
     const id = query.id;
-    const res = await fetch(`http://localhost:3000/api/product/product/${id}`);
+    const res = await fetch(`http://localhost:3000/api/product/${id}`);
     const product = await res.json();
   
   

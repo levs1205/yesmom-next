@@ -6,7 +6,6 @@ import { Card } from "react-bootstrap";
 
 function CardProduct({ discount, size , id , nombre }) {
 
-  console.log(id,nombre);
   return (
     <>
       <Link href="tienda/detalles/:id" as={`tienda/detalles/${id}`}>
