@@ -8,44 +8,63 @@ import CardProduct from "../../../components/CardProduct";
 
 import Pagination from '../../../components/Pagination';
 import SidebarProducto from "../../../components/tienda/SidebarProducto";
-import { useRouter } from "next/router";
+import { categorysDesktop, categorysMobile } from "../../../public/data/categorys";
+import router from "next/router";
+import LoaderPage from "../../../components/LoaderPage";
+
 
 
 export async function getServerSideProps( { query } ){
 
+    //Todos los productos
+    const res = await fetch(`http://localhost:3000/api/product/product`);
+    const product = await res.json();
+    
     const { category="" , sort="" } = query;
+
+    let productsFiltered;
+
+    if(category.trim().length>0){
+        //Existe categoria
+        if(category.includes("promociones")){
+            productsFiltered = product.filter(product => product?.discount);
+        }else if(category.includes('destacaods') ||  category.includes('todos')){
+            productsFiltered=product;
+        }
+        else{
+            productsFiltered = product.filter(product => product.categoria.toLowerCase().trim().includes(category.toLowerCase().trim()))
+        }
+    }else{
+        productsFiltered= product;
+    }
     return {
         props : {
             category,
-            sort
+            productsFiltered,
         }
     }
 }
 
 
-const Categoria = ({ category , sort }) => {
+const Categoria = ( { productsFiltered , category } ) => {
 
-    /* console.log("QUERY ALGO ",queryAlgo); */
-    /* const { query:{ category } } = useRouter(); */
 
-    const [ productsFiltered , setProductsFiltered ] = useState([]);
-/*     console.log(query.category); */
+    const allCategories = [...categorysDesktop,...categorysMobile];
+    const product= allCategories.find(cat => cat.id.includes(category));
+
+    const [ matched , setMatched ] = useState(false);
+    
     useEffect(()=>{
-        if(category){
-            /* alert(category) */
-            alert(category)
-            /* alert(sort) */
-            console.log(category);
-
-            const newFilterProducs = handleFilterProducts()
+        if(product || category.includes('todos')){
+            setMatched(true);
+        }else{
+            router.push('/tienda');
+            setMatched(false);
         }
-    }, [category])
-
-    const handleFilterProducts = () => {
-        
-    }
-
+    },[setMatched])
+         
   return (
+      !matched ? <LoaderPage /> :
     <AppLayout>
       <Head>
         <title>YesMom - Tienda-categoria</title>
@@ -116,17 +135,17 @@ const Categoria = ({ category , sort }) => {
                 </div>
                 <div className="products">
                     <div className="inline-desktop">
-                        <h4 className="text-title-tienda">Solo en Yesmom</h4>
+                        <h4 className="text-title-tienda">{product?.name || "Todos"}</h4>
                         <div className="show-mobile">
                                 <hr />
                         </div>
                         <div className="container-selects">
-                                <div className="show-mobile">
+                                {/* <div className="show-mobile">
                                     <p className="show-between">Mostrar del 1 al 20</p>
-                                </div>
-                                <div className="show-desktop">
+                                </div> */}
+                                {/* <div className="show-desktop">
                                     <p className="show-quantity-desktop">Mostrar del 1 al 20 de 100</p>
-                                </div>
+                                </div> */}
                                 <select>
                                     <option selected disabled>Ordenar por </option>
                                     <option>Precio de mayor a menor </option>
@@ -141,7 +160,12 @@ const Categoria = ({ category , sort }) => {
                         </div>
                     </div>
                   <div className="all-products">
-                      <CardProduct />
+                      {
+                          productsFiltered.map((product, i)=>(
+                              <CardProduct key={i} discount={product.discount} />
+                          ))
+                      }
+{/*                       <CardProduct />
                       <CardProduct discount/>
                       <CardProduct />
                       <CardProduct />
@@ -152,7 +176,7 @@ const Categoria = ({ category , sort }) => {
                       <CardProduct />
                       <CardProduct />
                       <CardProduct discount/>
-                      <CardProduct />
+                      <CardProduct /> */}
                   </div>
                 </div>
             </div>
@@ -241,7 +265,7 @@ const Categoria = ({ category , sort }) => {
             .all-products{
                 padding:3rem 0;
                 display:flex;
-                justify-content:space-between;
+                /* justify-content:space-between; */
                 align-items:center;
                 flex-wrap:wrap;
             }

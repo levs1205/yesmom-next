@@ -351,6 +351,7 @@ const shoppingCart = () => {
             font-weight: 300;
             font-size: 13px;
             color: #575650;
+            display: none;
           }
           .discount-coupon__input-text{
             border:1px solid #FEBF41;
@@ -372,14 +373,17 @@ const shoppingCart = () => {
             margin-left:0.5rem
           }
           .price-table{
-            padding:2rem 0rem;
+            padding-bottom:2rem;
+            /* padding-top: 2rem; */
           }
           .price-table__tbody--fount-padding {
             font-family: "mont-regular";
             height: 40px;
+            font-size: 1.4rem;
           }
           .price-table__tbody--text-align-left{
             text-align:left
+            
           }
           .price-table__tbody--text-align-right{
             text-align:right
@@ -387,6 +391,7 @@ const shoppingCart = () => {
           .price-table__tbody--fount-bold-padding{
             font-family: "mont-semibold";
             height: 40px;
+            font-size: 1.5rem;
           }
           .price-table__tbody--border-top{
 
@@ -435,9 +440,9 @@ const shoppingCart = () => {
           .buy-button {
             margin: 2.5rem auto;
             text-align: center;
-            font-family: "omnes-regular";
-            font-weight: 500;
-            font-size: 1.3rem;
+            font-family: "omnes-bold";
+            font-weight: 700;
+            font-size: 1.8rem;
             width: 310px;
             height: 60px;
             background-color: #ec608d;
