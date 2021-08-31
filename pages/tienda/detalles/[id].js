@@ -25,7 +25,7 @@ export async function getServerSideProps({ query }) {
 
 const DetallesID = ({ product }) => {
 
-  const { color, decripcion, imagen, nombre, precio, peso, talla } = product;
+  const { color, decripcion, imagen, nombre, precio, peso, talla, categoria } = product;
 
   console.log('color', Object.entries(color))
 
@@ -126,7 +126,7 @@ const DetallesID = ({ product }) => {
                         <h5 className="show--ft-semibold">
                           {nombre}
                         </h5>
-                        <h6 className="show--ft-light">Único - Baby plaza</h6>
+                        <h6 className="show--ft-light">{categoria}</h6>
                         <p className="show--text-description">
                           {decripcion}
                         </p>
