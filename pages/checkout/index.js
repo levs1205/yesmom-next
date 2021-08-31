@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import AppLayout from "../../components/AppLayout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +12,7 @@ import CheckoutStep2 from "./CheckoutStep2";
 
 const Checkout = () => {
   const [selected, setSelected] = useState(0);
+  const [idPreference , setIdPreference] = useState(null);
 
   const initialForm = {
     email: "",
@@ -24,9 +25,27 @@ const Checkout = () => {
 
   const { email, name, identity, phone } = formValues;
 
-  const handleSubmit = () => {
-    alert("Comprar");
+  const handleSubmit = async() => {
+
+    const data = {
+      "quantity" : 50,
+      "description" : "Esto es una prueba",
+      "price" : 120
   };
+    const response = await fetch('http://localhost:8080/create_preference',{
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+
+    const { id } = await response.json();
+    setIdPreference(id);
+    console.log(id);
+  };
+
   const handleStep = () => {
     if (selected != 2) {
       setSelected((step) => step + 1);
@@ -34,6 +53,29 @@ const Checkout = () => {
       handleSubmit();
     }
   };
+
+  useEffect(()=>{
+    if (idPreference) {
+      const mp = new MercadoPago('TEST-dae165c6-30f6-4a7a-9856-c5ec084511d8',{
+        locale : 'es-PE'
+      })
+      console.log(mp);
+      console.log(idPreference);
+
+      mp.checkout({
+        preference : {
+          id: idPreference
+        },
+        render: {
+          container : '.btn_checkout',
+          label : 'Pagar'
+        }
+      })
+      console.log(mp);
+    }
+
+  },[idPreference])
+
   return (
     <AppLayout>
       <Head>
@@ -176,6 +218,16 @@ const Checkout = () => {
                 )}
               </div>
             </form>
+              <form 
+                id="btn_checkout" 
+                className="btn_checkout"
+                onSubmit={ (e) => {
+                  e.preventDefault();
+                  console.log("hola");
+                }}
+              >
+
+              </form>
           </div>
           
         </section>
