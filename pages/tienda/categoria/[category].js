@@ -8,7 +8,7 @@ import CardProduct from "../../../components/CardProduct";
 
 import Pagination from '../../../components/Pagination';
 import SidebarProducto from "../../../components/tienda/SidebarProducto";
-import { categorysDesktop, categorysMobile } from "../../../public/data/categorys";
+import { categorysDesktop, categorysMobile } from "../../../data/categorys"
 import router from "next/router";
 import LoaderPage from "../../../components/LoaderPage";
 
@@ -28,7 +28,7 @@ export async function getServerSideProps( { query } ){
         //Existe categoria
         if(category.includes("promociones")){
             productsFiltered = product.filter(product => product?.discount);
-        }else if(category.includes('destacaods') ||  category.includes('todos')){
+        }else if(category.includes('destacados') ||  category.includes('todos')){
             productsFiltered=product;
         }
         else{
@@ -57,6 +57,7 @@ const Categoria = ( { productsFiltered , category } ) => {
     useEffect(()=>{
         if(product || category.includes('todos')){
             setMatched(true);
+
         }else{
             router.push('/tienda');
             setMatched(false);
@@ -162,7 +163,7 @@ const Categoria = ( { productsFiltered , category } ) => {
                   <div className="all-products">
                       {
                           productsFiltered.map((product, i)=>(
-                              <CardProduct key={i} discount={product.discount} />
+                              <CardProduct key={i} discount={product.discount} id={product.id} />
                           ))
                       }
 {/*                       <CardProduct />
