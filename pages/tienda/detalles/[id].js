@@ -13,7 +13,7 @@ import { startAddToCart } from "../../../context/actions/ui";
 
 export async function getServerSideProps({ query }) {
   const id = query.id;
-  const res = await fetch(`http://localhost:3000/api/product/${id}`);
+  const res = await fetch(`http://localhost:3003/api/product/${id}`);
   const product = await res.json();
 
   return {
@@ -24,6 +24,10 @@ export async function getServerSideProps({ query }) {
 }
 
 const DetallesID = ({ product }) => {
+
+  const { color, decripcion, imagen, nombre, precio, peso, talla } = product;
+
+  console.log('color', Object.entries(color))
 
   //Disparador para state UI
   const { dispatchUi } = useContext(YesmomContext);
@@ -105,37 +109,28 @@ const DetallesID = ({ product }) => {
                   <div className="show--flex-content-product">
                     <div className="show--container-images">
                       <Carousel>
-                        <div className="box-img-detail">
-                          <img
-                            src="https://www.elblogdetubebe.com/wp-content/uploads/2021/03/ropa-bebe-online-original.jpg"
-                            className=""
-                          />
-                        </div>
-                        <div className="box-img-detail">
-                          <img src="https://i.pinimg.com/474x/db/aa/4f/dbaa4f8dcc505eea26e4a63345a268a0.jpg" />
-                        </div>
-                        <div className="box-img-detail">
-                          <img src="https://i.blogs.es/467890/portada/375_375.jpg" />
-                        </div>
-                        <div className="box-img-detail">
-                          <img src="https://img.freepik.com/foto-gratis/vista-superior-bebe-rubio-rodeado-ropa_23-2147983486.jpg?size=626&ext=jpg" />
-                        </div>
-                        <div className="box-img-detail">
-                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXIpd46yUOqR48PkSAuv2_uTopoVggJy7bGg&usqp=CAU" />
-                        </div>
+                        {
+                          imagen.map(imag => (
+                            <div className="box-img-detail">
+                              <img
+                                src={imag}
+                                className=""
+                              />
+                            </div>
+                          ))
+                        }
                       </Carousel>
                     </div>
                     <div className="show--container-details">
                       <section className="show--some-info-product">
                         <h5 className="show--ft-semibold">
-                          Conjunto Bebe 4 piezas
+                          {nombre}
                         </h5>
                         <h6 className="show--ft-light">Único - Baby plaza</h6>
                         <p className="show--text-description">
-                          Hermoso conjunto 4 piezas super fresco importado
-                          Contiene pantalón, polo body , gorro, vincha.
+                          {decripcion}
                         </p>
-                        <p className="show--price">S/ 68.00</p>
+                        <p className="show--price">S/ {precio}</p>
                         <div className="show--container-selects">
                           <div className="show--group-select">
                             <label className="show--text-label" htmlFor="talla">
@@ -145,11 +140,11 @@ const DetallesID = ({ product }) => {
                               <option selected disabled>
                                 Selecciona el color
                               </option>
-                              <option>Celeste</option>
-                              <option>Morado</option>
-                              <option>Naranja</option>
-                              <option>Verde</option>
-                              <option>Rosado</option>
+                              {
+                                color.map(col => (
+                                  <option value={Object.values(col)}>{Object.keys(col)}</option>
+                                ))
+                              }
                             </select>
                           </div>
                           <div className="show--group-select">
@@ -161,6 +156,11 @@ const DetallesID = ({ product }) => {
                                 Selecciona la talla
                               </option>
                               <option>Talla única</option>
+                              {
+                                talla.map(tall => (
+                                  <option value={Object.values(tall)}>{tall}</option>
+                                ))
+                              }
                             </select>
                           </div>
                         </div>
@@ -327,6 +327,7 @@ const DetallesID = ({ product }) => {
             color: #5a5a5a;
             width: 4rem;
             border-radius: 10px;
+            pointer-events: none;
           }
           .input-amount:focus {
             outline: none;
