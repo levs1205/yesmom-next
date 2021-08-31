@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react'
 import {Container } from "react-bootstrap";
-import { categorysMobile, categorysDesktop } from '../../public/data/categorys';
+import { categorysMobile, categorysDesktop } from '../../data/categorys';
 
 
 const SidebarProducto = () => {

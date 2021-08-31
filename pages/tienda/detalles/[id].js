@@ -3,13 +3,14 @@ import Image from "next/image";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Head from "next/head";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AppLayout from "../../../components/AppLayout";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import CardProduct from "../../../components/CardProduct";
 import YesmomContext from "../../../context/Context";
 import { startAddToCart } from "../../../context/actions/ui";
+import OtherProducts from "../../../components/tienda/detalle/OtherProducts";
 
 export async function getServerSideProps({ query }) {
   const id = query.id;
@@ -303,12 +304,10 @@ const DetallesID = ({ product }) => {
                         </div>
                       </div>
 
-                      <div className="other-products-content">
-                        <CardProduct size={4} />
-                        <CardProduct discount size={4} />
-                        <CardProduct size={4} />
-                        <CardProduct size={4} />
-                      </div>
+                      <OtherProducts 
+                        category={product.categoria} 
+                        id={product.id}
+                      />
                     </section>
                   </div>
                 </div>
@@ -596,12 +595,6 @@ const DetallesID = ({ product }) => {
 
           .show--other-products {
             margin: 2rem 0;
-          }
-
-          .other-products-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
           }
 
           @media (min-width: 480px) {
