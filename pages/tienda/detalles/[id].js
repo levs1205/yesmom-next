@@ -14,7 +14,7 @@ import OtherProducts from "../../../components/tienda/detalle/OtherProducts";
 
 export async function getServerSideProps({ query }) {
   const id = query.id;
-  const res = await fetch(`http://localhost:3003/api/product/${id}`);
+  const res = await fetch(`http://localhost:3003/api/product/product/${id}`);
   const product = await res.json();
 
   return {
@@ -25,10 +25,14 @@ export async function getServerSideProps({ query }) {
 }
 
 const DetallesID = ({ product }) => {
+<<<<<<< HEAD
 
   const { color, decripcion, imagen, nombre, precio, peso, talla, categoria } = product;
+=======
+  const { color, decripcion, imagen, nombre, precio, peso, talla } = product;
+>>>>>>> 24afe51a499d8c45415a15ac29d13d0958019b20
 
-  console.log('color', Object.entries(color))
+  console.log("color", Object.entries(color));
 
   //Disparador para state UI
   const { dispatchUi } = useContext(YesmomContext);
@@ -53,7 +57,7 @@ const DetallesID = ({ product }) => {
   const handleAddCart = () => {
     console.log(product);
     dispatchUi(startAddToCart(product));
-  }
+  };
 
   return (
     <>
@@ -110,20 +114,16 @@ const DetallesID = ({ product }) => {
                   <div className="show--flex-content-product">
                     <div className="show--container-images">
                       <Carousel>
-                        {
-                          imagen.map(imag => (
-                            <div className="box-img-detail">
-                              <img
-                                src={imag}
-                                className=""
-                              />
-                            </div>
-                          ))
-                        }
+                        {imagen.map((imag) => (
+                          <div className="box-img-detail">
+                            <img src={imag} className="" />
+                          </div>
+                        ))}
                       </Carousel>
                     </div>
                     <div className="show--container-details">
                       <section className="show--some-info-product">
+<<<<<<< HEAD
                         <h5 className="show--ft-semibold">
                           {nombre}
                         </h5>
@@ -131,6 +131,11 @@ const DetallesID = ({ product }) => {
                         <p className="show--text-description">
                           {decripcion}
                         </p>
+=======
+                        <h5 className="show--ft-semibold">{nombre}</h5>
+                        <h6 className="show--ft-light">Único - Baby plaza</h6>
+                        <p className="show--text-description">{decripcion}</p>
+>>>>>>> 24afe51a499d8c45415a15ac29d13d0958019b20
                         <p className="show--price">S/ {precio}</p>
                         <div className="show--container-selects">
                           <div className="show--group-select">
@@ -141,11 +146,11 @@ const DetallesID = ({ product }) => {
                               <option selected disabled>
                                 Selecciona el color
                               </option>
-                              {
-                                color.map(col => (
-                                  <option value={Object.values(col)}>{Object.keys(col)}</option>
-                                ))
-                              }
+                              {color.map((col) => (
+                                <option value={Object.values(col)}>
+                                  {Object.keys(col)}
+                                </option>
+                              ))}
                             </select>
                           </div>
                           <div className="show--group-select">
@@ -157,11 +162,11 @@ const DetallesID = ({ product }) => {
                                 Selecciona la talla
                               </option>
                               <option>Talla única</option>
-                              {
-                                talla.map(tall => (
-                                  <option value={Object.values(tall)}>{tall}</option>
-                                ))
-                              }
+                              {talla.map((tall) => (
+                                <option value={Object.values(tall)}>
+                                  {tall}
+                                </option>
+                              ))}
                             </select>
                           </div>
                         </div>
@@ -200,7 +205,10 @@ const DetallesID = ({ product }) => {
                           </div>
                         </div>
                         <div className="show--container-buttons">
-                          <div className="show--btn-normal btn-fix" onClick= { handleAddCart }>
+                          <div
+                            className="show--btn-normal btn-fix"
+                            onClick={handleAddCart}
+                          >
                             <div className="btn-detalle bg-pink" color="gray">
                               Agregar al carrito
                             </div>
@@ -304,8 +312,8 @@ const DetallesID = ({ product }) => {
                         </div>
                       </div>
 
-                      <OtherProducts 
-                        category={product.categoria} 
+                      <OtherProducts
+                        category={product.categoria}
                         id={product.id}
                       />
                     </section>
@@ -371,6 +379,13 @@ const DetallesID = ({ product }) => {
             border-radius: 15px !important;
           }
 
+          :global(.carousel .thumbs-wrapper) {
+            margin: 0px;
+            margin-top: 20px;
+          }
+          :global(ul.thumbs.animated) {
+            padding-left: 0px !important;
+          }
           .box-img-detail {
             max-width: 100%;
             max-height: 250px;
@@ -616,8 +631,6 @@ const DetallesID = ({ product }) => {
             :global(.carousel .slide img) {
               max-height: 500px;
             }
-       
-            
           }
 
           @media (min-width: 768px) {
@@ -672,7 +685,6 @@ const DetallesID = ({ product }) => {
               width: 60%;
               font-size: 1.3rem;
             }
-           
           }
 
           @media (min-width: 1024px) {

@@ -5,16 +5,16 @@ import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import SearchBlog from "./Search/SearchBlog";
 import MenuTienda from "./MenuTienda/MenuTienda";
-import PopupCart from "./Popup/PopupCart/PopupCart"
+import PopupCart from "./Popup/PopupCart/PopupCart";
 import DropMenuMobile from "./DropMenuMobile";
 import AvatarLogged from "./AvatarLogged";
 import YesmomContext from "../context/Context";
 import MenuProveedor from "./Proveedor/MenuProveedor";
 
-
 const HeaderNuevo = () => {
-
-  const { auth : { logged } } = useContext(YesmomContext);
+  const {
+    auth: { logged },
+  } = useContext(YesmomContext);
   const [active, setActive] = useState(false);
 
   const [onlyStore, setOnlyStore] = useState(false);
@@ -34,29 +34,29 @@ const HeaderNuevo = () => {
     } else {
       setOnlyStore(false);
     }
-  }
+  };
   const validateSeekerBlog = () => {
     if (pathname.includes("/blog")) {
       setOnlyBlog(true);
     } else {
       setOnlyBlog(false);
     }
-  }
+  };
   const validateSelectProveedor = () => {
     if (pathname.includes("/proveedor")) {
       setOnlyProveedor(true);
     } else {
       setOnlyProveedor(false);
     }
-  }
+  };
   const validateShow = () => {
     validateSeekerStore();
     validateSeekerBlog();
     validateSelectProveedor();
-  }
+  };
   useEffect(() => {
     validateShow();
-  }, [])
+  }, []);
 
   return (
     <div className="box-yesmom">
@@ -68,7 +68,7 @@ const HeaderNuevo = () => {
               alt="burger yesmom"
               width={40}
               height={40}
-            // layout="intrinsic"
+              // layout="intrinsic"
             />
           </div>
           <Link href="/" prefetch>
@@ -83,19 +83,23 @@ const HeaderNuevo = () => {
           </Link>
           <div className="hide-desktop">
             <Link href="/tienda" prefetch>
-              <a className="mr-2 logo-yesmom">
-                <Image
-                  src="/image/header/cesta.svg"
-                  alt="logo tienda yesmom"
-                  width={35}
-                  height={35}
-                />
-              </a>
+              <div>
+                <div className="box-number-cart ">4</div>
+                <a className="mr-2 logo-yesmom">
+                  <Image
+                    src="/image/header/cesta.svg"
+                    alt="logo tienda yesmom"
+                    width={35}
+                    height={35}
+                  />
+                </a>
+              </div>
             </Link>
           </div>
           <div
-            className={`box-items-menu ${active ? "" : "box-items-menu-desktop"
-              }`}
+            className={`box-items-menu ${
+              active ? "" : "box-items-menu-desktop"
+            }`}
           >
             <div className="box-items-menu-responsive">
               <ActiveLink href="/blog" activeClassName="active">
@@ -132,9 +136,9 @@ const HeaderNuevo = () => {
                 </a>
               </ActiveLink>
 
-              {logged ?
+              {logged ? (
                 <AvatarLogged />
-                :
+              ) : (
                 <ActiveLink href="/login" activeClassName="active">
                   <a className="item-menu-yesmom">
                     <Image
@@ -146,7 +150,7 @@ const HeaderNuevo = () => {
                     <h6 className="text-navbar">Login</h6>
                   </a>
                 </ActiveLink>
-              }
+              )}
 
               <ActiveLink href="/ayuda" activeClassName="active">
                 <a className="item-menu-yesmom">
@@ -160,21 +164,22 @@ const HeaderNuevo = () => {
                 </a>
               </ActiveLink>
               <ActiveLink href="/shopping-cart" activeClassName="active">
-                <div className="container-cart-submenu">
-                  <a className="item-menu-yesmom-cart">
-                    <Image
-                      src="/image/header/cesta.svg"
-                      alt="logo blog yesmom "
-                      width={25}
-                      height={25}
-                    />
-                    <h6 className="text-navbar">Carrito</h6>
-                  </a>
-                  <div className="dropdown-content scale-up-tr scale-down-tr">
-                    <PopupCart />
-                    {/* {isVisibleSubMenu && <PopupCart />} */}
+                <a className="item-menu-yesmom-cart">
+                  <div className="container-cart-submenu">
+                    <div className="box-number-cart ">4</div>
+                    <div className="dropdown-content scale-up-tr scale-down-tr">
+                      <PopupCart />
+                      {/* {isVisibleSubMenu && <PopupCart />} */}
+                    </div>
                   </div>
-                </div>
+                  <Image
+                    src="/image/header/cesta.svg"
+                    alt="logo blog yesmom "
+                    width={25}
+                    height={25}
+                  />
+                  <h6 className="text-navbar">Carrito</h6>
+                </a>
               </ActiveLink>
             </div>
           </div>
@@ -183,38 +188,30 @@ const HeaderNuevo = () => {
         {onlyBlog && <SearchBlog />}
         {onlyStore && <MenuTienda />}
         {onlyProveedor && <MenuProveedor />}
-
       </div>
-      <DropMenuMobile
-        active={active}
-        setActive={handleClick}
-        logged={logged}
-      />
+      <DropMenuMobile active={active} setActive={handleClick} logged={logged} />
       <style jsx>
         {`
-          
-          .container-cart-submenu{
+          .container-cart-submenu {
             position: relative;
             display: inline-block;
           }
           .dropdown-content {
-            visibility:hidden;
+            visibility: hidden;
             position: absolute;
             z-index: 1;
-            right:0;
+            right: 0;
             top: 20;
             max-height: calc(100% - 7rem);
           }
           .container-cart-submenu:hover .dropdown-content {
-            visibility:visible;
-            
+            visibility: visible;
           }
           .container-cart-submenu:hover .box-cart {
-            visibility:visible;
-            
+            visibility: visible;
           }
           .container-cart-submenu:hover .scale-up-tr {
-            transform: scale(1) ;
+            transform: scale(1);
             transform-origin: 100% 0%;
           }
           .container-cart-submenu .scale-down-tr {
@@ -226,8 +223,8 @@ const HeaderNuevo = () => {
             transition: all 1.6s;
             transform-origin: 100% 0%;
           }
-          .hover-active{
-            visibility:hidden
+          .hover-active {
+            visibility: hidden;
           }
           .active .text-navbar {
             color: #ec608d !important;
@@ -243,7 +240,7 @@ const HeaderNuevo = () => {
           .navbar-yesmom {
             display: flex;
             align-items: center;
-            justify-content:space-between;
+            justify-content: space-between;
             flex-wrap: wrap;
             padding: 0.3rem 4rem;
             background: #fff;
@@ -262,9 +259,9 @@ const HeaderNuevo = () => {
             margin: 0rem 0.6rem;
             color: #616160;
             justify-content: flex-start;
-            cursor:pointer;
+            cursor: pointer;
           }
-           .item-menu-yesmom-cart {
+          .item-menu-yesmom-cart {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -272,13 +269,12 @@ const HeaderNuevo = () => {
             margin: 0rem 0.5rem;
             color: #616160;
             justify-content: flex-start;
-            cursor:pointer;
+            cursor: pointer;
           }
 
           .logo-yesmom:hover {
             transform: scale(1.1);
             animation: animateHeart 0.3s linear forwards !important;
-
           }
           @keyframes animateHeart {
             0% {
@@ -297,23 +293,23 @@ const HeaderNuevo = () => {
             transform: scale(1.1);
             animation: animateHeart 0.3s linear forwards !important;
           }
-          .item-menu-yesmom-cart:hover{
+          .item-menu-yesmom-cart:hover {
             text-decoration: none !important;
             transform: scale(1.1);
             animation: animateHeart 0.3s linear forwards !important;
           }
-          .item-menu-yesmom-cart .text-navbar:hover ~ .hover-active{
-            visibility:visible
+          .item-menu-yesmom-cart .text-navbar:hover ~ .hover-active {
+            visibility: visible;
           }
           .text-navbar {
-            font-size:1.3rem;
+            font-size: 1.3rem;
             font-family: "mont-semibold";
-            margin-top:0.2rem;
+            margin-top: 0.2rem;
           }
           .box-items-menu-responsive {
             display: flex;
             flex-direction: row;
-            align-items:center;
+            align-items: center;
           }
           .box-items-menu {
             margin-left: auto;
@@ -325,13 +321,29 @@ const HeaderNuevo = () => {
           .box-items-menu-desktop {
             display: block;
           }
-
-          @media (min-width:993px){
-            .box-items-menu{
-              display:block;
+          .box-number-cart {
+            width: 2.4rem;
+            height: 2.4rem;
+            border-radius: 50%;
+            background: #dc6a8d;
+            color: #ffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            font-family: "mont-semibold";
+            font-size: 1.4rem;
+            top: 0.2rem;
+            right: 0rem;
+            z-index: 999;
+            cursor: pointer;
+          }
+          @media (min-width: 993px) {
+            .box-items-menu {
+              display: block;
             }
-            .hide-desktop{
-              display:none;
+            .hide-desktop {
+              display: none;
             }
           }
           @media (max-width: 992px) {
@@ -356,13 +368,13 @@ const HeaderNuevo = () => {
               margin: 0.5rem 1rem;
               flex-direction: row;
             }
-            .box-items-menu-desktop{
+            .box-items-menu-desktop {
               display: none;
             }
-            .box-items-menu{
-              display:none!important;
+            .box-items-menu {
+              display: none !important;
             }
-            
+
             .text-navbar {
               margin: 0;
               margin-left: 0.5rem;
