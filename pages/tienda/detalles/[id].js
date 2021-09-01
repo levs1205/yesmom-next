@@ -11,12 +11,11 @@ import CardProduct from "../../../components/CardProduct";
 import YesmomContext from "../../../context/Context";
 import { startAddToCart } from "../../../context/actions/ui";
 import OtherProducts from "../../../components/tienda/detalle/OtherProducts";
-import { BASE_URL } from './../../../config/config'
 
 
 export async function getServerSideProps({ query }) {
   const id = query.id;
-  const res = await fetch(`${BASE_URL}/api/product/product/${id}`);
+  const res = await fetch(`http://localhost:3003/api/product/${id}`);
   const product = await res.json();
 
   return {
@@ -27,7 +26,6 @@ export async function getServerSideProps({ query }) {
 }
 
 const DetallesID = ({ product }) => {
-
   const { color, decripcion, imagen, nombre, precio, peso, talla, categoria } = product;
 
   console.log("color", Object.entries(color));
