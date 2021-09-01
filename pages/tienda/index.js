@@ -12,7 +12,7 @@ import BannerTienda from "../../components/tienda/BannerTienda";
 export async function getServerSideProps( {query} ){
 
   const id = query.id;
-  const res = await fetch(`http://localhost:3000/api/product/product`);
+  const res = await fetch(`http://localhost:3003/api/product`);
   const product = await res.json();
 
 
@@ -116,7 +116,7 @@ const Product = ({ product}) => {
                   <SidebarProducto />
                 </div>
                 <div className="products">
-                  <h4 className="text-title-tienda">Lo + vendido</h4>
+                  <h4 className="text-title-tienda">Destacados</h4>
                   <hr />
                   <div className="all-products">
                     {

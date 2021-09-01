@@ -10,11 +10,12 @@ function SelectFilterStore() {
     const clickOutside = useRef(null);
     const { pathname } = useRouter();
     const types = [
+        { name : "Destacados", path : "/tienda/categoria/destacados"},
         { name : "Todos", path : "/tienda/categoria/todos"},
-        { name : "Solo en Yes Mom", path : "/tienda/categoria/Solo en YesMom"},
-        { name : "Lo + vendido", path : "/tienda/categoria/Lo+vendido"},
-        { name : "Lo + seleccionado", path : "/tienda/categoria/Lo+seleccionado"},
-        { name : "Packs de regalo", path : "/tienda/categoria/pack de regalos"},
+        // { name : "Solo en Yes Mom", path : "/tienda/categoria/solo en yesmom"},
+        // { name : "Lo + vendido", path : "/tienda/categoria/lo+vendido"},
+        // { name : "Lo + seleccionado", path : "/tienda/categoria/lo+seleccionado"},
+        // { name : "Packs de regalo", path : "/tienda/categoria/pack de regalos"},
         { name : "Promociones", path : "/tienda/categoria/promociones"},
         { name : "Pañales y toallitas", path : "/tienda/categoria/pañales y toallitas"},
         { name : "Coches", path : "/tienda/categoria/coches"},
@@ -52,9 +53,11 @@ function SelectFilterStore() {
                                 {
                                     types.map((link)=>(
                                         <Link key={link.name} href={link.path}>
-                                        <a className={`link-to ${pathname===link.path ? "active-link-to" :""}`}>
-                                                {link.name}
-                                        </a> 
+                                            <a>
+                                                <p className={`link-to ${pathname===link.path ? "active-link-to" :""}`}>
+                                                        {link.name}
+                                                </p> 
+                                            </a>
                                         </Link>
                                     ))
                                 }
@@ -102,7 +105,7 @@ function SelectFilterStore() {
                     background:#ffffff;
                     width:25rem;
                     max-width:80%;
-                    height:70%;
+                    height:65%;
                 }
                 .options{
                     padding : 3rem 3rem;

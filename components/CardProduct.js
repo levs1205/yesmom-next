@@ -8,7 +8,7 @@ function CardProduct({ discount, size , id , nombre }) {
 
   return (
     <>
-      <Link href="tienda/detalles/:id" as={`tienda/detalles/${id}`}>
+      <Link href="/tienda/detalles/:id" as={`/tienda/detalles/${id}`}>
         <div className={`card-container size-${size}`}>
           <Card border="light">
             {/* https://picsum.photos/200/300 

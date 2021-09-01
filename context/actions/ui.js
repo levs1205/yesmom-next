@@ -23,3 +23,12 @@ export const removeError = () => {
         type : types.uiRemoveError,
     }
 }
+
+//Cart
+
+export const startAddToCart = (product) => {
+    return {
+        type : types.addToCart,
+        payload : product
+    }
+}

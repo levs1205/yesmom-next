@@ -29,6 +29,7 @@ class MyDocument extends Document {
                   gtag('config', '${6003087391}');
                   `}}
           />
+          <script src="https://sdk.mercadopago.com/js/v2"></script>
           {/* <!-- Google Tag Manager -->
           <>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
