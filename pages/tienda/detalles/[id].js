@@ -14,7 +14,7 @@ import OtherProducts from "../../../components/tienda/detalle/OtherProducts";
 
 export async function getServerSideProps({ query }) {
   const id = query.id;
-  const res = await fetch(`http://localhost:3003/api/product/product/${id}`);
+  const res = await fetch(`http://localhost:3003/api/product/${id}`);
   const product = await res.json();
 
   return {
@@ -25,12 +25,7 @@ export async function getServerSideProps({ query }) {
 }
 
 const DetallesID = ({ product }) => {
-<<<<<<< HEAD
-
-  const { color, decripcion, imagen, nombre, precio, peso, talla, categoria } = product;
-=======
   const { color, decripcion, imagen, nombre, precio, peso, talla } = product;
->>>>>>> 24afe51a499d8c45415a15ac29d13d0958019b20
 
   console.log("color", Object.entries(color));
 
@@ -123,19 +118,9 @@ const DetallesID = ({ product }) => {
                     </div>
                     <div className="show--container-details">
                       <section className="show--some-info-product">
-<<<<<<< HEAD
-                        <h5 className="show--ft-semibold">
-                          {nombre}
-                        </h5>
-                        <h6 className="show--ft-light">{categoria}</h6>
-                        <p className="show--text-description">
-                          {decripcion}
-                        </p>
-=======
                         <h5 className="show--ft-semibold">{nombre}</h5>
                         <h6 className="show--ft-light">Único - Baby plaza</h6>
                         <p className="show--text-description">{decripcion}</p>
->>>>>>> 24afe51a499d8c45415a15ac29d13d0958019b20
                         <p className="show--price">S/ {precio}</p>
                         <div className="show--container-selects">
                           <div className="show--group-select">
