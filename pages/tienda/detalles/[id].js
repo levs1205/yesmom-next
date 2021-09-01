@@ -359,6 +359,15 @@ const DetallesID = () => {
             border-radius: 15px !important;
           }
 
+          :global(.carousel .thumbs-wrapper)
+          {
+              margin:0px;
+              margin-top:20px;
+
+          }
+          :global(ul.thumbs.animated){
+              padding-left:0px!important
+          }
           .box-img-detail {
             max-width: 100%;
             max-height: 250px;
