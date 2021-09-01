@@ -30,7 +30,7 @@ const Checkout = () => {
     const data = {
       "quantity" : 50,
       "description" : "Esto es una prueba",
-      "price" : 120
+      "price" : 1
   };
     const response = await fetch('http://localhost:8080/create_preference',{
       method: "POST",
@@ -56,7 +56,7 @@ const Checkout = () => {
 
   useEffect(()=>{
     if (idPreference) {
-      const mp = new MercadoPago('TEST-dae165c6-30f6-4a7a-9856-c5ec084511d8',{
+      const mp = new MercadoPago('TEST-00e86e9f-751f-42c9-a278-7a9f97340aa8',{
         locale : 'es-PE'
       })
       console.log(mp);
@@ -72,6 +72,16 @@ const Checkout = () => {
         }
       })
       console.log(mp);
+
+      
+      /* const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src =
+        'https://www.mercadopago.cl/integrations/v1/web-payment-checkout.js';
+      script.setAttribute('data-preference-id', preferenceId);
+      const form = document.getElementById("id_div");
+      form.appendChild(script); */
+    
     }
 
   },[idPreference])
@@ -216,6 +226,9 @@ const Checkout = () => {
                 ) : (
                   <div className="btn-checkout btn-amarillo">Continuar</div>
                 )}
+              </div>
+              <div>
+
               </div>
             </form>
               <form 

@@ -12,9 +12,12 @@ import YesmomContext from "../context/Context";
 import MenuProveedor from "./Proveedor/MenuProveedor";
 
 const HeaderNuevo = () => {
+
   const {
     auth: { logged },
+    ui : { cart=[] }
   } = useContext(YesmomContext);
+
   const [active, setActive] = useState(false);
 
   const [onlyStore, setOnlyStore] = useState(false);
@@ -84,7 +87,10 @@ const HeaderNuevo = () => {
           <div className="hide-desktop">
             <Link href="/tienda" prefetch>
               <div>
-                <div className="box-number-cart ">4</div>
+                {
+                  cart.length>0 && <div className="box-number-cart ">{cart.length}</div>
+                }
+                
                 <a className="mr-2 logo-yesmom">
                   <Image
                     src="/image/header/cesta.svg"
@@ -166,7 +172,9 @@ const HeaderNuevo = () => {
               <ActiveLink href="/shopping-cart" activeClassName="active">
                 <a className="item-menu-yesmom-cart">
                   <div className="container-cart-submenu">
-                    <div className="box-number-cart ">4</div>
+                  {
+                    cart.length>0 && <div className="box-number-cart ">{cart.length}</div>
+                  }
                     <div className="dropdown-content scale-up-tr scale-down-tr">
                       <PopupCart />
                       {/* {isVisibleSubMenu && <PopupCart />} */}
@@ -351,7 +359,7 @@ const HeaderNuevo = () => {
               display: block;
             }
             .navbar-yesmom {
-              padding: 0.5rem 1rem;
+              padding: 0.5rem 2rem;
             }
             .box-items-menu-responsive {
               flex-direction: column;
