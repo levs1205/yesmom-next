@@ -17,7 +17,7 @@ import LoaderPage from "../../../components/LoaderPage";
 export async function getServerSideProps( { query } ){
 
     //Todos los productos
-    const res = await fetch(`http://localhost:3000/api/product`);
+    const res = await fetch(`http://localhost:3003/api/product/product`);
     const product = await res.json();
     
     const { category="" , sort="" } = query;
