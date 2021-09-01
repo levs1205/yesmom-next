@@ -233,7 +233,7 @@ const DetallesID = ({ product }) => {
                       </p>
 
                       <h5 className="show--ft-semibold">
-                        Puntos destacados del producto
+                        Accesorios
                       </h5>
                       <ol>
                         <li>haretra, sit volutpat varius</li>
