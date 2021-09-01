@@ -2,7 +2,7 @@
 
 export const getOtherProducts = async( category , id) =>{
 
-    const res = await fetch('http://localhost:3000/api/product/product');
+    const res = await fetch('http://localhost:3003/api/product/product');
     const product = await res.json();
 
     const productsFiltered = product.filter(product => 
