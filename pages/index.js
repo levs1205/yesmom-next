@@ -186,7 +186,7 @@ const Home = ({ currentData }) => {
                   </Link>
 
                   <Link href="/construccion">
-                    <a className="ft-3   text-center hover-efect-letter mb-5">
+                    <a className="ft-3 link-a   text-center hover-efect-letter mb-5">
                       Términos y condiciones
                     </a>
                   </Link>
@@ -509,7 +509,7 @@ const Home = ({ currentData }) => {
             flex-wrap: wrap;
           }
           .box-banner {
-            height: 84vh;
+            height: 65rem;
             width: auto;
             position: relative;
             overflow: hidden;
@@ -621,9 +621,9 @@ const Home = ({ currentData }) => {
           }
           .line-down {
             position: absolute;
-            bottom: 2rem;
-            right: 2.5rem;
-            width: 2.5rem;
+            bottom: 3rem;
+            right: 3rem;
+            width: 3rem;
           }
 
           .section-lo-mejor-home {
@@ -1049,7 +1049,10 @@ const Home = ({ currentData }) => {
               position: relative;
             }
             .box-banner {
-              height: 70vh;
+              height: 40rem;
+            }
+            .box-text-title{
+              padding-top:3rem
             }
             .all-products {
               width: 70%;

@@ -12,7 +12,8 @@ import BannerTienda from "../../components/tienda/BannerTienda";
 export async function getServerSideProps( {query} ){
 
   const id = query.id;
-  const res = await fetch(`http://localhost:3003/api/product`);
+  const res = await fetch(`http://localhost:3003/api/product/product`);
+  console.log(res);
   const product = await res.json();
 
 
