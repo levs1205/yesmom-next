@@ -207,7 +207,7 @@ const Detalles = () => {
                       </p>
 
                       <h5 className="show--ft-semibold">
-                        Puntos destacados del producto
+                        Accesorios
                       </h5>
                       <ol>
                         <li>haretra, sit volutpat varius</li>
@@ -226,7 +226,7 @@ const Detalles = () => {
                       <div className="show--flex-desktop">
                         <div>
                           <h5 className="show--ft-semibold">
-                            Pais de producción
+                            Peso
                           </h5>
                           <p className="show--text-description">
                             Pharetra, sit volutpat varius
