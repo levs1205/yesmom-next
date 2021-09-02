@@ -1,7 +1,7 @@
 export const data = [
   {
     id: "1",
-    nombre: "Producto1",
+    nombre: "Narda",
     decripcion:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. A tortor, diam molestie et rhoncus, amet lacus, velit. Ac ipsum fames gravida habitant aliquet orci. Imperdiet egestas morbi egestas posuere diam. Pharetra, sit volutpat varius sed sit urna euismod. Viverra nunc turpis nulla at et venenatis vitae, facilisis fringilla. Quam aliquet et proin nulla lacus aliquet quam",
     color: [{ Verde: "#746464" }, { Azul: "#875548" }, { Blanco: "#22222" }],
@@ -18,7 +18,7 @@ export const data = [
   },
   {
     id: "2",
-    nombre: "Producto1",
+    nombre: "Franco",
     decripcion:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. A tortor, diam molestie et rhoncus, amet lacus, velit. Ac ipsum fames gravida habitant aliquet orci. Imperdiet egestas morbi egestas posuere diam. Pharetra, sit volutpat varius sed sit urna euismod. Viverra nunc turpis nulla at et venenatis vitae, facilisis fringilla. Quam aliquet et proin nulla lacus aliquet quam",
     color: ["#746464", "#875548", "22222"],
@@ -33,7 +33,7 @@ export const data = [
   },
   {
     id: "3",
-    nombre: "Producto1",
+    nombre: "Isaac",
     decripcion:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. A tortor, diam molestie et rhoncus, amet lacus, velit. Ac ipsum fames gravida habitant aliquet orci. Imperdiet egestas morbi egestas posuere diam. Pharetra, sit volutpat varius sed sit urna euismod. Viverra nunc turpis nulla at et venenatis vitae, facilisis fringilla. Quam aliquet et proin nulla lacus aliquet quam",
     color: ["#746464", "#875548", "22222"],
@@ -48,7 +48,7 @@ export const data = [
   },
   {
     id: "4",
-    nombre: "Producto1",
+    nombre: "Milagros",
     decripcion:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. A tortor, diam molestie et rhoncus, amet lacus, velit. Ac ipsum fames gravida habitant aliquet orci. Imperdiet egestas morbi egestas posuere diam. Pharetra, sit volutpat varius sed sit urna euismod. Viverra nunc turpis nulla at et venenatis vitae, facilisis fringilla. Quam aliquet et proin nulla lacus aliquet quam",
     color: ["#746464", "#875548", "22222"],

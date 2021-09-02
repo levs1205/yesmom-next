@@ -21,7 +21,7 @@ function CardProduct({ discount, size , id , nombre }) {
               />
             </div>
             <Card.Body>
-              <Card.Title className="title">baby clothes</Card.Title>
+              <Card.Title className="title">{nombre}</Card.Title>
               <Card.Text>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac
               </Card.Text>

@@ -342,8 +342,8 @@ const HeaderNuevo = () => {
             position: absolute;
             font-family: "mont-semibold";
             font-size: 1.2rem;
-            top: -0.5rem;
-            right: -1.5rem;
+            top: -0.8rem;
+            right: -1.8rem;
             z-index: 999;
             cursor: pointer;
             box-shadow: 1px 1px 1px #999;
