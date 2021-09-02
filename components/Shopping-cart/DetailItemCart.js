@@ -1,11 +1,19 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useContext } from 'react'
+import { startRemoveProduct } from '../../context/actions/ui';
+import YesmomContext from '../../context/Context'
 
-const DetailItemCart = ({imagen}) => {
+const DetailItemCart = ({id , nombre, imagen , noBorder}) => {
+  
+  const { dispatchUi } = useContext(YesmomContext);
+
+  const handleRemoveProduct = () => {
+    dispatchUi( startRemoveProduct(id) );
+  }
     return (
         <>
-            <div className="card card-edited">
-              <div className="card--shopping-cart__iconDelete">
+            <div className={`card card-edited ${noBorder ? "no-border" :""}`}>
+              <div className="card--shopping-cart__iconDelete" onClick={ handleRemoveProduct }>
                 <Image 
                   src="/image/cart/delete-icon.svg" 
                   width="20px"
@@ -57,6 +65,9 @@ const DetailItemCart = ({imagen}) => {
                     border-bottom-right-radius: 0px !important;
                     border-bottom: 1px solid rgba(0,0,0,.125)!important;
                     padding:2.5rem 0rem
+                  }
+                  .no-border{
+                    border-bottom:none!important;
                   }
                   .card--shopping-cart__iconDelete {
                     position: absolute;

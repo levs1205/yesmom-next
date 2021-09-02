@@ -1,27 +1,49 @@
-import React from 'react'
+import Image from 'next/image'
+import React, { useContext } from 'react'
+import { startRemoveProduct } from '../../../context/actions/ui';
+import YesmomContext from '../../../context/Context';
 
-const DetailProduct = ({}) => {
+const DetailProduct = ({id ,nombre , imagen}) => {
+
+    const { dispatchUi } = useContext(YesmomContext);
+
+    const handleRemoveProduct = () => {
+        dispatchUi( startRemoveProduct(id) );
+    }
+
     return (
         <>
             <div className="card--shopping-cart">
                 <div className="container--shopping-card">
                     <div className="card--shopping-cart__image">
-                    <div className="card--shopping-cart__iconDelete"></div>
+                    <div className="card--shopping-cart__iconDelete" onClick={ handleRemoveProduct }>
+                        <Image 
+                            src="/image/cart/delete-icon.svg" 
+                            width="20px"
+                            height="20px"
+                        />  
+                    </div>
                     <img
-                        src="https://i.blogs.es/ee0424/ropa-bebe-rosa/450_1000.jpeg"
+                        src={imagen[0]}
                         alt=""
                     />
                     </div>
                 </div>
                 <div className="card--shopping-cart__text">
                     <p className="card--shopping-cart__title">
-                    Coche de bebé + funda - blanca{" "}
+                        {nombre}
                     </p>
                     <p className="card--shopping-cart__price">S/XX.XX</p>
                 </div>
             </div>
             <style jsx>
                 {`
+                    .card--shopping-cart__iconDelete{
+                        position: absolute;
+                        cursor:pointer;
+                        top:-0.5rem;
+                        left:-0.5rem;
+                    }
                     .card--shopping-cart {
                         display: flex;
                         justify-content: center;
@@ -51,15 +73,6 @@ const DetailProduct = ({}) => {
                         width: 90px;
                         height: 90px;
                         margin: auto;
-                    }
-                    .card--shopping-cart__iconDelete {
-                        position: absolute;
-                        background-image: url("/image/icon/delete.svg");
-                        background-position: contain;
-                        height: 20px;
-                        width: 20px;
-                        left: -8px;
-                        top: -8px;
                     }
 
                     .card--shopping-cart__text {
@@ -98,15 +111,6 @@ const DetailProduct = ({}) => {
                             width: 110px;
                             height: 110px;
                             margin: auto;
-                        }
-                        .card--shopping-cart__iconDelete {
-                            position: absolute;
-                            background-image: url("/image/icon/delete.svg");
-                            background-position: contain;
-                            height: 20px;
-                            width: 20px;
-                            left: -8px;
-                            top: -8px;
                         }
                     }
                 `}

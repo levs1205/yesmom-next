@@ -28,8 +28,9 @@ export async function getServerSideProps({ query }) {
 const DetallesID = ({ product }) => {
   const { color, decripcion, imagen, nombre, precio, peso, talla, categoria } = product;
 
-  console.log("color", Object.entries(color));
+  /* console.log("color", Object.entries(color)); */
 
+  const [ disabled , setDisabled] = useState(true);
   //Disparador para state UI
   const { dispatchUi } = useContext(YesmomContext);
   const [amount, setAmount] = useState(0);
@@ -48,11 +49,24 @@ const DetallesID = ({ product }) => {
     setAmount(e.target.value);
   };
 
+  useEffect(()=>{
+    if(amount === 0){
+      setDisabled(true);
+    }else{
+      setDisabled(false);
+    }
+  },[amount,setDisabled])
   //CART
 
   const handleAddCart = () => {
-    console.log(product);
-    dispatchUi(startAddToCart(product));
+    if(!disabled){
+      /* console.log(product); */
+      const realProduct = {
+        ...product,
+        quantity : amount
+      }
+      dispatchUi(startAddToCart(realProduct));
+    }
   };
 
   return (
@@ -199,7 +213,7 @@ const DetallesID = ({ product }) => {
                             className="show--btn-normal btn-fix"
                             onClick={handleAddCart}
                           >
-                            <div className="btn-detalle bg-pink" color="gray">
+                            <div className={`btn-detalle ${disabled ? "bg-gray" : "bg-pink"}`}>
                               Agregar al carrito
                             </div>
                           </div>
@@ -207,7 +221,6 @@ const DetallesID = ({ product }) => {
                             <Link href="/perfil-tienda">
                               <div
                                 className="btn-detalle bg-amarillo"
-                                color="gray"
                               >
                                 Ver la tienda
                               </div>
@@ -383,6 +396,9 @@ const DetallesID = ({ product }) => {
           }
           .bg-pink {
             background: #ec608d;
+          }
+          .bg-gray{
+            background-color : #DADADA!important;
           }
           .bg-amarillo {
             background: #febf41;

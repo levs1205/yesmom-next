@@ -9,7 +9,10 @@ export const types = {
     //ui
     setBlogs : "SET_BLOGS",
     setQueryBlog : "SET_QUERY_BLOG",
+
+
     addToCart : "ADD_CART",
+    removeProduct : "REMOVE_PRODUCT_CART",
     
     //errors
     uiSetError: "SET_ERROR",

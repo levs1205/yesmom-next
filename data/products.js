@@ -24,7 +24,7 @@ export const data = [
     color: ["#746464", "#875548", "22222"],
     talla: ["S", "M", "L"],
     imagen: [
-      "https://educacioninicial.mx/wp-content/uploads/2017/06/porque_muerden.jpg",
+      "http://1.bp.blogspot.com/-1WReBs0MJAU/UbCi2nmh_lI/AAAAAAAAAK0/cEel_PyCtFo/s1600/38.png",
       "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
     ],
     precio: 200.0,
@@ -39,7 +39,7 @@ export const data = [
     color: ["#746464", "#875548", "22222"],
     talla: ["S", "M", "L"],
     imagen: [
-      "https://educacioninicial.mx/wp-content/uploads/2017/06/porque_muerden.jpg",
+      "https://i.pinimg.com/originals/59/54/25/5954257feeecf3ff93462826773d1ce8.png",
       "https://img.europapress.es/fotoweb/fotonoticia_20171029133952_420.jpg",
     ],
     precio: 200.0,
