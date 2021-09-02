@@ -90,7 +90,7 @@ const shoppingCart = () => {
                 top: 2rem;
           }
           .container {
-            padding: 8rem 2rem;
+            padding: 8rem 2rem 0 2rem;
           }
           .container__text {
             font-family: "mont-semibold";
@@ -334,13 +334,14 @@ const shoppingCart = () => {
             background:url('/image/icon/check-pink.svg') center/16px no-repeat
           }
           .buy-button {
-            margin: 2.5rem auto;
+            
             text-align: center;
-            font-family: "omnes-bold";
+            font-family: "omnes-regular";
             font-weight: 700;
-            font-size: 1.8rem;
-            width: 310px;
-            height: 60px;
+            font-size:1.8rem;
+            width:20rem;
+            margin: 0 auto;
+            padding : 1.5rem;
             background-color: #ec608d;
             border-radius: 20px;
             color: #fff !important;
@@ -353,14 +354,18 @@ const shoppingCart = () => {
             cursor: pointer;
           }
           .restriction-text{
+            margin:2rem 0 0 0;
             font-family: "mont-light";
-            font-size: 13px;
+            font-size: 1.3rem;
             line-height: 25px;
             text-align: center;
             color: #575650;
           }
 
           @media  (min-width: 769px) {
+            .buy-button{
+              font-family:"omnes-bold";
+            }
             .shopping-cart-block {
               display: flex;
               justify-content: center;

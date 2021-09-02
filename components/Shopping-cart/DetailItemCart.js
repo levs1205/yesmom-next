@@ -45,7 +45,7 @@ const DetailItemCart = ({imagen}) => {
             <style jsx>
                 {`
                   .card--shopping-cart__iconDelete{
-
+                    cursor:pointer;
                   }
                   .card-edited{
                     display:flex;
