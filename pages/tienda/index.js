@@ -7,6 +7,8 @@ import { CardDeck, CardColumns , Carousel, Col, Container, Row } from "react-boo
 import CardProduct from "../../components/CardProduct";
 import SidebarProducto from "../../components/tienda/SidebarProducto";
 import BannerTienda from "../../components/tienda/BannerTienda";
+import { useRouter } from "next/router";
+import Swal from "sweetalert2";
 
 
 export async function getServerSideProps( {query} ){
@@ -25,6 +27,11 @@ export async function getServerSideProps( {query} ){
 
 }
 const Product = ({ product}) => {
+
+  const { query: { q = "" } } = useRouter();
+
+
+
   /* console.log(product); */
   const imagesMobile = [
     { id: 1, image: "/image/tienda/banner-first.svg" },
@@ -36,6 +43,19 @@ const Product = ({ product}) => {
     { id: 1 , image : "/image/tienda/banner1.svg" },
     { id: 2 , image : "/image/tienda/banner1.svg" },
   ]
+
+  const [storeFiltered, setStoreFiltered] = useState([]);
+
+  useEffect(() => {
+    const query = q.toLowerCase().trim();
+    const filterData = product.filter(( el ) => el.nombre.toLowerCase().trim().includes(query));
+    if (filterData.length === 0) {
+      setStoreFiltered(product);
+      Swal.fire('No encontrado', "No existen productos asociados con la búsqueda!", "info")
+    } else {
+      setStoreFiltered(filterData);
+    }
+  }, [q])
 
 /*   const [banner, setBanner] = useState(initialState);
 
@@ -121,7 +141,7 @@ const Product = ({ product}) => {
                   <hr />
                   <div className="all-products">
                     {
-                      product.map(( product , i)=>(
+                      storeFiltered.map(( product , i)=>(
                         <CardProduct key={i} {...product}/>
                       ))
                     }
