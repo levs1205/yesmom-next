@@ -12,10 +12,9 @@ import YesmomContext from "../context/Context";
 import MenuProveedor from "./Proveedor/MenuProveedor";
 
 const HeaderNuevo = () => {
-
   const {
     auth: { logged },
-    ui : { cart=[] }
+    ui: { cart = [] },
   } = useContext(YesmomContext);
 
   const [active, setActive] = useState(false);
@@ -87,10 +86,10 @@ const HeaderNuevo = () => {
           <div className="hide-desktop">
             <Link href="/tienda" prefetch>
               <div>
-                {
-                  cart.length>0 && <div className="box-number-cart ">{cart.length}</div>
-                }
-                
+                {cart.length > 0 && (
+                  <div className="box-number-cart ">{cart.length}</div>
+                )}
+
                 <a className="mr-2 logo-yesmom">
                   <Image
                     src="/image/header/cesta.svg"
@@ -172,10 +171,12 @@ const HeaderNuevo = () => {
               <ActiveLink href="/shopping-cart" activeClassName="active">
                 <a className="item-menu-yesmom-cart">
                   <div className="container-cart-submenu">
-                  {
-                    cart.length>0 && <div className="box-number-cart ">{cart.length}</div>
-                  }
-                    <div className="dropdown-content scale-up-tr scale-down-tr">
+                    {cart.length > 0 && (
+                      <div className="box-number-cart slide-in-blurred-bottom">
+                        {cart.length}
+                      </div>
+                    )}
+                    <div className="dropdown-content scale-up-tr ">
                       <PopupCart />
                       {/* {isVisibleSubMenu && <PopupCart />} */}
                     </div>
@@ -330,8 +331,8 @@ const HeaderNuevo = () => {
             display: block;
           }
           .box-number-cart {
-            width: 2.4rem;
-            height: 2.4rem;
+            width: 2.1rem;
+            height: 2.1rem;
             border-radius: 50%;
             background: #dc6a8d;
             color: #ffff;
@@ -340,12 +341,58 @@ const HeaderNuevo = () => {
             align-items: center;
             position: absolute;
             font-family: "mont-semibold";
-            font-size: 1.4rem;
-            top: 0.2rem;
-            right: 0rem;
+            font-size: 1.2rem;
+            top: -0.8rem;
+            right: -1.8rem;
             z-index: 999;
             cursor: pointer;
+            box-shadow: 1px 1px 1px #999;
+            -webkit-animation: puff-in-center 0.7s
+              cubic-bezier(0.47, 0, 0.745, 0.715) both;
+            animation: puff-in-center 0.7s cubic-bezier(0.47, 0, 0.745, 0.715)
+              both;
           }
+
+          .puff-in-center {
+            -webkit-animation: puff-in-center 0.7s
+              cubic-bezier(0.47, 0, 0.745, 0.715) both;
+            animation: puff-in-center 0.7s cubic-bezier(0.47, 0, 0.745, 0.715)
+              both;
+          }
+
+          @-webkit-keyframes puff-in-center {
+            0% {
+              -webkit-transform: scale(2);
+              transform: scale(2);
+              -webkit-filter: blur(4px);
+              filter: blur(4px);
+              opacity: 0;
+            }
+            100% {
+              -webkit-transform: scale(1);
+              transform: scale(1);
+              -webkit-filter: blur(0px);
+              filter: blur(0px);
+              opacity: 1;
+            }
+          }
+          @keyframes puff-in-center {
+            0% {
+              -webkit-transform: scale(2);
+              transform: scale(2);
+              -webkit-filter: blur(4px);
+              filter: blur(4px);
+              opacity: 0;
+            }
+            100% {
+              -webkit-transform: scale(1);
+              transform: scale(1);
+              -webkit-filter: blur(0px);
+              filter: blur(0px);
+              opacity: 1;
+            }
+          }
+
           @media (min-width: 993px) {
             .box-items-menu {
               display: block;
@@ -387,6 +434,14 @@ const HeaderNuevo = () => {
               margin: 0;
               margin-left: 0.5rem;
             }
+            .box-number-cart {
+            width: 2.2rem;
+            height: 2.2rem;
+            font-size: 1.2rem;
+            top: 0.5rem;
+            right: 1.5rem;
+          }
+
           }
         `}
       </style>
