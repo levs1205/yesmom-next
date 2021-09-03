@@ -1,4 +1,5 @@
-import Image from "next/image";
+
+import Link from "next/link";
 import React, { useContext } from "react";
 import AppLayout from "../../components/AppLayout";
 import DetailItemCart from "../../components/Shopping-cart/DetailItemCart";
@@ -13,72 +14,88 @@ const shoppingCart = () => {
     <AppLayout>
       <div className="container">
         <p className="container__text">Carrito de compras</p>
-        <p className="container__text-items">(4 items)</p>
-        <section className="shopping-cart-block">
-          <div className="shopping-cart-block__card">
-            {
-              cart.map((product) => (
-                <DetailItemCart {...product} />
-              ) )
-            }
-          </div>
-          <div className="shopping-cart-block__checkout">
-            <section className="discount-coupon__text">
-              <p className="discount-coupon__text">
-                ¿Tienes un código de descuento?
-              </p>
-              <div className="discount-coupon__input">
-                <input
-                  type="text"
-                  placeholder="Ingresa código"
-                  className="discount-coupon__input-text"
-                />
-                <input
-                  type="submit"
-                  name=""
-                  id=""
-                  value="Aplicar"
-                  className="discount-coupon__input-submit"
-                />
+        {     
+          cart.length === 0 ? <p className="container__text-items">No tienes nada en el carrito</p>
+            : <p className="container__text-items">({cart.length} items)</p>
+        }
+        {
+          cart.length > 0 &&
+
+            <section className="shopping-cart-block">
+              <div className="flex-shopping-cart">
+
+              <div className="shopping-cart-block__card">
+                {
+                  cart.map((product , i) => (
+                    <DetailItemCart {...product} key={i} noBorder={i===cart.length-1 ? true : false}/>
+                  ) )
+                }
+              </div>
+              <div className="shopping-cart-block__checkout">
+                {/* <section className="discount-coupon__text">
+                  <p className="discount-coupon__text">
+                    ¿Tienes un código de descuento?
+                  </p>
+                  <div className="discount-coupon__input">
+                    <input
+                      type="text"
+                      placeholder="Ingresa código"
+                      className="discount-coupon__input-text"
+                    />
+                    <input
+                      type="submit"
+                      name=""
+                      id=""
+                      value="Aplicar"
+                      className="discount-coupon__input-submit"
+                    />
+                  </div>
+                </section> */}
+                <section className="price-table">
+                  <table className=" price-table__table">
+                    <tbody className="price-table__tbody">
+                      <tr className="price-table__tbody--fount-padding ">
+                        <td className="price-table__tbody--text-align-left">Subtotal</td>
+                        <td className="price-table__tbody--text-align-right">S/ XX.XX</td>
+                      </tr>
+                      <tr className="price-table__tbody--fount-padding">
+                        <td className="price-table__tbody--text-align-left">IGV</td>
+                        <td className="price-table__tbody--text-align-right">S/ XX.XX</td>
+                      </tr>
+                      <tr className="price-table__tbody--fount-bold-padding price-table__tbody--border-top">
+                        <td className="price-table__tbody--text-align-left">
+                          <strong>Total</strong>
+                        </td>
+                        <td className="price-table__tbody--text-align-right">
+                          <strong>S/ XX.XX</strong>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </section>
+                <section className="box-terms">
+                  <input type="checkbox" id="term" name="term" className="box-terms__checkbox" />
+                  <label for="term" className="box-terms__text">
+                  </label>
+                  <p className="box-terms__text-style">He leído y acepto los nuevos Términos y Condiciones de compra
+                    del sitio. Acepto también la Política de Privacidad y Seguridad
+                    y la Política de Cookies.</p>
+                </section>
+                <button className="buy-button">
+                  <Link href="/checkout">
+                    <a>
+                      Comprar
+                    </a>
+                  </Link>
+                </button>
+                <p className="restriction-text">
+                  *Pueden aplicarse restricciones. No todos los productos son
+                  elegibles. Pueden aplicarse recargas por manejo y ubicaciónes
+                </p>
+              </div>
               </div>
             </section>
-            <section className="price-table">
-              <table className=" price-table__table">
-                <tbody className="price-table__tbody">
-                  <tr className="price-table__tbody--fount-padding ">
-                    <td className="price-table__tbody--text-align-left">Subtotal</td>
-                    <td className="price-table__tbody--text-align-right">S/ XX.XX</td>
-                  </tr>
-                  <tr className="price-table__tbody--fount-padding">
-                    <td className="price-table__tbody--text-align-left">IGV</td>
-                    <td className="price-table__tbody--text-align-right">S/ XX.XX</td>
-                  </tr>
-                  <tr className="price-table__tbody--fount-bold-padding price-table__tbody--border-top">
-                    <td className="price-table__tbody--text-align-left">
-                      <strong>Total</strong>
-                    </td>
-                    <td className="price-table__tbody--text-align-right">
-                      <strong>S/ XX.XX</strong>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </section>
-            <section className="box-terms">
-              <input type="checkbox" id="term" name="term" className="box-terms__checkbox" />
-              <label for="term" className="box-terms__text">
-                He leído y acepto los nuevos Términos y Condiciones de compra
-                del sitio. Acepto también la Política de Privacidad y Seguridad
-                y la Política de Cookies.
-              </label>
-            </section>
-            <button className="buy-button">Comprar</button>
-            <p className="restriction-text">
-              *Pueden aplicarse restricciones. No todos los productos son
-              elegibles. Pueden aplicarse recargas por manejo y ubicaciónes
-            </p>
-          </div>
-        </section>
+        }
       </div>
       <style jsx>
         {`
@@ -90,7 +107,7 @@ const shoppingCart = () => {
                 top: 2rem;
           }
           .container {
-            padding: 8rem 2rem;
+            padding: 8rem 2rem 0 2rem;
           }
           .container__text {
             font-family: "mont-semibold";
@@ -100,7 +117,7 @@ const shoppingCart = () => {
             line-height: 26px;
             color: #ec668d;
             padding-bottom: 10px;
-            border-bottom: 0.5px solid #575650;
+            border-bottom: 1px solid #DADADA;
           }
           .container__text-items {
             font-family: "mont-regular";
@@ -117,47 +134,7 @@ const shoppingCart = () => {
             align-content: center;
             flex-direction: column;
           }
-          .shopping-cart-block__card {
-            display:flex;
-            justify-content:center;
-            align-content:center;
-            flex-direction:column;
-            width: 100%;
-            height: auto;
-            background: #ffffff;
-            border: 10px solid #ffffff;
-            box-shadow: 0px 0px 33px rgba(0, 0, 0, 0.13);
-            border-radius: 20px;
-          }
-          .shopping-cart-block__card .card{
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            flex-direction:column;
-            border: 0px solid rgba(0,0,0,.125)!important;
-            border-bottom-left-radius: 0px !important;
-            border-bottom-right-radius: 0px !important;
-            border-bottom: 1px solid rgba(0,0,0,.125)!important;
-            padding:2.5rem 0rem
-          }
-          .shopping-cart-block__card > .card:last-child{
-            border-bottom: none !important;
-          }
-          .card__block-first{
-            display:flex;
-            justify-content:center;
-            align-content:center;
-            flex-direction:row;
-          }
-          .card__block-first .card__img{
-            width:35%;
-            height: 104px;
-            border-radius: 15px;
-          }
-          .card__block-first .card__block-text{
-            width:65%;
-            padding:0.5rem
-          }
+
           .block-text__title{
             font-family: "mont-regular";
             font-style: normal;
@@ -238,6 +215,17 @@ const shoppingCart = () => {
               font-size: 18px;
             color: #4B64A4;
           }
+          .shopping-cart-block__card {
+
+              display:flex;
+              flex-direction:column;
+              width: 100%;
+              height: auto;
+              background: #ffffff;
+              border: 10px solid #ffffff;
+              box-shadow: 0px 0px 33px rgba(0, 0, 0, 0.13);
+              border-radius: 20px;
+            }
           .shopping-cart-block__checkout{
             padding:2rem 0rem
           }
@@ -299,16 +287,13 @@ const shoppingCart = () => {
           .box-terms{
             display:flex;
             align-items:top;
-            cursor: pointer;
           }
-          .box-terms__text{
+          .box-terms__text-style{
             font-family: "mont-light";
             font-style: normal;
             font-weight: 300;
-            font-size: 13px;
-            line-height: 25px;
-            color:#575650;
-            padding:0 5px
+            font-size: 13px; 
+            color :#575650;
           }
           .box-terms__checkbox{
             position:absolute;
@@ -334,14 +319,15 @@ const shoppingCart = () => {
             background:url('/image/icon/check-pink.svg') center/16px no-repeat
           }
           .buy-button {
-            margin: 2.5rem auto;
+            
             text-align: center;
-            font-family: "omnes-bold";
+            font-family: "omnes-regular";
             font-weight: 700;
-            font-size: 1.8rem;
-            width: 310px;
-            height: 60px;
-            background-color: #ec608d;
+            font-size:1.8rem;
+            width:22.5rem;
+            margin: 0 auto;
+            padding : 1.5rem;
+            background-color: #EC608D;
             border-radius: 20px;
             color: #fff !important;
             line-height: 1.3rem;
@@ -352,15 +338,35 @@ const shoppingCart = () => {
             border: 1px solid #ec608d;
             cursor: pointer;
           }
+          .buy-button a{
+            color:#FFFFFF;
+            text-decoration:none;
+          }
           .restriction-text{
+            margin:2rem 0 0 0;
             font-family: "mont-light";
-            font-size: 13px;
+            font-size: 1.3rem;
             line-height: 25px;
             text-align: center;
             color: #575650;
           }
 
           @media  (min-width: 769px) {
+
+            .flex-shopping-cart{
+              display:flex;
+            }
+            .container {
+              padding: 8rem 2rem;
+            }
+            .container__text{
+              font-family:"mont-heavy";
+            }
+            .buy-button{
+              font-family:"omnes-bold";
+              color: #DC6A8D;
+              border-radius:10px;
+            }
             .shopping-cart-block {
               display: flex;
               justify-content: center;
@@ -368,18 +374,16 @@ const shoppingCart = () => {
               flex-direction: row;
               width:100%
             }
-            .shopping-cart-block__card {
-              display:flex;
-              justify-content:center;
-              align-content:center;
-              flex-direction:column;
-              width: 60%;
-              height: auto;
-              background: #ffffff;
-              border: 10px solid #ffffff;
-              box-shadow: 0px 0px 33px rgba(0, 0, 0, 0.13);
-              border-radius: 20px;
-            }
+              .shopping-cart-block__card {
+                display:flex;
+                flex-direction:column;
+                width: 60%;
+                height:auto;
+                background: #ffffff;
+                border: 10px solid #ffffff;
+                box-shadow: 0px 0px 33px rgba(0, 0, 0, 0.13);
+                border-radius: 20px;
+              }
             .card__block-first .card__img{
               width:20%;
               height: 104px;
@@ -397,9 +401,6 @@ const shoppingCart = () => {
               display: flex;
               justify-content: space-between;
             }
-            .shopping-cart-block__checkout .buy-button{
-              width: 100%;
-            }
           }
           @media (min-width: 1200px){
             .card__block-second{
@@ -409,6 +410,9 @@ const shoppingCart = () => {
               align-items:  center!important;
               flex-direction:row;
             }
+            .shopping-cart-block__card{
+              padding : 0 3rem 0 2rem;
+            } 
           }
         `}
       </style>

@@ -32,3 +32,10 @@ export const startAddToCart = (product) => {
         payload : product
     }
 }
+
+export const startRemoveProduct = (id) => {
+    return {
+        type : types.removeProduct,
+        payload : id
+    }
+}

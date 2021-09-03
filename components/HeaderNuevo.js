@@ -87,7 +87,11 @@ const HeaderNuevo = () => {
             <Link href="/tienda" prefetch>
               <div>
                 {cart.length > 0 && (
-                  <div className="box-number-cart ">{cart.length}</div>
+                  <div className="box-number-cart ">
+                    <p className="box-number-cart__text">
+                      {cart.length}
+                    </p>
+                  </div>
                 )}
 
                 <a className="mr-2 logo-yesmom">
@@ -173,7 +177,9 @@ const HeaderNuevo = () => {
                   <div className="container-cart-submenu">
                     {cart.length > 0 && (
                       <div className="box-number-cart slide-in-blurred-bottom">
-                        {cart.length}
+                        <p className="box-number-cart__text">
+                          {cart.length}
+                        </p>
                       </div>
                     )}
                     <div className="dropdown-content scale-up-tr ">
@@ -353,6 +359,11 @@ const HeaderNuevo = () => {
               both;
           }
 
+          .box-number-cart__text{
+            position:absolute;
+            top:15%;
+            margin:0; 
+          }
           .puff-in-center {
             -webkit-animation: puff-in-center 0.7s
               cubic-bezier(0.47, 0, 0.745, 0.715) both;
@@ -438,8 +449,12 @@ const HeaderNuevo = () => {
             width: 2.2rem;
             height: 2.2rem;
             font-size: 1.2rem;
-            top: 0.5rem;
+            top: 0.75rem;
             right: 1.5rem;
+          }
+          .box-number-cart__text{
+            position:absolute;
+            top:20%;
           }
 
           }

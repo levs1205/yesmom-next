@@ -8,22 +8,44 @@ const PopupCart = () => {
   //Items del carrito
   const { cart=[] } = ui;
 
+  //Limitar a 3
+  let cartRecorted = [];
+
+  if (cart.length>3){
+    cartRecorted = cart.slice(0,3);
+  }else{
+    cartRecorted=cart;
+  }
+
+
 
   return (
     <>
       <div className="box-cart">
-        <p className="popup--title">Tu carrito - 4 productos</p>
         {
-          cart?.map(( productCart , i ) => (
-            <DetailProduct key={i}/>
+          cart.length===0 ? <p className="popup--title">No tienes nada en el carrito</p>
+            : <p className="popup--title">Tu carrito - {cart.length} productos</p>
+        }
+
+        {
+          cartRecorted.map(( productCart , i ) => (
+            <DetailProduct key={i} {...productCart} />
           ))
         }
-        <p className="popup--plus">+ 1 articulo más</p>
-        <div className="popup--total-price">
-          <p className="popup--total-price__letter">Total estimado</p>
-          <p className="popup--total-price__number">S/ XX.XX</p>
-        </div>
-        <button className="btn-cart">Ver carrito</button>
+        {
+          cart.length > 3 && 
+              <p className="popup--plus">+ {cart.length-cartRecorted.length} articulo más</p>
+        }
+        {
+          cart.length > 0 &&
+          <>
+            <div className="popup--total-price">
+              <p className="popup--total-price__letter">Total estimado</p>
+              <p className="popup--total-price__number">S/ XX.XX</p>
+            </div>
+            <button className="btn-cart">Ver carrito</button>
+          </>
+        }
       </div>
       <style jsx>
         {`
@@ -68,7 +90,7 @@ const PopupCart = () => {
             font-family: "mont-semibold";
             font-style: normal;
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             line-height: 1.2rem;
             color: #5a5a5a;
           }

@@ -40,6 +40,16 @@ export const uiReducer = ( state = {} , action) => {
                 cart
             }
         
+        case types.removeProduct :
+
+            const cartUpdated = state.cart.filter(product => product.id !== action.payload);
+            //TO -DO - VALIDAR QUE EL MISMO ID NO SE ELIMINEN TODOS LOS DEL MISMO ID , SOLO EL QUE SELECCIONO
+            localStorage.setItem('cart',JSON.stringify(cartUpdated));
+            return {
+                ...state,
+                cart : cartUpdated
+            }
+
         default:
             return state;
     }
