@@ -641,7 +641,7 @@ const DetallesID = ({ product }) => {
 
           @media (min-width: 768px) {
             .show--box-main-proveedor {
-              padding-top: 20rem;
+              padding-top: 18rem;
             }
             .hide-desktop {
               display: none;

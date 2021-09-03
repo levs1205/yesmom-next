@@ -162,7 +162,7 @@ const Categoria = ( { productsFiltered , category } ) => {
                   <div className="all-products">
                       {
                           productsFiltered.map((product, i)=>(
-                              <CardProduct key={i} discount={product.discount} id={product.id} />
+                              <CardProduct key={i} {...product} />
                           ))
                       }
 {/*                       <CardProduct />

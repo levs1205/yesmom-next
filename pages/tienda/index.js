@@ -13,9 +13,7 @@ import Swal from "sweetalert2";
 
 export async function getServerSideProps( {query} ){
 
-  const id = query.id;
   const res = await fetch(`http://localhost:3003/api/product/product`);
-  console.log(res);
   const product = await res.json();
 
 
@@ -30,8 +28,6 @@ const Product = ({ product}) => {
 
   const { query: { q = "" } } = useRouter();
 
-
-
   /* console.log(product); */
   const imagesMobile = [
     { id: 1, image: "/image/tienda/banner-first.svg" },
@@ -45,6 +41,7 @@ const Product = ({ product}) => {
   ]
 
   const [storeFiltered, setStoreFiltered] = useState([]);
+
 
   useEffect(() => {
     const query = q.toLowerCase().trim();
@@ -141,16 +138,10 @@ const Product = ({ product}) => {
                   <hr />
                   <div className="all-products">
                     {
-                      storeFiltered.map(( product , i)=>(
+                      storeFiltered.slice(0,6).map(( product , i)=>(
                         <CardProduct key={i} {...product}/>
                       ))
                     }
-                      {/* <CardProduct />
-                      <CardProduct discount/>
-                      <CardProduct />
-                      <CardProduct />
-                      <CardProduct discount/>
-                      <CardProduct /> */}
                   </div>
                 </div>
             </div> 
@@ -158,12 +149,11 @@ const Product = ({ product}) => {
             <div className="contenedor f-right">
                 <div className="products">
                   <div className="all-products">
-                      <CardProduct />
-                      <CardProduct discount/>
-                      <CardProduct />
-                      <CardProduct />
-                      <CardProduct discount/>
-                      <CardProduct />
+                    {
+                      storeFiltered.slice(6,12).map(( product , i)=>(
+                        <CardProduct key={i} {...product}/>
+                      ))
+                    }
                   </div>
                 </div>
             </div> 

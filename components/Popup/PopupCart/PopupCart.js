@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import YesmomContext from "../../../context/Context";
+import { getTotalPrice } from "../../../helpers/getTotalPrice";
 import DetailProduct from "./DetailProduct";
 
 const PopupCart = () => {
@@ -18,6 +19,7 @@ const PopupCart = () => {
   }
 
 
+  const totalPrice = getTotalPrice(cart);
 
   return (
     <>
@@ -41,7 +43,7 @@ const PopupCart = () => {
           <>
             <div className="popup--total-price">
               <p className="popup--total-price__letter">Total estimado</p>
-              <p className="popup--total-price__number">S/ XX.XX</p>
+              <p className="popup--total-price__number">S/ {totalPrice}</p>
             </div>
             <button className="btn-cart">Ver carrito</button>
           </>

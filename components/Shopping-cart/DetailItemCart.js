@@ -3,7 +3,14 @@ import React, { useContext } from 'react'
 import { startRemoveProduct } from '../../context/actions/ui';
 import YesmomContext from '../../context/Context'
 
-const DetailItemCart = ({id , nombre, imagen , noBorder}) => {
+const DetailItemCart = ({
+  id ,
+  nombre, 
+  imagen, 
+  noBorder, 
+  precio, 
+  quantity
+}) => {
   
   const { dispatchUi } = useContext(YesmomContext);
 
@@ -34,7 +41,7 @@ const DetailItemCart = ({id , nombre, imagen , noBorder}) => {
                     Modelo - Marca
                   </p>
                   <select name="" id="" className="block-text__select">
-                    <option value="">Cantidad: 1</option>
+                    <option value="">Cantidad: {quantity}</option>
                   </select>
                 </div>
               </div>
@@ -47,7 +54,7 @@ const DetailItemCart = ({id , nombre, imagen , noBorder}) => {
                   />
                   <p className="block-store-text__text">Nombre de la tienda</p>
                 </div>
-                <p className="block-second__block-store-price">S/ XX.XX</p>
+                <p className="block-second__block-store-price">S/ {precio}</p>
               </div>
             </div>
             <style jsx>

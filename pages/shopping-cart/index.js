@@ -1,17 +1,77 @@
-
+import Head from 'next/head';
 import Link from "next/link";
-import React, { useContext } from "react";
+import { useRouter } from 'next/router';
+import React, { useContext, useEffect, useRef, useState } from "react";
+
 import AppLayout from "../../components/AppLayout";
 import DetailItemCart from "../../components/Shopping-cart/DetailItemCart";
 import YesmomContext from "../../context/Context";
+import { getTotalPrice } from "../../helpers/getTotalPrice";
 
 const shoppingCart = () => {
 
+  const router = useRouter();
   const { ui : { cart=[]} } = useContext(YesmomContext);
+  const [ accept , setAccept ] = useState(false);
+
+  const totalPrice = getTotalPrice(cart);
+  const subTotal = (totalPrice/1.18).toFixed(2);
+  const igv = (totalPrice-subTotal).toFixed(2);
+
+  console.log(totalPrice);
+
+  const handleAccept = () => {
+    setAccept(accept => !accept);
+  }
+
+  const handleStartCheckout = () => {
+    if(accept){
+      router.push('/checkout')
+    }
+  }
 
 
   return (
     <AppLayout>
+      <Head>
+        <title>YesMom - Shopping Cart</title>
+        <meta name="description" content="YesMom es ..."></meta>
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="YesMom - Shopping Cart" />
+        <meta
+          property="og:description"
+          content="Yes Mom es una plataforma digital peruana que ayuda a las
+                        mamis a disfrutar su maternidad sin preocupaciones. Queremos
+                        ser la marca aliada que todos los papás estuvieron buscando,
+                        una página web que reúne en un solo lugar todo lo que
+                        necesitan para la llegada de su bebé y acompañar su
+                        crecimiento."
+        />
+        <meta
+          property="og:image"
+          itemprop="image"
+          content="https://yesmom.vercel.app/image/about-header.png"
+        />
+        <meta property="og:image:width" content="1280" />
+        <meta property="og:image:height" content="855" />
+        <meta property="og:site_name" content="Yes Mom" />
+        {/* <meta property="og:url" content={`${user.id}`} />  */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="YesMom - Shopping Cart" />
+        <meta
+          name="twitter:description"
+          content="Yes Mom es una plataforma digital peruana que ayuda a las
+                        mamis a disfrutar su maternidad sin preocupaciones. Queremos
+                        ser la marca aliada que todos los papás estuvieron buscando,
+                        una página web que reúne en un solo lugar todo lo que
+                        necesitan para la llegada de su bebé y acompañar su
+                        crecimiento."
+        />
+        <meta
+          name="twitter:image"
+          content="https://yesmom.vercel.app/image/about-header.png"
+        />
+      </Head>
       <div className="container">
         <p className="container__text">Carrito de compras</p>
         {     
@@ -56,38 +116,45 @@ const shoppingCart = () => {
                     <tbody className="price-table__tbody">
                       <tr className="price-table__tbody--fount-padding ">
                         <td className="price-table__tbody--text-align-left">Subtotal</td>
-                        <td className="price-table__tbody--text-align-right">S/ XX.XX</td>
+                        <td className="price-table__tbody--text-align-right">S/ {subTotal}</td>
                       </tr>
                       <tr className="price-table__tbody--fount-padding">
                         <td className="price-table__tbody--text-align-left">IGV</td>
-                        <td className="price-table__tbody--text-align-right">S/ XX.XX</td>
+                        <td className="price-table__tbody--text-align-right">S/ {igv}</td>
                       </tr>
                       <tr className="price-table__tbody--fount-bold-padding price-table__tbody--border-top">
                         <td className="price-table__tbody--text-align-left">
                           <strong>Total</strong>
                         </td>
                         <td className="price-table__tbody--text-align-right">
-                          <strong>S/ XX.XX</strong>
+                          <strong>S/ {totalPrice}</strong>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </section>
                 <section className="box-terms">
-                  <input type="checkbox" id="term" name="term" className="box-terms__checkbox" />
+                  <input 
+                    type="checkbox" 
+                    id="term" 
+                    name="term" 
+                    className="box-terms__checkbox" 
+                    onChange={ handleAccept} 
+                    value = { accept }
+                  />
                   <label for="term" className="box-terms__text">
                   </label>
                   <p className="box-terms__text-style">He leído y acepto los nuevos Términos y Condiciones de compra
                     del sitio. Acepto también la Política de Privacidad y Seguridad
                     y la Política de Cookies.</p>
                 </section>
-                <button className="buy-button">
-                  <Link href="/checkout">
-                    <a>
+                    <button 
+                      className={`buy-button ${!accept ? "bg-gray" : ""}`} 
+                      onClick={ handleStartCheckout }
+                      
+                    >
                       Comprar
-                    </a>
-                  </Link>
-                </button>
+                    </button>
                 <p className="restriction-text">
                   *Pueden aplicarse restricciones. No todos los productos son
                   elegibles. Pueden aplicarse recargas por manejo y ubicaciónes
@@ -99,6 +166,11 @@ const shoppingCart = () => {
       </div>
       <style jsx>
         {`
+
+          .bg-gray{
+            background-color : #DADADA!important;
+            border: 1px solid #DADADA!important;
+          }
           .card--shopping-cart__iconDelete {
                 position: absolute;
                 height: 2rem;
@@ -301,7 +373,8 @@ const shoppingCart = () => {
             border:0;
             height:1px;
             width:1px;
-            overflow:hidden
+            overflow:hidden;
+            cursor:pointer;
           }
           .box-terms__text:before{
             content:"";

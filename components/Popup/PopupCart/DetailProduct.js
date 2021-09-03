@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import { startRemoveProduct } from '../../../context/actions/ui';
 import YesmomContext from '../../../context/Context';
 
-const DetailProduct = ({id ,nombre , imagen}) => {
+const DetailProduct = ({id ,nombre , imagen , quantity , precio}) => {
 
     const { dispatchUi } = useContext(YesmomContext);
 
@@ -33,7 +33,8 @@ const DetailProduct = ({id ,nombre , imagen}) => {
                     <p className="card--shopping-cart__title">
                         {nombre}
                     </p>
-                    <p className="card--shopping-cart__price">S/XX.XX</p>
+                    <p className="card--shopping-cart__price">S/{precio}</p>
+                    <p className="card--shopping-cart__quantity"> x {quantity}</p>
                 </div>
             </div>
             <style jsx>
@@ -86,7 +87,7 @@ const DetailProduct = ({id ,nombre , imagen}) => {
                         font-family: "mont-regular";
                         font-style: normal;
                         font-weight: 500;
-                        font-size: 12px;
+                        font-size: 1.2rem;
                         line-height: 1.2rem;
                         text-align: left;
                     }
@@ -94,10 +95,14 @@ const DetailProduct = ({id ,nombre , imagen}) => {
                         font-family: "mont-semibold";
                         font-style: normal;
                         font-weight: bold;
-                        font-size: 14px;
+                        font-size: 1.4rem;
                         line-height: 1.2rem;
                         color: #4b64a4;
                         text-align: center;
+                    }
+                    .card--shopping-cart__quantity{
+                        font-family:"mont-light";
+                        font-size:1.2rem;
                     }
 
                     @media (min-width : 1366px){
