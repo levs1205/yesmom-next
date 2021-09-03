@@ -45,7 +45,6 @@ const Checkout = () => {
     setIdPreference(id);
     console.log(id);
   };
-
   const handleStep = () => {
     if (selected != 2) {
       setSelected((step) => step + 1);
@@ -62,15 +61,17 @@ const Checkout = () => {
       console.log(mp);
       console.log(idPreference);
 
-      mp.checkout({
+      const checkout = mp.checkout({
         preference : {
           id: idPreference
         },
-        render: {
-          container : '.btn_checkout',
-          label : 'Pagar'
+        theme: {
+          elementsColor: '#ec608d'
         }
       })
+      setTimeout(() => {
+        checkout.open();
+      }, 2000);
       console.log(mp);
     }
 
