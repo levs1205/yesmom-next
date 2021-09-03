@@ -11,7 +11,7 @@ import CardProduct from "../../../components/CardProduct";
 import YesmomContext from "../../../context/Context";
 import { startAddToCart } from "../../../context/actions/ui";
 import OtherProducts from "../../../components/tienda/detalle/OtherProducts";
-
+import Select from "react-select";
 
 export async function getServerSideProps({ query }) {
   const id = query.id;
@@ -26,7 +26,16 @@ export async function getServerSideProps({ query }) {
 }
 
 const DetallesID = ({ product }) => {
-  const { color, decripcion, imagen, nombre, precio, peso, talla, categoria } = product;
+  const {
+    color,
+    decripcion,
+    imagen,
+    nombre,
+    precio,
+    peso,
+    talla,
+    categoria,
+  } = product;
 
   console.log("color", Object.entries(color));
 
@@ -55,6 +64,8 @@ const DetallesID = ({ product }) => {
     dispatchUi(startAddToCart(product));
   };
 
+
+  console.log("bichota",product.color);
   return (
     <>
       <AppLayout>
@@ -119,19 +130,18 @@ const DetallesID = ({ product }) => {
                     </div>
                     <div className="show--container-details">
                       <section className="show--some-info-product">
-                        <h5 className="show--ft-semibold">
-                          {nombre}
-                        </h5>
+                        <h5 className="show--ft-semibold">{nombre}</h5>
                         <h6 className="show--ft-light">{categoria}</h6>
-                        <p className="show--text-description">
-                          {decripcion}
-                        </p>
+                        <p className="show--text-description">{decripcion}</p>
                         <p className="show--price">S/ {precio}</p>
                         <div className="show--container-selects">
                           <div className="show--group-select">
                             <label className="show--text-label" htmlFor="talla">
                               Color
                             </label>
+
+                            <Select option={product.color}/>
+
                             <select id="color">
                               <option selected disabled>
                                 Selecciona el color
@@ -232,9 +242,7 @@ const DetallesID = ({ product }) => {
                         Quam aliquet et proin nulla lacus aliquet quam
                       </p>
 
-                      <h5 className="show--ft-semibold">
-                        Accesorios
-                      </h5>
+                      <h5 className="show--ft-semibold">Accesorios</h5>
                       <ol>
                         <li>haretra, sit volutpat varius</li>
                         <li>
