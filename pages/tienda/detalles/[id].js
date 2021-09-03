@@ -39,7 +39,7 @@ const DetallesID = ({ product }) => {
 
   /* console.log("color", Object.entries(color)); */
 
-  const [ disabled , setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(true);
   //Disparador para state UI
   const { dispatchUi } = useContext(YesmomContext);
   const [amount, setAmount] = useState(0);
@@ -58,28 +58,28 @@ const DetallesID = ({ product }) => {
     setAmount(e.target.value);
   };
 
-  useEffect(()=>{
-    if(amount === 0){
+  useEffect(() => {
+    if (amount === 0) {
       setDisabled(true);
-    }else{
+    } else {
       setDisabled(false);
     }
-  },[amount,setDisabled])
+  }, [amount, setDisabled]);
   //CART
 
   const handleAddCart = () => {
-    if(!disabled){
+    if (!disabled) {
       /* console.log(product); */
       const realProduct = {
         ...product,
-        quantity : amount
-      }
+        quantity: amount,
+      };
       dispatchUi(startAddToCart(realProduct));
     }
   };
 
+  console.log("bichota", product.color);
 
-  console.log("bichota",product.color);
   return (
     <>
       <AppLayout>
@@ -146,7 +146,7 @@ const DetallesID = ({ product }) => {
                       <section className="show--some-info-product">
                         <h5 className="show--ft-semibold">{nombre}</h5>
                         <h6 className="show--ft-light">{categoria}</h6>
-                        <p className="show--text-description">{decripcion}</p>
+                        {/* <p className="show--text-description">{decripcion}</p> */}
                         <p className="show--price">S/ {precio}</p>
                         <div className="show--container-selects">
                           <div className="show--group-select">
@@ -154,7 +154,7 @@ const DetallesID = ({ product }) => {
                               Color
                             </label>
 
-                            <Select option={product.color}/>
+                            {/* <Select options={product.color}/> */}
 
                             <select id="color">
                               <option selected disabled>
@@ -223,15 +223,17 @@ const DetallesID = ({ product }) => {
                             className="show--btn-normal btn-fix"
                             onClick={handleAddCart}
                           >
-                            <div className={`btn-detalle ${disabled ? "bg-gray" : "bg-pink"}`}>
+                            <div
+                              className={`btn-detalle ${
+                                disabled ? "bg-gray" : "bg-pink"
+                              }`}
+                            >
                               Agregar al carrito
                             </div>
                           </div>
                           <div className="show--btn-normal">
                             <Link href="/perfil-tienda">
-                              <div
-                                className="btn-detalle bg-amarillo"
-                              >
+                              <div className="btn-detalle bg-amarillo">
                                 Ver la tienda
                               </div>
                             </Link>
@@ -245,15 +247,7 @@ const DetallesID = ({ product }) => {
                       <h5 className="show--ft-semibold">
                         Detalle del Producto
                       </h5>
-                      <p className="show--text-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        A tortor, diam molestie et rhoncus, amet lacus, velit.
-                        Ac ipsum fames gravida habitant aliquet orci. Imperdiet
-                        egestas morbi egestas posuere diam. Pharetra, sit
-                        volutpat varius sed sit urna euismod. Viverra nunc
-                        turpis nulla at et venenatis vitae, facilisis fringilla.
-                        Quam aliquet et proin nulla lacus aliquet quam
-                      </p>
+                      <p className="show--text-description">{decripcion}</p>
 
                       <h5 className="show--ft-semibold">Accesorios</h5>
                       <ol>
@@ -367,7 +361,9 @@ const DetallesID = ({ product }) => {
           }
           :global(.carousel .thumb img) {
             vertical-align: top;
-            height: 60px;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
           }
           :global(.carousel .slide img) {
             width: 100%;
@@ -405,8 +401,8 @@ const DetallesID = ({ product }) => {
           .bg-pink {
             background: #ec608d;
           }
-          .bg-gray{
-            background-color : #DADADA!important;
+          .bg-gray {
+            background-color: #dadada !important;
           }
           .bg-amarillo {
             background: #febf41;
@@ -626,6 +622,10 @@ const DetallesID = ({ product }) => {
           .show--other-products {
             margin: 2rem 0;
           }
+          :global(li.thumb){
+            width:6rem!important;
+            height:6rem!important
+          }
 
           @media (min-width: 480px) {
             .show--contenedor-centered {
@@ -645,6 +645,12 @@ const DetallesID = ({ product }) => {
             :global(.carousel .slide img) {
               max-height: 500px;
             }
+            :global(li.thumb){
+            width:9rem!important;
+            height:9rem!important
+          }
+
+            
           }
 
           @media (min-width: 768px) {

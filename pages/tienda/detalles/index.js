@@ -206,9 +206,7 @@ const Detalles = () => {
                         Quam aliquet et proin nulla lacus aliquet quam
                       </p>
 
-                      <h5 className="show--ft-semibold">
-                        Accesorios
-                      </h5>
+                      <h5 className="show--ft-semibold">Accesorios</h5>
                       <ol>
                         <li>haretra, sit volutpat varius</li>
                         <li>
@@ -225,9 +223,7 @@ const Detalles = () => {
 
                       <div className="show--flex-desktop">
                         <div>
-                          <h5 className="show--ft-semibold">
-                            Peso
-                          </h5>
+                          <h5 className="show--ft-semibold">Peso</h5>
                           <p className="show--text-description">
                             Pharetra, sit volutpat varius
                           </p>
@@ -323,6 +319,8 @@ const Detalles = () => {
           :global(.carousel .thumb img) {
             vertical-align: top;
             height: 60px;
+            object-fit: cover;
+            object-position: center center;
           }
           :global(.carousel .slide img) {
             width: 100%;

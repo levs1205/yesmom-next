@@ -4,7 +4,11 @@ export const data = [
     nombre: "Narda",
     decripcion:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. A tortor, diam molestie et rhoncus, amet lacus, velit. Ac ipsum fames gravida habitant aliquet orci. Imperdiet egestas morbi egestas posuere diam. Pharetra, sit volutpat varius sed sit urna euismod. Viverra nunc turpis nulla at et venenatis vitae, facilisis fringilla. Quam aliquet et proin nulla lacus aliquet quam",
-    color: [{ value: "#746464",label:verde }, { Azul: "#875548" }, { Blanco: "#22222" }],
+    color: [
+      { value: "#746464" , label:"verde"},
+      { Azul: "#875548" },
+      { Blanco: "#22222" },
+    ],
     talla: ["S", "M", "L"],
     imagen: [
       "https://educacioninicial.mx/wp-content/uploads/2017/06/porque_muerden.jpg",

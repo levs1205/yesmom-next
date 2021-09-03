@@ -88,9 +88,7 @@ const HeaderNuevo = () => {
               <div>
                 {cart.length > 0 && (
                   <div className="box-number-cart ">
-                    <p className="box-number-cart__text">
-                      {cart.length}
-                    </p>
+                    <p className="box-number-cart__text">{cart.length}</p>
                   </div>
                 )}
 
@@ -173,28 +171,27 @@ const HeaderNuevo = () => {
                 </a>
               </ActiveLink>
               <ActiveLink href="/shopping-cart" activeClassName="active">
-                <a className="item-menu-yesmom-cart">
-                  <div className="container-cart-submenu">
+                <div className="container-cart-submenu">
+                  <a className="item-menu-yesmom-cart">
                     {cart.length > 0 && (
                       <div className="box-number-cart slide-in-blurred-bottom">
-                        <p className="box-number-cart__text">
-                          {cart.length}
-                        </p>
+                        <p className="box-number-cart__text">{cart.length}</p>
                       </div>
                     )}
                     <div className="dropdown-content scale-up-tr ">
                       <PopupCart />
                       {/* {isVisibleSubMenu && <PopupCart />} */}
                     </div>
-                  </div>
-                  <Image
-                    src="/image/header/cesta.svg"
-                    alt="logo blog yesmom "
-                    width={25}
-                    height={25}
-                  />
-                  <h6 className="text-navbar">Carrito</h6>
-                </a>
+
+                    <Image
+                      src="/image/header/cesta.svg"
+                      alt="logo blog yesmom "
+                      width={25}
+                      height={25}
+                    />
+                    <h6 className="text-navbar">Carrito</h6>
+                  </a>
+                </div>
               </ActiveLink>
             </div>
           </div>
@@ -286,11 +283,7 @@ const HeaderNuevo = () => {
             justify-content: flex-start;
             cursor: pointer;
           }
-
-          .logo-yesmom:hover {
-            transform: scale(1.1);
-            animation: animateHeart 0.3s linear forwards !important;
-          }
+        
           @keyframes animateHeart {
             0% {
               transform: scale(1);
@@ -302,15 +295,19 @@ const HeaderNuevo = () => {
               transform: scale(1.1);
             }
           }
+          .logo-yesmom:hover {
+            transform: scale(1.1);
+            animation: animateHeart 0.3s linear forwards !important;
+          }
 
           .item-menu-yesmom:hover {
             text-decoration: none !important;
-            transform: scale(1.1);
+            transform: scale(1.05);
             animation: animateHeart 0.3s linear forwards !important;
           }
           .item-menu-yesmom-cart:hover {
             text-decoration: none !important;
-            transform: scale(1.1);
+            transform: scale(1.05);
             animation: animateHeart 0.3s linear forwards !important;
           }
           .item-menu-yesmom-cart .text-navbar:hover ~ .hover-active {
@@ -349,7 +346,7 @@ const HeaderNuevo = () => {
             font-family: "mont-semibold";
             font-size: 1.2rem;
             top: -0.8rem;
-            right: -1.8rem;
+            right: 0.2rem;
             z-index: 999;
             cursor: pointer;
             box-shadow: 1px 1px 1px #999;
@@ -359,10 +356,10 @@ const HeaderNuevo = () => {
               both;
           }
 
-          .box-number-cart__text{
-            position:absolute;
-            top:15%;
-            margin:0; 
+          .box-number-cart__text {
+            position: absolute;
+            top: 15%;
+            margin: 0;
           }
           .puff-in-center {
             -webkit-animation: puff-in-center 0.7s
@@ -446,17 +443,16 @@ const HeaderNuevo = () => {
               margin-left: 0.5rem;
             }
             .box-number-cart {
-            width: 2.2rem;
-            height: 2.2rem;
-            font-size: 1.2rem;
-            top: 0.75rem;
-            right: 1.5rem;
-          }
-          .box-number-cart__text{
-            position:absolute;
-            top:20%;
-          }
-
+              width: 2.2rem;
+              height: 2.2rem;
+              font-size: 1.2rem;
+              top: 0.75rem;
+              right: 1.5rem;
+            }
+            .box-number-cart__text {
+              position: absolute;
+              top: 20%;
+            }
           }
         `}
       </style>
