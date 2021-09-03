@@ -47,7 +47,9 @@ const Provider = ({children }) => {
         const cart = JSON.parse(localStorage.getItem('cart'));
         if(cart){
             console.log("Existe cart");
-            dispatchUi(startAddToCart(cart));
+            cart.forEach(element => {
+                dispatchUi(startAddToCart(element));
+            });
         }
     }
 

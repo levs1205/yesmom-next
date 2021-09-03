@@ -1,7 +1,14 @@
-import React from "react";
+import Image from "next/image";
+import React, { useContext } from "react";
 import AppLayout from "../../components/AppLayout";
+import DetailItemCart from "../../components/Shopping-cart/DetailItemCart";
+import YesmomContext from "../../context/Context";
 
 const shoppingCart = () => {
+
+  const { ui : { cart=[]} } = useContext(YesmomContext);
+
+
   return (
     <AppLayout>
       <div className="container">
@@ -9,130 +16,11 @@ const shoppingCart = () => {
         <p className="container__text-items">(4 items)</p>
         <section className="shopping-cart-block">
           <div className="shopping-cart-block__card">
-            <div className="card">
-              <div className="card__block-first">
-                <img
-                  src="https://http2.mlstatic.com/D_NQ_NP_835990-MPE44064655755_112020-V.jpg"
-                  alt=""
-                  className="card__img"
-                />
-                <div className="card__block-text">
-                  <p className="block-text__title">
-                    COCHE DE BEBÉ + FUNDA - Blanco, 140cm x 100cm{" "}
-                  </p>
-                  <p className="block-text__short-description">
-                    Modelo - Marca
-                  </p>
-                  <select name="" id="" className="block-text__select">
-                    <option value="">Cantidad: 1</option>
-                  </select>
-                </div>
-              </div>
-              <div className="card__block-second">
-                <div className="block-second__block-store-text">
-                  <img
-                    className="block-store-text__img"
-                    src="https://img.freepik.com/vector-gratis/plantilla-logotipo-bebe-detallada_23-2148776913.jpg?size=338&ext=jpg"
-                    alt=""
-                  />
-                  <p className="block-store-text__text">Nombre de la tienda</p>
-                </div>
-                <p className="block-second__block-store-price">S/ XX.XX</p>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card__block-first">
-                <img
-                  src="https://http2.mlstatic.com/D_NQ_NP_835990-MPE44064655755_112020-V.jpg"
-                  alt=""
-                  className="card__img"
-                />
-                <div className="card__block-text">
-                  <p className="block-text__title">
-                    COCHE DE BEBÉ + FUNDA - Blanco, 140cm x 100cm{" "}
-                  </p>
-                  <p className="block-text__short-description">
-                    Modelo - Marca
-                  </p>
-                  <select name="" id="" className="block-text__select">
-                    <option value="">Cantidad: 1</option>
-                  </select>
-                </div>
-              </div>
-              <div className="card__block-second">
-                <div className="block-second__block-store-text">
-                  <img
-                    className="block-store-text__img"
-                    src="https://img.freepik.com/vector-gratis/plantilla-logotipo-bebe-detallada_23-2148776913.jpg?size=338&ext=jpg"
-                    alt=""
-                  />
-                  <p className="block-store-text__text">Nombre de la tienda</p>
-                </div>
-                <p className="block-second__block-store-price">S/ XX.XX</p>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card__block-first">
-                <img
-                  src="https://http2.mlstatic.com/D_NQ_NP_835990-MPE44064655755_112020-V.jpg"
-                  alt=""
-                  className="card__img"
-                />
-                <div className="card__block-text">
-                  <p className="block-text__title">
-                    COCHE DE BEBÉ + FUNDA - Blanco, 140cm x 100cm{" "}
-                  </p>
-                  <p className="block-text__short-description">
-                    Modelo - Marca
-                  </p>
-                  <select name="" id="" className="block-text__select">
-                    <option value="">Cantidad: 1</option>
-                  </select>
-                </div>
-              </div>
-              <div className="card__block-second">
-                <div className="block-second__block-store-text">
-                  <img
-                    className="block-store-text__img"
-                    src="https://img.freepik.com/vector-gratis/plantilla-logotipo-bebe-detallada_23-2148776913.jpg?size=338&ext=jpg"
-                    alt=""
-                  />
-                  <p className="block-store-text__text">Nombre de la tienda</p>
-                </div>
-                <p className="block-second__block-store-price">S/ XX.XX</p>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card__block-first">
-                <img
-                  src="https://http2.mlstatic.com/D_NQ_NP_835990-MPE44064655755_112020-V.jpg"
-                  alt=""
-                  className="card__img"
-                />
-                <div className="card__block-text">
-                  <p className="block-text__title">
-                    COCHE DE BEBÉ + FUNDA - Blanco, 140cm x 100cm{" "}
-                  </p>
-                  <p className="block-text__short-description">
-                    Modelo - Marca
-                  </p>
-                  <select name="" id="" className="block-text__select">
-                    <option value="">Cantidad: 1</option>
-                  </select>
-                </div>
-              </div>
-              <div className="card__block-second">
-                <div className="block-second__block-store-text">
-                  <img
-                    className="block-store-text__img"
-                    src="https://img.freepik.com/vector-gratis/plantilla-logotipo-bebe-detallada_23-2148776913.jpg?size=338&ext=jpg"
-                    alt=""
-                  />
-                  <p className="block-store-text__text">Nombre de la tienda</p>
-                </div>
-                <p className="block-second__block-store-price">S/ XX.XX</p>
-              </div>
-            </div>
+            {
+              cart.map((product) => (
+                <DetailItemCart {...product} />
+              ) )
+            }
           </div>
           <div className="shopping-cart-block__checkout">
             <section className="discount-coupon__text">
@@ -194,8 +82,15 @@ const shoppingCart = () => {
       </div>
       <style jsx>
         {`
+          .card--shopping-cart__iconDelete {
+                position: absolute;
+                height: 2rem;
+                width: 2rem;
+                right: 0;
+                top: 2rem;
+          }
           .container {
-            padding: 8rem 1rem;
+            padding: 8rem 2rem;
           }
           .container__text {
             font-family: "mont-semibold";
@@ -216,6 +111,7 @@ const shoppingCart = () => {
             color: #5a5a5a;
           }
           .shopping-cart-block {
+            margin: 3rem 0;
             display: flex;
             justify-content: center;
             align-content: center;
@@ -242,7 +138,7 @@ const shoppingCart = () => {
             border-bottom-left-radius: 0px !important;
             border-bottom-right-radius: 0px !important;
             border-bottom: 1px solid rgba(0,0,0,.125)!important;
-            padding:1rem 0rem
+            padding:2.5rem 0rem
           }
           .shopping-cart-block__card > .card:last-child{
             border-bottom: none !important;

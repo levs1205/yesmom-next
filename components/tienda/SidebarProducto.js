@@ -1,10 +1,14 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react'
 import {Container } from "react-bootstrap";
 import { categorysMobile, categorysDesktop } from '../../data/categorys';
 
 
 const SidebarProducto = () => {
+    const { query } = useRouter();
+
+    const { category } = query;
 
     const path = "/tienda/categoria";
 
@@ -33,7 +37,7 @@ return (
                     categorysMobile.map(({id,name} , i) => (
                         <li key={id}>
                             <Link href={`${path}/${id}`}>
-                                <a>
+                                <a className={`${category == id ? "active-link-categoria" : "" }`}>
                                     {name}
                                 </a>
                             </Link>
@@ -44,8 +48,8 @@ return (
                 {
                     categorysDesktop.map(({id,name} , i) => (
                         <li key={id}>
-                            <Link href={`${path}/${id}`}>
-                                <a>
+                            <Link href={`${path}/${id}`} >
+                                <a className={`${category == id ? "active-link-categoria" : "" }`}>
                                     {name}
                                 </a>
                             </Link>
@@ -57,6 +61,9 @@ return (
         </div>
         <style jsx>
             {`  
+                .active-link-categoria{
+                    font-family:"mont-heavy"!important;
+                }
                 .show-desktop{
                     display:none;
                 }

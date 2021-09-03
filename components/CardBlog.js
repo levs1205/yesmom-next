@@ -471,8 +471,8 @@ const CardBlog = ({ blog }) => {
               display: block;
               display: -webkit-box;
               width: 100%;
-              height: 100%;
-              max-height: 8rem;
+              height: auto !important;
+              max-height: 10rem;
               line-height: 1.3;
               -webkit-line-clamp: 2;
               -webkit-box-orient: vertical;
@@ -565,8 +565,8 @@ const CardBlog = ({ blog }) => {
               display: block;
               display: -webkit-box;
               width: 100%;
-              height: 100%;
-              max-height: 4rem;
+              height: auto !important;
+              max-height: 12rem;
               line-height: 1.3;
               -webkit-line-clamp: 2;
               -webkit-box-orient: vertical;

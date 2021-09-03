@@ -9,7 +9,7 @@ import CardProduct from "../../../components/CardProduct";
 import Pagination from '../../../components/Pagination';
 import SidebarProducto from "../../../components/tienda/SidebarProducto";
 import { categorysDesktop, categorysMobile } from "../../../data/categorys"
-import router from "next/router";
+import router, { useRouter } from "next/router";
 import LoaderPage from "../../../components/LoaderPage";
 
 
@@ -47,7 +47,6 @@ export async function getServerSideProps( { query } ){
 
 
 const Categoria = ( { productsFiltered , category } ) => {
-
 
     const allCategories = [...categorysDesktop,...categorysMobile];
     const product= allCategories.find(cat => cat.id.includes(category));
