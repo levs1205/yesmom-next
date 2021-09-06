@@ -20,7 +20,7 @@ const appLayout = ({ children }) => {
       <style jsx global>
         {`
           html {
-            font-size:62.5%;
+            font-size: 62.5%;
             font-family: "mont-heavy";
           }
           body {
@@ -79,8 +79,21 @@ const appLayout = ({ children }) => {
             font-family: "mont-light";
             src: url(/fonts/Mont-Light.otf);
           }
+          
+          @keyframes animateHeart {
+            0% {
+              transform: scale(1);
+            }
+            40% {
+              transform: scale(1.09);
+            }
+            100% {
+              transform: scale(1.1);
+            }
+          }
+
           .main-yesmom {
-            overflow:hidden;
+            overflow: hidden;
             padding-top: 3rem;
           }
           .mt-views {
