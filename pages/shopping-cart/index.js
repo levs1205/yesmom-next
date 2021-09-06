@@ -362,7 +362,6 @@ const shoppingCart = () => {
             font-family: "mont-light";
             font-style: normal;
             font-weight: 300;
-<<<<<<< HEAD
             font-size: 13px; 
             color :#575650;
           }
@@ -373,7 +372,6 @@ const shoppingCart = () => {
             height:1px;
             width:1px;
             overflow:hidden;
-            cursor:pointer;
           }
           .box-terms__text:before{
             content:"";
@@ -381,29 +379,11 @@ const shoppingCart = () => {
             width:22px;
             height:22px;
             border: 2px solid #4B64A4;
-=======
-            font-size: 13px;
-            color: #575650;
-          }
-          .box-terms__checkbox {
-            position: absolute;
-            padding: 0;
-            border: 0;
-            height: 1px;
-            width: 1px;
-            overflow: hidden;
-          }
-          .box-terms__text:before {
-            content: "";
-            display: inline-block;
-            width: 22px;
-            height: 22px;
-            border: 2px solid #4b64a4;
->>>>>>> c13f99417f44468acdf68110ca7dd4ef423a007e
             border-radius: 5px;
             margin-right: 8px;
             line-height: 24px;
             vertical-align: text-top;
+            cursor:pointer;
           }
           .box-terms__checkbox:checked + .box-terms__text:before {
             border: 2px solid #f22c74;

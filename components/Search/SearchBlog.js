@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/dist/client/router";
-import { useForm } from "../../hooks/useForm";
 
 
 const SearchBlog = () => {
@@ -9,13 +8,13 @@ const SearchBlog = () => {
   //si no existe query , string vacio
   const { query : {q=""} } = router;
   
-  //Controlar cambio del input
-  const initialForm = {
-    nameBlog : q,
-  }
-  const [ formValues , handleInputChange ] = useForm(initialForm);
+  //Controlar cambio del input sin hooks
+  const [ nameBlog , setNameBlog] = useState(q);
 
-  const { nameBlog } = formValues;
+  const handleInputChange = (e) => {
+    setNameBlog(e.target.value);
+  }
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
