@@ -1,6 +1,12 @@
 import React from 'react'
+import { useForm } from 'react-hook-form'
 
-const CheckoutStep1 = ({ formValues , handleInputChange  }) => {
+const CheckoutStep1 = ({ register, errors, watch, handleSubmit  }) => {
+
+
+    console.log(watch('email'))
+    console.log(watch('name'))
+
     return (
         <>
             <div className="checkout-block__text">
@@ -12,61 +18,53 @@ const CheckoutStep1 = ({ formValues , handleInputChange  }) => {
                     finalización de la compra.
                 </p>
             </div>
-            <div className="identification-form__wrapper">
-                <label htmlFor="email" className="identification-form__label">
-                  Dirección de correo electrónico:
-                </label>
-                <input
-                  type="text"
-                  className="identification-form__input"
-                  name="email"
-                  id="email"
-                  value={formValues.email}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="identification-form__wrapper">
-                <label htmlFor="name" className="identification-form__label">
-                  Nombre y Apellido:
-                </label>
-                <input
-                  type="text"
-                  className="identification-form__input"
-                  name="name"
-                  id="name"
-                  value={formValues.name}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="identification-form__wrapper">
-                <label
-                  htmlFor="identity"
-                  className="identification-form__label"
-                >
-                  Documento de identidad:
-                </label>
-                <input
-                  type="text"
-                  className="identification-form__input"
-                  name="identity"
-                  id="identity"
-                  value={formValues.identity}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="identification-form__wrapper">
-                <label htmlFor="phone" className="identification-form__label">
-                  Teléfono / Móvil:
-                </label>
-                <input
-                  type="text"
-                  className="identification-form__input"
-                  name="phone"
-                  id="phone"
-                  value={formValues.phone}
-                  onChange={handleInputChange}
-                />
-            </div>
+                <div className="identification-form__wrapper">
+                    <label htmlFor="email" className="identification-form__label">
+                        Dirección de correo electrónico:
+                    </label>
+                    <input
+                        type="text"
+                        className="identification-form__input"
+                        name="email"
+                        id="email"
+                        {...register("email")}
+                        />
+                </div>
+                <div className="identification-form__wrapper">
+                    <label htmlFor="name" className="identification-form__label">
+                        Nombre y Apellido:
+                    </label>
+                    <input
+                        type="text"
+                        className="identification-form__input"
+                        id="name"
+                        name="name"
+                        {...register("name")}
+                    />
+                    <p class="help is-danger">{ errors.name && errors.name.message }</p>
+                </div>
+                <div className="identification-form__wrapper">
+                    <label htmlFor="identity" className="identification-form__label">
+                        Documento de identidad:
+                    </label>
+                    <input
+                        type="text"
+                        className="identification-form__input"
+                        name="identity"
+                        id="identity"
+                        {...register("identity")}/>
+                </div>
+                <div className="identification-form__wrapper">
+                    <label htmlFor="phone" className="identification-form__label">
+                        Teléfono / Móvil:
+                    </label>
+                    <input
+                        type="text"
+                        className="identification-form__input"
+                        name="phone"
+                        id="phone"
+                        {...register("phone")}/>
+                </div>
             <style jsx>
                 {`
                     .container__text {
