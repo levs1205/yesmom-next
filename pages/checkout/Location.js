@@ -7,7 +7,7 @@ import Image from "next/image";
 const Location = () => {
   return (
     <AppLayout>
-      <div className="container-checkout">
+      <div className="fade-in animated container-checkout">
         <div className="container__text">
           <Link href="/shopping-cart">
             <a className="container__text--link">
@@ -145,12 +145,34 @@ const Location = () => {
                   />
                 </div>
                 <div className="checkout-location-form__wrapper">
-                  <p className="checkout-location-form__subtitle-radio">¿Quién recibirá el pedido?</p>
+                  <p className="checkout-location-form__subtitle-radio">
+                    ¿Quién recibirá el pedido?
+                  </p>
                   <div className="checkout-location-form__box-radio">
-                    <input className="checkout-location-form__input-radio" type="radio" id="f-option" name="selector" />
-                    <label className="checkout-location-form__label-radio" for="f-option">Yo</label>
-                    <input className="checkout-location-form__input-radio" type="radio" id="f-option2" name="selector" />
-                    <label className="checkout-location-form__label-radio" for="f-option2">Otra persona</label>
+                    <input
+                      className="checkout-location-form__input-radio"
+                      type="radio"
+                      id="f-option"
+                      name="selector"
+                    />
+                    <label
+                      className="checkout-location-form__label-radio"
+                      for="f-option"
+                    >
+                      Yo
+                    </label>
+                    <input
+                      className="checkout-location-form__input-radio"
+                      type="radio"
+                      id="f-option2"
+                      name="selector"
+                    />
+                    <label
+                      className="checkout-location-form__label-radio"
+                      for="f-option2"
+                    >
+                      Otra persona
+                    </label>
                   </div>
                 </div>
                 <div className="checkout-location-form__wrapper">
@@ -356,7 +378,8 @@ const Location = () => {
             outline: none;
             margin-right: 0.5rem;
           }
-          .checkout-location-form__label, .checkout-location-form__subtitle-radio {
+          .checkout-location-form__label,
+          .checkout-location-form__subtitle-radio {
             font-size: 1.2rem;
             font-family: "mont-light";
             margin-bottom: 0;
@@ -477,40 +500,41 @@ const Location = () => {
             width: 100%;
             padding: 2rem 3rem;
           }
-          .checkout-location-form__box-radio{
-            display:flex;
-            justify-content:left;
-            align-items:center
+          .checkout-location-form__box-radio {
+            display: flex;
+            justify-content: left;
+            align-items: center;
           }
-          .checkout-location-form__input-radio{
-             position:absolute;
-            padding:0;
-            border:0;
-            height:1px;
-            width:1px;
-            overflow:hidden
+          .checkout-location-form__input-radio {
+            position: absolute;
+            padding: 0;
+            border: 0;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
           }
-          .checkout-location-form__label-radio{
-             font-family: "mont-regular";
+          .checkout-location-form__label-radio {
+            font-family: "mont-regular";
             font-size: 1.2rem;
-             padding-right:20px
+            padding-right: 20px;
           }
-          .checkout-location-form__label-radio:before{
-             content:"";
-             display:inline-block;
-             width:18px;
-             height:18px;
-             border-radius:50%;
-            border: 1px solid #556EA1;
+          .checkout-location-form__label-radio:before {
+            content: "";
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1px solid #556ea1;
             box-sizing: border-box;
-            margin-right:5px;
-            line-height:24px;
-            vertical-align:text-top
-           }
-          .checkout-location-form__input-radio:checked+ .checkout-location-form__label-radio:before{
-             border:2px solid #556EA1;
-             background:url('/image/icon/circle_blue.svg') center/10px no-repeat
-           }
+            margin-right: 5px;
+            line-height: 24px;
+            vertical-align: text-top;
+          }
+          .checkout-location-form__input-radio:checked
+            + .checkout-location-form__label-radio:before {
+            border: 2px solid #556ea1;
+            background: url("/image/icon/circle_blue.svg") center/10px no-repeat;
+          }
           @media (min-width: 480px) {
             .container-checkout {
               padding: 9rem 2rem;

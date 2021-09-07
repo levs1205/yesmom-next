@@ -49,7 +49,7 @@ const Ayuda = () => {
                 <meta name="twitter:site" content="@JudithCristinaQ" />
                 <meta name="twitter:creator" content="@JudithCristinaQ" />
             </Head>
-            <div className="box-ayuda">
+            <div className="fade-in animated  box-ayuda">
 
                 <Container fluid="true">
                     <div className="all-content">

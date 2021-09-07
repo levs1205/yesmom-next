@@ -50,7 +50,7 @@ const index = () => {
         <meta name="twitter:site" content="@JudithCristinaQ" />
         <meta name="twitter:creator" content="@JudithCristinaQ" />
       </Head>
-      <div className="box-banner-about">
+      <div className="box-banner-about fade-in animated ">
         <div className="ondas heartbeat">
           <Image
             src="/image/onda-blanca.svg"

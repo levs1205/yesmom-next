@@ -11,7 +11,7 @@ import CardProduct from "../../../components/CardProduct";
 import YesmomContext from "../../../context/Context";
 import { startAddToCart } from "../../../context/actions/ui";
 import OtherProducts from "../../../components/tienda/detalle/OtherProducts";
-
+import Select from "react-select";
 
 export async function getServerSideProps({ query }) {
   const id = query.id;
@@ -26,10 +26,20 @@ export async function getServerSideProps({ query }) {
 }
 
 const DetallesID = ({ product }) => {
-  const { color, decripcion, imagen, nombre, precio, peso, talla, categoria } = product;
+  const {
+    color,
+    decripcion,
+    imagen,
+    nombre,
+    precio,
+    peso,
+    talla,
+    categoria,
+  } = product;
 
-  console.log("color", Object.entries(color));
+  /* console.log("color", Object.entries(color)); */
 
+  const [disabled, setDisabled] = useState(true);
   //Disparador para state UI
   const { dispatchUi } = useContext(YesmomContext);
   const [amount, setAmount] = useState(0);
@@ -48,12 +58,27 @@ const DetallesID = ({ product }) => {
     setAmount(e.target.value);
   };
 
+  useEffect(() => {
+    if (amount === 0) {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  }, [amount, setDisabled]);
   //CART
 
   const handleAddCart = () => {
-    console.log(product);
-    dispatchUi(startAddToCart(product));
+    if (!disabled) {
+      /* console.log(product); */
+      const realProduct = {
+        ...product,
+        quantity: amount,
+      };
+      dispatchUi(startAddToCart(realProduct));
+    }
   };
+
+  console.log("bichota", product.color);
 
   return (
     <>
@@ -97,7 +122,7 @@ const DetallesID = ({ product }) => {
             content="https://yesmom.vercel.app/image/about-header.png"
           />
         </Head>
-        <div>
+        <div className="fade-in animated ">
           <div className="show--box-main-proveedor">
             <div className="show--contenedor-centered">
               <div className="show--all-content">
@@ -119,19 +144,18 @@ const DetallesID = ({ product }) => {
                     </div>
                     <div className="show--container-details">
                       <section className="show--some-info-product">
-                        <h5 className="show--ft-semibold">
-                          {nombre}
-                        </h5>
+                        <h5 className="show--ft-semibold">{nombre}</h5>
                         <h6 className="show--ft-light">{categoria}</h6>
-                        <p className="show--text-description">
-                          {decripcion}
-                        </p>
+                        {/* <p className="show--text-description">{decripcion}</p> */}
                         <p className="show--price">S/ {precio}</p>
                         <div className="show--container-selects">
                           <div className="show--group-select">
                             <label className="show--text-label" htmlFor="talla">
                               Color
                             </label>
+
+                            {/* <Select options={product.color}/> */}
+
                             <select id="color">
                               <option selected disabled>
                                 Selecciona el color
@@ -199,16 +223,17 @@ const DetallesID = ({ product }) => {
                             className="show--btn-normal btn-fix"
                             onClick={handleAddCart}
                           >
-                            <div className="btn-detalle bg-pink" color="gray">
+                            <div
+                              className={`btn-detalle ${
+                                disabled ? "bg-gray" : "bg-pink"
+                              }`}
+                            >
                               Agregar al carrito
                             </div>
                           </div>
                           <div className="show--btn-normal">
                             <Link href="/perfil-tienda">
-                              <div
-                                className="btn-detalle bg-amarillo"
-                                color="gray"
-                              >
+                              <div className="btn-detalle bg-amarillo">
                                 Ver la tienda
                               </div>
                             </Link>
@@ -222,19 +247,9 @@ const DetallesID = ({ product }) => {
                       <h5 className="show--ft-semibold">
                         Detalle del Producto
                       </h5>
-                      <p className="show--text-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        A tortor, diam molestie et rhoncus, amet lacus, velit.
-                        Ac ipsum fames gravida habitant aliquet orci. Imperdiet
-                        egestas morbi egestas posuere diam. Pharetra, sit
-                        volutpat varius sed sit urna euismod. Viverra nunc
-                        turpis nulla at et venenatis vitae, facilisis fringilla.
-                        Quam aliquet et proin nulla lacus aliquet quam
-                      </p>
+                      <p className="show--text-description">{decripcion}</p>
 
-                      <h5 className="show--ft-semibold">
-                        Accesorios
-                      </h5>
+                      <h5 className="show--ft-semibold">Accesorios</h5>
                       <ol>
                         <li>haretra, sit volutpat varius</li>
                         <li>
@@ -346,7 +361,9 @@ const DetallesID = ({ product }) => {
           }
           :global(.carousel .thumb img) {
             vertical-align: top;
-            height: 60px;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
           }
           :global(.carousel .slide img) {
             width: 100%;
@@ -383,6 +400,9 @@ const DetallesID = ({ product }) => {
           }
           .bg-pink {
             background: #ec608d;
+          }
+          .bg-gray {
+            background-color: #dadada !important;
           }
           .bg-amarillo {
             background: #febf41;
@@ -602,6 +622,10 @@ const DetallesID = ({ product }) => {
           .show--other-products {
             margin: 2rem 0;
           }
+          :global(li.thumb) {
+            width: 6rem !important;
+            height: 6rem !important;
+          }
 
           @media (min-width: 480px) {
             .show--contenedor-centered {
@@ -621,11 +645,15 @@ const DetallesID = ({ product }) => {
             :global(.carousel .slide img) {
               max-height: 500px;
             }
+            :global(li.thumb) {
+              width: 9rem !important;
+              height: 9rem !important;
+            }
           }
 
           @media (min-width: 768px) {
             .show--box-main-proveedor {
-              padding-top: 20rem;
+              padding-top: 18rem;
             }
             .hide-desktop {
               display: none;

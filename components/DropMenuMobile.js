@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import ActiveLink from "./ActiveLink";
 
 function DropMenuMobile({ active, setActive, logged }) {
   const [expand, setExpand] = useState(false);

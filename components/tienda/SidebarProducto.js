@@ -6,7 +6,7 @@ import { categorysMobile, categorysDesktop } from '../../data/categorys';
 
 
 const SidebarProducto = () => {
-    const { query } = useRouter();
+    const { query , pathname } = useRouter();
 
     const { category } = query;
 
@@ -21,23 +21,22 @@ return (
             </div>
             <hr />
             <ul>
-                <li>
+                <li className={`${pathname === "/tienda" ? "active-link-categoria" : "" }`}>
                     <Link href="/tienda">
                         <a>Destacados</a>
                     </Link>
                 </li>
-                <li>
+                <li className={`${pathname === "/tienda/categoria/todos" ? "active-link-categoria" : "" }`}>
                     <Link href="/tienda/categoria/todos">
                         <a>Todos</a>
                     </Link>
                 </li>
 
-
                 {
                     categorysMobile.map(({id,name} , i) => (
-                        <li key={id}>
+                        <li key={id} className={`${category == id ? "active-link-categoria" : "" }`}>
                             <Link href={`${path}/${id}`}>
-                                <a className={`${category == id ? "active-link-categoria" : "" }`}>
+                                <a>
                                     {name}
                                 </a>
                             </Link>
@@ -47,9 +46,9 @@ return (
                 <div className="show-desktop">
                 {
                     categorysDesktop.map(({id,name} , i) => (
-                        <li key={id}>
+                        <li key={id} className={`${category == id ? "active-link-categoria" : "" }`}>
                             <Link href={`${path}/${id}`} >
-                                <a className={`${category == id ? "active-link-categoria" : "" }`}>
+                                <a>
                                     {name}
                                 </a>
                             </Link>
@@ -61,9 +60,6 @@ return (
         </div>
         <style jsx>
             {`  
-                .active-link-categoria{
-                    font-family:"mont-heavy"!important;
-                }
                 .show-desktop{
                     display:none;
                 }
@@ -75,7 +71,7 @@ return (
                     font-size: 2rem;
                     font-weight: 700;
                     margin: 3.5rem 0.5rem 0rem;
-                    color: #5A5A5A;
+                    color: #575650;
                     /* border-bottom: 1px solid #5A5A5A; */
                     padding: 0 0 0.5rem 0;
                 }
@@ -93,17 +89,25 @@ return (
                     margin: 0;
                     cursor:pointer;
                 }
-                .side-bar li a , .link-off{
+                .side-bar li a{
                     display: block;
                     color: #5A5A5A;
                     font-weight: 700;
                     padding: 0.8rem 1.6rem;
                     text-decoration: none;
-                    font-family: "mont-regular" !important;
+                    font-family: "mont-regular";
                 }
-                .side-bar li a:hover, .link-off:hover {
+                .side-bar li a:hover{
                     background-color: #555;
                     color: white;
+                }
+                .active-link-categoria a{
+                    font-family:"mont-heavy"!important;
+                    color : #5A5A5A!important;
+                }
+                .active-link-categoria a:hover{
+                    background-color:#FFFFFF!important;
+                    color : #5A5A5A;
                 }
                 @media (min-width:768px){
                     .show-desktop{

@@ -19,14 +19,14 @@ const OtherProducts = ( { category , id}) => {
     
     useEffect(()=>{
         getProducts();
-    },[category])
+    },[id])
 
     return (
         <>
             <div className="other-products-content">
                 {
-                    products.map((el,i)=>(
-                        <CardProduct discount={el.discount} size={4} id={el.id}/>
+                    products.map((product,i)=>(
+                        <CardProduct {...product} size={4}/>
                     ))
                 }
             </div>

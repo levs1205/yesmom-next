@@ -87,7 +87,9 @@ const HeaderNuevo = () => {
             <Link href="/tienda" prefetch>
               <div>
                 {cart.length > 0 && (
-                  <div className="box-number-cart ">{cart.length}</div>
+                  <div className="box-number-cart ">
+                    <p className="box-number-cart__text">{cart.length}</p>
+                  </div>
                 )}
 
                 <a className="mr-2 logo-yesmom">
@@ -168,28 +170,29 @@ const HeaderNuevo = () => {
                   <h6 className="text-navbar">Ayuda</h6>
                 </a>
               </ActiveLink>
-              <ActiveLink href="/shopping-cart" activeClassName="active">
-                <a className="item-menu-yesmom-cart">
-                  <div className="container-cart-submenu">
+              <>
+                <div className="container-cart-submenu">
+                  <div className="item-menu-yesmom-cart">
                     {cart.length > 0 && (
                       <div className="box-number-cart slide-in-blurred-bottom">
-                        {cart.length}
+                        <p className="box-number-cart__text">{cart.length}</p>
                       </div>
                     )}
                     <div className="dropdown-content scale-up-tr ">
                       <PopupCart />
                       {/* {isVisibleSubMenu && <PopupCart />} */}
                     </div>
+
+                    <Image
+                      src="/image/header/cesta.svg"
+                      alt="logo blog yesmom "
+                      width={25}
+                      height={25}
+                    />
+                    <h6 className="text-navbar">Carrito</h6>
                   </div>
-                  <Image
-                    src="/image/header/cesta.svg"
-                    alt="logo blog yesmom "
-                    width={25}
-                    height={25}
-                  />
-                  <h6 className="text-navbar">Carrito</h6>
-                </a>
-              </ActiveLink>
+                </div>
+              </>
             </div>
           </div>
         </nav>
@@ -280,11 +283,7 @@ const HeaderNuevo = () => {
             justify-content: flex-start;
             cursor: pointer;
           }
-
-          .logo-yesmom:hover {
-            transform: scale(1.1);
-            animation: animateHeart 0.3s linear forwards !important;
-          }
+        
           @keyframes animateHeart {
             0% {
               transform: scale(1);
@@ -296,15 +295,19 @@ const HeaderNuevo = () => {
               transform: scale(1.1);
             }
           }
+          .logo-yesmom:hover {
+            transform: scale(1.1);
+            animation: animateHeart 0.3s linear forwards !important;
+          }
 
           .item-menu-yesmom:hover {
             text-decoration: none !important;
-            transform: scale(1.1);
+            transform: scale(1.05);
             animation: animateHeart 0.3s linear forwards !important;
           }
           .item-menu-yesmom-cart:hover {
             text-decoration: none !important;
-            transform: scale(1.1);
+            transform: scale(1.05);
             animation: animateHeart 0.3s linear forwards !important;
           }
           .item-menu-yesmom-cart .text-navbar:hover ~ .hover-active {
@@ -343,7 +346,7 @@ const HeaderNuevo = () => {
             font-family: "mont-semibold";
             font-size: 1.2rem;
             top: -0.8rem;
-            right: -1.8rem;
+            right: 0.2rem;
             z-index: 999;
             cursor: pointer;
             box-shadow: 1px 1px 1px #999;
@@ -353,6 +356,11 @@ const HeaderNuevo = () => {
               both;
           }
 
+          .box-number-cart__text {
+            position: absolute;
+            top: 15%;
+            margin: 0;
+          }
           .puff-in-center {
             -webkit-animation: puff-in-center 0.7s
               cubic-bezier(0.47, 0, 0.745, 0.715) both;
@@ -435,13 +443,16 @@ const HeaderNuevo = () => {
               margin-left: 0.5rem;
             }
             .box-number-cart {
-            width: 2.2rem;
-            height: 2.2rem;
-            font-size: 1.2rem;
-            top: 0.5rem;
-            right: 1.5rem;
-          }
-
+              width: 2.2rem;
+              height: 2.2rem;
+              font-size: 1.2rem;
+              top: 0.75rem;
+              right: 1.5rem;
+            }
+            .box-number-cart__text {
+              position: absolute;
+              top: 20%;
+            }
           }
         `}
       </style>

@@ -4,7 +4,7 @@ import { Card } from "react-bootstrap";
 
 
 
-function CardProduct({ discount, size , id , nombre }) {
+function CardProduct({ discount, size , id , nombre , precio}) {
 
   return (
     <>
@@ -32,7 +32,7 @@ function CardProduct({ discount, size , id , nombre }) {
                   </p>
                   <div className={`text-price ${discount && "discount"}`}>
                     <p className={`${discount ? "price-now" : "price"}`}>
-                      S/ XX.XX
+                      S/ {precio}
                     </p>
                   </div>
                 </div>

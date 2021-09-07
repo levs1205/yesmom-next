@@ -15,7 +15,7 @@ import CardProduct from "../components/CardProduct";
 import axios from "axios";
 // import fetch from 'isomorphic-fetch'
 
-const Home = ({ currentData }) => {
+const Home = ({ currentData , products}) => {
   console.log(currentData, "holis");
   // const [currentData, setCurrentData] = useState([]);
   // useEffect(() => {
@@ -368,10 +368,15 @@ const Home = ({ currentData }) => {
           <Container fluid="true">
             <Col>
               <div className="all-products">
-                <CardProduct size="4" />
-                <CardProduct discount size="4" />
-                <CardProduct discount size="4" />
-                <CardProduct size="4" />
+                {
+                  products.slice(0,4).map((product,i)=>(
+                    <CardProduct 
+                      key={i}
+                      {...product}
+                      size="4"
+                    />
+                  ))
+                }
               </div>
             </Col>
             <Link href="/tienda">
@@ -1282,10 +1287,13 @@ export async function getServerSideProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=2`;
-  console.log("**********", url);
+  
 
   const res = await fetch(url);
   const currentData = await res.json();
+
+  const response = await fetch(`http://localhost:3003/api/product/product`);
+  const products = await response.json();
 
   if (!currentData) {
     return {
@@ -1297,6 +1305,7 @@ export async function getServerSideProps() {
   return {
     props: {
       currentData,
+      products
     },
   };
 }

@@ -1,29 +1,51 @@
 import React, { useContext } from "react";
 import YesmomContext from "../../../context/Context";
+import { getTotalPrice } from "../../../helpers/getTotalPrice";
 import DetailProduct from "./DetailProduct";
 
 const PopupCart = () => {
-
   const { ui } = useContext(YesmomContext);
   //Items del carrito
-  const { cart=[] } = ui;
+  const { cart = [] } = ui;
 
+  //Limitar a 3
+  let cartRecorted = [];
+
+  if (cart.length > 3) {
+    cartRecorted = cart.slice(0, 3);
+  } else {
+    cartRecorted = cart;
+  }
+
+
+  const totalPrice = getTotalPrice(cart);
 
   return (
     <>
       <div className="box-cart">
-        <p className="popup--title">Tu carrito - 4 productos</p>
-        {
-          cart?.map(( productCart , i ) => (
-            <DetailProduct key={i}/>
-          ))
-        }
-        <p className="popup--plus">+ 1 articulo más</p>
-        <div className="popup--total-price">
-          <p className="popup--total-price__letter">Total estimado</p>
-          <p className="popup--total-price__number">S/ XX.XX</p>
-        </div>
-        <button className="btn-cart">Ver carrito</button>
+        {cart.length === 0 ? (
+          <p className="popup--title">No tienes nada en el carrito</p>
+        ) : (
+          <p className="popup--title">Tu carrito - {cart.length} productos</p>
+        )}
+
+        {cartRecorted.map((productCart, i) => (
+          <DetailProduct key={i} {...productCart} />
+        ))}
+        {cart.length > 3 && (
+          <p className="popup--plus">
+            + {cart.length - cartRecorted.length} articulo más
+          </p>
+        )}
+        {cart.length > 0 && (
+          <>
+            <div className="popup--total-price">
+              <p className="popup--total-price__letter">Total estimado</p>
+              <p className="popup--total-price__number">S/ {totalPrice}</p>
+            </div>
+            <button className="btn-cart">Ver carrito</button>
+          </>
+        )}
       </div>
       <style jsx>
         {`
@@ -35,6 +57,7 @@ const PopupCart = () => {
             width: 360px;
             top: 80px;
             padding: 25px;
+            cursor:default
           }
           .popup--title {
             font-family: "mont-semibold";
@@ -68,7 +91,7 @@ const PopupCart = () => {
             font-family: "mont-semibold";
             font-style: normal;
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             line-height: 1.2rem;
             color: #5a5a5a;
           }
@@ -98,7 +121,14 @@ const PopupCart = () => {
             justify-content: center;
             align-items: center;
             border: 1px solid #ec608d;
-            cursor: pointer;
+            cursor: pointer!important;
+          }
+               
+      
+          .btn-cart:hover{
+            transform: scale(1.05);
+            animation: animateHeart 0.3s linear forwards !important;
+            font-weight: 700;
           }
           .card--shopping-cart__iconDelete {
             position: absolute;
@@ -109,7 +139,6 @@ const PopupCart = () => {
             left: -8px;
             top: -8px;
           }
-          
         `}
       </style>
     </>

@@ -7,7 +7,7 @@ import SidebarAyuda from "../../../../../components/Ayuda/SidebarAyuda";
 
 const Ayuda = () => {
     return (
-        <AppLayout>
+        <AppLayout >
             <Head>
                 <title>YesMom - Ayuda</title>
                 <meta name="description" content="YesMom es ..."></meta>
@@ -49,7 +49,7 @@ const Ayuda = () => {
                 <meta name="twitter:site" content="@JudithCristinaQ" />
                 <meta name="twitter:creator" content="@JudithCristinaQ" />
             </Head>
-            <div className="box-ayuda">
+            <div className="fade-in animated box-ayuda ">
 
                 <Container fluid="true">
                     <div className="all-content">
