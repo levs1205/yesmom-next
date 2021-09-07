@@ -17,7 +17,6 @@ const PopupCart = () => {
     cartRecorted = cart;
   }
 
-
   const totalPrice = getTotalPrice(cart);
 
   return (
@@ -43,7 +42,9 @@ const PopupCart = () => {
               <p className="popup--total-price__letter">Total estimado</p>
               <p className="popup--total-price__number">S/ {totalPrice}</p>
             </div>
-            <button className="btn-cart">Ver carrito</button>
+            <a href="/shopping-cart">
+              <div className="btn-cart">Ver carrito</div>
+            </a>
           </>
         )}
       </div>
@@ -57,7 +58,7 @@ const PopupCart = () => {
             width: 360px;
             top: 80px;
             padding: 25px;
-            cursor:default
+            cursor: default;
           }
           .popup--title {
             font-family: "mont-semibold";
@@ -121,11 +122,10 @@ const PopupCart = () => {
             justify-content: center;
             align-items: center;
             border: 1px solid #ec608d;
-            cursor: pointer!important;
+            cursor: pointer !important;
           }
-               
-      
-          .btn-cart:hover{
+
+          .btn-cart:hover {
             transform: scale(1.05);
             animation: animateHeart 0.3s linear forwards !important;
             font-weight: 700;

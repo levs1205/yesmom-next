@@ -5,27 +5,51 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Stepper from "../../components/Stepper";
-import { useForm } from "../../hooks/useForm";
+// import { useForm } from "../../hooks/useForm";
 import CheckoutStep1 from "./CheckoutStep1";
 import CheckoutStep3 from "./CheckoutStep3";
 import CheckoutStep2 from "./CheckoutStep2";
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
+const schema = yup.object().shape({
+  name: yup.string().required(),
+  email: yup.string().email(),
+  identity: yup.number().integer().required().min(8, 'Ingrese los 8 digitos de su DNI'),
+  phone: yup.string().matches(phoneRegExp, 'El número de celular no es válido')
+});
+
+
 
 const Checkout = () => {
   const [selected, setSelected] = useState(0);
   const [idPreference , setIdPreference] = useState(null);
 
-  const initialForm = {
-    email: "",
-    name: "",
-    identity: "",
-    phone: "",
-  };
+  const { register, handleSubmit, formState:{ errors }, watch  } = useForm({
+    resolver: yupResolver(schema)
+  })
 
-  const [formValues, handleInputChange] = useForm(initialForm);
+  // const initialForm = {
+  //   email: "",
+  //   name: "",
+  //   identity: "",
+  //   phone: "",
+  // };
 
-  const { email, name, identity, phone } = formValues;
+  // const [formValues, handleInputChange] = useForm(initialForm);
 
-  const handleSubmit = async() => {
+  // const { email, name, identity, phone } = formValues;
+  console.log('errors',errors)
+
+const submitTest = (data) => {
+  console.log('dentro submit test')
+  console.log(data)
+}
+
+  const submitForm = async() => {
 
     const data = {
       "quantity" : 50,
@@ -45,11 +69,15 @@ const Checkout = () => {
     setIdPreference(id);
     console.log(id);
   };
+
   const handleStep = () => {
     if (selected != 2) {
-      setSelected((step) => step + 1);
+      handleSubmit(submitTest);
+      console.log('errors handle step', errors)
+      console.log('entro')
+      // setSelected((step) => step + 1);
     } else {
-      handleSubmit();
+      submitForm();
     }
   };
 
@@ -197,31 +225,37 @@ const Checkout = () => {
             </section>
           </div>
           <div className="checkout-block__card">
-            <form action="" className="identification-form">
+            <form action="" className="identification-form" onSubmit={handleSubmit(submitTest)}>
                 {
                     selected === 0 && 
                     <CheckoutStep1 
-                        formValues={formValues} 
-                        handleInputChange={handleInputChange}
+                        register={register}
+                        handleSubmit={handleSubmit}
+                        watch={watch}
+                        errors={errors}
+                        // formValues={formValues}
+                        // handleInputChange={handleInputChange}
                     /> 
                 }
                 {
                     selected === 1 && 
                     <CheckoutStep2
-                        formValues={formValues} 
-                        handleInputChange={handleInputChange}
+                        register={register}
+                        // formValues={formValues} 
+                        // handleInputChange={handleInputChange}
                         setSelected={setSelected}
                     /> 
                 }
                 {
                     selected === 2 && 
                     <CheckoutStep3
-                        formValues={formValues} 
-                        handleInputChange={handleInputChange}
+                        register={register}
+                        // formValues={formValues} 
+                        // handleInputChange={handleInputChange}
                         setSelected={setSelected}
                     /> 
                 }
-              <div className="only-button-submit" onClick={handleStep}>
+              <div className="only-button-submit" onClick={handleSubmit(submitTest)}>
                 {selected === 2 ? (
                   <div className="btn-checkout btn-pink">Comprar</div>
                 ) : (
