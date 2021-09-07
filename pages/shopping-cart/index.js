@@ -369,7 +369,6 @@ const shoppingCart = () => {
             font-family: "mont-light";
             font-style: normal;
             font-weight: 300;
-            <<<<<<<head<<<<<<<HEAD
             font-size: 13px;
             color: #575650;
           }
@@ -388,7 +387,7 @@ const shoppingCart = () => {
             width: 22px;
             height: 22px;
             border: 2px solid #4b64a4;
-            =======font-size: 13px;
+           font-size: 13px;
             color: #575650;
           }
           .box-terms__checkbox {
@@ -405,7 +404,7 @@ const shoppingCart = () => {
             width: 22px;
             height: 22px;
             border: 2px solid #4b64a4;
-            >>>>>>>c13f99417f44468acdf68110ca7dd4ef423a007e=======font-size: 13px;
+            font-size: 13px;
             color: #575650;
           }
           .box-terms__checkbox {
@@ -422,7 +421,7 @@ const shoppingCart = () => {
             width: 22px;
             height: 22px;
             border: 2px solid #4b64a4;
-            >>>>>>>0f52234dffeb687a7e09bf7099b0062e32f67b18border-radius: 5px;
+           border-radius: 5px;
             margin-right: 8px;
             line-height: 24px;
             vertical-align: text-top;
