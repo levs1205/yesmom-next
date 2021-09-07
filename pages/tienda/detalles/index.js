@@ -68,7 +68,7 @@ const Detalles = () => {
             content="https://yesmom.vercel.app/image/about-header.png"
           />
         </Head>
-        <div>
+        <div className="fade-in animated ">
           <div className="show--box-main-proveedor">
             <div className="show--contenedor-centered">
               <div className="show--all-content">

@@ -1,6 +1,6 @@
-import Head from 'next/head';
+import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import React, { useContext, useEffect, useRef, useState } from "react";
 
 import AppLayout from "../../components/AppLayout";
@@ -9,27 +9,27 @@ import YesmomContext from "../../context/Context";
 import { getTotalPrice } from "../../helpers/getTotalPrice";
 
 const shoppingCart = () => {
-
   const router = useRouter();
-  const { ui : { cart=[]} } = useContext(YesmomContext);
-  const [ accept , setAccept ] = useState(false);
+  const {
+    ui: { cart = [] },
+  } = useContext(YesmomContext);
+  const [accept, setAccept] = useState(false);
 
   const totalPrice = getTotalPrice(cart);
-  const subTotal = (totalPrice/1.18).toFixed(2);
-  const igv = (totalPrice-subTotal).toFixed(2);
+  const subTotal = (totalPrice / 1.18).toFixed(2);
+  const igv = (totalPrice - subTotal).toFixed(2);
 
   console.log(totalPrice);
 
   const handleAccept = () => {
-    setAccept(accept => !accept);
-  }
+    setAccept((accept) => !accept);
+  };
 
   const handleStartCheckout = () => {
-    if(accept){
-      router.push('/checkout')
+    if (accept) {
+      router.push("/checkout");
     }
-  }
-
+  };
 
   return (
     <AppLayout>
@@ -72,7 +72,7 @@ const shoppingCart = () => {
           content="https://yesmom.vercel.app/image/about-header.png"
         />
       </Head>
-      <div className="container">
+      <div className="container fade-in animated ">
         <p className="container__text">Carrito de compras</p>
         {cart.length === 0 ? (
           <p className="container__text-items">No tienes nada en el carrito</p>
@@ -91,7 +91,7 @@ const shoppingCart = () => {
                   />
                 ))}
               </div>
-              
+
               <div className="shopping-cart-block__checkout">
                 {/* <section className="discount-coupon__text">
                   <p className="discount-coupon__text">
@@ -116,12 +116,20 @@ const shoppingCart = () => {
                   <table className=" price-table__table">
                     <tbody className="price-table__tbody">
                       <tr className="price-table__tbody--fount-padding ">
-                        <td className="price-table__tbody--text-align-left">Subtotal</td>
-                        <td className="price-table__tbody--text-align-right">S/ {subTotal}</td>
+                        <td className="price-table__tbody--text-align-left">
+                          Subtotal
+                        </td>
+                        <td className="price-table__tbody--text-align-right">
+                          S/ {subTotal}
+                        </td>
                       </tr>
                       <tr className="price-table__tbody--fount-padding">
-                        <td className="price-table__tbody--text-align-left">IGV</td>
-                        <td className="price-table__tbody--text-align-right">S/ {igv}</td>
+                        <td className="price-table__tbody--text-align-left">
+                          IGV
+                        </td>
+                        <td className="price-table__tbody--text-align-right">
+                          S/ {igv}
+                        </td>
                       </tr>
                       <tr className="price-table__tbody--fount-bold-padding price-table__tbody--border-top">
                         <td className="price-table__tbody--text-align-left">
@@ -135,27 +143,27 @@ const shoppingCart = () => {
                   </table>
                 </section>
                 <section className="box-terms">
-                  <input 
-                    type="checkbox" 
-                    id="term" 
-                    name="term" 
-                    className="box-terms__checkbox" 
-                    onChange={ handleAccept} 
-                    value = { accept }
+                  <input
+                    type="checkbox"
+                    id="term"
+                    name="term"
+                    className="box-terms__checkbox"
+                    onChange={handleAccept}
+                    value={accept}
                   />
-                  <label for="term" className="box-terms__text">
-                  </label>
-                  <p className="box-terms__text-style">He leído y acepto los nuevos Términos y Condiciones de compra
-                    del sitio. Acepto también la Política de Privacidad y Seguridad
-                    y la Política de Cookies.</p>
+                  <label for="term" className="box-terms__text"></label>
+                  <p className="box-terms__text-style">
+                    He leído y acepto los nuevos Términos y Condiciones de
+                    compra del sitio. Acepto también la Política de Privacidad y
+                    Seguridad y la Política de Cookies.
+                  </p>
                 </section>
-                    <button 
-                      className={`buy-button ${!accept ? "bg-gray" : ""}`} 
-                      onClick={ handleStartCheckout }
-                      
-                    >
-                      Comprar
-                    </button>
+                <button
+                  className={`buy-button ${!accept ? "bg-gray" : ""}`}
+                  onClick={handleStartCheckout}
+                >
+                  Comprar
+                </button>
                 <p className="restriction-text">
                   *Pueden aplicarse restricciones. No todos los productos son
                   elegibles. Pueden aplicarse recargas por manejo y ubicaciónes
@@ -167,10 +175,9 @@ const shoppingCart = () => {
       </div>
       <style jsx>
         {`
-
-          .bg-gray{
-            background-color : #DADADA!important;
-            border: 1px solid #DADADA!important;
+          .bg-gray {
+            background-color: #dadada !important;
+            border: 1px solid #dadada !important;
           }
           .card--shopping-cart__iconDelete {
             position: absolute;
@@ -362,28 +369,64 @@ const shoppingCart = () => {
             font-family: "mont-light";
             font-style: normal;
             font-weight: 300;
-            font-size: 13px; 
-            color :#575650;
+            <<<<<<<head<<<<<<<HEAD
+            font-size: 13px;
+            color: #575650;
           }
-          .box-terms__checkbox{
-            position:absolute;
-            padding:0;
-            border:0;
-            height:1px;
-            width:1px;
-            overflow:hidden;
+          .box-terms__checkbox {
+            position: absolute;
+            padding: 0;
+            border: 0;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+            cursor: pointer;
           }
-          .box-terms__text:before{
-            content:"";
-            display:inline-block;
-            width:22px;
-            height:22px;
-            border: 2px solid #4B64A4;
-            border-radius: 5px;
+          .box-terms__text:before {
+            content: "";
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            border: 2px solid #4b64a4;
+            =======font-size: 13px;
+            color: #575650;
+          }
+          .box-terms__checkbox {
+            position: absolute;
+            padding: 0;
+            border: 0;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+          }
+          .box-terms__text:before {
+            content: "";
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            border: 2px solid #4b64a4;
+            >>>>>>>c13f99417f44468acdf68110ca7dd4ef423a007e=======font-size: 13px;
+            color: #575650;
+          }
+          .box-terms__checkbox {
+            position: absolute;
+            padding: 0;
+            border: 0;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+          }
+          .box-terms__text:before {
+            content: "";
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            border: 2px solid #4b64a4;
+            >>>>>>>0f52234dffeb687a7e09bf7099b0062e32f67b18border-radius: 5px;
             margin-right: 8px;
             line-height: 24px;
             vertical-align: text-top;
-            cursor:pointer;
+            cursor: pointer;
           }
           .box-terms__checkbox:checked + .box-terms__text:before {
             border: 2px solid #f22c74;

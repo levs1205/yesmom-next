@@ -170,9 +170,9 @@ const HeaderNuevo = () => {
                   <h6 className="text-navbar">Ayuda</h6>
                 </a>
               </ActiveLink>
-              <ActiveLink href="/shopping-cart" activeClassName="active">
+              <>
                 <div className="container-cart-submenu">
-                  <a className="item-menu-yesmom-cart">
+                  <div className="item-menu-yesmom-cart">
                     {cart.length > 0 && (
                       <div className="box-number-cart slide-in-blurred-bottom">
                         <p className="box-number-cart__text">{cart.length}</p>
@@ -190,9 +190,9 @@ const HeaderNuevo = () => {
                       height={25}
                     />
                     <h6 className="text-navbar">Carrito</h6>
-                  </a>
+                  </div>
                 </div>
-              </ActiveLink>
+              </>
             </div>
           </div>
         </nav>
