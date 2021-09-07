@@ -1,6 +1,11 @@
 import React from "react";
+import { useForm } from 'react-hook-form'
 
-const CheckoutStep1 = ({ formValues, handleInputChange }) => {
+const CheckoutStep1 = ({ register, errors, watch, handleSubmit }) => {
+
+    console.log(watch('email'))
+    console.log(watch('name'))
+
   return (
     <>
       <div className="fade-in animated  checkout-block__text">
@@ -21,8 +26,7 @@ const CheckoutStep1 = ({ formValues, handleInputChange }) => {
           className="identification-form__input"
           name="email"
           id="email"
-          value={formValues.email}
-          onChange={handleInputChange}
+          {...register("email")}
         />
       </div>
       <div className="identification-form__wrapper">
@@ -34,8 +38,7 @@ const CheckoutStep1 = ({ formValues, handleInputChange }) => {
           className="identification-form__input"
           name="name"
           id="name"
-          value={formValues.name}
-          onChange={handleInputChange}
+          {...register("name")}
         />
       </div>
       <div className="identification-form__wrapper">
@@ -47,8 +50,7 @@ const CheckoutStep1 = ({ formValues, handleInputChange }) => {
           className="identification-form__input"
           name="identity"
           id="identity"
-          value={formValues.identity}
-          onChange={handleInputChange}
+          {...register("identity")}
         />
       </div>
       <div className="identification-form__wrapper">
@@ -60,8 +62,7 @@ const CheckoutStep1 = ({ formValues, handleInputChange }) => {
           className="identification-form__input"
           name="phone"
           id="phone"
-          value={formValues.phone}
-          onChange={handleInputChange}
+          {...register("phone")}
         />
       </div>
       <style jsx>
