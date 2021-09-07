@@ -128,7 +128,7 @@ const Checkout = () => {
           content="https://yesmom.vercel.app/image/about-header.png"
         />
       </Head>
-      <div className="container-checkout">
+      <div className="fade-in animated container-checkout">
         <div className="container__text">
           <Link href="/shopping-cart">
             <a className="container__text--link">

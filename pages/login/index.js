@@ -1,6 +1,6 @@
 import AppLayout from "../../components/AppLayout";
 
-import Head from 'next/head';
+import Head from "next/head";
 import Link from "next/link";
 import { useForm } from "../../hooks/useForm";
 import axios from "axios";
@@ -11,197 +11,200 @@ import { useRouter } from "next/router";
 import { isValidLogin } from "../../helpers/isValidLogin";
 import Swal from "sweetalert2";
 
-
-
 const index = () => {
+  const router = useRouter();
+  const refPassword = useRef();
+  const initialForm = {
+    email: "",
+    password: "",
+  };
+  const [formValues, handleInputChange] = useForm(initialForm);
 
-    const router = useRouter();
-    const refPassword = useRef();
-    const initialForm = {
-        email: '',
-        password: '',
-    };
-    const [ formValues, handleInputChange ] = useForm( initialForm );
+  const { email, password } = formValues;
 
-    const { email , password } = formValues;
+  const { dispatchAuth } = useContext(YesmomContext);
 
-    const { dispatchAuth } = useContext(YesmomContext);
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const error = isValidLogin(formValues);
-        console.log(error);
-        if(error.trim().length!==0){
-            Swal.fire('Error',error,"error");
-            return ;
-        }
-
-        try{
-            const { data } = await axios({
-                method: 'POST',
-                url: `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_TEST_LOGIN}/autenticar?email=1`,
-                data : formValues
-            });
-            if (data?.MensajeRespuesta === "REQUEST INVÁLIDO"){
-                alert("No existe usuario con esos accesos");
-            }
-            if(data?.mensaje === "Autenticación Correcta"){
-                router.push("/");
-                dispatchAuth( startLogin(data) );
-            }
-
-        }catch(e){
-            console.log(e.message);
-        }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const error = isValidLogin(formValues);
+    console.log(error);
+    if (error.trim().length !== 0) {
+      Swal.fire("Error", error, "error");
+      return;
     }
 
-    const handleRef = () => {
-        const type = refPassword.current.type;
-        type==="password" ? refPassword.current.type="text" : refPassword.current.type="password" 
+    try {
+      const { data } = await axios({
+        method: "POST",
+        url: `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_TEST_LOGIN}/autenticar?email=1`,
+        data: formValues,
+      });
+      if (data?.MensajeRespuesta === "REQUEST INVÁLIDO") {
+        alert("No existe usuario con esos accesos");
+      }
+      if (data?.mensaje === "Autenticación Correcta") {
+        router.push("/");
+        dispatchAuth(startLogin(data));
+      }
+    } catch (e) {
+      console.log(e.message);
     }
-    
+  };
 
-    return (
-        <AppLayout>
-            <Head>
-                <title>YesMom - Login</title>
-                <meta name="description" content="YesMom es ..."></meta>
-                <meta property="og:type" content="website" />
-                <meta property="og:title" content="YesMom - Login" />
-                <meta
-                property="og:description"
-                content="Yes Mom es una plataforma digital peruana que ayuda a las
+  const handleRef = () => {
+    const type = refPassword.current.type;
+    type === "password"
+      ? (refPassword.current.type = "text")
+      : (refPassword.current.type = "password");
+  };
+
+  return (
+    <AppLayout>
+      <Head>
+        <title>YesMom - Login</title>
+        <meta name="description" content="YesMom es ..."></meta>
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="YesMom - Login" />
+        <meta
+          property="og:description"
+          content="Yes Mom es una plataforma digital peruana que ayuda a las
                         mamis a disfrutar su maternidad sin preocupaciones. Queremos
                         ser la marca aliada que todos los papás estuvieron buscando,
                         una página web que reúne en un solo lugar todo lo que
                         necesitan para la llegada de su bebé y acompañar su
                         crecimiento."
-                />
-                <meta
-                property="og:image"
-                itemprop="image"
-                content="https://yesmom.vercel.app/image/about-header.png"
-                />
-                <meta property="og:image:width" content="1280" />
-                <meta property="og:image:height" content="855" />
-                <meta property="og:site_name" content="Yes Mom" />
-                {/* <meta property="og:url" content={`${user.id}`} />  */}
-                <meta name="twitter:card" content="summary" />
-                <meta name="twitter:title" content="YesMom - Login" />
-                <meta
-                name="twitter:description"
-                content="Yes Mom es una plataforma digital peruana que ayuda a las
+        />
+        <meta
+          property="og:image"
+          itemprop="image"
+          content="https://yesmom.vercel.app/image/about-header.png"
+        />
+        <meta property="og:image:width" content="1280" />
+        <meta property="og:image:height" content="855" />
+        <meta property="og:site_name" content="Yes Mom" />
+        {/* <meta property="og:url" content={`${user.id}`} />  */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="YesMom - Login" />
+        <meta
+          name="twitter:description"
+          content="Yes Mom es una plataforma digital peruana que ayuda a las
                         mamis a disfrutar su maternidad sin preocupaciones. Queremos
                         ser la marca aliada que todos los papás estuvieron buscando,
                         una página web que reúne en un solo lugar todo lo que
                         necesitan para la llegada de su bebé y acompañar su
                         crecimiento."
-                />
-                <meta
-                name="twitter:image"
-                content="https://yesmom.vercel.app/image/about-header.png"
-                />
-            </Head>
-            <div className="contenedor">
-                <div className="container-contenido">
-                    <div className="all-content">
-                        <div className="center">
-                            <img src="/image/login/icon-user.svg" alt="user yesmom" />
-                            <p className="iniciar-sesion">Iniciar Sesión</p>
-                            <p className="bienvenido">¡Hola, Bienvenid@ a Yes Mom!</p>
-                        </div>
-                        <div className="container-center">
-                            <div className="container-form">
-                                    <form
-                                        /* onSubmit={ handleSubmit } */
-                                        noValidate={true}
-                                        onSubmit={ handleSubmit }
-                                    >
-                                        {/* <input type="submit" /> */}
-                                        <div className="wrapper-input">
-                                            <label htmlFor="email" >Dirección de correo electrónico o numero de teléfono:</label>
-                                            <input 
-                                                type="text" 
-                                                id="email" 
-                                                name="email"
-                                                value={email}
-                                                onChange={handleInputChange}
-                                            />
-                                        </div>
-
-                                        <div className="wrapper-input">
-                                            <label htmlFor="password">Contraseña:</label>
-                                            <input 
-                                                type="password" 
-                                                id="password" 
-                                                name="password"
-                                                ref={ refPassword}
-                                                value={password}
-                                                onChange={handleInputChange}
-                                            />
-                                            <div className="eye-icon" onClick= { handleRef }>
-                                                <img src="/image/login/eye-login.svg" />
-                                            </div>
-                                        </div>
-
-                                        <div className="wrapper-checkbox">
-                                            <div className="container-checkbox">
-                                                <input type="checkbox" id="checkbox"/>
-                                                <label htmlFor="checkbox">Recuerdame</label>
-                                            </div>
-                                            <Link href="recuperar-password">
-                                                <p className="forgot-password">¿Olvidaste tu contraseña?</p>
-                                            </Link> 
-                                        </div>
-
-                                        <input type="submit" style={{display:"none"}} />
-                                        <div 
-                                            className="boton-normal pink"
-                                            onClick ={ handleSubmit }
-                                        >
-                                            <p>Ingresar</p>
-                                        </div>
-
-                                        <div className="container-line">
-                                            <hr />
-                                            <p>O</p>
-                                            <hr />
-                                        </div>
-
-                                        <div className="boton-icon facebook">
-                                            <div className="icon">
-                                                <img src="/image/login/facebook-login.svg" alt="fb login" />
-                                            </div>
-                                            <p>Ingresar con Facebook</p>
-                                        </div>
-
-                                        <div className="boton-icon google">
-                                            <div className="icon">
-                                                <img src="/image/login/google-login.svg" alt="google login" />
-                                            </div>
-                                            <p>Ingresar con Google</p>
-
-                                        </div>
-                                    </form>
-                                </div>
-                                <div className="wrapper-end">
-                                    <div className="container-line">
-                                        <hr />
-                                        <p>¿Eres nuevo en Yes mom?</p>
-                                        <hr />
-                                    </div>
-                                    <Link href="/registro">
-                                        <div className="boton-normal yellow">
-                                            <p>Crear cuenta</p>
-                                        </div>
-                                    </Link>
-                                </div>
-                        </div>
-                    </div>
-                </div>
+        />
+        <meta
+          name="twitter:image"
+          content="https://yesmom.vercel.app/image/about-header.png"
+        />
+      </Head>
+      <div className="contenedor fade-in animated ">
+        <div className="container-contenido">
+          <div className="all-content">
+            <div className="center">
+              <img src="/image/login/icon-user.svg" alt="user yesmom" />
+              <p className="iniciar-sesion">Iniciar Sesión</p>
+              <p className="bienvenido">¡Hola, Bienvenid@ a Yes Mom!</p>
             </div>
-            <style jsx>
-                {`
+            <div className="container-center">
+              <div className="container-form">
+                <form
+                  /* onSubmit={ handleSubmit } */
+                  noValidate={true}
+                  onSubmit={handleSubmit}
+                >
+                  {/* <input type="submit" /> */}
+                  <div className="wrapper-input">
+                    <label htmlFor="email">
+                      Dirección de correo electrónico o numero de teléfono:
+                    </label>
+                    <input
+                      type="text"
+                      id="email"
+                      name="email"
+                      value={email}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="wrapper-input">
+                    <label htmlFor="password">Contraseña:</label>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      ref={refPassword}
+                      value={password}
+                      onChange={handleInputChange}
+                    />
+                    <div className="eye-icon" onClick={handleRef}>
+                      <img src="/image/login/eye-login.svg" />
+                    </div>
+                  </div>
+
+                  <div className="wrapper-checkbox">
+                    <div className="container-checkbox">
+                      <input type="checkbox" id="checkbox" />
+                      <label htmlFor="checkbox">Recuerdame</label>
+                    </div>
+                    <Link href="recuperar-password">
+                      <p className="forgot-password">
+                        ¿Olvidaste tu contraseña?
+                      </p>
+                    </Link>
+                  </div>
+
+                  <input type="submit" style={{ display: "none" }} />
+                  <div className="boton-normal pink" onClick={handleSubmit}>
+                    <p>Ingresar</p>
+                  </div>
+
+                  <div className="container-line">
+                    <hr />
+                    <p>O</p>
+                    <hr />
+                  </div>
+
+                  <div className="boton-icon facebook">
+                    <div className="icon">
+                      <img
+                        src="/image/login/facebook-login.svg"
+                        alt="fb login"
+                      />
+                    </div>
+                    <p>Ingresar con Facebook</p>
+                  </div>
+
+                  <div className="boton-icon google">
+                    <div className="icon">
+                      <img
+                        src="/image/login/google-login.svg"
+                        alt="google login"
+                      />
+                    </div>
+                    <p>Ingresar con Google</p>
+                  </div>
+                </form>
+              </div>
+              <div className="wrapper-end">
+                <div className="container-line">
+                  <hr />
+                  <p>¿Eres nuevo en Yes mom?</p>
+                  <hr />
+                </div>
+                <Link href="/registro">
+                  <div className="boton-normal yellow">
+                    <p>Crear cuenta</p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <style jsx>
+        {`
                     .pink{
                         background-color:#EC608D;
                     }
@@ -499,9 +502,9 @@ const index = () => {
                         
                     }
                 `}
-            </style>
-        </AppLayout>
-    )
-}
- 
+      </style>
+    </AppLayout>
+  );
+};
+
 export default index;

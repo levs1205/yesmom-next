@@ -122,7 +122,7 @@ const DetallesID = ({ product }) => {
             content="https://yesmom.vercel.app/image/about-header.png"
           />
         </Head>
-        <div>
+        <div className="fade-in animated ">
           <div className="show--box-main-proveedor">
             <div className="show--contenedor-centered">
               <div className="show--all-content">
@@ -622,9 +622,9 @@ const DetallesID = ({ product }) => {
           .show--other-products {
             margin: 2rem 0;
           }
-          :global(li.thumb){
-            width:6rem!important;
-            height:6rem!important
+          :global(li.thumb) {
+            width: 6rem !important;
+            height: 6rem !important;
           }
 
           @media (min-width: 480px) {
@@ -645,12 +645,10 @@ const DetallesID = ({ product }) => {
             :global(.carousel .slide img) {
               max-height: 500px;
             }
-            :global(li.thumb){
-            width:9rem!important;
-            height:9rem!important
-          }
-
-            
+            :global(li.thumb) {
+              width: 9rem !important;
+              height: 9rem !important;
+            }
           }
 
           @media (min-width: 768px) {
