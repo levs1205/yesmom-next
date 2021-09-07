@@ -18,7 +18,6 @@ const schemaValidator = yup.object().shape({
   fullname : yup.string().required('Nombres y apellidos son requeridos'),
   email : yup.string().email().required('Correo electrónico es requerido'),
   password: yup.string().required('Contraseña es requerida').min(5,'La contraseña debe tener al menos 5 caracteres'),
-
 })
 
 const index = () => {
