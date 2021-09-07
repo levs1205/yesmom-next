@@ -80,6 +80,11 @@ const appLayout = ({ children }) => {
             src: url(/fonts/Mont-Light.otf);
           }
 
+          @font-face {
+            font-family: "mont-bold";
+            src: url(/fonts/Mont-bold.ttf);
+          }
+          
           @keyframes animateHeart {
             0% {
               transform: scale(1);

@@ -9,7 +9,37 @@ import "react-phone-input-2/lib/bootstrap.css";
 import CustomButton from "../../components/Perfil/CustomButton";
 /** */
 
+//Validacion
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+
+const schemaValidator = yup.object().shape({
+  fullname: yup.string().required("Nombres y apellidos son requeridos"),
+  email: yup
+    .string()
+    .email()
+    .required("Correo electrónico es requerido"),
+  password: yup
+    .string()
+    .required("Contraseña es requerida")
+    .min(5, "La contraseña debe tener al menos 5 caracteres"),
+});
+
 const index = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schemaValidator),
+  });
+
+  console.log(errors);
+  const submitForm = (values) => {
+    console.log(values);
+    console.log(errors);
+  };
   return (
     <AppLayout>
       <Head>
@@ -51,7 +81,7 @@ const index = () => {
           content="https://yesmom.vercel.app/image/about-header.png"
         />
       </Head>
-      <div className="contenedor fade-in animated ">
+      <div className="contenedor">
         <div className="container-contenido">
           <div className="all-content">
             <div className="container-text">
@@ -64,43 +94,39 @@ const index = () => {
               </div>
             </div>
             <div className="container-form">
-              <form>
+              <form onSubmit={handleSubmit(submitForm)}>
                 <div className="wrapper-input">
-                  <label htmlFor="name">Nombre y Apellido:</label>
-                  <input type="text" id="name" name="name" />
+                  <label htmlFor="fullname">Nombre y Apellido:</label>
+                  <input
+                    type="text"
+                    id="fullname"
+                    name="fullname"
+                    {...register("fullname")}
+                  />
                 </div>
 
                 <div className="wrapper-input">
                   <label htmlFor="email">
                     Dirección de correo electrónico:
                   </label>
-                  <input type="email" id="email" name="email" />
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    {...register("email")}
+                  />
                 </div>
 
                 <div className="wrapper-input password">
                   <label htmlFor="password">Contraseña:</label>
-                  <input type="password" id="password" name="password" />
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    {...register("password")}
+                  />
                   <div className="eye-icon">
-                    <svg
-                      width="15"
-                      height="12"
-                      viewBox="0 0 15 12"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M13.5384 5.25857C13.8534 5.70143 13.8534 6.29929 13.5384 6.74143C12.5463 8.13357 10.1662 11 7.38741 11C4.6086 11 2.22847 8.13357 1.23642 6.74143C1.08318 6.52938 1 6.26851 1 6C1 5.73149 1.08318 5.47062 1.23642 5.25857C2.22847 3.86643 4.6086 1 7.38741 1C10.1662 1 12.5463 3.86643 13.5384 5.25857V5.25857Z"
-                        stroke="#575650"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M7.38745 8.14289C8.48838 8.14289 9.38086 7.1835 9.38086 6.00003C9.38086 4.81657 8.48838 3.85718 7.38745 3.85718C6.28652 3.85718 5.39404 4.81657 5.39404 6.00003C5.39404 7.1835 6.28652 8.14289 7.38745 8.14289Z"
-                        stroke="#575650"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                    <img src="/image/login/eye-login.svg" />
                   </div>
                 </div>
 
@@ -112,6 +138,7 @@ const index = () => {
                     <PhoneInput
                       countryCodeEditable={false}
                       country="pe"
+                      value={"51933475707"}
                       containerClass="class-contain"
                       inputClass="code-picker"
                       buttonClass="button-class"
@@ -205,7 +232,9 @@ const index = () => {
             </div>
 
             <div className="contenedor-cuenta">
-              <CustomButton>Crear cuenta</CustomButton>
+              <CustomButton fxClick={handleSubmit(submitForm)}>
+                Crear cuenta
+              </CustomButton>
               <p className="terminos">
                 ¡Al hacer clic en crear cuenta! aceptas los
                 <span> términos de uso y la política de privacidad </span>
@@ -233,20 +262,12 @@ const index = () => {
           input:focus {
             outline: none;
           }
-          /** COUNTRY PICKER **/
-          /* .react-tel-input .form-control{
-                                text-align:left!important;
-                            }
-                            input[type="tel"]{
-                                text-align:left;
-                                width:100%;
-                            } */
-          /** */
+
           .container-text {
             margin: 0 2rem;
           }
           .contenedor {
-            padding: 14rem 1rem;
+            padding: 8rem 1rem 14rem 1rem;
             margin: 0 1rem;
           }
           .container-contenido {
@@ -421,10 +442,7 @@ const index = () => {
             .all-content {
               width: 50rem;
             }
-            .contenedor {
-              padding-top: 17rem;
-              padding-bottom: 10rem;
-            }
+
             .text-create {
               font-family: "omnes-regular" !important;
               color: #dc6a8d;
@@ -439,11 +457,6 @@ const index = () => {
               padding-right: 3.5rem;
               padding-left: 3.5rem;
             }
-            .wrapper-input label {
-              font-size: 1.1rem;
-              color: #575650;
-              opacity: 0.8;
-            }
             .wrapper-input input {
               border: 1px solid rgba(85, 110, 161, 1);
               box-sizing: border-box;
@@ -454,7 +467,7 @@ const index = () => {
               margin-top: 0.5rem;
             }
             .wrapper-checkbox label {
-              font-size: 1.1rem;
+              font-size: 1.3rem;
             }
             .eye-icon {
               right: 1.4rem;
@@ -471,9 +484,10 @@ const index = () => {
             }
             .select-input select {
               font-size: 1.1rem;
+              border-radius: 15px;
             }
             .container-select p {
-              font-size: 1.1rem;
+              font-size: 1.3rem;
             }
             .contenedor-cuenta {
               margin: 0 4rem;
@@ -501,14 +515,16 @@ const index = () => {
               margin: 0 5rem;
             }
             .all-content {
-              width: 75rem;
+              width: 55rem;
             }
             .select-input select {
               font-size: 1.3rem;
               padding-top: 1rem;
               padding-bottom: 1rem;
             }
-
+            .text-create {
+              font-size: 2.3rem;
+            }
             .terminos {
               font-size: 1.3rem;
             }
@@ -525,19 +541,10 @@ const index = () => {
             .contenedor-cuenta {
               margin: 0 8rem;
             }
-            .all-content {
-              width: 80rem;
-            }
             .text-create {
               font-size: 2.5rem;
             }
 
-            .wrapper-input label {
-              font-size: 1.6rem;
-            }
-            .container-select p {
-              font-size: 1.6rem;
-            }
             .wrapper-checkbox label {
               font-size: 1.4rem;
             }

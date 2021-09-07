@@ -2,45 +2,53 @@ import AppLayout from "../../components/AppLayout";
 
 import Head from "next/head";
 import Link from "next/link";
-import { useForm } from "../../hooks/useForm";
+import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import YesmomContext from "../../context/Context";
 import { startLogin } from "../../context/actions/auth";
 import { useRouter } from "next/router";
-import { isValidLogin } from "../../helpers/isValidLogin";
 import Swal from "sweetalert2";
+
+//manejadores
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schemaValidator = yup.object().shape({
+  email: yup
+    .string()
+    .email("*Ingresa un correo válido")
+    .required("*Correo es requerido"),
+  password: yup
+    .string()
+    .required("*Contraseña es requerida")
+    .min(5, "*La contraseña debe tener minimo 5 caracteres"),
+});
 
 const index = () => {
   const router = useRouter();
   const refPassword = useRef();
-  const initialForm = {
-    email: "",
-    password: "",
-  };
-  const [formValues, handleInputChange] = useForm(initialForm);
-
-  const { email, password } = formValues;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schemaValidator),
+  });
 
   const { dispatchAuth } = useContext(YesmomContext);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const error = isValidLogin(formValues);
-    console.log(error);
-    if (error.trim().length !== 0) {
-      Swal.fire("Error", error, "error");
-      return;
-    }
-
+  const submitForm = async (values) => {
+    console.log(values);
+    //Ya sin errores
+    //Enviar un object con { email , password }
     try {
       const { data } = await axios({
         method: "POST",
         url: `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_TEST_LOGIN}/autenticar?email=1`,
-        data: formValues,
+        data: values,
       });
       if (data?.MensajeRespuesta === "REQUEST INVÁLIDO") {
-        alert("No existe usuario con esos accesos");
+        Swal.fire("Info", "No existe usuario con esos accesos", "info");
       }
       if (data?.mensaje === "Autenticación Correcta") {
         router.push("/");
@@ -52,10 +60,10 @@ const index = () => {
   };
 
   const handleRef = () => {
-    const type = refPassword.current.type;
+    const type = document.getElementById("password").type;
     type === "password"
-      ? (refPassword.current.type = "text")
-      : (refPassword.current.type = "password");
+      ? (document.getElementById("password").type = "text")
+      : (document.getElementById("password").type = "password");
   };
 
   return (
@@ -99,7 +107,7 @@ const index = () => {
           content="https://yesmom.vercel.app/image/about-header.png"
         />
       </Head>
-      <div className="contenedor fade-in animated ">
+      <div className="contenedor">
         <div className="container-contenido">
           <div className="all-content">
             <div className="center">
@@ -112,9 +120,8 @@ const index = () => {
                 <form
                   /* onSubmit={ handleSubmit } */
                   noValidate={true}
-                  onSubmit={handleSubmit}
+                  onSubmit={handleSubmit(submitForm)}
                 >
-                  {/* <input type="submit" /> */}
                   <div className="wrapper-input">
                     <label htmlFor="email">
                       Dirección de correo electrónico o numero de teléfono:
@@ -123,10 +130,12 @@ const index = () => {
                       type="text"
                       id="email"
                       name="email"
-                      value={email}
-                      onChange={handleInputChange}
+                      /* value={email}
+                                                onChange={handleInputChange} */
+                      {...register("email")}
                     />
                   </div>
+                  <p className="error-input">{errors.email?.message}</p>
 
                   <div className="wrapper-input">
                     <label htmlFor="password">Contraseña:</label>
@@ -134,29 +143,46 @@ const index = () => {
                       type="password"
                       id="password"
                       name="password"
+                      /* value={password}
+                                                onChange={handleInputChange} */
                       ref={refPassword}
-                      value={password}
-                      onChange={handleInputChange}
+                      {...register("password")}
                     />
                     <div className="eye-icon" onClick={handleRef}>
                       <img src="/image/login/eye-login.svg" />
                     </div>
                   </div>
+                  <p className="error-input">{errors.password?.message}</p>
 
                   <div className="wrapper-checkbox">
                     <div className="container-checkbox">
-                      <input type="checkbox" id="checkbox" />
-                      <label htmlFor="checkbox">Recuerdame</label>
+                      <input
+                        type="checkbox"
+                        id="checkbox"
+                        className="box-remember__checkbox"
+                      />
+                      <label
+                        htmlFor="checkbox"
+                        className="box-remember__text"
+                      ></label>
+                      <label htmlFor="checkbox">
+                        <p>Recuerdame</p>
+                      </label>
                     </div>
-                    <Link href="recuperar-password">
-                      <p className="forgot-password">
-                        ¿Olvidaste tu contraseña?
-                      </p>
+                    <Link href="/recuperar-password">
+                      <a>
+                        <p className="forgot-password">
+                          ¿Olvidaste tu contraseña?
+                        </p>
+                      </a>
                     </Link>
                   </div>
 
                   <input type="submit" style={{ display: "none" }} />
-                  <div className="boton-normal pink" onClick={handleSubmit}>
+                  <div
+                    className="boton-normal pink"
+                    onClick={handleSubmit(submitForm)}
+                  >
                     <p>Ingresar</p>
                   </div>
 
@@ -205,6 +231,7 @@ const index = () => {
       </div>
       <style jsx>
         {`
+
                     .pink{
                         background-color:#EC608D;
                     }
@@ -295,10 +322,33 @@ const index = () => {
                         align-items:center;
                         justify-content:space-between;
                         flex-wrap:wrap;
+                        margin-top:1rem;
                     }
-                    .wrapper-checkbox input{
+                    .box-remember__checkbox{
                         height:2.4rem;
                         width:2.4rem;
+                        border: 1px solid #556EA1;
+                        position:absolute;
+                        padding:0;
+                        display:none;
+                        overflow:hidden;
+                    }
+                    .box-remember__text:before{
+                    
+                        content:"";
+                        display:inline-block;
+                        width:22px;
+                        height:22px;
+                        border: 1px solid #556EA1;
+                        border-radius: 5px;
+                        margin-right: 8px;
+                        line-height: 24px;
+                        vertical-align: text-top;
+                        cursor:pointer;
+                    }
+                    .box-remember__checkbox:checked + .box-remember__text:before{
+                        border: 2px solid #f22c74;
+                        background: url("/image/icon/check-pink.svg") center/16px no-repeat;
                     }
                     .wrapper-checkbox label{
                         margin-bottom:0;
@@ -379,6 +429,15 @@ const index = () => {
                     .eye-icon{
                         cursor:pointer;
                         display:none;
+                    }
+
+                    .error-input{
+                        height:1.5rem;
+                        margin-top:-1rem;
+                        margin-bottom:1rem;
+                        font-family:"mont-bold";
+                        font-size:1.2rem;
+                        color:#ff0033;
                     }
                     /**480 - 768 - 1024 -1280 */
                     @media (min-width: 480px){

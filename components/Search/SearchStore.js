@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import SelectFilterStore from "./SelectFilterStore";
 import { useRouter } from 'next/dist/client/router'
-import { useForm } from '../../hooks/useForm'
 
 const SearchStore = () => {
 
@@ -10,12 +9,12 @@ const SearchStore = () => {
   const { query : {q=""} } = router;
   
   //Controlar cambio del input
-  const initialForm = {
-    nameStore : q,
-  }
-  const [ formValues , handleInputChange ] = useForm(initialForm);
 
-  const { nameStore } = formValues;
+  const [ nameStore , setNameStore] = useState(q);
+
+  const handleInputChange = (e) => {
+    setNameStore(e.target.value)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();

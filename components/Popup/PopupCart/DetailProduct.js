@@ -41,6 +41,11 @@ const DetailProduct = ({id ,nombre , imagen , quantity , precio}) => {
             position: absolute;
             top: -0.5rem;
             left: -0.5rem;
+            cursor:pointer;
+          }
+          .card--shopping-cart__iconDelete:hover {
+            transform: scale(1.05);
+            animation: animateHeart 0.3s linear forwards !important;
           }
           .card--shopping-cart {
             display: flex;
