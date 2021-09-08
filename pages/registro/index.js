@@ -21,7 +21,7 @@ const schemaValidator = yup.object().shape({
   fullname : yup.string('*Nombres incorrectos').required('*Nombres y apellidos son requeridos'),
   email : yup.string().email('*Ingresa un correo válido').required('*Correo electrónico es requerido'),
   password: yup.string().required('*Contraseña es requerida').min(5,'*La contraseña debe tener al menos 5 caracteres'),
-  phone : yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+  phone : yup.string().matches(phoneRegExp, '*Número de teléfono no es válido'),
 })
 
 const index = () => {
@@ -86,7 +86,7 @@ const index = () => {
       //No tiene hijos
       delete formValues.firstTime;
     }
-
+    console.log(formValues);
     alert(JSON.stringify(formValues));
     
   };
@@ -193,13 +193,14 @@ const index = () => {
                   <div className="phone-container">
                    <Controller
                     name="phone"
+                    defaultValue=""
                     control ={ control}
                     render={
                       ({field}) => <PhoneInput
                       {...field}
                       countryCodeEditable={false}
                       country="pe"
-                      value={"51933475707"}
+                     
                       containerClass="class-contain"
                       inputClass="code-picker"
                       buttonClass="button-class"
@@ -227,7 +228,8 @@ const index = () => {
                    />
                   </div>
                 </div>
-
+                <p className="error-input">{errors?.phone?.message}</p>
+                
                 <div className="wrapper-input">
                   <label>¿Tienes hijos?</label>
                   <div className="contenedor-buttons">

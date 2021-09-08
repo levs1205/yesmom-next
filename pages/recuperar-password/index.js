@@ -1,26 +1,26 @@
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
-import Link from "next/link";
-import { useState } from "react";
-import validator from "validator";
+import { useForm } from "react-hook-form";
+
+import * as yup from 'yup';
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schemaValidator = yup.object().shape({
+  email : yup.string().email('*Ingresa un correo válido').required('*Correo es requerido')
+})
+
 
 const RecuperarPassword = () => {
-  const [email, setState] = useState("");
 
-  const handleInputChange = (e) => {
-    setState(e.target.value);
-  };
+  const { register , formState: { errors} , handleSubmit} = useForm({
+    resolver : yupResolver(schemaValidator)
+  });
 
-  const handleRecoverPassword = (e) => {
-    console.log("disparado");
-    e.preventDefault();
 
-    if (validator.isEmail(email)) {
-      alert("Email correcto");
-    } else {
-      alert("Email incorrecto");
-    }
-  };
+  const submitForm = (data) => {
+    alert('oksss')
+  }
+
   return (
     <AppLayout>
       <Head>
@@ -80,7 +80,7 @@ const RecuperarPassword = () => {
                 <form
                   /* onSubmit={ handleRecoverPassword } */
                   noValidate={true}
-                  onSubmit={handleRecoverPassword}
+                  onSubmit={handleSubmit(submitForm)}
                 >
                   <div className="wrapper-input">
                     <label htmlFor="email">
@@ -90,13 +90,13 @@ const RecuperarPassword = () => {
                       type="email"
                       id="email"
                       name="email"
-                      value={email}
-                      onChange={handleInputChange}
+                      {...register('email')}
                     />
                   </div>
+                  <p className="error-input">{errors?.email?.message}</p>
 
                   {/* <Link href="/restablecer-password"> */}
-                  <div className="boton pink" onClick={handleRecoverPassword}>
+                  <div className="boton pink" onClick={handleSubmit(submitForm)}>
                     <p>Continuar</p>
                   </div>
                   {/* </Link> */}
@@ -111,6 +111,7 @@ const RecuperarPassword = () => {
       </div>
       <style jsx>
         {`
+
           input {
             text-align: left;
             border: none;
@@ -166,7 +167,7 @@ const RecuperarPassword = () => {
           .wrapper-input {
             display: flex;
             flex-direction: column;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             font-family: "mont-regular" !important;
           }
           .wrapper-input label {
@@ -206,20 +207,30 @@ const RecuperarPassword = () => {
           .yellow {
             background-color: #febf41;
           }
-
+          .error-input{
+              height:2rem;
+              margin-top:-1.5rem;
+              margin-bottom:1rem;
+              font-family:"mont-bold";
+              font-size:1.2rem;
+              color:#ff0033;
+          }
           @media (min-width: 480px) {
             .contenedor {
               padding-top: 8rem;
               padding-bottom: 10rem;
             }
           }
-          @media (min-width: 769px) {
+          @media (min-width: 768px) {
             .all-content {
               width: 40rem;
             }
             .forgot-password {
               font-size: 2.5rem;
               color: #dc6a8d;
+            }
+            .wrapper-input {
+              margin-bottom: 1.5rem;
             }
             .container-form {
               margin-top: 2rem;
@@ -239,6 +250,7 @@ const RecuperarPassword = () => {
             .boton {
               border-radius: 15px;
               margin-top: 0;
+              padding:1.5rem 0;
             }
             .boton p {
               font-family: "omnes-bold" !important;
@@ -250,7 +262,7 @@ const RecuperarPassword = () => {
           }
           @media (min-width: 1024px) {
             .all-content {
-              width: 40rem;
+              width: 42.5rem;
             }
             .forgot-password {
               font-size: 3rem;
