@@ -1,6 +1,5 @@
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
-import Link from "next/link";
 import BotonInput from "../../components/Registro/BotonInput";
 
 /**PHONEINPUT */

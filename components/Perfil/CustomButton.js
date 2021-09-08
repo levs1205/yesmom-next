@@ -1,30 +1,9 @@
 import React from 'react'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-
 function CustomButton({outline , children, fxClick, type}) {
-
-    const handleConfirm = () => {
-
-        const MySwal = withReactContent(Swal);
-        MySwal.fire({
-            title: <p className="title-warning">Pretium lectus quam id leo in vitae. Luctus venenatis lectus magna fringilla.</p>,
-            html:
-                <form className="form-checkbox">
-                    <input id="checkbox" type="checkbox" name="checkbox"/>
-                    <label htmlFor="checkbox">Sí,acepto</label>
-                </form>,
-            text:"Sí,acepto",
-            showConfirmButton:true ,
-            showCancelButton : true,
-            confirmButtonText:'Guardar',
-            cancelButtonText:'Cancelar'
-          })
-    }
 
     return (
         <>
-            <div onClick={type === "confirm" ? handleConfirm : fxClick} className="boton">
+            <div onClick={fxClick} className="boton">
                 <p>
                     {children}
                 </p>
