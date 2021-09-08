@@ -180,7 +180,8 @@ const index = () => {
                   />
 
                   <div className="eye-icon" onClick={handleRef}>
-                    <img src="/image/login/eye-login.svg" />
+                    <img className="show-desktop" src="/image/login/eye-login.svg" />
+                    <img className ="hide-desktop" src="/image/login/eye-reset.svg" />
                   </div>
                 </div>
                 <p className="error-input">{errors?.password?.message}</p>
@@ -360,6 +361,9 @@ const index = () => {
       <style jsx>
         {`
           /*RESET*/
+          .show-desktop{
+            display:none;
+          }
           /********/
           input {
             text-align: left !important;
@@ -582,6 +586,13 @@ const index = () => {
             }
           }
           @media (min-width: 768px) {
+
+            .show-desktop{
+              display:block;
+            }
+            .hide-desktop{
+              display:none;
+            }
             .all-content {
               width: 50rem;
             }
