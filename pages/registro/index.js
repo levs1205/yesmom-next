@@ -12,7 +12,7 @@ import CustomButton from "../../components/Perfil/CustomButton";
 //Validacion
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useState } from "react";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -21,11 +21,12 @@ const schemaValidator = yup.object().shape({
   fullname : yup.string('*Nombres incorrectos').required('*Nombres y apellidos son requeridos'),
   email : yup.string().email('*Ingresa un correo válido').required('*Correo electrónico es requerido'),
   password: yup.string().required('*Contraseña es requerida').min(5,'*La contraseña debe tener al menos 5 caracteres'),
-  /* phone : yup.string().matches(phoneRegExp, 'Phone number is not valid'), */
+  phone : yup.string().matches(phoneRegExp, 'Phone number is not valid'),
 })
 
 const index = () => {
   const {
+    control,
     register,
     handleSubmit,
     formState: { errors },
@@ -189,7 +190,12 @@ const index = () => {
                 <div className="wrapper-input">
                   <label className="mb-4">Número de teléfono:</label>
                   <div className="phone-container">
-                    <PhoneInput
+                   <Controller
+                    name="phone"
+                    control ={ control}
+                    render={
+                      ({field}) => <PhoneInput
+                      {...field}
                       countryCodeEditable={false}
                       country="pe"
                       value={"51933475707"}
@@ -213,8 +219,11 @@ const index = () => {
                         border: 0,
                         outline: 0,
                       }}
+                      
                       /* {...register('phone')} */
                     />
+                    }
+                   />
                   </div>
                 </div>
 
@@ -677,10 +686,6 @@ const index = () => {
 
             .wrapper-checkbox label {
               font-size: 1.4rem;
-            }
-
-            .terminos {
-              font-size: 1.5rem;
             }
           }
         `}
