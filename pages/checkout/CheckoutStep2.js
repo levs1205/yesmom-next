@@ -1,6 +1,9 @@
 import React from "react";
 
-const CheckoutStep2 = ({ formValues, handleInputChange, setSelected }) => {
+const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) => {
+
+console.log('register en step 2', register)
+
   return (
     <>
       <div className="fade-in animated  checkout-identification-block">
@@ -18,16 +21,20 @@ const CheckoutStep2 = ({ formValues, handleInputChange, setSelected }) => {
           </div>
           <div className="checkout-identification-block__text-container">
             <p className="checkout-identification-block__text--font-size">
-              Email: {formValues.email}
+              Email: 
+              {/* {formValues.email} */}
             </p>
             <p className="checkout-identification-block__text--font-size">
-              Nombre: {formValues.name}
+              Nombre: 
+              {/* {formValues.name} */}
             </p>
             <p className="checkout-identification-block__text--font-size">
-              DNI: {formValues.identity}
+              DNI: 
+              {/* {formValues.identity} */}
             </p>
             <p className="checkout-identification-block__text--font-size">
-              Teléfono / Móvil: {formValues.phone}
+              Teléfono / Móvil: 
+              {/* {formValues.phone} */}
             </p>
           </div>
         </div>
@@ -57,26 +64,30 @@ const CheckoutStep2 = ({ formValues, handleInputChange, setSelected }) => {
         </select>
       </div>
       <div className="checkout-location-form__wrapper">
-        <label for="email" className="checkout-location-form__label">
+        <label for="calle" className="checkout-location-form__label">
           Av/Jirón/Calle:
         </label>
         <input
           type="text"
           className="checkout-location-form__input"
-          name="email"
-          id="email"
+          name="calle"
+          id="calle"
+          {...register("calle")}
         />
+        <p>{errors.calle?.message}</p>
       </div>
       <div className="checkout-location-form__wrapper">
-        <label for="name" className="checkout-location-form__label">
+        <label for="numero" className="checkout-location-form__label">
           Nro.:
         </label>
         <input
           type="text"
           className="checkout-location-form__input"
-          name="name"
-          id="name"
+          name="numero"
+          id="numero"
+          {...register("numero")}
         />
+        <p>{errors.numero?.message}</p>
       </div>
       <div className="checkout-location-form__wrapper">
         <label for="identity" className="checkout-location-form__label">
@@ -85,20 +96,24 @@ const CheckoutStep2 = ({ formValues, handleInputChange, setSelected }) => {
         <input
           type="text"
           className="checkout-location-form__input"
-          name="identity"
-          id="identity"
+          name="interior"
+          id="interior"
+          {...register("interior")}
         />
+        <p>{errors.interior?.message}</p>
       </div>
       <div className="checkout-location-form__wrapper">
-        <label for="phone" className="checkout-location-form__label">
+        <label for="direccion" className="checkout-location-form__label">
           Referencia de Dirección*:
         </label>
         <input
           type="text"
           className="checkout-location-form__input"
-          name="phone"
-          id="phone"
+          name="direccion"
+          id="direccion"
+          {...register("direccion")}
         />
+        <p>{errors.direccion?.message}</p>
       </div>
       <div className="checkout-location-form__wrapper">
         <p className="checkout-location-form__subtitle-radio">
