@@ -2,10 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { Card } from "react-bootstrap";
 
-
-
-function CardProduct({ discount, size , id , nombre , precio}) {
-
+function CardProduct({ discount, size, id, nombre, precio }) {
   return (
     <>
       <Link href="/tienda/detalles/:id" as={`/tienda/detalles/${id}`}>
@@ -17,7 +14,8 @@ function CardProduct({ discount, size , id , nombre , precio}) {
             <div className="card-img-product">
               <Card.Img
                 variant="top"
-                src="https://www.elblogdetubebe.com/wp-content/uploads/2021/03/ropa-bebe-online-original.jpg" className="h-100"
+                src="https://www.elblogdetubebe.com/wp-content/uploads/2021/03/ropa-bebe-online-original.jpg"
+                className="h-100"
               />
             </div>
             <Card.Body>
@@ -53,23 +51,21 @@ function CardProduct({ discount, size , id , nombre , precio}) {
           :global(.card-title) {
             color: #575756;
             font-family: "mont-semibold" !important;
-            font-size: 1.6rem;
+            font-size: 1.2rem;
           }
           :global(.card-text) {
             color: #000000;
             font-family: "mont-light" !important;
-            font-size: 1.4rem;
+            font-size: 1rem;
           }
-         
 
-          .card-img-product{
-            height: 20rem;
-
+          .card-img-product {
+            height: 12rem;
           }
-           :global(.card-img-product img){
-             object-fit:cover;
-             object-position:center center
-           }
+          :global(.card-img-product img) {
+            object-fit: cover;
+            object-position: center center;
+          }
           .card-container {
             cursor: pointer;
             flex-basis: calc(50% - 1rem);
@@ -125,6 +121,19 @@ function CardProduct({ discount, size , id , nombre , precio}) {
               /* .size-4{
                             flex-basis:calc( 50% - 1rem);
                         } */
+            }
+            :global(.card-title) {
+              color: #575756;
+              font-family: "mont-semibold" !important;
+              font-size: 1.6rem;
+            }
+            :global(.card-text) {
+              color: #000000;
+              font-family: "mont-light" !important;
+              font-size: 1.4rem;
+            }
+            .card-img-product {
+              height: 20rem;
             }
           }
           @media (min-width: 1024px) {

@@ -3,9 +3,6 @@ import { useForm } from 'react-hook-form'
 
 const CheckoutStep1 = ({ register, errors, watch, handleSubmit }) => {
 
-    console.log(watch('email'))
-    console.log(watch('name'))
-
   return (
     <>
       <div className="fade-in animated  checkout-block__text">

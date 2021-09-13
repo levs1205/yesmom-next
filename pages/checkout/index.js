@@ -6,9 +6,9 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Stepper from "../../components/Stepper";
 // import { useForm } from "../../hooks/useForm";
-import CheckoutStep1 from "./CheckoutStep1";
-import CheckoutStep3 from "./CheckoutStep3";
-import CheckoutStep2 from "./CheckoutStep2";
+import CheckoutStep1 from "../../components/Checkout/CheckoutStep1";
+import CheckoutStep3 from "../../components/Checkout/CheckoutStep3";
+import CheckoutStep2 from "../../components/Checkout/CheckoutStep2";
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";

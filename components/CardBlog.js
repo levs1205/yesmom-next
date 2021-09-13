@@ -583,6 +583,7 @@ const CardBlog = ({ blog }) => {
               -webkit-box-orient: vertical;
               overflow: hidden;
               text-overflow: ellipsis;
+              font-size:1.2rem
             }
             .card-footer{
               height: 4.2rem;
