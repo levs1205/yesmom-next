@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
 import Head from "next/head";
 import Link from "next/link";
 
@@ -7,28 +8,34 @@ import CustomButton from "../../../components/Perfil/CustomButton";
 import TitlePerfil from "../../../components/Perfil/TitlePerfil";
 import Description from "../../../components/Perfil/Description";
 import Sidebar from "../../../components/Perfil/Sidebar";
-import { useForm } from "../../../hooks/useForm";
 
+import * as yup from 'yup';
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schemaValidator = yup.object().shape({
+  password: yup.string().required('*Contraseña es requerida'),
+  new_password: yup.string().required('*Contraseña es requerida').min(5,'*La contraseña debe tener al menos 5 caracteres'),
+  repeat_password: yup.string().required('*Repita la contraseña').min(5,'*La contraseña debe tener al menos 5 caracteres'),
+})
 const PerfilPassword = () => {
-  const refCurrentPassword = useRef();
-  const refNewPassword = useRef();
-  const refNewPassword_2 = useRef();
 
-  const initialForm = {
-    password: "",
-    new_password: "",
-    repeat_password: "",
-  };
-  const [formValues, handleInputChange] = useForm(initialForm);
+  const { register , formState : { errors } , handleSubmit} = useForm({
+    resolver: yupResolver(schemaValidator)
+  });
 
-  const { password, new_password, repeat_password } = formValues;
-
-  const handleRef = (ref) => {
-    const type = ref.current.type;
+  const handleRef = (id) => {
+    const type = document.getElementById(id).type;
     type === "password"
-      ? (ref.current.type = "text")
-      : (ref.current.type = "password");
+      ? (document.getElementById(id).type = "text")
+      : (document.getElementById(id).type = "password");
   };
+
+
+  const submitForm = (data) => {
+    console.log(data);
+  }
+
+  console.log(errors);
   return (
     <AppLayout>
       <Head>
@@ -105,13 +112,11 @@ const PerfilPassword = () => {
                         type="password"
                         id="password"
                         name="password"
-                        ref={refCurrentPassword}
-                        value={password}
-                        onChange={handleInputChange}
+                        {...register('password')}
                       />
                       <div
                         className="eye-icon"
-                        onClick={() => handleRef(refCurrentPassword)}
+                        onClick={() => handleRef('password')}
                       >
                         <img src="/image/login/eye-reset.svg" alt="icon-eye" />
                       </div>
@@ -134,13 +139,11 @@ const PerfilPassword = () => {
                         id="new_password"
                         name="new_password"
                         placeholder="Nueva contraseña"
-                        ref={refNewPassword}
-                        value={new_password}
-                        onChange={handleInputChange}
+                        {...register('new_password')}
                       />
                       <div
                         className="eye-icon"
-                        onClick={() => handleRef(refNewPassword)}
+                        onClick={() => handleRef('new_password')}
                       >
                         <img src="/image/login/eye-reset.svg" alt="icon-eye" />
                       </div>
@@ -156,13 +159,11 @@ const PerfilPassword = () => {
                         id="repeat_password"
                         name="repeat_password"
                         placeholder="Repetir nueva contraseña"
-                        ref={refNewPassword_2}
-                        value={repeat_password}
-                        onChange={handleInputChange}
+                        {...register('repeat_password')}
                       />
                       <div
                         className="eye-icon"
-                        onClick={() => handleRef(refNewPassword_2)}
+                        onClick={() => handleRef('repeat_password')}
                       >
                         <img src="/image/login/eye-reset.svg" alt="icon-eye" />
                       </div>
@@ -172,7 +173,7 @@ const PerfilPassword = () => {
                 <div className="container-save">
                   <hr className="hide" />
                   <div className="f-to-right">
-                    <CustomButton>Guardar</CustomButton>
+                    <CustomButton fxClick= { handleSubmit(submitForm)}>Guardar</CustomButton>
                     <CustomButton outline>Cancelar</CustomButton>
                   </div>
                 </div>

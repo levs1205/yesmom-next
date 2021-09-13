@@ -6,7 +6,7 @@ console.log('register en step 2', register)
 
   return (
     <>
-      <div className="fade-in animated  checkout-identification-block">
+      <div className="fade-in animated checkout-identification-block">
         <div className="checkout-identification-block__text">
           <div className="checkout-identification-block__text-wrapper">
             <p className="checkout-identification-block__text--font-size-and-bold">

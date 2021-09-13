@@ -534,6 +534,9 @@ const Blog = ({ currentData }) => {
                 top: auto;
                 bottom: -150%;
               }
+              :global(.box-card-group .card-blog) {
+              min-height: 40.2rem;
+            }
             }
           `}
       </style>

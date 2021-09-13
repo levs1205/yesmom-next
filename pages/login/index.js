@@ -434,7 +434,7 @@ const index = () => {
                     .error-input{
                         height:1.5rem;
                         margin-top:-1rem;
-                        margin-bottom:1rem;
+                        margin-bottom:2rem;
                         font-family:"mont-bold";
                         font-size:1.2rem;
                         color:#ff0033;

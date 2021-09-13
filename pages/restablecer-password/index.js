@@ -1,21 +1,23 @@
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
-import { useForm } from "../../hooks/useForm";
-import { useRef } from "react";
+import { useForm } from "react-hook-form";
 
+import * as yup from 'yup';
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
+
+const schemaValidator = yup.object().shape({
+  password:  yup.string().required('*Contraseña es requerida').min(5,'*La contraseña debe tener como mínimo 5 caracteres'),
+  password_2: yup.string().required('*Contraseña es requerida').min(5,'*La contraseña debe tener como mínimo 5 caracteres'),
+})
 const ResetPassword = () => {
-  const refPassword = useRef();
-  const refPassword_2 = useRef();
 
-  const initialForm = {
-    password: "",
-    password_2: "",
-  };
-  const [formValues, handleInputChange] = useForm(initialForm);
+  const { register , formState: { errors } , handleSubmit } = useForm({
+    resolver : yupResolver(schemaValidator)
+  });
 
-  const { password, password_2 } = formValues;
-
-  const handleResetPassword = () => {
+  const handleResetPassword = (data) => {
+    const { password , password_2 } = data;
     if (password === password_2) {
       alert("oksss");
     } else {
@@ -23,11 +25,11 @@ const ResetPassword = () => {
     }
   };
 
-  const handleRef = (refPassword) => {
-    const type = refPassword.current.type;
+  const handleShow = (id) => {
+    const type = document.getElementById(id).type;
     type === "password"
-      ? (refPassword.current.type = "text")
-      : (refPassword.current.type = "password");
+      ? (document.getElementById(id).type = "text")
+      : (document.getElementById(id).type = "password");
   };
 
   return (
@@ -86,7 +88,9 @@ const ResetPassword = () => {
                 </p>
               </div>
               <div className="container-form">
-                <form>
+                <form
+                  onSubmit={handleSubmit(handleResetPassword)}
+                >
                   <div className="wrapper-input">
                     <label htmlFor="password">
                       Por favor ingresa una nueva contraseña
@@ -97,17 +101,17 @@ const ResetPassword = () => {
                       type="password"
                       id="password"
                       name="password"
-                      ref={refPassword}
-                      value={password}
-                      onChange={handleInputChange}
+                      {...register('password')}
                     />
                     <div
                       className="eye-icon"
-                      onClick={() => handleRef(refPassword)}
+                      onClick={() => handleShow('password')}
                     >
-                      <img src="/image/login/eye-reset.svg" alt="eye-icon" />
+                      <img className="show" src="/image/login/eye-reset.svg" alt="eye-icon" />
+                      <img className="hide" src="/image/login/eye-login.svg" alt="eye-icon" />
                     </div>
                   </div>
+                  <p className="error-input">{errors?.password?.message}</p>
                   <div className="wrapper-input">
                     <input
                       className="color-input"
@@ -115,18 +119,20 @@ const ResetPassword = () => {
                       type="password"
                       id="password_2"
                       name="password_2"
-                      ref={refPassword_2}
-                      value={password_2}
-                      onChange={handleInputChange}
+                      {...register('password_2')}
                     />
                     <div
                       className="eye-icon"
-                      onClick={() => handleRef(refPassword_2)}
+                      onClick={() => handleShow('password_2')}
                     >
-                      <img src="/image/login/eye-reset.svg" alt="eye-icon" />
+                      <img className="show" src="/image/login/eye-reset.svg" alt="eye-icon" />
+                      <img className="hide" src="/image/login/eye-login.svg" alt="eye-icon" />
                     </div>
                   </div>
-                  <div className="boton pink" onClick={handleResetPassword}>
+
+                  <p className="error-input">{errors?.password_2?.message}</p>
+
+                  <div className="boton pink" onClick={ handleSubmit(handleResetPassword)}>
                     <p className="show">Continuar</p>
                     <p className="hide">Confirmar contraseña</p>
                   </div>
@@ -204,7 +210,7 @@ const ResetPassword = () => {
             position: relative;
             display: flex;
             flex-direction: column;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
           }
           .eye-icon {
             cursor: pointer;
@@ -251,7 +257,17 @@ const ResetPassword = () => {
           .yellow {
             background-color: #febf41;
           }
-
+          .error-input{
+              min-height:1.5rem;
+              margin-top:-3rem;
+              margin-bottom:1rem;
+              font-family:"mont-bold";
+              font-size:1.2rem;
+              color:#ff0033;
+          }
+          .error-input p{
+            margin : 0;
+          }
           @media (min-width: 480px) {
             .container-contenido {
               display: flex;
@@ -282,7 +298,7 @@ const ResetPassword = () => {
             }
           }
 
-          @media (min-width: 769px) {
+          @media (min-width: 768px) {
             .all-content {
               width: 40rem;
             }
@@ -313,7 +329,7 @@ const ResetPassword = () => {
             }
             .boton {
               border-radius: 15px;
-              margin-top: 3rem;
+              margin-top: 1rem;
               padding: 1.5rem 0;
             }
             .boton p {

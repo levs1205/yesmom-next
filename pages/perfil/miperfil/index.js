@@ -1,6 +1,5 @@
 import Head from "next/head";
-import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
@@ -12,7 +11,83 @@ import Sidebar from "../../../components/Perfil/Sidebar";
 import TitlePerfil from "../../../components/Perfil/TitlePerfil";
 import BotonInput from "../../../components/Registro/BotonInput";
 
+//Validacion
+import * as yup from 'yup';
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
+const schemaValidator = yup.object().shape({
+  fullname : yup.string('*Nombres incorrectos').required('*Nombres y apellidos son requeridos'),
+  email : yup.string().email('*Ingresa un correo válido').required('*Correo electrónico es requerido'),
+  phone : yup.string().matches(phoneRegExp, '*Número de teléfono no es válido'),
+})
+
+
 const index = () => {
+
+  //Datos fake
+  const defaultValues = {
+    fullname : "Lucia Quiñonez",
+    email : "lucia@henribarrett.com",
+    phone : "51933475707",
+  }
+
+  const { register , handleSubmit , formState : { errors } , control } = useForm({
+    resolver: yupResolver(schemaValidator),
+    defaultValues
+  });
+  
+  //Botones de selección
+  const defaultSelection = {
+    haveChildren  : true,
+    firstTime : false,
+  }
+
+  const [ selection , setSelection ] = useState(defaultSelection);
+  const [ moreChildren , setMoreChildren ] = useState(true);
+  
+/*   
+  Si es primeriza -> demas datos , fecha nacimiento y sexo
+  Si no -> borrar estos datos
+ */
+  const handleSelectionChange = ( name , value) => {
+    setSelection({
+      ...selection,
+      [name] : value
+    })
+  }
+
+  /* Mas de un hijo*/
+  const handleMoreChildren = () => {
+    setMoreChildren(!moreChildren);
+  }
+
+  //SUBMIT
+  const submitForm = async(values) => {
+    let formValues = {
+      ...values,
+      ...selection
+    };
+
+    //Si presiona no , no se deben añadir mas campos
+    if(selection.haveChildren){
+      //Si no es primeriza , activa o no el boton de mas de un hijo
+      if(!selection.firstTime){
+        formValues.moreThanOne = moreChildren
+        delete formValues.genderBaby;
+      }
+    }else{
+      //No tiene hijos
+      delete formValues.firstTime;
+    }
+    
+    alert('actualizado');
+    alert(JSON.stringify(formValues));
+  };
+
   return (
     <AppLayout>
       <Head>
@@ -70,24 +145,7 @@ const index = () => {
                 <div className="about-account">
                   <p className="ft-m-regular">Información de la cuenta</p>
                   <div className="icon-pencil">
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 14 14"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M13.5642 1.69742C13.646 1.77942 13.6919 1.8905 13.6919 2.00629C13.6919 2.12209 13.646 2.23316 13.5642 2.31517L12.6516 3.22867L10.9016 1.47867L11.8142 0.565167C11.8963 0.483148 12.0075 0.437073 12.1236 0.437073C12.2396 0.437073 12.3508 0.483148 12.4329 0.565167L13.5642 1.69654V1.69742ZM12.033 3.84642L10.283 2.09642L4.32162 8.05867C4.27346 8.10681 4.23721 8.16554 4.21575 8.23017L3.51137 10.3424C3.4986 10.3809 3.49678 10.4222 3.50613 10.4617C3.51548 10.5012 3.53563 10.5373 3.56431 10.566C3.593 10.5947 3.6291 10.6148 3.66858 10.6242C3.70806 10.6335 3.74936 10.6317 3.78787 10.6189L5.90012 9.91454C5.96466 9.89333 6.02338 9.85738 6.07162 9.80954L12.033 3.84729V3.84642Z"
-                        fill="#575650"
-                      />
-                      <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M0.875 11.8125C0.875 12.1606 1.01328 12.4944 1.25942 12.7406C1.50556 12.9867 1.8394 13.125 2.1875 13.125H11.8125C12.1606 13.125 12.4944 12.9867 12.7406 12.7406C12.9867 12.4944 13.125 12.1606 13.125 11.8125V6.5625C13.125 6.44647 13.0789 6.33519 12.9969 6.25314C12.9148 6.17109 12.8035 6.125 12.6875 6.125C12.5715 6.125 12.4602 6.17109 12.3781 6.25314C12.2961 6.33519 12.25 6.44647 12.25 6.5625V11.8125C12.25 11.9285 12.2039 12.0398 12.1219 12.1219C12.0398 12.2039 11.9285 12.25 11.8125 12.25H2.1875C2.07147 12.25 1.96019 12.2039 1.87814 12.1219C1.79609 12.0398 1.75 11.9285 1.75 11.8125V2.1875C1.75 2.07147 1.79609 1.96019 1.87814 1.87814C1.96019 1.79609 2.07147 1.75 2.1875 1.75H7.875C7.99103 1.75 8.10231 1.70391 8.18436 1.62186C8.26641 1.53981 8.3125 1.42853 8.3125 1.3125C8.3125 1.19647 8.26641 1.08519 8.18436 1.00314C8.10231 0.921094 7.99103 0.875 7.875 0.875H2.1875C1.8394 0.875 1.50556 1.01328 1.25942 1.25942C1.01328 1.50556 0.875 1.8394 0.875 2.1875V11.8125Z"
-                        fill="#575650"
-                      />
-                    </svg>
+                    <img src="/image/perfil/icon-pencil.svg" alt="icon-pencil" />
                   </div>
                 </div>
                 <div className="container-form">
@@ -95,14 +153,24 @@ const index = () => {
                     <div className="flex-desktop">
                       <div className="wrapper-input">
                         <label htmlFor="name">Nombre y Apellido:</label>
-                        <input type="text" id="name" name="name" />
+                        <input 
+                          type="text" 
+                          id="fullname"
+                          name="fullname" 
+                          {...register('fullname')}
+                        />
                       </div>
 
                       <div className="wrapper-input">
                         <label htmlFor="email">
                           Dirección de correo electrónico:
                         </label>
-                        <input type="email" id="email" name="email" />
+                        <input 
+                          type="email" 
+                          id="email" 
+                          name="email" 
+                          {...register('email')}
+                        />
                       </div>
                     </div>
 
@@ -111,31 +179,40 @@ const index = () => {
                     <div className="wrapper-input">
                       <label className="mb-4">Número de teléfono:</label>
                       <div className="phone-container">
-                        <PhoneInput
-                          countryCodeEditable={false}
-                          country="pe"
-                          containerClass="class-contain"
-                          inputClass="code-picker"
-                          buttonClass="button-class"
-                          dropdownClass="dropdown-class"
-                          searchClass="search-class"
-                          fullWidth={true}
-                          inputStyle={{
-                            width: "100%",
-                            height: "4.4rem",
-                            textAlign: "left",
-                            borderRadius: "20px",
-                            color: "#575650",
-                            opacity: 0.8,
-                            fontFamily: "Mont-regular",
-                            fontStyle: "normal",
-                            fontWeight: 600,
-                            fontSize: "13px",
-                            margin: 0,
-                            border: 0,
-                            outline: 0,
-                          }}
+                        <Controller 
+                         name="phone"
+                         /* defaultValue={defaultValues.phone} */
+                         control ={ control}
+                         render={
+                           ( { field } ) =>
+                           <PhoneInput
+                            {...field}
+                            countryCodeEditable={false}
+                            country="pe"
+                            containerClass="class-contain"
+                            inputClass="code-picker"
+                            buttonClass="button-class"
+                            dropdownClass="dropdown-class"
+                            searchClass="search-class"
+                            fullWidth={true}
+                            inputStyle={{
+                              width: "100%",
+                              height: "4.4rem",
+                              textAlign: "left",
+                              borderRadius: "20px",
+                              opacity: 0.8,
+                              fontFamily: "Mont-regular",
+                              fontStyle: "normal",
+                              fontWeight: 600,
+                              fontSize: "13px",
+                              margin: 0,
+                              border: 0,
+                              outline: 0,
+                            }}
+                          />
+                         }
                         />
+                        
                       </div>
                     </div>
 
@@ -144,87 +221,129 @@ const index = () => {
                         <div className="wrapper-input">
                           <label className="change-color">¿Tienes hijos?</label>
                           <div className="contenedor-buttons" large="small">
-                            <BotonInput type="filled">Si</BotonInput>
-                            <BotonInput type="outlined" large="small">
-                              No
-                            </BotonInput>
+                          <BotonInput 
+                            onClick = {() => handleSelectionChange('haveChildren',true)}
+                            type = {`${selection.haveChildren ? "filled" : "outlined"}`}
+                          >
+                            Si
+                          </BotonInput>
+                          <BotonInput 
+                            onClick= {() => handleSelectionChange('haveChildren',false)}
+                            type = {`${!selection.haveChildren ? "filled" : "outlined"}`}
+                            large = "small"
+                          >
+                            No
+                          </BotonInput>
                           </div>
                         </div>
                       </div>
-                      <div className="w-28r">
-                        <div className="wrapper-input">
-                          <label className="change-color">
-                            ¿Eres primeriza?
-                          </label>
-                          <div className="contenedor-buttons">
-                            <BotonInput type="outlined" large="small">
-                              No
-                            </BotonInput>
-                            <BotonInput type="filled" large="small">
-                              Si
-                            </BotonInput>
+                      {
+                        selection.haveChildren &&
+                          <div className="w-28r">
+                            <div className="wrapper-input">
+                              <label className="change-color">
+                                ¿Eres primeriza?
+                              </label>
+                              <div className="contenedor-buttons">
+                              <BotonInput 
+                                onClick={ () => handleSelectionChange('firstTime',true)}
+                                type = {`${selection.firstTime ? "filled" : "outlined"}`}
+                                large = "small"
+                              >
+                                Si
+                              </BotonInput>
+                              <BotonInput 
+                                onClick={ () => handleSelectionChange('firstTime',false)}
+                                type = {`${!selection.firstTime ? "filled" : "outlined"}`}
+                                large = "small"
+                              >
+                                No
+                              </BotonInput>
+                              </div>
+                            </div>
+                            {
+                              (!selection.firstTime && selection.haveChildren) &&
+                              <div className="wrapper-checkbox">
+                                <input
+                                  type="checkbox"
+                                  id="checkbox"
+                                  className="box-children__checkbox"
+                                  onChange={ handleMoreChildren }
+                                  checked = { moreChildren}
+                                />
+                                <label
+                                  htmlFor="checkbox"
+                                  className="box-children__text"
+                                ></label>
+                                <label htmlFor="checkbox">Tengo más de un hijo.</label>
+                              </div>
+                            }
                           </div>
-                        </div>
-
-                        <div className="wrapper-checkbox">
-                          <input type="checkbox" id="checkbox" />
-                          <label htmlFor="checkbox">
-                            Tengo más de un hijo.
-                          </label>
-                        </div>
-                      </div>
+                      }
                     </div>
+                    {
+                      selection.firstTime && selection.haveChildren &&
+                      <>
+                          <div className="container-select">
+                            <p>Fecha de nacimiento de tú bebé</p>
+                            <div className="wrapper-date">
+                              <div className="select-input">
+                                <select placeholder="Mes">
+                                  <option>Dia</option>
+                                </select>
+                              </div>
+                              <div className="select-input">
+                                <select placeholder="Dia">
+                                  <option>Mes</option>
+                                </select>
+                              </div>
+                              <div className="select-input">
+                                <select placeholder="Año">
+                                  <option>Año</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="wrapper-input">
+                            <label>Sexo de tú bebé</label>
+                            <div className="contenedor-buttons">
+                              <BotonInput 
+                                type={`${selection?.genderBaby === "girl" ? "filled" : "outlined"}`}
+                                onClick={ () => handleSelectionChange('genderBaby','girl')}
+                              >
+                                Niña
+                              </BotonInput>
+                              <BotonInput 
+                                type={`${selection?.genderBaby === "boy" ? "filled" : "outlined"}`}
+                                onClick={ () => handleSelectionChange('genderBaby','boy')}
+                              >
+                                Niño
+                              </BotonInput>
+                            </div>
+                          </div>
 
+                          {/* <div className="wrapper-input">
+                            <label>¿Quieres compartir tu perfil con alguien?</label>
+                            <div className="contenedor-buttons">
+                              <BotonInput type="outlined">No</BotonInput>
+                              <BotonInput type="filled">Si</BotonInput>
+                            </div>
+                          </div>
+                          <div className="wrapper-input">
+                            <label htmlFor="email_2">
+                              Ingresa su dirección de correo electrónico
+                            </label>
+                            <input type="email" id="email_2" name="email_2" />
+                          </div> */}
+                      </>
+                    }
                     {/* Control - class : opacity y disabled */}
-                    <div className="opacity">
-                      <div className="container-select">
-                        <p>Fecha de nacimiento de tú bebé</p>
-                        <div className="wrapper-date">
-                          <div className="select-input">
-                            <select placeholder="Mes">
-                              <option>Dia</option>
-                            </select>
-                          </div>
-                          <div className="select-input">
-                            <select placeholder="Dia">
-                              <option>Mes</option>
-                            </select>
-                          </div>
-                          <div className="select-input">
-                            <select placeholder="Año">
-                              <option>Año</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="wrapper-input">
-                        <label>Sexo de tú bebé</label>
-                        <div className="contenedor-buttons">
-                          <BotonInput type="outlined">Niña</BotonInput>
-                          <BotonInput type="filled">Niño</BotonInput>
-                        </div>
-                      </div>
-
-                      <div className="wrapper-input">
-                        <label>¿Quieres compartir tu perfil con alguien?</label>
-                        <div className="contenedor-buttons">
-                          <BotonInput type="outlined">No</BotonInput>
-                          <BotonInput type="filled">Si</BotonInput>
-                        </div>
-                      </div>
-                      <div className="wrapper-input">
-                        <label htmlFor="email_2">
-                          Ingresa su dirección de correo electrónico
-                        </label>
-                        <input type="email" id="email_2" name="email_2" />
-                      </div>
-                    </div>
                   </form>
                   <hr />
                 </div>
                 <div className="container-save">
                   <div className="btn-save">
-                    <CustomButton type="confirm">Guardar</CustomButton>
+                    <CustomButton fxClick={handleSubmit(submitForm)}>Guardar</CustomButton>
                   </div>
                   <div className="btn-cancel">
                     <CustomButton outline>Cancelar</CustomButton>
@@ -253,6 +372,8 @@ const index = () => {
           .code-picker {
             width: 100%;
             padding: 0;
+            border-radius:15px;
+            color: #575756;
           }
           /**GLOBALS */
           p {
@@ -336,9 +457,29 @@ const index = () => {
             display: flex;
             align-items: center;
           }
-          .wrapper-checkbox input {
-            height: 24px;
-            width: 24px;
+          .box-children__checkbox{
+            height:2.4rem;
+            width:2.4rem;
+            border: 2px solid #575756;
+            position:absolute;
+            padding:0;
+            display:none;
+            overflow:hidden;
+          }
+          .box-children__text:before{
+            content:"";
+            display:inline-block;
+            width:22px;
+            height:22px;
+            border: 2px solid #575756;
+            border-radius: 5px;
+            line-height: 24px;
+            vertical-align: text-top;
+            cursor:pointer;
+          }
+          .box-children__checkbox:checked + .box-children__text:before{
+            border: 2px solid #f22c74;
+            background: url("/image/icon/check-pink.svg") center/16px no-repeat;
           }
           .wrapper-checkbox label {
             margin-bottom: 0;
@@ -371,10 +512,13 @@ const index = () => {
             font-family: "mont-light" !important;
             font-size: 1.3rem;
             font-weight: 300;
+            color: #575650;
+            opacity: 0.8;
           }
           .select-input select {
             width: 100%;
-            border: 1px solid #575756;
+            color: rgba(87,86,80,1);
+            border: 1px solid #DADADA;
             box-sizing: border-box;
             border-radius: 10px;
             outline: none;
@@ -383,12 +527,13 @@ const index = () => {
             padding: 1rem;
             margin: 0.5rem 0;
             /** */
-            background: url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png")
+            background: url("https://i.ibb.co/Hz6T04Y/image.png")
               no-repeat right #ffffff;
             -webkit-appearance: none;
+            background-size:1.25rem;
             -moz-appearance: none;
             appearance: none;
-            background-position-x: 90%;
+            background-position-x: 87.5%;
           }
           /**FECHAS */
           .wrapper-date {
@@ -429,6 +574,11 @@ const index = () => {
           }
 
           @media (min-width: 768px) {
+            :global(.phone-container .react-tel-input .form-control){
+              font-family:"mont-regular"!important;
+              font-size:1.4rem!important;
+              color :#556ea1!important;
+            }
             .contenedor {
               padding: 8rem 0 12rem 0;
             }
@@ -463,7 +613,7 @@ const index = () => {
               background: #ffffff;
               border: 1px solid #556ea1;
               box-sizing: border-box;
-              border-radius: 20px;
+              border-radius: 15px;
               font-size: 1.4rem;
               padding: 1rem 1.5rem;
               color: #556ea1;
@@ -497,7 +647,7 @@ const index = () => {
             }
             .phone-container {
               width: 35rem;
-              border-radius: 20px;
+              border-radius: 15px;
               border: 1px solid #556ea1;
               padding: 1px;
             }

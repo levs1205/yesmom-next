@@ -1,6 +1,5 @@
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
-import Link from "next/link";
 import BotonInput from "../../components/Registro/BotonInput";
 
 /**PHONEINPUT */
@@ -12,16 +11,21 @@ import CustomButton from "../../components/Perfil/CustomButton";
 //Validacion
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
+import { useState } from "react";
+
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 const schemaValidator = yup.object().shape({
-  fullname : yup.string().required('Nombres y apellidos son requeridos'),
-  email : yup.string().email().required('Correo electrónico es requerido'),
-  password: yup.string().required('Contraseña es requerida').min(5,'La contraseña debe tener al menos 5 caracteres'),
+  fullname : yup.string('*Nombres incorrectos').required('*Nombres y apellidos son requeridos'),
+  email : yup.string().email('*Ingresa un correo válido').required('*Correo electrónico es requerido'),
+  password: yup.string().required('*Contraseña es requerida').min(5,'*La contraseña debe tener al menos 5 caracteres'),
+  phone : yup.string().matches(phoneRegExp, '*Número de teléfono no es válido'),
 })
 
 const index = () => {
   const {
+    control,
     register,
     handleSubmit,
     formState: { errors },
@@ -29,11 +33,63 @@ const index = () => {
     resolver: yupResolver(schemaValidator),
   });
 
-  console.log(errors);
-  const submitForm = (values) => {
-    console.log(values);
-    console.log(errors);
+  //Botones de selección
+  const initialSelection = {
+    haveChildren  : false,
+    firstTime : false,
+  }
+
+  const [ selection , setSelection ] = useState(initialSelection);
+
+  const [ moreChildren , setMoreChildren ] = useState(false);
+  
+/*   
+  Si es primeriza -> demas datos , fecha nacimiento y sexo
+  Si no -> borrar estos datos
+ */
+  const handleSelectionChange = ( name , value) => {
+    setSelection({
+      ...selection,
+      [name] : value
+    })
+  }
+
+  /* Mas de un hijo*/
+
+  const handleMoreChildren = () => {
+    setMoreChildren(!moreChildren);
+  }
+
+  const handleRef = () => {
+    const type = document.getElementById("password").type;
+    type === "password"
+      ? (document.getElementById("password").type = "text")
+      : (document.getElementById("password").type = "password");
   };
+
+  /* console.log(errors); */
+  const submitForm = (values) => {
+    let formValues = {
+      ...values,
+      ...selection
+    };
+
+    //Si presiona no , no se deben añadir mas campos
+    if(selection.haveChildren){
+      //Si no es primeriza , activa o no el boton de mas de un hijo
+      if(!selection.firstTime){
+        formValues.moreThanOne = moreChildren
+        delete formValues.genderBaby;
+      }
+    }else{
+      //No tiene hijos
+      delete formValues.firstTime;
+    }
+    console.log(formValues);
+    alert(JSON.stringify(formValues));
+    
+  };
+
   return (
     <AppLayout>
       <Head>
@@ -98,6 +154,7 @@ const index = () => {
                     {...register("fullname")}
                   />
                 </div>
+                <p className="error-input">{errors?.fullname?.message}</p>
 
                 <div className="wrapper-input">
                   <label htmlFor="email">
@@ -110,6 +167,7 @@ const index = () => {
                     {...register("email")}
                   />
                 </div>
+                <p className="error-input">{errors?.email?.message}</p>
 
                 <div className="wrapper-input password">
                   <label htmlFor="password">Contraseña:</label>
@@ -119,20 +177,29 @@ const index = () => {
                     name="password"
                     {...register("password")}
                   />
-                  <div className="eye-icon">
-                    <img src="/image/login/eye-login.svg" />
+
+                  <div className="eye-icon" onClick={handleRef}>
+                    <img className="show-desktop" src="/image/login/eye-login.svg" />
+                    <img className ="hide-desktop" src="/image/login/eye-reset.svg" />
                   </div>
                 </div>
+                <p className="error-input">{errors?.password?.message}</p>
 
                 {/* Country code picker */}
 
                 <div className="wrapper-input">
                   <label className="mb-4">Número de teléfono:</label>
                   <div className="phone-container">
-                    <PhoneInput
+                   <Controller
+                    name="phone"
+                    defaultValue=""
+                    control ={ control}
+                    render={
+                      ({field}) => <PhoneInput
+                      {...field}
                       countryCodeEditable={false}
                       country="pe"
-                      value={"51933475707"}
+                     
                       containerClass="class-contain"
                       inputClass="code-picker"
                       buttonClass="button-class"
@@ -153,75 +220,128 @@ const index = () => {
                         border: 0,
                         outline: 0,
                       }}
+                      
+                      /* {...register('phone')} */
                     />
+                    }
+                   />
                   </div>
                 </div>
-
+                <p className="error-input">{errors?.phone?.message}</p>
+                
                 <div className="wrapper-input">
                   <label>¿Tienes hijos?</label>
                   <div className="contenedor-buttons">
-                    <BotonInput type="filled">Si</BotonInput>
-                    <BotonInput type="outlined">No</BotonInput>
+                      <BotonInput 
+                        onClick = {() => handleSelectionChange('haveChildren',true)}
+                        type = {`${selection.haveChildren ? "filled" : "outlined"}`}
+                      >
+                        Si
+                      </BotonInput>
+                      <BotonInput 
+                        onClick= {() => handleSelectionChange('haveChildren',false)}
+                        type = {`${!selection.haveChildren ? "filled" : "outlined"}`}
+                      >
+                        No
+                      </BotonInput>
                   </div>
                 </div>
+                {
+                  selection.haveChildren &&
 
-                <div className="wrapper-input">
-                  <label>¿Eres primeriza?</label>
-                  <div className="contenedor-buttons">
-                    <BotonInput type="outlined">Si</BotonInput>
-                    <BotonInput type="filled">No</BotonInput>
-                  </div>
-                </div>
-
-                <div className="wrapper-checkbox">
-                  <input type="checkbox" id="checkbox" />
-                  <label htmlFor="checkbox">Tengo más de un hijo.</label>
-                </div>
-
-                {/* Control - class : opacity y disabled */}
-                <div className="opacity">
-                  <div className="container-select">
-                    <p>Fecha de nacimiento de tú bebé</p>
-                    <div className="wrapper-date">
-                      <div className="select-input">
-                        <select placeholder="Mes">
-                          <option>Mes</option>
-                        </select>
-                      </div>
-                      <div className="select-input">
-                        <select placeholder="Dia">
-                          <option>Dia</option>
-                        </select>
-                      </div>
-                      <div className="select-input">
-                        <select placeholder="Año">
-                          <option>Año</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
                   <div className="wrapper-input">
-                    <label>Sexo de tú bebé</label>
+                    <label>¿Eres primeriza?</label>
                     <div className="contenedor-buttons">
-                      <BotonInput type="outlined">Niña</BotonInput>
-                      <BotonInput type="filled">Niño</BotonInput>
+                      <BotonInput 
+                        onClick={ () => handleSelectionChange('firstTime',true)}
+                        type = {`${selection.firstTime ? "filled" : "outlined"}`}
+                      >
+                        Si
+                      </BotonInput>
+                      <BotonInput 
+                        onClick={ () => handleSelectionChange('firstTime',false)}
+                        type = {`${!selection.firstTime ? "filled" : "outlined"}`}
+                      >
+                        No
+                      </BotonInput>
                     </div>
                   </div>
+                }
+                {
+                  (!selection.firstTime && selection.haveChildren) && 
+                    <div className="wrapper-checkbox">
+                      <input
+                        type="checkbox"
+                        id="checkbox"
+                        className="box-children__checkbox"
+                        onChange={ handleMoreChildren }
+                        checked = { moreChildren}
+                      />
+                      <label
+                        htmlFor="checkbox"
+                        className="box-children__text"
+                      ></label>
+                      <label htmlFor="checkbox">Tengo más de un hijo.</label>
+                    </div>
+                }
+                {
+                  selection.firstTime && selection.haveChildren &&
+                  <>
 
-                  <div className="wrapper-input">
-                    <label>¿Quieres compartir tu perfil con alguien?</label>
-                    <div className="contenedor-buttons">
-                      <BotonInput type="outlined">No</BotonInput>
-                      <BotonInput type="filled">Si</BotonInput>
-                    </div>
-                  </div>
-                  <div className="wrapper-input">
-                    <label htmlFor="email_2">
-                      Ingresa su dirección de correo electrónico
-                    </label>
-                    <input type="email" id="email_2" name="email_2" />
-                  </div>
-                </div>
+                    {/* Control - class : opacity y disabled */}
+                      <div className="container-select">
+                        <p>Fecha de nacimiento de tú bebé</p>
+                        <div className="wrapper-date">
+                          <div className="select-input">
+                            <select placeholder="Mes">
+                              <option>Mes</option>
+                            </select>
+                          </div>
+                          <div className="select-input">
+                            <select placeholder="Dia">
+                              <option>Dia</option>
+                            </select>
+                          </div>
+                          <div className="select-input">
+                            <select placeholder="Año">
+                              <option>Año</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="wrapper-input">
+                        <label>Sexo de tú bebé</label>
+                        <div className="contenedor-buttons">
+                          <BotonInput 
+                            type={`${selection?.genderBaby === "girl" ? "filled" : "outlined"}`}
+                            onClick={ () => handleSelectionChange('genderBaby','girl')}
+                          >
+                            Niña
+                          </BotonInput>
+                          <BotonInput 
+                            type={`${selection?.genderBaby === "boy" ? "filled" : "outlined"}`}
+                            onClick={ () => handleSelectionChange('genderBaby','boy')}
+                          >
+                            Niño
+                          </BotonInput>
+                        </div>
+                      </div>
+
+                      {/* <div className="wrapper-input">
+                        <label>¿Quieres compartir tu perfil con alguien?</label>
+                        <div className="contenedor-buttons">
+                          <BotonInput type="outlined">No</BotonInput>
+                          <BotonInput type="filled">Si</BotonInput>
+                        </div>
+                      </div>
+                      <div className="wrapper-input">
+                        <label htmlFor="email_2">
+                          Ingresa su dirección de correo electrónico
+                        </label>
+                        <input type="email" id="email_2" name="email_2" />
+                      </div> */}
+                  </>
+                }
               </form>
             </div>
 
@@ -242,19 +362,19 @@ const index = () => {
       <style jsx>
         {`
           /*RESET*/
+          .show-desktop{
+            display:none;
+          }
           /********/
           input {
             text-align: left !important;
           }
-          input:focus {
+          input:focus , :global(.form-control:focus){
             outline: none;
-            box-shadow: none;
+            box-shadow: none!important;
           }
           input::placeholder {
             background: none;
-          }
-          input:focus {
-            outline: none;
           }
 
           .container-text {
@@ -337,9 +457,29 @@ const index = () => {
             display: flex;
             align-items: center;
           }
-          .wrapper-checkbox input {
-            height: 24px;
-            width: 24px;
+          .box-children__checkbox{
+            height:2.4rem;
+            width:2.4rem;
+            border: 2px solid #575756;
+            position:absolute;
+            padding:0;
+            display:none;
+            overflow:hidden;
+          }
+          .box-children__text:before{
+            content:"";
+            display:inline-block;
+            width:22px;
+            height:22px;
+            border: 2px solid #575756;
+            border-radius: 5px;
+            line-height: 24px;
+            vertical-align: text-top;
+            cursor:pointer;
+          }
+          .box-children__checkbox:checked + .box-children__text:before{
+            border: 2px solid #f22c74;
+            background: url("/image/icon/check-pink.svg") center/16px no-repeat;
           }
           .wrapper-checkbox label {
             margin-bottom: 0;
@@ -385,6 +525,8 @@ const index = () => {
             font-family: "mont-light" !important;
             font-size: 1.3rem;
             font-weight: 300;
+            color: #575650;
+            opacity: 0.8;
           }
 
           .wrapper-date {
@@ -399,7 +541,8 @@ const index = () => {
           .select-input select {
             width: 100%;
             height: 38px;
-            border: 1px solid #575756;
+            color: rgba(87, 86, 80, 1);
+            border: 1px solid #DADADA;
             box-sizing: border-box;
             border-radius: 10px;
             outline: none;
@@ -408,12 +551,14 @@ const index = () => {
             padding: 0.5rem 0.8rem;
             margin: 0.5rem 0;
             /** */
-            background: url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png")
+            background: url("https://i.ibb.co/Hz6T04Y/image.png")
               no-repeat right #ffffff;
             -webkit-appearance: none;
+            background-size:1.25rem;
             -moz-appearance: none;
             appearance: none;
-            background-position-x: 90%;
+            background-position-x: 87.5%;
+
           }
           .phone-container {
             border-radius: 0;
@@ -422,6 +567,15 @@ const index = () => {
           /********Bloquear******/
           .opacity {
             opacity: 0.5;
+          }
+
+          .error-input{
+              height:1.5rem;
+              margin-top:-1rem;
+              margin-bottom:1rem;
+              font-family:"mont-bold";
+              font-size:1.2rem;
+              color:#ff0033;
           }
           @media (min-width: 480px) {
             .all-content {
@@ -433,6 +587,13 @@ const index = () => {
             }
           }
           @media (min-width: 768px) {
+
+            .show-desktop{
+              display:block;
+            }
+            .hide-desktop{
+              display:none;
+            }
             .all-content {
               width: 50rem;
             }
@@ -452,13 +613,13 @@ const index = () => {
               padding-left: 3.5rem;
             }
             .wrapper-input input {
-              border: 1px solid rgba(85, 110, 161, 1);
+              border: 1px solid #556EA1;
               box-sizing: border-box;
-              border-radius: 15px;
-              font-size: 1.75rem;
+              border-radius: 10px;
               opacity: 0.8;
-              padding: 0.5rem 1rem;
+              padding: 0.8rem 1rem;
               margin-top: 0.5rem;
+              font-size:1.3rem;
             }
             .wrapper-checkbox label {
               font-size: 1.3rem;
@@ -500,7 +661,7 @@ const index = () => {
               outline: none;
             }
             .phone-container {
-              border-radius: 15px;
+              border-radius: 10px;
               border: 1px solid #556ea1;
             }
           }
@@ -525,10 +686,6 @@ const index = () => {
             :global(.code-picker) {
               width: 100% !important;
             }
-            .phone-container {
-              border-radius: 15px;
-              border: 1px solid #556ea1;
-            }
           }
 
           @media (min-width: 1280px) {
@@ -541,17 +698,6 @@ const index = () => {
 
             .wrapper-checkbox label {
               font-size: 1.4rem;
-            }
-
-            .terminos {
-              font-size: 1.5rem;
-            }
-            :global(.code-picker) {
-              width: 100% !important;
-            }
-            .phone-container {
-              border-radius: 15px;
-              border: 1px solid #556ea1;
             }
           }
         `}

@@ -1,11 +1,11 @@
 
 
-function BotonInput({children , type , width }) {
+function BotonInput({children , type , width, onClick}) {
     //type -> filled - outlined
 
     return (
         <>
-            <div className={`boton ${type} ${width ? width : ""}`}>
+            <div className={`boton ${type} ${width ? width : ""}`} onClick = { onClick}>
                 <p>
                     {children}
                 </p>
@@ -19,7 +19,7 @@ function BotonInput({children , type , width }) {
                         text-align:center;
                         width:calc( 50% - 1rem);
                         padding:0.5rem 0;
-                        transition:0.3s ease-in-out;
+                        transition:background 0.3s ease-in-out;
                     }
                     .boton:hover{
                         transform: scale(1.05);
