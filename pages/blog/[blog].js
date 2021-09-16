@@ -64,7 +64,7 @@ const CardBlogEspecific = ({ currentData }) => {
       <div className="fade-in animated">
         <div className="box-banner-blog">
           <div className="ondas heartbeat">
-            <Image
+            <img
               src="/image/onda-blanca.svg"
               alt="ondas"
               width={100}
@@ -74,7 +74,7 @@ const CardBlogEspecific = ({ currentData }) => {
           </div>
           <h4 className="text-title-blog">Detalles de blog</h4>
           <div className="ondas heartbeat">
-            <Image
+            <img
               src="/image/onda-blanca.svg"
               alt="ondas"
               width={100}
@@ -85,7 +85,7 @@ const CardBlogEspecific = ({ currentData }) => {
         </div>
         <div className="box-blog-especifico">
           <div className="nube1 heartbeat">
-            <Image
+            <img
               src="/image/blog/nube1.png"
               width={190}
               height={130}
@@ -94,7 +94,7 @@ const CardBlogEspecific = ({ currentData }) => {
             />
           </div>
           <div className="nube2 heartbeat">
-            <Image
+            <img
               src="/image/blog/nube2.png"
               width={190}
               height={130}
@@ -102,7 +102,7 @@ const CardBlogEspecific = ({ currentData }) => {
             />
           </div>
           <div className="nube3 heartbeat">
-            <Image
+            <img
               src="/image/blog/nube3.png"
               width={190}
               height={130}

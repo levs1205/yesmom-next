@@ -76,7 +76,7 @@ const Blog = ({ currentData }) => {
         <div className="box-banner-blog">
           <div className="container-content-center">
             <div className="ondas heartbeat">
-              <Image
+              <img
                 src="/image/onda-blanca.svg"
                 alt="ondas"
                 width={70}
@@ -85,7 +85,7 @@ const Blog = ({ currentData }) => {
             </div>
             <h4 className="text-title-blog">Blog</h4>
             <div className="ondas heartbeat">
-              <Image
+              <img
                 src="/image/onda-blanca.svg"
                 alt="ondas"
                 width={70}
@@ -131,7 +131,7 @@ const Blog = ({ currentData }) => {
             <br />
             <b>para tus hijos eres el mundo</b>
             <div className="waves-blog heartbeat">
-              <Image
+              <img
                 src="/image/blog/waves-blog.png"
                 width={68}
                 height={9}

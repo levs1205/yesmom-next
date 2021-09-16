@@ -61,7 +61,7 @@ const Product = () => {
             src="/image/perfil-tienda/banner-baby-desktop.png"
           />
           <div className="box-title-ondas">
-            <Image
+            <img
               src="/image/onda-blanca.svg"
               alt="ondas"
               className="ondas"
@@ -69,7 +69,7 @@ const Product = () => {
               height={50}
             />
             <h4 className="text-title heartbeat">Tienda Online</h4>
-            <Image
+            <img
               src="/image/onda-blanca.svg"
               alt="ondas"
               className="ondas"

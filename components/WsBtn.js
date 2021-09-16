@@ -6,7 +6,7 @@ const WsBtn = () => {
     <>
       <a target="blank" href="https://api.whatsapp.com/send?phone=+51947234452&text=%C2%A1Hola%20Yes%20Mom!%20">
         <div className="btn-ws">
-          <Image
+          <img
             src="/image/ws-yesmom.png"
             alt="sin moverte"
             width={40}

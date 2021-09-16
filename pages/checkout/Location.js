@@ -20,7 +20,7 @@ const Location = () => {
           </Link>
         </div>
         <div className="icon-checkout">
-          <Image
+          <img
             src="/image/icon/checkout-second-step.svg"
             alt="Checkout segundo paso"
             width={200}

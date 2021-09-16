@@ -16,7 +16,7 @@ const DetailItemCart = ({ id, nombre, imagen, noBorder, precio, quantity}) => {
           className="card--shopping-cart__iconDelete"
           onClick={handleRemoveProduct}
         >
-          <Image src="/image/cart/delete-icon.svg" width="20px" height="20px" />
+          <img src="/image/cart/delete-icon.svg" width="20px" height="20px" />
         </div>
         <div className="card__block-first">
           <img src={imagen[0]} alt="" className="card__img" />

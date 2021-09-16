@@ -52,7 +52,7 @@ const index = () => {
       </Head>
       <div className="box-banner-about fade-in animated ">
         <div className="ondas heartbeat">
-          <Image
+          <img
             src="/image/onda-blanca.svg"
             alt="ondas"
             width={70}
@@ -61,7 +61,7 @@ const index = () => {
         </div>
         <h4 className="text-title-blog">Sobre nosotros</h4>
         <div className="ondas heartbeat">
-          <Image
+          <img
             src="/image/onda-blanca.svg"
             alt="ondas"
             width={70}
@@ -73,7 +73,7 @@ const index = () => {
       <div className="section-somos-home">
         <Container fluid="true">
           <div className="nube1-somos heartbeat">
-            <Image
+            <img
               src="/image/nube1.svg"
               width={150}
               height={60}
@@ -82,7 +82,7 @@ const index = () => {
             />
           </div>
           <div className="nube2-somos heartbeat">
-            <Image
+            <img
               src="/image/nube2.svg"
               width={150}
               height={60}
@@ -95,7 +95,7 @@ const index = () => {
             <Col xs={12} md={12} lg={5} xl={5}>
               <div className="box-somos-yesmom">
                 <div className="pb-3 subtitle-about">
-                  <Image
+                  <img
                     src="/image/somos-yesmom.svg"
                     width={200}
                     height={100}
@@ -123,14 +123,14 @@ const index = () => {
               <div className="box-img-somos-home">
                 <div className="img-somos tilt-in-fwd-tr">
                   <div className="blue-lines-right heartbeat">
-                    <Image
+                    <img
                       src="/image/blue-lines-top-right.svg"
                       width={23}
                       height={22}
                       alt="imagen sorteo yesmom home"
                     />
                   </div>
-                  <Image
+                  <img
                     src="/image/about.png"
                     width={80}
                     height={63}
@@ -138,7 +138,7 @@ const index = () => {
                     alt="imagen sorteo yesmom home"
                   />
                   <div className="blue-lines-left heartbeat">
-                    <Image
+                    <img
                       src="/image/blue-lines-bottom-left.svg"
                       width={23}
                       height={22}

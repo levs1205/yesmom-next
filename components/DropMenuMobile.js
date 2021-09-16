@@ -29,7 +29,7 @@ function DropMenuMobile({ active, setActive, logged }) {
       <div className={`drop-menu ${active ? "" : "drop-menu-off"}`}>
         <div className="container-close">
           <div className="icon-close" onClick={setActive}>
-            <Image
+            <img
               src="/image/header/close.svg"
               alt="icon close menu"
               width={30}
@@ -51,7 +51,7 @@ function DropMenuMobile({ active, setActive, logged }) {
                 <Link key={i} href={to}>
                   <li className="list-group-item">
                     <div>
-                      <Image
+                      <img
                         src={src}
                         alt={`logo ${name.toLocaleLowerCase()} yesmom`}
                         width={30}
@@ -73,7 +73,7 @@ function DropMenuMobile({ active, setActive, logged }) {
                 <Link href="/login">
                   <li className="list-group-item">
                     <div>
-                      <Image
+                      <img
                         src="/image/header/iniciar-sesion.svg"
                         alt="logo login yesmom"
                         width={30}
@@ -96,7 +96,7 @@ function DropMenuMobile({ active, setActive, logged }) {
                   <li className="list-group-item justify-content">
                     <div className="flex">
                       <div>
-                        <Image
+                        <img
                           src="/image/header/skinbaby-mob.svg"
                           alt="logo login yesmom"
                           width={30}
@@ -111,7 +111,7 @@ function DropMenuMobile({ active, setActive, logged }) {
                       className="expand-more-options"
                       onClick={handleExpandOptions}
                     >
-                      <Image
+                      <img
                         src="/image/header/expand-more-options.svg"
                         alt="logo login yesmom"
                         width={25}
@@ -138,7 +138,7 @@ function DropMenuMobile({ active, setActive, logged }) {
                           </Link>
                           {pathname === link.path && (
                             <div className="star-active">
-                              <Image
+                              <img
                                 src="/image/header/star-active.svg"
                                 width={15}
                                 height={15}

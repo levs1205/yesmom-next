@@ -13,7 +13,7 @@ const Header = () => {
       <div className="header-yesmom">
         <Navbar expand="lg" className=" justify-content-between ">
           <Navbar.Toggle aria-controls="basic-navbar-nav">
-            <Image
+            <img
               src="/image/header/burger.svg"
               alt="burger yesmom"
               className="burger-yesmom"
@@ -24,7 +24,7 @@ const Header = () => {
           </Navbar.Toggle>
 
           <Navbar.Brand href="/" className="hover-efect">
-            <Image
+            <img
               src="/image/header/logo-yesmom.svg"
               alt="logo yesmom"
               className="logo-yesmom"
@@ -43,7 +43,7 @@ const Header = () => {
               {/* <Form inline className="ml-form-search">
             <Button variant="">
               <div className="lupa-img">
-              <Image
+              <img
                 src="/image/header/lupa.svg"
                 alt="lupa yesmom"
 
@@ -66,7 +66,7 @@ const Header = () => {
                 >
                   <a>
                     <figure className="item-menu ">
-                      <Image
+                      <img
                         src="/image/header/blog.svg"
                         alt="logo blog yesmom "
                         //   className="lupa-img"
@@ -84,7 +84,7 @@ const Header = () => {
                 >
                   <a>
                     <figure className="item-menu ">
-                      <Image
+                      <img
                         src="/image/header/tienda.svg"
                         alt="logo tienda yesmom"
                         //   className="lupa-img"
@@ -102,7 +102,7 @@ const Header = () => {
                 >
                   <a>
                     <figure className="item-menu">
-                      <Image
+                      <img
                         src="/image/header/regalo.svg"
                         alt="logo regalo yesmom"
                         //   className="lupa-img"
@@ -128,7 +128,7 @@ const Header = () => {
                 >
                   <a>
                     <figure className="item-menu">
-                      <Image
+                      <img
                         src="/image/header/iniciar-sesion.svg"
                         alt="logo iniciar sesión yesmom"
                         //   className="lupa-img"

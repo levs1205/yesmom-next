@@ -20,7 +20,7 @@ const DetailProduct = ({id ,nombre , imagen , quantity , precio}) => {
               className="card--shopping-cart__iconDelete"
               onClick={handleRemoveProduct}
             >
-              <Image
+              <img
                 src="/image/cart/delete-icon.svg"
                 width="20px"
                 height="20px"

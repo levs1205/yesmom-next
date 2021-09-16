@@ -144,7 +144,7 @@ const Detalles = () => {
                               className="show--control-cantidad"
                               onClick={handleMinus}
                             >
-                              <Image
+                              <img
                                 src="/image/tienda/icon-minus.svg"
                                 height={25}
                                 width={25}
@@ -163,7 +163,7 @@ const Detalles = () => {
                               className="show--control-cantidad"
                               onClick={handleAdd}
                             >
-                              <Image
+                              <img
                                 src="/image/tienda/icon-add.svg"
                                 height={25}
                                 width={25}

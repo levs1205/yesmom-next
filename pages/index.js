@@ -95,7 +95,7 @@ const Home = ({ currentData , products}) => {
         <section fluid="true" className="box-banner">
           <div className="banner view-desktop tilt-in-fwd-tr">
             <div className="h-100">
-              <Image
+              <img
                 src="/image/home/banner.png"
                 alt="Picture of the author"
                 layout="responsive"
@@ -106,7 +106,7 @@ const Home = ({ currentData , products}) => {
           </div>
           <div className="banner view-mobile">
             <img src="/image/home/banner-mobile.png" className="w-100" />
-            {/* <Image
+            {/* <img
               src="/image/home/banner-mobile.png"
               layout="fill"
               alt="Picture of the author"
@@ -120,7 +120,7 @@ const Home = ({ currentData , products}) => {
                 Encuentra tu regalo soñado
               </h3>
               <div className="ondas d-block m-auto heartbeat">
-                <Image
+                <img
                   src="/image/ondas.svg"
                   alt="ondas"
                   width={90}
@@ -156,7 +156,7 @@ const Home = ({ currentData , products}) => {
             <Row className="sin-margin">
               <Col xs={12} sm={12} md={12} lg={6} xl={6}>
                 <div className="box-text-title">
-                  <Image
+                  <img
                     src="/image/ondas.svg"
                     alt="ondas"
                     width={50}
@@ -165,7 +165,7 @@ const Home = ({ currentData , products}) => {
 
                   <h4 className="text-title heartbeat">Sorteo</h4>
 
-                  <Image
+                  <img
                     src="/image/ondas.svg"
                     alt="ondas"
                     width={50}
@@ -195,7 +195,7 @@ const Home = ({ currentData , products}) => {
               <Col xs={12} sm={12} md={12} lg={6} xl={6}>
                 <div className="box-img-sorteo-home">
                   <div className="line-up heartbeat">
-                    <Image
+                    <img
                       src="/image/lineas-rosa1.svg"
                       alt="lineas"
                       width={30}
@@ -203,7 +203,7 @@ const Home = ({ currentData , products}) => {
                     />
                   </div>
                   <div className="img-sorteo">
-                    <Image
+                    <img
                       src="/image/home/regalo2.png"
                       alt="imagen sorteo yesmom home"
                       layout="responsive"
@@ -212,7 +212,7 @@ const Home = ({ currentData , products}) => {
                     />
                   </div>
                   <div className="line-down heartbeat">
-                    <Image
+                    <img
                       src="/image/linea-rosa2.svg"
                       alt="lineas"
                       width={30}
@@ -227,7 +227,7 @@ const Home = ({ currentData , products}) => {
         <div className="section-lo-mejor-home">
           <Container fluid="true">
             <div className="nube-up">
-              <Image
+              <img
                 src="/image/home/nube.svg"
                 alt="nube yesmom"
                 width={40}
@@ -247,7 +247,7 @@ const Home = ({ currentData , products}) => {
               ></FontAwesomeIcon>
             </div>
             <div className="onda-rosa heartbeat">
-              <Image
+              <img
                 src="/image/onda-rosa.svg"
                 alt="onda rosa yes mom"
                 width={90}
@@ -260,7 +260,7 @@ const Home = ({ currentData , products}) => {
                 <Row className="sin-margin">
                   <Col className="mt-5" sm={12} md={6} lg={3}>
                     <div className="img-lo-mejor ">
-                      <Image
+                      <img
                         src="/image/home/destacado.png"
                         alt="destacado"
                         width={400}
@@ -278,7 +278,7 @@ const Home = ({ currentData , products}) => {
                   </Col>
                   <Col className="mt-5" sm={12} md={6} lg={3}>
                     <div className="img-lo-mejor">
-                      <Image
+                      <img
                         src="/image/home/vendido.png"
                         alt="search"
                         width={400}
@@ -294,7 +294,7 @@ const Home = ({ currentData , products}) => {
                   </Col>
                   <Col className="mt-5" sm={12} md={6} lg={3}>
                     <div className="img-lo-mejor">
-                      <Image
+                      <img
                         src="/image/home/sin-moverte.png"
                         alt="sin moverte"
                         width={400}
@@ -310,7 +310,7 @@ const Home = ({ currentData , products}) => {
                   </Col>
                   <Col className="mt-5" sm={12} md={6} lg={3}>
                     <div className="img-lo-mejor">
-                      <Image
+                      <img
                         src="/image/home/juguetes.png"
                         alt="juguetes"
                         width={400}
@@ -330,7 +330,7 @@ const Home = ({ currentData , products}) => {
             </div>
 
             <div className="nube-down">
-              <Image
+              <img
                 src="/image/home/nube.svg"
                 alt="nube yesmom"
                 width={40}
@@ -343,7 +343,7 @@ const Home = ({ currentData , products}) => {
         <div className="section-tienda-home">
           <Container>
             <div className="box-text-title">
-              <Image
+              <img
                 src="/image/ondas.svg"
                 alt="ondas"
                 className="ondas"
@@ -351,7 +351,7 @@ const Home = ({ currentData , products}) => {
                 height={50}
               />
               <h4 className="text-title heartbeat">Tienda online</h4>
-              <Image
+              <img
                 src="/image/ondas.svg"
                 alt="ondas"
                 className="ondas"
@@ -388,7 +388,7 @@ const Home = ({ currentData , products}) => {
         </div>
         <div className="section-blog-home">
           <div className="nube-blanca1">
-            <Image
+            <img
               src="/image/nube-blanca2.png"
               alt="nube yes mom"
               width={60}
@@ -396,7 +396,7 @@ const Home = ({ currentData , products}) => {
             />
           </div>
           <div className="nube-blanca2">
-            <Image
+            <img
               src="/image/nube-blanca1.png"
               alt="nube yes mom"
               width={100}
@@ -404,7 +404,7 @@ const Home = ({ currentData , products}) => {
             />
           </div>
           <div className="nube-blanca3">
-            <Image
+            <img
               src="/image/nube-blanca1.png"
               alt="nube yes mom"
               width={90}
@@ -412,7 +412,7 @@ const Home = ({ currentData , products}) => {
             />
           </div>
           <div className="nube-blanca4">
-            <Image
+            <img
               src="/image/nube-blanca2.png"
               alt="nube yes mom"
               width={110}
@@ -435,7 +435,7 @@ const Home = ({ currentData , products}) => {
               <Col xs={12} md={12} lg={5} xl={5}>
                 <div className="box-true-history">
                   <div className="box-text-title">
-                    <Image
+                    <img
                       src="/image/ondas.svg"
                       alt="ondas"
                       className="ondas"
@@ -443,7 +443,7 @@ const Home = ({ currentData , products}) => {
                       height={50}
                     />
                     <h4 className="text-title heartbeat">Blog</h4>
-                    <Image
+                    <img
                       src="/image/ondas.svg"
                       alt="ondas"
                       className="ondas"
