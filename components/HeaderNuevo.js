@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ActiveLink from "../components/ActiveLink";
-import Image from "next/image";
+// import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import SearchBlog from "./Search/SearchBlog";

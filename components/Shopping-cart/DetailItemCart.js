@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import React, { useContext } from "react";
 import { startRemoveProduct } from "../../context/actions/ui";
 import YesmomContext from "../../context/Context";

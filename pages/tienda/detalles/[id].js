@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Head from "next/head";

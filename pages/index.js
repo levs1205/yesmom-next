@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { Container, Row, Col, Card, CardDeck } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

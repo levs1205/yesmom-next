@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Card, CardDeck, Container } from "react-bootstrap";
 // import CardBlog from "./CardBlog";
 import AppLayout from "../../components/AppLayout";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import CardBlog from "../../components/CardBlog";
 import Head from "next/head";
@@ -118,13 +118,6 @@ const Blog = ({ currentData }) => {
 
         <div className="box-green-blog">
           {/* <div className="w-100 box-green-blog-img-fondo"> */}
-          {/* <Image
-              src="/image/blog/fondo-verde.png"
-              width={1920}
-              height={800}
-              layout="responsive"
-              alt="Picture of the author"
-            /> */}
           {/* </div> */}
           <h6 className="text-bottom-blog ">
             Para el mundo eres una mamá,

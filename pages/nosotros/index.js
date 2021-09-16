@@ -1,6 +1,6 @@
 import React from "react";
 import AppLayout from "../../components/AppLayout";
-import Image from "next/image";
+// import Image from "next/image";
 import { Container, Row, Col } from "react-bootstrap";
 import Head from "next/head";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

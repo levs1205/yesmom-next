@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+// import Image from "next/image";
 
 const BannerTienda = () => {
   return (
@@ -12,40 +12,6 @@ const BannerTienda = () => {
               alt="Banner secundario de productos"
               className="w-100"
             />
-            {/* <div className="all-content">
-              <div className="image-baby tilt-in-fwd-tr">
-                <Image
-                  src="/image/tienda/image-mobile-banner.png"
-                  alt="baby plaza"
-                  width="290px"
-                  height="290px"
-                />
-              </div>
-              <div className="other-content">
-                <div className="contenedor-text-banner">
-                  <h5 className="text-banner">
-                    ¡Compra en Baby Plaza Store y obtén un descuento para la
-                    primero sesión de fotos de tu bebé!
-                  </h5>
-                </div>
-                <div className="arrow">
-                  <Image
-                    src="/image/tienda/arrow.svg"
-                    alt="flecha"
-                    width="100"
-                    height="240"
-                  />
-                </div>
-                <div className="img-discount center tilt-in-fwd-tr">
-                  <Image
-                    src="/image/tienda/discount.png"
-                    alt="descuento"
-                    width="250px"
-                    height="150px"
-                  />
-                </div>
-              </div>
-            </div> */}
           </div>
         </section>
       </div>
