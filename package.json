@@ -30,9 +30,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "next build && next export",
+    "build": "next build",
     "start": "next start",
-    "export": "next build && next export",
+    "export": "next export",
     "dev": "next -p 3003"
   },
   "keywords": [],
