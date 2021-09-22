@@ -611,14 +611,41 @@ const CardBlogEspecific = ({ currentData }) => {
 //   return { paths, fallback: false };
 // }
 
-export async function getServerSideProps(params) {
+
+
+
+
+// export async function getStaticProps(params) {
+//   // Call an external API endpoint to get posts.
+//   // You can use any data fetching library
+//   const routerParams = params;
+//   console.log(routerParams);
+//   let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogParameters/user?id=${routerParams.query.id}`;
+//   const res = await fetch(url);
+
+//   const currentData = await res.json();
+//   if (!currentData) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+//   // By returning { props: posts }, the Blog component
+//   // will receive `posts` as a prop at build time
+//   return {
+//     props: {
+//       currentData: currentData[0],
+//     },
+//   };
+// }
+
+
+export async function getStaticProps({ params }) {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const routerParams = params;
-  console.log(routerParams);
-  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogParameters/user?id=${routerParams.query.id}`;
+  /* const routerParams = params;
+  console.log(routerParams); */
+  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogParameters/user?id=${params.blog}`;
   const res = await fetch(url);
-
   const currentData = await res.json();
   if (!currentData) {
     return {
@@ -633,6 +660,28 @@ export async function getServerSideProps(params) {
     },
   };
 }
+export async function getStaticPaths() {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=all`;
+  const res = await fetch(url);
+  const currentData = await res.json();
+  if (!currentData) {
+    return {
+      notFound: true,
+    };
+  }
+  const paths = currentData.map((post)=>({
+    params : { blog : post.blog._id}
+  }))
+  return { paths, fallback: false }
+}
+
+
+
+
+
+
 // export async function getStaticProps({ params }) {
 //   // Call an external API endpoint to get posts.
 //   // You can use any data fetching library

@@ -2,10 +2,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Provider from "../context/Provider";
-import { Amplify } from "aws-amplify";
-import awsExports from "../src/aws-exports";
-
-Amplify.configure({ ...awsExports, ssr: true });
 
  
 function MyApp({ Component, pageProps }) {
