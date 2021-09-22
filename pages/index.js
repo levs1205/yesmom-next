@@ -1283,7 +1283,7 @@ const Home = ({ currentData , products}) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps(){
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=2`;
