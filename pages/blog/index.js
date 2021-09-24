@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Card, CardDeck, Container } from "react-bootstrap";
 // import CardBlog from "./CardBlog";
 import AppLayout from "../../components/AppLayout";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import CardBlog from "../../components/CardBlog";
 import Head from "next/head";
@@ -76,7 +76,7 @@ console.log(currentData);
         <div className="box-banner-blog">
           <div className="container-content-center">
             <div className="ondas heartbeat">
-              <Image
+              <img
                 src="/image/onda-blanca.svg"
                 alt="ondas"
                 width={70}
@@ -85,7 +85,7 @@ console.log(currentData);
             </div>
             <h4 className="text-title-blog">Blog</h4>
             <div className="ondas heartbeat">
-              <Image
+              <img
                 src="/image/onda-blanca.svg"
                 alt="ondas"
                 width={70}
@@ -118,20 +118,13 @@ console.log(currentData);
 
         <div className="box-green-blog">
           {/* <div className="w-100 box-green-blog-img-fondo"> */}
-          {/* <Image
-              src="/image/blog/fondo-verde.png"
-              width={1920}
-              height={800}
-              layout="responsive"
-              alt="Picture of the author"
-            /> */}
           {/* </div> */}
           <h6 className="text-bottom-blog ">
             Para el mundo eres una mamá,
             <br />
             <b>para tus hijos eres el mundo</b>
             <div className="waves-blog heartbeat">
-              <Image
+              <img
                 src="/image/blog/waves-blog.png"
                 width={68}
                 height={9}
@@ -534,13 +527,16 @@ console.log(currentData);
                 top: auto;
                 bottom: -150%;
               }
+              :global(.box-card-group .card-blog) {
+              min-height: 40.2rem;
+            }
             }
           `}
       </style>
     </AppLayout>
   );
 };
-export async function getServerSideProps() {
+export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=all`;

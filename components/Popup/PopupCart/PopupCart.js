@@ -56,9 +56,10 @@ const PopupCart = () => {
             border-radius: 0px 0px 44px 44px;
             height: 100%;
             width: 360px;
-            top: 80px;
+            top: 5rem;
             padding: 25px;
             cursor: default;
+            position:relative
           }
           .popup--title {
             font-family: "mont-semibold";

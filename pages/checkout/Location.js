@@ -2,7 +2,7 @@ import AppLayout from "../../components/AppLayout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
 
 const Location = () => {
   return (
@@ -20,7 +20,7 @@ const Location = () => {
           </Link>
         </div>
         <div className="icon-checkout">
-          <Image
+          <img
             src="/image/icon/checkout-second-step.svg"
             alt="Checkout segundo paso"
             width={200}

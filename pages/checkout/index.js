@@ -6,20 +6,25 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Stepper from "../../components/Stepper";
 // import { useForm } from "../../hooks/useForm";
-import CheckoutStep1 from "./CheckoutStep1";
-import CheckoutStep3 from "./CheckoutStep3";
-import CheckoutStep2 from "./CheckoutStep2";
+import CheckoutStep1 from "../../components/Checkout/CheckoutStep1";
+import CheckoutStep3 from "../../components/Checkout/CheckoutStep3";
+import CheckoutStep2 from "../../components/Checkout/CheckoutStep2";
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
+const identityRegex = /^\d{8,9}$/
+
 const schema = yup.object().shape({
-  name: yup.string().required(),
-  email: yup.string().email(),
-  identity: yup.number().integer().required().min(8, 'Ingrese los 8 digitos de su DNI'),
-  phone: yup.string().matches(phoneRegExp, 'El número de celular no es válido')
+  email: yup.string().email('Ingrese un email válido').required('Ingrese un correo electrónico'),
+  name: yup.string().required('Ingrese su nombre'),
+  identity: yup.string().matches(identityRegex, 'Ingrese un número de documento válido'),
+  phone: yup.string().matches(phoneRegExp, 'El número de celular no es válido'),
+  calle: yup.string().required(),
+  numero: yup.number().required(),
+  interior: yup.string().required(),
 });
 
 
@@ -42,11 +47,10 @@ const Checkout = () => {
   // const [formValues, handleInputChange] = useForm(initialForm);
 
   // const { email, name, identity, phone } = formValues;
-  console.log('errors',errors)
+  // console.log('errors',errors)
 
 const submitTest = (data) => {
-  console.log('dentro submit test')
-  console.log(data)
+//   setData(data)
 }
 
   const submitForm = async() => {
@@ -71,14 +75,14 @@ const submitTest = (data) => {
   };
 
   const handleStep = () => {
-    if (selected != 2) {
-      handleSubmit(submitTest);
-      console.log('errors handle step', errors)
-      console.log('entro')
-      // setSelected((step) => step + 1);
+    if (selected !== 2) {
+      if(!errors.email && !errors.identity && !errors.name && !errors.phone && errors.calle && errors.interior && errors.numero){
+        console.log('yo')
+        setSelected((step) => step + 1);
+      }
     } else {
       submitForm();
-    }
+      }
   };
 
   useEffect(()=>{
@@ -225,7 +229,7 @@ const submitTest = (data) => {
             </section>
           </div>
           <div className="checkout-block__card">
-            <form action="" className="identification-form" onSubmit={handleSubmit(submitTest)}>
+            <form action="" className="identification-form" onSubmit={handleSubmit(submitForm)}>
                 {
                     selected === 0 && 
                     <CheckoutStep1 
@@ -241,9 +245,12 @@ const submitTest = (data) => {
                     selected === 1 && 
                     <CheckoutStep2
                         register={register}
+                        handleSubmit={handleSubmit}
+                        watch={watch}
+                        errors={errors}
                         // formValues={formValues} 
                         // handleInputChange={handleInputChange}
-                        setSelected={setSelected}
+                        // setSelected={setSelected}
                     /> 
                 }
                 {
@@ -252,16 +259,16 @@ const submitTest = (data) => {
                         register={register}
                         // formValues={formValues} 
                         // handleInputChange={handleInputChange}
-                        setSelected={setSelected}
+                        // setSelected={setSelected}
                     /> 
                 }
-              <div className="only-button-submit" onClick={handleSubmit(submitTest)}>
+              <button className="only-button-submit" onClick={handleStep}>
                 {selected === 2 ? (
                   <div className="btn-checkout btn-pink">Comprar</div>
                 ) : (
                   <div className="btn-checkout btn-amarillo">Continuar</div>
                 )}
-              </div>
+              </button>
               <div>
 
               </div>

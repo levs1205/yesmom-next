@@ -1,5 +1,5 @@
 
-import Image from 'next/image'
+// import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
@@ -26,7 +26,7 @@ const AvatarLogged = () => {
             <Dropdown as={ButtonGroup}>
                 <Dropdown.Toggle id="dropdown-custom-1">
                     <div className="dropdown-logged">
-                        <Image
+                        <img
                             src="/image/header/skinbaby.svg"
                             width={30}
                             height={30}
