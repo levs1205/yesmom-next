@@ -13,7 +13,7 @@ import { startAddToCart } from "../../../context/actions/ui";
 import OtherProducts from "../../../components/tienda/detalle/OtherProducts";
 import Select from "react-select";
 
-export async function getStaticProps({ query }) {
+export async function getServerSideProps({ query }) {
   const id = query.id;
   const res = await fetch(`http://localhost:3003/api/product/${id}`);
   const product = await res.json();

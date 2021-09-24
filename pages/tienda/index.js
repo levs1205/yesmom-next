@@ -17,7 +17,7 @@ import BannerTienda from "../../components/tienda/BannerTienda";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 
-export async function getStaticProps({ query }) {
+export async function getServerSideProps({ query }) {
   const res = await fetch(`http://localhost:3003/api/product/product`);
   const product = await res.json();
 
