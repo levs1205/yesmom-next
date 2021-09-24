@@ -12,7 +12,7 @@ import { categorysDesktop, categorysMobile } from "../../../data/categorys";
 import router, { useRouter } from "next/router";
 import LoaderPage from "../../../components/LoaderPage";
 
-export async function getStaticProps({ query }) {
+export async function getServerSideProps({ query }) {
   //Todos los productos
   const res = await fetch(`http://localhost:3003/api/product/product`);
   const product = await res.json();
