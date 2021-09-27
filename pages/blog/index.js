@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 
 const Blog = ({ currentData }) => {
-
+console.log(currentData);
   //controlar valor del query
   const { query: { q = "" } } = useRouter();
 

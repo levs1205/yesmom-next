@@ -28,6 +28,7 @@ export async function getServerSideProps({ query }) {
   };
 }
 const Product = ({ product }) => {
+  console.log(product);
   const {
     query: { q = "" },
   } = useRouter();
