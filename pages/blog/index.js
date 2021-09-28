@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Card, CardDeck, Container } from "react-bootstrap";
 // import CardBlog from "./CardBlog";
 import AppLayout from "../../components/AppLayout";
-// import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import CardBlog from "../../components/CardBlog";
 import Head from "next/head";
@@ -76,7 +76,7 @@ console.log(currentData);
         <div className="box-banner-blog">
           <div className="container-content-center">
             <div className="ondas heartbeat">
-              <img
+              <Image
                 src="/image/onda-blanca.svg"
                 alt="ondas"
                 width={70}
@@ -85,7 +85,7 @@ console.log(currentData);
             </div>
             <h4 className="text-title-blog">Blog</h4>
             <div className="ondas heartbeat">
-              <img
+              <Image
                 src="/image/onda-blanca.svg"
                 alt="ondas"
                 width={70}
@@ -124,7 +124,7 @@ console.log(currentData);
             <br />
             <b>para tus hijos eres el mundo</b>
             <div className="waves-blog heartbeat">
-              <img
+              <feImage
                 src="/image/blog/waves-blog.png"
                 width={68}
                 height={9}

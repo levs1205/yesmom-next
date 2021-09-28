@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AppLayout from "../../../components/AppLayout";
 import Head from "next/head";
-// import Image from "next/image";
+import Image from "next/image";
 
 import { Container } from "react-bootstrap";
 import CardProduct from "../../../components/CardProduct";
@@ -115,7 +115,7 @@ const Categoria = ({ productsFiltered, category }) => {
             src="/image/perfil-tienda/banner-baby-desktop.png"
           />
           <div className="box-title-ondas">
-            <img
+            <Image
               src="/image/onda-blanca.svg"
               alt="ondas"
               className="ondas"
@@ -123,7 +123,7 @@ const Categoria = ({ productsFiltered, category }) => {
               height={50}
             />
             <h4 className="text-title heartbeat">Tienda Online</h4>
-            <img
+            <Image
               src="/image/onda-blanca.svg"
               alt="ondas"
               className="ondas"

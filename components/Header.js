@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import Link from "next/link";
-// import Image from "next/image";
+import Image from "next/image";
 import PopupCart from "./Popup/PopupCart/PopupCart"
 
 const Header = () => {
@@ -13,7 +13,7 @@ const Header = () => {
       <div className="header-yesmom">
         <Navbar expand="lg" className=" justify-content-between ">
           <Navbar.Toggle aria-controls="basic-navbar-nav">
-            <img
+            <Image
               src="/image/header/burger.svg"
               alt="burger yesmom"
               className="burger-yesmom"
@@ -24,7 +24,7 @@ const Header = () => {
           </Navbar.Toggle>
 
           <Navbar.Brand href="/" className="hover-efect">
-            <img
+            <Image
               src="/image/header/logo-yesmom.svg"
               alt="logo yesmom"
               className="logo-yesmom"
@@ -66,7 +66,7 @@ const Header = () => {
                 >
                   <a>
                     <figure className="item-menu ">
-                      <img
+                      <Image
                         src="/image/header/blog.svg"
                         alt="logo blog yesmom "
                         //   className="lupa-img"
@@ -84,7 +84,7 @@ const Header = () => {
                 >
                   <a>
                     <figure className="item-menu ">
-                      <img
+                      <Image
                         src="/image/header/tienda.svg"
                         alt="logo tienda yesmom"
                         //   className="lupa-img"
@@ -102,7 +102,7 @@ const Header = () => {
                 >
                   <a>
                     <figure className="item-menu">
-                      <img
+                      <Image
                         src="/image/header/regalo.svg"
                         alt="logo regalo yesmom"
                         //   className="lupa-img"
@@ -128,7 +128,7 @@ const Header = () => {
                 >
                   <a>
                     <figure className="item-menu">
-                      <img
+                      <Image
                         src="/image/header/iniciar-sesion.svg"
                         alt="logo iniciar sesión yesmom"
                         //   className="lupa-img"

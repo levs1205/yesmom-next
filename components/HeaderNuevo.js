@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ActiveLink from "../components/ActiveLink";
-// import Image from "next/image";
+import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import SearchBlog from "./Search/SearchBlog";
@@ -65,7 +65,7 @@ const HeaderNuevo = () => {
       <div className="box-nav">
         <nav className="navbar-yesmom">
           <div className="burger-yesmom" onClick={handleClick}>
-            <img
+            <Image
               src="/image/header/burger.svg"
               alt="burger yesmom"
               width={40}
@@ -75,7 +75,7 @@ const HeaderNuevo = () => {
           </div>
           <Link href="/" prefetch>
             <a className="mr-2 logo-yesmom">
-              <img
+              <Image
                 src="/image/header/logo-yesmom.svg"
                 alt="logo yesmom"
                 width={60}
@@ -93,7 +93,7 @@ const HeaderNuevo = () => {
                 )}
 
                 <a className="mr-2 logo-yesmom">
-                  <img
+                  <Image
                     src="/image/header/cesta.svg"
                     alt="logo tienda yesmom"
                     width={35}
@@ -111,7 +111,7 @@ const HeaderNuevo = () => {
             <div className="box-items-menu-responsive">
               <ActiveLink href="/blog" activeClassName="active">
                 <a className="item-menu-yesmom">
-                  <img
+                  <Image
                     src="/image/header/blog.svg"
                     alt="logo blog yesmom "
                     width={25}
@@ -122,7 +122,7 @@ const HeaderNuevo = () => {
               </ActiveLink>
               <ActiveLink href="/tienda" activeClassName="active">
                 <a className="item-menu-yesmom">
-                  <img
+                  <Image
                     src="/image/header/tienda.svg"
                     alt="logo tienda yesmom "
                     width={25}
@@ -133,7 +133,7 @@ const HeaderNuevo = () => {
               </ActiveLink>
               <ActiveLink href="/construccion" activeClassName="active">
                 <a className="item-menu-yesmom">
-                  <img
+                  <Image
                     src="/image/header/regalo.svg"
                     alt="logo regalo yesmom "
                     width={25}
@@ -148,7 +148,7 @@ const HeaderNuevo = () => {
               ) : (
                 <ActiveLink href="/login" activeClassName="active">
                   <a className="item-menu-yesmom">
-                    <img
+                    <Image
                       src="/image/header/iniciar-sesion.svg"
                       alt="logo blog yesmom "
                       width={25}
@@ -161,7 +161,7 @@ const HeaderNuevo = () => {
 
               <ActiveLink href="/ayuda" activeClassName="active">
                 <a className="item-menu-yesmom">
-                  <img
+                  <Image
                     src="/image/header/ayuda.svg"
                     alt="logo ayuda yesmom "
                     width={25}
@@ -183,7 +183,7 @@ const HeaderNuevo = () => {
                       {/* {isVisibleSubMenu && <PopupCart />} */}
                     </div>
 
-                    <img
+                    <Image
                       src="/image/header/cesta.svg"
                       alt="logo blog yesmom "
                       width={25}

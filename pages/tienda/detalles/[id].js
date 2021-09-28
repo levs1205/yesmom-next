@@ -1,5 +1,5 @@
 import Link from "next/link";
-// import Image from "next/image";
+import Image from "next/image";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Head from "next/head";
@@ -191,7 +191,7 @@ const DetallesID = ({ product }) => {
                               className="show--control-cantidad"
                               onClick={handleMinus}
                             >
-                              <img
+                              <Image
                                 src="/image/tienda/icon-minus.svg"
                                 height={25}
                                 width={25}
@@ -210,7 +210,7 @@ const DetallesID = ({ product }) => {
                               className="show--control-cantidad"
                               onClick={handleAdd}
                             >
-                              <img
+                              <Image
                                 src="/image/tienda/icon-add.svg"
                                 height={25}
                                 width={25}

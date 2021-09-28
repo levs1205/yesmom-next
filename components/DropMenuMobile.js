@@ -1,4 +1,4 @@
-// import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -29,7 +29,7 @@ function DropMenuMobile({ active, setActive, logged }) {
       <div className={`drop-menu ${active ? "" : "drop-menu-off"}`}>
         <div className="container-close">
           <div className="icon-close" onClick={setActive}>
-            <img
+            <Image
               src="/image/header/close.svg"
               alt="icon close menu"
               width={30}

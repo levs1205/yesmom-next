@@ -1,5 +1,5 @@
 import AppLayout from "../../components/AppLayout";
-// import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 
 const index = () => {
@@ -8,7 +8,7 @@ const index = () => {
       <div className="box-building fade-in animated">
         <div className="section-building">
           <div climgassName="img-foto tilt-in-fwd-tr">
-            <img
+            <Image
               src="/image/construccion/proximamente.png"
               alt="mamá con su bebé"
               width="550px"
@@ -25,12 +25,12 @@ const index = () => {
               </Link>
             </div>
             <div className="flecha-construccion">
-              <img
+              <Image
                 src="/image/construccion/flecha.svg"
                 alt="flecha"
                 width="250px"
                 height="100px"
-              ></img>
+              />
             </div>
           </div>
         </div>
