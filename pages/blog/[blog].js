@@ -42,7 +42,7 @@ const CardBlogEspecific = ({ currentData }) => {
               : currentData.imagenes[1].url
           }
         />
-        <meta property="og:site_name" content="La Ganga" />
+        <meta property="og:site_name" content="Yes Mom" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={currentData.blog.titulo} />
