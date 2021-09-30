@@ -987,6 +987,9 @@ export async function getServerSideProps() {
   );
   const currentData = await res.json();
 
+  const response = await fetch(`http://localhost:3003/api/product/product`);
+  const products = await response.json();
+
   if (!currentData) {
     return {
       notFound: true,
@@ -997,6 +1000,7 @@ export async function getServerSideProps() {
   return {
     props: {
       currentData,
+      products
     },
   };
 }
