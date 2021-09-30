@@ -85,7 +85,7 @@ const Home = ({ currentData }) => {
           <div className="banner view-desktop tilt-in-fwd-tr">
             <div className="h-100">
             <Image
-              src="/image/home/banner.png"
+              src="/image/home/banner.svg"
               alt="Picture of the author"
               layout="responsive"
               width={500}
