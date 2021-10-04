@@ -84,12 +84,15 @@ const Home = ({ currentData }) => {
         <section fluid="true" className="box-banner">
           <div className="banner view-desktop tilt-in-fwd-tr">
             <div className="h-100">
-            <Image
+            {/* <Image */}
+            <img
               src="/image/home/banner.png"
               alt="Picture of the author"
               layout="responsive"
-              width={500}
-              height={245}
+              // width={500}
+              // height={245}
+              width={'100%'}
+              height={'100%'}
             />
             </div>
           </div>
