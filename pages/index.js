@@ -90,7 +90,7 @@ const Home = ({ currentData }) => {
               alt="Picture of the author"
               layout="responsive"
               // width={500}
-              // height={245}
+              // height={245} 
               width={'100%'}
               height={'100%'}
             />
