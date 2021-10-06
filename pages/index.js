@@ -87,9 +87,7 @@ const Home = ({ currentData }) => {
             <Image
               src="/image/home/banner.png"
               alt="Picture of the author"
-              layout="responsive"
-              width={500}
-              height={245}
+              layout="fill"
             />
             </div>
           </div>
