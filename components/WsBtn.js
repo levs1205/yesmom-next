@@ -1,12 +1,12 @@
 import React from "react";
-// import Image from "next/image";
+import Image from "next/image";
 
 const WsBtn = () => {
   return (
     <>
       <a target="blank" href="https://api.whatsapp.com/send?phone=+51947234452&text=%C2%A1Hola%20Yes%20Mom!%20">
         <div className="btn-ws">
-          <img
+          <Image
             src="/image/ws-yesmom.png"
             alt="sin moverte"
             width={40}
