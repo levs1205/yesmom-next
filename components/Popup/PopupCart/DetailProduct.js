@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import React, { useContext } from "react";
 import { startRemoveProduct } from "../../../context/actions/ui";
 import YesmomContext from "../../../context/Context";
@@ -20,7 +20,7 @@ const DetailProduct = ({id ,nombre , imagen , quantity , precio}) => {
               className="card--shopping-cart__iconDelete"
               onClick={handleRemoveProduct}
             >
-              <Image
+              <img
                 src="/image/cart/delete-icon.svg"
                 width="20px"
                 height="20px"

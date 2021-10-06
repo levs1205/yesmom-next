@@ -1,6 +1,6 @@
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
-import Image from "next/image";
+// import Image from "next/image";
 
 import { Carousel } from "react-bootstrap";
 
@@ -68,7 +68,7 @@ const Proveedor = () => {
             </div>
             <div className="container-products">
               <div className="container-banner center">
-                <Image
+                <img
                   src="/image/proveedor/img-proveedor-mobile.png"
                   width="290px"
                   height="110px"

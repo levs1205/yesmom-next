@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import AppLayout from "../../components/AppLayout";
-import LoginInput from "../../components/Login/Logininput";
 
 const Signin = () => {
   return (

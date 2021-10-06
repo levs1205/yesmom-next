@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import AppLayout from "../components/AppLayout";
-import Image from "next/image";
+// import Image from "next/image";
 
 
 export default function FourOhFour() {
@@ -9,7 +9,7 @@ export default function FourOhFour() {
     <div className="box-error fade-in animated">
       <div className="section-error">
         <div className="img-osito tilt-in-fwd-tr">
-        <Image
+        <img
           src="/image/error/osito_triste.png"
           alt="Osito triste, no encuentra la página"
           width="450px"
@@ -17,7 +17,7 @@ export default function FourOhFour() {
         />
         </div>
         <div className="box-text-error">
-        <Image
+        <img
           src="/image/error/letter_error.png"
           alt="Error 404"
           className="img-foto"

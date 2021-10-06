@@ -1,7 +1,11 @@
 import React from "react";
-import { useForm } from 'react-hook-form'
 
 const CheckoutStep1 = ({ register, errors, watch, handleSubmit }) => {
+
+   //  console.log(watch('email'))
+   //  console.log(watch('name'))
+   //  console.log('errors', errors)
+   //  console.log('registerr', register)
 
   return (
     <>
@@ -25,6 +29,7 @@ const CheckoutStep1 = ({ register, errors, watch, handleSubmit }) => {
           id="email"
           {...register("email")}
         />
+        <p className="msg-error">{errors.email?.message}</p>
       </div>
       <div className="identification-form__wrapper">
         <label htmlFor="name" className="identification-form__label">
@@ -37,6 +42,7 @@ const CheckoutStep1 = ({ register, errors, watch, handleSubmit }) => {
           id="name"
           {...register("name")}
         />
+        <p className="msg-error">{errors.name?.message}</p>
       </div>
       <div className="identification-form__wrapper">
         <label htmlFor="identity" className="identification-form__label">
@@ -49,6 +55,7 @@ const CheckoutStep1 = ({ register, errors, watch, handleSubmit }) => {
           id="identity"
           {...register("identity")}
         />
+        <p className="msg-error">{errors.identity?.message}</p>
       </div>
       <div className="identification-form__wrapper">
         <label htmlFor="phone" className="identification-form__label">
@@ -61,6 +68,7 @@ const CheckoutStep1 = ({ register, errors, watch, handleSubmit }) => {
           id="phone"
           {...register("phone")}
         />
+        <p className="msg-error">{errors.phone?.message}</p>
       </div>
       <style jsx>
         {`
@@ -291,6 +299,11 @@ const CheckoutStep1 = ({ register, errors, watch, handleSubmit }) => {
           .identification-form__input:focus {
             outline: none !important;
             box-shadow: none !important;
+          }
+          .msg-error{
+            font-size: 1.5rem;
+            color: red;
+            padding: 0.2rem;
           }
           @media (min-width: 480px) {
             .discount-coupon__input-text {
