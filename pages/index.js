@@ -984,10 +984,10 @@ export async function getServerSideProps() {
   // You can use any data fetching library
   let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=2`
   console.log("**********",url);
-
   const res = await fetch(
     url
   );
+
   const currentData = await res.json();
 
   // const response = await fetch(`http://localhost:3003/api/product/product`);
