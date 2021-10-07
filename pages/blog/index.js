@@ -9,7 +9,7 @@ import Head from "next/head";
 
 const Blog = ({ currentData }) => {
 
-console.log(currentData);
+console.log('APIBlog',currentData);
 
   // const sortFunction=(a, b)=> {
   //   var dateA = new Date(a.blog.fecha).getTime();
@@ -449,6 +449,7 @@ console.log(currentData);
 export async function getServerSideProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
+  // hola
   let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=all`
   const res = await fetch(
     url
