@@ -25,7 +25,7 @@ const CardBlog = ({ blog }) => {
             <div className="card-img">
               <Card.Img
                 variant="top"
-                src={blog.imagenes[1].url}
+                src={blog?.imagenes[1]?.url}
                 className="card-img-blog"
               />
             </div>
