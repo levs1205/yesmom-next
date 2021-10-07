@@ -11,7 +11,6 @@ const JoditEditor = dynamic(importJodit, {
 });
 const CardBlog = ({ blog }) => {
   // const router = useRouter();
-
   const [config, setConfig] = useState({
     readonly: true,
     toolbar: false,
@@ -25,7 +24,7 @@ const CardBlog = ({ blog }) => {
             <div className="card-img">
               <Card.Img
                 variant="top"
-                src={blog.imagenes[1].url}
+                src={blog?.imagenes[0]?.url}
                 className="card-img-blog"
               />
             </div>
