@@ -95,15 +95,6 @@ const Home = ({ currentData , products}) => {
         <section fluid="true" className="box-banner">
           <div className="banner view-desktop tilt-in-fwd-tr">
             <div className="h-100">
-<<<<<<< HEAD
-              <Image
-                src="/image/home/banner.png"
-                alt="Picture of the author"
-                layout="responsive"
-                width={500}
-                height={245}
-              />
-=======
             {/* <Image */}
             <img
               src="/image/home/banner.png"
@@ -114,7 +105,6 @@ const Home = ({ currentData , products}) => {
               width={'100%'}
               height={'100%'}
             />
->>>>>>> f039f2c1e6543f0877f213b6af7575572c74372e
             </div>
           </div>
           <div className="banner view-mobile">
@@ -1299,16 +1289,6 @@ const Home = ({ currentData , products}) => {
 export async function getServerSideProps(){
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-<<<<<<< HEAD
-  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=2`;
-  
-
-  const res = await fetch(url);
-  const currentData = await res.json();
-
-  const response = await fetch(`http://localhost:3003/api/product/product`);
-  const products = await response.json();
-=======
   let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=2`
   console.log("**********",url);
   const res = await fetch(
@@ -1319,7 +1299,6 @@ export async function getServerSideProps(){
 
   // const response = await fetch(`http://localhost:3003/api/product/product`);
   // const products = await response.json();
->>>>>>> f039f2c1e6543f0877f213b6af7575572c74372e
 
   if (!currentData) {
     return {
@@ -1331,11 +1310,7 @@ export async function getServerSideProps(){
   return {
     props: {
       currentData,
-<<<<<<< HEAD
-      products
-=======
       // products
->>>>>>> f039f2c1e6543f0877f213b6af7575572c74372e
     },
   };
 }
