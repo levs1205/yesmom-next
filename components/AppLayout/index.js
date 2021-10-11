@@ -78,6 +78,7 @@ const appLayout = ({ children }) => {
           @font-face {
             font-family: "mont-light";
             src: url(/fonts/Mont-Light.otf);
+<<<<<<< HEAD
           }
 
           @font-face {
@@ -124,6 +125,8 @@ const appLayout = ({ children }) => {
             animation-duration: 3s;
             -webkit-animation-fill-mode: both;
             animation-fill-mode: both;
+=======
+>>>>>>> f039f2c1e6543f0877f213b6af7575572c74372e
           }
 
           .main-yesmom {
