@@ -239,14 +239,14 @@ function DropMenuMobile({ active, setActive, logged }) {
           .title-drop-menu {
             margin: 0 0 2rem 6.5rem;
             font-family: "mont-semibold" !important;
-            font-size: 2rem;
+            font-size: 1.6rem;
             text-transform: uppercase;
             color: #ec668d;
           }
           .text-navbar {
             margin: 0;
             font-family: "mont-light" !important;
-            font-size: 2rem;
+            font-size: 1.55rem;
             color: #575756;
           }
           .item-menu-yesmom {
