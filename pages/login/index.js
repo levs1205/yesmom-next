@@ -39,13 +39,13 @@ const index = () => {
 
   const { dispatchAuth } = useContext(YesmomContext);
   const submitForm = async (values) => {
-    console.log(values);
+    // console.log(values);
     //Ya sin errores
     //Enviar un object con { email , password }
     try {
       const { data } = await axios({
         method: "POST",
-        url: `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_TEST_LOGIN}/autenticar?email=1`,
+        url: `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/autenticar?email=1`,
         data: values,
       });
       if (data?.MensajeRespuesta === "REQUEST INVÁLIDO") {

@@ -46,6 +46,11 @@ const appLayout = ({ children }) => {
           }
 
           @font-face {
+            font-family: "mont-bold";
+            src: url(/fonts/Mont-Heavy.otf);
+          }
+
+          @font-face {
             font-family: "omnes-bold";
             src: url(/fonts/OMNES-BOLD.OTF);
           }

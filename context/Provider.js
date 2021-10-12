@@ -1,6 +1,6 @@
 
 import React, { useEffect, useReducer, useState } from 'react'
-import { startLogin } from './actions/auth';
+import { startLogin , validateToken} from './actions/auth';
 import { startAddToCart } from './actions/ui';
 import YesmomContext from './Context'
 import { authReducer } from './reducers/authReducer';
@@ -31,13 +31,12 @@ const Provider = ({children }) => {
 
     }, [])
 
-    const getInitialAuthState = () => {
+    const getInitialAuthState = async() => {
         const token = localStorage.getItem('YesmomToken');
         if(token){
+            await validateToken(token);
             console.log("Autenticado de nuevo");
-            dispatchAuth( startLogin({
-                token: token
-            }))
+            dispatchAuth( startLogin({ token }))
         }else{
             dispatchAuth({})
         }

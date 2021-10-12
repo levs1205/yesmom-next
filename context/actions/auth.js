@@ -1,3 +1,4 @@
+import axios from "axios"
 import { types } from "../types"
 
 
@@ -9,6 +10,24 @@ export const startLogin = ( data ) => {
         payload : {
             token : data.token
         }
+    }
+}
+
+export const validateToken = async (token) => {
+    try{
+
+        console.log(token);
+        console.log(process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY);
+        // console.log(data);
+        const { data } = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/autenticar/token?delivery=no`,{},{
+            headers : {
+                'Content-Type' : 'application/json',
+                'access-token' : token
+
+            }
+        })
+    }catch(err){
+        console.log(err);
     }
 }
 
