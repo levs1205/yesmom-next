@@ -615,7 +615,7 @@ export async function getServerSideProps(params) {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   const routerParams = params;
-  console.log(routerParams);
+  // console.log(routerParams);
   let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogParameters/user?id=${routerParams.query.id}`;
   const res = await fetch(url);
 

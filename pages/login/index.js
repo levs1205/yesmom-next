@@ -9,6 +9,8 @@ import YesmomContext from "../../context/Context";
 import { startLogin } from "../../context/actions/auth";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
+import { getSession } from 'next-auth/client'
+import { signIn } from "next-auth/client";
 
 //manejadores
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -25,7 +27,8 @@ const schemaValidator = yup.object().shape({
     .min(5, "*La contraseña debe tener minimo 5 caracteres"),
 });
 
-const index = () => {
+const index = ({ session }) => {
+  console.log('data session', session)
   const router = useRouter();
   const refPassword = useRef();
   const {
@@ -192,7 +195,10 @@ const index = () => {
                     <hr />
                   </div>
 
-                  <div className="boton-icon facebook">
+                  <div 
+                    className="boton-icon facebook"
+                    onClick={signIn}
+                  >
                     <div className="icon">
                       <img
                         src="/image/login/facebook-login.svg"
@@ -567,3 +573,14 @@ const index = () => {
 };
 
 export default index;
+
+export async function getServerSideProps(context){
+  // obtiene usuario
+  const session = await getSession(context)
+
+  return{ 
+    props: {
+      session
+    }
+  }
+}
