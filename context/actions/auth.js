@@ -12,6 +12,20 @@ export const startLogin = ( data ) => {
     }
 }
 
+export const startLoginWithGoogle = ( data) => {
+    try {
+        const { profileObj , tokenId } = data ;
+        console.log(data);
+
+        //LLamar endpoint para generar token
+
+
+    }catch(error){
+        console.log(error);
+        alert('Error');
+    }
+}
+
 export const startLogout = {
     type : types.authLogout
 }
