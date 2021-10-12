@@ -159,7 +159,7 @@ const HeaderNuevo = () => {
                 </ActiveLink>
               )}
 
-              <ActiveLink href="/ayuda" activeClassName="active">
+              <ActiveLink href="/ayuda/tengo-un-registro" activeClassName="active">
                 <a className="item-menu-yesmom">
                   <Image
                     src="/image/header/ayuda.svg"
