@@ -11,7 +11,6 @@ const JoditEditor = dynamic(importJodit, {
 });
 const CardBlog = ({ blog }) => {
   // const router = useRouter();
-
   const [config, setConfig] = useState({
     readonly: true,
     toolbar: false,

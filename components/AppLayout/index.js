@@ -79,52 +79,6 @@ const appLayout = ({ children }) => {
             src: url(/fonts/Mont-Light.otf);
           }
 
-          @font-face {
-            font-family: "mont-bold";
-            src: url(/fonts/Mont-bold.ttf);
-          }
-          
-          @keyframes animateHeart {
-            0% {
-              transform: scale(1);
-            }
-            40% {
-              transform: scale(1.09);
-            }
-            100% {
-              transform: scale(1.1);
-            }
-          }
-
-          .fade-in {
-            -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1)
-              both;
-            animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-          }
-          @-webkit-keyframes fade-in {
-            0% {
-              opacity: 0;
-            }
-            100% {
-              opacity: 1;
-            }
-          }
-          @keyframes fade-in {
-            0% {
-              opacity: 0;
-            }
-            100% {
-              opacity: 1;
-            }
-          }
-
-          .animated {
-            -webkit-animation-duration: 3s;
-            animation-duration: 3s;
-            -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
-          }
-
           .main-yesmom {
             overflow: hidden;
             padding-top: 3rem;

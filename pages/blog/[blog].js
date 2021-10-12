@@ -42,7 +42,7 @@ const CardBlogEspecific = ({ currentData }) => {
               : currentData.imagenes[1].url
           }
         />
-        <meta property="og:site_name" content="La Ganga" />
+        <meta property="og:site_name" content="Yes Mom" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={currentData.blog.titulo} />
@@ -112,11 +112,7 @@ const CardBlogEspecific = ({ currentData }) => {
           <div className="box-autor-blog">
             <figure className="figure-autor-blog">
               <img
-                src={
-                  currentData.imagenes[0].typeImage === "A"
-                    ? currentData.imagenes[0].url
-                    : currentData.imagenes[1].url
-                }
+                src="/image/blog/logo-yesmom.png"
                 alt=""
                 className="w-100 "
               />
@@ -345,6 +341,7 @@ const CardBlogEspecific = ({ currentData }) => {
           }
           :global(.jodit-container * span) {
             font-family: "mont-regular" !important;
+            font-size:1.15rem!important
           }
           :global(.jodit-container p) {
             margin-left: 0px !important;
@@ -381,7 +378,7 @@ const CardBlogEspecific = ({ currentData }) => {
           .btn-cirle-especific span {
             font-family: "mont-semibold";
             margin-left: 0.5rem;
-            font-size: 1.1rem;
+            font-size: 1.25rem;
           }
           .btn-cirle-especific:hover {
             text-decoration: none !important;
@@ -614,10 +611,14 @@ const CardBlogEspecific = ({ currentData }) => {
 export async function getServerSideProps(params) {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const routerParams = params;
-  console.log(routerParams);
-  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogParameters/user?id=${routerParams.query.id}`;
-  const res = await fetch(url);
+
+  //hola
+  const routerParams = params
+  console.log(routerParams)
+  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogParameters/user?id=${routerParams.query.id}`
+  const res = await fetch(
+    url
+  );
 
   const currentData = await res.json();
   if (!currentData) {
