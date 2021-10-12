@@ -1,15 +1,15 @@
+import Swal from "sweetalert2";
 import AppLayout from "../../components/AppLayout";
 import GoogleLogin from 'react-google-login';
 import Head from "next/head";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import YesmomContext from "../../context/Context";
 import { startLogin, startLoginWithGoogle } from "../../context/actions/auth";
 import { useRouter } from "next/router";
-import Swal from "sweetalert2";
-
+import LoaderPage from '../../components/LoaderPage';
 //manejadores
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -37,7 +37,10 @@ const index = () => {
     resolver: yupResolver(schemaValidator),
   });
 
-  const { dispatchAuth } = useContext(YesmomContext);
+  const [ loading , setLoading ] = useState(true);
+  const flagRef = useRef(true);
+  const { dispatchAuth , auth : { logged } } = useContext(YesmomContext);
+
   const submitForm = async (values) => {
     // console.log(values);
     //Ya sin errores
@@ -52,7 +55,7 @@ const index = () => {
         Swal.fire("Info", "No existe usuario con esos accesos", "info");
       }
       if (data?.mensaje === "Autenticación Correcta") {
-        router.push("/");
+        // router.push("/");
         dispatchAuth(startLogin(data));
       }
     } catch (e) {
@@ -77,7 +80,22 @@ const index = () => {
       console.log(data);
    }
 
+   useEffect(()=>{
+     console.log('Logged es : ',logged);
+    if(logged){
+      router.push('/perfil');
+      flagRef.current = false;
+    }
+    setTimeout(() => {
+      if(flagRef.current){
+        setLoading(false)
+      }
+    }, 500)
+   },[logged])
 
+  if(loading){
+    return <LoaderPage />
+  }
   return (
     <AppLayout>
       <Head>

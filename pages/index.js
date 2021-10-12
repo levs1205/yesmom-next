@@ -16,7 +16,7 @@ import axios from "axios";
 // import fetch from 'isomorphic-fetch'
 
 const Home = ({ currentData , products}) => {
-  console.log(currentData, "holis");
+  // console.log(currentData, "holis");
   // const [currentData, setCurrentData] = useState([]);
   // useEffect(() => {
   //     blogHome();
