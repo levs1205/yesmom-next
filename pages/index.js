@@ -273,7 +273,7 @@ const Home = ({ currentData , products}) => {
                         // className="onda-rosa heartbeat"
                       />
                     </div>
-                    <Link href="/construccion">
+                    <Link href="/tienda">
                       <div className="btn-lo-mejor hover-amarillo">
                         <a> Tiendas destacadas</a>
                       </div>
@@ -289,7 +289,7 @@ const Home = ({ currentData , products}) => {
                         // className="onda-rosa heartbeat"
                       />
                     </div>
-                    <Link href="/construccion">
+                    <Link href="/tienda/categoria/todos">
                       <div className="btn-lo-mejor bg-fuxia hover-fuxia">
                         <a> Lo + vendido </a>{" "}
                       </div>
