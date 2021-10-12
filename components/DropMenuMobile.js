@@ -206,6 +206,7 @@ function DropMenuMobile({ active, setActive, logged }) {
           }
           .list-group-item h6 {
             margin-left: 2rem;
+            font-size: 1.6rem;
           }
           .drop-menu {
             overflow-y: scroll;
