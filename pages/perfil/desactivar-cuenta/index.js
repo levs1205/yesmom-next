@@ -1,14 +1,23 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import AppLayout from "../../../components/AppLayout";
 import CustomButton from "../../../components/Perfil/CustomButton";
 import TitlePerfil from "../../../components/Perfil/TitlePerfil";
 import Description from "../../../components/Perfil/Description";
 import Sidebar from "../../../components/Perfil/Sidebar";
+import YesmomContext from "../../../context/Context";
+import LoaderPage from "../../../components/LoaderPage";
 
 const PerfilDesactivarCuenta = () => {
+  
+  const {  auth : { logged } } = useContext(YesmomContext);
+  const [ loading , setLoading ] = useState(true);
+  const flagRef = useRef(true);
+  const router = useRouter();
   const refPassword = useRef();
   const [password, setPassword] = useState();
 
@@ -22,6 +31,23 @@ const PerfilDesactivarCuenta = () => {
       ? (refPassword.current.type = "text")
       : (refPassword.current.type = "password");
   };
+
+  //Redirigir
+  useEffect(()=>{
+    if(!logged){
+      router.push('/login');
+      flagRef.current = false;
+    }
+    setTimeout(() => {
+      if(flagRef.current){
+        setLoading(false)
+      }
+    }, 1000)
+   },[logged])
+
+  if(loading){
+    return <LoaderPage />
+  }
 
   return (
     <AppLayout>

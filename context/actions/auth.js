@@ -26,7 +26,7 @@ export const validateToken = async (token) => {
             }
         })
 
-        console.log(data);
+        // console.log(data);
         if( data?.mensaje === "Token válido"){
            console.log('Autenticacion correcta');
             return startLogin( data )

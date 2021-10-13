@@ -1,28 +1,32 @@
+import { useContext, useRef, useState , useEffect} from "react";
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import LoaderPage from "../../components/LoaderPage";
+import YesmomContext from "../../context/Context";
 
 const schemaValidator = yup.object().shape({
   password:  yup.string().required('*Contraseña es requerida').min(5,'*La contraseña debe tener como mínimo 5 caracteres'),
-  password_2: yup.string().required('*Contraseña es requerida').min(5,'*La contraseña debe tener como mínimo 5 caracteres'),
+  password_2: yup.string().oneOf([yup.ref('password'),null], '*Las contraseñas no coinciden'),
 })
 const ResetPassword = () => {
+
+
+  const {  auth : { logged } } = useContext(YesmomContext);
+  const [ loading , setLoading ] = useState(true);
+  const flagRef = useRef(true);
+  const router = useRouter();
 
   const { register , formState: { errors } , handleSubmit } = useForm({
     resolver : yupResolver(schemaValidator)
   });
 
   const handleResetPassword = (data) => {
-    const { password , password_2 } = data;
-    if (password === password_2) {
-      alert("oksss");
-    } else {
-      alert("no match");
-    }
+    console.log('oksss');
   };
 
   const handleShow = (id) => {
@@ -31,6 +35,23 @@ const ResetPassword = () => {
       ? (document.getElementById(id).type = "text")
       : (document.getElementById(id).type = "password");
   };
+
+  //Redirigir
+useEffect(()=>{
+  if(logged){
+    router.push('/');
+    flagRef.current = false;
+  }
+  setTimeout(() => {
+    if(flagRef.current){
+      setLoading(false)
+    }
+  }, 1000)
+ },[logged])
+
+if(loading){
+  return <LoaderPage />
+}
 
   return (
     <AppLayout>

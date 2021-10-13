@@ -80,17 +80,17 @@ const index = () => {
       console.log(data);
    }
 
+   //Redirigir
    useEffect(()=>{
-     console.log('Logged es : ',logged);
     if(logged){
-      router.push('/perfil');
+      router.push('/perfil/miperfil');
       flagRef.current = false;
     }
     setTimeout(() => {
       if(flagRef.current){
         setLoading(false)
       }
-    }, 500)
+    }, 1000)
    },[logged])
 
   if(loading){

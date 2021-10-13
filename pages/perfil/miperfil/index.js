@@ -1,5 +1,6 @@
+import React, { useContext, useRef, useState  , useEffect} from "react";
 import Head from "next/head";
-import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
@@ -17,6 +18,8 @@ import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
+import LoaderPage from "../../../components/LoaderPage";
+import YesmomContext from "../../../context/Context";
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 const schemaValidator = yup.object().shape({
@@ -27,6 +30,12 @@ const schemaValidator = yup.object().shape({
 
 
 const index = () => {
+
+
+  const {  auth : { logged } } = useContext(YesmomContext);
+  const [ loading , setLoading ] = useState(true);
+  const flagRef = useRef(true);
+  const router = useRouter();
 
   //Datos fake
   const defaultValues = {
@@ -87,6 +96,22 @@ const index = () => {
     alert('actualizado');
     alert(JSON.stringify(formValues));
   };
+
+  useEffect(()=>{
+    if(!logged){
+      router.push('/login');
+      flagRef.current = false;
+    }
+    setTimeout(() => {
+      if(flagRef.current){
+        setLoading(false)
+      }
+    }, 1000)
+   },[logged])
+
+  if(loading){
+    return <LoaderPage />
+  }
 
   return (
     <AppLayout>
