@@ -1,6 +1,5 @@
 import Swal from "sweetalert2";
 import AppLayout from "../../components/AppLayout";
-import GoogleLogin from 'react-google-login';
 import Head from "next/head";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -69,16 +68,10 @@ const index = () => {
       ? (document.getElementById("password").type = "text")
       : (document.getElementById("password").type = "password");
   };
-
-   const responseSuccessGoogle = ( data ) => {
-    
-      startLoginWithGoogle(data);
-      
+   const handleLoginWithGoogle= async () => {
+      const { data } = await axios.get()
    }
 
-   const responseFailureGoogle = ( data ) => {
-      console.log(data);
-   }
 
    //Redirigir
    useEffect(()=>{
@@ -231,26 +224,8 @@ const index = () => {
                     </div>
                     <p>Ingresar con Facebook</p>
                   </div>
-                  <GoogleLogin 
-                    // clientId={`${process.env.GOOGLE_CLIENT_ID}`}
-                    clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
-                    render =  {  renderProps => (
-                      <div className="boton-icon google" onClick = {renderProps.onClick }>
-                        <div className="icon">
-                          <img
-                            src="/image/login/google-login.svg"
-                            alt="google login"
-                          />
-                        </div>
-                        <p>Ingresar con Google</p>
-                      </div>
-                    )}
-                    buttonText="Login"
-                    onSuccess={responseSuccessGoogle}
-                    onFailure={responseFailureGoogle}
-                    cookiePolicy={'single_host_origin'}
-                  />
-                  {/* <div className="boton-icon google">
+
+                  <div className="boton-icon google" onClick = { handleLoginWithFacebook }>
                     <div className="icon">
                       <img
                         src="/image/login/google-login.svg"
@@ -258,7 +233,7 @@ const index = () => {
                       />
                     </div>
                     <p>Ingresar con Google</p>
-                  </div> */}
+                  </div>
                 </form>
               </div>
               <div className="wrapper-end">
