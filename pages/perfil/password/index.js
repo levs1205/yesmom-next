@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext, useRef, useState , useEffect } from "react";
 import { useForm } from "react-hook-form";
+
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import AppLayout from "../../../components/AppLayout";
 import CustomButton from "../../../components/Perfil/CustomButton";
@@ -11,6 +13,8 @@ import Sidebar from "../../../components/Perfil/Sidebar";
 
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
+import LoaderPage from "../../../components/LoaderPage";
+import YesmomContext from "../../../context/Context";
 
 const schemaValidator = yup.object().shape({
   password: yup.string().required('*Contraseña es requerida'),
@@ -18,6 +22,11 @@ const schemaValidator = yup.object().shape({
   repeat_password: yup.string().required('*Repita la contraseña').min(5,'*La contraseña debe tener al menos 5 caracteres'),
 })
 const PerfilPassword = () => {
+
+  const {  auth : { logged } } = useContext(YesmomContext);
+  const [ loading , setLoading ] = useState(true);
+  const flagRef = useRef(true);
+  const router = useRouter();
 
   const { register , formState : { errors } , handleSubmit} = useForm({
     resolver: yupResolver(schemaValidator)
@@ -35,7 +44,21 @@ const PerfilPassword = () => {
     console.log(data);
   }
 
-  console.log(errors);
+  useEffect(()=>{
+    if(!logged){
+      router.push('/login');
+      flagRef.current = false;
+    }
+    setTimeout(() => {
+      if(flagRef.current){
+        setLoading(false)
+      }
+    }, 1000)
+   },[logged])
+
+  if(loading){
+    return <LoaderPage />
+  }
   return (
     <AppLayout>
       <Head>

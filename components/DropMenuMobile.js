@@ -121,8 +121,8 @@ function DropMenuMobile({ active, setActive, logged }) {
                   </li>
                   {expand && (
                     <div className="expanded-options">
-                      {linkPushPerfil.map((link) => (
-                        <div className="flex-active-link">
+                      {linkPushPerfil.map((link , i) => (
+                        <div className="flex-active-link" key={i}>
                           <Link href={link.path}>
                             <a>
                               <p

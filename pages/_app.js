@@ -1,12 +1,12 @@
 // import App from 'next/app'
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Provider from "../context/Provider";
- 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 function MyApp({ Component, pageProps }) {
-  
+
   return (
-      <Provider>
+      <Provider >
           <Component {...pageProps} />
       </Provider>
   )

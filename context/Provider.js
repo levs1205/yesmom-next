@@ -21,6 +21,8 @@ import { uiReducer } from './reducers/uiReducer';
   } */
 
 const Provider = ({children }) => {
+
+
     const initialState = {};
     const [ auth , dispatchAuth ] = useReducer( authReducer , initialState);
     const [ ui , dispatchUi ] = useReducer( uiReducer , initialState );
@@ -34,9 +36,9 @@ const Provider = ({children }) => {
     const getInitialAuthState = async() => {
         const token = localStorage.getItem('YesmomToken');
         if(token){
-            await validateToken(token);
-            console.log("Autenticado de nuevo");
-            dispatchAuth( startLogin({ token }))
+            dispatchAuth(await validateToken(token) ); 
+            // console.log("Autenticado de nuevo");
+            // dispatchAuth( startLogin({ token }))
         }else{
             dispatchAuth({})
         }

@@ -1,3 +1,6 @@
+import { useState , useContext , useEffect , useRef} from "react";
+import { Router, useRouter } from "next/router";
+
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import BotonInput from "../../components/Registro/BotonInput";
@@ -12,7 +15,8 @@ import CustomButton from "../../components/Perfil/CustomButton";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
-import { useState } from "react";
+import YesmomContext from "../../context/Context";
+import LoaderPage from "../../components/LoaderPage";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -24,6 +28,13 @@ const schemaValidator = yup.object().shape({
 })
 
 const index = () => {
+
+
+  const [ loading , setLoading ] = useState(true);
+  const { auth : { logged } } = useContext(YesmomContext);
+  const router = useRouter();
+  const flagRef = useRef(true);
+
   const {
     control,
     register,
@@ -90,6 +101,23 @@ const index = () => {
     
   };
 
+  //Redirigir
+  useEffect(()=>{
+    if(logged){
+      router.push('/perfil/miperfil');
+      flagRef.current = false;
+    }
+    setTimeout(() => {
+      if(flagRef.current){
+        setLoading(false)
+      }
+    }, 1000)
+   },[logged])
+
+
+  if(loading){
+    return <LoaderPage />
+  }
   return (
     <AppLayout>
       <Head>
