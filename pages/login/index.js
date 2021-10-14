@@ -72,6 +72,10 @@ const index = () => {
       const { data } = await axios.get()
    }
 
+    // const hanldeLoginFacebook = async () => {
+    //   const data = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/facebook`)
+    //     console.log('facebook data', data)
+    // }
 
    //Redirigir
    useEffect(()=>{
@@ -215,6 +219,7 @@ const index = () => {
                     <hr />
                   </div>
 
+                  {/* <div className="boton-icon facebook" onClick = {  hanldeLoginFacebook } > */}
                   <div className="boton-icon facebook">
                     <div className="icon">
                       <img
@@ -225,7 +230,7 @@ const index = () => {
                     <p>Ingresar con Facebook</p>
                   </div>
 
-                  <div className="boton-icon google" onClick = { handleLoginWithFacebook }>
+                  <div className="boton-icon google" onClick = { handleLoginWithGoogle }>
                     <div className="icon">
                       <img
                         src="/image/login/google-login.svg"
