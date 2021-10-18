@@ -3,6 +3,7 @@ import React from "react";
 import Provider from "../context/Provider";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+
 function MyApp({ Component, pageProps }) {
 
   return (
