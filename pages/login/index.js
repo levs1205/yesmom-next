@@ -9,12 +9,13 @@ import YesmomContext from "../../context/Context";
 import { startLogin } from "../../context/actions/auth";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
-import { getSession } from 'next-auth/client'
-import { signIn } from "next-auth/client";
 
 //manejadores
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+// import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+
 
 const schemaValidator = yup.object().shape({
   email: yup
@@ -68,6 +69,12 @@ const index = ({ session }) => {
       ? (document.getElementById("password").type = "text")
       : (document.getElementById("password").type = "password");
   };
+
+  const responseFacebook = (response) => {
+    console.log('response data', response);
+    console.log('response token', response.accessToken);
+    router.push('/')
+  }
 
   return (
     <AppLayout>
@@ -195,9 +202,8 @@ const index = ({ session }) => {
                     <hr />
                   </div>
 
-                  <div 
+                  {/* <div 
                     className="boton-icon facebook"
-                    onClick={signIn}
                   >
                     <div className="icon">
                       <img
@@ -206,7 +212,28 @@ const index = ({ session }) => {
                       />
                     </div>
                     <p>Ingresar con Facebook</p>
-                  </div>
+                  </div> */}
+
+                  <FacebookLogin
+                    appId="602718880858377"
+                    autoLoad = {false}
+                    fields="name,email,picture"
+                    render={renderProps => (
+                      <div 
+                        onClick={renderProps.onClick}
+                        className="boton-icon facebook"
+                      >
+                        <div className="icon">
+                          <img
+                            src="/image/login/facebook-login.svg"
+                            alt="fb login"
+                          />
+                        </div>
+                        <p>Ingresar con Facebook</p>
+                      </div>
+                    )}
+                    callback={responseFacebook}
+                  />
 
                   <div className="boton-icon google">
                     <div className="icon">
@@ -574,13 +601,13 @@ const index = ({ session }) => {
 
 export default index;
 
-export async function getServerSideProps(context){
-  // obtiene usuario
-  const session = await getSession(context)
+// export async function getServerSideProps(context){
+//   // obtiene usuario
+//   const session = await getSession(context)
 
-  return{ 
-    props: {
-      session
-    }
-  }
-}
+//   return{ 
+//     props: {
+//       session
+//     }
+//   }
+// }
