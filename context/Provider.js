@@ -5,6 +5,7 @@ import { startAddToCart } from './actions/ui';
 import YesmomContext from './Context'
 import { authReducer } from './reducers/authReducer';
 import { uiReducer } from './reducers/uiReducer';
+import { clientReducer } from './reducers/clientReducer';
 
 
 /* export async function getServerSideProps(){
@@ -25,6 +26,7 @@ const Provider = ({children }) => {
 
     const initialState = {};
     const [ auth , dispatchAuth ] = useReducer( authReducer , initialState);
+    const [ client , dispatchClient ] = useReducer( clientReducer , initialState);
     const [ ui , dispatchUi ] = useReducer( uiReducer , initialState );
 
     useEffect(() => {
@@ -59,7 +61,9 @@ const Provider = ({children }) => {
         <YesmomContext.Provider value={{
             auth,
             ui,
+            client,
             dispatchAuth,
+            dispatchClient,
             dispatchUi,
         }
         }>
