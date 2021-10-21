@@ -112,7 +112,16 @@ const index = ({ session }) => {
     return <LoaderPage />
   }
   const responseFacebook = (response) => {
-    console.log('response data', response);
+
+    const token = response.accessToken;
+
+    axios.post( 'XXXXXXXX' , token )
+      .then(res => {
+        console.log(res)
+      }).catch((err) => {
+        console.log('error', err)
+      })
+
     console.log('response token', response.accessToken);
     // router.push('/')
   }
