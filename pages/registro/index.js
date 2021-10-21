@@ -22,11 +22,13 @@ import { Controller, useForm } from "react-hook-form";
 import YesmomContext from "../../context/Context";
 import LoaderPage from "../../components/LoaderPage";
 
+import { startRegisterClient } from '../../context/actions/client'
+
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 const schemaValidator = yup.object().shape({
   fullname : yup.string('*Nombres incorrectos').required('*Nombres y apellidos son requeridos'),
-  email : yup.string().email('*Ingresa un correo válido').required('*Correo electrónico es requerido'),
+  principalEmail : yup.string().email('*Ingresa un correo válido').required('*Correo electrónico es requerido'),
   password: yup.string().required('*Contraseña es requerida').min(5,'*La contraseña debe tener al menos 5 caracteres'),
   phone : yup.string().matches(phoneRegExp, '*Número de teléfono no es válido'),
 })
@@ -56,17 +58,27 @@ const index = () => {
 
   const [ selection , setSelection ] = useState(initialSelection);
 
-  const [ moreChildren , setMoreChildren ] = useState(false);
+  const [ moreChildren , setMoreChildren ] = useState(true);
   
 /*   
   Si es primeriza -> demas datos , fecha nacimiento y sexo
   Si no -> borrar estos datos
  */
   const handleSelectionChange = ( name , value) => {
+
     setSelection({
       ...selection,
       [name] : value
     })
+
+    //Actualizar el mas de un hijo
+    if( name==="firstTime"){
+      if(value){
+        setMoreChildren(false);
+      }else{
+        setMoreChildren(true);
+      }
+    }
   }
 
   /* Mas de un hijo*/
@@ -101,9 +113,8 @@ const index = () => {
       delete formValues.firstTime;
       delete formValues.genderBaby;
     }
-    console.log(formValues);
-    alert(JSON.stringify(formValues));
-    
+
+    startRegisterClient(formValues);
   };
 
   //Redirigir
@@ -197,10 +208,10 @@ const index = () => {
                     type="email"
                     id="email"
                     name="email"
-                    {...register("email")}
+                    {...register("principalEmail")}
                   />
                 </div>
-                <p className="error-input">{errors?.email?.message}</p>
+                <p className="error-input">{errors?.principalEmail?.message}</p>
 
                 <div className="wrapper-input password">
                   <label htmlFor="password">Contraseña:</label>
