@@ -43,7 +43,7 @@ export const validateToken = async (token) => {
 export const startLoginWithGoogle = ( data) => {
     try {
         const { profileObj , tokenId } = data ;
-        console.log(data);
+        console.log(tokenId);
 
         //LLamar endpoint para generar token
 

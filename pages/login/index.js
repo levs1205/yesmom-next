@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import { GoogleLogin } from 'react-google-login';
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import Link from "next/link";
@@ -24,7 +25,7 @@ const schemaValidator = yup.object().shape({
     .min(5, "*La contraseña debe tener minimo 5 caracteres"),
 });
 
-const index = () => {
+const index = (  ) => {
 
   const router = useRouter();
   const refPassword = useRef();
@@ -68,9 +69,23 @@ const index = () => {
       ? (document.getElementById("password").type = "text")
       : (document.getElementById("password").type = "password");
   };
-   const handleLoginWithGoogle= async () => {
-      const { data } = await axios.get()
-   }
+  //  const handleLoginWithGoogle= async () => {
+
+  //   // console.log(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/google`);
+  //   // const data = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/google?callbackURL=https://yesmomsecuritytestenv-env.eba-tpb3kgit.us-east-2.elasticbeanstalk.com/auth/google/callback`)
+
+  //   window.location.href = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/google` ;
+  //   // console.log(data);
+
+  //  }
+
+  const handleSuccessGoogle = ( data ) => {
+    startLoginWithGoogle(data);
+  }
+
+  const handleFailureGoogle = (error) => {
+    console.log(error);
+  }
 
     // const hanldeLoginFacebook = async () => {
     //   const data = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/facebook`)
@@ -230,7 +245,26 @@ const index = () => {
                     <p>Ingresar con Facebook</p>
                   </div>
 
-                  <div className="boton-icon google" onClick = { handleLoginWithGoogle }>
+                  <GoogleLogin
+                    // clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
+                    clientId="28186350044-j2njhc6h15va2iuufnvm421acu5u57v1.apps.googleusercontent.com"
+                    render={renderProps => (
+                      <div className="boton-icon google" onClick = { renderProps.onClick }>
+                        <div className="icon">
+                          <img
+                            src="/image/login/google-login.svg"
+                            alt="google login"
+                          />
+                        </div>
+                        <p>Ingresar con Google</p>
+                      </div>
+                    )}
+                    buttonText="Login"
+                    onSuccess={handleSuccessGoogle}
+                    onFailure={handleFailureGoogle}
+                    cookiePolicy={'single_host_origin'}
+                  />
+                  {/* <div className="boton-icon google" onClick = { handleLoginWithGoogle }>
                     <div className="icon">
                       <img
                         src="/image/login/google-login.svg"
@@ -238,7 +272,7 @@ const index = () => {
                       />
                     </div>
                     <p>Ingresar con Google</p>
-                  </div>
+                  </div> */}
                 </form>
               </div>
               <div className="wrapper-end">

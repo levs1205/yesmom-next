@@ -10,6 +10,10 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 import CustomButton from "../../components/Perfil/CustomButton";
 /** */
+/* DATE INPUT */
+// import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 //Validacion
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -29,7 +33,7 @@ const schemaValidator = yup.object().shape({
 
 const index = () => {
 
-
+  // const [value, setValue] = useState(new Date());
   const [ loading , setLoading ] = useState(true);
   const { auth : { logged } } = useContext(YesmomContext);
   const router = useRouter();
@@ -79,7 +83,7 @@ const index = () => {
   };
 
   /* console.log(errors); */
-  const submitForm = (values) => {
+  const submitForm = (values , muah) => {
     let formValues = {
       ...values,
       ...selection
@@ -95,6 +99,7 @@ const index = () => {
     }else{
       //No tiene hijos
       delete formValues.firstTime;
+      delete formValues.genderBaby;
     }
     console.log(formValues);
     alert(JSON.stringify(formValues));
@@ -102,7 +107,7 @@ const index = () => {
   };
 
   //Redirigir
-  useEffect(()=>{
+  useEffect(( )=>{
     if(logged){
       router.push('/perfil/miperfil');
       flagRef.current = false;
@@ -319,6 +324,9 @@ const index = () => {
                     {/* Control - class : opacity y disabled */}
                       <div className="container-select">
                         <p>Fecha de nacimiento de tú bebé</p>
+
+                        {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
+
                         <div className="wrapper-date">
                           <div className="select-input">
                             <select placeholder="Mes">
