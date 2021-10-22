@@ -266,7 +266,7 @@ const index = ({ session }) => {
 
                   <GoogleLogin
                     // clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
-                    clientId="28186350044-j2njhc6h15va2iuufnvm421acu5u57v1.apps.googleusercontent.com"
+                    clientId="45600196115-9bs7rgqovfrv4tme18rhubp19n6g0k1i.apps.googleusercontent.com"
                     render={renderProps => (
                       <div className="boton-icon google" onClick = { renderProps.onClick }>
                         <div className="icon">
