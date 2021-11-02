@@ -13,6 +13,9 @@ import LoaderPage from '../../components/LoaderPage';
 //manejadores
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+// import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+
 
 const schemaValidator = yup.object().shape({
   email: yup
@@ -25,8 +28,8 @@ const schemaValidator = yup.object().shape({
     .min(5, "*La contraseña debe tener minimo 5 caracteres"),
 });
 
-const index = (  ) => {
-
+const index = ({ session }) => {
+  console.log('data session', session)
   const router = useRouter();
   const refPassword = useRef();
   const {
@@ -87,6 +90,10 @@ const index = (  ) => {
     console.log(error);
   }
 
+    const hanldeLoginFacebook = async () => {
+      const data = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/facebook`)
+        console.log('facebook data', data)
+    }
 
    //Redirigir
    useEffect(()=>{
@@ -104,6 +111,21 @@ const index = (  ) => {
   if(loading){
     return <LoaderPage />
   }
+  const responseFacebook = (response) => {
+
+    const token = response.accessToken;
+
+    axios.post( 'XXXXXXXX' , token )
+      .then(res => {
+        console.log(res)
+      }).catch((err) => {
+        console.log('error', err)
+      })
+
+    console.log('response token', response.accessToken);
+    // router.push('/')
+  }
+
   return (
     <AppLayout>
       <Head>
@@ -230,15 +252,26 @@ const index = (  ) => {
                     <hr />
                   </div>
 
-                  <div className="boton-icon facebook">
-                    <div className="icon">
-                      <img
-                        src="/image/login/facebook-login.svg"
-                        alt="fb login"
-                      />
-                    </div>
-                    <p>Ingresar con Facebook</p>
-                  </div>
+                  <FacebookLogin
+                    appId="602718880858377"
+                    autoLoad = {false}
+                    fields="name,email,picture"
+                    render={renderProps => (
+                      <div 
+                        onClick={renderProps.onClick}
+                        className="boton-icon facebook"
+                      >
+                        <div className="icon">
+                          <img
+                            src="/image/login/facebook-login.svg"
+                            alt="fb login"
+                          />
+                        </div>
+                        <p>Ingresar con Facebook</p>
+                      </div>
+                    )}
+                    callback={responseFacebook}
+                  />
 
                   <GoogleLogin
                     // clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
@@ -259,15 +292,6 @@ const index = (  ) => {
                     onFailure={handleFailureGoogle}
                     cookiePolicy={'single_host_origin'}
                   />
-                  {/* <div className="boton-icon google" onClick = { handleLoginWithGoogle }>
-                    <div className="icon">
-                      <img
-                        src="/image/login/google-login.svg"
-                        alt="google login"
-                      />
-                    </div>
-                    <p>Ingresar con Google</p>
-                  </div> */}
                 </form>
               </div>
               <div className="wrapper-end">
@@ -624,3 +648,14 @@ const index = (  ) => {
 };
 
 export default index;
+
+// export async function getServerSideProps(context){
+//   // obtiene usuario
+//   const session = await getSession(context)
+
+//   return{ 
+//     props: {
+//       session
+//     }
+//   }
+// }
