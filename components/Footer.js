@@ -53,13 +53,13 @@ const Footer = () => {
                 </h6>
                 <div className="box-contenido-footer">
 
-                  <Link href="/construccion">
+                  <Link href="terminosycondiciones">
                     <a>Términos y condiciones</a>
                   </Link>
                   <Link href="/construccion">
                     <a>Política de privacidad</a>
                   </Link>
-                  <Link href="/construccion">
+                  <Link href="/librodereclamaciones">
                     <a>Libro de reclamaciones</a>
                   </Link>
                   <Link href="/construccion">
