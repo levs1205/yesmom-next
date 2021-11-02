@@ -4,6 +4,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Head from "next/head";
 import React, { useContext, useEffect, useState } from "react";
+import { object } from 'prop-types';
 import AppLayout from "../../../components/AppLayout";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -12,31 +13,30 @@ import YesmomContext from "../../../context/Context";
 import { startAddToCart } from "../../../context/actions/ui";
 import OtherProducts from "../../../components/tienda/detalle/OtherProducts";
 import Select from "react-select";
-
-export async function getServerSideProps({ query }) {
-  const id = query.id;
-  const res = await fetch(`http://localhost:3003/api/product/${id}`);
-  const product = await res.json();
-
-  return {
-    props: {
-      product,
-    },
-  };
-}
+import { getProductsById } from '../../api/request';
+import { setProduct } from "../../../context/actions/ui";
 
 const DetallesID = ({ product }) => {
   const {
-    color,
-    decripcion,
-    imagen,
-    nombre,
-    precio,
-    peso,
-    talla,
-    categoria,
+		producto: { 
+			color,
+			talla,
+			decripcion,
+			cantDisponible,
+			precio,
+			precioPromocional,
+			proveedorId,
+			sku,
+			accesorios,
+			categoria,
+			categoriaadicional,
+			dimensiones,
+			nombre,
+			terminos,
+		},
+		imagenes
   } = product;
-
+	const defaultImage = "https://bicentenario.gob.pe/biblioteca/themes/biblioteca/assets/images/not-available-es.png"
   /* console.log("color", Object.entries(color)); */
 
   const [disabled, setDisabled] = useState(true);
@@ -78,7 +78,7 @@ const DetallesID = ({ product }) => {
     }
   };
 
-  console.log("bichota", product.color);
+  console.log("bichota", color);
 
   return (
     <>
@@ -135,9 +135,9 @@ const DetallesID = ({ product }) => {
                   <div className="show--flex-content-product">
                     <div className="show--container-images">
                       <Carousel>
-                        {imagen.map((imag) => (
+                        {imagenes.map((imag) => (
                           <div className="box-img-detail">
-                            <img src={imag} className="" />
+                            <img src={imag?.url ? imag?.url: defaultImage} className="" />
                           </div>
                         ))}
                       </Carousel>
@@ -161,8 +161,8 @@ const DetallesID = ({ product }) => {
                                 Selecciona el color
                               </option>
                               {color.map((col) => (
-                                <option value={Object.values(col)}>
-                                  {Object.keys(col)}
+                                <option value={Object.values(col.name)}>
+                                  {Object.keys(col.name)}
                                 </option>
                               ))}
                             </select>
@@ -788,6 +788,30 @@ const DetallesID = ({ product }) => {
       </style>
     </>
   );
+};
+
+/* export async function getServerSideProps({ query }) {
+	console.log('query', query)
+  const id = query._id;
+  const res = await fetch(`http://localhost:3003/api/product/${id}`);
+  const product = await res.json();
+
+  return {
+    props: {
+      product,
+    },
+  };
+} */
+
+DetallesID.propTypes = {
+  product: object.isRequired,
+	
+};
+
+DetallesID.getInitialProps = async ({ query }) => {
+	const id = query.id;
+  const response  = await getProductsById(id);
+  return { product: response };
 };
 
 export default DetallesID;

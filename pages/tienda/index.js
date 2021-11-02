@@ -1,7 +1,8 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useState, useContext, } from "react";
+import { string, array, number } from 'prop-types';
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
-import axios from "axios";
+import YesmomContext from "../../context/Context";
 import {
   CardDeck,
   CardColumns,
@@ -16,8 +17,10 @@ import SidebarProducto from "../../components/tienda/SidebarProducto";
 import BannerTienda from "../../components/tienda/BannerTienda";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
+import { getProducts } from '../api/request';
+import { setProducts } from "../../context/actions/ui";
 
-export async function getServerSideProps({ query }) {
+/* export async function getServerSideProps({ query }) {
   const res = await fetch(`http://localhost:3003/api/product/product`);
   const product = await res.json();
 
@@ -26,14 +29,17 @@ export async function getServerSideProps({ query }) {
       product,
     },
   };
-}
-const Product = ({ product }) => {
-  console.log(product);
-  const {
-    query: { q = "" },
-  } = useRouter();
+} */
+const Product = ({ productList, productsQty, pages }) => {
+  console.log( productList, productsQty, pages );
+  const { query: { q = "" } } = useRouter();
+	const { dispatchUi } = useContext(YesmomContext);
+	const [storeFiltered, setStoreFiltered] = useState([]);
 
-  /* console.log(product); */
+	useEffect(() => {
+    dispatchUi(setProducts(productList));
+  }, [])
+
   const imagesMobile = [
     { id: 1, image: "/image/tienda/banner-first.svg" },
     { id: 2, image: "/image/tienda/banner-first.svg" },
@@ -45,18 +51,17 @@ const Product = ({ product }) => {
     { id: 2, image: "/image/tienda/banner1.svg" },
   ];
 
-  const [storeFiltered, setStoreFiltered] = useState([]);
 
   useEffect(() => {
     const query = q.toLowerCase().trim();
-    const filterData = product.filter((el) =>
-      el.nombre
+    const filterData = productList.filter((el) =>
+      el.product.nombre
         .toLowerCase()
         .trim()
         .includes(query)
     );
     if (filterData.length === 0) {
-      setStoreFiltered(product);
+      setStoreFiltered(productList);
       Swal.fire(
         "No encontrado",
         "No existen productos asociados con la búsqueda!",
@@ -268,6 +273,17 @@ const Product = ({ product }) => {
       </style>
     </AppLayout>
   );
+};
+
+Product.propTypes = {
+  productList: array.isRequired,
+	productsQty: number.isRequired,
+	pages: number,
+};
+
+Product.getInitialProps = async () => {
+  const { productosGeneral, totalDeProductos, pages }  = await getProducts();
+  return { productList: productosGeneral, productsQty: totalDeProductos, pages: pages };
 };
 
 export default Product;

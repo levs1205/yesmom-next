@@ -10,6 +10,9 @@ export const types = {
     setBlogs : "SET_BLOGS",
     setQueryBlog : "SET_QUERY_BLOG",
 
+		setCategories : "SET_CATEGORIES",
+		setProducts : "SET_PRODUCTS",
+
 
     addToCart : "ADD_CART",
     removeProduct : "REMOVE_PRODUCT_CART",

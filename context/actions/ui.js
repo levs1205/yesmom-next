@@ -9,6 +9,21 @@ export const setBlogs = ( blogs ) => {
     }
 }
 
+//PRODUCTS
+export const setProducts = ( products ) => {
+	return {
+			type : types.setProducts,
+			payload : products
+	}
+}
+
+export const setProduct = ( product ) => {
+	return {
+			type : types.setProduct,
+			payload : product
+	}
+}
+
 //Control errors 
 
 export const setError = (error) => {

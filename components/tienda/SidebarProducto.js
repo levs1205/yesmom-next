@@ -15,6 +15,7 @@ const SidebarProducto = () => {
 
 return (
     <Container>
+			{/*  MENU CATEGORIA DESKTOP */}
         <div className="side-bar">
             <div className="text-title-filtros">
                 <p> Filtros </p>

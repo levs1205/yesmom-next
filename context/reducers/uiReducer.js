@@ -19,6 +19,13 @@ export const uiReducer = ( state = {} , action) => {
                     totalBlogs : action.payload
                 }
             }
+				case types.setProducts:
+            return {
+                ...state,
+                products : {
+                    totalProducts : action.payload
+                }
+            }
         case types.uiSetError:
             return {
                ...state,
