@@ -275,7 +275,7 @@ const Home = ({ currentData , products}) => {
                     </div>
                     <Link href="/tienda">
                       <div className="btn-lo-mejor hover-amarillo">
-                        <a> Tiendas destacadas</a>
+                        <a> Tiendas destacadas-</a>
                       </div>
                     </Link>
                   </Col>
