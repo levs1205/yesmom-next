@@ -1,17 +1,16 @@
 import Link from 'next/link';
+import { string, array, number } from 'prop-types';
 import { useRouter } from 'next/router';
 import React from 'react'
 import {Container } from "react-bootstrap";
 import { categorysMobile, categorysDesktop } from '../../data/categorys';
+import { getCategories } from '../../pages/api/request';
 
 
-const SidebarProducto = () => {
+const SidebarProducto = ({ categoryList }) => {
     const { query , pathname } = useRouter();
-
     const { category } = query;
-
     const path = "/tienda/categoria";
-
 
 return (
     <Container>
@@ -32,19 +31,32 @@ return (
                         <a>Todos</a>
                     </Link>
                 </li>
-
-                {
-                    categorysMobile.map(({id,name} , i) => (
-                        <li key={id} className={`${category == id ? "active-link-categoria" : "" }`}>
-                            <Link href={`${path}/${id}`}>
+								{
+                   categoryList.length > 0 
+									 ? categoryList?.map(({ _id, name } , i) => (
+                        <li key={_id} className={`${category == _id ? "active-link-categoria" : "" }`}>
+                            <Link href={`${path}/${_id}`}>
                                 <a>
                                     {name}
                                 </a>
                             </Link>
                         </li>
                     ))
+										: null
                 }
-                <div className="show-desktop">
+
+                {/* {
+                    categorysMobile.map(({id,name} , i) => (
+                        <li key={id} className={`${category == id ? "active-link-categoria" : "" }`}>
+                            <Link href={`${path}/${id}`}>
+                                <a>
+                                    {name}-
+                                </a>
+                            </Link>
+                        </li>
+                    ))
+                } */}
+                {/* <div className="show-desktop">
                 {
                     categorysDesktop.map(({id,name} , i) => (
                         <li key={id} className={`${category == id ? "active-link-categoria" : "" }`}>
@@ -56,7 +68,7 @@ return (
                         </li>
                     ))
                 }
-                </div>
+                </div> */}
             </ul>
         </div>
         <style jsx>
@@ -120,5 +132,17 @@ return (
     </Container>
     )
 }
+/* 
+SidebarProducto.propTypes = {
+  data: object.isRequired,
+}; */
+
+/* export const getServerSideProps  = async  () => {
+  const response  = await getCategories();
+	console.log(response)
+  return {};
+}; */
+
+
 
 export default SidebarProducto;

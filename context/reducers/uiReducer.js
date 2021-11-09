@@ -19,6 +19,7 @@ export const uiReducer = ( state = {} , action) => {
                     totalBlogs : action.payload
                 }
             }
+				//PRODUCT
 				case types.setProducts:
             return {
                 ...state,
@@ -26,6 +27,28 @@ export const uiReducer = ( state = {} , action) => {
                     totalProducts : action.payload
                 }
             }
+				case types.setProduct:
+            return {
+                ...state,
+                product : {
+                    productSelected : action.payload
+                }
+            }
+				//CATEGORY
+				case types.setCategories:
+						return {
+								...state,
+								categories : {
+										totalCategories : action.payload
+								}
+						}
+				case types.setCategory:
+							return {
+									...state,
+									category : {
+											categorySelected : action.payload
+									}
+							}
         case types.uiSetError:
             return {
                ...state,

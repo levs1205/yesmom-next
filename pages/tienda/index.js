@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState, useContext, } from "react";
-import { string, array, number } from 'prop-types';
+import { object, array, number } from 'prop-types';
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import YesmomContext from "../../context/Context";
@@ -17,8 +17,8 @@ import SidebarProducto from "../../components/tienda/SidebarProducto";
 import BannerTienda from "../../components/tienda/BannerTienda";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
-import { getProducts } from '../api/request';
-import { setProducts } from "../../context/actions/ui";
+import { getProducts, getCategories } from '../api/request';
+import { setProducts, setCategories } from "../../context/actions/ui";
 
 /* export async function getServerSideProps({ query }) {
   const res = await fetch(`http://localhost:3003/api/product/product`);
@@ -30,14 +30,14 @@ import { setProducts } from "../../context/actions/ui";
     },
   };
 } */
-const Product = ({ productList, productsQty, pages }) => {
-  console.log( productList, productsQty, pages );
+const Product = ({ productList, productsQty, pages, categoryList }) => {
   const { query: { q = "" } } = useRouter();
 	const { dispatchUi } = useContext(YesmomContext);
 	const [storeFiltered, setStoreFiltered] = useState([]);
 
 	useEffect(() => {
     dispatchUi(setProducts(productList));
+		dispatchUi(setCategories(categoryList?.categories));
   }, [])
 
   const imagesMobile = [
@@ -149,15 +149,18 @@ const Product = ({ productList, productsQty, pages }) => {
           <div className="all-content">
             <div className="contenedor">
               <div className="sidebar show-desktop">
-                <SidebarProducto />
+                <SidebarProducto categoryList={categoryList?.categories} />
               </div>
               <div className="products">
                 <h4 className="text-title-tienda">Destacados</h4>
                 <hr />
                 <div className="all-products">
-                  {storeFiltered.slice(0, 6).map((product, i) => (
-                    <CardProduct key={i} {...product} />
-                  ))}
+                  {storeFiltered.length > 0
+										? storeFiltered.slice(0, 6).map((product, i) => (
+												<CardProduct key={i} {...product} />
+											))
+										: null
+								}
                 </div>
               </div>
             </div>
@@ -165,9 +168,12 @@ const Product = ({ productList, productsQty, pages }) => {
             <div className="contenedor f-right">
               <div className="products">
                 <div className="all-products">
-                  {storeFiltered.slice(6, 12).map((product, i) => (
-                    <CardProduct key={i} {...product} />
-                  ))}
+                  {storeFiltered.length > 0
+										? storeFiltered.slice(6, 12).map((product, i) => (
+												<CardProduct key={i} {...product} />
+											))
+										: null
+								}
                 </div>
               </div>
             </div>
@@ -279,11 +285,19 @@ Product.propTypes = {
   productList: array.isRequired,
 	productsQty: number.isRequired,
 	pages: number,
+	categoryList: object.isRequired,
 };
 
-Product.getInitialProps = async () => {
+ export const getServerSideProps = async () => {
   const { productosGeneral, totalDeProductos, pages }  = await getProducts();
-  return { productList: productosGeneral, productsQty: totalDeProductos, pages: pages };
+	const { response }  = await getCategories();
+  
+	return {
+		props: { 
+			productList: productosGeneral, productsQty: totalDeProductos, pages: pages,
+			categoryList: response
+		}
+	};
 };
 
 export default Product;

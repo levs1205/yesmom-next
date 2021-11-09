@@ -3,37 +3,34 @@ import React from "react";
 import { Card } from "react-bootstrap";
 
 function CardProduct({ product, imagen }) {
-	const { descripcion, nombre, precio, precioPromocional, _id } = product;
-	const { url } = imagen;
 	const defaultImage = "https://bicentenario.gob.pe/biblioteca/themes/biblioteca/assets/images/not-available-es.png"
+
   return (
     <>
-      <Link href="/tienda/detalles/:id" as={`/tienda/detalles/${_id}`}>
-        <div className={`card-container size-${nombre}`}> {/* TODO: size-${size} */}
+      <Link href="/tienda/detalles/:id" as={`/tienda/detalles/${product?._id}`}>
+       
+				<div className={`card-container size-${product?.nombre}`}> {/* TODO: size-${size} */}
           <Card border="light">
-            {/* https://picsum.photos/200/300 
-                        https://thumbs.dreamstime.com/b/beb%C3%A9-muy-disgustado-con-el-pelo-travieso-parado-en-pajama-rosa-ilustraci%C3%B3n-vectorial-al-estilo-de-las-caricaturas-planas-un-164575107.jpg
-                        */}
             <div className="card-img-product">
               <Card.Img
                 variant="top"
-                src={ url ? url : defaultImage }
+                src={ imagen?.url ? imagen?.url : defaultImage }
                 className="h-100"
               />
             </div>
             <Card.Body>
-              <Card.Title className="title">{nombre}</Card.Title>
+              <Card.Title className="title">{product?.nombre}</Card.Title>
               <Card.Text>
-								{descripcion}
+								{product?.descripcion}
               </Card.Text>
               <div className="card-text">
                 <div className="container-prices">
-                  <p className={`hide ${precioPromocional && "price-before"}`}> {/* TODO:  <p className={`hide ${discount && "price-before"}`}> */}
-                    S/ XX.XX
+                  <p className={`hide ${product?.precioPromocional && "price-before"}`}> {/* TODO:  <p className={`hide ${discount && "price-before"}`}> */}
+                    S/ {product?.precio.toFixed(2)}
                   </p>
-                  <div className={`text-price ${precioPromocional && "discount"}`}> {/* TODO:  <div className={`text-price ${discount && "discount"}`}> */}
-                    <p className={`${precioPromocional ? "price-now" : "price"}`}> {/* TODO:   <p className={`${discount ? "price-now" : "price"}`}>  */}
-                      S/ {precio}
+                  <div className={`text-price ${product?.precioPromocional && "discount"}`}> {/* TODO:  <div className={`text-price ${discount && "discount"}`}> */}
+                    <p className={`${product?.precioPromocional ? "price-now" : "price"}`}> {/* TODO:   <p className={`${discount ? "price-now" : "price"}`}>  */}
+                      S/ {product?.precioPromocional.toFixed(2)}
                     </p>
                   </div>
                 </div>
