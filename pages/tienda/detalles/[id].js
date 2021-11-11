@@ -17,25 +17,26 @@ import { getProductsById } from '../../api/request';
 import { setProduct } from "../../../context/actions/ui";
 
 const DetallesID = ({ product }) => {
-  const {
-		producto: { 
-			color,
-			talla,
-			decripcion,
-			cantDisponible,
-			precio,
-			precioPromocional,
-			proveedorId,
-			sku,
-			accesorios,
-			categoria,
-			categoriaadicional,
-			dimensiones,
-			nombre,
-			terminos,
-		},
-		imagenes
-  } = product;
+  const { producto, proveedor, imagenes } = product;
+	const { _id: idTienda, nombreTienda, nombreTiendaUrl, } = proveedor;
+	const { 
+		_id: idProducto,
+		color,
+		talla,
+		descripcion,
+		cantDisponible,
+		precio,
+		precioPromocional,
+		proveedorId,
+		sku,
+		accesorios,
+		categoria,
+		categoriaadicional,
+		dimensiones,
+		nombre,
+		terminos,
+  } = producto;
+	
 	const defaultImage = "https://bicentenario.gob.pe/biblioteca/themes/biblioteca/assets/images/not-available-es.png"
   /* console.log("color", Object.entries(color)); */
 
@@ -45,7 +46,9 @@ const DetallesID = ({ product }) => {
   const [amount, setAmount] = useState(0);
 
   const handleAdd = () => {
-    setAmount((amount) => amount + 1);
+		if(cantDisponible > 0){
+			setAmount((amount) => amount + 1);
+		}
   };
 
   const handleMinus = () => {
@@ -145,9 +148,9 @@ const DetallesID = ({ product }) => {
                     <div className="show--container-details">
                       <section className="show--some-info-product">
                         <h5 className="show--ft-semibold">{nombre}</h5>
-                        <h6 className="show--ft-light">{categoria}</h6>
+                        <h6 className="show--ft-light">{nombreTienda}</h6>
                         {/* <p className="show--text-description">{decripcion}</p> */}
-                        <p className="show--price">S/ {precio}</p>
+                        <p className="show--price">S/ {precio.toFixed(2)}</p>
                         <div className="show--container-selects">
                           <div className="show--group-select">
                             <label className="show--text-label" htmlFor="talla">
@@ -161,8 +164,8 @@ const DetallesID = ({ product }) => {
                                 Selecciona el color
                               </option>
                               {color.map((col) => (
-                                <option value={Object.values(col.name)}>
-                                  {Object.keys(col.name)}
+                                <option value={col.name}>
+																	{col.name}
                                 </option>
                               ))}
                             </select>
@@ -247,10 +250,10 @@ const DetallesID = ({ product }) => {
                       <h5 className="show--ft-semibold">
                         Detalle del Producto
                       </h5>
-                      <p className="show--text-description">{decripcion}</p>
+                      <p className="show--text-description">{descripcion}</p>
 
                       <h5 className="show--ft-semibold">Accesorios</h5>
-                      <ol>
+                      {/* <ol>
                         <li>haretra, sit volutpat varius</li>
                         <li>
                           Sed sit urna euismod
@@ -262,38 +265,38 @@ const DetallesID = ({ product }) => {
                         </li>
                         <li>Quam aliquet et</li>
                         <li>Proin nulla lacus quam</li>
-                      </ol>
-
+                      </ol> */}
+												<p className="show--text-description">{accesorios}</p>
                       <div className="show--flex-desktop">
-                        <div>
+                        {/* <div>
                           <h5 className="show--ft-semibold">
                             Pais de producción
                           </h5>
                           <p className="show--text-description">
                             Pharetra, sit volutpat varius
                           </p>
-                        </div>
+                        </div> */}
                         <div>
                           <h5 className="show--ft-semibold">Dimensiones</h5>
-                          <p className="show--text-description">xx - xx cm</p>
+                          <p className="show--text-description">
+														{dimensiones?.largo} x {dimensiones?.ancho} x {dimensiones?.alto} cm
+													</p>
                         </div>
-                        <div>
+                        {/* <div>
                           <h5 className="show--ft-semibold">
                             Material de producto
                           </h5>
                           <p className="show--text-description">
                             Pharetra, sit volutpat varius
                           </p>
-                        </div>
+                        </div> */}
                       </div>
 
                       <h5 className="show--ft-semibold">
                         Términos y condiciones
                       </h5>
                       <p className="show--text-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        A tortor, diam molestie et rhoncus, amet lacus, velit.
-                        Ac ipsum fames gravida habitant aliquet orci. Imperdiet{" "}
+                        {terminos}
                       </p>
                     </section>
                     <section className="show--other-products">

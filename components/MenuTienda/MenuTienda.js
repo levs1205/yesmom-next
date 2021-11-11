@@ -1,25 +1,27 @@
 import React from "react";
+import { string, array, number, object } from 'prop-types';
 import SearchStore from "../../components/Search/SearchStore"
 
-const MenuTienda = () => {
+const MenuTienda = ({ }) => {
 
   const links = [
     
   ]
+
   return (
     <>
       <div className="box-menu-tienda">
-        <div className="submenu-tienda">
-          <h5>Tiendas destacadas</h5>
-          <h5>Solo en Yes Mom</h5>
-          <h5 className="active-link">Lo + vendido</h5>
-          <h5>Packs de  regalos</h5>
-          <h5>Promociones</h5>
-          <h5>Servicios</h5>
-          <h5>Ayuda</h5>
-        </div>
+				<div className="submenu-tienda">
+					<h5>Tiendas destacadas</h5>
+					<h5>Solo en Yes Mom</h5>
+					<h5 className="active-link">Lo + vendido</h5>
+					<h5>Packs de  regalos</h5>
+					<h5>Promociones</h5>
+					<h5>Servicios</h5>
+					<h5>Ayuda</h5>
+				</div>
         <div>
-        <SearchStore/>
+        	<SearchStore/>
 
         </div>
       </div>
