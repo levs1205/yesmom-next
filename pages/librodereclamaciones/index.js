@@ -116,36 +116,20 @@ const index = () => {
                     </div>
                     <div className="box-item">
                       <div className="wrapper-input">
-                        <label htmlFor="apellidoPat">
-                        Domicilio
-                        </label>
-                        <input
-                          type="text"
-                          id="domicilio"
-                          name="domicilio"
-                        />
+                        <label htmlFor="apellidoPat">Domicilio</label>
+                        <input type="text" id="domicilio" name="domicilio" />
                       </div>
                       <div className="wrapper-input">
-                        <label htmlFor="apellidoMat">
-                        Email (*)
-                        </label>
-                        <input
-                          type="email"
-                          id="mail"
-                          name="mail"
-                        />
+                        <label htmlFor="apellidoMat">Email (*)</label>
+                        <input type="email" id="mail" name="mail" />
                       </div>
                     </div>
                     <div className="box-item">
                       <div className="wrapper-input">
                         <label htmlFor="apoderado">
-                        Padre ó Madre (En el caso de ser menor de edad)
+                          Padre ó Madre (En el caso de ser menor de edad)
                         </label>
-                        <input
-                          type="text"
-                          id="apoderado"
-                          name="apoderado"
-                        />
+                        <input type="text" id="apoderado" name="apoderado" />
                       </div>
                     </div>
                   </div>
@@ -154,30 +138,86 @@ const index = () => {
                     <h4>2.- IDENTIFICACIONES DEL BIEN CONTRATADO</h4>
                     <div className="box-item">
                       <div className="wrapper-input">
-                        <label htmlFor="name">
-                          Dirección de correo electrónico o numero de teléfono:
-                        </label>
+                        <label htmlFor="name">Nombre de la tienda:</label>
                         <input type="text" id="name" name="name" />
                       </div>
                       <div className="wrapper-input">
-                        <label htmlFor="name">
-                          Dirección de correo electrónico o numero de teléfono:
-                        </label>
-                        <input type="text" id="name" name="name" />
+                        <label htmlFor="name">Monto Reclamado:</label>
+                        <input type="number" id="monto" name="monto" />
                       </div>
                     </div>
-                    <div className="box-item">
+                    <div className="box-item box-item-checkbox">
                       <div className="wrapper-input">
-                        <label htmlFor="name">
-                          Dirección de correo electrónico o numero de teléfono:
-                        </label>
-                        <input type="text" id="name" name="name" />
+                        <label htmlFor="name">Tipo:</label>
+                        <div className="box-checkbox">
+                          <input type="checkbox" id="name" name="name" />
+                          <label htmlFor="name">
+                            Producto (Relacionado a la compra de un bien,
+                            sustentado con comprobante de pago.)
+                          </label>
+                        </div>
+                        <div className="box-checkbox">
+                          <input type="checkbox" id="name" name="name" />
+                          <label htmlFor="name">
+                            Servicio (Relacionado al malestar o descontento
+                            respecto a la atención recibida.)
+                          </label>
+                        </div>
                       </div>
+                    </div>
+                    <div className="box-item box-item-checkbox">
                       <div className="wrapper-input">
                         <label htmlFor="name">
-                          Dirección de correo electrónico o numero de teléfono:
+                          Descripción del bien contratado:
                         </label>
-                        <input type="text" id="name" name="name" />
+                        <div className="box-checkbox">
+                          <textarea rows="4" maxLength="4000"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="">
+                    <h4>3.- DETALLE DEL RECLAMACIÓN</h4>
+
+                    <div className="box-item box-item-checkbox">
+                      <div className="wrapper-input">
+                        <label htmlFor="name">Tipo:</label>
+                        <div className="box-checkbox">
+                          <input type="checkbox" id="name" name="name" />
+                          <label htmlFor="name">Reclamo(1)</label>
+                        </div>
+                        <div className="box-checkbox">
+                          <input type="checkbox" id="name" name="name" />
+                          <label htmlFor="name">Queja(2)</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="box-item box-item-checkbox">
+                      <div className="wrapper-input">
+                        <label htmlFor="name">Detalle:</label>
+                        <div className="box-checkbox">
+                          <textarea rows="4" maxLength="4000"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="box-item box-item-checkbox">
+                      <div className="wrapper-input">
+                        <label htmlFor="name">Pedido:</label>
+                        <div className="box-checkbox">
+                          <textarea rows="4" maxLength="4000"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="box-item box-item-checkbox">
+                      <div className="wrapper-input">
+                        <div className="box-checkbox">
+                          <input type="checkbox" id="name" name="name" />
+                          <label htmlFor="name">
+                            Estoy de acuerdo con lo ingresado en esta Hoja de
+                            Reclamaciones. Asimismo confirmo que los datos
+                            ingresados son tomados como firma de esta solicitud.
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -253,6 +293,29 @@ const index = () => {
             text-align: left;
             margin-top: 1rem;
             width: 90%;
+          }
+          .box-item-checkbox {
+            width: 100%;
+          }
+          .box-item-checkbox .wrapper-input {
+            width: 100%;
+          }
+
+          .box-checkbox {
+            display: flex;
+            justify-content: flex-start;
+            width: 100%;
+            align-items: center;
+          }
+          .box-checkbox input {
+            width: 3%;
+            margin-top: 0rem !important;
+          }
+          .box-checkbox label {
+            margin-bottom: 0rem !important;
+          }
+          .box-checkbox textarea {
+            width: 100%;
           }
         `}
       </style>

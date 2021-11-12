@@ -302,7 +302,6 @@ const appLayout = ({ children }) => {
             width: 100%;
             height: 100%;
             z-index: 999;
-            background-color: rgba(214, 211, 211, 0.1);
             transition: all 0.3s;
           }
           .hover-amarillo:hover::before {

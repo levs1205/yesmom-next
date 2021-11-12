@@ -41,14 +41,15 @@ const Product = ({ productList, productsQty, pages, categoryList }) => {
   }, [])
 
   const imagesMobile = [
-    { id: 1, image: "/image/tienda/banner-first.svg" },
-    { id: 2, image: "/image/tienda/banner-first.svg" },
-    { id: 3, image: "/image/tienda/banner-first.svg" },
+    { id: 1, image: "/image/tienda/banner-mobile1.png" },
+    { id: 2, image: "/image/tienda/banner-mobile2.png" },
+    { id: 3, image: "/image/tienda/banner-mobile3.png" },
   ];
 
   const imagesDesktop = [
-    { id: 1, image: "/image/tienda/banner1.svg" },
-    { id: 2, image: "/image/tienda/banner1.svg" },
+    { id: 1, image: "/image/tienda/banner-desktop1.png" },
+    { id: 2, image: "/image/tienda/banner-desktop2.png" },
+    { id: 3, image: "/image/tienda/banner-desktop3.png" },
   ];
 
 
