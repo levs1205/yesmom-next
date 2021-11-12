@@ -97,7 +97,7 @@ const Home = ({ currentData , products}) => {
             <div className="h-100">
             {/* <Image */}
             <img
-              src="/image/home/banner-nuevo-yesmom.png"
+              src="/image/home/banner-home1.png"
               alt="Picture of the author"
               layout="responsive"
               // width={500}
@@ -108,7 +108,7 @@ const Home = ({ currentData , products}) => {
             </div>
           </div>
           <div className="banner view-mobile">
-            <img src="/image/home/banner-mobile.png" className="w-100" />
+            <img src="/image/home/banner-home-mobile1.png" className="w-100" />
             {/* <img
               src="/image/home/banner-mobile.png"
               layout="fill"
@@ -117,7 +117,7 @@ const Home = ({ currentData , products}) => {
           </div>
           {/* <img src={banner} className="banner view-desktop" /> */}
           {/* <img src={bannerM} alt="" className="banner view-mobile" /> */}
-          <div className="box-banner-btns">
+          {/* <div className="box-banner-btns">
             <div className="box-banner-btns-group">
               <h3 className="title-fuxia w-80 m-auto cl-blanco ">
                 Encuentra los mejores productos
@@ -131,11 +131,11 @@ const Home = ({ currentData , products}) => {
                 />
               </div>
               <div className="box-banner-regalos">
-                {/* <Link href="/construccion">
+                <Link href="/construccion">
                   <div className="btn-regalos bg-fuxia hover-fuxia">
                     <a>Crear lista de regalos</a>
                   </div>
-                </Link> */}
+                </Link>
 
                 <Link href="/tienda">
                   <div className="btn-regalos hover-amarillo">
@@ -143,16 +143,18 @@ const Home = ({ currentData , products}) => {
                   </div>
                 </Link>
               </div>
-              {/* <p className="link-a text-center text-iniciar-sesion">
+              <p className="link-a text-center text-iniciar-sesion">
                 ¿Ya registrado?
                 <span className="hover-efect-letter">
                   <Link href="/login">
                     <b> Inicia sesión</b>
                   </Link>
                 </span>
-              </p> */}
+              </p>
             </div>
-          </div>
+          </div> */}
+
+
         </section>
 
 
