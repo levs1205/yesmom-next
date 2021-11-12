@@ -1,5 +1,5 @@
 const baseUrl = 'http://localhost:3700';
-//const baseUrl = process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS;
+// const baseUrl = process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS;
 
 //* PRODUCTS
 //? get summary data of products

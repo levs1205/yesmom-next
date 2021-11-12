@@ -13,14 +13,15 @@ import { getProducts, getCategories } from "../api/request";
 import { setProducts, setCategories } from "../../context/actions/ui";
 
 const imagesMobile = [
-	{ id: 1, image: "/image/tienda/banner-first.svg" },
-	{ id: 2, image: "/image/tienda/banner-first.svg" },
-	{ id: 3, image: "/image/tienda/banner-first.svg" },
+	{ id: 1, image: "/image/tienda/banner-mobile1.png" },
+	{ id: 2, image: "/image/tienda/banner-mobile1.png" },
+	{ id: 3, image: "/image/tienda/banner-mobile1.png" },
 ];
 
 const imagesDesktop = [
-	{ id: 1, image: "/image/tienda/banner1.svg" },
-	{ id: 2, image: "/image/tienda/banner1.svg" },
+	{ id: 1, image: "/image/tienda/banner-desktop1.png" },
+	{ id: 2, image: "/image/tienda/banner-desktop1.png" },
+  { id: 3, image: "/image/tienda/banner-desktop3.png" },
 ];
 
 const Product = ({ productList, productsQty, pages, categoryList, path }) => {
