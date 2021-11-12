@@ -11,24 +11,28 @@ import SidebarProducto from "../../../components/tienda/SidebarProducto";
 import { categorysDesktop, categorysMobile } from "../../../data/categorys";
 import router, { useRouter } from "next/router";
 import LoaderPage from "../../../components/LoaderPage";
+import { getProducts, getCategories } from "../../api/request";
 
 export async function getServerSideProps({ query }) {
   //Todos los productos
-  const res = await fetch(`http://localhost:3003/api/product/product`);
-  const product = await res.json();
-
   const { category = "", sort = "" } = query;
+	const { productosGeneral, totalDeProductos, pages } = await getProducts(category);
+	const { response } = await getCategories();
+
+/* 	console.log('category--',category, 'incl',category.includes(category))
+	console.log('sort--',sort, 'incl',sort.includes(sort))
+	console.log('productosGeneral>>', productosGeneral) */
 
   let productsFiltered;
 
-  if (category.trim().length > 0) {
+  /* if (category.trim().length > 0 && productosGeneral) {
     //Existe categoria
     if (category.includes("promociones")) {
-      productsFiltered = product.filter((product) => product?.discount);
+      productsFiltered = productosGeneral.filter((product) => product?.precioPromocional);
     } else if (category.includes("destacados") || category.includes("todos")) {
       productsFiltered = product;
     } else {
-      productsFiltered = product.filter((product) =>
+      productsFiltered = productosGeneral.filter((product) =>
         product.categoria
           .toLowerCase()
           .trim()
@@ -36,32 +40,45 @@ export async function getServerSideProps({ query }) {
       );
     }
   } else {
-    productsFiltered = product;
+    productsFiltered = productosGeneral;
+  } */
+
+	if (!productosGeneral) {
+    return {
+      props: {
+				category,
+				productosGeneral: [],
+				categoryList: response,
+			},
+    };
   }
   return {
     props: {
       category,
-      productsFiltered,
+      productosGeneral,
+			categoryList: response,
     },
   };
 }
 
-const Categoria = ({ productsFiltered, category }) => {
-  const allCategories = [...categorysDesktop, ...categorysMobile];
-  const product = allCategories.find((cat) => cat.id.includes(category));
-
-  const [matched, setMatched] = useState(false);
+const Categoria = ({ productosGeneral, category, categoryList }) => {
+  /* const allCategories = [...categorysDesktop, ...categorysMobile]; */
+	/* console.log('1- productosGeneral',productosGeneral)
+	console.log('2- category',category)
+	console.log('3- categoryList',categoryList.categories) */
+  /* const product = categoryList.categories.find((cat) => cat.slug.includes(category)); */
+  /* const [matched, setMatched] = useState(false);
 
   useEffect(() => {
-    if (product || category.includes("todos")) {
+    if (product || category.includes("all")) {
       setMatched(true);
     } else {
       router.push("/tienda");
       setMatched(false);
     }
-  }, [setMatched]);
+  }, [setMatched]); */
 
-  return !matched ? (
+  return !productosGeneral? (
     <LoaderPage />
   ) : (
     <AppLayout>
@@ -141,7 +158,7 @@ const Categoria = ({ productsFiltered, category }) => {
               <div className="products">
                 <div className="inline-desktop">
                   <h4 className="text-title-tienda">
-                    {product?.name || "Todos"}
+                    {productosGeneral?.name  || "Todos"}
                   </h4>
                   <div className="show-mobile">
                     <hr />
@@ -169,7 +186,7 @@ const Categoria = ({ productsFiltered, category }) => {
                   </div>
                 </div>
                 <div className="all-products">
-                  {productsFiltered.map((product, i) => (
+                  {productosGeneral?.map((product, i) => (
                     <CardProduct key={i} {...product} />
                   ))}
                   {/*                       <CardProduct />

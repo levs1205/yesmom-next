@@ -4,7 +4,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Head from "next/head";
 import React, { useContext, useEffect, useState } from "react";
-import { object } from 'prop-types';
+import { object, array } from 'prop-types';
 import AppLayout from "../../../components/AppLayout";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -13,12 +13,11 @@ import YesmomContext from "../../../context/Context";
 import { startAddToCart } from "../../../context/actions/ui";
 import OtherProducts from "../../../components/tienda/detalle/OtherProducts";
 import Select from "react-select";
-import { getProductsById } from '../../api/request';
+import { getProductsById, getProducts } from '../../api/request';
 import { setProduct } from "../../../context/actions/ui";
 
-const DetallesID = ({ product }) => {
-  const { producto, proveedor, imagenes } = product;
-	const { _id: idTienda, nombreTienda, nombreTiendaUrl, } = proveedor;
+const DetallesID = ({ product, supplier, images, productList, productsQty, pages }) => {
+	const { _id: idTienda, nombreTienda, nombreTiendaUrl, } = supplier;
 	const { 
 		_id: idProducto,
 		color,
@@ -35,7 +34,7 @@ const DetallesID = ({ product }) => {
 		dimensiones,
 		nombre,
 		terminos,
-  } = producto;
+  } = product;
 	
 	const defaultImage = "https://bicentenario.gob.pe/biblioteca/themes/biblioteca/assets/images/not-available-es.png"
   /* console.log("color", Object.entries(color)); */
@@ -80,8 +79,6 @@ const DetallesID = ({ product }) => {
       dispatchUi(startAddToCart(realProduct));
     }
   };
-
-  console.log("bichota", color);
 
   return (
     <>
@@ -138,7 +135,7 @@ const DetallesID = ({ product }) => {
                   <div className="show--flex-content-product">
                     <div className="show--container-images">
                       <Carousel>
-                        {imagenes.map((imag) => (
+                        {images.map((imag) => (
                           <div className="box-img-detail">
                             <img src={imag?.url ? imag?.url: defaultImage} className="" />
                           </div>
@@ -178,7 +175,6 @@ const DetallesID = ({ product }) => {
                               <option selected disabled>
                                 Selecciona la talla
                               </option>
-                              <option>Talla única</option>
                               {talla.map((tall) => (
                                 <option value={Object.values(tall)}>
                                   {tall}
@@ -321,6 +317,7 @@ const DetallesID = ({ product }) => {
                       </div>
 
                       <OtherProducts
+												productList={productList}
                         category={product.categoria}
                         id={product.id}
                       />
@@ -793,28 +790,40 @@ const DetallesID = ({ product }) => {
   );
 };
 
-/* export async function getServerSideProps({ query }) {
-	console.log('query', query)
-  const id = query._id;
-  const res = await fetch(`http://localhost:3003/api/product/${id}`);
-  const product = await res.json();
+DetallesID.propTypes = {
+  product: object.isRequired,
+	supplier: object.isRequired,
+	images: array.isRequired,	
+};
+
+export const getServerSideProps = async ({ query }) => {
+	const { id } = query;
+  const { producto, proveedor, imagenes }  = await getProductsById(id);
+	const { productosGeneral, totalDeProductos, pages } = await getProducts(producto.categoria, 0, 4);
+
+	if (!producto) {
+    return {
+      props: {
+        product: {},
+        supplier: {},
+        images: [],
+				productList: [],
+        productsQty: 0,
+        pages: 0,
+      },
+    };
+  }
 
   return {
     props: {
-      product,
+      product: producto,
+			supplier: proveedor,
+			images: imagenes,
+			productList: productosGeneral,
+      productsQty: totalDeProductos,
+      pages: pages,
     },
   };
-} */
-
-DetallesID.propTypes = {
-  product: object.isRequired,
-	
-};
-
-DetallesID.getInitialProps = async ({ query }) => {
-	const id = query.id;
-  const response  = await getProductsById(id);
-  return { product: response };
 };
 
 export default DetallesID;

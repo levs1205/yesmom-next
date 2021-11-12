@@ -10,6 +10,8 @@ import { getCategories } from '../../pages/api/request';
 const SidebarProducto = ({ categoryList }) => {
     const { query , pathname } = useRouter();
     const { category } = query;
+		console.log('list-->>',category)
+		console.log('categoryList-->>',categoryList)
     const path = "/tienda/categoria";
 
 return (
@@ -31,22 +33,8 @@ return (
                         <a>Todos</a>
                     </Link>
                 </li>
-								{
-                   categoryList.length > 0 
-									 ? categoryList?.map(({ _id, name } , i) => (
-                        <li key={_id} className={`${category == _id ? "active-link-categoria" : "" }`}>
-                            <Link href={`${path}/${_id}`}>
-                                <a>
-                                    {name}
-                                </a>
-                            </Link>
-                        </li>
-                    ))
-										: null
-                }
-
                 {/* {
-                    categorysMobile.map(({id,name} , i) => (
+                    categoryList.map(({id,name} , i) => (
                         <li key={id} className={`${category == id ? "active-link-categoria" : "" }`}>
                             <Link href={`${path}/${id}`}>
                                 <a>
@@ -56,11 +44,11 @@ return (
                         </li>
                     ))
                 } */}
-                {/* <div className="show-desktop">
+                <div className="show-desktop">
                 {
-                    categorysDesktop.map(({id,name} , i) => (
-                        <li key={id} className={`${category == id ? "active-link-categoria" : "" }`}>
-                            <Link href={`${path}/${id}`} >
+                    categoryList?.map(({slug,name, _id} , i) => (
+                        <li key={_id} className={`${category == slug ? "active-link-categoria" : "" }`}>
+                            <Link href={`${path}/${slug}`} >
                                 <a>
                                     {name}
                                 </a>
@@ -68,7 +56,7 @@ return (
                         </li>
                     ))
                 }
-                </div> */}
+                </div>
             </ul>
         </div>
         <style jsx>
@@ -132,17 +120,6 @@ return (
     </Container>
     )
 }
-/* 
-SidebarProducto.propTypes = {
-  data: object.isRequired,
-}; */
-
-/* export const getServerSideProps  = async  () => {
-  const response  = await getCategories();
-	console.log(response)
-  return {};
-}; */
-
 
 
 export default SidebarProducto;

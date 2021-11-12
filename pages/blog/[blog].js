@@ -611,21 +611,10 @@ const CardBlogEspecific = ({ currentData }) => {
 export async function getServerSideProps(params) {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-<<<<<<< HEAD
-
-  //hola
-  const routerParams = params
-  console.log(routerParams)
-  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogParameters/user?id=${routerParams.query.id}`
-  const res = await fetch(
-    url
-  );
-=======
   const routerParams = params;
   // console.log(routerParams);
   let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogParameters/user?id=${routerParams.query.id}`;
   const res = await fetch(url);
->>>>>>> login-fb
 
   const currentData = await res.json();
   if (!currentData) {
