@@ -9,6 +9,36 @@ export const setBlogs = ( blogs ) => {
     }
 }
 
+//PRODUCTS
+export const setProducts = ( products ) => {
+	return {
+			type : types.setProducts,
+			payload : products
+	}
+}
+
+export const setProduct = ( product ) => {
+	return {
+			type : types.setProduct,
+			payload : product
+	}
+}
+
+//CATEGORIES
+export const setCategories = ( categories ) => {
+	return {
+			type : types.setCategories,
+			payload : categories
+	}
+}
+
+export const setPrincipalCategories = ( principalCategories ) => {
+	return {
+			type : types.setPrincipalCategories,
+			payload : principalCategories
+	}
+}
+
 //Control errors 
 
 export const setError = (error) => {

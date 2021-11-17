@@ -93,11 +93,11 @@ const Home = ({ currentData , products}) => {
       </Head>
       <div className="fade-in animated">
         <section fluid="true" className="box-banner">
-          <div className="banner view-desktop tilt-in-fwd-tr">
+          <div className="banner view-desktop ">
             <div className="h-100">
             {/* <Image */}
             <img
-              src="/image/home/banner.png"
+              src="/image/home/banner-home1.png"
               alt="Picture of the author"
               layout="responsive"
               // width={500}
@@ -108,7 +108,7 @@ const Home = ({ currentData , products}) => {
             </div>
           </div>
           <div className="banner view-mobile">
-            <img src="/image/home/banner-mobile.png" className="w-100" />
+            <img src="/image/home/banner-home-mobile1.png" className="w-100" />
             {/* <img
               src="/image/home/banner-mobile.png"
               layout="fill"
@@ -117,10 +117,10 @@ const Home = ({ currentData , products}) => {
           </div>
           {/* <img src={banner} className="banner view-desktop" /> */}
           {/* <img src={bannerM} alt="" className="banner view-mobile" /> */}
-          <div className="box-banner-btns">
+          {/* <div className="box-banner-btns">
             <div className="box-banner-btns-group">
-              <h3 className="title-fuxia w-80 m-auto">
-                Encuentra tu regalo soñado
+              <h3 className="title-fuxia w-80 m-auto cl-blanco ">
+                Encuentra los mejores productos
               </h3>
               <div className="ondas d-block m-auto heartbeat">
                 <Image
@@ -137,9 +137,9 @@ const Home = ({ currentData , products}) => {
                   </div>
                 </Link>
 
-                <Link href="/construccion">
+                <Link href="/tienda">
                   <div className="btn-regalos hover-amarillo">
-                    <a> Buscar lista de regalos</a>
+                    <a> ver tienda</a>
                   </div>
                 </Link>
               </div>
@@ -152,8 +152,13 @@ const Home = ({ currentData , products}) => {
                 </span>
               </p>
             </div>
-          </div>
+          </div> */}
+
+
         </section>
+
+
+
         <div className="section-sorteo-home">
           <Container fluid="true">
             <Row className="sin-margin">
@@ -275,7 +280,7 @@ const Home = ({ currentData , products}) => {
                     </div>
                     <Link href="/tienda">
                       <div className="btn-lo-mejor hover-amarillo">
-                        <a> Tiendas destacadas</a>
+                        <a> Tiendas destacadas-</a>
                       </div>
                     </Link>
                   </Col>
@@ -527,13 +532,6 @@ const Home = ({ currentData , products}) => {
             position: absolute;
             top: 0%;
             left: 60%;
-            background: linear-gradient(
-              270deg,
-              #ffffff -63.19%,
-              rgba(255, 251, 251, 0) 100%,
-              rgba(255, 251, 251, 0) 100%,
-              rgba(255, 251, 251, 0) 100%
-            );
             height: 100%;
             width: 40%;
           }
@@ -557,6 +555,7 @@ const Home = ({ currentData , products}) => {
             object-position: center;
             height: 100%;
             position: absolute;
+            top:3rem
           }
 
           .ondas-banner {

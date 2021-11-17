@@ -9,6 +9,7 @@ function SelectFilterStore() {
     const [isVisible , setIsVisible ] = useState(false);
     const clickOutside = useRef(null);
     const { pathname } = useRouter();
+		/* MENU CATEGORIA MOBILE */
     const types = [
         { name : "Destacados", path : "/tienda/categoria/destacados"},
         { name : "Todos", path : "/tienda/categoria/todos"},

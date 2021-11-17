@@ -1,79 +1,54 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useState, useContext } from "react";
+import { object, array, number } from "prop-types";
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
-import axios from "axios";
-import {
-  CardDeck,
-  CardColumns,
-  Carousel,
-  Col,
-  Container,
-  Row,
-} from "react-bootstrap";
-/* import CardProduct from "../../components/CardProduct"; */
+import YesmomContext from "../../context/Context";
+import { Carousel, Container, } from "react-bootstrap";
 import CardProduct from "../../components/CardProduct";
 import SidebarProducto from "../../components/tienda/SidebarProducto";
 import BannerTienda from "../../components/tienda/BannerTienda";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
+import { getProducts, getCategories } from "../api/request";
+import { setProducts, setCategories } from "../../context/actions/ui";
 
-export async function getServerSideProps({ query }) {
-  const res = await fetch(`http://localhost:3003/api/product/product`);
-  const product = await res.json();
+const imagesMobile = [
+	{ id: 1, image: "/image/tienda/banner-mobile1.png" },
+	{ id: 2, image: "/image/tienda/banner-mobile1.png" },
+	{ id: 3, image: "/image/tienda/banner-mobile1.png" },
+];
 
-  return {
-    props: {
-      product,
-    },
-  };
-}
-const Product = ({ product }) => {
-  console.log(product);
-  const {
-    query: { q = "" },
-  } = useRouter();
+const imagesDesktop = [
+	{ id: 1, image: "/image/tienda/banner-desktop1.png" },
+	{ id: 2, image: "/image/tienda/banner-desktop1.png" },
+  { id: 3, image: "/image/tienda/banner-desktop3.png" },
+];
 
-  /* console.log(product); */
-  const imagesMobile = [
-    { id: 1, image: "/image/tienda/banner-first.svg" },
-    { id: 2, image: "/image/tienda/banner-first.svg" },
-    { id: 3, image: "/image/tienda/banner-first.svg" },
-  ];
-
-  const imagesDesktop = [
-    { id: 1, image: "/image/tienda/banner1.svg" },
-    { id: 2, image: "/image/tienda/banner1.svg" },
-  ];
-
+const Product = ({ productList, productsQty, pages, categoryList, path }) => {
+  const { query: { q = "" }, } = useRouter();
+  const { dispatchUi } = useContext(YesmomContext);
   const [storeFiltered, setStoreFiltered] = useState([]);
 
   useEffect(() => {
-    const query = q.toLowerCase().trim();
-    const filterData = product.filter((el) =>
-      el.nombre
-        .toLowerCase()
-        .trim()
-        .includes(query)
-    );
-    if (filterData.length === 0) {
-      setStoreFiltered(product);
-      Swal.fire(
-        "No encontrado",
-        "No existen productos asociados con la búsqueda!",
-        "info"
-      );
-    } else {
-      setStoreFiltered(filterData);
-    }
-  }, [q]);
+    dispatchUi(setProducts(productList));
+    dispatchUi(setCategories(categoryList?.categories));
+  }, []);
 
-  /*   const [banner, setBanner] = useState(initialState);
+	useEffect(() => {
+		const query = q.toLowerCase().trim();
+		let filterData = productList.filter((el) => el.product.nombre.toLowerCase().trim().includes(query));
 
-  const [respuesta, setRespuesta] = useState([]);
-  useEffect(async () => {
-    const consulta = await axios("https://fakestoreapi.com/products");
-    setRespuesta(consulta.data);
-  }, []); */
+		if (filterData.length === 0) {
+			setStoreFiltered(productList);
+			Swal.fire(
+				"No encontrado",
+				"No existen productos asociados con la búsqueda!",
+				"info"
+			);
+		} else {
+			setStoreFiltered(filterData);
+		}
+	}, [q]);
 
   return (
     <AppLayout>
@@ -134,7 +109,7 @@ const Product = ({ product }) => {
             {imagesDesktop.map((ban) => (
               <Carousel.Item key={ban.id} className="carousel-item">
                 <img src={ban.image} alt="" className="w-100" />
-                {/* <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Siula_Grande_072530032013.jpg/1200px-Siula_Grande_072530032013.jpg" alt=""/> */}
+                
               </Carousel.Item>
             ))}
           </Carousel>
@@ -144,15 +119,19 @@ const Product = ({ product }) => {
           <div className="all-content">
             <div className="contenedor">
               <div className="sidebar show-desktop">
-                <SidebarProducto />
+                <SidebarProducto categoryList={categoryList?.categories} />
               </div>
               <div className="products">
                 <h4 className="text-title-tienda">Destacados</h4>
                 <hr />
                 <div className="all-products">
-                  {storeFiltered.slice(0, 6).map((product, i) => (
-                    <CardProduct key={i} {...product} />
-                  ))}
+                  {productList.length > 0
+                    ? storeFiltered
+                        .slice(0, 6)
+                        .map((product, i) => (
+                          <CardProduct key={i} {...product} />
+                        ))
+                    : <p>Se encontraron 0 productos</p>}
                 </div>
               </div>
             </div>
@@ -160,9 +139,13 @@ const Product = ({ product }) => {
             <div className="contenedor f-right">
               <div className="products">
                 <div className="all-products">
-                  {storeFiltered.slice(6, 12).map((product, i) => (
-                    <CardProduct key={i} {...product} />
-                  ))}
+                  {productList.length > 0
+                    ? storeFiltered
+                        .slice(6, 12)
+                        .map((product, i) => (
+                          <CardProduct key={i} {...product} />
+                        ))
+                    :  null}
                 </div>
               </div>
             </div>
@@ -268,6 +251,38 @@ const Product = ({ product }) => {
       </style>
     </AppLayout>
   );
+};
+
+Product.propTypes = {
+  productList: array.isRequired,
+  productsQty: number.isRequired,
+  pages: number,
+  categoryList: object.isRequired,
+};
+
+export const getServerSideProps = async () => {
+	const { productosGeneral, totalDeProductos, pages } = await getProducts('all', 0, 12);
+  const { response } = await getCategories();
+	
+  if (!productosGeneral) {
+    return {
+      props: {
+        productList: [],
+        productsQty: 0,
+        pages: 0,
+        categoryList: response,
+      },
+    };
+  }
+
+  return {
+    props: {
+      productList: productosGeneral,
+      productsQty: totalDeProductos,
+      pages: pages,
+      categoryList: response,
+    },
+  };
 };
 
 export default Product;

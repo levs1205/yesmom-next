@@ -1,20 +1,22 @@
 import Link from 'next/link';
+import { string, array, number } from 'prop-types';
 import { useRouter } from 'next/router';
 import React from 'react'
 import {Container } from "react-bootstrap";
 import { categorysMobile, categorysDesktop } from '../../data/categorys';
+import { getCategories } from '../../pages/api/request';
 
 
-const SidebarProducto = () => {
+const SidebarProducto = ({ categoryList }) => {
     const { query , pathname } = useRouter();
-
     const { category } = query;
-
+		console.log('list-->>',category)
+		console.log('categoryList-->>',categoryList)
     const path = "/tienda/categoria";
-
 
 return (
     <Container>
+			{/*  MENU CATEGORIA DESKTOP */}
         <div className="side-bar">
             <div className="text-title-filtros">
                 <p> Filtros </p>
@@ -31,23 +33,22 @@ return (
                         <a>Todos</a>
                     </Link>
                 </li>
-
-                {
-                    categorysMobile.map(({id,name} , i) => (
+                {/* {
+                    categoryList.map(({id,name} , i) => (
                         <li key={id} className={`${category == id ? "active-link-categoria" : "" }`}>
                             <Link href={`${path}/${id}`}>
                                 <a>
-                                    {name}
+                                    {name}-
                                 </a>
                             </Link>
                         </li>
                     ))
-                }
+                } */}
                 <div className="show-desktop">
                 {
-                    categorysDesktop.map(({id,name} , i) => (
-                        <li key={id} className={`${category == id ? "active-link-categoria" : "" }`}>
-                            <Link href={`${path}/${id}`} >
+                    categoryList?.map(({slug,name, _id} , i) => (
+                        <li key={_id} className={`${category == slug ? "active-link-categoria" : "" }`}>
+                            <Link href={`${path}/${slug}`} >
                                 <a>
                                     {name}
                                 </a>
@@ -119,5 +120,6 @@ return (
     </Container>
     )
 }
+
 
 export default SidebarProducto;

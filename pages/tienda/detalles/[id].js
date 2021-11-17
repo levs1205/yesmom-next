@@ -4,6 +4,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Head from "next/head";
 import React, { useContext, useEffect, useState } from "react";
+import { object, array } from 'prop-types';
 import AppLayout from "../../../components/AppLayout";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -12,31 +13,30 @@ import YesmomContext from "../../../context/Context";
 import { startAddToCart } from "../../../context/actions/ui";
 import OtherProducts from "../../../components/tienda/detalle/OtherProducts";
 import Select from "react-select";
+import { getProductsById, getProducts } from '../../api/request';
+import { setProduct } from "../../../context/actions/ui";
 
-export async function getServerSideProps({ query }) {
-  const id = query.id;
-  const res = await fetch(`http://localhost:3003/api/product/${id}`);
-  const product = await res.json();
-
-  return {
-    props: {
-      product,
-    },
-  };
-}
-
-const DetallesID = ({ product }) => {
-  const {
-    color,
-    decripcion,
-    imagen,
-    nombre,
-    precio,
-    peso,
-    talla,
-    categoria,
+const DetallesID = ({ product, supplier, images, productList, productsQty, pages }) => {
+	const { _id: idTienda, nombreTienda, nombreTiendaUrl, } = supplier;
+	const { 
+		_id: idProducto,
+		color,
+		talla,
+		descripcion,
+		cantDisponible,
+		precio,
+		precioPromocional,
+		proveedorId,
+		sku,
+		accesorios,
+		categoria,
+		categoriaadicional,
+		dimensiones,
+		nombre,
+		terminos,
   } = product;
-
+	
+	const defaultImage = "https://bicentenario.gob.pe/biblioteca/themes/biblioteca/assets/images/not-available-es.png"
   /* console.log("color", Object.entries(color)); */
 
   const [disabled, setDisabled] = useState(true);
@@ -45,7 +45,9 @@ const DetallesID = ({ product }) => {
   const [amount, setAmount] = useState(0);
 
   const handleAdd = () => {
-    setAmount((amount) => amount + 1);
+		if(cantDisponible > 0){
+			setAmount((amount) => amount + 1);
+		}
   };
 
   const handleMinus = () => {
@@ -77,8 +79,6 @@ const DetallesID = ({ product }) => {
       dispatchUi(startAddToCart(realProduct));
     }
   };
-
-  console.log("bichota", product.color);
 
   return (
     <>
@@ -135,9 +135,9 @@ const DetallesID = ({ product }) => {
                   <div className="show--flex-content-product">
                     <div className="show--container-images">
                       <Carousel>
-                        {imagen.map((imag) => (
+                        {images.map((imag) => (
                           <div className="box-img-detail">
-                            <img src={imag} className="" />
+                            <img src={imag?.url ? imag?.url: defaultImage} className="" />
                           </div>
                         ))}
                       </Carousel>
@@ -145,9 +145,9 @@ const DetallesID = ({ product }) => {
                     <div className="show--container-details">
                       <section className="show--some-info-product">
                         <h5 className="show--ft-semibold">{nombre}</h5>
-                        <h6 className="show--ft-light">{categoria}</h6>
+                        <h6 className="show--ft-light">{nombreTienda}</h6>
                         {/* <p className="show--text-description">{decripcion}</p> */}
-                        <p className="show--price">S/ {precio}</p>
+                        <p className="show--price">S/ {precio.toFixed(2)}</p>
                         <div className="show--container-selects">
                           <div className="show--group-select">
                             <label className="show--text-label" htmlFor="talla">
@@ -161,8 +161,8 @@ const DetallesID = ({ product }) => {
                                 Selecciona el color
                               </option>
                               {color.map((col) => (
-                                <option value={Object.values(col)}>
-                                  {Object.keys(col)}
+                                <option value={col.name}>
+																	{col.name}
                                 </option>
                               ))}
                             </select>
@@ -175,7 +175,6 @@ const DetallesID = ({ product }) => {
                               <option selected disabled>
                                 Selecciona la talla
                               </option>
-                              <option>Talla única</option>
                               {talla.map((tall) => (
                                 <option value={Object.values(tall)}>
                                   {tall}
@@ -247,10 +246,10 @@ const DetallesID = ({ product }) => {
                       <h5 className="show--ft-semibold">
                         Detalle del Producto
                       </h5>
-                      <p className="show--text-description">{decripcion}</p>
+                      <p className="show--text-description">{descripcion}</p>
 
                       <h5 className="show--ft-semibold">Accesorios</h5>
-                      <ol>
+                      {/* <ol>
                         <li>haretra, sit volutpat varius</li>
                         <li>
                           Sed sit urna euismod
@@ -262,38 +261,38 @@ const DetallesID = ({ product }) => {
                         </li>
                         <li>Quam aliquet et</li>
                         <li>Proin nulla lacus quam</li>
-                      </ol>
-
+                      </ol> */}
+												<p className="show--text-description">{accesorios}</p>
                       <div className="show--flex-desktop">
-                        <div>
+                        {/* <div>
                           <h5 className="show--ft-semibold">
                             Pais de producción
                           </h5>
                           <p className="show--text-description">
                             Pharetra, sit volutpat varius
                           </p>
-                        </div>
+                        </div> */}
                         <div>
                           <h5 className="show--ft-semibold">Dimensiones</h5>
-                          <p className="show--text-description">xx - xx cm</p>
+                          <p className="show--text-description">
+														{dimensiones?.largo} x {dimensiones?.ancho} x {dimensiones?.alto} cm
+													</p>
                         </div>
-                        <div>
+                        {/* <div>
                           <h5 className="show--ft-semibold">
                             Material de producto
                           </h5>
                           <p className="show--text-description">
                             Pharetra, sit volutpat varius
                           </p>
-                        </div>
+                        </div> */}
                       </div>
 
                       <h5 className="show--ft-semibold">
                         Términos y condiciones
                       </h5>
                       <p className="show--text-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        A tortor, diam molestie et rhoncus, amet lacus, velit.
-                        Ac ipsum fames gravida habitant aliquet orci. Imperdiet{" "}
+                        {terminos}
                       </p>
                     </section>
                     <section className="show--other-products">
@@ -318,6 +317,7 @@ const DetallesID = ({ product }) => {
                       </div>
 
                       <OtherProducts
+												productList={productList}
                         category={product.categoria}
                         id={product.id}
                       />
@@ -788,6 +788,42 @@ const DetallesID = ({ product }) => {
       </style>
     </>
   );
+};
+
+DetallesID.propTypes = {
+  product: object.isRequired,
+	supplier: object.isRequired,
+	images: array.isRequired,	
+};
+
+export const getServerSideProps = async ({ query }) => {
+	const { id } = query;
+  const { producto, proveedor, imagenes }  = await getProductsById(id);
+	const { productosGeneral, totalDeProductos, pages } = await getProducts(producto.categoria, 0, 4);
+
+	if (!producto) {
+    return {
+      props: {
+        product: {},
+        supplier: {},
+        images: [],
+				productList: [],
+        productsQty: 0,
+        pages: 0,
+      },
+    };
+  }
+
+  return {
+    props: {
+      product: producto,
+			supplier: proveedor,
+			images: imagenes,
+			productList: productosGeneral,
+      productsQty: totalDeProductos,
+      pages: pages,
+    },
+  };
 };
 
 export default DetallesID;

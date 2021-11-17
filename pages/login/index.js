@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useContext, useEffect, useRef, useState } from "react";
 import YesmomContext from "../../context/Context";
-import { startLogin, startLoginWithGoogle } from "../../context/actions/auth";
+import { startLogin, startLoginWithGoogle, startLoginWithFacebook } from "../../context/actions/auth";
 import { useRouter } from "next/router";
 import LoaderPage from '../../components/LoaderPage';
 //manejadores
@@ -96,6 +96,17 @@ const index = () => {
     }
   }
 
+  const responseFacebook = async ( data ) => {
+
+    // const token = response.accessToken;
+
+    const { token } = await startLoginWithFacebook(data);
+    if(token){
+      dispatchAuth( startLogin({ token }))
+    }
+
+  }
+
   const handleFailureGoogle = (error) => {
     console.log(error);
   }
@@ -125,11 +136,7 @@ const index = () => {
   if(loading){
     return <LoaderPage />
   }
-  const responseFacebook = (response) => {
-    console.log('response data', response);
-    console.log('response token', response.accessToken);
-    // router.push('/')
-  }
+  
 
   return (
     <AppLayout>
