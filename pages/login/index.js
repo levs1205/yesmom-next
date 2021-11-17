@@ -118,8 +118,8 @@ const index = () => {
    useEffect(()=>{
     if(logged){
       flagRef.current = false;
-      if(router.query.redirect){
-        router.push(`/${router.query.redirect}`)
+      if(redirect){
+        router.push(`/${redirect}`)
       }else{
         router.push('/perfil/miperfil');
       }
