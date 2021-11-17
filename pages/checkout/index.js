@@ -90,6 +90,8 @@ const Checkout = () => {
       router.push('/login?redirect=checkout')
     }
   }, [logged])
+
+  
   useEffect(()=>{
     if (idPreference) {
       const mp = new MercadoPago('TEST-00e86e9f-751f-42c9-a278-7a9f97340aa8',{

@@ -31,7 +31,9 @@ const schemaValidator = yup.object().shape({
 const index = () => {
 
   
-  const { query : { redirect }} = useRouter();
+  const router = useRouter();
+
+  const { query : { redirect } } = router;
   
   const refPassword = useRef();
   const {
