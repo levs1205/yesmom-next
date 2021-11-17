@@ -37,9 +37,8 @@ const schemaSecond = yup.object().shape({
 
 const Checkout = () => {
 
-
-  const router = useRouter()
-  const { auth : { logged } } = useContext(YesmomContext);
+  const router = useRouter();
+  const  { auth : { logged } } = useContext(YesmomContext);
   const [selected, setSelected] = useState(0);
   const [idPreference , setIdPreference] = useState(null);
 
@@ -85,13 +84,7 @@ const Checkout = () => {
   };
 
 
-  useEffect(() => {
-    if(!logged){
-      router.push('/login?redirect=checkout')
-    }
-  }, [logged])
 
-  
   useEffect(()=>{
     if (idPreference) {
       const mp = new MercadoPago('TEST-00e86e9f-751f-42c9-a278-7a9f97340aa8',{
@@ -125,6 +118,15 @@ const Checkout = () => {
     }
 
   },[idPreference])
+
+
+  useEffect(() => {
+    if(!logged){
+      router.push('/login?redirect_uri=checkout')
+    }else{
+      router.push("/checkout");
+    }
+  },[ logged ])
 
   return (
     <AppLayout>

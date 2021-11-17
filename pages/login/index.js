@@ -33,7 +33,7 @@ const index = () => {
   
   const router = useRouter();
 
-  const { query : { redirect } } = router;
+  const { query : { redirect_uri } } = router;
   
   const refPassword = useRef();
   const {
@@ -120,8 +120,8 @@ const index = () => {
    useEffect(()=>{
     if(logged){
       flagRef.current = false;
-      if(redirect){
-        router.push(`/${redirect}`)
+      if(redirect_uri){
+        router.push(`/${redirect_uri}`)
       }else{
         router.push('/perfil/miperfil');
       }
