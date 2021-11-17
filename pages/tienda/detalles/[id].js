@@ -145,9 +145,15 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
                     <div className="show--container-details">
                       <section className="show--some-info-product">
                         <h5 className="show--ft-semibold">{nombre}</h5>
-                        <h6 className="show--ft-light">{nombreTienda}</h6>
+                        {/* <h6 className="show--ft-light">{nombreTienda}</h6> */}
+												<h6 className="show--ft-light">
+													<Link href={`/tienda/${nombreTiendaUrl}`}>
+														<a className="show--ft-light">{nombreTienda}</a>
+													</Link>
+												</h6>
+												
                         {/* <p className="show--text-description">{decripcion}</p> */}
-                        <p className="show--price">S/ {precio.toFixed(2)}</p>
+                        <p className="show--price">S/ {precio?.toFixed(2)}</p>
                         <div className="show--container-selects">
                           <div className="show--group-select">
                             <label className="show--text-label" htmlFor="talla">
@@ -160,11 +166,11 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
                               <option selected disabled>
                                 Selecciona el color
                               </option>
-                              {color.map((col) => (
+                              {color?.length > 0 ? color.map((col) => (
                                 <option value={col.name}>
 																	{col.name}
                                 </option>
-                              ))}
+                              )): ''}
                             </select>
                           </div>
                           <div className="show--group-select">
@@ -175,11 +181,11 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
                               <option selected disabled>
                                 Selecciona la talla
                               </option>
-                              {talla.map((tall) => (
+                              {talla?.length > 0 ? talla.map((tall) => (
                                 <option value={Object.values(tall)}>
                                   {tall}
                                 </option>
-                              ))}
+                              )): ''}
                             </select>
                           </div>
                         </div>
@@ -231,7 +237,7 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
                             </div>
                           </div>
                           <div className="show--btn-normal">
-                            <Link href="/perfil-tienda">
+                            <Link href={`/tienda/${nombreTiendaUrl}`}>
                               <div className="btn-detalle bg-amarillo">
                                 Ver la tienda
                               </div>
@@ -295,7 +301,12 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
                         {terminos}
                       </p>
                     </section>
-                    <section className="show--other-products">
+										<OtherProducts
+												productList={productList}
+                        category={categoria}
+                        id={idProducto}
+                      />
+                    {/* <section className="show--other-products">
                       <div className="box-title-otros-productos">
                         <div className="icon-title-video">
                           <FontAwesomeIcon
@@ -318,10 +329,10 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
 
                       <OtherProducts
 												productList={productList}
-                        category={product.categoria}
-                        id={product.id}
+                        category={categoria}
+                        id={idProducto}
                       />
-                    </section>
+                    </section> */}
                   </div>
                 </div>
               </div>
@@ -434,6 +445,8 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
 
           .show--ft-light {
             font-family: "mont-light" !important;
+						color: #5a5a5a;
+						text-decoration: none;
           }
 
           h5.show--ft-semibold,
@@ -442,6 +455,7 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
             font-size: 2rem;
             color: #5a5a5a;
             margin: 1.5rem 0;
+						text-decoration: none
           }
 
           .show--box-main-proveedor ol {
@@ -799,7 +813,7 @@ DetallesID.propTypes = {
 export const getServerSideProps = async ({ query }) => {
 	const { id } = query;
   const { producto, proveedor, imagenes }  = await getProductsById(id);
-	const { productosGeneral, totalDeProductos, pages } = await getProducts(producto.categoria, 0, 4);
+	const { productosGeneral, totalDeProductos, pages } = await getProducts(null, producto?.categoria, 0, 4);
 
 	if (!producto) {
     return {

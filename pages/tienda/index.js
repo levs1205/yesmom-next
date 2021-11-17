@@ -21,7 +21,7 @@ const imagesMobile = [
 const imagesDesktop = [
 	{ id: 1, image: "/image/tienda/banner-desktop1.png" },
 	{ id: 2, image: "/image/tienda/banner-desktop1.png" },
-  { id: 3, image: "/image/tienda/banner-desktop3.png" },
+/*   { id: 3, image: "/image/tienda/banner-desktop3.png" }, */
 ];
 
 const Product = ({ productList, productsQty, pages, categoryList, path }) => {
@@ -261,7 +261,7 @@ Product.propTypes = {
 };
 
 export const getServerSideProps = async () => {
-	const { productosGeneral, totalDeProductos, pages } = await getProducts('all', 0, 12);
+	const { productosGeneral, totalDeProductos, pages } = await getProducts(null,'all');
   const { response } = await getCategories();
 	
   if (!productosGeneral) {

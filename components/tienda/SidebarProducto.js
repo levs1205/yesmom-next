@@ -23,7 +23,7 @@ return (
             </div>
             <hr />
             <ul>
-                <li className={`${pathname === "/tienda" ? "active-link-categoria" : "" }`}>
+                {/* <li className={`${pathname === "/tienda" ? "active-link-categoria" : "" }`}>
                     <Link href="/tienda">
                         <a>Destacados</a>
                     </Link>
@@ -32,7 +32,16 @@ return (
                     <Link href="/tienda/categoria/todos">
                         <a>Todos</a>
                     </Link>
-                </li>
+                </li> */}
+								{/* {categoryList?.map(({slug,name, _id} , i) => (
+										<li key={_id} className={`${category == slug ? "active-link-categoria" : "" }`}>
+												<Link href={`${path}/${slug}`} >
+														<a>
+																{name}
+														</a>
+												</Link>
+										</li>
+								))} */}
                 {/* {
                     categoryList.map(({id,name} , i) => (
                         <li key={id} className={`${category == id ? "active-link-categoria" : "" }`}>
@@ -45,8 +54,22 @@ return (
                     ))
                 } */}
                 <div className="show-desktop">
-                {
-                    categoryList?.map(({slug,name, _id} , i) => (
+										{/* <li className={`${pathname === "/tienda" ? "active-link-categoria" : "" }`}>
+											<Link href="/tienda">
+													<a>Destacados</a>
+											</Link>
+										</li>
+										<li className={`${pathname === "/tienda/categoria/todos" ? "active-link-categoria" : "" }`}>
+												<Link href="/tienda/categoria/todos">
+														<a>Todos</a>
+												</Link>
+										</li> */}
+										<li className={`${pathname === "/tienda" ? "active-link-categoria" : "" }`}>
+											<Link href="/tienda">
+													<a>Todos</a>
+											</Link>
+										</li>
+										{categoryList?.map(({slug,name, _id} , i) => (
                         <li key={_id} className={`${category == slug ? "active-link-categoria" : "" }`}>
                             <Link href={`${path}/${slug}`} >
                                 <a>
@@ -54,8 +77,7 @@ return (
                                 </a>
                             </Link>
                         </li>
-                    ))
-                }
+                    ))}                
                 </div>
             </ul>
         </div>

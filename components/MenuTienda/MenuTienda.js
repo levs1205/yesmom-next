@@ -11,7 +11,7 @@ const MenuTienda = ({ }) => {
   return (
     <>
       <div className="box-menu-tienda">
-				<div className="submenu-tienda">
+				{/* <div className="submenu-tienda">
 					<h5>Tiendas destacadas</h5>
 					<h5>Solo en Yes Mom</h5>
 					<h5 className="active-link">Lo + vendido</h5>
@@ -19,7 +19,7 @@ const MenuTienda = ({ }) => {
 					<h5>Promociones</h5>
 					<h5>Servicios</h5>
 					<h5>Ayuda</h5>
-				</div>
+				</div> */}
         <div>
         	<SearchStore/>
 

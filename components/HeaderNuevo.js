@@ -159,7 +159,7 @@ const HeaderNuevo = () => {
                 </ActiveLink>
               )}
 
-              <ActiveLink href="/ayuda/tengo-un-registro" activeClassName="active">
+              {/* <ActiveLink href="/ayuda/tengo-un-registro" activeClassName="active">
                 <a className="item-menu-yesmom">
                   <Image
                     src="/image/header/ayuda.svg"
@@ -169,7 +169,7 @@ const HeaderNuevo = () => {
                   />
                   <h6 className="text-navbar">Ayuda</h6>
                 </a>
-              </ActiveLink>
+              </ActiveLink> */}
               <>
                 <div className="container-cart-submenu">
                   <div className="item-menu-yesmom-cart">

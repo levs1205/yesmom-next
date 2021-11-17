@@ -16,7 +16,7 @@ import { getProducts, getCategories } from "../../api/request";
 export async function getServerSideProps({ query }) {
   //Todos los productos
   const { category = "", sort = "" } = query;
-	const { productosGeneral, totalDeProductos, pages } = await getProducts(category);
+	const { productosGeneral, totalDeProductos, pages } = await getProducts(category, null);
 	const { response } = await getCategories();
 
 /* 	console.log('category--',category, 'incl',category.includes(category))
@@ -158,7 +158,7 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
               <div className="products">
                 <div className="inline-desktop">
                   <h4 className="text-title-tienda">
-                    {productosGeneral?.name  || "Todos"}
+                    {productosGeneral?.categoria  || "Todos"}
                   </h4>
                   <div className="show-mobile">
                     <hr />
@@ -176,12 +176,12 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
                       </option>
                       <option>Precio de mayor a menor </option>
                       <option>Precio de menor a mayor </option>
-                      <option>Recomendaciones </option>
+                      {/* <option>Recomendaciones </option>
                       <option>A-Z (alfabéticamente) </option>
                       <option>Z-A (alfabéticamente </option>
                       <option>Los más vendidos </option>
                       <option>Últimos 30 días </option>
-                      <option> Últimos 6 meses </option>
+                      <option> Últimos 6 meses </option> */}
                     </select>
                   </div>
                 </div>
