@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useContext, useEffect, useRef, useState } from "react";
 import YesmomContext from "../../context/Context";
-import { startLogin, startLoginWithGoogle } from "../../context/actions/auth";
+import { startLogin, startLoginWithGoogle, startLoginWithFacebook } from "../../context/actions/auth";
 import { useRouter } from "next/router";
 import LoaderPage from '../../components/LoaderPage';
 //manejadores
@@ -31,7 +31,7 @@ const schemaValidator = yup.object().shape({
 const index = () => {
 
   
-  const { query : { redirect }} = useRouter();
+  const router = useRouter();
   
   const refPassword = useRef();
   const {
@@ -94,6 +94,17 @@ const index = () => {
     }
   }
 
+  const responseFacebook = async ( data ) => {
+
+    // const token = response.accessToken;
+
+    const { token } = await startLoginWithFacebook(data);
+    if(token){
+      dispatchAuth( startLogin({ token }))
+    }
+
+  }
+
   const handleFailureGoogle = (error) => {
     console.log(error);
   }
@@ -107,8 +118,8 @@ const index = () => {
    useEffect(()=>{
     if(logged){
       flagRef.current = false;
-      if(redirect){
-        router.push(`/${redirect}`)
+      if(router.query.redirect){
+        router.push(`/${router.query.redirect}`)
       }else{
         router.push('/perfil/miperfil');
       }
@@ -123,20 +134,7 @@ const index = () => {
   if(loading){
     return <LoaderPage />
   }
-  const responseFacebook = (response) => {
-
-    const token = response.accessToken;
-
-    axios.post( 'XXXXXXXX' , token )
-      .then(res => {
-        console.log(res)
-      }).catch((err) => {
-        console.log('error', err)
-      })
-
-    console.log('response token', response.accessToken);
-    // router.push('/')
-  }
+  
 
   return (
     <AppLayout>

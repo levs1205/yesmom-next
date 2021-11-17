@@ -61,6 +61,28 @@ export const startLoginWithGoogle = async ( values ) => {
     }
 }
 
+export const startLoginWithFacebook = async ( values ) => {
+    try {
+        console.log('values', values)
+        const { accessToken, userID } = values
+
+        // const { tokenId } = values ;
+        // console.log(tokenId);
+        // //LLamar endpoint para generar token
+
+        // const { data } = await axiosAuth.get(`/auth/facebook-profile?userId=${userID}`,{ headers :  {
+        //     'facebook-token' : accessToken
+        // }})
+        // console.log('data', data)
+        return { token : accessToken}
+
+    }catch(error){
+        console.log(error);
+        alert('Error');
+        return {}
+    }
+}
+
 export const startLogout = {
     type : types.authLogout
 }
