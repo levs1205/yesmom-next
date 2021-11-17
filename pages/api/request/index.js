@@ -9,7 +9,7 @@ export const getProducts = async (catSlug, category, skip, limit) => {
 	const num_skip = skip !== null && skip !== undefined ? `&skip=${skip}` : '';
 	const num_limit = limit !== null && limit !== undefined ? `&limit=${limit}` : '';
 	//console.log(`${baseUrl}/product/getbyuser?${category_slug}${category_name}${num_skip}${num_limit}`)
-	const response = await fetch(`${baseUrl}/product/getbyuser?${category_slug}${category_name}${num_skip}${num_limit}`)
+	const response = await fetch(`${process.env.BASE_URL}/product/getbyuser?${category_slug}${category_name}${num_skip}${num_limit}`)
 	return await response.json();
 };
 
