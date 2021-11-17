@@ -17,7 +17,7 @@ export const getProducts = async (catSlug, category, skip, limit) => {
 export async function getProductsById(id) {
 	//const baseUrl = 'http://localhost:3700';
 	//const baseUrl = process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS;
-  const response = await fetch(`${baseUrl}/product?id=${id}`);
+  const response = await fetch(`${process.env.BASE_URL}/product?id=${id}`);
   return await response.json();
 }
 
@@ -26,7 +26,7 @@ export async function getProductsById(id) {
 export async function getCategories() {
 	//const baseUrl = 'http://localhost:3700';
 	//const baseUrl = process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS;
-  const response = await fetch(`${baseUrl}/categorie/list`);
+  const response = await fetch(`${process.env.BASE_URL}/categorie/list`);
   return await response.json();
 }
 
@@ -34,6 +34,6 @@ export async function getCategories() {
 export async function getPrincipalCategories() {
 	//const baseUrl = 'http://localhost:3700';
 	//const baseUrl = process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS;
-  const response = await fetch(`${baseUrl}/categorie/listprincipal`);
+  const response = await fetch(`${process.env.BASE_URL}/categorie/listprincipal`);
   return await response.json();
 }
