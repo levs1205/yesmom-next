@@ -28,9 +28,11 @@ const schemaValidator = yup.object().shape({
     .min(5, "*La contraseña debe tener minimo 5 caracteres"),
 });
 
-const index = ({ session }) => {
-  console.log('data session', session)
-  const router = useRouter();
+const index = () => {
+
+  
+  const { query : { redirect }} = useRouter();
+  
   const refPassword = useRef();
   const {
     register,
@@ -49,11 +51,12 @@ const index = ({ session }) => {
     //Ya sin errores
     //Enviar un object con { email , password }
     try {
-      const { data } = await axios({
-        method: "POST",
-        url: `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/autenticar?email=1`,
-        data: values,
-      });
+
+      const axiosAuth = axios.create({
+        baseURL : process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY,
+      })
+      const { data } = await axiosAuth.post('/autenticar?email=1', values);
+
       if (data?.MensajeRespuesta === "REQUEST INVÁLIDO") {
         Swal.fire("Info", "No existe usuario con esos accesos", "info");
       }
@@ -82,8 +85,13 @@ const index = ({ session }) => {
 
   //  }
 
-  const handleSuccessGoogle = ( data ) => {
-    startLoginWithGoogle(data);
+  const handleSuccessGoogle = async ( data ) => {
+    console.log(data);
+
+    const { token } = await startLoginWithGoogle(data);
+    if(token){
+      dispatchAuth( startLogin({ token }))
+    }
   }
 
   const handleFailureGoogle = (error) => {
@@ -98,8 +106,12 @@ const index = ({ session }) => {
    //Redirigir
    useEffect(()=>{
     if(logged){
-      router.push('/perfil/miperfil');
       flagRef.current = false;
+      if(redirect){
+        router.push(`/${redirect}`)
+      }else{
+        router.push('/perfil/miperfil');
+      }
     }
     setTimeout(() => {
       if(flagRef.current){
@@ -275,7 +287,7 @@ const index = ({ session }) => {
 
                   <GoogleLogin
                     // clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
-                    clientId="28186350044-j2njhc6h15va2iuufnvm421acu5u57v1.apps.googleusercontent.com"
+                    clientId="45600196115-9bs7rgqovfrv4tme18rhubp19n6g0k1i.apps.googleusercontent.com"
                     render={renderProps => (
                       <div className="boton-icon google" onClick = { renderProps.onClick }>
                         <div className="icon">

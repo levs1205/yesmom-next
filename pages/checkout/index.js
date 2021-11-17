@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Head from "next/head";
 import AppLayout from "../../components/AppLayout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,12 +12,14 @@ import CheckoutStep2 from "../../components/Checkout/CheckoutStep2";
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import YesmomContext from "../../context/Context";
+import { useRouter } from "next/router";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 const identityRegex = /^\d{8,9}$/
 
-const schema = yup.object().shape({
+const schemaFirst = yup.object().shape({
   email: yup.string().email('Ingrese un email válido').required('Ingrese un correo electrónico'),
   name: yup.string().required('Ingrese su nombre'),
   identity: yup.string().matches(identityRegex, 'Ingrese un número de documento válido'),
@@ -27,31 +29,28 @@ const schema = yup.object().shape({
   interior: yup.string().required(),
 });
 
+const schemaSecond = yup.object().shape({
+  email: yup.string().email('Ingrese un email válido').required('Ingrese un correo electrónico'),
+});
+
 
 
 const Checkout = () => {
+
+
+  const router = useRouter()
+  const { auth : { logged } } = useContext(YesmomContext);
   const [selected, setSelected] = useState(0);
   const [idPreference , setIdPreference] = useState(null);
 
   const { register, handleSubmit, formState:{ errors }, watch  } = useForm({
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schemaFirst)
   })
 
-  // const initialForm = {
-  //   email: "",
-  //   name: "",
-  //   identity: "",
-  //   phone: "",
-  // };
 
-  // const [formValues, handleInputChange] = useForm(initialForm);
-
-  // const { email, name, identity, phone } = formValues;
-  // console.log('errors',errors)
-
-const submitTest = (data) => {
-//   setData(data)
-}
+  const submitTest = (data) => {
+  //   setData(data)
+  }
 
   const submitForm = async() => {
 
@@ -85,6 +84,12 @@ const submitTest = (data) => {
       }
   };
 
+
+  useEffect(() => {
+    if(!logged){
+      router.push('/login?redirect=checkout')
+    }
+  }, [logged])
   useEffect(()=>{
     if (idPreference) {
       const mp = new MercadoPago('TEST-00e86e9f-751f-42c9-a278-7a9f97340aa8',{
@@ -262,13 +267,13 @@ const submitTest = (data) => {
                         // setSelected={setSelected}
                     /> 
                 }
-              <button className="only-button-submit" onClick={handleStep}>
+              <div className="only-button-submit" onClick={handleStep}>
                 {selected === 2 ? (
                   <div className="btn-checkout btn-pink">Comprar</div>
                 ) : (
                   <div className="btn-checkout btn-amarillo">Continuar</div>
                 )}
-              </button>
+              </div>
               <div>
 
               </div>
