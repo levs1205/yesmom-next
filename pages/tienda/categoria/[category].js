@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import AppLayout from "../../../components/AppLayout";
 import Head from "next/head";
 import Image from "next/image";
+import YesmomContext from "../../../context/Context";
 
 import { Container } from "react-bootstrap";
 import CardProduct from "../../../components/CardProduct";
-
 import Pagination from "../../../components/Pagination";
 import SidebarProducto from "../../../components/tienda/SidebarProducto";
-import { categorysDesktop, categorysMobile } from "../../../data/categorys";
-import router, { useRouter } from "next/router";
 import LoaderPage from "../../../components/LoaderPage";
 import { getProducts, getCategories } from "../../api/request";
 
@@ -18,30 +16,6 @@ export async function getServerSideProps({ query }) {
   const { category = "", sort = "" } = query;
 	const { productosGeneral, totalDeProductos, pages } = await getProducts(category, null);
 	const { response } = await getCategories();
-
-/* 	console.log('category--',category, 'incl',category.includes(category))
-	console.log('sort--',sort, 'incl',sort.includes(sort))
-	console.log('productosGeneral>>', productosGeneral) */
-
-  let productsFiltered;
-
-  /* if (category.trim().length > 0 && productosGeneral) {
-    //Existe categoria
-    if (category.includes("promociones")) {
-      productsFiltered = productosGeneral.filter((product) => product?.precioPromocional);
-    } else if (category.includes("destacados") || category.includes("todos")) {
-      productsFiltered = product;
-    } else {
-      productsFiltered = productosGeneral.filter((product) =>
-        product.categoria
-          .toLowerCase()
-          .trim()
-          .includes(category.toLowerCase().trim())
-      );
-    }
-  } else {
-    productsFiltered = productosGeneral;
-  } */
 
 	if (!productosGeneral) {
     return {
@@ -62,21 +36,7 @@ export async function getServerSideProps({ query }) {
 }
 
 const Categoria = ({ productosGeneral, category, categoryList }) => {
-  /* const allCategories = [...categorysDesktop, ...categorysMobile]; */
-	/* console.log('1- productosGeneral',productosGeneral)
-	console.log('2- category',category)
-	console.log('3- categoryList',categoryList.categories) */
-  /* const product = categoryList.categories.find((cat) => cat.slug.includes(category)); */
-  /* const [matched, setMatched] = useState(false);
-
-  useEffect(() => {
-    if (product || category.includes("all")) {
-      setMatched(true);
-    } else {
-      router.push("/tienda");
-      setMatched(false);
-    }
-  }, [setMatched]); */
+	const { dispatchUi, ui: { category: categorySelected } } = useContext(YesmomContext);
 
   return !productosGeneral? (
     <LoaderPage />
@@ -158,7 +118,7 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
               <div className="products">
                 <div className="inline-desktop">
                   <h4 className="text-title-tienda">
-                    {productosGeneral?.categoria  || "Todos"}
+                    {categorySelected?.name}
                   </h4>
                   <div className="show-mobile">
                     <hr />

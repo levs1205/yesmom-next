@@ -26,12 +26,12 @@ const imagesDesktop = [
 
 const Product = ({ productList, productsQty, pages, categoryList, path }) => {
   const { query: { q = "" }, } = useRouter();
-  const { dispatchUi } = useContext(YesmomContext);
+  const { dispatchUi, ui: { category: categorySelected } } = useContext(YesmomContext);
   const [storeFiltered, setStoreFiltered] = useState([]);
 
   useEffect(() => {
     dispatchUi(setProducts(productList));
-    dispatchUi(setCategories(categoryList?.categories));
+    dispatchUi(setCategories(categoryList));
   }, []);
 
 	useEffect(() => {
@@ -119,10 +119,10 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
           <div className="all-content">
             <div className="contenedor">
               <div className="sidebar show-desktop">
-                <SidebarProducto categoryList={categoryList?.categories} />
+                <SidebarProducto />
               </div>
               <div className="products">
-                <h4 className="text-title-tienda">Destacados</h4>
+                <h4 className="text-title-tienda">{categorySelected?.name}</h4>
                 <hr />
                 <div className="all-products">
                   {productList.length > 0
@@ -263,6 +263,7 @@ Product.propTypes = {
 export const getServerSideProps = async () => {
 	const { productosGeneral, totalDeProductos, pages } = await getProducts(null,'all');
   const { response } = await getCategories();
+	/* localStorage.setItem('categories', response?.categories) */
 	
   if (!productosGeneral) {
     return {
