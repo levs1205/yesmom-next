@@ -32,6 +32,8 @@ const index = () => {
 
   
   const router = useRouter();
+
+  const { query : { redirect_uri } } = router;
   
   const refPassword = useRef();
   const {
@@ -118,8 +120,8 @@ const index = () => {
    useEffect(()=>{
     if(logged){
       flagRef.current = false;
-      if(redirect){
-        router.push(`/${redirect}`)
+      if(redirect_uri){
+        router.push(`/${redirect_uri}`)
       }else{
         router.push('/perfil/miperfil');
       }
@@ -264,6 +266,7 @@ const index = () => {
 
                   <FacebookLogin
                     appId="602718880858377"
+                    // appId="602718880858377"
                     autoLoad = {false}
                     fields="name,email,picture"
                     render={renderProps => (
