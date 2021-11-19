@@ -40,33 +40,10 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
           </div>
         </div>
       </div>
-      <div className="checkout-location-form__wrapper">
-        <p className="checkout-location-form__label">Departamento</p>
-        <select name="" id="" className="checkout-location-form__select">
-          <option value="">sdssd</option>
-          <option value="">sdsdsd</option>
-          <option value="">sds</option>
-        </select>
-      </div>
-      <div className="checkout-location-form__wrapper">
-        <p className="checkout-location-form__label">Provincia</p>
-        <select name="" id="" className="checkout-location-form__select">
-          <option value="">sdssd</option>
-          <option value="">sdsdsd</option>
-          <option value="">sds</option>
-        </select>
-      </div>
-      <div className="checkout-location-form__wrapper">
-        <p className="checkout-location-form__label">Distrito</p>
-        <select name="" id="" className="checkout-location-form__select">
-          <option value="">sdssd</option>
-          <option value="">sdsdsd</option>
-          <option value="">sds</option>
-        </select>
-      </div>
+  
       <div className="checkout-location-form__wrapper">
         <label for="calle" className="checkout-location-form__label">
-          Av/Jirón/Calle:
+          Av/Jirón/Calle: <span className="ml-4"> EJM : * Jr. Los Valles</span>
         </label>
         <input
           type="text"
@@ -75,11 +52,11 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
           id="calle"
           {...register("calle")}
         />
-        <p>{errors.calle?.message}</p>
+        <p>{errors?.calle?.message}</p>
       </div>
       <div className="checkout-location-form__wrapper">
         <label for="numero" className="checkout-location-form__label">
-          Nro.:
+          Nro.: <span className="ml-4"> EJM : * Jr. Los Valles</span>
         </label>
         <input
           type="text"
@@ -115,6 +92,30 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
           {...register("direccion")}
         />
         <p>{errors.direccion?.message}</p>
+      </div>
+      <div className="checkout-location-form__wrapper">
+        <p className="checkout-location-form__label">Departamento</p>
+        <select name="" id="" className="checkout-location-form__select">
+          <option value="lima" selected>Lima</option>
+          {/* <option value="">sdsdsd</option>
+          <option value="">sds</option> */}
+        </select>
+      </div>
+      <div className="checkout-location-form__wrapper">
+        <p className="checkout-location-form__label">Provincia</p>
+        <select name="" id="" className="checkout-location-form__select">
+          <option value="lima" selected>Lima</option>
+          {/* <option value="">sdsdsd</option>
+          <option value="">sds</option> */}
+        </select>
+      </div>
+      <div className="checkout-location-form__wrapper">
+        <p className="checkout-location-form__label">Distrito</p>
+        <select name="" id="" className="checkout-location-form__select">
+          <option value="">sdssd</option>
+          <option value="">sdsdsd</option>
+          <option value="">sds</option>
+        </select>
       </div>
       <div className="checkout-location-form__wrapper">
         <p className="checkout-location-form__subtitle-radio">
@@ -258,15 +259,13 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
             border: 1px solid #556ea1;
             box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.03);
             border-radius: 15px;
-            -moz-appearance: none;
+            background: url(https://i.ibb.co/mtG2wk2/image.png) no-repeat right
+              #ffffff;
+            background-size: 1.5rem;
             -webkit-appearance: none;
+            -moz-appearance: none;
             appearance: none;
-            background-color: #fff;
-            background-image: url("https://www.pinclipart.com/picdir/middle/186-1864292_select-the-law-down-to-the-single-arrow.png"),
-              linear-gradient(to bottom, #ffffff 0%, #f7f7f7 100%);
-            background-repeat: no-repeat, repeat;
-            background-position: right 0.7em top 50%, 0 0;
-            background-size: 0.65em auto, 100%;
+            background-position-x: 95%;
             outline: none;
             margin-right: 0.5rem;
           }

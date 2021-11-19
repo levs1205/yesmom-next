@@ -43,17 +43,18 @@ export const validateToken = async (token) => {
 export const startLoginWithGoogle = async ( values ) => {
     try {
 
-        
+        console.log(values);
 
         const { tokenId } = values ;
-        // console.log(tokenId);
-        //LLamar endpoint para generar token
+        console.log(tokenId);
+        // LLamar endpoint para generar token
         const { data } = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/google-profile?userType=U`,{ headers :  {
             'google-token' : tokenId
         }})
 
         if(data?.token){
             return { token : data.token}
+            // return { token : tokenId}
         }
 
     }catch(error){
