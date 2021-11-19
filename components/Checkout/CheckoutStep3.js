@@ -1,6 +1,9 @@
 import React from "react";
 
-const CheckoutStep3 = ({ formValues, setSelected }) => {
+const CheckoutStep3 = ({ formValues, setSelected , watch , register }) => {
+
+
+  const {calle , numero, interior, referencia, departamento, provincia, distrito } = watch();
   return (
     <>
       <div className="fade-in animated checkout-identification-block">

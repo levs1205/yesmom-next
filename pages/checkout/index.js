@@ -26,12 +26,15 @@ const schemaFirst = yup.object().shape({
   phone: yup.string().matches(phoneRegExp, 'El número de celular no es válido'),
 });
 
-// const schemaSecond = yup.object().shape({
-//   email: yup.string().email('Ingrese un email válido').required('Ingrese un correo electrónico'),
-//   calle: yup.string().required(),
-//   numero: yup.number().required(),
-//   interior: yup.string().required(),
-// });
+const schemaSecond = yup.object().shape({
+  calle: yup.string().required('Ingrese calle'),
+  numero: yup.string().matches(/^[0-9]+$/g,'*Numero incorrecto').required('Ingrese el número'),
+  interior: yup.string().required('Ingrese interior'),
+  referencia : yup.string().required('Ingrese referencia'),
+  departamento : yup.string().required('Seleccione departamento'),
+  provincia : yup.string().required('Seleccione provincia'),
+  distrito : yup.string().required('Seleccione distrito'),
+});
 
 
 
@@ -52,8 +55,10 @@ const Checkout = () => {
     }
   })
 
-  const { register_2, handleSubmit : handleSubmit_2, formState: formState_2,reset_2 } = useForm({})
-  const { register_3, handleSubmit : handleSubmit_3, formState: formState_3,reset_3 } = useForm({})
+  const { register : register_2, handleSubmit : handleSubmit_2, formState: formState_2, watch : watch_2 } = useForm({
+    resolver : yupResolver(schemaSecond)
+  })
+  const { register : register_3, handleSubmit : handleSubmit_3, formState: formState_3,reset_3 } = useForm({})
 
 
   const submitTest = (data) => {
@@ -83,6 +88,9 @@ const Checkout = () => {
 
   const handleSelection = ( data ) => {
     console.log(data);
+    if(selected === 1){
+      //Generar orden con los campos de direccion
+    }
     if (selected !== 2) {
       setTimeout(() => {
         window.scrollTo(0,0);
@@ -265,10 +273,10 @@ const Checkout = () => {
                 {
                     selected === 1 && 
                     <CheckoutStep2
-                        register={register}
-                        handleSubmit={handleSubmit}
+                        register={register_2}
+                        handleSubmit={handleSubmit_2}
                         watch={watch}
-                        errors={errors}
+                        errors={formState_2.errors}
                         // formValues={formValues} 
                         // handleInputChange={handleInputChange}
                         // setSelected={setSelected}
