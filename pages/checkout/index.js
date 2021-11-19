@@ -24,14 +24,14 @@ const schemaFirst = yup.object().shape({
   name: yup.string().required('Ingrese su nombre'),
   identity: yup.string().matches(identityRegex, 'Ingrese un número de documento válido'),
   phone: yup.string().matches(phoneRegExp, 'El número de celular no es válido'),
-  calle: yup.string().required(),
-  numero: yup.number().required(),
-  interior: yup.string().required(),
 });
 
-const schemaSecond = yup.object().shape({
-  email: yup.string().email('Ingrese un email válido').required('Ingrese un correo electrónico'),
-});
+// const schemaSecond = yup.object().shape({
+//   email: yup.string().email('Ingrese un email válido').required('Ingrese un correo electrónico'),
+//   calle: yup.string().required(),
+//   numero: yup.number().required(),
+//   interior: yup.string().required(),
+// });
 
 
 
@@ -43,8 +43,17 @@ const Checkout = () => {
   const [idPreference , setIdPreference] = useState(null);
 
   const { register, handleSubmit, formState:{ errors }, watch  } = useForm({
-    resolver: yupResolver(schemaFirst)
+    resolver: yupResolver(schemaFirst),
+    defaultValues : {
+      email: 'francoheflo@gmail.com' ,
+      name: 'Franco Jossep',
+      identity: '74231653' ,
+      phone: '933475707',
+    }
   })
+
+  const { register_2, handleSubmit : handleSubmit_2, formState: formState_2,reset_2 } = useForm({})
+  const { register_3, handleSubmit : handleSubmit_3, formState: formState_3,reset_3 } = useForm({})
 
 
   const submitTest = (data) => {
@@ -72,15 +81,16 @@ const Checkout = () => {
     console.log(id);
   };
 
-  const handleStep = () => {
+  const handleSelection = ( data ) => {
+    console.log(data);
     if (selected !== 2) {
-      if(!errors.email && !errors.identity && !errors.name && !errors.phone && errors.calle && errors.interior && errors.numero){
-        console.log('yo')
-        setSelected((step) => step + 1);
-      }
+      setTimeout(() => {
+        window.scrollTo(0,0);
+      },[300])
+      setSelected( selected => selected + 1);
     } else {
       submitForm();
-      }
+    }
   };
 
 
@@ -238,13 +248,15 @@ const Checkout = () => {
             </section>
           </div>
           <div className="checkout-block__card">
-            <form action="" className="identification-form" onSubmit={handleSubmit(submitForm)}>
+            <form 
+              action="" 
+              className="identification-form" 
+            >
                 {
                     selected === 0 && 
                     <CheckoutStep1 
                         register={register}
                         handleSubmit={handleSubmit}
-                        watch={watch}
                         errors={errors}
                         // formValues={formValues}
                         // handleInputChange={handleInputChange}
@@ -271,7 +283,11 @@ const Checkout = () => {
                         // setSelected={setSelected}
                     /> 
                 }
-              <div className="only-button-submit" onClick={handleStep}>
+              <div className="only-button-submit" onClick={
+                    selected === 0 && handleSubmit(handleSelection)   ||   
+                    selected === 1 && handleSubmit_2(handleSelection)   ||
+                    selected === 2 && handleSubmit_3(handleSelection)  
+                }>
                 {selected === 2 ? (
                   <div className="btn-checkout btn-pink">Comprar</div>
                 ) : (
@@ -282,16 +298,6 @@ const Checkout = () => {
 
               </div>
             </form>
-              <form 
-                id="btn_checkout" 
-                className="btn_checkout"
-                onSubmit={ (e) => {
-                  e.preventDefault();
-                  console.log("hola");
-                }}
-              >
-
-              </form>
           </div>
           
         </section>

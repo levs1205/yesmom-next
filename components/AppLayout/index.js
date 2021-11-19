@@ -21,6 +21,7 @@ const appLayout = ({ children }) => {
           html {
             font-size: 62.5%;
             font-family: "mont-heavy";
+            scroll-behavior: smooth;
           }
           body {
             margin: 0;

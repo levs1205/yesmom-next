@@ -1,10 +1,7 @@
-import axios from "axios"
+import axios from 'axios';
 import { types } from "../types"
 
 
-const axiosAuth = axios.create({
-    baseUrl : process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY
-})
 
 export const startLogin = ( data ) => {
 
@@ -45,14 +42,19 @@ export const validateToken = async (token) => {
 
 export const startLoginWithGoogle = async ( values ) => {
     try {
-        const { tokenId } = values ;
-        console.log(tokenId);
-        //LLamar endpoint para generar token
-        // const { data } = await axiosAuth.get('/auth/google-profile',{ headers :  {
-        //     'google-token' : tokenId
-        // }})
 
-        return { token : tokenId}
+        
+
+        const { tokenId } = values ;
+        // console.log(tokenId);
+        //LLamar endpoint para generar token
+        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/google-profile?userType=U`,{ headers :  {
+            'google-token' : tokenId
+        }})
+
+        if(data?.token){
+            return { token : data.token}
+        }
 
     }catch(error){
         console.log(error);

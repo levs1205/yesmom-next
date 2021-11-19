@@ -2,7 +2,8 @@ import React from "react";
 
 const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) => {
 
-console.log('register en step 2', register)
+
+  const { email , name , identity , phone } = watch();
 
   return (
     <>
@@ -22,19 +23,19 @@ console.log('register en step 2', register)
           <div className="checkout-identification-block__text-container">
             <p className="checkout-identification-block__text--font-size">
               Email: 
-              {/* {formValues.email} */}
+              <span className="ml-3">{email}</span>
             </p>
             <p className="checkout-identification-block__text--font-size">
               Nombre: 
-              {/* {formValues.name} */}
+              <span className="ml-3">{name}</span>
             </p>
             <p className="checkout-identification-block__text--font-size">
               DNI: 
-              {/* {formValues.identity} */}
+              <span className="ml-3">{identity}</span>
             </p>
             <p className="checkout-identification-block__text--font-size">
               Teléfono / Móvil: 
-              {/* {formValues.phone} */}
+              <span className="ml-3">{phone}</span>
             </p>
           </div>
         </div>
