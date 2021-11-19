@@ -32,6 +32,13 @@ export const setCategories = ( categories ) => {
 	}
 }
 
+export const setCategory = ( category ) => {
+	return {
+			type : types.setCategory,
+			payload : category
+	}
+}
+
 export const setPrincipalCategories = ( principalCategories ) => {
 	return {
 			type : types.setPrincipalCategories,

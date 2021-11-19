@@ -25,11 +25,11 @@ function CardProduct({ product, imagen }) {
               </Card.Text>
               <div className="card-text">
                 <div className="container-prices">
-                  <p className={`hide ${product?.precioPromocional && "price-before"}`}> {/* TODO:  <p className={`hide ${discount && "price-before"}`}> */}
+                  <p className={`hide ${product?.precioPromocional && "price-before"}`}>
                     S/ {product?.precio.toFixed(2)}
                   </p>
-                  <div className={`text-price ${product?.precioPromocional && "discount"}`}> {/* TODO:  <div className={`text-price ${discount && "discount"}`}> */}
-                    <p className={`${product?.precioPromocional ? "price-now" : "price"}`}> {/* TODO:   <p className={`${discount ? "price-now" : "price"}`}>  */}
+                  <div className={`text-price ${product?.precioPromocional && "discount"}`}>
+                    <p className={`${product?.precioPromocional ? "price-now" : "price"}`}>
                       S/ {product?.precioPromocional.toFixed(2)}
                     </p>
                   </div>

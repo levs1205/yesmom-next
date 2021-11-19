@@ -8,7 +8,7 @@ import { types } from "../types";
 
 export const uiReducer = ( state = {} , action) => {
     /* console.log("STATEINICIAL",state);
-    console.log(action.payload); */
+    console.log('action',action.payload); */
     /* debugger */
     switch (action.type) {
         //BLOG
@@ -30,24 +30,24 @@ export const uiReducer = ( state = {} , action) => {
 				case types.setProduct:
             return {
                 ...state,
-                product : {
-                    productSelected : action.payload
-                }
+                product : action.payload
             }
 				//CATEGORY
 				case types.setCategories:
+						const totalCategories = action.payload ;  
+						localStorage.setItem('totalCategories',JSON.stringify(totalCategories));
+
 						return {
 								...state,
 								categories : {
-										totalCategories : action.payload
+										totalCategories
 								}
 						}
 				case types.setCategory:
 							return {
 									...state,
-									category : {
-											categorySelected : action.payload
-									}
+									category : action.payload
+									
 							}
         case types.uiSetError:
             return {
