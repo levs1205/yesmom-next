@@ -38,7 +38,7 @@ const Proveedor = () => {
         <meta
           property="og:image"
           itemprop="image"
-          content="https://yesmom.vercel.app/image/about-header.png"
+          content="https://www.yesmom.com.pe/_next/image?url=%2Fimage%2Fheader%2Flogo-yesmom.svg&w=128&q=75"
         />
         <meta property="og:image:width" content="1280" />
         <meta property="og:image:height" content="855" />
@@ -57,7 +57,7 @@ const Proveedor = () => {
         />
         <meta
           name="twitter:image"
-          content="https://yesmom.vercel.app/image/about-header.png"
+          content="https://www.yesmom.com.pe/_next/image?url=%2Fimage%2Fheader%2Flogo-yesmom.svg&w=128&q=75"
         />
       </Head>
       <div className="contenedor fade-in animated ">
