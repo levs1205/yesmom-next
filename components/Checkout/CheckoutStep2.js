@@ -1,8 +1,8 @@
 import React from "react";
+import LoaderPage from "../LoaderPage";
 
 const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) => {
 
-  console.log(errors);
 
   const { email , name , identity , phone } = watch();
 
@@ -43,6 +43,11 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
       </div>
   
       <div className="checkout-location-form__wrapper">
+        <div className="fade-in animated  checkout-block__text">
+          <p className="checkout-block__text--font-size-and-bold">
+            2. Datos para la entrega:
+          </p>
+        </div>
         <label for="calle" className="checkout-location-form__label">
           Av/Jirón/Calle: <span className="ml-4"> EJM : * Jr. Los Valles</span>
         </label>
@@ -162,6 +167,12 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
       </div>
       <style jsx>
         {`
+
+          .checkout-block__text--font-size-and-bold {
+            font-size: 1.6rem;
+            font-family: "mont-semibold";
+            margin-top : 1rem;
+          }
           .msg-error{
             font-family:"omnes-regular";
             font-size: 1.5rem;

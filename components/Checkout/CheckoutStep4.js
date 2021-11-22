@@ -1,11 +1,8 @@
-import { useContext } from "react";
-import YesmomContext from "../../context/Context";
-import CostSale from "../Sale/CostSale";
-import Orden from "../Sale/Orden";
+import React from "react";
 
 const CheckoutStep3 = ({ formValues, setSelected , watch , register }) => {
 
-  const { sale : { delivery }} = useContext(YesmomContext);
+
   const {calle , numero, interior, referencia, departamento, provincia, distrito } = watch();
   return (
     <>
@@ -38,7 +35,7 @@ const CheckoutStep3 = ({ formValues, setSelected , watch , register }) => {
           </div>
         </div>
       </div>
-      <div className="fade-in animated checkout-identification-block">
+      <div className="checkout-identification-block">
         <div className="checkout-identification-block__text">
           <div className="checkout-identification-block__text-wrapper">
             <p className="checkout-identification-block__text--font-size-and-bold">
@@ -71,40 +68,39 @@ const CheckoutStep3 = ({ formValues, setSelected , watch , register }) => {
       </div>
       <div className="checkout-identification-block border-off">
         <div className="checkout-identification-block__text">
-          <div className="fade-in animated  checkout-block__text">
-            <p className="checkout-block__text--font-size-and-bold">
-              3. Envio de producto:
+          <div className="checkout-identification-block__text-wrapper">
+            <p className="checkout-identification-block__text--font-size-and-bold">
+              3. Método de pago:
             </p>
           </div>
         </div>
-        <div className="checkout-location-form__box-ordenes">
-          {
-            delivery.map(( { productos , total } , i)=>(
-              <div key={i}>
-                <p className="delivery-numero_envio">{`Envío ${i+1} de ${delivery.length}`}</p>
-                <Orden products = { productos }/>
-                <CostSale price= {total} />
-              </div>
-            ))
-          }
-          {/* <Orden /> */}
+        <div className="checkout-location-form__box-radio">
+          <input
+            className="checkout-location-form__input-radio"
+            type="radio"
+            id="f-option"
+            name="selector"
+          />
+          <label className="checkout-location-form__label-radio" for="f-option">
+            Boleta
+          </label>
+          <input
+            className="checkout-location-form__input-radio"
+            type="radio"
+            id="f-option2"
+            name="selector"
+          />
+          <label
+            className="checkout-location-form__label-radio"
+            for="f-option2"
+          >
+            Factura
+          </label>
         </div>
       </div>
 
       <style jsx>
         {`
-          .delivery-numero_envio{
-            font-family:"mont-bold";
-            color : #556EA1;
-            font-size:1.1rem;
-            margin: 1.5rem 0 0 0;
-            text-decoration : underline;
-          }
-          .checkout-block__text--font-size-and-bold {
-            font-size: 1.6rem;
-            font-family: "mont-semibold";
-            margin-top : 1rem;
-          }
           .m-3 {
             margin-top: 3rem !important;
             margin-bottom: 3rem !important;
@@ -270,9 +266,6 @@ const CheckoutStep3 = ({ formValues, setSelected , watch , register }) => {
             width: 100%;
             padding: 5px;
             font-size: 1.4rem;
-          }
-          .checkout-location-form__box-ordenes{
-            margin : 2rem 0;
           }
           .discount-coupon__text {
             font-family: "mont-light";

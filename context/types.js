@@ -19,6 +19,9 @@ export const types = {
     addToCart : "ADD_CART",
     removeProduct : "REMOVE_PRODUCT_CART",
     
+    //sales
+
+    setDelivery : "SET_DELIVERY",
     //errors
     uiSetError: "SET_ERROR",
     uiRemoveError: "REMOVE_ERROR",

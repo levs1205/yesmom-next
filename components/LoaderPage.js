@@ -2,7 +2,7 @@
 import React from 'react'
 import Loader from 'react-loader-spinner'
 
-function LoaderPage() {
+const LoaderPage = () => {
     return (
         <>
             <div className="container-loader">
@@ -20,7 +20,7 @@ function LoaderPage() {
                         justify-content:center;
                         align-items:center;
                     }
-                
+         
                 `}
             </style>
         </>

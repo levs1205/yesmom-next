@@ -1,11 +1,12 @@
 
 import React, { useEffect, useReducer, useState } from 'react'
-import { startLogin , validateToken} from './actions/auth';
+import { validateToken} from './actions/auth';
 import { startAddToCart } from './actions/ui';
 import YesmomContext from './Context'
 import { authReducer } from './reducers/authReducer';
 import { uiReducer } from './reducers/uiReducer';
 import { clientReducer } from './reducers/clientReducer';
+import { saleReducer } from './reducers/saleReducer';
 
 
 /* export async function getServerSideProps(){
@@ -27,6 +28,7 @@ const Provider = ({children }) => {
     const initialState = {};
     const [ auth , dispatchAuth ] = useReducer( authReducer , initialState);
     const [ client , dispatchClient ] = useReducer( clientReducer , initialState);
+    const [ sale , dispatchSale ] = useReducer( saleReducer , initialState);
     const [ ui , dispatchUi ] = useReducer( uiReducer , initialState );
 
     useEffect(() => {
@@ -62,9 +64,11 @@ const Provider = ({children }) => {
             auth,
             ui,
             client,
+            sale,
             dispatchAuth,
             dispatchClient,
             dispatchUi,
+            dispatchSale
         }
         }>
             { children }
