@@ -793,3 +793,9 @@ const Checkout = () => {
 };
 
 export default Checkout;
+
+
+export const getServerSideProps = async ({ req, res}) => {
+
+  console.log(req?.cookies?.YesmomToken);
+}
