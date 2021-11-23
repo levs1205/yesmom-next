@@ -42,9 +42,9 @@ const AvatarLogged = () => {
                     <Link href="/perfil/miscompras">
                         <p className="items-dropdown-menu cursor-pointer">Mis compras</p>
                     </Link>
-                    <Link href="#">
+                    {/* <Link href="#">
                         <p className="items-dropdown-menu cursor-pointer">Ayuda</p>
-                    </Link>
+                    </Link> */}
                     <Dropdown.Divider />
                     <p 
                         className="items-dropdown-menu-2 cursor-pointer"
