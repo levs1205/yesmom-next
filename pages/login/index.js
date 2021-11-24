@@ -15,6 +15,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 // import FacebookLogin from 'react-facebook-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import { getAccess } from "../../helpers/getAccess";
 
 
 const schemaValidator = yup.object().shape({
@@ -28,9 +29,8 @@ const schemaValidator = yup.object().shape({
     .min(5, "*La contraseña debe tener minimo 5 caracteres"),
 });
 
-const index = () => {
+const index = ( ) => {
 
-  
   const router = useRouter();
 
   const { query : { redirect_uri } } = router;
@@ -77,15 +77,7 @@ const index = () => {
       ? (document.getElementById("password").type = "text")
       : (document.getElementById("password").type = "password");
   };
-  //  const handleLoginWithGoogle= async () => {
 
-  //   // console.log(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/google`);
-  //   // const data = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/google?callbackURL=https://yesmomsecuritytestenv-env.eba-tpb3kgit.us-east-2.elasticbeanstalk.com/auth/google/callback`)
-
-  //   window.location.href = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/google` ;
-  //   // console.log(data);
-
-  //  }
 
   const handleSuccessGoogle = async ( data ) => {
     console.log(data);
@@ -118,6 +110,7 @@ const index = () => {
 
    //Redirigir
    useEffect(()=>{
+    
     if(logged){
       flagRef.current = false;
       if(redirect_uri){
@@ -662,13 +655,14 @@ const index = () => {
 
 export default index;
 
-// export async function getServerSideProps(context){
-//   // obtiene usuario
-//   const session = await getSession(context)
+export const getServerSideProps = async ({ req , resolvedUrl}) => {
+  const token = req?.cookies?.YesmomToken;
+  
+  const cleanUrl = req.url.split("?")[0];
+  // console.log(resolvedUrl);
+  // console.log(req.url);
+  const resp = await getAccess(cleanUrl , token );
 
-//   return{ 
-//     props: {
-//       session
-//     }
-//   }
-// }
+  return resp;
+    
+}

@@ -99,6 +99,7 @@ const index = () => {
 
   useEffect(()=>{
     if(!logged){
+      console.log('Entro aqui causaaa');
       router.push('/login');
       flagRef.current = false;
     }

@@ -21,7 +21,16 @@ export const authReducer = ( state = {} , action) => {
             return {
                 logged:false
             }
-    
+        case types.authStartChecking :
+             return {
+                 ...state,
+                checking : true
+             }
+        case types.authFinishChecking :
+             return {
+                 ...state,
+                checking : false
+             }
         default:
             return state;
     }

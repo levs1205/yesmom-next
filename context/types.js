@@ -5,6 +5,8 @@ export const types = {
     //auth
     authLogin : "LOGIN",
     authLogout : "LOGOUT",
+    authStartChecking  : "START_CHECK_AUTH",
+    authFinishChecking  : "FINISH_CHECK_AUTH",
 
     //ui
     setBlogs : "SET_BLOGS",

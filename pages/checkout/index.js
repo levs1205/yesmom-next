@@ -18,6 +18,7 @@ import { useRouter } from "next/router";
 import { generateDelivery } from "../../helpers/requestCheckout";
 import { makeDelivery } from "../../context/actions/sale";
 import LoaderPage from "../../components/LoaderPage";
+import { startValidateToken } from "../../helpers/validateToken";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -154,8 +155,6 @@ const Checkout = () => {
   useEffect(() => {
     if(!logged){
       router.push('/login?redirect_uri=checkout')
-    }else{
-      router.push("/checkout");
     }
   },[ logged ])
 
@@ -795,7 +794,26 @@ const Checkout = () => {
 export default Checkout;
 
 
-export const getServerSideProps = async ({ req, res}) => {
+export const getServerSideProps = async ({ req, res , resolvedUrl}) => {
 
-  console.log(req?.cookies?.YesmomToken);
+  const token = req?.cookies?.YesmomToken;
+  const redirected = {
+    redirect: {
+      permanent: false,
+      destination: "/login?redirect_uri=login",
+    },
+    props:{},
+  };
+  const accepted = {
+    props : {}
+  }
+  // console.log('URL',resolvedUrl);
+  if(token){
+    const { valid } = await startValidateToken(token);
+    if(!valid) return redirected;
+    return accepted;
+  }else{
+    return redirected;
+  }
+  
 }

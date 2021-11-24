@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { startValidateToken } from '../../helpers/validateToken';
 import { types } from "../types"
 
 
@@ -16,25 +17,12 @@ export const startLogin = ( data ) => {
 export const validateToken = async (token) => {
     try{
 
-        // console.log(token);
-        // console.log(process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY);
-        // console.log(data);
-        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/autenticar/token?delivery=no`,{
-            headers : {
-                'Content-Type' : 'application/json',
-                'access-token' : token
-            }
-        })
+        const { valid , data } = await startValidateToken(token);
 
         // console.log(data);
-        if( data?.mensaje === "Token válido"){
-           console.log('Autenticacion correcta');
-            return startLogin( data )
-        }else{
-            console.log('Sesión terminada');   
-            return startLogout;
-        }
-
+        if(!valid) return startLogout;
+        return startLogin( data )
+         
     }catch(err){
         console.log(err.message);
     }
@@ -89,3 +77,10 @@ export const startLoginWithFacebook = async ( values ) => {
 export const startLogout = {
     type : types.authLogout
 }
+
+export const startChecking = () => ({
+    type : types.authStartChecking
+})
+export const finishChecking = () => ({
+    type : types.authFinishChecking
+})
