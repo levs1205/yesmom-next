@@ -64,6 +64,12 @@ const index = ( ) => {
       }
       if (data?.mensaje === "Autenticación Correcta") {
         // router.push("/");
+        if(redirect_uri){
+          router.push(`/${redirect_uri}`)
+        }else{
+          router.push('/perfil/miperfil');
+        }
+
         dispatchAuth(startLogin(data));
       }
     } catch (e) {
@@ -109,26 +115,26 @@ const index = ( ) => {
     }
 
    //Redirigir
-   useEffect(()=>{
+  //  useEffect(()=>{
     
-    if(logged){
-      flagRef.current = false;
-      if(redirect_uri){
-        router.push(`/${redirect_uri}`)
-      }else{
-        router.push('/perfil/miperfil');
-      }
-    }
-    setTimeout(() => {
-      if(flagRef.current){
-        setLoading(false)
-      }
-    }, 1000)
-   },[logged])
+  //   if(logged){
+  //     flagRef.current = false;
+  //     if(redirect_uri){
+  //       router.push(`/${redirect_uri}`)
+  //     }else{
+  //       router.push('/perfil/miperfil');
+  //     }
+  //   }
+  //   setTimeout(() => {
+  //     if(flagRef.current){
+  //       setLoading(false)
+  //     }
+  //   }, 1000)
+  //  },[logged])
 
-  if(loading){
-    return <LoaderPage />
-  }
+  // if(loading){
+  //   return <LoaderPage />
+  // }
   
 
   return (
@@ -656,7 +662,7 @@ const index = ( ) => {
 export default index;
 
 export const getServerSideProps = async ({ req , resolvedUrl}) => {
-  const token = req?.cookies?.YesmomToken;
+  const token = req?.cookies?.TokenTest;
   
   const cleanUrl = req.url.split("?")[0];
   // console.log(resolvedUrl);

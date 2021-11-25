@@ -11,14 +11,15 @@ export const getAccess = async ( url , token='' ) => {
             props : {}
         }
 
-        console.log(token);
         switch(access?.type){
             //No tiene que estar autenticado para que pueda verlas
             case typedRoutes.public : 
                 if(token || token.length > 0){
+                    //Evaluar si es valido
                     const { valid  } = await startValidateToken(token);
                     if(valid){
                         //Autenticado
+                        console.log('Autenticado');
                         objReturn = {
                             redirect: {
                                 permanent: false,
@@ -28,10 +29,32 @@ export const getAccess = async ( url , token='' ) => {
                         }
                     }
                 }
-            return objReturn;
-        }
+                return objReturn;
 
-        console.log(objReturn);
+            case typedRoutes.private :
+                if(!token){
+                    objReturn = {
+                        redirect: {
+                            permanent: false,
+                            destination: "/login",
+                        },
+                        ...objReturn,
+                    }
+                }else{
+                    const { valid  } = await startValidateToken(token);
+                    if(!valid){
+                        objReturn = {
+                            redirect: {
+                                permanent: false,
+                                destination: "/login",
+                            },
+                            ...objReturn,
+                        }
+                    }
+                }
+
+                return objReturn;
+        }
         return objReturn;
     }catch(err){
         console.log(err);

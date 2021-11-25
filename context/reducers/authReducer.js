@@ -1,6 +1,6 @@
 import { types } from "../types";
 import cookieCutter from 'cookie-cutter'
-
+import cookie from 'js-cookie';
 
 
 export const authReducer = ( state = {} , action) => {
@@ -10,6 +10,7 @@ export const authReducer = ( state = {} , action) => {
             //Setear siempre el token , con el autenticado
             localStorage.setItem('YesmomToken',action.payload.token);
 						cookieCutter.set('YesmomToken', action.payload.token)
+                        cookie.set('TokenTest',action.payload.token, { expires : 1/24})
             return {
                 ...state,
                 logged: true,
@@ -18,6 +19,7 @@ export const authReducer = ( state = {} , action) => {
         case types.authLogout:
             localStorage.removeItem('YesmomToken');
 						cookieCutter.set('YesmomToken', '')
+                        cookie.remove('TokenTest');
             return {
                 logged:false
             }

@@ -24,7 +24,7 @@ const schemaValidator = yup.object().shape({
 const PerfilPassword = () => {
 
   const {  auth : { logged } } = useContext(YesmomContext);
-  const [ loading , setLoading ] = useState(true);
+  // const [ loading , setLoading ] = useState(true);
   const flagRef = useRef(true);
   const router = useRouter();
 
@@ -44,21 +44,21 @@ const PerfilPassword = () => {
     console.log(data);
   }
 
-  useEffect(()=>{
-    if(!logged){
-      router.push('/login');
-      flagRef.current = false;
-    }
-    setTimeout(() => {
-      if(flagRef.current){
-        setLoading(false)
-      }
-    }, 1000)
-   },[logged])
+  // useEffect(()=>{
+  //   if(!logged){
+  //     router.push('/login');
+  //     flagRef.current = false;
+  //   }
+  //   setTimeout(() => {
+  //     if(flagRef.current){
+  //       setLoading(false)
+  //     }
+  //   }, 1000)
+  //  },[logged])
 
-  if(loading){
-    return <LoaderPage />
-  }
+  // if(loading){
+  //   return <LoaderPage />
+  // }
   return (
     <AppLayout>
       <Head>
