@@ -412,10 +412,9 @@ export const getServerSideProps = async ({ req , resolvedUrl}) => {
   const token = req?.cookies?.TokenTest;
   
   const cleanUrl = req.url.split("?")[0];
-  console.log(resolvedUrl);
   // console.log(req.url);
   const resp = await getAccess(cleanUrl , token );
 
   return resp;
-    
+
 }
