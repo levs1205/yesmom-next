@@ -56,6 +56,8 @@ export const startLoginWithFacebook = async ( values ) => {
     try {
         const { accessToken, userID } = values
 
+        console.log(accessToken);
+        console.log(userID);
         // const { tokenId } = values ;
         // console.log(tokenId);
         // //LLamar endpoint para generar token
