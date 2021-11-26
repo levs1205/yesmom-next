@@ -20,9 +20,9 @@ const Orden = ( { products }) => {
         <>
             <div className="orden__list">
                 {
-                    products.map((product)=>(
-                        <div key={product.id}>
-                            <DetailProductOrden img={img} />
+                    products.map(({ id , nombre , imagen })=>(
+                        <div key={id}>
+                            <DetailProductOrden img={imagen} name ={nombre}/>
                         </div>
                     ))
                 }

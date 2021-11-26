@@ -6,11 +6,12 @@ import { startValidateToken } from "./validateToken";
 export const getAccess = async ( url , token='' ) => {
     try{
 
-        const access = routes.filter(route => route.path.includes(url) || url === route.path )[0];
+        const access = routes.filter(route => url.includes(route.path) || url === route.path )[0];
         let objReturn = {
             props : {}
         }
 
+        console.log(access);
         switch(access?.type){
             //No tiene que estar autenticado para que pueda verlas
             case typedRoutes.public : 

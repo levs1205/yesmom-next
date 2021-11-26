@@ -12,7 +12,7 @@ const DetailProductOrden = ({ img , name }) => {
                     />
                 </div>
                 <div className="container__detail-orden-details">
-                    <p className="container__detail-orden-details-title">COCHE DE BEBÉ +  FUNDA</p>
+                    <p className="container__detail-orden-details-title">{name.toUpperCase()}</p>
                     <p className="container__detail-orden-details-title">Blanco, 140cm x 100cm</p>
                     <p className="container__detail-orden-details-address">Cll. Augusto Tamayo 600, Barranco Lima</p>
                     

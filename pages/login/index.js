@@ -64,18 +64,23 @@ const index = ( ) => {
       }
       if (data?.mensaje === "Autenticación Correcta") {
         // router.push("/");
-        if(redirect_uri){
-          router.push(`/${redirect_uri}`)
-        }else{
-          router.push('/perfil/miperfil');
-        }
-
+        
         dispatchAuth(startLogin(data));
+        redirectLogged();
       }
     } catch (e) {
       console.log(e.message);
     }
   };
+
+
+  const redirectLogged = () => {
+    if(redirect_uri){
+      return router.push(`/${redirect_uri}`)
+    }else{
+      return router.push('/perfil/miperfil');
+    }
+  }
 
   const handleRef = () => {
     const type = document.getElementById("password").type;
@@ -91,6 +96,7 @@ const index = ( ) => {
     const { token } = await startLoginWithGoogle(data);
     if(token){
       dispatchAuth( startLogin({ token }))
+      redirectLogged();
     }
   }
 
@@ -669,6 +675,7 @@ export const getServerSideProps = async ({ req , resolvedUrl}) => {
   // console.log(req.url);
   const resp = await getAccess(cleanUrl , token );
 
+  console.log(resp);
   return resp;
     
 }

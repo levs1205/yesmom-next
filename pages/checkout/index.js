@@ -151,13 +151,6 @@ const Checkout = () => {
 
   },[idPreference])
 
-
-  useEffect(() => {
-    if(!logged){
-      router.push('/login?redirect_uri=checkout')
-    }
-  },[ logged ])
-
   if(checking){
     return <LoaderPage />
   }
@@ -796,11 +789,11 @@ export default Checkout;
 
 export const getServerSideProps = async ({ req, res , resolvedUrl}) => {
 
-  const token = req?.cookies?.YesmomToken;
+  const token = req?.cookies?.TokenTest;
   const redirected = {
     redirect: {
       permanent: false,
-      destination: "/login?redirect_uri=login",
+      destination: "/login?redirect_uri=checkout",
     },
     props:{},
   };
@@ -808,8 +801,11 @@ export const getServerSideProps = async ({ req, res , resolvedUrl}) => {
     props : {}
   }
   // console.log('URL',resolvedUrl);
+  console.log('TokenCheckout' , token)
   if(token){
     const { valid } = await startValidateToken(token);
+
+    console.log('Checkout valid ', valid)
     if(!valid) return redirected;
     return accepted;
   }else{
