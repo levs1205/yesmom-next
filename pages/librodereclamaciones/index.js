@@ -64,7 +64,7 @@ const index = () => {
           <div className="">
             <div className="container">
               <div className="container-form">
-                <form onSubmit={handleSubmit(submitForm)}>
+                <form >
                   <div className="">
                     <h4>1.- IDENTIFICACIONES DEL CONSUMIDOR RECLAMANTE</h4>
                     <div className="box-item">
@@ -84,7 +84,7 @@ const index = () => {
                           type="number" 
                           id="numberDoc" 
                           name="numberDoc"
-                          {...register("numberDoc")}
+                          // {...register("numberDoc")}
                           />
                       </div>
                       {/* <p className="error-input">{errors?.fullname?.message}</p> */}
@@ -98,7 +98,7 @@ const index = () => {
                           type="text"
                           id="apellidoPat"
                           name="apellidoPat"
-                          {...register("apellidoPat")}
+                          // {...register("apellidoPat")}
                         />
                       </div>
                       <div className="wrapper-input">
@@ -109,7 +109,7 @@ const index = () => {
                           type="text"
                           id="apellidoMat"
                           name="apellidoMat"
-                          {...register("apellidoMat")}
+                          // {...register("apellidoMat")}
                         />
                       </div>
                     </div>
@@ -120,7 +120,7 @@ const index = () => {
                           type="text"
                           id="nombres"
                           name="nombres"
-                          {...register("nombres")}
+                          // {...register("nombres")}
                           />
                       </div>
                       <div className="wrapper-input">
@@ -129,7 +129,7 @@ const index = () => {
                           type="text"
                           id="telf"
                           name="telf"
-                          {...register("telf")}
+                          // {...register("telf")}
                           />
                       </div>
                     </div>
@@ -140,7 +140,7 @@ const index = () => {
                           type="text"
                           id="domicilio"
                           name="domicilio"
-                          {...register("domicilio")}
+                          // {...register("domicilio")}
                         />
                       </div>
                       <div className="wrapper-input">
@@ -149,7 +149,7 @@ const index = () => {
                           type="email"
                           id="mail"
                           name="mail"
-                          {...register("mail")}
+                          // {...register("mail")}
                         />
                       </div>
                     </div>
@@ -162,7 +162,7 @@ const index = () => {
                           type="text"
                           id="apoderado"
                           name="apoderado"
-                          {...register("apoderado")}
+                          // {...register("apoderado")}
                         />
                       </div>
                     </div>
