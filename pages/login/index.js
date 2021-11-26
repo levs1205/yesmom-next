@@ -270,7 +270,7 @@ const index = ( ) => {
                   </div>
 
                   <FacebookLogin
-                    appId="602718880858377"
+                    appId="852286165441996"
                     // appId="602718880858377"
                     autoLoad = {false}
                     fields="name,email,picture"
