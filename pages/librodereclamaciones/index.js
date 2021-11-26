@@ -1,6 +1,7 @@
 import React from "react";
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
+import CustomButton from "../../components/Perfil/CustomButton";
 
 const index = () => {
   return (
@@ -63,7 +64,7 @@ const index = () => {
           <div className="">
             <div className="container">
               <div className="container-form">
-                <form>
+                <form onSubmit={handleSubmit(submitForm)}>
                   <div className="">
                     <h4>1.- IDENTIFICACIONES DEL CONSUMIDOR RECLAMANTE</h4>
                     <div className="box-item">
@@ -79,8 +80,14 @@ const index = () => {
                         <label htmlFor="numberDoc">
                           Número de Documento (*)
                         </label>
-                        <input type="number" id="numberDoc" name="numberDoc" />
+                        <input 
+                          type="number" 
+                          id="numberDoc" 
+                          name="numberDoc"
+                          {...register("numberDoc")}
+                          />
                       </div>
+                      {/* <p className="error-input">{errors?.fullname?.message}</p> */}
                     </div>
                     <div className="box-item">
                       <div className="wrapper-input">
@@ -91,6 +98,7 @@ const index = () => {
                           type="text"
                           id="apellidoPat"
                           name="apellidoPat"
+                          {...register("apellidoPat")}
                         />
                       </div>
                       <div className="wrapper-input">
@@ -101,27 +109,48 @@ const index = () => {
                           type="text"
                           id="apellidoMat"
                           name="apellidoMat"
+                          {...register("apellidoMat")}
                         />
                       </div>
                     </div>
                     <div className="box-item">
                       <div className="wrapper-input">
                         <label htmlFor="nombres">Nombres (*)</label>
-                        <input type="text" id="nombres" name="nombres" />
+                        <input
+                          type="text"
+                          id="nombres"
+                          name="nombres"
+                          {...register("nombres")}
+                          />
                       </div>
                       <div className="wrapper-input">
                         <label htmlFor="telf">Teléfono</label>
-                        <input type="text" id="telf" name="telf" />
+                        <input
+                          type="text"
+                          id="telf"
+                          name="telf"
+                          {...register("telf")}
+                          />
                       </div>
                     </div>
                     <div className="box-item">
                       <div className="wrapper-input">
                         <label htmlFor="apellidoPat">Domicilio</label>
-                        <input type="text" id="domicilio" name="domicilio" />
+                        <input
+                          type="text"
+                          id="domicilio"
+                          name="domicilio"
+                          {...register("domicilio")}
+                        />
                       </div>
                       <div className="wrapper-input">
                         <label htmlFor="apellidoMat">Email (*)</label>
-                        <input type="email" id="mail" name="mail" />
+                        <input
+                          type="email"
+                          id="mail"
+                          name="mail"
+                          {...register("mail")}
+                        />
                       </div>
                     </div>
                     <div className="box-item">
@@ -129,7 +158,12 @@ const index = () => {
                         <label htmlFor="apoderado">
                           Padre ó Madre (En el caso de ser menor de edad)
                         </label>
-                        <input type="text" id="apoderado" name="apoderado" />
+                        <input
+                          type="text"
+                          id="apoderado"
+                          name="apoderado"
+                          {...register("apoderado")}
+                        />
                       </div>
                     </div>
                   </div>
@@ -139,7 +173,10 @@ const index = () => {
                     <div className="box-item">
                       <div className="wrapper-input">
                         <label htmlFor="name">Nombre de la tienda:</label>
-                        <input type="text" id="name" name="name" />
+                        <input 
+                        type="text" 
+                        id="name" 
+                        name="name" />
                       </div>
                       <div className="wrapper-input">
                         <label htmlFor="name">Monto Reclamado:</label>
@@ -222,6 +259,9 @@ const index = () => {
                     </div>
                   </div>
                 </form>
+                <CustomButton >
+                  Enviar
+                </CustomButton>
               </div>
             </div>
           </div>
