@@ -36,7 +36,7 @@ export const startLoginWithGoogle = async ( values ) => {
         const { tokenId } = values ;
         console.log(tokenId);
         // LLamar endpoint para generar token
-        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/google-profile?userType=U`,{ headers :  {
+        const { data } = await axios.get(`https://security.yesmom.com.pe/auth/google-profile?userType=U`,{ headers :  {
             'google-token' : tokenId
         }})
 
@@ -54,7 +54,6 @@ export const startLoginWithGoogle = async ( values ) => {
 
 export const startLoginWithFacebook = async ( values ) => {
     try {
-        console.log('values', values)
         const { accessToken, userID } = values
 
         // const { tokenId } = values ;

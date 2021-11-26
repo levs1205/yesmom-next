@@ -57,6 +57,7 @@ const index = ( ) => {
       const axiosAuth = axios.create({
         baseURL : process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY,
       })
+
       const { data } = await axiosAuth.post('/autenticar?email=1', values);
 
       if (data?.MensajeRespuesta === "REQUEST INVÁLIDO") {
@@ -103,7 +104,7 @@ const index = ( ) => {
   const responseFacebook = async ( data ) => {
 
     // const token = response.accessToken;
-
+    console.log(data);
     const { token } = await startLoginWithFacebook(data);
     if(token){
       dispatchAuth( startLogin({ token }))
