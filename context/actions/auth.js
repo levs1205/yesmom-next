@@ -1,10 +1,8 @@
-import axios from "axios"
+import axios from 'axios';
+import { startValidateToken } from '../../helpers/validateToken';
 import { types } from "../types"
 
 
-const axiosAuth = axios.create({
-    baseUrl : process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY
-})
 
 export const startLogin = ( data ) => {
 
@@ -19,25 +17,12 @@ export const startLogin = ( data ) => {
 export const validateToken = async (token) => {
     try{
 
-        // console.log(token);
-        // console.log(process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY);
-        // console.log(data);
-        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/autenticar/token?delivery=no`,{
-            headers : {
-                'Content-Type' : 'application/json',
-                'access-token' : token
-            }
-        })
+        const { valid , data } = await startValidateToken(token);
 
         // console.log(data);
-        if( data?.mensaje === "Token válido"){
-           console.log('Autenticacion correcta');
-            return startLogin( data )
-        }else{
-            console.log('Sesión terminada');   
-            return startLogout;
-        }
-
+        if(!valid) return startLogout;
+        return startLogin( data )
+         
     }catch(err){
         console.log(err.message);
     }
@@ -45,14 +30,20 @@ export const validateToken = async (token) => {
 
 export const startLoginWithGoogle = async ( values ) => {
     try {
+
+        console.log(values);
+
         const { tokenId } = values ;
         console.log(tokenId);
-        //LLamar endpoint para generar token
-        // const { data } = await axiosAuth.get('/auth/google-profile',{ headers :  {
-        //     'google-token' : tokenId
-        // }})
+        // LLamar endpoint para generar token
+        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/google-profile?userType=U`,{ headers :  {
+            'google-token' : tokenId
+        }})
 
-        return { token : tokenId}
+        if(data?.token){
+            return { token : data.token}
+            // return { token : tokenId}
+        }
 
     }catch(error){
         console.log(error);
@@ -86,3 +77,10 @@ export const startLoginWithFacebook = async ( values ) => {
 export const startLogout = {
     type : types.authLogout
 }
+
+export const startChecking = () => ({
+    type : types.authStartChecking
+})
+export const finishChecking = () => ({
+    type : types.authFinishChecking
+})

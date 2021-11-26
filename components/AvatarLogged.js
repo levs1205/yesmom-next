@@ -15,9 +15,8 @@ const AvatarLogged = () => {
     const { dispatchAuth } =useContext(YesmomContext); 
 
     const handleLogout = () => {
-        router.push('/');
+        router.push('/login');
         dispatchAuth(startLogout);
-        
     }
 
     return (
