@@ -54,6 +54,7 @@ export const startLoginWithGoogle = async ( values ) => {
 
 export const startLoginWithFacebook = async ( values ) => {
     try {
+        //TODO: Quitar mensajes
         const { accessToken, userID } = values
 
         console.log(accessToken);
@@ -62,11 +63,11 @@ export const startLoginWithFacebook = async ( values ) => {
         // console.log(tokenId);
         // //LLamar endpoint para generar token
 
-        const { data } = await axiosAuth.get(`/auth/facebook-profile?userId=${userID}`,{ headers :  {
+        const { data } = await axios.get(`${process.env.process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/facebook-profile?userId=${userID}?userType=U`,{ headers :  {
             'facebook-token' : accessToken
         }})
-        console.log('data', data)
-        return { token : accessToken}
+        // console.log('data', data)
+        return { token : data.token}
 
     }catch(error){
         console.log(error);
