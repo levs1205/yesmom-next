@@ -63,10 +63,10 @@ export const startLoginWithFacebook = async ( values ) => {
         // console.log(tokenId);
         // //LLamar endpoint para generar token
 
-        const { data } = await axios.get(`${process.env.process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/facebook-profile?userId=${userID}?userType=U`,{ headers :  {
+        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/facebook-profile?userId=${userID}?userType=U`,{ headers :  {
             'facebook-token' : accessToken
         }})
-        // console.log('data', data)
+        console.log('data', data)
         return { token : data.token}
 
     }catch(error){
