@@ -1,268 +1,110 @@
-import AppLayout from "../../components/AppLayout";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import Link from "next/link";
-import Image from "next/image";
+import React from "react";
 
-const Location = () => {
+const CheckoutStep3 = ({ formValues, setSelected , watch , register }) => {
+
+
+  const {calle , numero, interior, referencia, departamento, provincia, distrito } = watch();
   return (
-    <AppLayout>
-      <div className="fade-in animated container-checkout">
-        <div className="container__text">
-          <Link href="/shopping-cart">
-            <a className="container__text--link">
-              <FontAwesomeIcon
-                icon={faArrowLeft}
-                className="container__text-icon"
-              ></FontAwesomeIcon>
-              Volver a carrito
-            </a>
-          </Link>
-        </div>
-        <div className="icon-checkout">
-          <Image
-            src="/image/icon/checkout-second-step.svg"
-            alt="Checkout segundo paso"
-            width={200}
-            height={50}
-          />
-        </div>
-        <section className="checkout-block">
-          <div className="checkout-block__card">
-            <div className="checkout-identification-block">
-              <div className="checkout-identification-block__text">
-                <p className="checkout-identification-block__text--font-size-and-bold">
-                  1. Identificación:
-                </p>
-                <p className="checkout-identification-block__text--font-size">
-                  Email: lucia@henribarrett.com
-                </p>
-                <p className="checkout-identification-block__text--font-size">
-                  Nombre: Lucia Quiñones
-                </p>
-                <p className="checkout-identification-block__text--font-size">
-                  DNI: 48294601
-                </p>
-                <p className="checkout-identification-block__text--font-size">
-                  Teléfono / Móvil: 957 996 586
-                </p>
-              </div>
-              <button className="checkout-identification-block__button">
-                Editar
-              </button>
-            </div>
-
-            <div className="checkout-location-block__text">
-              <p className="checkout-location-block__text--font-size-and-bold">
-                2. Datos para la entrega:
-              </p>
-              <p className="checkout-location-block__text--font-size">
-                Ingrese una dirección de referencia, donde desee recibir y/o
-                recoger sus productos.
-              </p>
-              <form action="" className="checkout-location-form">
-                <div className="checkout-location-form__wrapper">
-                  <p className="checkout-location-form__label">Departamento</p>
-                  <select
-                    name=""
-                    id=""
-                    className="checkout-location-form__select"
-                  >
-                    <option value="">sdssd</option>
-                    <option value="">sdsdsd</option>
-                    <option value="">sds</option>
-                  </select>
-                </div>
-                <div className="checkout-location-form__wrapper">
-                  <p className="checkout-location-form__label">Provincia</p>
-                  <select
-                    name=""
-                    id=""
-                    className="checkout-location-form__select"
-                  >
-                    <option value="">sdssd</option>
-                    <option value="">sdsdsd</option>
-                    <option value="">sds</option>
-                  </select>
-                </div>
-                <div className="checkout-location-form__wrapper">
-                  <p className="checkout-location-form__label">Distrito</p>
-                  <select
-                    name=""
-                    id=""
-                    className="checkout-location-form__select"
-                  >
-                    <option value="">sdssd</option>
-                    <option value="">sdsdsd</option>
-                    <option value="">sds</option>
-                  </select>
-                </div>
-                <div className="checkout-location-form__wrapper">
-                  <label for="email" className="checkout-location-form__label">
-                    Av/Jirón/Calle:
-                  </label>
-                  <input
-                    type="text"
-                    className="checkout-location-form__input"
-                    name="email"
-                    id="email"
-                  />
-                </div>
-                <div className="checkout-location-form__wrapper">
-                  <label for="name" className="checkout-location-form__label">
-                    Nro.:
-                  </label>
-                  <input
-                    type="text"
-                    className="checkout-location-form__input"
-                    name="name"
-                    id="name"
-                  />
-                </div>
-                <div className="checkout-location-form__wrapper">
-                  <label
-                    for="identity"
-                    className="checkout-location-form__label"
-                  >
-                    Interior:
-                  </label>
-                  <input
-                    type="text"
-                    className="checkout-location-form__input"
-                    name="identity"
-                    id="identity"
-                  />
-                </div>
-                <div className="checkout-location-form__wrapper">
-                  <label for="phone" className="checkout-location-form__label">
-                    Referencia de Dirección*:
-                  </label>
-                  <input
-                    type="text"
-                    className="checkout-location-form__input"
-                    name="phone"
-                    id="phone"
-                  />
-                </div>
-                <div className="checkout-location-form__wrapper">
-                  <p className="checkout-location-form__subtitle-radio">
-                    ¿Quién recibirá el pedido?
-                  </p>
-                  <div className="checkout-location-form__box-radio">
-                    <input
-                      className="checkout-location-form__input-radio"
-                      type="radio"
-                      id="f-option"
-                      name="selector"
-                    />
-                    <label
-                      className="checkout-location-form__label-radio"
-                      for="f-option"
-                    >
-                      Yo
-                    </label>
-                    <input
-                      className="checkout-location-form__input-radio"
-                      type="radio"
-                      id="f-option2"
-                      name="selector"
-                    />
-                    <label
-                      className="checkout-location-form__label-radio"
-                      for="f-option2"
-                    >
-                      Otra persona
-                    </label>
-                  </div>
-                </div>
-                <div className="checkout-location-form__wrapper">
-                  <label
-                    for="identity"
-                    className="checkout-location-form__label"
-                  >
-                    Nombre y Apellidos:
-                  </label>
-                  <input
-                    type="text"
-                    className="checkout-location-form__input"
-                    name="identity"
-                    id="identity"
-                  />
-                </div>
-                <input
-                  type="submit"
-                  name=""
-                  id=""
-                  value="Continuar"
-                  className="checkout-location-form__input-submit"
-                />
-              </form>
-            </div>
-            <div className="checkout-location-block__text">
-              <p className="checkout-location-block__text--font-size-and-bold">
-                3. Método de pago:
-              </p>
-              <p className="checkout-block__text--font-size">
-                Aún falta llenar algunos datos.
-              </p>
+    <>
+      <div className="fade-in animated checkout-identification-block">
+        <div className="checkout-identification-block__text">
+          <div className="checkout-identification-block__text-wrapper">
+            <p className="checkout-identification-block__text--font-size-and-bold">
+              1. Identificación:
+            </p>
+            <div
+              className="checkout-identification-block__button"
+              onClick={() => setSelected(0)}
+            >
+              Editar
             </div>
           </div>
-          <div className="shopping-cart-block__checkout">
-            <section className="discount-coupon__text">
-              <div className="discount-coupon__input">
-                <label for="coupon" className="discount-coupon__text">
-                  ¿Tienes un código de descuento?
-                </label>
-                <div className="discount-coupon__group-input">
-                  <input
-                    type="text"
-                    placeholder="Ingresa código"
-                    className="discount-coupon__input-text"
-                    id="coupon"
-                  />
-                  <input
-                    type="submit"
-                    name=""
-                    id=""
-                    value="Aplicar"
-                    className="discount-coupon__input-submit"
-                  />
-                </div>
-              </div>
-            </section>
-            <section className="price-table">
-              <table className=" price-table__table">
-                <tbody className="price-table__tbody">
-                  <tr className="price-table__tbody--fount-padding ">
-                    <td className="price-table__tbody--text-align-left">
-                      Subtotal
-                    </td>
-                    <td className="price-table__tbody--text-align-right">
-                      S/ XX.XX
-                    </td>
-                  </tr>
-                  <tr className="price-table__tbody--fount-padding">
-                    <td className="price-table__tbody--text-align-left">IGV</td>
-                    <td className="price-table__tbody--text-align-right">
-                      S/ XX.XX
-                    </td>
-                  </tr>
-                  <tr className="price-table__tbody--fount-bold-padding price-table__tbody--border-top">
-                    <td className="price-table__tbody--text-align-left">
-                      <strong>Total</strong>
-                    </td>
-                    <td className="price-table__tbody--text-align-right">
-                      <strong>S/ XX.XX</strong>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </section>
+          <div className="checkout-identification-block__text-container">
+            <p className="checkout-identification-block__text--font-size">
+              Email: {/* {formValues.email} */}
+            </p>
+            <p className="checkout-identification-block__text--font-size">
+              Nombre: {/* {formValues.name} */}
+            </p>
+            <p className="checkout-identification-block__text--font-size">
+              DNI: {/* {formValues.identity} */}
+            </p>
+            <p className="checkout-identification-block__text--font-size">
+              Teléfono / Móvil: {/* {formValues.phone} */}
+            </p>
           </div>
-        </section>
+        </div>
       </div>
+      <div className="checkout-identification-block">
+        <div className="checkout-identification-block__text">
+          <div className="checkout-identification-block__text-wrapper">
+            <p className="checkout-identification-block__text--font-size-and-bold">
+              2. Datos para la entrega:
+            </p>
+            <div
+              className="checkout-identification-block__button"
+              onClick={() => setSelected(1)}
+            >
+              Editar
+            </div>
+          </div>
+          <div className="checkout-identification-block__text-container m-3 flex-container">
+            <div className="checkout-identification-block__text-container_left">
+              <div className="checkout-identification-block__text--font-size">
+                Cll. Augusto Tamayo 600, Barranco
+                <br />
+                Lima
+                <br />
+                Jueves, 22 de Abril del 2021 entre las 9am y 18pm
+              </div>
+            </div>
+            <div className="checkout-identification-block__text-container_right">
+              <div className="checkout-identification-block__text--font-size">
+                S/ XX.XX
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="checkout-identification-block border-off">
+        <div className="checkout-identification-block__text">
+          <div className="checkout-identification-block__text-wrapper">
+            <p className="checkout-identification-block__text--font-size-and-bold">
+              3. Método de pago:
+            </p>
+          </div>
+        </div>
+        <div className="checkout-location-form__box-radio">
+          <input
+            className="checkout-location-form__input-radio"
+            type="radio"
+            id="f-option"
+            name="selector"
+          />
+          <label className="checkout-location-form__label-radio" for="f-option">
+            Boleta
+          </label>
+          <input
+            className="checkout-location-form__input-radio"
+            type="radio"
+            id="f-option2"
+            name="selector"
+          />
+          <label
+            className="checkout-location-form__label-radio"
+            for="f-option2"
+          >
+            Factura
+          </label>
+        </div>
+      </div>
+
       <style jsx>
         {`
+          .m-3 {
+            margin-top: 3rem !important;
+            margin-bottom: 3rem !important;
+          }
           .container-checkout {
             padding: 8rem 1rem;
             max-width: 1500px;
@@ -309,17 +151,41 @@ const Location = () => {
             border-radius: 20px;
             padding: 1rem;
           }
-          .checkout-identification-block {
+          .checkout-identification-block__text-wrapper {
             display: flex;
-            flex-direction: row;
             justify-content: space-between;
+          }
+          .checkout-identification-block {
+            width: 100%;
             align-items: top;
+            padding-top: 2rem;
             border-bottom: 1px solid #dadada;
+          }
+          .border-off {
+            border: none;
+          }
+          .flex-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 1rem;
+          }
+          .checkout-identification-block__text-container {
+            margin: 1rem;
+          }
+          .checkout-identification-block__text-container_left {
+            border-right: 1px solid rgba(87, 86, 80, 0.5);
+            flex-basis: 80%;
+          }
+          .checkout-identification-block__text-container_right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-basis: 20%;
           }
           .checkout-identification-block__text--font-size-and-bold {
             font-family: "mont-semibold";
             color: #575650;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             opacity: 0.5;
           }
           .checkout-identification-block__text--font-size {
@@ -345,6 +211,9 @@ const Location = () => {
           }
           .checkout-identification-block__button {
             text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-family: "mont-regular";
             font-size: 14px;
             width: 100px;
@@ -473,12 +342,14 @@ const Location = () => {
           }
           .identification-form__input {
             font-family: "mont-regular";
+            text-align: left;
             color: #556ea1;
-            border: 1px solid #556ea1;
-            border-radius: 20px;
+            border: none;
+            border-bottom: 1px solid #dadada;
             width: 100%;
-            padding: 5px;
+            padding: 0.5rem 0;
             font-size: 1.4rem;
+            height: 3.5rem;
           }
 
           .checkout-location-form__input-submit {
@@ -501,6 +372,7 @@ const Location = () => {
             padding: 2rem 3rem;
           }
           .checkout-location-form__box-radio {
+            margin: 2rem 1rem;
             display: flex;
             justify-content: left;
             align-items: center;
@@ -615,8 +487,8 @@ const Location = () => {
           }
         `}
       </style>
-    </AppLayout>
+    </>
   );
 };
 
-export default Location;
+export default CheckoutStep3;

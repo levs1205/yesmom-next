@@ -122,9 +122,10 @@ const index = ({ userInfo, token }) => {
 		}
   };
 
-  useEffect(() => {
-    if (!logged) {
-      router.push("/login");
+  useEffect(()=>{
+    if(!logged){
+      console.log('Entro aqui causaaa');
+      router.push('/login');
       flagRef.current = false;
     }
     setTimeout(() => {

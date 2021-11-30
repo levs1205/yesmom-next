@@ -15,6 +15,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 // import FacebookLogin from 'react-facebook-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import { getAccess } from "../../helpers/getAccess";
 
 
 const schemaValidator = yup.object().shape({
@@ -28,9 +29,8 @@ const schemaValidator = yup.object().shape({
     .min(5, "*La contraseña debe tener minimo 5 caracteres"),
 });
 
-const index = () => {
+const index = ( ) => {
 
-  
   const router = useRouter();
 
   const { query : { redirect_uri } } = router;
@@ -57,6 +57,7 @@ const index = () => {
       const axiosAuth = axios.create({
         baseURL : process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY,
       })
+
       const { data } = await axiosAuth.post('/autenticar?email=1', values);
 
       if (data?.MensajeRespuesta === "REQUEST INVÁLIDO") {
@@ -64,12 +65,23 @@ const index = () => {
       }
       if (data?.mensaje === "Autenticación Correcta") {
         // router.push("/");
+        
         dispatchAuth(startLogin(data));
+        redirectLogged();
       }
     } catch (e) {
       console.log(e.message);
     }
   };
+
+
+  const redirectLogged = () => {
+    if(redirect_uri){
+      return router.push(`/${redirect_uri}`)
+    }else{
+      return router.push('/perfil/miperfil');
+    }
+  }
 
   const handleRef = () => {
     const type = document.getElementById("password").type;
@@ -77,15 +89,7 @@ const index = () => {
       ? (document.getElementById("password").type = "text")
       : (document.getElementById("password").type = "password");
   };
-  //  const handleLoginWithGoogle= async () => {
 
-  //   // console.log(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/google`);
-  //   // const data = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/google?callbackURL=https://yesmomsecuritytestenv-env.eba-tpb3kgit.us-east-2.elasticbeanstalk.com/auth/google/callback`)
-
-  //   window.location.href = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/google` ;
-  //   // console.log(data);
-
-  //  }
 
   const handleSuccessGoogle = async ( data ) => {
     console.log(data);
@@ -93,13 +97,14 @@ const index = () => {
     const { token } = await startLoginWithGoogle(data);
     if(token){
       dispatchAuth( startLogin({ token }))
+      redirectLogged();
     }
   }
 
   const responseFacebook = async ( data ) => {
 
     // const token = response.accessToken;
-
+    console.log(data);
     const { token } = await startLoginWithFacebook(data);
     if(token){
       dispatchAuth( startLogin({ token }))
@@ -117,25 +122,26 @@ const index = () => {
     }
 
    //Redirigir
-   useEffect(()=>{
-    if(logged){
-      flagRef.current = false;
-      if(redirect_uri){
-        router.push(`/${redirect_uri}`)
-      }else{
-        router.push('/perfil/miperfil');
-      }
-    }
-    setTimeout(() => {
-      if(flagRef.current){
-        setLoading(false)
-      }
-    }, 1000)
-   },[logged])
+  //  useEffect(()=>{
+    
+  //   if(logged){
+  //     flagRef.current = false;
+  //     if(redirect_uri){
+  //       router.push(`/${redirect_uri}`)
+  //     }else{
+  //       router.push('/perfil/miperfil');
+  //     }
+  //   }
+  //   setTimeout(() => {
+  //     if(flagRef.current){
+  //       setLoading(false)
+  //     }
+  //   }, 1000)
+  //  },[logged])
 
-  if(loading){
-    return <LoaderPage />
-  }
+  // if(loading){
+  //   return <LoaderPage />
+  // }
   
 
   return (
@@ -265,7 +271,7 @@ const index = () => {
                   </div>
 
                   <FacebookLogin
-                    appId="602718880858377"
+                    appId="852286165441996"
                     // appId="602718880858377"
                     autoLoad = {false}
                     fields="name,email,picture"
@@ -662,13 +668,15 @@ const index = () => {
 
 export default index;
 
-// export async function getServerSideProps(context){
-//   // obtiene usuario
-//   const session = await getSession(context)
+export const getServerSideProps = async ({ req , resolvedUrl}) => {
+  const token = req?.cookies?.TokenTest;
+  
+  const cleanUrl = req.url.split("?")[0];
+  // console.log(resolvedUrl);
+  // console.log(req.url);
+  const resp = await getAccess(cleanUrl , token );
 
-//   return{ 
-//     props: {
-//       session
-//     }
-//   }
-// }
+  console.log(resp);
+  return resp;
+    
+}

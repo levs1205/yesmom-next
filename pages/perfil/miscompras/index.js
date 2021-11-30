@@ -1,7 +1,5 @@
-import React, { useContext, useRef, useState , useEffect } from "react";
+
 import Head from "next/head";
-import Link from "next/link";
-import { useRouter } from "next/router";
 
 import AppLayout from "../../../components/AppLayout";
 import TitlePerfil from "../../../components/Perfil/TitlePerfil";
@@ -9,31 +7,10 @@ import Description from "../../../components/Perfil/Description";
 import Sidebar from "../../../components/Perfil/Sidebar";
 import Pagination from "../../../components/Pagination";
 import AccordionCompras from "../../../components/Perfil/compras/AccordionCompras";
-import LoaderPage from "../../../components/LoaderPage";
-import YesmomContext from "../../../context/Context";
+import { getAccess } from "../../../helpers/getAccess";
 
 const index = () => {
 
-  const {  auth : { logged } } = useContext(YesmomContext);
-  const [ loading , setLoading ] = useState(true);
-  const flagRef = useRef(true);
-  const router = useRouter();
-
-  useEffect(()=>{
-    if(!logged){
-      router.push('/login');
-      flagRef.current = false;
-    }
-    setTimeout(() => {
-      if(flagRef.current){
-        setLoading(false)
-      }
-    }, 1000)
-   },[logged])
-
-  if(loading){
-    return <LoaderPage />
-  }
 
   return (
     <AppLayout>
@@ -263,3 +240,14 @@ const index = () => {
 };
 
 export default index;
+export const getServerSideProps = async ({ req , resolvedUrl}) => {
+  const token = req?.cookies?.TokenTest;
+  
+  const cleanUrl = req.url.split("?")[0];
+  console.log(resolvedUrl);
+  // console.log(req.url);
+  const resp = await getAccess(cleanUrl , token );
+
+  return resp;
+    
+}
