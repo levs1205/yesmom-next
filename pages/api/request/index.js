@@ -1,4 +1,6 @@
-const baseUrl = 'http://localhost:3700';
+const baseUrl = 'http://localhost:3300';
+
+//let token = JSON.parse(window.localStorage.getItem("YesmomToken"));
 
 //* PRODUCTS
 //? get summary data of products
@@ -28,5 +30,52 @@ export async function getCategories() {
 //? get summary data of principal catecories
 export async function getPrincipalCategories() {
   const response = await fetch(`${process.env.BASE_URL}/categorie/listprincipal`);
+  return await response.json();
+}
+
+//* PROFILE
+//? get summary data of profile
+export async function getProfileInfo(token, userType) {
+  const response = await fetch(`${baseUrl}/profile/${userType}`,{ 
+		headers: { 
+			'Content-Type': 'application/json', 
+			'access-token': token 
+		}
+	});
+  return await response.json();
+}
+
+//? post - update profile
+export async function updateProfileInfo(
+	token, 
+	userType,
+	principalEmail,
+	fullname,
+	genderBaby,
+	haveChildren,
+	firstTime,
+	moreThanOne,
+	password,
+	phone,
+	dateOfBirth) {
+	const data = { 
+		principalEmail,
+		fullname,
+		genderBaby,
+		haveChildren,
+		firstTime,
+		moreThanOne,
+		password,
+		phone,
+		dateOfBirth
+	};
+  const response = await fetch(`${baseUrl}/profile-add/${userType}?delivery=no`,{ 
+		method: 'POST',
+		headers: { 
+			'Content-Type': 'application/json', 
+			'access-token': token 
+		},
+		body: JSON.stringify(data),
+	});
   return await response.json();
 }

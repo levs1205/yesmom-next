@@ -1,4 +1,5 @@
 import React from "react";
+import LoaderPage from "../LoaderPage";
 
 const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) => {
 
@@ -42,6 +43,11 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
       </div>
   
       <div className="checkout-location-form__wrapper">
+        <div className="fade-in animated  checkout-block__text">
+          <p className="checkout-block__text--font-size-and-bold">
+            2. Datos para la entrega:
+          </p>
+        </div>
         <label for="calle" className="checkout-location-form__label">
           Av/Jirón/Calle: <span className="ml-4"> EJM : * Jr. Los Valles</span>
         </label>
@@ -52,11 +58,11 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
           id="calle"
           {...register("calle")}
         />
-        <p>{errors?.calle?.message}</p>
+        <p className="msg-error">{errors?.calle?.message}</p>
       </div>
       <div className="checkout-location-form__wrapper">
         <label for="numero" className="checkout-location-form__label">
-          Nro.: <span className="ml-4"> EJM : * Jr. Los Valles</span>
+          Nro.: <span className="ml-4"> EJM : * Jr. 205</span>
         </label>
         <input
           type="text"
@@ -65,7 +71,7 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
           id="numero"
           {...register("numero")}
         />
-        <p>{errors.numero?.message}</p>
+        <p className="msg-error">{errors?.numero?.message}</p>
       </div>
       <div className="checkout-location-form__wrapper">
         <label for="identity" className="checkout-location-form__label">
@@ -78,7 +84,7 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
           id="interior"
           {...register("interior")}
         />
-        <p>{errors.interior?.message}</p>
+        <p className="msg-error">{errors?.interior?.message}</p>
       </div>
       <div className="checkout-location-form__wrapper">
         <label for="direccion" className="checkout-location-form__label">
@@ -87,15 +93,19 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
         <input
           type="text"
           className="checkout-location-form__input"
-          name="direccion"
-          id="direccion"
-          {...register("direccion")}
+          name="referencia"
+          id="referencia"
+          {...register("referencia")}
         />
-        <p>{errors.direccion?.message}</p>
+        <p className="msg-error">{errors?.referencia?.message}</p>
       </div>
       <div className="checkout-location-form__wrapper">
         <p className="checkout-location-form__label">Departamento</p>
-        <select name="" id="" className="checkout-location-form__select">
+        <select 
+          name="" 
+          id="" className="checkout-location-form__select" 
+          { ...register('departamento')}
+        >
           <option value="lima" selected>Lima</option>
           {/* <option value="">sdsdsd</option>
           <option value="">sds</option> */}
@@ -103,7 +113,12 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
       </div>
       <div className="checkout-location-form__wrapper">
         <p className="checkout-location-form__label">Provincia</p>
-        <select name="" id="" className="checkout-location-form__select">
+        <select 
+          name="provincia" 
+          id="provincia" 
+          className="checkout-location-form__select"
+          { ...register('provincia')}
+        >
           <option value="lima" selected>Lima</option>
           {/* <option value="">sdsdsd</option>
           <option value="">sds</option> */}
@@ -111,7 +126,12 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
       </div>
       <div className="checkout-location-form__wrapper">
         <p className="checkout-location-form__label">Distrito</p>
-        <select name="" id="" className="checkout-location-form__select">
+        <select 
+          name="distrito" 
+          id="distrito" 
+          className="checkout-location-form__select"
+          {...register('distrito')}
+        >
           <option value="">sdssd</option>
           <option value="">sdsdsd</option>
           <option value="">sds</option>
@@ -147,6 +167,17 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
       </div>
       <style jsx>
         {`
+
+          .checkout-block__text--font-size-and-bold {
+            font-size: 1.6rem;
+            font-family: "mont-semibold";
+            margin-top : 1rem;
+          }
+          .msg-error{
+            font-family:"omnes-regular";
+            font-size: 1.5rem;
+            color: red;
+          }
           .container-checkout {
             padding: 8rem 1rem;
             max-width: 1500px;

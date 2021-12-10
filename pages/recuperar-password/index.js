@@ -1,13 +1,11 @@
-import { useContext, useRef, useState , useEffect} from "react";
-import { useRouter } from "next/router";
+
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import { useForm } from "react-hook-form";
 
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
-import LoaderPage from "../../components/LoaderPage";
-import YesmomContext from "../../context/Context";
+import { getAccess } from "../../helpers/getAccess";
 
 const schemaValidator = yup.object().shape({
   email : yup.string().email('*Ingresa un correo válido').required('*Correo es requerido')
@@ -15,11 +13,6 @@ const schemaValidator = yup.object().shape({
 
 
 const RecuperarPassword = () => {
-
-  const {  auth : { logged } } = useContext(YesmomContext);
-  const [ loading , setLoading ] = useState(true);
-  const flagRef = useRef(true);
-  const router = useRouter();
 
   const { register , formState: { errors} , handleSubmit} = useForm({
     resolver : yupResolver(schemaValidator)
@@ -29,24 +22,6 @@ const RecuperarPassword = () => {
   const submitForm = (data) => {
     alert('oksss')
   }
-
-//Redirigir
-useEffect(()=>{
-  if(logged){
-    router.push('/');
-    flagRef.current = false;
-  }
-  setTimeout(() => {
-    if(flagRef.current){
-      setLoading(false)
-    }
-  }, 1000)
- },[logged])
-
-if(loading){
-  return <LoaderPage />
-}
-  
 
   return (
     <AppLayout>
@@ -317,3 +292,15 @@ if(loading){
 };
 
 export default RecuperarPassword;
+
+export const getServerSideProps = async ({ req , resolvedUrl}) => {
+  const token = req?.cookies?.YesmomToken;
+  
+  const cleanUrl = req.url.split("?")[0];
+  // console.log(resolvedUrl);
+  // console.log(req.url);
+  const resp = await getAccess(cleanUrl , token );
+
+  return resp;
+    
+}

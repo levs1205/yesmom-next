@@ -1,11 +1,12 @@
 
-import React, { useEffect, useReducer, useState } from 'react'
-import { startLogin , validateToken} from './actions/auth';
+import React, { useEffect, useReducer } from 'react'
+import { finishChecking, startChecking, validateToken} from './actions/auth';
 import { startAddToCart } from './actions/ui';
 import YesmomContext from './Context'
 import { authReducer } from './reducers/authReducer';
 import { uiReducer } from './reducers/uiReducer';
 import { clientReducer } from './reducers/clientReducer';
+import { saleReducer } from './reducers/saleReducer';
 
 
 /* export async function getServerSideProps(){
@@ -25,20 +26,27 @@ const Provider = ({children }) => {
 
 
     const initialState = {};
-    const [ auth , dispatchAuth ] = useReducer( authReducer , initialState);
+    const initialAuthState = {
+        logged : false,
+        token : null,
+        checking : true
+    }
+    const [ auth , dispatchAuth ] = useReducer( authReducer , initialAuthState);
     const [ client , dispatchClient ] = useReducer( clientReducer , initialState);
+    const [ sale , dispatchSale ] = useReducer( saleReducer , initialState);
     const [ ui , dispatchUi ] = useReducer( uiReducer , initialState );
 
     useEffect(() => {
         getInitialAuthState();
         getInitialCartState();
-
     }, [])
 
     const getInitialAuthState = async() => {
         const token = localStorage.getItem('YesmomToken');
         if(token){
+            dispatchAuth( startChecking());
             dispatchAuth(await validateToken(token) ); 
+            dispatchAuth( finishChecking());
             // console.log("Autenticado de nuevo");
             // dispatchAuth( startLogin({ token }))
         }else{
@@ -62,9 +70,11 @@ const Provider = ({children }) => {
             auth,
             ui,
             client,
+            sale,
             dispatchAuth,
             dispatchClient,
             dispatchUi,
+            dispatchSale
         }
         }>
             { children }

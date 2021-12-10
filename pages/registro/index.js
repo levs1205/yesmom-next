@@ -23,6 +23,7 @@ import YesmomContext from "../../context/Context";
 import LoaderPage from "../../components/LoaderPage";
 
 import { startRegisterClient } from '../../context/actions/client'
+import { getAccess } from "../../helpers/getAccess";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -754,3 +755,14 @@ const index = () => {
 };
 
 export default index;
+
+export const getServerSideProps = async ({ req , resolvedUrl}) => {
+  const token = req?.cookies?.TokenTest;
+  
+  const cleanUrl = req.url.split("?")[0];
+  // console.log(req.url);
+  const resp = await getAccess(cleanUrl , token );
+
+  return resp;
+
+}

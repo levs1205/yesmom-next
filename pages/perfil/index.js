@@ -7,11 +7,17 @@ import LoaderPage from "../../components/LoaderPage";
 // import TitlePerfil from '../../components/Perfil/TitlePerfil'
 
 const index = () => {
-  const router = useRouter();
-  useEffect(() => {
-    router.push("/perfil/miperfil");
-  }, []);
   return <LoaderPage />;
 };
 
 export default index;
+
+export const getServerSideProps = ( { req , res }) => {
+  return {
+    redirect: {
+      permanent: false,
+      destination: "/perfil/miperfil",
+    },
+    props:{}
+  }
+}

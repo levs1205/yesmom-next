@@ -2,7 +2,6 @@
 
 
 
-export const startRegisterClient = ( data) => {
+export const startRegisterClient = () => {
     console.log(data);
 }
-

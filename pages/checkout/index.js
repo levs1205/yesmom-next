@@ -7,13 +7,18 @@ import Link from "next/link";
 import Stepper from "../../components/Stepper";
 // import { useForm } from "../../hooks/useForm";
 import CheckoutStep1 from "../../components/Checkout/CheckoutStep1";
-import CheckoutStep3 from "../../components/Checkout/CheckoutStep3";
 import CheckoutStep2 from "../../components/Checkout/CheckoutStep2";
+import CheckoutStep3 from "../../components/Checkout/CheckoutStep3";
+import CheckoutStep4 from "../../components/Checkout/CheckoutStep4";
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import YesmomContext from "../../context/Context";
 import { useRouter } from "next/router";
+import { generateDelivery } from "../../helpers/requestCheckout";
+import { makeDelivery } from "../../context/actions/sale";
+import LoaderPage from "../../components/LoaderPage";
+import { startValidateToken } from "../../helpers/validateToken";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -27,10 +32,13 @@ const schemaFirst = yup.object().shape({
 });
 
 // const schemaSecond = yup.object().shape({
-//   email: yup.string().email('Ingrese un email válido').required('Ingrese un correo electrónico'),
-//   calle: yup.string().required(),
-//   numero: yup.number().required(),
-//   interior: yup.string().required(),
+//   calle: yup.string().required('Ingrese calle'),
+//   numero: yup.string().matches(/^[0-9]+$/g,'*Numero incorrecto').required('Ingrese el número'),
+//   interior: yup.string().required('Ingrese interior'),
+//   referencia : yup.string().required('Ingrese referencia'),
+//   departamento : yup.string().required('Seleccione departamento'),
+//   provincia : yup.string().required('Seleccione provincia'),
+//   distrito : yup.string().required('Seleccione distrito'),
 // });
 
 
@@ -38,8 +46,9 @@ const schemaFirst = yup.object().shape({
 const Checkout = () => {
 
   const router = useRouter();
-  const  { auth : { logged } } = useContext(YesmomContext);
+  const  { auth : { logged } , dispatchSale } = useContext(YesmomContext);
   const [selected, setSelected] = useState(0);
+  const [ checking , setChecking] = useState(false);
   const [idPreference , setIdPreference] = useState(null);
 
   const { register, handleSubmit, formState:{ errors }, watch  } = useForm({
@@ -52,8 +61,10 @@ const Checkout = () => {
     }
   })
 
-  const { register_2, handleSubmit : handleSubmit_2, formState: formState_2,reset_2 } = useForm({})
-  const { register_3, handleSubmit : handleSubmit_3, formState: formState_3,reset_3 } = useForm({})
+  const { register : register_2, handleSubmit : handleSubmit_2, formState: formState_2, watch : watch_2 } = useForm({
+    // resolver : yupResolver(schemaSecond)
+  })
+  const { register : register_3, handleSubmit : handleSubmit_3, formState: formState_3,reset_3 } = useForm({})
 
 
   const submitTest = (data) => {
@@ -81,9 +92,20 @@ const Checkout = () => {
     console.log(id);
   };
 
-  const handleSelection = ( data ) => {
-    console.log(data);
-    if (selected !== 2) {
+  const handleSelection = async ( data ) => {
+    if (selected !== 3) {
+
+      //Generar el pedido
+      if(selected===1){
+        setChecking(true);
+        const { ok , data } = await generateDelivery();
+        setChecking(false);
+        if(!ok) return
+
+        //Ya pasó
+        dispatchSale(makeDelivery(data))
+
+      }
       setTimeout(() => {
         window.scrollTo(0,0);
       },[300])
@@ -129,15 +151,9 @@ const Checkout = () => {
 
   },[idPreference])
 
-
-  useEffect(() => {
-    if(!logged){
-      router.push('/login?redirect_uri=checkout')
-    }else{
-      router.push("/checkout");
-    }
-  },[ logged ])
-
+  if(checking){
+    return <LoaderPage />
+  }
   return (
     <AppLayout>
       <Head>
@@ -265,10 +281,10 @@ const Checkout = () => {
                 {
                     selected === 1 && 
                     <CheckoutStep2
-                        register={register}
-                        handleSubmit={handleSubmit}
+                        register={register_2}
+                        handleSubmit={handleSubmit_2}
                         watch={watch}
-                        errors={errors}
+                        errors={formState_2.errors}
                         // formValues={formValues} 
                         // handleInputChange={handleInputChange}
                         // setSelected={setSelected}
@@ -278,6 +294,17 @@ const Checkout = () => {
                     selected === 2 && 
                     <CheckoutStep3
                         register={register}
+                        watch = { watch_2}
+                        // formValues={formValues} 
+                        // handleInputChange={handleInputChange}
+                        // setSelected={setSelected}
+                    /> 
+                }
+                {
+                    selected === 3 && 
+                    <CheckoutStep4
+                        register={register}
+                        watch = { watch_2}
                         // formValues={formValues} 
                         // handleInputChange={handleInputChange}
                         // setSelected={setSelected}
@@ -286,9 +313,10 @@ const Checkout = () => {
               <div className="only-button-submit" onClick={
                     selected === 0 && handleSubmit(handleSelection)   ||   
                     selected === 1 && handleSubmit_2(handleSelection)   ||
-                    selected === 2 && handleSubmit_3(handleSelection)  
+                    selected === 2 && handleSubmit_3(handleSelection)  ||
+                    selected === 3 && handleSubmit_3(handleSelection) 
                 }>
-                {selected === 2 ? (
+                {selected === 3 ? (
                   <div className="btn-checkout btn-pink">Comprar</div>
                 ) : (
                   <div className="btn-checkout btn-amarillo">Continuar</div>
@@ -757,3 +785,31 @@ const Checkout = () => {
 };
 
 export default Checkout;
+
+
+export const getServerSideProps = async ({ req, res , resolvedUrl}) => {
+
+  const token = req?.cookies?.TokenTest;
+  const redirected = {
+    redirect: {
+      permanent: false,
+      destination: "/login?redirect_uri=checkout",
+    },
+    props:{},
+  };
+  const accepted = {
+    props : {}
+  }
+  // console.log('URL',resolvedUrl);
+  console.log('TokenCheckout' , token)
+  if(token){
+    const { valid } = await startValidateToken(token);
+
+    console.log('Checkout valid ', valid)
+    if(!valid) return redirected;
+    return accepted;
+  }else{
+    return redirected;
+  }
+  
+}

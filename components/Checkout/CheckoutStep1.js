@@ -301,6 +301,7 @@ const CheckoutStep1 = ({ register, errors, watch, handleSubmit }) => {
             box-shadow: none !important;
           }
           .msg-error{
+            font-family:"omnes-regular";
             font-size: 1.5rem;
             color: red;
             padding: 0.2rem;
