@@ -15,7 +15,7 @@ import CardProduct from "../components/CardProduct";
 import axios from "axios";
 // import fetch from 'isomorphic-fetch'
 
-const Home = ({ currentData , products}) => {
+const Home = ({ currentData, products }) => {
   // console.log(currentData, "holis");
   // const [currentData, setCurrentData] = useState([]);
   // useEffect(() => {
@@ -88,36 +88,39 @@ const Home = ({ currentData , products}) => {
           name="twitter:image"
           content="https://scontent.flim16-2.fna.fbcdn.net/v/t1.0-9/126792131_106928704587510_2836457564050845211_o.png?_nc_cat=102&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeFSSfa6-XY6Gr86bM0YLSnbg75GzBA7YvSDvkbMEDti9CbHT_bhgekVd4r0lJtcFek&_nc_ohc=WbH5Z7RjRSEAX_W02AR&_nc_ht=scontent.flim16-2.fna&oh=c348092596513f52dfca119589ab6c0b&oe=602D60C9"
         />
-        <meta name="twitter:site" content="@JudithCristinaQ" />
-        <meta name="twitter:creator" content="@JudithCristinaQ" />
+       
       </Head>
       <div className="fade-in animated">
-        <section fluid="true" className="box-banner">
-          <div className="banner view-desktop ">
-            <div className="h-100">
-            {/* <Image */}
-            <img
-              src="/image/home/banner-home1.png"
-              alt="Picture of the author"
-              layout="responsive"
-              // width={500}
-              // height={245} 
-              width={'100%'}
-              height={'100%'}
-            />
+        <a href="/tienda">
+          <section fluid="true" className="box-banner">
+            <div className="banner view-desktop ">
+              <div className="h-100">
+                {/* <Image */}
+                <img
+                  src="/image/home/banner-home1.png"
+                  alt="Picture of the author"
+                  layout="responsive"
+                  // width={500}
+                  // height={245}
+                  width={"100%"}
+                  height={"100%"}
+                />
+              </div>
             </div>
-          </div>
-          <div className="banner view-mobile">
-            <img src="/image/home/banner-home-mobile1.png" className="w-100" />
-            {/* <img
+            <div className="banner view-mobile">
+              <img
+                src="/image/home/banner-home-mobile1.png"
+                className="w-100"
+              />
+              {/* <img
               src="/image/home/banner-mobile.png"
               layout="fill"
               alt="Picture of the author"
             /> */}
-          </div>
-          {/* <img src={banner} className="banner view-desktop" /> */}
-          {/* <img src={bannerM} alt="" className="banner view-mobile" /> */}
-          {/* <div className="box-banner-btns">
+            </div>
+            {/* <img src={banner} className="banner view-desktop" /> */}
+            {/* <img src={bannerM} alt="" className="banner view-mobile" /> */}
+            {/* <div className="box-banner-btns">
             <div className="box-banner-btns-group">
               <h3 className="title-fuxia w-80 m-auto cl-blanco ">
                 Encuentra los mejores productos
@@ -153,13 +156,10 @@ const Home = ({ currentData , products}) => {
               </p>
             </div>
           </div> */}
+          </section>
+        </a>
 
-
-        </section>
-
-
-
-        <div className="section-sorteo-home">
+        {/* <div className="section-sorteo-home">
           <Container fluid="true">
             <Row className="sin-margin">
               <Col xs={12} sm={12} md={12} lg={6} xl={6}>
@@ -231,7 +231,7 @@ const Home = ({ currentData , products}) => {
               </Col>
             </Row>
           </Container>
-        </div>
+        </div> */}
         <div className="section-lo-mejor-home">
           <Container fluid="true">
             <div className="nube-up">
@@ -376,15 +376,9 @@ const Home = ({ currentData , products}) => {
           <Container fluid="true">
             <Col>
               <div className="all-products">
-                {
-                  products.slice(0,4).map((product,i)=>(
-                    <CardProduct 
-                      key={i}
-                      {...product}
-                      size="4"
-                    />
-                  ))
-                }
+                {products.slice(0, 4).map((product, i) => (
+                  <CardProduct key={i} {...product} size="4" />
+                ))}
               </div>
             </Col>
             <Link href="/tienda">
@@ -555,7 +549,7 @@ const Home = ({ currentData , products}) => {
             object-position: center;
             height: 100%;
             position: absolute;
-            top:3rem
+            top: 3rem;
           }
 
           .ondas-banner {
@@ -832,12 +826,14 @@ const Home = ({ currentData , products}) => {
             justify-content: center;
           }
 
-          {/* @media (max-width: 1200px) {
+           {
+            /* @media (max-width: 1200px) {
             .box-banner {
               height: 60vh;
               width: auto;
             }
-          } */}
+          } */
+          }
           @media (min-width: 1800px) {
             :global(.card-deck) {
               justify-content: center !important;
@@ -1058,8 +1054,8 @@ const Home = ({ currentData , products}) => {
             .box-banner {
               height: 40rem;
             }
-            .box-text-title{
-              padding-top:3rem
+            .box-text-title {
+              padding-top: 3rem;
             }
             .all-products {
               width: 70%;
@@ -1285,14 +1281,12 @@ const Home = ({ currentData , products}) => {
   );
 };
 
-export async function getServerSideProps(){
+export async function getServerSideProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=2`
-  console.log("**********",url);
-  const res = await fetch(
-    url
-  );
+  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=2`;
+  console.log("**********", url);
+  const res = await fetch(url);
 
   const currentData = await res.json();
 
@@ -1309,7 +1303,7 @@ export async function getServerSideProps(){
   return {
     props: {
       currentData,
-      products
+      products,
     },
   };
 }

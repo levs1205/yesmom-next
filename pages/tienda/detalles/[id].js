@@ -5,7 +5,7 @@ import Image from "next/image";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Head from "next/head";
-import { object, array } from 'prop-types';
+import { object, array } from "prop-types";
 import AppLayout from "../../../components/AppLayout";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -14,63 +14,46 @@ import YesmomContext from "../../../context/Context";
 import { startAddToCart } from "../../../context/actions/ui";
 import OtherProducts from "../../../components/tienda/detalle/OtherProducts";
 import Select from "react-select";
-import { getProductsById, getProducts } from '../../api/request';
+import { getProductsById, getProducts } from "../../api/request";
 import { setProduct } from "../../../context/actions/ui";
 
-const DetallesID = ({ product, supplier, images, productList, productsQty, pages }) => {
-	//Disparador para state UI
-	const { dispatchUi } = useContext(YesmomContext);
-	const [disabled, setDisabled] = useState(true);
-	const [amount, setAmount] = useState(0);
-	const [colorNew, setColorNew] = useState([])
-	const [tallaNew, setTallaNew] = useState([])
-	const [selectedOptionColor, setSelectedOptionColor] = useState(null)
-	const [selectedOptionTalla, setSelectedOptionTalla] = useState(null)
-	const { _id: idTienda, nombreTienda, nombreTiendaUrl, } = supplier;
-	const { 
-		_id: idProducto,
-		color,
-		talla,
-		descripcion,
-		cantDisponible,
-		precio,
-		precioPromocional,
-		proveedorId,
-		sku,
-		accesorios,
-		categoria,
-		categoriaadicional,
-		dimensiones,
-		nombre,
-		terminos,
+const DetallesID = ({
+  product,
+  supplier,
+  images,
+  productList,
+  productsQty,
+  pages,
+}) => {
+  const defaultImage =
+    "https://bicentenario.gob.pe/biblioteca/themes/biblioteca/assets/images/not-available-es.png";
+  const { _id: idTienda, nombreTienda, nombreTiendaUrl } = supplier;
+  const {
+    _id: idProducto,
+    color,
+    talla,
+    descripcion,
+    cantDisponible,
+    precio,
+    precioPromocional,
+    proveedorId,
+    sku,
+    accesorios,
+    categoria,
+    categoriaadicional,
+    dimensiones,
+    nombre,
+    terminos,
   } = product;
-	
-	const defaultImage = "https://bicentenario.gob.pe/biblioteca/themes/biblioteca/assets/images/not-available-es.png"
-  
-	let arrayColoresGen = [
-		{ value: 'verde', label: 'verde', color: 'green' },
-		{ value: 'morado', label: 'morado', color: '#8512BE' },
-		{ value: 'turqueza', label: 'turqueza', color: '#87E4EC' },
-		{ value: 'rosado', label: 'rosado', color: 'pink' },
-		{ value: 'amarillo', label: 'amarillo', color: '#F9EB37' },
-		{ value: 'anaranjado', label: 'anaranjado', color: '#FF8C00' },
-		{ value: 'rojo', label: 'rojo', color: '#FF0000' },
-		{ value: 'azul', label: 'azul', color: '#0000CD' }
-	];
+  //Disparador para state UI
+  const { dispatchUi } = useContext(YesmomContext);
+  const [disabled, setDisabled] = useState(true);
+  const [amount, setAmount] = useState(0);
 
-	const arrayTallasGen = [
-		{ value: '0', label: '0' },
-		{ value: '2', label: '2' },
-		{ value: '4', label: '4' },
-		{ value: '6', label: '6' },
-		{ value: '8', label: '8' },
-		{ value: '10', label: '10' },
-	];
-
-	const handleAdd = () => {
-		if(cantDisponible > 0){
-			setAmount((amount) => amount + 1);
-		}
+  const handleAdd = () => {
+    if (cantDisponible > 0) {
+      setAmount((amount) => amount + 1);
+    }
   };
 
   const handleMinus = () => {
@@ -90,8 +73,8 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
       setDisabled(false);
     }
   }, [amount, setDisabled]);
-  
-	//CART
+
+  //CART
   const handleAddCart = () => {
     if (!disabled) {
       /* console.log(product); */
@@ -101,161 +84,6 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
       };
       dispatchUi(startAddToCart(realProduct));
     }
-  };
-
-/* 	const functionCompareColor = () => {
-		let newArray = []
-		let iguales = 0;
-		for (let i in arrayColoresGen) {
-			for (let j in arrayColoresGen) {
-				if (arrayColoresGen[i].value == color[j]) {
-					iguales++;
-					newArray.push(arrayColoresGen[parseInt(i)])
-				}
-			}
-		}
-		setColorNew(newArray)
-	}
-	const functionCompareTalla = () => {
-		let newArray = []
-		let iguales = 0;
-		for (let i in arrayTallasGen) {
-			for (let j in arrayTallasGen) {
-				if (arrayTallasGen[i].value == talla[j]) {
-					iguales++;
-					newArray.push(arrayTallasGen[parseInt(i)])
-				}
-			}
-		}
-		setTallaNew(newArray)
-	}
-
-	useEffect(() => {
-		functionCompareColor()
-		functionCompareTalla()
-	}, []) */
-
-	const handleChangeColor = selectedOptionColor => {
-		console.log('selectedOptionColor',selectedOptionColor)
-		setSelectedOptionColor({ selectedOptionColor });
-	};
-
-	const handleChangeTalla = selectedOptionTalla => {
-		console.log('selectedOptionTalla',selectedOptionTalla)
-		setSelectedOptionTalla({ selectedOptionTalla });
-	};
-
-	const dot = (color = 'transparent') => ({
-		alignItems: 'center',
-		display: 'flex',
-		':before': {
-			backgroundColor: color,
-			borderRadius: 10,
-			content: '" "',
-			display: 'block',
-			marginRight: 8,
-			height: 10,
-			width: 10,
-		},
-	});
-  const colourStyles = {
-    control: (styles) => ({
-			...styles,  
-			backgroundColor: "white",
-			borderColor: "#556EA1",
-			borderRadius: "15px",
-			width: "200px",
-			fontFamily: "mont-regular",
-			fontSize: '14px',
-			outline: 'none',
-			padding: '0 8px',
-			boxShadow: 'none',
-			':hover': {
-				borderColor: '#556EA1',
-				boxShadow: 'none'
-			}, 
-		}),
-		option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-			const color = chroma(data.color);
-			return {
-				...styles,
-				fontSize: '14px',
-				lineHeight: '20px',
-				height: '25px',
-				padding: '2px 8px 2px 12px',
-				backgroundColor: isDisabled
-					? undefined
-					: isSelected
-					? data.color
-					: isFocused
-					? color.alpha(0.1).css()
-					: undefined,
-				color: isDisabled
-					? '#ccc'
-					: isSelected
-					? chroma.contrast(color, 'white') > 2
-						? 'white'
-						: 'black'
-					: data.color,
-				cursor: isDisabled ? 'not-allowed' : 'default',
-				':active': {
-					...styles[':active'],
-					backgroundColor: !isDisabled
-						? isSelected
-							? data.color
-							: color.alpha(0.3).css()
-						: undefined,
-				},
-			};
-		},
-		input: (styles) => ({ ...styles }),
-		placeholder: (styles) => ({ ...styles }),
-		singleValue: (styles, { data }) => ({ 
-			...styles, 
-			...dot(data.color),
-			color: data.color, 
-			backgroundColor: `${data.color}20`,
-			padding: '0 8px',
-			borderRadius: '5px',
-			transition: 'all 0.6s',
-			/* ':hover': {
-				backgroundColor: data.color,
-				color: 'white',
-				padding: '0 8px',
-				borderRadius: '5px',
-			},  */
-		}),
-  };
-	const sizeStyles = {
-    control: (styles) => ({
-      ...styles,
-      backgroundColor: "white",
-      borderColor: "#556EA1",
-      borderRadius: "15px",
-      width: "200px",
-			fontFamily: "mont-regular",
-			fontSize: '14px',
-			outline: 'none',
-			padding: '0 8px',
-			boxShadow: 'none',
-			':hover': {
-				borderColor: '#556EA1',
-				boxShadow: 'none'
-			}, 
-    }),
-		option: (styles) => {
-			return {
-				...styles,
-				fontSize: '14px',
-				lineHeight: '20px',
-				height: '25px',
-				padding: '2px 8px 2px 12px',
-			};
-		},
-		singleValue: (styles) => ({ 
-			...styles, 
-			backgroundColor: 'white',
-		}),
   };
 
   return (
@@ -315,7 +143,10 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
                       <Carousel>
                         {images.map((imag) => (
                           <div className="box-img-detail">
-                            <img src={imag?.url ? imag?.url: defaultImage} className="" />
+                            <img
+                              src={imag?.url ? imag?.url : defaultImage}
+                              className=""
+                            />
                           </div>
                         ))}
                       </Carousel>
@@ -324,16 +155,16 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
                       <section className="show--some-info-product">
                         <h5 className="show--ft-semibold">{nombre}</h5>
                         {/* <h6 className="show--ft-light">{nombreTienda}</h6> */}
-												<h6 className="show--ft-light">
-													<Link href={`/tienda/${nombreTiendaUrl}`}>
-														<a className="show--ft-light">{nombreTienda}</a>
-													</Link>
-												</h6>
-												
+                        <h6 className="show--ft-light">
+                          <Link href={`/tienda/${nombreTiendaUrl}`}>
+                            <a className="show--ft-light">{nombreTienda}</a>
+                          </Link>
+                        </h6>
+
                         {/* <p className="show--text-description">{decripcion}</p> */}
                         <p className="show--price">S/ {precio?.toFixed(2)}</p>
                         <div className="show--container-selects">
-                          {/* <div className="show--group-select">
+                          <div className="show--group-select">
                             <label className="show--text-label" htmlFor="talla">
                               Color
                             </label>
@@ -341,33 +172,21 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
                               <option selected disabled>
                                 Selecciona el color
                               </option>
-                              {color?.length > 0 ? color.map((col) => (
-                                <option value={col.name}>
-																	{col.name}
-                                </option>
-                              )): ''}
+                              {color?.length > 0 ? (
+                                color.map((col) => (
+                                  <option
+                                    value={col.name}
+                                    selected={col === color && "selected"}
+                                  >
+                                    {col.name}
+                                  </option>
+                                ))
+                              ) : (
+                                <option value="unica">Estampado</option>
+                              )}
                             </select>
-                          </div> */}
-													<div className="show--group-select">
-														<label className="show--text-label" htmlFor="talla">
-                              Color
-                            </label>
-															{/* <SelectMultipleColor defaultArray={colorNew} allCollors={arrayColoresGen} onChange={handleChangeColor} /> */}
-															<div className="container-select">
-																{/* {defaultArray.length !== 0 
-															? */}
-																<Select
-																	defaultValue={arrayColoresGen[0]}
-																	options={arrayColoresGen}
-																	styles={colourStyles}
-																	isSearchable={true}
-																	onChange={handleChangeColor}
-																	placeholder="Selecciona..."
-																/>
-																{/* : null} */}
-															</div>
-													</div>
-                          {/* <div className="show--group-select">
+                          </div>
+                          <div className="show--group-select">
                             <label className="show--text-label" htmlFor="talla">
                               Talla
                             </label>
@@ -375,29 +194,17 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
                               <option selected disabled>
                                 Selecciona la talla
                               </option>
-                              {talla?.length > 0 ? talla.map((tall) => (
-                                <option value={Object.values(tall)}>
-                                  {tall}
-                                </option>
-                              )): ''}
+                              {talla?.length > 0 ? (
+                                talla.map((tall) => (
+                                  <option value={Object.values(tall)}>
+                                    {tall}
+                                  </option>
+                                ))
+                              ) : (
+                                <option value="unica">Talla única</option>
+                              )}
                             </select>
-                          </div> */}
-													<div className="updprod-section">
-														<label className="show--text-label" htmlFor="talla">
-                              Talla
-                            </label>
-														{/* <SelectMultiple defaultArray={tallaNew} allSizes={arrayTallasGen} onChange={handleChangeTalla} /> */}
-														<Select
-															closeMenuOnSelect={false}
-															defaultValue={tallaNew}
-															name="colors"
-															options={arrayTallasGen}
-															styles={sizeStyles}
-															isSearchable={true}
-															placeholder='Selecciona...'
-															onChange={handleChangeTalla}
-														/> 
-													</div>
+                          </div>
                         </div>
                         <div className="show--container-cantidad">
                           <p className="show--text-label">Cantidad</p>
@@ -478,7 +285,7 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
                         <li>Quam aliquet et</li>
                         <li>Proin nulla lacus quam</li>
                       </ol> */}
-												<p className="show--text-description">{accesorios}</p>
+                      <p className="show--text-description">{accesorios}</p>
                       <div className="show--flex-desktop">
                         {/* <div>
                           <h5 className="show--ft-semibold">
@@ -491,8 +298,9 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
                         <div>
                           <h5 className="show--ft-semibold">Dimensiones</h5>
                           <p className="show--text-description">
-														{dimensiones?.largo} x {dimensiones?.ancho} x {dimensiones?.alto} cm
-													</p>
+                            {dimensiones?.largo} x {dimensiones?.ancho} x{" "}
+                            {dimensiones?.alto} cm
+                          </p>
                         </div>
                         {/* <div>
                           <h5 className="show--ft-semibold">
@@ -507,15 +315,13 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
                       <h5 className="show--ft-semibold">
                         Términos y condiciones
                       </h5>
-                      <p className="show--text-description">
-                        {terminos}
-                      </p>
+                      <p className="show--text-description">{terminos}</p>
                     </section>
-										<OtherProducts
-												productList={productList}
-                        category={categoria}
-                        id={idProducto}
-                      />
+                    <OtherProducts
+                      productList={productList}
+                      category={categoria}
+                      id={idProducto}
+                    />
                     {/* <section className="show--other-products">
                       <div className="box-title-otros-productos">
                         <div className="icon-title-video">
@@ -552,9 +358,9 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
       </AppLayout>
       <style jsx>
         {`
-					.container-select  {
-						width: 200px !important;
-					}
+          .container-select {
+            width: 200px !important;
+          }
           .input-amount {
             border: none;
             border: 1px solid #556ea1;
@@ -658,8 +464,8 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
 
           .show--ft-light {
             font-family: "mont-light" !important;
-						color: #5a5a5a;
-						text-decoration: none;
+            color: #5a5a5a;
+            text-decoration: none;
           }
 
           h5.show--ft-semibold,
@@ -668,7 +474,7 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
             font-size: 2rem;
             color: #5a5a5a;
             margin: 1.5rem 0;
-						text-decoration: none
+            text-decoration: none;
           }
 
           .show--box-main-proveedor ol {
@@ -1019,22 +825,27 @@ const DetallesID = ({ product, supplier, images, productList, productsQty, pages
 
 DetallesID.propTypes = {
   product: object.isRequired,
-	supplier: object.isRequired,
-	images: array.isRequired,	
+  supplier: object.isRequired,
+  images: array.isRequired,
 };
 
 export const getServerSideProps = async ({ query }) => {
-	const { id } = query;
-  const { producto, proveedor, imagenes }  = await getProductsById(id);
-	const { productosGeneral, totalDeProductos, pages } = await getProducts(null, producto?.categoria, 0, 4);
+  const { id } = query;
+  const { producto, proveedor, imagenes } = await getProductsById(id);
+  const { productosGeneral, totalDeProductos, pages } = await getProducts(
+    null,
+    producto?.categoria,
+    0,
+    4
+  );
 
-	if (!producto) {
+  if (!producto) {
     return {
       props: {
         product: {},
         supplier: {},
         images: [],
-				productList: [],
+        productList: [],
         productsQty: 0,
         pages: 0,
       },
@@ -1044,9 +855,9 @@ export const getServerSideProps = async ({ query }) => {
   return {
     props: {
       product: producto,
-			supplier: proveedor,
-			images: imagenes,
-			productList: productosGeneral,
+      supplier: proveedor,
+      images: imagenes,
+      productList: productosGeneral,
       productsQty: totalDeProductos,
       pages: pages,
     },

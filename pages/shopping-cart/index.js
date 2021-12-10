@@ -11,6 +11,7 @@ import { getTotalPrice } from "../../helpers/getTotalPrice";
 const shoppingCart = () => {
   const router = useRouter();
   const {
+    auth : { logged },
     ui: { cart = [] },
   } = useContext(YesmomContext);
   const [accept, setAccept] = useState(false);
@@ -19,7 +20,7 @@ const shoppingCart = () => {
   const subTotal = (totalPrice / 1.18).toFixed(2);
   const igv = (totalPrice - subTotal).toFixed(2);
 
-  console.log(totalPrice);
+
 
   const handleAccept = () => {
     setAccept((accept) => !accept);
@@ -27,10 +28,15 @@ const shoppingCart = () => {
 
   const handleStartCheckout = () => {
     if (accept) {
-      router.push("/checkout");
+      if(!logged){
+        router.push('/login?redirect_uri=checkout')
+      }else{
+        router.push("/checkout");
+      }
     }
   };
 
+  
   return (
     <AppLayout>
       <Head>

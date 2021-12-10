@@ -18,16 +18,16 @@ const CheckoutStep3 = ({ formValues, setSelected }) => {
           </div>
           <div className="checkout-identification-block__text-container">
             <p className="checkout-identification-block__text--font-size">
-              Email: {formValues.email}
+              Email: {/* {formValues.email} */}
             </p>
             <p className="checkout-identification-block__text--font-size">
-              Nombre: {formValues.name}
+              Nombre: {/* {formValues.name} */}
             </p>
             <p className="checkout-identification-block__text--font-size">
-              DNI: {formValues.identity}
+              DNI: {/* {formValues.identity} */}
             </p>
             <p className="checkout-identification-block__text--font-size">
-              Teléfono / Móvil: {formValues.phone}
+              Teléfono / Móvil: {/* {formValues.phone} */}
             </p>
           </div>
         </div>
