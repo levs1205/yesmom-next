@@ -19,11 +19,9 @@ import { getProfileInfo, updateProfileInfo } from "../../api/request";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import withReactContent from "sweetalert2-react-content";
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 import LoaderPage from "../../../components/LoaderPage";
 import YesmomContext from "../../../context/Context";
-import { setProducts, setCategories } from "../../../context/actions/ui";
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -40,6 +38,7 @@ const schemaValidator = yup.object().shape({
 });
 
 const index = ({ userInfo, token }) => {
+	console.log('userInfo',userInfo)
   const {	auth: { logged },	} = useContext(YesmomContext);
   const [loading, setLoading] = useState(true);
   const flagRef = useRef(true);
@@ -78,7 +77,6 @@ const index = ({ userInfo, token }) => {
     setMoreChildren(!moreChildren);
   };
 
-	console.log('selectionDATA',selection)
   //SUBMIT
   const submitForm = async (values) => {
     let formValues = {
@@ -115,7 +113,17 @@ const index = ({ userInfo, token }) => {
 				formValues.dateOfBirth
 			);
 				if (response?.result?.code === 200) {
-				Swal.fire('Actualizado', "Se actualizó correctamente su información.", "success")
+				Swal.fire(
+					'Actualizado',
+					'Se actualizó correctamente su información.',
+					 'success',
+				)
+				/* MySwal.fire({
+					position: "center",
+					icon: "success",
+					title: 'Actualizado',
+					text: 'Se actualizó correctamente su información.'
+				}); */
 			} else {
 				Swal.fire('Actualizado', "No se pudo actualizar su información.", "success")
 			}
@@ -372,10 +380,10 @@ const index = ({ userInfo, token }) => {
 														 	className="input-date"
 															type="date" 
 															name="dateOfBirth" 
-															defaultValue={selection.dateOfBirth !== null ? moment(selection.dateOfBirth).format("dd-mm-yyyy") : ''}
-															value={selection.dateOfBirth}
-															max={moment(Date.now()).subtract(1, "years").format("dd-mm-yyyy")}
-															min={moment(Date.now()).subtract(2, "years").format("dd-mm-yyyy")}
+															defaultValue={selection.dateOfBirth !== null ? moment(selection.dateOfBirth).format("YYYY-MM-DD") : ''}
+															value={moment(selection.dateOfBirth).format('YYYY-MM-DD')}
+															max={moment(Date.now()).subtract(1, "years").format("YYYY-MM-DD")}
+															min={moment(Date.now()).subtract(2, "years").format("YYYY-MM-DD")}
 															onChange={(e) => handleSelectionChange("dateOfBirth", e.target.value)}
 														/>
                           </div>
@@ -394,7 +402,7 @@ const index = ({ userInfo, token }) => {
 																	checked={selection.genderBaby === "F" && true}
 																	onClick={() => handleSelectionChange("genderBaby", "F")}
 																/>
-																<span>Si</span>
+																<span>Girl</span>
 															</label>
 														</div>
 														<div>
@@ -408,7 +416,7 @@ const index = ({ userInfo, token }) => {
 																	checked={selection.genderBaby === "M" && true}
 																	onClick={() => handleSelectionChange("genderBaby", "M")}
 																/>
-																<span>No</span>
+																<span>Boy</span>
 															</label>
 														</div>
                           </div>
@@ -594,7 +602,7 @@ const index = ({ userInfo, token }) => {
 						max-width: 670px;
             width: 100%;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             margin-top: 0.4rem;
 						gap: 1rem;
           }
@@ -864,7 +872,8 @@ const index = ({ userInfo, token }) => {
 };
 
 export const getServerSideProps = async ({ req, res }) => {
-  const response = await getProfileInfo(req?.cookies?.YesmomToken, "U");
+	console.log('token',req?.cookies?.TokenTest)
+  const response = await getProfileInfo(req?.cookies?.TokenTest, "U");
   if (response.CodigoRespuesta === "12") {
     return {
       props: {
@@ -876,7 +885,7 @@ export const getServerSideProps = async ({ req, res }) => {
   return {
     props: {
       userInfo: response,
-			token: req?.cookies?.YesmomToken
+			token: req?.cookies?.TokenTest
     },
   };
 };

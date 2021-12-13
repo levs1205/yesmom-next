@@ -11,7 +11,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import CardProduct from "../../../components/CardProduct";
 import YesmomContext from "../../../context/Context";
-import { startAddToCart } from "../../../context/actions/ui";
+import { startAddToCart, startRemoveProduct } from "../../../context/actions/ui";
 import OtherProducts from "../../../components/tienda/detalle/OtherProducts";
 import Select from "react-select";
 import { getProductsById, getProducts } from "../../api/request";
@@ -33,7 +33,7 @@ const DetallesID = ({
     color,
     talla,
     descripcion,
-    cantDisponible,
+    cantidadDisponible,
     precio,
     precioPromocional,
     proveedorId,
@@ -46,13 +46,17 @@ const DetallesID = ({
     terminos,
   } = product;
   //Disparador para state UI
-  const { dispatchUi } = useContext(YesmomContext);
+  const { dispatchUi, ui: { cart: cartContext } } = useContext(YesmomContext);
   const [disabled, setDisabled] = useState(true);
   const [amount, setAmount] = useState(0);
+	const [numberProductCart, setNumberProductCart] = useState(1);
+	const [sizeSelected, setSizeSelected] = useState(null)
+	const [colourSelected, setColourSelected] = useState(null)
 
   const handleAdd = () => {
-    if (cantDisponible > 0) {
-      setAmount((amount) => amount + 1);
+    /* if (cantidadDisponible > 0 && amount < cantidadDisponible && sizeSelected !== null && colourSelected !== null) { */
+		if (cantidadDisponible > 0 && sizeSelected !== null && colourSelected !== null) {
+      setAmount((amount) => amount += 1);
     }
   };
 
@@ -67,7 +71,7 @@ const DetallesID = ({
   };
 
   useEffect(() => {
-    if (amount === 0) {
+    if (amount === 0 || sizeSelected === null || colourSelected === null) {
       setDisabled(true);
     } else {
       setDisabled(false);
@@ -76,14 +80,67 @@ const DetallesID = ({
 
   //CART
   const handleAddCart = () => {
-    if (!disabled) {
-      /* console.log(product); */
-      const realProduct = {
-        ...product,
-        quantity: amount,
-      };
-      dispatchUi(startAddToCart(realProduct));
+    if (!disabled ) {
+      console.log('product',product);
+      console.log('cartContext',cartContext);
+			/* TODO: si hay item en l carrito */
+			if(cartContext?.length > 0 && cartContext !== undefined ) {
+				/* TODO: buscar si existe un obj con id igual */
+				let filterCart = cartContext.filter(cart => cart._id === product._id && cart?.colourSelected === colourSelected && cart?.sizeSelected === sizeSelected) || cartContext.filter(cart => cart._id === product._id) 
+				console.log('filterCart >>>',filterCart)
+				/* TODO:  si existe */
+				if(filterCart.length = 1) {
+					/* TODO:  si existe buscar si todo el objeto es igual*/
+					if( filterCart[0]?.colourSelected === colourSelected && filterCart[0]?.sizeSelected === sizeSelected ) {
+						console.log('filllll',filterCart[0]?.colourSelected === colourSelected && filterCart[0]?.sizeSelected === sizeSelected )
+						console.log('ING1',filterCart[0].idProductCart)
+						const realProduct = {
+							...product,
+							idProductCart: filterCart[0].idProductCart,
+							imagen: images[0].url,
+							quantity: filterCart[0].quantity + amount,
+							supplier: nombreTienda,
+							urlSupplier: nombreTiendaUrl,
+							sizeSelected: sizeSelected,
+							colourSelected: colourSelected
+						};
+						dispatchUi(startRemoveProduct(filterCart[0].idProductCart));
+						dispatchUi(startAddToCart(realProduct));
+					}else if( filterCart[0]?.colourSelected !== colourSelected || filterCart[0]?.sizeSelected !== sizeSelected ) {
+						const realProduct = {
+							...product,
+							idProductCart: cartContext?.length + 1 || 1,
+							imagen: images[0].url,
+							quantity: amount,
+							supplier: nombreTienda,
+							urlSupplier: nombreTiendaUrl,
+							sizeSelected: sizeSelected,
+							colourSelected: colourSelected
+						};
+						dispatchUi(startAddToCart(realProduct));
+					}else {
+						console.log('no coincide')
+					}
+				} else {
+					console.log('filterCart.length !== 1')
+				}
+			}else {
+				
+				const realProduct = {
+					...product,
+					idProductCart: cartContext?.length + 1 || 1,
+					imagen: images[0].url,
+					quantity: amount,
+					supplier: nombreTienda,
+					urlSupplier: nombreTiendaUrl,
+					sizeSelected: sizeSelected,
+					colourSelected: colourSelected
+				};
+				dispatchUi(startAddToCart(realProduct));
+			}
+			setAmount(0)
     }
+		console.log('---------------------------------------')
   };
 
   return (
@@ -162,13 +219,14 @@ const DetallesID = ({
                         </h6>
 
                         {/* <p className="show--text-description">{decripcion}</p> */}
-                        <p className="show--price">S/ {precio?.toFixed(2)}</p>
+                        <p className="show--price">S/ {precioPromocional ? precioPromocional?.toFixed(2) : precio?.toFixed(2)}</p>
+												{precioPromocional && <p className="show--price-dcto">S/ {precio?.toFixed(2)}</p>}
                         <div className="show--container-selects">
                           <div className="show--group-select">
                             <label className="show--text-label" htmlFor="talla">
                               Color
                             </label>
-                            <select id="color">
+                            <select id="color" onChange={(e) => setColourSelected(e.target.value)}>
                               <option selected disabled>
                                 Selecciona el color
                               </option>
@@ -190,13 +248,13 @@ const DetallesID = ({
                             <label className="show--text-label" htmlFor="talla">
                               Talla
                             </label>
-                            <select id="talla">
+                            <select id="talla" onChange={(e) => setSizeSelected(e.target.value)}>
                               <option selected disabled>
                                 Selecciona la talla
                               </option>
                               {talla?.length > 0 ? (
                                 talla.map((tall) => (
-                                  <option value={Object.values(tall)}>
+                                  <option value={tall}>
                                     {tall}
                                   </option>
                                 ))
@@ -224,6 +282,7 @@ const DetallesID = ({
                               type="number"
                               className="input-amount"
                               value={amount}
+															defaultValue={cantidadDisponible}
                               onChange={handleChange}
                               min={0}
                             />
@@ -543,6 +602,13 @@ const DetallesID = ({
             font-family: "mont-heavy" !important;
             color: #4b64a4;
             font-size: 3rem;
+          }
+					.show--price-dcto {
+            font-family: "mont-regular" !important;
+            /* color: #575650; */
+						color: #4b64a4;
+            font-size: 1.6rem;
+						text-decoration-line: line-through;
           }
 
           .show--container-selects {

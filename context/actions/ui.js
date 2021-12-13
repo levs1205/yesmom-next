@@ -76,3 +76,10 @@ export const startRemoveProduct = (id) => {
         payload : id
     }
 }
+
+export const searchProductCart = (id) => {
+	return {
+			type : types.searchProductCart,
+			payload : id
+	}
+}

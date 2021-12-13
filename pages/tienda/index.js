@@ -261,7 +261,7 @@ Product.propTypes = {
 };
 
 export const getServerSideProps = async () => {
-	const { productosGeneral, totalDeProductos, pages } = await getProducts(null,'all');
+	const { productosGeneral, totalDeProductos, pages } = await getProducts(null,'all',0,	10);
   const { response } = await getCategories();
 	/* localStorage.setItem('categories', response?.categories) */
 	
