@@ -1,5 +1,5 @@
 const baseUrl = 'http://localhost:3300';
-const baseUrlBA = 'http://localhost:3300';
+const baseUrlBA = 'http://localhost:3700';
 
 //let token = JSON.parse(window.localStorage.getItem("YesmomToken"));
 
@@ -11,26 +11,26 @@ export const getProducts = async (catSlug, category, skip, limit) => {
 	const num_skip = skip !== null && skip !== undefined ? `&skip=${skip}` : '';
 	const num_limit = limit !== null && limit !== undefined ? `&limit=${limit}` : '';
 
-	const response = await fetch(`${process.env.BASE_URL}/product/getbyuser?${category_slug}${category_name}${num_skip}${num_limit}`)
+	const response = await fetch(`${baseUrlBA}/product/getbyuser?${category_slug}${category_name}${num_skip}${num_limit}`)
 	return await response.json();
 };
 
 //? get summary data of product by id
 export async function getProductsById(id) {
-  const response = await fetch(`${process.env.BASE_URL}/product?id=${id}`);
+  const response = await fetch(`${baseUrlBA}/product?id=${id}`);
   return await response.json();
 }
 
 //* CATEGORIES
 //? get summary data of categories
 export async function getCategories() {
-  const response = await fetch(`${process.env.BASE_URL}/categorie/list`);
+  const response = await fetch(`${baseUrlBA}/categorie/list`);
   return await response.json();
 }
 
 //? get summary data of principal catecories
 export async function getPrincipalCategories() {
-  const response = await fetch(`${process.env.BASE_URL}/categorie/listprincipal`);
+  const response = await fetch(`${baseUrlBA}/categorie/listprincipal`);
   return await response.json();
 }
 
