@@ -20,7 +20,7 @@ const shoppingCart = () => {
   const subTotal = (totalPrice / 1.18).toFixed(2);
   const igv = (totalPrice - subTotal).toFixed(2);
 
-
+console.log(cart)
 
   const handleAccept = () => {
     setAccept((accept) => !accept);

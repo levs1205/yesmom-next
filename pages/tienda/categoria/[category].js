@@ -14,7 +14,7 @@ import { getProducts, getCategories } from "../../api/request";
 export async function getServerSideProps({ query }) {
   //Todos los productos
   const { category = "", sort = "" } = query;
-	const { productosGeneral, totalDeProductos, pages } = await getProducts(category, null);
+	const { productosGeneral, totalDeProductos, pages } = await getProducts(category, null,0,	10);
 	const { response } = await getCategories();
 
 	if (!productosGeneral) {

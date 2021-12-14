@@ -3,11 +3,11 @@ import React, { useContext } from "react";
 import { startRemoveProduct } from "../../context/actions/ui";
 import YesmomContext from "../../context/Context";
 
-const DetailItemCart = ({ id, nombre, imagen, noBorder, precio, quantity}) => {
+const DetailItemCart = ({ id, nombre, imagen, noBorder, precio, quantity, precioPromocional, supplier, sizeSelected, colourSelected, idProductCart }) => {
   const { dispatchUi } = useContext(YesmomContext);
 
   const handleRemoveProduct = () => {
-    dispatchUi(startRemoveProduct(id));
+    dispatchUi(startRemoveProduct(idProductCart));
   };
   return (
     <>
@@ -19,12 +19,13 @@ const DetailItemCart = ({ id, nombre, imagen, noBorder, precio, quantity}) => {
           <Image src="/image/cart/delete-icon.svg" width="20px" height="20px" />
         </div>
         <div className="card__block-first">
-          <img src={imagen[0]} alt="" className="card__img" />
+          <img src={imagen} alt="" className="card__img" />
           <div className="card__block-text">
             <p className="block-text__title">
-              COCHE DE BEBÉ + FUNDA - Blanco, 140cm x 100cm
+              {nombre}
             </p>
-            <p className="block-text__short-description">Modelo - Marca</p>
+            {/* <p className="block-text__short-description">Modelo - Marca</p> */}
+            <p className="block-text__short-description">{colourSelected} - {sizeSelected}</p>
             <select name="" id="" className="block-text__select">
               <option value="">Cantidad: {quantity}</option>
             </select>
@@ -37,9 +38,9 @@ const DetailItemCart = ({ id, nombre, imagen, noBorder, precio, quantity}) => {
               src="https://img.freepik.com/vector-gratis/plantilla-logotipo-bebe-detallada_23-2148776913.jpg?size=338&ext=jpg"
               alt=""
             />
-            <p className="block-store-text__text">Nombre de la tienda</p>
+            <p className="block-store-text__text">{supplier}</p>
           </div>
-          <p className="block-second__block-store-price">S/ {precio}</p>
+          <p className="block-second__block-store-price">S/ {precioPromocional ? precioPromocional?.toFixed(2) : precio?.toFixed(2)}</p>
         </div>
       </div>
       <style jsx>
