@@ -1,6 +1,8 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, useContext } from "react";
+import { object, array, number } from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
+import YesmomContext from "./../context/Context";
 import { Container, Row, Col, Card, CardDeck } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -10,36 +12,12 @@ import AppLayout from "../components/AppLayout";
 import CardBlog from "../components/CardBlog";
 import Head from "next/head";
 import CardProduct from "../components/CardProduct";
+import { getProducts, getCategories, getBlogs } from "./api/request";
+import { setProducts, setCategories } from "./../context/actions/ui";
+import { useRouter } from "next/router";
 
-// import clienteAxiosBusiness from "../config/axiosBusiness";
-import axios from "axios";
-// import fetch from 'isomorphic-fetch'
 
-const Home = ({ currentData , products}) => {
-  // console.log(currentData, "holis");
-  // const [currentData, setCurrentData] = useState([]);
-  // useEffect(() => {
-  //     blogHome();
-  //   }, []);
-  // const blogHome = async () => {
-  //   await axios
-  //     .get("http://localhost:5000/getBlogAll/user?limit=2")
-  //     .then((res) => {
-  //       if (res.data.MensajeRespuesta === "NO EXISTEN DATOS") {
-  //        setCurrentData([]);
-  //       } else {
-  //         setCurrentData(res.data);
-  //       }
-  //     })
-  //     .catch((e) => {
-  //       console.log(e, "error");
-  //     });
-  // };
-  /* const [respuesta, setRespuesta] = useState([]);
-  useEffect(async () => {
-    const consulta = await axios("https://fakestoreapi.com/products");
-    setRespuesta(consulta.data);
-  }, []); */
+const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }) => {
 
   return (
     <AppLayout>
@@ -376,15 +354,13 @@ const Home = ({ currentData , products}) => {
           <Container fluid="true">
             <Col>
               <div className="all-products">
-                {
-                  products.slice(0,4).map((product,i)=>(
-                    <CardProduct 
-                      key={i}
-                      {...product}
-                      size="4"
-                    />
-                  ))
-                }
+								{productList.length > 0
+                    ? productList
+                        .slice(0, 3)
+                        .map((product, i) => (
+                          <CardProduct key={i} {...product} />
+                        ))
+                    : <p>Se encontraron 0 productos</p>}
               </div>
             </Col>
             <Link href="/tienda">
@@ -429,17 +405,6 @@ const Home = ({ currentData , products}) => {
           </div>
           <Container fluid="true">
             <Row className="sin-margin container-sin-margin">
-              {/* <Col xs={12} md={6} lg={6} xl={6}>
-          <div className="box-img-blog-home">
-            <img src={lineasAzul1} alt="lineas" className="line-up-azul" />
-            <img
-              src={blog}
-              alt="imagen blog yesmom home"
-              className="img-blog"
-            />
-            <img src={lineasAzul2} alt="lineas" className="line-down-azul" />
-          </div>
-        </Col> */}
               <Col xs={12} md={12} lg={5} xl={5}>
                 <div className="box-true-history">
                   <div className="box-text-title">
@@ -473,10 +438,6 @@ const Home = ({ currentData , products}) => {
                           <a>Ver más</a>
                         </div>
                       </Link>
-
-                      {/* <a href="/blog" className="link-a d-block text-center mt-4">
-                Ver más &#8594;
-              </a> */}
                     </Container>
                   </div>
                 </div>
@@ -485,7 +446,7 @@ const Home = ({ currentData , products}) => {
                 <div className="box-blog-card-home">
                   <Container className="container-card-bolg">
                     <CardDeck>
-                      {currentData.map((cardBlog) => (
+                      {blogsList.map((cardBlog) => (
                         <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
                       ))}
                     </CardDeck>
@@ -1285,33 +1246,40 @@ const Home = ({ currentData , products}) => {
   );
 };
 
-export async function getServerSideProps(){
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=2`
-  console.log("**********",url);
-  const res = await fetch(
-    url
-  );
+Home.propTypes = {
+  productList: array.isRequired,
+  productsQty: number.isRequired,
+  pages: number,
+  categoryList: object.isRequired,
+  blogsList: object.isRequired,
+};
 
-  const currentData = await res.json();
+export const getServerSideProps = async () => {
+	const { productosGeneral, totalDeProductos, pages } = await getProducts(null,'all',0,	10);
+  const { response } = await getCategories();
+  const blogs = await getBlogs();
 
-  const response = await fetch(`http://localhost:3003/api/product/product`);
-  const products = await response.json();
-
-  if (!currentData) {
+  if (!productosGeneral) {
     return {
-      notFound: true,
+      props: {
+        productList: [],
+        productsQty: 0,
+        pages: 0,
+        categoryList: response,
+        blogsList: blogs,
+      },
     };
   }
-  // By returning { props: posts }, the Blog component
-  // will receive `posts` as a prop at build time
+
   return {
     props: {
-      currentData,
-      products
+      productList: productosGeneral,
+      productsQty: totalDeProductos,
+      pages: pages,
+      categoryList: response,
+      blogsList: blogs,
     },
   };
-}
+};
 
 export default Home;
