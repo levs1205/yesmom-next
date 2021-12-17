@@ -3,6 +3,14 @@ const baseUrlBA = 'http://localhost:3700';
 
 //let token = JSON.parse(window.localStorage.getItem("YesmomToken"));
 
+//* BLOGS
+//? get summary data of blogs
+export async function getBlogs() {
+  const response = await fetch(`${baseUrlBA}/getBlogAll/user?limit=2`);
+  return await response.json();
+}
+
+
 //* PRODUCTS
 //? get summary data of products
 export const getProducts = async (catSlug, category, skip, limit) => {
