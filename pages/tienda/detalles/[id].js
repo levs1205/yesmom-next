@@ -975,7 +975,7 @@ DetallesID.propTypes = {
 
 export const getServerSideProps = async ({ query }) => {
   const { id } = query;
-  const { producto, proveedor, imagenes } = await getProductsById(id);
+  const { producto, tienda, imagenes } = await getProductsById(id);
   const { productosGeneral, totalDeProductos, pages } = await getProducts(
     null,
     producto?.categoria,
@@ -999,7 +999,7 @@ export const getServerSideProps = async ({ query }) => {
   return {
     props: {
       product: producto,
-      supplier: proveedor,
+      supplier: tienda,
       images: imagenes,
       productList: productosGeneral,
       productsQty: totalDeProductos,

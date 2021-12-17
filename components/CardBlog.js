@@ -109,7 +109,7 @@ const CardBlog = ({ blog }) => {
             margin: auto;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
           }
           :global(.card-img img) {
             height: auto !important;
