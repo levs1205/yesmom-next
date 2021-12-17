@@ -16,9 +16,14 @@ import { getProducts, getCategories, getBlogs } from "./api/request";
 import { setProducts, setCategories } from "./../context/actions/ui";
 import { useRouter } from "next/router";
 
-
-const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }) => {
-
+const Home = ({
+  productList,
+  productsQty,
+  pages,
+  categoryList,
+  path,
+  blogsList,
+}) => {
   return (
     <AppLayout>
       <Head>
@@ -73,16 +78,16 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
         <section fluid="true" className="box-banner">
           <div className="banner view-desktop ">
             <div className="h-100">
-            {/* <Image */}
-            <img
-              src="/image/home/banner-home1.png"
-              alt="Picture of the author"
-              layout="responsive"
-              // width={500}
-              // height={245} 
-              width={'100%'}
-              height={'100%'}
-            />
+              {/* <Image */}
+              <img
+                src="/image/home/banner-home1.png"
+                alt="Picture of the author"
+                layout="responsive"
+                // width={500}
+                // height={245}
+                width={"100%"}
+                height={"100%"}
+              />
             </div>
           </div>
           <div className="banner view-mobile">
@@ -130,11 +135,7 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
               </p>
             </div>
           </div> */}
-
-
         </section>
-
-
 
         <div className="section-sorteo-home">
           <Container fluid="true">
@@ -353,13 +354,13 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
           <Container fluid="true">
             <Col>
               <div className="all-products">
-								{productList.length > 0
-                    ? productList
-                        .slice(0, 3)
-                        .map((product, i) => (
-                          <CardProduct key={i} {...product} />
-                        ))
-                    : <p>Se encontraron 0 productos</p>}
+                {productList.length > 0 ? (
+                  productList
+                    .slice(0, 3)
+                    .map((product, i) => <CardProduct key={i} {...product} />)
+                ) : (
+                  <p>Se encontraron 0 productos</p>
+                )}
               </div>
             </Col>
             <Link href="/tienda">
@@ -510,7 +511,7 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             object-position: center;
             height: 100%;
             position: absolute;
-            top:3rem
+            top: 3rem;
           }
           .ondas-banner {
             width: 1rem;
@@ -760,12 +761,14 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             display: flex;
             justify-content: center;
           }
-          {/* @media (max-width: 1200px) {
+           {
+            /* @media (max-width: 1200px) {
             .box-banner {
               height: 60vh;
               width: auto;
             }
-          } */}
+          } */
+          }
           @media (min-width: 1800px) {
             :global(.card-deck) {
               justify-content: center !important;
@@ -984,8 +987,8 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             .box-banner {
               height: 40rem;
             }
-            .box-text-title{
-              padding-top:3rem
+            .box-text-title {
+              padding-top: 3rem;
             }
             .all-products {
               width: 70%;
@@ -1208,7 +1211,12 @@ Home.propTypes = {
 };
 
 export const getServerSideProps = async () => {
-	const { productosGeneral, totalDeProductos, pages } = await getProducts(null,'all',0,	10);
+  const { productosGeneral, totalDeProductos, pages } = await getProducts(
+    null,
+    "all",
+    0,
+    10
+  );
   const { response } = await getCategories();
   const blogs = await getBlogs();
 
