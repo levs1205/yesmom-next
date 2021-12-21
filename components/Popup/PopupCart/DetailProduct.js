@@ -1,14 +1,14 @@
 import Image from "next/image";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { startRemoveProduct } from "../../../context/actions/ui";
 import YesmomContext from "../../../context/Context";
 
-const DetailProduct = ({id ,nombre , imagen , quantity , precio}) => {
+	const DetailProduct = ({ _id ,nombre , imagen , quantity , precio, precioPromocional, sizeSelected, colourSelected, idProductCart }) => {
 
   const { dispatchUi } = useContext(YesmomContext);
-  
+  console.log('idProductCart',idProductCart)
   const handleRemoveProduct = () => {
-    dispatchUi(startRemoveProduct(id));
+    dispatchUi(startRemoveProduct(idProductCart));
   };
 
   return (
@@ -26,12 +26,13 @@ const DetailProduct = ({id ,nombre , imagen , quantity , precio}) => {
                 height="20px"
               />
             </div>
-            <img src={imagen[0]} alt="" />
+            <img src={imagen} alt="imagen carrito" />
           </div>
         </div>
         <div className="card--shopping-cart__text">
           <p className="card--shopping-cart__title">{nombre}</p>
-          <p className="card--shopping-cart__price">S/{precio}</p>
+					<p className="card--shopping-cart__size-color">Talla: {sizeSelected} | Color: {colourSelected}</p>
+          <p className="card--shopping-cart__price">S/{precioPromocional ? precioPromocional?.toFixed(2) : precio?.toFixed(2)}</p>
           <p className="card--shopping-cart__quantity"> x {quantity}</p>
         </div>
       </div>
@@ -90,7 +91,15 @@ const DetailProduct = ({id ,nombre , imagen , quantity , precio}) => {
             font-style: normal;
             font-weight: 500;
             font-size: 12px;
-            line-height: 1.2rem;
+            line-height: 1rem;
+            text-align: left;
+          }
+          .card--shopping-cart__size-color {
+            font-family: "mont-regular";
+            font-style: normal;
+            font-weight: 500;
+            font-size: 11px;
+            line-height: 0.9rem;
             text-align: left;
           }
           .card--shopping-cart__price {
@@ -98,13 +107,14 @@ const DetailProduct = ({id ,nombre , imagen , quantity , precio}) => {
             font-style: normal;
             font-weight: bold;
             font-size: 14px;
-            line-height: 1.2rem;
+            line-height: 1rem;
             color: #4b64a4;
             text-align: center;
           }
           .card--shopping-cart__quantity{
               font-family:"mont-light";
               font-size:1.2rem;
+							line-height: 1rem;
           }
 
           @media (min-width: 1366px) {

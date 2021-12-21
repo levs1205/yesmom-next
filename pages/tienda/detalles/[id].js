@@ -11,7 +11,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import CardProduct from "../../../components/CardProduct";
 import YesmomContext from "../../../context/Context";
-import { startAddToCart } from "../../../context/actions/ui";
+import { startAddToCart, startRemoveProduct } from "../../../context/actions/ui";
 import OtherProducts from "../../../components/tienda/detalle/OtherProducts";
 import Select from "react-select";
 import { getProductsById, getProducts } from "../../api/request";
@@ -33,7 +33,7 @@ const DetallesID = ({
     color,
     talla,
     descripcion,
-    cantDisponible,
+    cantidadDisponible,
     precio,
     precioPromocional,
     proveedorId,
@@ -46,13 +46,29 @@ const DetallesID = ({
     terminos,
   } = product;
   //Disparador para state UI
-  const { dispatchUi } = useContext(YesmomContext);
+  const { dispatchUi, ui: { cart: cartContext } } = useContext(YesmomContext);
   const [disabled, setDisabled] = useState(true);
   const [amount, setAmount] = useState(0);
+	const [numberProductCart, setNumberProductCart] = useState(1);
+	const [sizeSelected, setSizeSelected] = useState(null)
+	const [colourSelected, setColourSelected] = useState(null)
+	const [listSize, setListSize] = useState([])
 
+	let arrayColoresGen = [
+		{ value: 'verde', label: 'verdes', color: 'green' },
+		{ value: 'morado', label: 'morado', color: '#8512BE' },
+		{ value: 'turqueza', label: 'turqueza', color: '#87E4EC' },
+		{ value: 'rosado', label: 'rosado', color: 'pink' },
+		{ value: 'amarillo', label: 'amarillo', color: '#F9EB37' },
+		{ value: 'anaranjado', label: 'anaranjado', color: '#FF8C00' },
+		{ value: 'rojo', label: 'rojo', color: '#FF0000' },
+		{ value: 'azul', label: 'azul', color: '#0000CD' }
+	];
+console.log('talla',talla)
   const handleAdd = () => {
-    if (cantDisponible > 0) {
-      setAmount((amount) => amount + 1);
+    /* if (cantidadDisponible > 0 && amount < cantidadDisponible && sizeSelected !== null && colourSelected !== null) { */
+		if (cantidadDisponible > 0 && sizeSelected !== null && colourSelected !== null) {
+      setAmount((amount) => amount += 1);
     }
   };
 
@@ -67,7 +83,12 @@ const DetallesID = ({
   };
 
   useEffect(() => {
-    if (amount === 0) {
+		let	optionsSize= talla.map(t => ({
+      "value" : t,
+      "label" : t,
+    }))
+		setListSize(optionsSize)
+    if (amount === 0 || sizeSelected === null || colourSelected === null) {
       setDisabled(true);
     } else {
       setDisabled(false);
@@ -76,15 +97,206 @@ const DetallesID = ({
 
   //CART
   const handleAddCart = () => {
-    if (!disabled) {
-      /* console.log(product); */
-      const realProduct = {
-        ...product,
-        quantity: amount,
-      };
-      dispatchUi(startAddToCart(realProduct));
+    if (!disabled ) {
+			//* NOTE: si hay item en l carrito 
+			if(cartContext?.length > 0 && cartContext !== undefined ) {
+				//* NOTE: buscar si existe un obj con id igual 
+				let filterCart = cartContext.filter(cart => cart._id === product._id && cart?.colourSelected === colourSelected && cart?.sizeSelected === sizeSelected) || cartContext.filter(cart => cart._id === product._id) 
+				//* NOTE:  si existe 
+				if(filterCart.length = 1) {
+					//* NOTE:  si existe buscar si todo el objeto es igual
+					if( filterCart[0]?.colourSelected === colourSelected && filterCart[0]?.sizeSelected === sizeSelected ) {
+						const realProduct = {
+							...product,
+							idProductCart: filterCart[0].idProductCart,
+							imagen: images[0].url,
+							quantity: filterCart[0].quantity + amount,
+							supplier: nombreTienda,
+							urlSupplier: nombreTiendaUrl,
+							sizeSelected: sizeSelected,
+							colourSelected: colourSelected
+						};
+						dispatchUi(startRemoveProduct(filterCart[0].idProductCart));
+						dispatchUi(startAddToCart(realProduct));
+					}else if( filterCart[0]?.colourSelected !== colourSelected || filterCart[0]?.sizeSelected !== sizeSelected ) {
+						const realProduct = {
+							...product,
+							idProductCart: cartContext?.length + 1 || 1,
+							imagen: images[0].url,
+							quantity: amount,
+							supplier: nombreTienda,
+							urlSupplier: nombreTiendaUrl,
+							sizeSelected: sizeSelected,
+							colourSelected: colourSelected
+						};
+						dispatchUi(startAddToCart(realProduct));
+					}else {
+						console.log('-')
+					}
+				} else {
+					console.log('-')
+				}
+			}else {
+				
+				const realProduct = {
+					...product,
+					idProductCart: cartContext?.length + 1 || 1,
+					imagen: images[0].url,
+					quantity: amount,
+					supplier: nombreTienda,
+					urlSupplier: nombreTiendaUrl,
+					sizeSelected: sizeSelected,
+					colourSelected: colourSelected
+				};
+				dispatchUi(startAddToCart(realProduct));
+			}
+			setAmount(0)
     }
+		console.log('---------------------------------------')
   };
+
+	const handleChangeColor = selectedOptionColor => {
+		setColourSelected( selectedOptionColor.label );
+	};
+
+	const handleChangeTalla = selectedOptionTalla => {
+		setSizeSelected( selectedOptionTalla.label );
+	};
+
+
+	const dot = (color = 'transparent') => ({
+		alignItems: 'center',
+		display: 'flex',
+		':before': {
+			backgroundColor: color,
+			borderRadius: 10,
+			content: '" "',
+			display: 'block',
+			marginRight: 8,
+			height: 12,
+			width: 12,
+		},
+	});
+  const colourStyles = {
+    control: (styles) => ({
+			...styles,  
+			backgroundColor: "white",
+			borderColor: "#556EA1",
+			color: "#556EA1",
+			borderRadius: "20px",
+			width: "200px",
+			fontFamily: "mont-regular",
+			fontSize: '14px',
+			outline: 'none',
+			padding: '3px 8px',
+			boxShadow: 'none',
+			':hover': {
+				borderColor: '#556EA1',
+				boxShadow: 'none'
+			}, 
+		}),
+		option: (styles, { data, isSelected }) => {
+			return {
+				...styles,
+				...dot(data.value),
+				fontSize: '14px',
+				lineHeight: '20px',
+				height: '4.5rem',
+				color: "#556EA1",
+				padding: '0px 8px 0px 12px',
+				transition: 'all 0.6s ease',
+				backgroundColor: isSelected
+				? "#556EA1"
+				: "#FFFFFF",
+				color: isSelected
+				? "#FFFFFF": "#556EA1",
+				':active': {
+					...styles[':active'],
+					backgroundColor: 
+						 isSelected
+							? "#556EA1"
+							: "#556EA120",
+					color: 
+							isSelected
+							 ? "#FFFFFF"
+							 : "#5a5a5a"
+					 
+				},
+				':hover': {
+					backgroundColor: '#1d5bd915',
+					color: "#556EA1"
+				}, 
+			};
+		},
+		input: (styles) => ({ ...styles }),
+		placeholder: (styles) => ({ ...styles }),
+		singleValue: (styles, { data }) => ({ 
+			...styles, 
+			...dot(data.value),
+			color: '#5a5a5a', 
+			padding: '5px 8px',
+		}),
+  };
+
+	const sizeStyles = {
+    control: (styles) => ({
+      ...styles,
+      backgroundColor: "white",
+			borderColor: "#556EA1",
+			color: "#556EA1",
+			borderRadius: "20px",
+			width: "200px",
+			fontFamily: "mont-regular",
+			fontSize: '14px',
+			outline: 'none',
+			padding: '3px 8px',
+			boxShadow: 'none',
+			':hover': {
+				borderColor: '#556EA1',
+				boxShadow: 'none'
+			}, 
+    }),
+		option: (styles, { isSelected }) => {
+			return {
+				...styles,
+				fontSize: '14px',
+				lineHeight: '20px',
+				height: '4.5rem',
+				color: "#556EA1",
+				padding: '10px 8px 0px 20px',
+				transition: 'all 0.6s ease',
+				backgroundColor: isSelected
+				? "#556EA1"
+				: "#FFFFFF",
+				color: isSelected
+				? "#FFFFFF": "#556EA1",
+				':active': {
+					...styles[':active'],
+					backgroundColor: 
+						 isSelected
+							? "#556EA1"
+							: "#556EA120",
+					color: 
+							isSelected
+							 ? "#FFFFFF"
+							 : "#5a5a5a"
+					 
+				},
+				':hover': {
+					backgroundColor: '#1d5bd915',
+					color: "#556EA1"
+				}, 
+			};
+		},
+		input: (styles) => ({ ...styles }),
+		placeholder: (styles) => ({ ...styles }),
+		singleValue: (styles) => ({ 
+			...styles, 
+			bcolor: '#5a5a5a', 
+			padding: '0 8px',
+		}),
+  };
+
 
   return (
     <>
@@ -162,48 +374,32 @@ const DetallesID = ({
                         </h6>
 
                         {/* <p className="show--text-description">{decripcion}</p> */}
-                        <p className="show--price">S/ {precio?.toFixed(2)}</p>
+                        <p className="show--price">S/ {precioPromocional ? precioPromocional?.toFixed(2) : precio?.toFixed(2)}</p>
+												{precioPromocional && <p className="show--price-dcto">S/ {precio?.toFixed(2)}</p>}
                         <div className="show--container-selects">
                           <div className="show--group-select">
                             <label className="show--text-label" htmlFor="talla">
                               Color
                             </label>
-                            <select id="color">
-                              <option selected disabled>
-                                Selecciona el color
-                              </option>
-                              {color?.length > 0 ? (
-                                color.map((col) => (
-                                  <option
-                                    value={col.name}
-                                    selected={col === color && "selected"}
-                                  >
-                                    {col.name}
-                                  </option>
-                                ))
-                              ) : (
-                                <option value="unica">Estampado</option>
-                              )}
-                            </select>
+														<Select
+															options={color}
+															styles={colourStyles}
+															isSearchable={true}
+															onChange={handleChangeColor}
+															placeholder="Selecciona color"
+														/>
                           </div>
                           <div className="show--group-select">
                             <label className="show--text-label" htmlFor="talla">
                               Talla
                             </label>
-                            <select id="talla">
-                              <option selected disabled>
-                                Selecciona la talla
-                              </option>
-                              {talla?.length > 0 ? (
-                                talla.map((tall) => (
-                                  <option value={Object.values(tall)}>
-                                    {tall}
-                                  </option>
-                                ))
-                              ) : (
-                                <option value="unica">Talla única</option>
-                              )}
-                            </select>
+														<Select
+															options={listSize}
+															styles={sizeStyles}
+															isSearchable={true}
+															onChange={handleChangeTalla}
+															placeholder="Selecciona talla"
+														/>
                           </div>
                         </div>
                         <div className="show--container-cantidad">
@@ -224,6 +420,7 @@ const DetallesID = ({
                               type="number"
                               className="input-amount"
                               value={amount}
+															defaultValue={cantidadDisponible}
                               onChange={handleChange}
                               min={0}
                             />
@@ -272,29 +469,8 @@ const DetallesID = ({
                       <p className="show--text-description">{descripcion}</p>
 
                       <h5 className="show--ft-semibold">Accesorios</h5>
-                      {/* <ol>
-                        <li>haretra, sit volutpat varius</li>
-                        <li>
-                          Sed sit urna euismod
-                          <ul>
-                            <li>Viverra nunc turpis</li>
-                            <li>Nulla at et venenatis vitae</li>
-                            <li>Facilisis fringilla</li>
-                          </ul>
-                        </li>
-                        <li>Quam aliquet et</li>
-                        <li>Proin nulla lacus quam</li>
-                      </ol> */}
                       <p className="show--text-description">{accesorios}</p>
                       <div className="show--flex-desktop">
-                        {/* <div>
-                          <h5 className="show--ft-semibold">
-                            Pais de producción
-                          </h5>
-                          <p className="show--text-description">
-                            Pharetra, sit volutpat varius
-                          </p>
-                        </div> */}
                         <div>
                           <h5 className="show--ft-semibold">Dimensiones</h5>
                           <p className="show--text-description">
@@ -302,14 +478,6 @@ const DetallesID = ({
                             {dimensiones?.alto} cm
                           </p>
                         </div>
-                        {/* <div>
-                          <h5 className="show--ft-semibold">
-                            Material de producto
-                          </h5>
-                          <p className="show--text-description">
-                            Pharetra, sit volutpat varius
-                          </p>
-                        </div> */}
                       </div>
 
                       <h5 className="show--ft-semibold">
@@ -322,33 +490,6 @@ const DetallesID = ({
                       category={categoria}
                       id={idProducto}
                     />
-                    {/* <section className="show--other-products">
-                      <div className="box-title-otros-productos">
-                        <div className="icon-title-video">
-                          <FontAwesomeIcon
-                            icon={faStar}
-                            className="cl-yellow heartbeat"
-                          ></FontAwesomeIcon>
-                        </div>
-                        <div className="title-fuxia">
-                          Otros productos
-                          <br className="hide-desktop" /> que te pueden
-                          interesar
-                        </div>
-                        <div className="icon-title-video">
-                          <FontAwesomeIcon
-                            icon={faStar}
-                            className="cl-yellow heartbeat"
-                          ></FontAwesomeIcon>
-                        </div>
-                      </div>
-
-                      <OtherProducts
-												productList={productList}
-                        category={categoria}
-                        id={idProducto}
-                      />
-                    </section> */}
                   </div>
                 </div>
               </div>
@@ -544,10 +685,19 @@ const DetallesID = ({
             color: #4b64a4;
             font-size: 3rem;
           }
+					.show--price-dcto {
+            font-family: "mont-regular" !important;
+            /* color: #575650; */
+						color: #4b64a4;
+            font-size: 1.6rem;
+						text-decoration-line: line-through;
+          }
 
           .show--container-selects {
             margin: 1rem 0;
             display: flex;
+						flex-direction: column;
+						max-width: 440px;
           }
 
           .show--group-select {
@@ -555,10 +705,14 @@ const DetallesID = ({
             display: flex;
             flex-direction: column;
           }
+          .show--group-select > div {
+            width: auto;
+          }
 
           .show--group-select select {
             cursor: pointer;
-            width: calc(100% - 1rem);
+            width: 22rem;
+						height: 4.5rem;
             padding: 1rem;
             border: 1px solid #556ea1;
             box-sizing: border-box;
@@ -666,7 +820,9 @@ const DetallesID = ({
               justify-content: center;
               align-items: center;
             }
-
+						.show--container-selects {
+							flex-direction: row;
+						}
             .show--all-content {
               width: 45rem;
             }
@@ -732,10 +888,6 @@ const DetallesID = ({
             .bg-yellow {
               background: #febf41;
             }
-            .show--group-select select {
-              width: 60%;
-              font-size: 1.3rem;
-            }
           }
 
           @media (min-width: 1024px) {
@@ -791,10 +943,6 @@ const DetallesID = ({
               margin-left: 1rem;
             }
 
-            .show--group-select select {
-              font-size: 1.5rem;
-              padding: 1.5rem;
-            }
             .btn-detalle {
               margin: 0;
               width: 100%;
@@ -802,10 +950,6 @@ const DetallesID = ({
             .show--group-select {
               display: flex;
               flex-direction: column;
-            }
-            .show--group-select select {
-              width: 85%;
-              font-size: 1.3rem;
             }
           }
 
@@ -831,7 +975,7 @@ DetallesID.propTypes = {
 
 export const getServerSideProps = async ({ query }) => {
   const { id } = query;
-  const { producto, proveedor, imagenes } = await getProductsById(id);
+  const { producto, tienda, imagenes } = await getProductsById(id);
   const { productosGeneral, totalDeProductos, pages } = await getProducts(
     null,
     producto?.categoria,
@@ -855,7 +999,7 @@ export const getServerSideProps = async ({ query }) => {
   return {
     props: {
       product: producto,
-      supplier: proveedor,
+      supplier: tienda,
       images: imagenes,
       productList: productosGeneral,
       productsQty: totalDeProductos,

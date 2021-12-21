@@ -25,15 +25,15 @@ function CustomButton({outline , children, fxClick, type}) {
                     p{
                         margin:0;
                         text-align:center;
-                        font-family:"omnes-regular";
+                        font-family:"omnes-bold";
                         font-weight:500;
                         color:${outline ? "#EC608D" : "#FFFFFF"};
-                        font-size:2.3rem; 
+                        font-size:2rem; 
                     }
 
                     /**WARNING */
                     :global(.swal2-title){
-                        padding-top:5rem!important;
+                        padding-top:2.5rem!important;
                     }
                     :global(.title-warning){
                         font-family:"mont-semibold"!important;
@@ -66,9 +66,11 @@ function CustomButton({outline , children, fxClick, type}) {
                     }
                     :global(.swal2-actions){
                         flex-direction:column;
+												min-width: 10rem;
                     }
                     :global(.swal2-styled.swal2-confirm){
                         background-color:#EC608D!important;
+												font-family:"omnes-regular"!important;
                     }
                     :global(.swal2-styled.swal2-cancel){
                         border :1px solid #EC608D!important;
@@ -76,17 +78,17 @@ function CustomButton({outline , children, fxClick, type}) {
                         color:#EC608D!important;
                     }
                     :global(.swal2-styled.swal2-cancel ,.swal2-styled.swal2-confirm ){
-                        width:80%;
+                        width:100%;
                         cursor:pointer!important;
-                        border-radius: 30px!important;
+                        border-radius: 15px;
                         padding: 1rem 0!important;
                         padding: 1rem 0!important;
                         transition:0.3s ease-in-out!important;
 
                         text-align:center!important;
-                        font-family:"omnes-regular"!important;
+                        font-family:"omnes-bold"!important;
                         font-weight:500!important;
-                        font-size:2.3rem!important;
+                        font-size:1.7rem!important;
                     }
                     /** */
 
@@ -107,7 +109,7 @@ function CustomButton({outline , children, fxClick, type}) {
                         /**WARNING */
                         :global(.swal2-popup){
                             width:50rem!important;
-                            height:25rem!important;
+                            height:27.5rem!important;
                         }
                         :global(.title-warning){
                             font-family:"mont-semibold"!important;
@@ -130,7 +132,7 @@ function CustomButton({outline , children, fxClick, type}) {
                         }
                         
                         :global(.swal2-styled.swal2-cancel ,.swal2-styled.swal2-confirm ){
-                            width:19%;
+														width:100%;
                             padding:1.5rem 0!important;
                             border-radius:15px!important;
                             font-family:"omnes-bold"!important;
