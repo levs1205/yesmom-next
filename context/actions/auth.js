@@ -45,6 +45,11 @@ export const startLoginWithGoogle = async ( values ) => {
             // return { token : tokenId}
         }
 
+        if(data?.codigoRespuesta === '11'){
+            alert('Error');
+            return {}
+        }
+
     }catch(error){
         console.log(error);
         alert('Error');

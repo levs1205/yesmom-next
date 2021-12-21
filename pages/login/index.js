@@ -108,6 +108,7 @@ const index = ( ) => {
     const { token } = await startLoginWithFacebook(data);
     if(token){
       dispatchAuth( startLogin({ token }))
+      redirectLogged();
     }
 
   }
