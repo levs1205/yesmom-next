@@ -24,6 +24,15 @@ export const getProducts = async (catSlug, category, skip, limit) => {
 	const response = await fetch(`${baseUrlBA}/product/getbyuser?${category_slug}${category_name}${num_skip}${num_limit}`)
 	return await response.json();
 };
+//? get summary data of products by url store
+export const getProductsByUrlStore = async (storeSlug, skip, limit) => {
+	const store_slug = storeSlug !== null ? `nombreTiendaUrl=${storeSlug}` : '';
+	const num_skip = skip !== null && skip !== undefined ? `&skip=${skip}` : '';
+	const num_limit = limit !== null && limit !== undefined ? `&limit=${limit}` : '';
+
+	const response = await fetch(`${baseUrlBA}/product/getbyuser?${store_slug}${num_skip}${num_limit}`)
+	return await response.json();
+};
 
 //? get summary data of product by id
 export async function getProductsById(id) {
