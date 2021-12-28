@@ -1,7 +1,5 @@
-// const baseUrl = 'http://localhost:3300';
-const baseUrl = process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY;
-// const baseUrlBA = 'http://localhost:3700';
-const baseUrlBA = process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS;
+const baseUrl = 'http://localhost:3300';
+const baseUrlBA = 'http://localhost:3700';
 
 //let token = JSON.parse(window.localStorage.getItem("YesmomToken"));
 
