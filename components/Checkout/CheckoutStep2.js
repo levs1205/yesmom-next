@@ -1,10 +1,34 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import LoaderPage from "../LoaderPage";
 
 const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) => {
 
 
+  const [ locations , setLocations ] = useState([]);
   const { email , name , identity , phone } = watch();
+
+  const getLocations = async () => {
+    try{
+      
+      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/sale/locations`);
+      if(data?.response?.ok){
+        const makeLocations = data.response.locations.map( ({_id , descripcion}) => ({ id : _id , descripcion}) );
+        setLocations(makeLocations); 
+      }
+    }catch(err){
+      console.log(err);
+      setLocations([]);
+    }
+  }
+
+
+  useEffect(()=>{
+    getLocations();
+
+    return () => setLocations([])
+  },[])
+
 
   return (
     <>
@@ -48,7 +72,7 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
             2. Datos para la entrega:
           </p>
         </div>
-        <label for="calle" className="checkout-location-form__label">
+        <label htmlFor="calle" className="checkout-location-form__label">
           Av/Jirón/Calle: <span className="ml-4"> EJM : * Jr. Los Valles</span>
         </label>
         <input
@@ -61,7 +85,7 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
         <p className="msg-error">{errors?.calle?.message}</p>
       </div>
       <div className="checkout-location-form__wrapper">
-        <label for="numero" className="checkout-location-form__label">
+        <label htmlFor="numero" className="checkout-location-form__label">
           Nro.: <span className="ml-4"> EJM : * Jr. 205</span>
         </label>
         <input
@@ -74,7 +98,7 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
         <p className="msg-error">{errors?.numero?.message}</p>
       </div>
       <div className="checkout-location-form__wrapper">
-        <label for="identity" className="checkout-location-form__label">
+        <label htmlFor="identity" className="checkout-location-form__label">
           Interior:
         </label>
         <input
@@ -87,7 +111,7 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
         <p className="msg-error">{errors?.interior?.message}</p>
       </div>
       <div className="checkout-location-form__wrapper">
-        <label for="direccion" className="checkout-location-form__label">
+        <label htmlFor="direccion" className="checkout-location-form__label">
           Referencia de Dirección*:
         </label>
         <input
@@ -111,7 +135,7 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
           <option value="">sds</option> */}
         </select>
       </div>
-      <div className="checkout-location-form__wrapper">
+      {/* <div className="checkout-location-form__wrapper">
         <p className="checkout-location-form__label">Provincia</p>
         <select 
           name="provincia" 
@@ -120,10 +144,8 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
           { ...register('provincia')}
         >
           <option value="lima" selected>Lima</option>
-          {/* <option value="">sdsdsd</option>
-          <option value="">sds</option> */}
         </select>
-      </div>
+      </div> */}
       <div className="checkout-location-form__wrapper">
         <p className="checkout-location-form__label">Distrito</p>
         <select 
@@ -131,10 +153,14 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
           id="distrito" 
           className="checkout-location-form__select"
           {...register('distrito')}
+          defaultValue="Lima"
         >
-          <option value="">sdssd</option>
-          <option value="">sdsdsd</option>
-          <option value="">sds</option>
+          {
+            locations.length>0 && locations.map( loc =>(
+              <option key={loc.id} value={loc.descripcion}>{loc.descripcion}</option>
+            ))
+          }
+
         </select>
       </div>
       <div className="checkout-location-form__wrapper">
@@ -147,8 +173,9 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
             type="radio"
             id="f-option"
             name="selector"
+            {...register('recibePedido')}
           />
-          <label className="checkout-location-form__label-radio" for="f-option">
+          <label className="checkout-location-form__label-radio" htmlFor="f-option">
             Yo
           </label>
           <input
@@ -156,14 +183,16 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
             type="radio"
             id="f-option2"
             name="selector"
+            {...register('recibePedido')}
           />
           <label
             className="checkout-location-form__label-radio"
-            for="f-option2"
+            htmlFor="f-option2"
           >
             Otra persona
           </label>
         </div>
+        <p className="msg-error">{errors?.recibePedido?.message && 'Campo obligatorio'}</p>
       </div>
       <style jsx>
         {`
