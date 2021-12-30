@@ -1,9 +1,10 @@
 import React from "react";
 
-const CheckoutStep3 = ({ formValues, setSelected , watch , register }) => {
+const CheckoutStep4 = ({ formValues, setSelected , infoDatos , infoEntrega , register }) => {
 
 
-  const {calle , numero, interior, referencia, departamento, provincia, distrito } = watch();
+  const { email , name , identity , phone } = infoDatos();
+  const {calle , numero, interior, referencia, distrito } = infoEntrega();
   return (
     <>
       <div className="fade-in animated checkout-identification-block">
@@ -21,16 +22,16 @@ const CheckoutStep3 = ({ formValues, setSelected , watch , register }) => {
           </div>
           <div className="checkout-identification-block__text-container">
             <p className="checkout-identification-block__text--font-size">
-              Email: {/* {formValues.email} */}
+              Email: {email}
             </p>
             <p className="checkout-identification-block__text--font-size">
-              Nombre: {/* {formValues.name} */}
+              Nombre: {name}
             </p>
             <p className="checkout-identification-block__text--font-size">
-              DNI: {/* {formValues.identity} */}
+              DNI: {identity}
             </p>
             <p className="checkout-identification-block__text--font-size">
-              Teléfono / Móvil: {/* {formValues.phone} */}
+              Teléfono / Móvil: {phone}
             </p>
           </div>
         </div>
@@ -491,4 +492,4 @@ const CheckoutStep3 = ({ formValues, setSelected , watch , register }) => {
   );
 };
 
-export default CheckoutStep3;
+export default CheckoutStep4;

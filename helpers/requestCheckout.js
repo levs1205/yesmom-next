@@ -12,7 +12,7 @@ export const generateDelivery = async (dir) => {
         const direccion = makeAddres( dir );
         const body = {
             direccion,
-            fecha :"2021-12-30",
+            fecha :"2021-12-31",
             productos: [
                 {
                     id: "6196dcc179dc97768a8ff805",
@@ -49,6 +49,60 @@ export const generateDelivery = async (dir) => {
         return { 
             ok : false,
             data : null
+         }
+    }
+}
+
+export const generateSale = async () => {
+    try{
+        const axiosInstance = axios.create({
+            baseURL : 'http://localhost:3700'
+        })
+
+        const body = {
+            direccion : "Jr Piura 1155 Miraflores, Lima",
+            contacto : "969670765",
+            recibe : "Lincoln Vs",
+            fecha : "2021-12-31",
+            adicional : "",
+            productos : [
+                {
+                    id: "6196dcc179dc97768a8ff805",
+                    cantidad: 2,
+                    color: "azul",
+                    talla: "xl"
+                },
+                {
+                    id : "6196dcc179dc97768a8ff835",
+                    cantidad : 2,
+                    color : "rojo",
+                    talla : "l"
+                },
+                {
+                    id : "6196dcc179dc97768a8ff85c",
+                    cantidad : 3,
+                    color : "azul",
+                    talla : "xxl"
+                }
+            ]
+        }
+
+        const { data } = await axiosInstance.post('/sale' , body )
+
+
+        if(data?.response?.ok){
+            return { 
+                ok : true,
+                idPreference : data?.response?.idPreference
+             }
+        }else{
+            throw new Error('Error inesperado')
+        }
+        
+    }catch(err){
+        return { 
+            ok : false,
+            idPreference : null
          }
     }
 }

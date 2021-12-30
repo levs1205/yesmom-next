@@ -15,7 +15,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import YesmomContext from "../../context/Context";
 import { useRouter } from "next/router";
-import { generateDelivery } from "../../helpers/requestCheckout";
+import { generateDelivery, generateSale } from "../../helpers/requestCheckout";
 import { makeDelivery } from "../../context/actions/sale";
 import LoaderPage from "../../components/LoaderPage";
 import { startValidateToken } from "../../helpers/validateToken";
@@ -45,9 +45,14 @@ const schemaSecond = yup.object().shape({
 
 
 
+
+
 const Checkout = () => {
 
-  const router = useRouter();
+  const mp = new MercadoPago(process.env.NEXT_PUBLIC_MERCADO_PAGO_PUBLIC_KEY,{
+    locale : 'es-PE'
+  })
+  
   const  { auth : { logged } , dispatchSale } = useContext(YesmomContext);
   const [selected, setSelected] = useState(0);
   const [ checking , setChecking] = useState(false);
@@ -63,29 +68,22 @@ const Checkout = () => {
   const { register : register_3, handleSubmit : handleSubmit_3, formState: formState_3,reset_3 } = useForm({})
 
 
-  const submitTest = (data) => {
-  //   setData(data)
-  }
 
-  const submitForm = async() => {
+  const initSale = async() => {
 
-    const data = {
-      "quantity" : 50,
-      "description" : "Esto es una prueba",
-      "price" : 1
-  };
-    const response = await fetch('http://localhost:8080/create_preference',{
-      method: "POST",
-      headers: {
-          "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    try{
 
+      setChecking(true);
+      const { ok , idPreference } = await generateSale();
+      setChecking(false);
+      if(ok){
+        setIdPreference(idPreference);
+      }
+      
+    }catch(err){
+      console.log(err);
+    }
 
-    const { id } = await response.json();
-    setIdPreference(id);
-    console.log(id);
   };
 
   const handleSelection = async ( data ) => {
@@ -118,43 +116,39 @@ const Checkout = () => {
       },[300])
       setSelected( selected => selected + 1);
     } else {
-      submitForm();
+      initSale();
     }
   };
 
+  const openMercadoPago = () => {
+    try{
+      if (idPreference?.length > 0 ) {
+        //Intentar conexion mercado pago
+        console.log(idPreference);
+        const checkout = mp.checkout({
+  
+          preference : {
+            id: idPreference
+          },
+          theme: {
+            elementsColor: '#ec608d',
+          },
+        })
+        setTimeout(() => {
+          checkout.open();
+        }, 2000);
+        
+      }
+    }catch(err){
+      console.log(err);
+    }
+  }
 
 
   useEffect(()=>{
-    if (idPreference) {
-      const mp = new MercadoPago('TEST-00e86e9f-751f-42c9-a278-7a9f97340aa8',{
-        locale : 'es-PE'
-      })
-      console.log(mp);
-      console.log(idPreference);
 
-      const checkout = mp.checkout({
-        preference : {
-          id: idPreference
-        },
-        theme: {
-          elementsColor: '#ec608d'
-        }
-      })
-      setTimeout(() => {
-        checkout.open();
-      }, 2000);
-      console.log(mp);
-
-      
-      /* const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.src =
-        'https://www.mercadopago.cl/integrations/v1/web-payment-checkout.js';
-      script.setAttribute('data-preference-id', preferenceId);
-      const form = document.getElementById("id_div");
-      form.appendChild(script); */
+    openMercadoPago();
     
-    }
 
   },[idPreference])
 
@@ -304,19 +298,20 @@ const Checkout = () => {
                         register={register}
                         infoDatos = { watch }
                         infoEntrega = { watch_2 }
+                        setSelected={setSelected}
                         // formValues={formValues} 
                         // handleInputChange={handleInputChange}
-                        // setSelected={setSelected}
                     /> 
                 }
                 {
                     selected === 3 && 
                     <CheckoutStep4
                         register={register}
-                        watch = { watch_2}
+                        infoDatos = { watch }
+                        infoEntrega = { watch_2 }
+                        setSelected={setSelected}
                         // formValues={formValues} 
                         // handleInputChange={handleInputChange}
-                        // setSelected={setSelected}
                     /> 
                 }
               <div className="only-button-submit" onClick={
@@ -331,9 +326,9 @@ const Checkout = () => {
                   <div className="btn-checkout btn-amarillo">Continuar</div>
                 )}
               </div>
-              <div>
-
-              </div>
+              {/* <div className="cho-container">
+                <a href="http://localhost:3003/iniciar-sesion" target="_blank">Pagar</a>  
+              </div> */}
             </form>
           </div>
           
