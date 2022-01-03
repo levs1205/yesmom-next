@@ -3,13 +3,16 @@ import axios from 'axios';
 
 /* "Av Metropolitana 1173 Comas, Lima" */
 const makeAddres = ( {calle, numero , distrito }) => `${calle} ${numero} ${distrito}, Lima`
-export const generateDelivery = async (dir) => {
+
+export const generateDelivery = async (dir , products) => {
     try{
         const axiosInstance = axios.create({
             baseURL : 'http://localhost:3700'
         })
 
+        console.log(products);
         const direccion = makeAddres( dir );
+
         const body = {
             direccion,
             fecha :"2022-01-05",
@@ -46,6 +49,7 @@ export const generateDelivery = async (dir) => {
         }
         
     }catch(err){
+        console.log(err);
         return { 
             ok : false,
             data : null

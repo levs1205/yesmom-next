@@ -49,7 +49,8 @@ const schemaSecond = yup.object().shape({
 
 const Checkout = () => {
 
-  const  { auth : { logged } , dispatchSale } = useContext(YesmomContext);
+  const router = useRouter();
+  const  { auth : { logged } , dispatchSale , ui : { cart }} = useContext(YesmomContext);
   const [selected, setSelected] = useState(0);
   const [ checking , setChecking] = useState(false);
   const [idPreference , setIdPreference] = useState(null);
@@ -87,6 +88,7 @@ const Checkout = () => {
 
       //Generar el pedido
       if(selected===1){
+        console.log('qUE FUE')
         setChecking(true);
 
         const { calle, numero , interior, distrito } = watch_2();
@@ -96,7 +98,7 @@ const Checkout = () => {
           numero,
           interior,
           distrito
-        });
+        }, cart);
         setChecking(false);
         
         if(!ok){
@@ -146,10 +148,15 @@ const Checkout = () => {
 
 
   useEffect(()=>{
+    if(cart?.length === 0 ){
+      return router.push('/tienda');
+    }
+  },[ cart ])
+
+  useEffect(()=>{
 
     openMercadoPago();
     
-
   },[idPreference])
 
   if(checking){
