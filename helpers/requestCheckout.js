@@ -12,7 +12,7 @@ export const generateDelivery = async (dir) => {
         const direccion = makeAddres( dir );
         const body = {
             direccion,
-            fecha :"2021-12-31",
+            fecha :"2022-01-05",
             productos: [
                 {
                     id: "6196dcc179dc97768a8ff805",
@@ -63,7 +63,7 @@ export const generateSale = async () => {
             direccion : "Jr Piura 1155 Miraflores, Lima",
             contacto : "969670765",
             recibe : "Lincoln Vs",
-            fecha : "2021-12-31",
+            fecha : "2022-01-05",
             adicional : "",
             productos : [
                 {

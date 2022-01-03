@@ -49,10 +49,6 @@ const schemaSecond = yup.object().shape({
 
 const Checkout = () => {
 
-  const mp = new MercadoPago(process.env.NEXT_PUBLIC_MERCADO_PAGO_PUBLIC_KEY,{
-    locale : 'es-PE'
-  })
-  
   const  { auth : { logged } , dispatchSale } = useContext(YesmomContext);
   const [selected, setSelected] = useState(0);
   const [ checking , setChecking] = useState(false);
@@ -122,6 +118,10 @@ const Checkout = () => {
 
   const openMercadoPago = () => {
     try{
+      const mp = new MercadoPago(process.env.NEXT_PUBLIC_MERCADO_PAGO_PUBLIC_KEY,{
+        locale : 'es-PE'
+      })
+      
       if (idPreference?.length > 0 ) {
         //Intentar conexion mercado pago
         console.log(idPreference);
