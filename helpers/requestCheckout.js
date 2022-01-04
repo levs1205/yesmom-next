@@ -10,30 +10,17 @@ export const generateDelivery = async (dir , products) => {
             baseURL : 'http://localhost:3700'
         })
 
-        console.log(products);
         const direccion = makeAddres( dir );
+
+        const productos = products.map((p) => ({
+            id : p._id,
+            cantidad : p.quantity
+        }) )
 
         const body = {
             direccion,
             fecha :"2022-01-05",
-            productos: [
-                {
-                    id: "6196dcc179dc97768a8ff805",
-                    cantidad: 1
-                },
-                {
-                    id: "6196dcc179dc97768a8ff835",
-                    cantidad: 2
-                },
-                {
-                    id: "6196dcc179dc97768a8ff85c",
-                    cantidad: 3
-                },
-                {
-                    id: "6197da7d79dc97768aff0bb4",
-                    cantidad: 2
-                }
-            ]
+            productos
         }
 
         const { data } = await axiosInstance.post('/sale/delivery' , body )
@@ -57,38 +44,28 @@ export const generateDelivery = async (dir , products) => {
     }
 }
 
-export const generateSale = async () => {
+export const generateSale = async ( dir, products ) => {
     try{
         const axiosInstance = axios.create({
             baseURL : 'http://localhost:3700'
         })
 
+        console.log('SALEEEE',products);
+        const direccion = makeAddres( dir );
+        const productos = products.map((p) => ({
+            id : p._id,
+            cantidad : p.quantity,
+            color : p.colourSelected,
+            talla : p.sizeSelected
+        }) )
+
         const body = {
-            direccion : "Jr Piura 1155 Miraflores, Lima",
+            direccion,
             contacto : "969670765",
             recibe : "Lincoln Vs",
             fecha : "2022-01-05",
             adicional : "",
-            productos : [
-                {
-                    id: "6196dcc179dc97768a8ff805",
-                    cantidad: 2,
-                    color: "azul",
-                    talla: "xl"
-                },
-                {
-                    id : "6196dcc179dc97768a8ff835",
-                    cantidad : 2,
-                    color : "rojo",
-                    talla : "l"
-                },
-                {
-                    id : "6196dcc179dc97768a8ff85c",
-                    cantidad : 3,
-                    color : "azul",
-                    talla : "xxl"
-                }
-            ]
+            productos
         }
 
         const { data } = await axiosInstance.post('/sale' , body )

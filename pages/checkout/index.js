@@ -70,8 +70,14 @@ const Checkout = () => {
 
     try{
 
+      const { calle, numero , interior, distrito } = watch_2();
       setChecking(true);
-      const { ok , idPreference } = await generateSale();
+      const { ok , idPreference } = await generateSale({
+        calle,
+        numero,
+        interior,
+        distrito
+      },cart);
       setChecking(false);
       if(ok){
         setIdPreference(idPreference);
