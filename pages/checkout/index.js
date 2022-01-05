@@ -32,6 +32,10 @@ const schemaFirst = yup.object().shape({
   phone: yup.string().matches(phoneRegExp, 'El número de celular no es válido'),
 });
 
+
+//
+
+
 const schemaSecond = yup.object().shape({
   calle: yup.string().required('Ingrese calle'),
   numero: yup.string().matches(/^[0-9]+$/g,'*Numero incorrecto').required('Ingrese el número'),
@@ -41,6 +45,7 @@ const schemaSecond = yup.object().shape({
   // departamento : yup.string().required('Seleccione departamento'),
   // provincia : yup.string().required('Seleccione provincia'),
   distrito : yup.string().required('Seleccione distrito'),
+  fechaEntrega : yup.date().required('Fecha es obligatoria'),
 });
 
 
@@ -59,8 +64,11 @@ const Checkout = () => {
     resolver: yupResolver(schemaFirst),
   })
 
-  const { register : register_2, handleSubmit : handleSubmit_2, formState: formState_2, watch : watch_2 } = useForm({
-    resolver : yupResolver(schemaSecond)
+  const { register : register_2, control, handleSubmit : handleSubmit_2, formState: formState_2, watch : watch_2 } = useForm({
+    resolver : yupResolver(schemaSecond),
+    defaultValues : {
+      fechaEntrega : new Date()
+    }
   })
   const { register : register_3, handleSubmit : handleSubmit_3, formState: formState_3,reset_3 } = useForm({})
 
@@ -70,13 +78,14 @@ const Checkout = () => {
 
     try{
 
-      const { calle, numero , interior, distrito } = watch_2();
+      const { calle, numero , interior, distrito , fechaEntrega} = watch_2();
       setChecking(true);
       const { ok , idPreference } = await generateSale({
         calle,
         numero,
         interior,
-        distrito
+        distrito,
+        fechaEntrega
       },cart);
       setChecking(false);
       if(ok){
@@ -94,21 +103,29 @@ const Checkout = () => {
 
       //Generar el pedido
       if(selected===1){
-        console.log('qUE FUE')
+
         setChecking(true);
 
-        const { calle, numero , interior, distrito } = watch_2();
+        const { calle, numero , interior, distrito, fechaEntrega } = watch_2();
         
         const { ok , data } = await generateDelivery({
           calle,
           numero,
           interior,
-          distrito
+          distrito,
+          fechaEntrega
         }, cart);
         setChecking(false);
         
         if(!ok){
-          return Swal.fire('No se puede generar el delivery',data?.response?.message,'info');
+          return Swal.fire({
+            text : 'No se pudo generar el delivery',
+            customClass :{
+              popup :'popup-error-delivery',
+              htmlContainer : 'text-error-delivery'
+            },
+            showConfirmButton : false
+          });
         }
 
         //Ya pasó
@@ -119,6 +136,7 @@ const Checkout = () => {
         window.scrollTo(0,0);
       },[300])
       setSelected( selected => selected + 1);
+
     } else {
       initSale();
     }
@@ -222,7 +240,7 @@ const Checkout = () => {
           </Link>
         </div>
         <div className="icon-checkout">
-          <Stepper selected={selected} setSelected={setSelected} />
+          <Stepper selected={selected} />
         </div>
         <section className="checkout-block">
           <div className="shopping-cart-block__checkout">
@@ -300,6 +318,7 @@ const Checkout = () => {
                         watch={watch}
                         errors={formState_2.errors}
                         setSelected = { setSelected }
+                        control = { control }
                         // formValues={formValues} 
                         // handleInputChange={handleInputChange}
                         // setSelected={setSelected}
@@ -349,6 +368,18 @@ const Checkout = () => {
       </div>
       <style jsx>
         {`
+
+          :global(.popup-error-delivery){
+            padding : 3rem 0;
+            border : 2px dashed #ec608d;
+            border-radius : 25px;
+          }
+
+          :global(.text-error-delivery){
+            font-family : "mont-regular";
+            font-size : 1.5rem;
+            color : #5a5a5a;
+          }
           .only-button-submit {
             padding: 0 3rem;
             margin: 3rem 0 2rem 0;

@@ -1,12 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import LoaderPage from "../LoaderPage";
+import { Controller } from "react-hook-form";
+import DatePicker from "react-date-picker/dist/entry.nostyle";
 
-const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) => {
+const today = new Date()
+const tomorrow = new Date(today)
+tomorrow.setDate(tomorrow.getDate() + 1)
+
+const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
 
 
   const [ locations , setLocations ] = useState([]);
-  const { email , name , identity , phone } = watch();
+  const { email , name , identity , phone  } = watch();
 
   const getLocations = async () => {
     try{
@@ -66,12 +71,25 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
         </div>
       </div>
   
+      <div className="fade-in animated  checkout-block__text">
+        <p className="checkout-block__text--font-size-and-bold">
+          2. Datos para la entrega:
+        </p>
+      </div>
+      <div className="checkout-location-form__wrapper wrapper_date">
+        <label htmlFor="numero" className="checkout-location-form__label">
+          Fecha de entrega : 
+        </label>
+
+        <Controller
+          name='fechaEntrega'
+          control = { control }
+          render={({ field }) => <DatePicker minDate={tomorrow} {...field} />}
+        />
+
+        <p className="msg-error">{errors?.fechaEntrega?.message && 'Fecha inválida'}</p>
+      </div>
       <div className="checkout-location-form__wrapper">
-        <div className="fade-in animated  checkout-block__text">
-          <p className="checkout-block__text--font-size-and-bold">
-            2. Datos para la entrega:
-          </p>
-        </div>
         <label htmlFor="calle" className="checkout-location-form__label">
           Av/Jirón/Calle: <span className="ml-4"> EJM : * Jr. Los Valles</span>
         </label>
@@ -84,6 +102,8 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
         />
         <p className="msg-error">{errors?.calle?.message}</p>
       </div>
+
+
       <div className="checkout-location-form__wrapper">
         <label htmlFor="numero" className="checkout-location-form__label">
           Nro.: <span className="ml-4"> EJM : * Jr. 205</span>
@@ -197,15 +217,36 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
       <style jsx>
         {`
 
+
+          :global(.react-date-picker){
+            font-size : 1.4rem;
+            font-family : "mont-regular";
+          }
+          :global(.react-date-picker__wrapper){
+            border: none;
+            border-bottom: 1px solid #dadada;
+            padding : 0.5rem;
+          }
+
+          :global(.react-date-picker__inputGroup__input){
+            color : #556ea1;
+            
+          }
+
+          .wrapper_date{
+            display : flex!important;
+            flex-direction : column!important;
+          }
+
           .checkout-block__text--font-size-and-bold {
             font-size: 1.6rem;
             font-family: "mont-semibold";
             margin-top : 1rem;
           }
           .msg-error{
-            font-family:"omnes-regular";
-            font-size: 1.5rem;
-            color: red;
+            font-family:"omnes-bold";
+            font-size: 1.4rem;
+            color : #ff3333;
           }
           .container-checkout {
             padding: 8rem 1rem;
@@ -568,6 +609,11 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
 
             .discount-coupon__input-submit {
               width: 100px;
+            }
+
+            :global(.react-date-picker__wrapper){
+              border: 1px solid #556ea1;
+              border-radius : 10px;
             }
           }
           @media (min-width: 1280px) {

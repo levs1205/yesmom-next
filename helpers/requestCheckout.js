@@ -1,8 +1,17 @@
 import axios from 'axios';
+import moment from 'moment';
 
 
 /* "Av Metropolitana 1173 Comas, Lima" */
-const makeAddres = ( {calle, numero , distrito }) => `${calle} ${numero} ${distrito}, Lima`
+const makeAddres = ( {calle, numero , distrito }) => `${calle} ${numero} ${distrito}, Lima`;
+
+const makeDate = ( date ) => {
+    const fechaTemp = date;
+    fechaTemp.setDate(fechaTemp.getDate());
+        
+    return moment(fechaTemp).format('YYYY-MM-DD');
+}
+
 
 export const generateDelivery = async (dir , products) => {
     try{
@@ -17,9 +26,14 @@ export const generateDelivery = async (dir , products) => {
             cantidad : p.quantity
         }) )
 
+
+
+        
+        const fecha = makeDate(dir.fechaEntrega);
+
         const body = {
             direccion,
-            fecha :"2022-01-05",
+            fecha,
             productos
         }
 
@@ -50,7 +64,6 @@ export const generateSale = async ( dir, products ) => {
             baseURL : 'http://localhost:3700'
         })
 
-        console.log('SALEEEE',products);
         const direccion = makeAddres( dir );
         const productos = products.map((p) => ({
             id : p._id,
@@ -59,11 +72,12 @@ export const generateSale = async ( dir, products ) => {
             talla : p.sizeSelected
         }) )
 
+        const fecha = makeDate(dir.fechaEntrega);
         const body = {
             direccion,
             contacto : "969670765",
             recibe : "Lincoln Vs",
-            fecha : "2022-01-05",
+            fecha,
             adicional : "",
             productos
         }
