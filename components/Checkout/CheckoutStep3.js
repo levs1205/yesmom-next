@@ -1,16 +1,42 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
+import moment from 'moment';
 import Swal from 'sweetalert2';
 import YesmomContext from "../../context/Context";
 import CostSale from "../Sale/CostSale";
 import Orden from "../Sale/Orden";
 
+moment.locale('es');
+
 const CheckoutStep3 = ({ formValues, setSelected , infoDatos ,infoEntrega , register }) => {
 
   const { sale : { delivery }} = useContext(YesmomContext);
   const { email , name , identity , phone } = infoDatos();
-  const {calle , numero, interior, referencia, distrito /* departamento, provincia, distrito */ } = infoEntrega();
+  const {calle , numero, interior, referencia, distrito , fechaEntrega } = infoEntrega();
 
 
+  const makeDate = ( date ) => {
+
+    const dayWord = moment(date).format('dddd');
+    // const dayNumber = moment(date).format('Do');
+    const dayNumber = date.getDate();
+    const monthWord = moment(date).format('MMMM');
+    const year = moment(date).get('year');
+    
+    return { dayWord , dayNumber , monthWord , year } ;
+  }
+
+  const capitalize = ( str ) => {
+
+    return str[0].toUpperCase()+str.slice(1,str.length);
+  }
+  const makeSpanishDate = (date) => {
+  
+    const { dayWord , dayNumber , monthWord , year} = makeDate(date);
+    // console.log({ dayWord , dayNumber , monthWord , year})
+    return `${capitalize(dayWord)}, ${dayNumber} de ${monthWord} del ${year}`
+  }
+
+  const memorizedDate = useMemo(() => makeSpanishDate(fechaEntrega) , [fechaEntrega]);
 
   const openModalEnvio = () => {
     return Swal.fire({
@@ -75,7 +101,7 @@ const CheckoutStep3 = ({ formValues, setSelected , infoDatos ,infoEntrega , regi
                 <br />
                 {distrito}
                 <br />
-                Jueves, 22 de Abril del 2021 entre las 9am y 18pm
+                {memorizedDate}
               </div>
             </div>
             <div className="checkout-identification-block__text-container_right">

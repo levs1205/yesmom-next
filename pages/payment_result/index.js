@@ -1,16 +1,16 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-const index = () => {
+const PaymentResult = () => {
 
     const { query } = useRouter();
     
     console.log(query);
     return (
         <div>
-            Redirection
+            PaymentResult
         </div>
     )
 }
 
-export default index
+export default PaymentResult

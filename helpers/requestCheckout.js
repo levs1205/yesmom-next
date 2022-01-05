@@ -2,14 +2,14 @@ import axios from 'axios';
 import moment from 'moment';
 
 
+
 /* "Av Metropolitana 1173 Comas, Lima" */
 const makeAddres = ( {calle, numero , distrito }) => `${calle} ${numero} ${distrito}, Lima`;
 
-const makeDate = ( date ) => {
-    const fechaTemp = date;
-    fechaTemp.setDate(fechaTemp.getDate());
-        
-    return moment(fechaTemp).format('YYYY-MM-DD');
+const makeDate = ( date ) => {        
+
+    const formatDate =  moment(date).format('YYYY-MM-DD');
+    return formatDate;
 }
 
 

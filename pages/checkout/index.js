@@ -66,8 +66,8 @@ const Checkout = () => {
 
   const { register : register_2, control, handleSubmit : handleSubmit_2, formState: formState_2, watch : watch_2 } = useForm({
     resolver : yupResolver(schemaSecond),
-    defaultValues : {
-      fechaEntrega : new Date()
+    defaultValues :{
+      recibePedido : 0
     }
   })
   const { register : register_3, handleSubmit : handleSubmit_3, formState: formState_3,reset_3 } = useForm({})
@@ -144,25 +144,27 @@ const Checkout = () => {
 
   const openMercadoPago = () => {
     try{
-      const mp = new MercadoPago(process.env.NEXT_PUBLIC_MERCADO_PAGO_PUBLIC_KEY,{
-        locale : 'es-PE'
-      })
+      // const mp = new MercadoPago(process.env.NEXT_PUBLIC_MERCADO_PAGO_PUBLIC_KEY,{
+      //   locale : 'es-PE'
+      // })
       
       if (idPreference?.length > 0 ) {
         //Intentar conexion mercado pago
-        console.log(idPreference);
-        const checkout = mp.checkout({
+        // console.log(idPreference);
+        const MERCADO_URL = 'https://www.mercadopago.com.pe/checkout/v1/redirect';
+        router.push(`${MERCADO_URL}?pref_id=${idPreference}`)
+        // const checkout = mp.checkout({
   
-          preference : {
-            id: idPreference
-          },
-          theme: {
-            elementsColor: '#ec608d',
-          },
-        })
-        setTimeout(() => {
-          checkout.open();
-        }, 2000);
+        //   preference : {
+        //     id: idPreference
+        //   },
+        //   theme: {
+        //     elementsColor: '#ec608d',
+        //   },
+        // })
+        // setTimeout(() => {
+        //   checkout.open();
+        // }, 2000);
         
       }
     }catch(err){
@@ -183,11 +185,12 @@ const Checkout = () => {
     
   },[idPreference])
 
-  if(checking){
-    return <LoaderPage />
-  }
+
   return (
     <AppLayout>
+      {
+        checking && <LoaderPage type="over"/>
+      }
       <Head>
         <title>YesMom - Checkout</title>
         <meta name="description" content="YesMom es ..."></meta>

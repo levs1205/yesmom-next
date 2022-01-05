@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useMemo } from "react";
+
+import moment from 'moment';
+moment.locale('es');
 
 const CheckoutStep4 = ({ formValues, setSelected , infoDatos , infoEntrega , register }) => {
 
 
   const { email , name , identity , phone } = infoDatos();
-  const {calle , numero, interior, referencia, distrito } = infoEntrega();
+  const {calle , numero, interior, referencia, distrito, fechaEntrega } = infoEntrega();
+
+
+  const makeDate = ( date ) => {
+
+    const dayWord = moment(date).format('dddd');
+    // const dayNumber = moment(date).format('Do');
+    const dayNumber = date.getDate();
+    const monthWord = moment(date).format('MMMM');
+    const year = moment(date).get('year');
+    
+    return { dayWord , dayNumber , monthWord , year } ;
+  }
+
+  const capitalize = ( str ) => {
+
+    return str[0].toUpperCase()+str.slice(1,str.length);
+  }
+  const makeSpanishDate = (date) => {
+  
+    const { dayWord , dayNumber , monthWord , year} = makeDate(date);
+    // console.log({ dayWord , dayNumber , monthWord , year})
+    return `${capitalize(dayWord)}, ${dayNumber} de ${monthWord} del ${year}`
+  }
+
+  const memorizedDate = useMemo(() => makeSpanishDate(fechaEntrega) , [fechaEntrega]);
+
   return (
     <>
       <div className="fade-in animated checkout-identification-block">
@@ -52,11 +81,11 @@ const CheckoutStep4 = ({ formValues, setSelected , infoDatos , infoEntrega , reg
           <div className="checkout-identification-block__text-container m-3 flex-container">
             <div className="checkout-identification-block__text-container_left">
               <div className="checkout-identification-block__text--font-size">
-                Cll. Augusto Tamayo 600, Barranco
+                {`${calle} ${numero} ${interior}`}
                 <br />
-                Lima
+                {distrito}
                 <br />
-                Jueves, 22 de Abril del 2021 entre las 9am y 18pm
+                {memorizedDate}
               </div>
             </div>
             <div className="checkout-identification-block__text-container_right">

@@ -193,6 +193,7 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
             type="radio"
             id="f-option"
             name="selector"
+            value="0"
             {...register('recibePedido')}
           />
           <label className="checkout-location-form__label-radio" htmlFor="f-option">
@@ -203,6 +204,7 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
             type="radio"
             id="f-option2"
             name="selector"
+            value="1"
             {...register('recibePedido')}
           />
           <label
