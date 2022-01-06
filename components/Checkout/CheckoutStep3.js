@@ -11,9 +11,9 @@ const CheckoutStep3 = ({ formValues, setSelected , infoDatos ,infoEntrega , regi
 
   const { sale : { delivery }} = useContext(YesmomContext);
   const { email , name , identity , phone } = infoDatos();
-  const {calle , numero, interior, referencia, distrito , fechaEntrega } = infoEntrega();
+  const {calle , numero, interior, referencia, distrito , fechaEntrega , recibePedido} = infoEntrega();
 
-
+  console.log(recibePedido);
   const makeDate = ( date ) => {
 
     const dayWord = moment(date).format('dddd');
@@ -468,6 +468,7 @@ const CheckoutStep3 = ({ formValues, setSelected , infoDatos ,infoEntrega , regi
             margin-right: 5px;
             line-height: 24px;
             vertical-align: text-top;
+            margin-top : -0.5rem;
           }
           .checkout-location-form__input-radio:checked
             + .checkout-location-form__label-radio:before {

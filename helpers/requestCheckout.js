@@ -75,10 +75,10 @@ export const generateSale = async ( dir, products ) => {
         const fecha = makeDate(dir.fechaEntrega);
         const body = {
             direccion,
-            contacto : "969670765",
-            recibe : "Lincoln Vs",
+            contacto : dir.phone,
+            recibe : dir.recibe,
             fecha,
-            adicional : "",
+            adicional : dir.referencia,
             productos
         }
 

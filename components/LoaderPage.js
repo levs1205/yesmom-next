@@ -69,7 +69,7 @@ const LoaderPage = ( { type }) => {
                         width :100vw;
                         height : 100vh;
                         
-                        background-color : rgb(255,255,255,0.4);
+                        background-color : rgb(255,255,255,0.6);
                     }
          
                 `}

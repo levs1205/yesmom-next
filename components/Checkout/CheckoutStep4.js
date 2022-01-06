@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 import moment from 'moment';
 moment.locale('es');
 
-const CheckoutStep4 = ({ formValues, setSelected , infoDatos , infoEntrega , register }) => {
+const CheckoutStep4 = ({ register, setSelected , infoDatos , infoEntrega }) => {
 
 
   const { email , name , identity , phone } = infoDatos();
@@ -431,6 +431,7 @@ const CheckoutStep4 = ({ formValues, setSelected , infoDatos , infoEntrega , reg
             margin-right: 5px;
             line-height: 24px;
             vertical-align: text-top;
+            margin-top:-0.5rem;
           }
           .checkout-location-form__input-radio:checked
             + .checkout-location-form__label-radio:before {
