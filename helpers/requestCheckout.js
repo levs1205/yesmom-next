@@ -1,5 +1,6 @@
 import axios from 'axios';
 import moment from 'moment';
+import cookie from 'cookie-cutter';
 
 
 
@@ -82,7 +83,12 @@ export const generateSale = async ( dir, products ) => {
             productos
         }
 
-        const { data } = await axiosInstance.post('/sale' , body )
+        const token = cookie.get('TokenTest');
+        const { data } = await axiosInstance.post('/sale' , body , {
+            headers : {
+                'access-token' : token
+            }
+        })
 
 
         if(data?.response?.ok){
