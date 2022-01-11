@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import AppLayout from '../../components/AppLayout';
+import PaymentSuccess from '../../components/Payments/PaymentSuccess';
+import PaymentFailure from '../../components/Payments/PaymentFailure';
 
 const PaymentResult = () => {
 
     const { query } = useRouter();
+    const [ state, setState ] = useState(false);
     
     console.log(query);
     return (
@@ -48,6 +52,44 @@ const PaymentResult = () => {
                 content="https://yesmom.vercel.app/image/about-header.png"
                 />
             </Head>
+            <div className='contenedor'>
+                <div className='container-contenido'>
+                    <div className='all-content'>
+                        <p className='text-rosa'>Estado de pago: </p>
+                        {
+                            state ? <PaymentSuccess /> : <PaymentFailure />
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+            <style jsx>
+                {`
+                    .contenedor{
+                        padding-top:8rem;
+                        padding-bottom:8rem;
+                        margin-left:2.5rem;
+                        margin-right:2.5rem;
+                        margin-top:0;
+                    }
+                    .container-contenido{
+                        display:flex;
+                        justify-content:center;
+                        align-items:center;
+                    }
+                    
+                    .text-rosa{
+                        font-family:"mont-regular"!important;
+                        font-weight:600;
+                        font-size:2rem;
+                        color:#EC668D;
+                        text-align : center;
+                    }
+
+
+                `}
+            </style>
         </AppLayout>
     )
 }

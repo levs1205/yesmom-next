@@ -41,7 +41,7 @@ const schemaSecond = yup.object().shape({
   numero: yup.string().matches(/^[0-9]+$/g,'Numero incorrecto').required('Ingrese el número'),
   interior: yup.string().required('Ingrese interior'),
   referencia : yup.string().required('Ingrese referencia'),
-  recibePedido : yup.string().oneOf(['0','1'],'Campo obligatorio'),
+  recibePedido : yup.string().oneOf(['on'],'Campo obligatorio'),
   nameRecibeTercero : yup.string(),
   // departamento : yup.string().required('Seleccione departamento'),
   // provincia : yup.string().required('Seleccione provincia'),
@@ -83,7 +83,7 @@ const Checkout = () => {
       const { calle, numero , interior, referencia , distrito , fechaEntrega , recibePedido, nameRecibeTercero} = watch_2();
 
 
-      const recibe = recibePedido==='0' ? name :  nameRecibeTercero;
+      const recibe = recibePedido==='0' ? name :  'Melany';
 
       setChecking(true);
       const { ok , idPreference } = await generateSale({

@@ -57,6 +57,12 @@ function CardProduct({ product, imagen }) {
             color: #000000;
             font-family: "mont-light" !important;
             font-size: 1rem;
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            display: -webkit-box; 
+            -webkit-line-clamp: 2; /* number of lines to show */ 
+            -webkit-box-orient: vertical;
+
           }
 
           .card-img-product {
