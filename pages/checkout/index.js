@@ -38,10 +38,11 @@ const schemaFirst = yup.object().shape({
 
 const schemaSecond = yup.object().shape({
   calle: yup.string().required('Ingrese calle'),
-  numero: yup.string().matches(/^[0-9]+$/g,'*Numero incorrecto').required('Ingrese el número'),
+  numero: yup.string().matches(/^[0-9]+$/g,'Numero incorrecto').required('Ingrese el número'),
   interior: yup.string().required('Ingrese interior'),
   referencia : yup.string().required('Ingrese referencia'),
-  recibePedido : yup.string().oneOf(['on'],'Campo obligatorio'),
+  recibePedido : yup.string().oneOf(['0','1'],'Campo obligatorio'),
+  nameRecibeTercero : yup.string(),
   // departamento : yup.string().required('Seleccione departamento'),
   // provincia : yup.string().required('Seleccione provincia'),
   distrito : yup.string().required('Seleccione distrito'),
@@ -67,10 +68,10 @@ const Checkout = () => {
   const { register : register_2, control, handleSubmit : handleSubmit_2, formState: formState_2, watch : watch_2 } = useForm({
     resolver : yupResolver(schemaSecond),
     defaultValues :{
-      recibePedido : 0
+      nameRecibeTercero : 'Melany Nicolle'
     }
   })
-  const { register : register_3, handleSubmit : handleSubmit_3, formState: formState_3,reset_3 } = useForm({})
+  const { register : register_3, handleSubmit : handleSubmit_3, formState: formState_3,reset_3} = useForm({})
 
 
 
@@ -78,14 +79,22 @@ const Checkout = () => {
 
     try{
 
-      const { calle, numero , interior, distrito , fechaEntrega} = watch_2();
+      const { phone , name } = watch();
+      const { calle, numero , interior, referencia , distrito , fechaEntrega , recibePedido, nameRecibeTercero} = watch_2();
+
+
+      const recibe = recibePedido==='0' ? name :  nameRecibeTercero;
+
       setChecking(true);
       const { ok , idPreference } = await generateSale({
         calle,
         numero,
         interior,
         distrito,
-        fechaEntrega
+        fechaEntrega,
+        phone,
+        recibe,
+        referencia
       },cart);
       setChecking(false);
       if(ok){
@@ -319,6 +328,7 @@ const Checkout = () => {
                         register={register_2}
                         handleSubmit={handleSubmit_2}
                         watch={watch}
+                        thirdPart={watch_2}
                         errors={formState_2.errors}
                         setSelected = { setSelected }
                         control = { control }
@@ -341,7 +351,7 @@ const Checkout = () => {
                 {
                     selected === 3 && 
                     <CheckoutStep4
-                        register={register}
+                        register={register_3}
                         infoDatos = { watch }
                         infoEntrega = { watch_2 }
                         setSelected={setSelected}

@@ -7,11 +7,13 @@ const today = new Date()
 const tomorrow = new Date(today)
 tomorrow.setDate(tomorrow.getDate() + 1)
 
-const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
+const CheckoutStep2 = ({ register, errors, control, watch, setSelected ,thirdPart }) => {
 
 
   const [ locations , setLocations ] = useState([]);
   const { email , name , identity , phone  } = watch();
+  
+  const { recibePedido } = thirdPart();
 
   const getLocations = async () => {
     try{
@@ -205,15 +207,9 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
             name="selector"
             {...register('recibePedido')}
           />
-          <label
-            className="checkout-location-form__label-radio"
-            htmlFor="f-option2"
-          >
-            Otra persona
-          </label>
+          <p className="msg-error">{errors?.nameRecibeTercero?.message}</p>
         </div>
-        <p className="msg-error">{errors?.recibePedido?.message && 'Campo obligatorio'}</p>
-      </div>
+      }
       <style jsx>
         {`
 
@@ -503,6 +499,12 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
             justify-content: left;
             align-items: center;
           }
+          .checkout-localtion-form__wrapper-radio {
+            display : flex;
+            align-items:center;
+          }
+
+
           .checkout-location-form__input-radio {
             position: absolute;
             padding: 0;
@@ -527,6 +529,7 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
             margin-right: 5px;
             line-height: 24px;
             vertical-align: text-top;
+            margin-top : -0.5rem;
           }
           .checkout-location-form__input-radio:checked
             + .checkout-location-form__label-radio:before {
