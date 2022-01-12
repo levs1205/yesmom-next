@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DetailProductOrden = ({ img , name }) => {
+const DetailProductOrden = ({ img , name , cantidad, nombreTienda }) => {
 
 
     return (
@@ -9,12 +9,13 @@ const DetailProductOrden = ({ img , name }) => {
                 <div className="container__detail-orden-image">
                     <img
                         src={img}
+                        alt="producto-orden"
                     />
                 </div>
                 <div className="container__detail-orden-details">
                     <p className="container__detail-orden-details-title">{name.toUpperCase()}</p>
-                    <p className="container__detail-orden-details-title">Blanco, 140cm x 100cm</p>
-                    <p className="container__detail-orden-details-address">Cll. Augusto Tamayo 600, Barranco Lima</p>
+                    <p className="container__detail-orden-details-title"># {cantidad}</p>
+                    <p className="container__detail-orden-details-address">{nombreTienda}</p>
                     
                 </div>
             </div> 
@@ -29,6 +30,7 @@ const DetailProductOrden = ({ img , name }) => {
                     }
                     .container__detail-orden-image img{
                         max-width:100%;
+                        border-radius : 10px;
                     }
 
                     .container__detail-orden-details{

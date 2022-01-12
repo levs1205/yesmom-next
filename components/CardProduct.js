@@ -7,7 +7,7 @@ function CardProduct({ product, imagen }) {
 
   return (
     <>
-      <Link href="/tienda/detalles/:id" as={`/tienda/detalles/${product?._id}`}>
+      <Link href={`/tienda/detalles/${product?._id}`}>
        
 				<div className={`card-container size-${product?.nombre}`}> {/* TODO: size-${size} */}
           <Card border="light">
@@ -57,6 +57,12 @@ function CardProduct({ product, imagen }) {
             color: #000000;
             font-family: "mont-light" !important;
             font-size: 1rem;
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            display: -webkit-box; 
+            -webkit-line-clamp: 2; /* number of lines to show */ 
+            -webkit-box-orient: vertical;
+
           }
 
           .card-img-product {

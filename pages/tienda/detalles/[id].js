@@ -64,7 +64,7 @@ const DetallesID = ({
 		{ value: 'rojo', label: 'rojo', color: '#FF0000' },
 		{ value: 'azul', label: 'azul', color: '#0000CD' }
 	];
-console.log('talla',talla)
+	
   const handleAdd = () => {
     /* if (cantidadDisponible > 0 && amount < cantidadDisponible && sizeSelected !== null && colourSelected !== null) { */
 		if (cantidadDisponible > 0 && sizeSelected !== null && colourSelected !== null) {
@@ -369,7 +369,7 @@ console.log('talla',talla)
                         {/* <h6 className="show--ft-light">{nombreTienda}</h6> */}
                         <h6 className="show--ft-light">
                           <Link href={`/tienda/${nombreTiendaUrl}`}>
-                            <a className="show--ft-light">{nombreTienda}</a>
+                            <a className="show--ft-light name-store">{nombreTienda}</a>
                           </Link>
                         </h6>
 
@@ -608,6 +608,10 @@ console.log('talla',talla)
             color: #5a5a5a;
             text-decoration: none;
           }
+					.name-store:hover {
+						color: #f22c74;
+						transition:0.2s ease-in-out;
+					}
 
           h5.show--ft-semibold,
           h6.show--ft-light {
