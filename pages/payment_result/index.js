@@ -1,18 +1,51 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import AppLayout from '../../components/AppLayout';
 import PaymentSuccess from '../../components/Payments/PaymentSuccess';
 import PaymentFailure from '../../components/Payments/PaymentFailure';
+import axios from 'axios';
+import YesmomContext from '../../context/Context';
 
 const PaymentResult = () => {
 
     const { query } = useRouter();
+    const { auth : { token } } = useContext(YesmomContext);
     const [ state, setState ] = useState(false);
+    const [ checking, setChecking ] = useState(true);
     
-    console.log(query);
+
+    const verifyPayment = async () => {
+
+        try{
+            setChecking(true);
+            // const url = process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS;
+            const url = 'http://localhost:3700';
+            const { payment_id } = query;
+            const { data } = await axios.post(`${url}/sale/paymentverification`, { id : payment_id } , {
+                headers : {
+                    'access-token' : token
+                }
+            })
+
+            //TODO: aprobado o desaprobado
+            if(data.ok){
+
+            }
+            setChecking(false);
+        }catch(err){
+            console.log(err);
+        }
+    }
+    
+    useEffect(()=>{
+        verifyPayment();
+    },[])
     return (
         <AppLayout>
+            {
+                checking && <LoaderPage type="over"/>
+            }
             <Head>
                 <title>YesMom - Payments</title>
                 <meta name="description" content="YesMom es ..."></meta>
