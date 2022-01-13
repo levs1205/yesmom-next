@@ -17,7 +17,7 @@ const makeDate = ( date ) => {
 export const generateDelivery = async (dir , products) => {
     try{
         const axiosInstance = axios.create({
-            baseURL : 'http://localhost:3700'
+            baseURL : process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS
         })
 
         const direccion = makeAddres( dir );
@@ -62,7 +62,7 @@ export const generateDelivery = async (dir , products) => {
 export const generateSale = async ( dir, products ) => {
     try{
         const axiosInstance = axios.create({
-            baseURL : 'http://localhost:3700'
+            baseURL : process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS
         })
 
         const direccion = makeAddres( dir );

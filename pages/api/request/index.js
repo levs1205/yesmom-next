@@ -1,5 +1,11 @@
-const baseUrl = 'https://api.yesmom.com.pe';
-const baseUrlBA = 'https://api.yesmom.com.pe';
+
+// const baseUrl = 'https://api.yesmom.com.pe';
+// const baseUrlBA = 'https://api.yesmom.com.pe';
+
+// const baseUrl = 'http://localhost:3300';
+// const baseUrlBA = 'http://localhost:3700';
+const baseUrl = process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS;
+const baseUrlBA = process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS;
 
 //let token = JSON.parse(window.localStorage.getItem("YesmomToken"));
 

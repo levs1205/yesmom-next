@@ -1,13 +1,13 @@
 import React from 'react'
 
-const PaymentSuccess = () => {
+const PaymentSuccess = ( { orderId }) => {
     return (
         <>
             <div className='container_disclaimer'>
                 <img className='img_disclaimer' src="/image/payment/icon-success.svg" alt="success-payment" />
                 <p className='text-payment'>Gracias por tu compra</p>
                 <p className='text-disclaimer'>Tu compra fue procesada con éxito, te hemos enviado un correo de confirmación con todos los detalles.</p>
-                <p className='text-disclaimer-pedido'>Numero de pedido : #0806</p>
+                <p className='text-disclaimer-pedido'>Numero de pedido : #{orderId}</p>
                 <p className='nav-to-option'>Ver detalle del pedido</p>
 
                 <div className='container-redes'>

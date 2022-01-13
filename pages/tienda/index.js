@@ -131,7 +131,7 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
             ))}
           </Carousel>
         </div>
-
+              
         <Container fluid="true">
           <div className="all-content">
             <div className="contenedor">
