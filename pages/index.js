@@ -16,9 +16,14 @@ import { getProducts, getCategories, getBlogs } from "./api/request";
 import { setProducts, setCategories } from "./../context/actions/ui";
 import { useRouter } from "next/router";
 
-
-const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }) => {
-
+const Home = ({
+  productList,
+  productsQty,
+  pages,
+  categoryList,
+  path,
+  blogsList,
+}) => {
   return (
     <AppLayout>
       <Head>
@@ -73,16 +78,16 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
         <section fluid="true" className="box-banner">
           <div className="banner view-desktop ">
             <div className="h-100">
-            {/* <Image */}
-            <img
-              src="/image/home/banner-home1.png"
-              alt="Picture of the author"
-              layout="responsive"
-              // width={500}
-              // height={245} 
-              width={'100%'}
-              height={'100%'}
-            />
+              {/* <Image */}
+              <img
+                src="/image/home/banner-home1.png"
+                alt="Picture of the author"
+                layout="responsive"
+                // width={500}
+                // height={245}
+                width={"100%"}
+                height={"100%"}
+              />
             </div>
           </div>
           <div className="banner view-mobile">
@@ -114,7 +119,6 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
                     <a>Crear lista de regalos</a>
                   </div>
                 </Link>
-
                 <Link href="/tienda">
                   <div className="btn-regalos hover-amarillo">
                     <a> ver tienda</a>
@@ -131,11 +135,7 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
               </p>
             </div>
           </div> */}
-
-
         </section>
-
-
 
         <div className="section-sorteo-home">
           <Container fluid="true">
@@ -354,13 +354,13 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
           <Container fluid="true">
             <Col>
               <div className="all-products">
-								{productList.length > 0
-                    ? productList
-                        .slice(0, 3)
-                        .map((product, i) => (
-                          <CardProduct key={i} {...product} />
-                        ))
-                    : <p>Se encontraron 0 productos</p>}
+                {productList.length > 0 ? (
+                  productList
+                    .slice(0, 3)
+                    .map((product, i) => <CardProduct key={i} {...product} />)
+                ) : (
+                  <p>Se encontraron 0 productos</p>
+                )}
               </div>
             </Col>
             <Link href="/tienda">
@@ -472,7 +472,6 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
           .text-omnes a {
             font-size: 2rem;
           }
-
           .all-products {
             width: 85%;
             margin: 0 auto;
@@ -488,7 +487,6 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             position: relative;
             overflow: hidden;
           }
-
           .box-banner-btns {
             position: absolute;
             top: 0%;
@@ -496,12 +494,10 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             height: 100%;
             width: 40%;
           }
-
           .box-banner-btns-group {
             position: relative;
             top: 38%;
           }
-
           .box-banner-regalos {
             display: flex;
             justify-content: center;
@@ -509,16 +505,14 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             margin-top: 1rem;
             flex-direction: row;
           }
-
           .box-banner .banner {
             width: 100%;
             object-fit: cover;
             object-position: center;
             height: 100%;
             position: absolute;
-            top:3rem
+            top: 3rem;
           }
-
           .ondas-banner {
             width: 1rem;
           }
@@ -527,7 +521,6 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             padding-bottom: 5rem;
             position: relative;
           }
-
           .btn-regalos {
             max-width: 90%;
             background-color: #febf41;
@@ -563,12 +556,10 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             margin: 0rem 1rem 0rem;
             color: #4b66ae;
           }
-
           .ondas {
             width: 8rem;
             text-align: center;
           }
-
           .box-sorteo-home {
             width: 46rem;
             text-align: center;
@@ -577,7 +568,6 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
           .box-img-sorteo-home {
             position: relative;
           }
-
           .img-sorteo {
             width: 90%;
           }
@@ -593,7 +583,6 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             right: 3rem;
             width: 3rem;
           }
-
           .section-lo-mejor-home {
             background: linear-gradient(
                 270deg,
@@ -608,21 +597,18 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             background-size: cover;
             width: 100%;
           }
-
           .box-title-lo-mejor-home {
             display: flex;
             justify-content: center;
             align-items: center;
             /* padding: 1rem 0rem 4rem; */
           }
-
           .nube-up {
             position: absolute;
             top: -10%;
             left: 5%;
             width: 20rem;
           }
-
           .nube-down {
             position: absolute;
             transform: rotate(180deg);
@@ -630,13 +616,11 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             right: 5%;
             bottom: -12%;
           }
-
           .box-img-lo-mejor {
             margin-left: 6rem !important;
             margin-right: 6rem !important;
             margin: 5rem 0;
           }
-
           .img-lo-mejor {
             border: 2px #575756;
             border-style: dashed;
@@ -649,7 +633,6 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             height: 22.5rem;
             border-radius: 50%;
           }
-
           .img-lo-mejor img {
             width: 100%;
           }
@@ -661,7 +644,6 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             top: 0rem;
             text-align: center;
           }
-
           .btn-lo-mejor {
             padding: 1.5rem;
             text-align: center;
@@ -682,7 +664,6 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             align-items: center;
             cursor: pointer;
           }
-
           .btn-lo-mejor a {
             color: #fff !important;
             font-size: 1.7rem;
@@ -692,7 +673,6 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             background: #febf41;
             position: relative;
           }
-
           .nube-blanca1 {
             position: absolute;
             left: 5%;
@@ -716,32 +696,27 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             position: relative;
             padding: 5rem 0;
           }
-
           .line-up-azul {
             position: absolute;
             top: 2.6rem;
             left: 4rem;
             width: 2.5rem;
           }
-
           .line-down-azul {
             position: absolute;
             bottom: 2.8rem;
             right: 0rem;
             width: 2.5rem;
           }
-
           .img-blog {
             width: 90%;
             margin: auto;
             display: block;
             padding-left: 4rem;
           }
-
           .container-blog-home {
             padding: 1rem 0;
           }
-
           .btn-blog-home {
             width: auto;
             height: 7rem;
@@ -759,31 +734,25 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             align-items: center;
             line-height: 1.2rem;
           }
-
           .box-btn-blog {
             margin: 0rem 5rem 0rem 5rem !important;
           }
-
           .box-true-history {
             width: 80%;
             text-align: center;
             margin: auto;
           }
-
           .box-blog-card-home {
             flex: 0 0 46% !important;
           }
-
           :global(.card-deck .card) {
             align-items: center !important;
             margin-bottom: 1rem;
             justify-content: center !important;
           }
-
           .section-tienda-home {
             padding: 2rem 0rem 5rem 0rem;
           }
-
           .box-product-card-home {
             margin-top: 3rem;
           }
@@ -792,13 +761,14 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             display: flex;
             justify-content: center;
           }
-
-          {/* @media (max-width: 1200px) {
+           {
+            /* @media (max-width: 1200px) {
             .box-banner {
               height: 60vh;
               width: auto;
             }
-          } */}
+          } */
+          }
           @media (min-width: 1800px) {
             :global(.card-deck) {
               justify-content: center !important;
@@ -966,7 +936,6 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
               padding: 6rem 0 10rem;
             }
           }
-
           @media (min-width: 992px) and (max-width: 1023px) {
             .box-banner {
               height: 50vh;
@@ -994,7 +963,6 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
               color: #000000;
             }
           }
-
           @media (min-width: 769px) and (max-width: 991px) {
             :global(.card-deck) {
               justify-content: center !important;
@@ -1019,8 +987,8 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             .box-banner {
               height: 40rem;
             }
-            .box-text-title{
-              padding-top:3rem
+            .box-text-title {
+              padding-top: 3rem;
             }
             .all-products {
               width: 70%;
@@ -1031,7 +999,6 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
               top: 35%;
               right: 10%;
             }
-
             .text-title {
               font-size: 3rem;
             }
@@ -1132,41 +1099,34 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
               display: block;
               margin: auto;
             }
-
             .box-img-lo-mejor {
               margin: 0rem !important;
               margin-top: 2rem !important;
             }
-
             .img-lo-mejor {
               width: 17.5rem;
               height: 17.5rem;
             }
-
             .line-up {
               width: 1.5rem;
               top: 0.3rem;
               left: 0.7rem;
             }
-
             .line-down {
               bottom: -0.2rem;
               right: 0.5rem;
               width: 1.5rem;
             }
-
             .nube-up {
               width: 10rem;
               left: -2rem;
               top: -2rem;
             }
-
             .nube-down {
               width: 10rem;
               right: 0rem;
               bottom: -2rem;
             }
-
             .btn-lo-mejor {
               font-size: 1rem;
               width: 14rem;
@@ -1183,18 +1143,15 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
             .box-img-blog-home {
               padding: 1rem;
             }
-
             .img-blog {
               padding-left: 0rem;
               width: 80%;
             }
-
             .line-up-azul {
               width: 1.5rem;
               top: -0.7rem;
               left: 1.5rem;
             }
-
             .line-down-azul {
               width: 1.5rem;
               right: 1rem;
@@ -1219,7 +1176,6 @@ const Home = ({ productList, productsQty, pages, categoryList, path, blogsList }
               flex-direction: column;
               margin-top: 1rem;
             }
-
             .btn-regalos {
               width: 25rem;
               margin: 0.8rem auto;
@@ -1255,7 +1211,12 @@ Home.propTypes = {
 };
 
 export const getServerSideProps = async () => {
-	const { productosGeneral, totalDeProductos, pages } = await getProducts(null,'all',0,	10);
+  const { productosGeneral, totalDeProductos, pages } = await getProducts(
+    null,
+    "all",
+    0,
+    10
+  );
   const { response } = await getCategories();
   const blogs = await getBlogs();
 

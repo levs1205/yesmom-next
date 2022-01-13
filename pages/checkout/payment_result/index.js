@@ -1,46 +1,56 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import cookie from 'cookie-cutter';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import AppLayout from '../../components/AppLayout';
-import PaymentSuccess from '../../components/Payments/PaymentSuccess';
-import PaymentFailure from '../../components/Payments/PaymentFailure';
-import axios from 'axios';
-import YesmomContext from '../../context/Context';
+import AppLayout from '../../../components/AppLayout';
+import PaymentSuccess from '../../../components/Payments/PaymentSuccess';
+import PaymentFailure from '../../../components/Payments/PaymentFailure';
+import LoaderPage from '../../../components/LoaderPage';
 
 const PaymentResult = () => {
 
     const { query } = useRouter();
-    const { auth : { token } } = useContext(YesmomContext);
-    const [ state, setState ] = useState(false);
+    const [ status, setStatus ] = useState();
     const [ checking, setChecking ] = useState(true);
+    const [orderId, setOrderId] = useState();
     
 
     const verifyPayment = async () => {
 
         try{
             setChecking(true);
-            // const url = process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS;
-            const url = 'http://localhost:3700';
-            const { payment_id } = query;
-            const { data } = await axios.post(`${url}/sale/paymentverification`, { id : payment_id } , {
+            const url = process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS;
+            // const url = 'http://localhost:3700';
+
+            const token = cookie.get('TokenTest');
+            const { data } = await axios.post(`${url}/sale/paymentverification`, { id : query.payment_id } , {
                 headers : {
                     'access-token' : token
                 }
             })
 
+            console.log(data);
             //TODO: aprobado o desaprobado
             if(data.ok){
-
+                setStatus(data.status)
+                setOrderId(data.sale.mpOrderId);
+            }else{
+                setStatus('rejected');
             }
             setChecking(false);
         }catch(err){
+            setChecking(false);
+            setStatus('rejected');
             console.log(err);
         }
     }
     
     useEffect(()=>{
-        verifyPayment();
-    },[])
+        if(Object.keys(query).length >0){
+            verifyPayment();
+        }
+    },[query])
     return (
         <AppLayout>
             {
@@ -89,9 +99,9 @@ const PaymentResult = () => {
                 <div className='container-contenido'>
                     <div className='all-content'>
                         <p className='text-rosa'>Estado de pago: </p>
-                        {
-                            state ? <PaymentSuccess /> : <PaymentFailure />
-                        }
+                        { checking && <div className="container-hidden"></div> }
+                        { !checking && status==='approved' && <PaymentSuccess orderId={orderId} /> }
+                        { !checking && status==='rejected' && <PaymentFailure /> }
 
                     </div>
                 </div>
@@ -120,6 +130,9 @@ const PaymentResult = () => {
                         text-align : center;
                     }
 
+                    .container-hidde{
+                        height : 30rem;
+                    }
 
                 `}
             </style>
