@@ -80,7 +80,7 @@ const Home = ({
             <div className="h-100">
               {/* <Image */}
               <img
-                src="/image/home/banner-home1.png"
+                src="/image/home/banner-home.png"
                 alt="Picture of the author"
                 layout="responsive"
                 // width={500}
@@ -137,7 +137,7 @@ const Home = ({
           </div> */}
         </section>
 
-        <div className="section-sorteo-home">
+        {/* <div className="section-sorteo-home">
           <Container fluid="true">
             <Row className="sin-margin">
               <Col xs={12} sm={12} md={12} lg={6} xl={6}>
@@ -209,7 +209,7 @@ const Home = ({
               </Col>
             </Row>
           </Container>
-        </div>
+        </div> */}
         <div className="section-lo-mejor-home">
           <Container fluid="true">
             <div className="nube-up">
@@ -605,7 +605,7 @@ const Home = ({
           }
           .nube-up {
             position: absolute;
-            top: -10%;
+            top: 10%;
             left: 5%;
             width: 20rem;
           }
