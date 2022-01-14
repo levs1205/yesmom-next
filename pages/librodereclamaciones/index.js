@@ -1,9 +1,105 @@
-import React from "react";
+import { useState , useContext , useEffect , useRef} from "react";
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import CustomButton from "../../components/Perfil/CustomButton";
+import axios from 'axios';
+
+//Validacion
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { Controller, useForm } from "react-hook-form";
+import YesmomContext from "../../context/context";
+import LoaderPage from "../../components/LoaderPage";
+
+import { registerFormReclamos, startRegisterClient } from '../../context/actions/client'
+import { getAccess } from "../../helpers/getAccess";
+
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
+const schemaValidator = yup.object().shape({
+  nombres: yup.string().required("El nombre es obligatorio"),
+  apellidoPat: yup.string().required("El apellido paterno es obligatorio"),
+  apellidoMat: yup.string().required("El apellido materno es obligatorio"),
+  telf: yup.string().matches(phoneRegExp, "El teléfono no es válido").required("El teléfono es obligatorio"),
+  mail: yup.string().email("El email no es valido").required("El email es obligatorio"),
+  domicilio: yup.string().required("Ingrese una dirección de domicilio"),
+  numberDoc: yup.string().required("El número de documento es obligatorio"),
+  apoderado: yup.string().required("INgrese el nombre del apoderado"),
+  monto: yup.string().required("El monto es obligatorio"),
+  // name: yup.string().required("Ingrese el nombre de la tienda"),
+  pedido: yup.string().required("Ingrese el pedido"),
+  detalle: yup.string().required("Ingrese el detalle"),
+  monto: yup.string().required("Ingrese el monto reclamado"),
+  bienContratado: yup.string().required("Ingrese el bien contratado"),
+
+});
+
+
 
 const index = () => {
+
+  const [ tipo, setTipo ] = useState('');
+  const [ bien, setBien ] = useState('');
+  const [ acuerdo, setAcuerdo ] = useState('');
+  const [ tiendas, setTiendas ] = useState([]);
+  const [ tiendasSelected, setTiendaSelected ] = useState([]);
+
+
+  console.log('tiendasSelected', tiendasSelected);
+  
+  const fetchData = async () => {
+    const API_URL = 'http://localhost:3700/store/listtotal';
+    const { data } = await axios.get(API_URL);
+    console.log('get tiendas', data.stores);
+    setTiendas(data.stores);
+  }
+
+  useEffect(()  =>  {
+    fetchData();
+  }, [])
+
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schemaValidator),
+  });
+
+
+  const submitForm = (values) => {
+    console.log('enviarrr')
+    console.log('values h', values)
+    let formValues = {
+      ...values,
+      tiendaSeleccionada: tiendasSelected,
+    };
+    console.log('formValues', formValues);
+    registerFormReclamos(formValues);
+  };
+
+  const handleChangeBien = (e) => {
+    console.log('e', e.target.value)
+    setBien(e.target.value);
+  }
+
+  const handleChangeReclamo = (e) => {
+    console.log('e', e.target.value)
+    setTipo(e.target.value);
+  }
+
+  const handleChangeAcuerdo = (e) => {
+    console.log('e', e.target.value)
+    setAcuerdo(e.target.value);
+  }
+
+  const handleChangeTienda = (e) => {
+    console.log('tienda', e.target.value)
+    setTiendaSelected(e.target.value);
+  }
+
+
   return (
     <AppLayout>
       <Head>
@@ -64,7 +160,7 @@ const index = () => {
           <div className="">
             <div className="container">
               <div className="container-form">
-                <form >
+                <form onSubmit={handleSubmit(submitForm)}>
                   <div className="">
                     <h4>1.- IDENTIFICACIONES DEL CONSUMIDOR RECLAMANTE</h4>
                     <div className="box-item">
@@ -84,10 +180,10 @@ const index = () => {
                           type="number" 
                           id="numberDoc" 
                           name="numberDoc"
-                          // {...register("numberDoc")}
+                          {...register("numberDoc")}
                           />
+                          <p className="error-input">{errors?.numberDoc?.message}</p>
                       </div>
-                      {/* <p className="error-input">{errors?.fullname?.message}</p> */}
                     </div>
                     <div className="box-item">
                       <div className="wrapper-input">
@@ -98,8 +194,9 @@ const index = () => {
                           type="text"
                           id="apellidoPat"
                           name="apellidoPat"
-                          // {...register("apellidoPat")}
+                          {...register("apellidoPat")}
                         />
+                      <p className="error-input">{errors?.apellidoPat?.message}</p>
                       </div>
                       <div className="wrapper-input">
                         <label htmlFor="apellidoMat">
@@ -109,8 +206,9 @@ const index = () => {
                           type="text"
                           id="apellidoMat"
                           name="apellidoMat"
-                          // {...register("apellidoMat")}
+                          {...register("apellidoMat")}
                         />
+                      <p className="error-input">{errors?.apellidoMat?.message}</p>
                       </div>
                     </div>
                     <div className="box-item">
@@ -120,8 +218,9 @@ const index = () => {
                           type="text"
                           id="nombres"
                           name="nombres"
-                          // {...register("nombres")}
+                          {...register("nombres")}
                           />
+                      <p className="error-input">{errors?.nombres?.message}</p>
                       </div>
                       <div className="wrapper-input">
                         <label htmlFor="telf">Teléfono</label>
@@ -129,8 +228,9 @@ const index = () => {
                           type="text"
                           id="telf"
                           name="telf"
-                          // {...register("telf")}
+                          {...register("telf")}
                           />
+                          <p className="error-input">{errors?.telf?.message}</p>
                       </div>
                     </div>
                     <div className="box-item">
@@ -140,8 +240,9 @@ const index = () => {
                           type="text"
                           id="domicilio"
                           name="domicilio"
-                          // {...register("domicilio")}
+                          {...register("domicilio")}
                         />
+                      <p className="error-input">{errors?.domicilio?.message}</p>
                       </div>
                       <div className="wrapper-input">
                         <label htmlFor="apellidoMat">Email (*)</label>
@@ -149,8 +250,9 @@ const index = () => {
                           type="email"
                           id="mail"
                           name="mail"
-                          // {...register("mail")}
+                          {...register("mail")}
                         />
+                      <p className="error-input">{errors?.mail?.message}</p>
                       </div>
                     </div>
                     <div className="box-item">
@@ -162,8 +264,9 @@ const index = () => {
                           type="text"
                           id="apoderado"
                           name="apoderado"
-                          // {...register("apoderado")}
+                          {...register("apoderado")}
                         />
+                      <p className="error-input">{errors?.apoderado?.message}</p>
                       </div>
                     </div>
                   </div>
@@ -173,32 +276,51 @@ const index = () => {
                     <div className="box-item">
                       <div className="wrapper-input">
                         <label htmlFor="name">Nombre de la tienda:</label>
-                        <input 
-                        type="text" 
-                        id="name" 
-                        name="name" />
+                        <select onChange={handleChangeTienda}>
+                          {tiendas.map(tienda => (
+                            <option key={tienda._id} value={tienda.nombreTienda} >{tienda.nombreTienda}</option>
+                          )
+                          )}
+                        </select>
+                        {/* <p className="error-input">{errors?.name?.message}</p> */}
                       </div>
                       <div className="wrapper-input">
                         <label htmlFor="name">Monto Reclamado:</label>
-                        <input type="number" id="monto" name="monto" />
+                        <input 
+                          type="number"
+                          id="monto"
+                          name="monto"
+                          {...register("monto")}
+                          />
+                          <p className="error-input">{errors?.monto?.message}</p>
                       </div>
                     </div>
                     <div className="box-item box-item-checkbox">
                       <div className="wrapper-input">
                         <label htmlFor="name">Tipo:</label>
                         <div className="box-checkbox">
-                          <input type="checkbox" id="name" name="name" />
-                          <label htmlFor="name">
-                            Producto (Relacionado a la compra de un bien,
-                            sustentado con comprobante de pago.)
-                          </label>
+                          <input
+                            type="radio"
+                            value="producto"
+                            id="producto"
+                            name="bien"
+                            {...register("tipoBien")}
+                            onChange={handleChangeBien} 
+                          />
+                          <label htmlFor="producto">Producto (Relacionado a la compra de un bien,
+                            sustentado con comprobante de pago.)</label>
                         </div>
                         <div className="box-checkbox">
-                          <input type="checkbox" id="name" name="name" />
-                          <label htmlFor="name">
-                            Servicio (Relacionado al malestar o descontento
-                            respecto a la atención recibida.)
-                          </label>
+                          <input
+                            type="radio"
+                            value="servicio"
+                            id="servicio"
+                            name="bien"
+                            {...register("tipoBien")}
+                            onChange={handleChangeBien}
+                          />
+                          <label htmlFor="servicio">Servicio (Relacionado al malestar o descontento
+                            respecto a la atención recibida.)</label>
                         </div>
                       </div>
                     </div>
@@ -208,8 +330,14 @@ const index = () => {
                           Descripción del bien contratado:
                         </label>
                         <div className="box-checkbox">
-                          <textarea rows="4" maxLength="4000"></textarea>
+                          <textarea 
+                            rows="4" 
+                            maxLength="4000"
+                            name="bienContratado"
+                            {...register("bienContratado")}
+                          />
                         </div>
+                        <p className="error-input">{errors?.bienContratado?.message}</p>
                       </div>
                     </div>
                   </div>
@@ -220,12 +348,26 @@ const index = () => {
                       <div className="wrapper-input">
                         <label htmlFor="name">Tipo:</label>
                         <div className="box-checkbox">
-                          <input type="checkbox" id="name" name="name" />
-                          <label htmlFor="name">Reclamo(1)</label>
+                          <input
+                            type="radio"
+                            value="reclamo"
+                            id="reclamo"
+                            name="tipo"
+                            {...register("tipoReclamo")}
+                            onChange={handleChangeReclamo} 
+                          />
+                          <label htmlFor="reclamo">Reclamo(1)</label>
                         </div>
                         <div className="box-checkbox">
-                          <input type="checkbox" id="name" name="name" />
-                          <label htmlFor="name">Queja(2)</label>
+                          <input
+                            type="radio"
+                            value="queja"
+                            id="queja"
+                            name="tipo"
+                            {...register("tipoReclamo")}
+                            onChange={handleChangeReclamo} 
+                          />
+                          <label htmlFor="queja">Queja(2)</label>
                         </div>
                       </div>
                     </div>
@@ -233,33 +375,50 @@ const index = () => {
                       <div className="wrapper-input">
                         <label htmlFor="name">Detalle:</label>
                         <div className="box-checkbox">
-                          <textarea rows="4" maxLength="4000"></textarea>
+                          <textarea 
+                            rows="4" 
+                            maxLength="4000"
+                            name="detalle"
+                            {...register("detalle")}
+                          />
                         </div>
+                          <p className="error-input">{errors?.detalle?.message}</p>
                       </div>
                     </div>
                     <div className="box-item box-item-checkbox">
                       <div className="wrapper-input">
                         <label htmlFor="name">Pedido:</label>
                         <div className="box-checkbox">
-                          <textarea rows="4" maxLength="4000"></textarea>
+                          <textarea
+                          rows="4"
+                          maxLength="4000"
+                          name="pedido"
+                          {...register("pedido")}
+                          />
                         </div>
+                          <p className="error-input">{errors?.pedido?.message}</p>
                       </div>
                     </div>
                     <div className="box-item box-item-checkbox">
                       <div className="wrapper-input">
                         <div className="box-checkbox">
-                          <input type="checkbox" id="name" name="name" />
-                          <label htmlFor="name">
-                            Estoy de acuerdo con lo ingresado en esta Hoja de
+                          <input
+                            type="radio"
+                            value="acuerdo"
+                            id="acuerdo"
+                            name="acuerdo"
+                            {...register("acuerdo")}
+                            onChange={handleChangeAcuerdo}
+                          />
+                          <label htmlFor="acuerdo">Estoy de acuerdo con lo ingresado en esta Hoja de
                             Reclamaciones. Asimismo confirmo que los datos
-                            ingresados son tomados como firma de esta solicitud.
-                          </label>
+                            ingresados son tomados como firma de esta solicitud.</label>
                         </div>
                       </div>
                     </div>
                   </div>
                 </form>
-                <CustomButton >
+                <CustomButton  className='btnStyle' fxClick={handleSubmit(submitForm)} >
                   Enviar
                 </CustomButton>
               </div>
@@ -269,6 +428,14 @@ const index = () => {
       </div>
       <style jsx>
         {`
+          .error-input {
+            height: 1.5rem;
+            margin-top:1rem;
+            margin-bottom:1rem;
+            font-family:"mont-bold";
+            font-size:1.2rem;
+            color:#ff0033;
+          }
           .box-terminos {
             width: 100%;
             padding-top: 7rem;
@@ -356,6 +523,12 @@ const index = () => {
           }
           .box-checkbox textarea {
             width: 100%;
+          }
+          .box-checkbox textarea {
+            font-size: 1.3rem;
+            font-weight: 600;
+            font-family: "mont-regular"
+            color: #575756;
           }
         `}
       </style>
