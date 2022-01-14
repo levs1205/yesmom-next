@@ -14,8 +14,8 @@ function TitlePerfil({ name, email, main}) {
                     </svg>    
                 </div>
                 <div className="contenedor-data">
-                    <p className="p-primary ft-m-600">{`¡Hola ${name}!`}</p>
-                    <p className="p-secondary ft-m-regular">{`${email}`}</p>
+                    <p className="p-primary ft-m-600">{`¡Hola ${name ? name : ''}!`}</p>
+                    <p className="p-secondary ft-m-regular">{`${email ? email : ''}`}</p>
                 </div>
             </div>
 
