@@ -106,7 +106,7 @@ const index = ({ userInfo, token }) => {
 				values.fullname,
 				formValues.genderBaby,
 				formValues.haveChildren,
-				formValues.firstTime,
+				formValues.firstTime === true ? formValues.firstTime : false ,
 				formValues.masHijos,
 				formValues.password,
 				values.phone,
@@ -125,7 +125,7 @@ const index = ({ userInfo, token }) => {
 					text: 'Se actualizó correctamente su información.'
 				}); */
 			} else {
-				Swal.fire('Actualizado', "No se pudo actualizar su información.", "success")
+				Swal.fire('Error', "No se pudo actualizar su información.", "error")
 			}
 		}
   };
@@ -874,7 +874,7 @@ const index = ({ userInfo, token }) => {
 export const getServerSideProps = async ({ req, res }) => {
 	console.log('token',req?.cookies?.TokenTest)
   const response = await getProfileInfo(req?.cookies?.TokenTest, "U");
-  if (response.CodigoRespuesta === "12") {
+  if (response.CodigoRespuesta === "15") {
     return {
       props: {
         userInfo: {},
