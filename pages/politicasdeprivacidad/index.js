@@ -1,6 +1,5 @@
 import React from "react";
 import AppLayout from "../../components/AppLayout/index";
-
 import { Container } from "react-bootstrap";
 
 const index = () => {
