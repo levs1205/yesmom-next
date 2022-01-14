@@ -60,6 +60,8 @@ export const generateDelivery = async (dir , products) => {
 }
 
 export const generateSale = async ( dir, products ) => {
+    console.log(dir);
+    console.log(products);
     try{
         const axiosInstance = axios.create({
             baseURL : process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS

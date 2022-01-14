@@ -83,7 +83,7 @@ const Checkout = () => {
       const { calle, numero , interior, referencia , distrito , fechaEntrega , recibePedido, nameRecibeTercero} = watch_2();
 
 
-      const recibe = recibePedido==='0' ? name :  'Melany';
+      const recibe = recibePedido==='0' ? name :  'Franco';
 
       setChecking(true);
       const { ok , idPreference } = await generateSale({

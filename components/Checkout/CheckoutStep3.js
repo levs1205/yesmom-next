@@ -13,7 +13,6 @@ const CheckoutStep3 = ({ formValues, setSelected , infoDatos ,infoEntrega , regi
   const { email , name , identity , phone } = infoDatos();
   const {calle , numero, interior, referencia, distrito , fechaEntrega , recibePedido} = infoEntrega();
 
-  console.log(recibePedido);
   const makeDate = ( date ) => {
 
     const dayWord = moment(date).format('dddd');
@@ -120,10 +119,13 @@ const CheckoutStep3 = ({ formValues, setSelected , infoDatos ,infoEntrega , regi
             </p>
           </div>
         </div>
-        <div className="checkout-envio_separacion">
-          <img src="/image/exclamacion.svg" alt="exclamacion" />
-          <p className="checkout-envio_separacion-text">Hemos dividido tu orden en múltiples envíos <span onClick={openModalEnvio}>¿Por qué?</span></p>
-        </div>
+        {
+           delivery.length > 1 && 
+           <div className="checkout-envio_separacion">
+            <img src="/image/exclamacion.svg" alt="exclamacion" />
+            <p className="checkout-envio_separacion-text">Hemos dividido tu orden en múltiples envíos <span onClick={openModalEnvio}>¿Por qué?</span></p>
+           </div>
+        }
         <div className="checkout-location-form__box-ordenes">
           {
             delivery.map(( { productos , total , nombreTienda} , i)=>(

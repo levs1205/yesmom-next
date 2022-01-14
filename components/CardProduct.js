@@ -26,11 +26,11 @@ function CardProduct({ product, imagen }) {
               <div className="card-text">
                 <div className="container-prices">
                   <p className={`hide ${product?.precioPromocional && "price-before"}`}>
-                    S/ {product?.precio.toFixed(2)}
+                    S/ {product?.precioPromocional.toFixed(2)}
                   </p>
                   <div className={`text-price ${product?.precioPromocional && "discount"}`}>
                     <p className={`${product?.precioPromocional ? "price-now" : "price"}`}>
-                      S/ {product?.precioPromocional.toFixed(2)}
+                      S/ {product?.precio.toFixed(2)}
                     </p>
                   </div>
                 </div>
