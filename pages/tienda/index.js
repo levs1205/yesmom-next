@@ -152,7 +152,7 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
                 </div>
               </div>
             </div>
-            <BannerTienda />
+            {/* <BannerTienda /> */}
             <div className="contenedor f-right">
               <div className="products">
                 <div className="all-products">
@@ -255,7 +255,7 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
           }
           @media (min-width: 768px) {
             .mt-5r {
-              margin-top: 9.5rem;
+              margin-top: 5.5rem;
             }
           }
           @media (min-width: 1024px) {
