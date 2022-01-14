@@ -28,8 +28,6 @@ export const generateDelivery = async (dir , products) => {
         }) )
 
 
-
-        
         const fecha = makeDate(dir.fechaEntrega);
 
         const body = {
@@ -60,6 +58,8 @@ export const generateDelivery = async (dir , products) => {
 }
 
 export const generateSale = async ( dir, products ) => {
+
+
     console.log(dir);
     console.log(products);
     try{
