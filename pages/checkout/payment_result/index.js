@@ -34,7 +34,7 @@ const PaymentResult = () => {
             //TODO: aprobado o desaprobado
             if(data.ok){
                 setStatus(data.status)
-                setOrderId(data.sale.mpOrderId);
+                setOrderId(data.mpOrderId);
             }else{
                 setStatus('rejected');
             }
