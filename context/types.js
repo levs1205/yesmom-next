@@ -8,6 +8,10 @@ export const types = {
     authStartChecking  : "START_CHECK_AUTH",
     authFinishChecking  : "FINISH_CHECK_AUTH",
 
+    //client 
+    clientSetInfo : "SET_INFO_CLIENT",
+
+
     //ui
     setBlogs : "SET_BLOGS",
     setQueryBlog : "SET_QUERY_BLOG",

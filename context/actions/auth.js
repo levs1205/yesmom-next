@@ -4,6 +4,29 @@ import { types } from "../types"
 
 
 
+export const initializeData = async ( token ) => {
+
+    try{
+        const baseURL = process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY;
+        const { data } = await axios.get(`${baseURL}/profile/U`,{
+            headers :{
+                'access-token' : token
+            }
+        })
+        
+        console.log(data);
+        if(data?._id){
+            return startSettingInfo(data);
+        }else{
+            return startSettingInfo({});
+        }
+
+        
+    }catch(err){
+        console.log(err);
+    }
+
+}
 export const startLogin = ( data ) => {
 
     return {
@@ -14,14 +37,23 @@ export const startLogin = ( data ) => {
     }
 }
 
+export const startSettingInfo = ( data ) => {
+
+    return {
+        type : types.clientSetInfo,
+        payload : {
+            data 
+        }
+    }
+}
 export const validateToken = async (token) => {
     try{
 
         const { valid , data } = await startValidateToken(token);
 
         // console.log(data);
-        if(!valid) return startLogout;
-        return startLogin( data )
+        if(!valid) return null;
+        return data;
          
     }catch(err){
         console.log(err.message);

@@ -10,7 +10,7 @@ export const authReducer = ( state = {} , action) => {
             //Setear siempre el token , con el autenticado
             localStorage.setItem('YesmomToken',action.payload.token);
 						// cookieCutter.set('YesmomToken', action.payload.token)
-                        cookie.set('TokenTest',action.payload.token, { expires : 1/24})
+            cookie.set('TokenTest',action.payload.token, { expires : 1/24})
             return {
                 ...state,
                 logged: true,

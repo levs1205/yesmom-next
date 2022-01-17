@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useMemo } from 'react'
 import { ButtonGroup, Dropdown } from 'react-bootstrap'
 import { startLogout } from '../context/actions/auth'
 import YesmomContext from '../context/Context'
@@ -12,12 +12,25 @@ import YesmomContext from '../context/Context'
 const AvatarLogged = () => {
 
     const router = useRouter();
-    const { dispatchAuth } =useContext(YesmomContext); 
+    const { dispatchAuth, client } =useContext(YesmomContext); 
 
     const handleLogout = () => {
         router.push('/login');
         dispatchAuth(startLogout);
     }
+
+    useEffect(() => {
+
+    },[client])
+
+    const makeName = useMemo(() => {
+        if(Object.keys(client).length >0 ){
+            const shortName = client.data.fullname.trim().split(' ')[0];
+            return shortName[0].toUpperCase() + shortName.slice(1,shortName.length);
+        }else{
+            return 'Name';
+        }
+    },[client])
 
     return (
         <>
@@ -30,7 +43,7 @@ const AvatarLogged = () => {
                             width={30}
                             height={30}
                         />
-                        <p className="name-logged">Franco</p>
+                        <p className="name-logged">{makeName}</p>
                     </div>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
@@ -38,7 +51,7 @@ const AvatarLogged = () => {
                         <Link href="/perfil/miperfil" >
                             <p className="items-dropdown-menu cursor-pointer">Mi perfil</p>
                         </Link>
-                        <p className="items-dropdown-menu-2">Franco</p>
+                        <p className="items-dropdown-menu-2">{makeName}</p>
                     </div>
                     <Link href="/perfil/miscompras">
                         <p className="items-dropdown-menu cursor-pointer">Mis compras</p>
