@@ -24,7 +24,7 @@ const AvatarLogged = () => {
     },[client])
 
     const makeName = useMemo(() => {
-        if(Object.keys(client).length >0 ){
+        if(Object.keys(client).length >0 && Object.keys(client.data).length >0){
             const shortName = client.data.fullname.trim().split(' ')[0];
             return shortName[0].toUpperCase() + shortName.slice(1,shortName.length);
         }else{

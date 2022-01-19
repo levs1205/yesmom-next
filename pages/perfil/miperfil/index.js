@@ -20,8 +20,8 @@ import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Swal from 'sweetalert2';
-import LoaderPage from "../../../components/LoaderPage";
 import YesmomContext from "../../../context/Context";
+import { getAccess } from "../../../helpers/getAccess";
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -39,10 +39,7 @@ const schemaValidator = yup.object().shape({
 
 const index = ({ userInfo, token }) => {
 	console.log('userInfo',userInfo)
-  const {	auth: { logged },	} = useContext(YesmomContext);
-  const [loading, setLoading] = useState(true);
-  const flagRef = useRef(true);
-  const router = useRouter();
+  const {	auth	} = useContext(YesmomContext);
 
   const {
     register,
@@ -130,22 +127,6 @@ const index = ({ userInfo, token }) => {
 		}
   };
 
-  useEffect(()=>{
-    if(!logged){
-      console.log('Entro aqui causaaa');
-      router.push('/login');
-      flagRef.current = false;
-    }
-    setTimeout(() => {
-      if (flagRef.current) {
-        setLoading(false);
-      }
-    }, 1000);
-  }, [logged]);
-
-  if (loading) {
-    return <LoaderPage />;
-  }
 
   return (
     <AppLayout>
@@ -872,8 +853,17 @@ const index = ({ userInfo, token }) => {
 };
 
 export const getServerSideProps = async ({ req, res }) => {
-	console.log('token',req?.cookies?.TokenTest)
-  const response = await getProfileInfo(req?.cookies?.TokenTest, "U");
+	const token = req?.cookies?.TokenTest;
+
+  const cleanUrl = req.url.split("?")[0];
+  // console.log(resolvedUrl);
+  // console.log(req.url);
+  const resp = await getAccess(cleanUrl , token );
+
+  if(resp.hasOwnProperty('redirect')){
+    return resp;
+  }
+  const response = await getProfileInfo(token, "U");
   if (response.CodigoRespuesta === "15") {
     return {
       props: {

@@ -20,7 +20,6 @@ const shoppingCart = () => {
   const subTotal = (totalPrice / 1.18).toFixed(2);
   const igv = (totalPrice - subTotal).toFixed(2);
 
-console.log(cart)
 
   const handleAccept = () => {
     setAccept((accept) => !accept);
@@ -123,7 +122,7 @@ console.log(cart)
                     <tbody className="price-table__tbody">
                       <tr className="price-table__tbody--fount-padding ">
                         <td className="price-table__tbody--text-align-left">
-                          Subtotal
+                          Productos
                         </td>
                         <td className="price-table__tbody--text-align-right">
                           S/ {subTotal}
@@ -139,7 +138,7 @@ console.log(cart)
                       </tr>
                       <tr className="price-table__tbody--fount-bold-padding price-table__tbody--border-top">
                         <td className="price-table__tbody--text-align-left">
-                          <strong>Total</strong>
+                          <strong>Subtotal</strong>
                         </td>
                         <td className="price-table__tbody--text-align-right">
                           <strong>S/ {totalPrice}</strong>

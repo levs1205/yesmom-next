@@ -24,6 +24,7 @@ export const initializeData = async ( token ) => {
         
     }catch(err){
         console.log(err);
+        return startSettingInfo({});
     }
 
 }

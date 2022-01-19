@@ -20,6 +20,7 @@ import { makeDelivery } from "../../context/actions/sale";
 import LoaderPage from "../../components/LoaderPage";
 import { startValidateToken } from "../../helpers/validateToken";
 import Swal from "sweetalert2";
+import SubtotalComponent from "../../components/Checkout/SubtotalComponent";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -278,7 +279,7 @@ const Checkout = () => {
                 </div>
               </div>
             </section> */}
-            <section className="price-table">
+            {/* <section className="price-table">
               <table className=" price-table__table">
                 <tbody className="price-table__tbody">
                   <tr className="price-table__tbody--fount-padding ">
@@ -305,7 +306,8 @@ const Checkout = () => {
                   </tr>
                 </tbody>
               </table>
-            </section>
+            </section> */}
+            <SubtotalComponent />
           </div>
           <div className="checkout-block__card">
             <form 
@@ -615,32 +617,6 @@ const Checkout = () => {
           .discount-coupon__input-submit:focus {
             outline: none;
             box-shadow: none;
-          }
-          .price-table {
-            padding: 2rem 0rem;
-          }
-          .price-table__tbody--fount-padding {
-            font-family: "mont-regular";
-            height: 4rem;
-            font-size: 1.3rem;
-          }
-          .price-table__tbody--text-align-left {
-            font-size: 1.4rem;
-            text-align: left;
-          }
-          .price-table__tbody--text-align-right {
-            font-size: 1.3rem;
-            text-align: right;
-          }
-          .price-table__tbody--fount-bold-padding {
-            font-family: "mont-semibold";
-            height: 4rem;
-          }
-          .price-table__tbody--border-top {
-            border-top: 1px solid #dadada;
-          }
-          .price-table__table {
-            width: 100%;
           }
           .ft-15 {
             font-size: 1.5rem !important;
