@@ -190,9 +190,7 @@ const Checkout = () => {
   },[ cart ])
 
   useEffect(()=>{
-
     openMercadoPago();
-    
   },[idPreference])
 
 
