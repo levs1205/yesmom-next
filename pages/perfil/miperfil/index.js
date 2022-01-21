@@ -38,7 +38,7 @@ const schemaValidator = yup.object().shape({
 });
 
 const index = ({ userInfo, token }) => {
-	console.log('userInfo',userInfo)
+
   const {	auth	} = useContext(YesmomContext);
 
   const {
@@ -115,6 +115,10 @@ const index = ({ userInfo, token }) => {
 					'Se actualizó correctamente su información.',
 					 'success',
 				)
+
+        setTimeout(()=>{
+          window!=='undefined' && window.location.reload();
+        },500)
 				/* MySwal.fire({
 					position: "center",
 					icon: "success",
@@ -868,14 +872,14 @@ export const getServerSideProps = async ({ req, res }) => {
     return {
       props: {
         userInfo: {},
+        token
       },
     };
   }
-
   return {
     props: {
       userInfo: response,
-			token: req?.cookies?.TokenTest
+			token
     },
   };
 };
