@@ -3,7 +3,7 @@ import AppLayout from "../../../components/AppLayout";
 import Head from "next/head";
 import Image from "next/image";
 import YesmomContext from "../../../context/Context";
-
+import {  Row, Col } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import CardProduct from "../../../components/CardProduct";
 import Pagination from "../../../components/Pagination";
@@ -124,44 +124,22 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
                     <hr />
                   </div>
                   <div className="container-selects">
-                    {/* <div className="show-mobile">
-                                    <p className="show-between">Mostrar del 1 al 20</p>
-                                </div> */}
-                    {/* <div className="show-desktop">
-                                    <p className="show-quantity-desktop">Mostrar del 1 al 20 de 100</p>
-                                </div> */}
                     <select>
                       <option selected disabled>
                         Ordenar por{" "}
                       </option>
                       <option>Precio de mayor a menor </option>
                       <option>Precio de menor a mayor </option>
-                      {/* <option>Recomendaciones </option>
-                      <option>A-Z (alfabéticamente) </option>
-                      <option>Z-A (alfabéticamente </option>
-                      <option>Los más vendidos </option>
-                      <option>Últimos 30 días </option>
-                      <option> Últimos 6 meses </option> */}
                     </select>
                   </div>
                 </div>
-                <div className="all-products">
+                <Row>
                   {productosGeneral?.map((product, i) => (
-                    <CardProduct key={i} {...product} />
+                    <Col xs={6} sm={4}>
+                      <CardProduct key={i} {...product} />
+                    </Col>
                   ))}
-                  {/*                       <CardProduct />
-                      <CardProduct discount/>
-                      <CardProduct />
-                      <CardProduct />
-                      <CardProduct discount/>
-                      <CardProduct />
-                      <CardProduct />
-                      <CardProduct discount/>
-                      <CardProduct />
-                      <CardProduct />
-                      <CardProduct discount/>
-                      <CardProduct /> */}
-                </div>
+                </Row>
               </div>
             </div>
             <div className="box-pagination">

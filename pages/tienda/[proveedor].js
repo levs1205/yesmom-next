@@ -10,6 +10,7 @@ import CardProduct from "../../components/CardProduct";
 import SidebarProducto from "../../components/tienda/SidebarProducto";
 import { getProductsByUrlStore, getCategories } from "../api/request";
 import { setProducts, setCategories } from "../../context/actions/ui";
+import {getApiBusiness} from '../../helpers/httpCreators';
 
 const ProveedorSlug = ({ productList, productsQty, pages }) => {
 
@@ -33,11 +34,11 @@ const ProveedorSlug = ({ productList, productsQty, pages }) => {
         <meta
           property="og:description"
           content="Yes Mom es una plataforma digital peruana que ayuda a las
-                                mamis a disfrutar su maternidad sin preocupaciones. Queremos
-                                ser la marca aliada que todos los papás estuvieron buscando,
-                                una página web que reúne en un solo lugar todo lo que
-                                necesitan para la llegada de su bebé y acompañar su
-                                crecimiento."
+          mamis a disfrutar su maternidad sin preocupaciones. Queremos
+          ser la marca aliada que todos los papás estuvieron buscando,
+          una página web que reúne en un solo lugar todo lo que
+          necesitan para la llegada de su bebé y acompañar su
+          crecimiento."
         />
         <meta
           property="og:image"
@@ -272,6 +273,29 @@ ProveedorSlug.propTypes = {
 
 export const getServerSideProps = async ({ query }) => {
 	const { proveedor } = query;
+
+  const { data , err= null } = await getApiBusiness('/store/verifyname',{
+    params : {
+      storeName : proveedor
+    }
+  })
+
+  const notFound = {
+    redirect: {
+      destination: '/404',
+      permanent: false,
+    },
+  }
+
+  if(!err){
+    if(data.ok){
+      return notFound;
+    }
+  }else{
+    return notFound;
+  }
+
+
   const { productosGeneral, totalDeProductos, pages } = await getProductsByUrlStore(proveedor, 0,	10);
 
   if (!productosGeneral) {
@@ -294,4 +318,3 @@ export const getServerSideProps = async ({ query }) => {
 };
 
 export default ProveedorSlug;
-``

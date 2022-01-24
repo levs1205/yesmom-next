@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useMemo } from "react";
 import chroma from "chroma-js";
 import Link from "next/link";
 import Image from "next/image";
@@ -16,6 +16,11 @@ import OtherProducts from "../../../components/tienda/detalle/OtherProducts";
 import Select from "react-select";
 import { getProductsById, getProducts } from "../../api/request";
 import { setProduct } from "../../../context/actions/ui";
+import moment from 'moment';
+
+const defaultImage =
+  "https://bicentenario.gob.pe/biblioteca/themes/biblioteca/assets/images/not-available-es.png";
+
 
 const DetallesID = ({
   product,
@@ -25,8 +30,6 @@ const DetallesID = ({
   productsQty,
   pages,
 }) => {
-  const defaultImage =
-    "https://bicentenario.gob.pe/biblioteca/themes/biblioteca/assets/images/not-available-es.png";
   const { _id: idTienda, nombreTienda, nombreTiendaUrl } = supplier;
   const {
     _id: idProducto,
@@ -297,6 +300,21 @@ const DetallesID = ({
 		}),
   };
 
+  const haveDiscount = useMemo(()=>{
+    if( !product || !product.fechaInicioPromocion || !product.fechaFinPromocion) return false;
+
+    const init_promo = moment(product.fechaInicioPromocion);
+    const end_promo = moment(product.fechaFinPromocion);
+    const now = moment(new Date());
+
+    if(end_promo.isAfter(init_promo) && end_promo.isAfter(now)){
+      return true;
+    }else{
+      return false;
+    }
+
+  },[product])
+
 
   return (
     <>
@@ -366,16 +384,14 @@ const DetallesID = ({
                     <div className="show--container-details">
                       <section className="show--some-info-product">
                         <h5 className="show--ft-semibold">{nombre}</h5>
-                        {/* <h6 className="show--ft-light">{nombreTienda}</h6> */}
                         <h6 className="show--ft-light">
                           <Link href={`/tienda/${nombreTiendaUrl}`}>
                             <a className="show--ft-light name-store">{nombreTienda}</a>
                           </Link>
                         </h6>
 
-                        {/* <p className="show--text-description">{decripcion}</p> */}
-                        <p className="show--price">S/ {precioPromocional ? precioPromocional?.toFixed(2) : precio?.toFixed(2)}</p>
-												{precioPromocional && <p className="show--price-dcto">S/ {precio?.toFixed(2)}</p>}
+                        <p className="show--price">S/ {haveDiscount ? precioPromocional?.toFixed(2) : precio.toFixed(2)}</p>
+												{haveDiscount && <p className="show--price-dcto">S/ {precio?.toFixed(2)}</p>}
                         <div className="show--container-selects">
                           <div className="show--group-select">
                             <label className="show--text-label" htmlFor="talla">
@@ -499,6 +515,9 @@ const DetallesID = ({
       </AppLayout>
       <style jsx>
         {`
+          :global(.carousel .carousel-status){
+            display : none!important;
+          }
           .container-select {
             width: 200px !important;
           }
@@ -529,6 +548,9 @@ const DetallesID = ({
           :global(.carousel li img) {
             border-radius: 10px !important;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+          }
+          :global(.carousel .thumb ){
+            border-radius: 15px;
           }
           :global(.carousel .thumb img) {
             vertical-align: top;

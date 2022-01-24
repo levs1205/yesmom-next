@@ -1,8 +1,7 @@
-import React, { Fragment, useEffect, useState, useContext } from "react";
+import React from "react";
 import { object, array, number } from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
-import YesmomContext from "./../context/Context";
 import { Container, Row, Col, Card, CardDeck } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -351,18 +350,22 @@ const Home = ({
               mejor para tu pequeño!
             </h6>
           </Container>
-          <Container fluid="true">
-            <Col>
+          <Container >
               <div className="all-products">
+              <Row md={3} className="justify-content-center">
                 {productList.length > 0 ? (
                   productList
                     .slice(0, 3)
-                    .map((product, i) => <CardProduct key={i} {...product} />)
+                    .map((product, i) => (
+                      <Col xs={6} md={4}>
+                        <CardProduct key={i} {...product} />
+                      </Col>
+                    ))
                 ) : (
                   <p>Se encontraron 0 productos</p>
                 )}
+              </Row>
               </div>
-            </Col>
             <Link href="/tienda">
               <div className="btn-yellow bg-fuxia hover-fuxia text-omnes">
                 <a>Ver más</a>
@@ -462,6 +465,7 @@ const Home = ({
           :global(.card-blog) {
             width: 30rem !important;
           }
+
           .text-change-font {
             font-family: "omnes-bold" !important;
             font-size: 1.6rem;
@@ -471,15 +475,6 @@ const Home = ({
           }
           .text-omnes a {
             font-size: 2rem;
-          }
-          .all-products {
-            width: 85%;
-            margin: 0 auto;
-            padding: 3rem 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
           }
           .box-banner {
             height: 65rem;
@@ -990,10 +985,6 @@ const Home = ({
             .box-text-title {
               padding-top: 3rem;
             }
-            .all-products {
-              width: 70%;
-              margin: 0 auto;
-            }
             .box-banner-btns-group {
               position: absolute;
               top: 35%;
@@ -1066,15 +1057,6 @@ const Home = ({
             }
             .title-fuxia {
               font-size: 2rem;
-            }
-            .all-products {
-              width: 90%;
-              margin: 0 auto;
-              padding: 3rem 0;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              flex-wrap: wrap;
             }
             .ondas {
               width: 4rem;

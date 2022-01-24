@@ -1,15 +1,41 @@
 import Image from "next/image";
-import React, { useContext, useState } from "react";
+import React, { useContext, useMemo } from "react";
 import { startRemoveProduct } from "../../../context/actions/ui";
 import YesmomContext from "../../../context/Context";
+import moment from 'moment';
 
-	const DetailProduct = ({ _id ,nombre , imagen , quantity , precio, precioPromocional, sizeSelected, colourSelected, idProductCart }) => {
-
+const DetailProduct = ({
+  _id,
+  nombre,
+  imagen,
+  quantity,
+  precio,
+  precioPromocional,
+  fechaInicioPromocion,
+  fechaFinPromocion,
+  sizeSelected,
+  colourSelected,
+  idProductCart,
+}) => {
   const { dispatchUi } = useContext(YesmomContext);
-  console.log('idProductCart',idProductCart)
   const handleRemoveProduct = () => {
     dispatchUi(startRemoveProduct(idProductCart));
   };
+
+  const haveDiscount = useMemo(() => {
+    if (!fechaInicioPromocion || !fechaFinPromocion)
+      return false;
+
+    const init_promo = moment(fechaInicioPromocion);
+    const end_promo = moment(fechaFinPromocion);
+    const now = moment(new Date());
+
+    if (end_promo.isAfter(init_promo) && end_promo.isAfter(now)) {
+      return true;
+    } else {
+      return false;
+    }
+  }, []);
 
   return (
     <>
@@ -31,8 +57,15 @@ import YesmomContext from "../../../context/Context";
         </div>
         <div className="card--shopping-cart__text">
           <p className="card--shopping-cart__title">{nombre}</p>
-					<p className="card--shopping-cart__size-color">Talla: {sizeSelected} | Color: {colourSelected}</p>
-          <p className="card--shopping-cart__price">S/{precioPromocional ? precioPromocional?.toFixed(2) : precio?.toFixed(2)}</p>
+          <p className="card--shopping-cart__size-color">
+            Talla: {sizeSelected} | Color: {colourSelected}
+          </p>
+          <p className="card--shopping-cart__price">
+            S/
+            {haveDiscount
+              ? precioPromocional.toFixed(2)
+              : precio.toFixed(2)}
+          </p>
           <p className="card--shopping-cart__quantity"> x {quantity}</p>
         </div>
       </div>
@@ -42,7 +75,7 @@ import YesmomContext from "../../../context/Context";
             position: absolute;
             top: -0.5rem;
             left: -0.5rem;
-            cursor:pointer;
+            cursor: pointer;
           }
           .card--shopping-cart__iconDelete:hover {
             transform: scale(1.05);
@@ -111,10 +144,10 @@ import YesmomContext from "../../../context/Context";
             color: #4b64a4;
             text-align: center;
           }
-          .card--shopping-cart__quantity{
-              font-family:"mont-light";
-              font-size:1.2rem;
-							line-height: 1rem;
+          .card--shopping-cart__quantity {
+            font-family: "mont-light";
+            font-size: 1.2rem;
+            line-height: 1rem;
           }
 
           @media (min-width: 1366px) {

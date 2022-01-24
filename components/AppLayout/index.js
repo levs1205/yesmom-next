@@ -8,8 +8,13 @@ const appLayout = ({ children }) => {
   return (
     <div className="box-yesmom">
       <Head>
-        <title>yesmom</title>
+        <title>Yesmom</title>
         <meta name="description" content="esto es descripcion"></meta>
+        <meta name="theme-color" content="#dc6a8d" />
+        {/* ios */}
+        <meta name="apple-mobile-web-app-status-bar-style" content="#dc6a8d" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        
       </Head>
       <HeaderNuevo />
       <main className="main-yesmom">{children}</main>

@@ -1,12 +1,11 @@
-import React, { Component, useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { object, array, number } from "prop-types";
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import YesmomContext from "../../context/Context";
-import { Carousel, Container } from "react-bootstrap";
+import { Carousel, Container, Row, Col } from "react-bootstrap";
 import CardProduct from "../../components/CardProduct";
 import SidebarProducto from "../../components/tienda/SidebarProducto";
-import BannerTienda from "../../components/tienda/BannerTienda";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 import { getProducts, getCategories } from "../api/request";
@@ -141,29 +140,34 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
               <div className="products">
                 <h4 className="text-title-tienda">{categorySelected?.name}</h4>
                 <hr />
-                <div className="all-products">
+                <Row>
                   {productList.length > 0 ? (
                     storeFiltered
                       .slice(0, 6)
-                      .map((product, i) => <CardProduct key={i} {...product} />)
+                      .map((product, i) => (
+                        <Col xs={6} sm={4}>
+                          <CardProduct key={i} {...product} />
+                        </Col>
+                      ))
                   ) : (
                     <p>Se encontraron 0 productos</p>
                   )}
-                </div>
+                </Row>
               </div>
             </div>
-            {/* <BannerTienda /> */}
             <div className="contenedor f-right">
               <div className="products">
-                <div className="all-products">
+                <Row>
                   {productList.length > 0
                     ? storeFiltered
                         .slice(6, 12)
                         .map((product, i) => (
-                          <CardProduct key={i} {...product} />
+                          <Col xs={6} sm={4}>
+                            <CardProduct key={i} {...product} />
+                          </Col>
                         ))
                     : null}
-                </div>
+                </Row>
               </div>
             </div>
           </div>
@@ -227,10 +231,14 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
             align-items: center;
             flex-wrap: wrap;
           }
+          .show-mobile{
+            margin-top: 8.5rem;
+          }
 
           @media (min-width: 768px) {
             .show-mobile {
               display: none;
+
             }
             .show-desktop {
               display: flex;
@@ -280,7 +288,6 @@ Product.propTypes = {
 export const getServerSideProps = async () => {
 	const { productosGeneral, totalDeProductos, pages } = await getProducts(null,'all',0,	10);
   const { response } = await getCategories();
-  /* localStorage.setItem('categories', response?.categories) */
 
   if (!productosGeneral) {
     return {
