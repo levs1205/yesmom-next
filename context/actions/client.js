@@ -16,7 +16,7 @@ export const registerFormReclamos = async ( values ) => {
         const { mail, detalle, acuerdo, apellidoMat, apellidoPat, apoderado, bienContratado, domicilio, monto, nombres, numberDoc, pedido, telf, tipoBien, tipoReclamo, tiendaSeleccionada } = values ;
         const body = { 
             principalEmail: mail,
-            subject : detalle,
+            subject : 'Solicitud de Reclamo',
             bodyHtml : {
                 acuerdo,
                 apellidoMat,
