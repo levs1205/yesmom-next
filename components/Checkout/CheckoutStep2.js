@@ -1,10 +1,39 @@
-import React from "react";
-import LoaderPage from "../LoaderPage";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Controller } from "react-hook-form";
+import DatePicker from "react-date-picker/dist/entry.nostyle";
 
-const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) => {
+const today = new Date()
+const tomorrow = new Date(today)
+tomorrow.setDate(tomorrow.getDate() + 1)
+
+const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
 
 
-  const { email , name , identity , phone } = watch();
+  const [ locations , setLocations ] = useState([]);
+  const { email , name , identity , phone  } = watch();
+
+  const getLocations = async () => {
+    try{
+      
+      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/sale/locations`);
+      if(data?.response?.ok){
+        const makeLocations = data.response.locations.map( ({_id , descripcion}) => ({ id : _id , descripcion}) );
+        setLocations(makeLocations); 
+      }
+    }catch(err){
+      console.log(err);
+      setLocations([]);
+    }
+  }
+
+
+  useEffect(()=>{
+    getLocations();
+
+    return () => setLocations([])
+  },[])
+
 
   return (
     <>
@@ -42,13 +71,26 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
         </div>
       </div>
   
+      <div className="fade-in animated  checkout-block__text">
+        <p className="checkout-block__text--font-size-and-bold">
+          2. Datos para la entrega:
+        </p>
+      </div>
+      <div className="checkout-location-form__wrapper wrapper_date">
+        <label htmlFor="numero" className="checkout-location-form__label">
+          Fecha de entrega : 
+        </label>
+
+        <Controller
+          name='fechaEntrega'
+          control = { control }
+          render={({ field }) => <DatePicker minDate={tomorrow} {...field} />}
+        />
+
+        <p className="msg-error">{errors?.fechaEntrega?.message && 'Fecha inválida'}</p>
+      </div>
       <div className="checkout-location-form__wrapper">
-        <div className="fade-in animated  checkout-block__text">
-          <p className="checkout-block__text--font-size-and-bold">
-            2. Datos para la entrega:
-          </p>
-        </div>
-        <label for="calle" className="checkout-location-form__label">
+        <label htmlFor="calle" className="checkout-location-form__label">
           Av/Jirón/Calle: <span className="ml-4"> EJM : * Jr. Los Valles</span>
         </label>
         <input
@@ -60,8 +102,10 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
         />
         <p className="msg-error">{errors?.calle?.message}</p>
       </div>
+
+
       <div className="checkout-location-form__wrapper">
-        <label for="numero" className="checkout-location-form__label">
+        <label htmlFor="numero" className="checkout-location-form__label">
           Nro.: <span className="ml-4"> EJM : * Jr. 205</span>
         </label>
         <input
@@ -74,7 +118,7 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
         <p className="msg-error">{errors?.numero?.message}</p>
       </div>
       <div className="checkout-location-form__wrapper">
-        <label for="identity" className="checkout-location-form__label">
+        <label htmlFor="identity" className="checkout-location-form__label">
           Interior:
         </label>
         <input
@@ -87,7 +131,7 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
         <p className="msg-error">{errors?.interior?.message}</p>
       </div>
       <div className="checkout-location-form__wrapper">
-        <label for="direccion" className="checkout-location-form__label">
+        <label htmlFor="direccion" className="checkout-location-form__label">
           Referencia de Dirección*:
         </label>
         <input
@@ -111,7 +155,7 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
           <option value="">sds</option> */}
         </select>
       </div>
-      <div className="checkout-location-form__wrapper">
+      {/* <div className="checkout-location-form__wrapper">
         <p className="checkout-location-form__label">Provincia</p>
         <select 
           name="provincia" 
@@ -120,10 +164,8 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
           { ...register('provincia')}
         >
           <option value="lima" selected>Lima</option>
-          {/* <option value="">sdsdsd</option>
-          <option value="">sds</option> */}
         </select>
-      </div>
+      </div> */}
       <div className="checkout-location-form__wrapper">
         <p className="checkout-location-form__label">Distrito</p>
         <select 
@@ -131,10 +173,14 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
           id="distrito" 
           className="checkout-location-form__select"
           {...register('distrito')}
+          defaultValue="Lima"
         >
-          <option value="">sdssd</option>
-          <option value="">sdsdsd</option>
-          <option value="">sds</option>
+          {
+            locations.length>0 && locations.map( loc =>(
+              <option key={loc.id} value={loc.descripcion}>{loc.descripcion}</option>
+            ))
+          }
+
         </select>
       </div>
       <div className="checkout-location-form__wrapper">
@@ -147,8 +193,9 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
             type="radio"
             id="f-option"
             name="selector"
+            {...register('recibePedido')}
           />
-          <label className="checkout-location-form__label-radio" for="f-option">
+          <label className="checkout-location-form__label-radio" htmlFor="f-option">
             Yo
           </label>
           <input
@@ -156,17 +203,40 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
             type="radio"
             id="f-option2"
             name="selector"
+            {...register('recibePedido')}
           />
           <label
             className="checkout-location-form__label-radio"
-            for="f-option2"
+            htmlFor="f-option2"
           >
             Otra persona
           </label>
         </div>
+        <p className="msg-error">{errors?.recibePedido?.message && 'Campo obligatorio'}</p>
       </div>
       <style jsx>
         {`
+
+
+          :global(.react-date-picker){
+            font-size : 1.4rem;
+            font-family : "mont-regular";
+          }
+          :global(.react-date-picker__wrapper){
+            border: none;
+            border-bottom: 1px solid #dadada;
+            padding : 0.5rem;
+          }
+
+          :global(.react-date-picker__inputGroup__input){
+            color : #556ea1;
+            
+          }
+
+          .wrapper_date{
+            display : flex!important;
+            flex-direction : column!important;
+          }
 
           .checkout-block__text--font-size-and-bold {
             font-size: 1.6rem;
@@ -174,9 +244,9 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
             margin-top : 1rem;
           }
           .msg-error{
-            font-family:"omnes-regular";
-            font-size: 1.5rem;
-            color: red;
+            font-family:"omnes-bold";
+            font-size: 1.4rem;
+            color : #ff3333;
           }
           .container-checkout {
             padding: 8rem 1rem;
@@ -539,6 +609,11 @@ const CheckoutStep2 = ({ register, errors, watch, handleSubmit, setSelected }) =
 
             .discount-coupon__input-submit {
               width: 100px;
+            }
+
+            :global(.react-date-picker__wrapper){
+              border: 1px solid #556ea1;
+              border-radius : 10px;
             }
           }
           @media (min-width: 1280px) {

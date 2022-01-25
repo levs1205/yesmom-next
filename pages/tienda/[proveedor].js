@@ -1,14 +1,18 @@
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import Image from "next/image";
+import { object, array, number } from "prop-types";
 
 import { Carousel } from "react-bootstrap";
-
 import BannerProveedor from "../../components/Proveedor/BannerProveedor";
-import CardProducts from "../../components/CardProduct";
-import SidebarProveedor from "../../components/Proveedor/SidebarProveedor";
+import CardProduct from "../../components/CardProduct";
+/* import SidebarProveedor from "../../components/Proveedor/SidebarProveedor"; */
+import SidebarProducto from "../../components/tienda/SidebarProducto";
+import { getProductsByUrlStore, getCategories } from "../api/request";
+import { setProducts, setCategories } from "../../context/actions/ui";
 
-const Proveedor = () => {
+const ProveedorSlug = ({ productList, productsQty, pages }) => {
+
   const imagesMobile = [
     { id: 1, image: "/image/tienda/banner-first.svg" },
     { id: 2, image: "/image/tienda/banner-first.svg" },
@@ -38,7 +42,7 @@ const Proveedor = () => {
         <meta
           property="og:image"
           itemprop="image"
-          content="https://www.yesmom.com.pe/_next/image?url=%2Fimage%2Fheader%2Flogo-yesmom.svg&w=128&q=75"
+          content="https://yesmom.vercel.app/image/about-header.png"
         />
         <meta property="og:image:width" content="1280" />
         <meta property="og:image:height" content="855" />
@@ -57,14 +61,14 @@ const Proveedor = () => {
         />
         <meta
           name="twitter:image"
-          content="https://www.yesmom.com.pe/_next/image?url=%2Fimage%2Fheader%2Flogo-yesmom.svg&w=128&q=75"
+          content="https://yesmom.vercel.app/image/about-header.png"
         />
       </Head>
       <div className="contenedor fade-in animated ">
         <div className="container-contenido">
           <div className="container-contenido-filtro">
             <div className="sidebar-proveedor show-desktop">
-              <SidebarProveedor />
+              <SidebarProducto />
             </div>
             <div className="container-products">
               <div className="container-banner center">
@@ -82,11 +86,15 @@ const Proveedor = () => {
               </div>
 
               <div className="products">
-                <div className="all-products">
-                  <CardProducts size={4} />
-                  <CardProducts size={4} discount />
-                  <CardProducts size={4} />
-                </div>
+								<div className="all-products">
+										{productList.length > 0
+											? productList
+													.slice(0, 3)
+													.map((product, i) => (
+														<CardProduct key={i} {...product} />
+													))
+											: <p>Se encontraron 0 productos</p>}
+									</div>
               </div>
             </div>
           </div>
@@ -123,13 +131,14 @@ const Proveedor = () => {
                   <hr />
                 </div>
                 <div className="all-products">
-                  <CardProducts />
-                  <CardProducts discount />
-                  <CardProducts />
-                  <CardProducts />
-                  <CardProducts discount />
-                  <CardProducts />
-                </div>
+										{productList.length > 0
+											? productList
+													.slice(3, 9)
+													.map((product, i) => (
+														<CardProduct key={i} {...product} />
+													))
+											: <p>Se encontraron 0 productos</p>}
+									</div>
               </div>
             </div>
           </section>
@@ -255,4 +264,34 @@ const Proveedor = () => {
   );
 };
 
-export default Proveedor;
+ProveedorSlug.propTypes = {
+  productList: array.isRequired,
+  productsQty: number.isRequired,
+  pages: number,
+};
+
+export const getServerSideProps = async ({ query }) => {
+	const { proveedor } = query;
+  const { productosGeneral, totalDeProductos, pages } = await getProductsByUrlStore(proveedor, 0,	10);
+
+  if (!productosGeneral) {
+    return {
+      props: {
+        productList: [],
+        productsQty: 0,
+        pages: 0,
+      },
+    };
+  }
+
+  return {
+    props: {
+      productList: productosGeneral,
+      productsQty: totalDeProductos,
+      pages: pages,
+    },
+  };
+};
+
+export default ProveedorSlug;
+``

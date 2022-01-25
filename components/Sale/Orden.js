@@ -3,7 +3,7 @@ import DetailProductOrden from "./DetailProductOrden"
 
 
 const img = 'https://i.ibb.co/9HFgQfz/image.png';
-const Orden = ( { products }) => {
+const Orden = ( { products , nombreTienda }) => {
 
     // const products = [
     //     { 
@@ -20,9 +20,9 @@ const Orden = ( { products }) => {
         <>
             <div className="orden__list">
                 {
-                    products.map(({ id , nombre , imagen })=>(
+                    products.map(({ id , nombre , imagen , cantidad })=>(
                         <div key={id}>
-                            <DetailProductOrden img={imagen} name ={nombre}/>
+                            <DetailProductOrden img={imagen} name ={nombre} cantidad ={ cantidad } nombreTienda={nombreTienda}/>
                         </div>
                     ))
                 }

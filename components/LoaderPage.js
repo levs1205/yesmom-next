@@ -3,7 +3,7 @@ import React from 'react'
 import Head from "next/head";
 import Loader from 'react-loader-spinner'
 
-const LoaderPage = () => {
+const LoaderPage = ( { type }) => {
     return (
         <>  
             <Head>
@@ -45,7 +45,7 @@ const LoaderPage = () => {
                 content="https://yesmom.vercel.app/image/about-header.png"
                 />
             </Head>
-            <div className="container-loader">
+            <div className={`container-loader ${type}`}>
                 <div>
                     <Loader type="ThreeDots" color="#EC608D" height={80} width={80} />
                 </div>
@@ -59,6 +59,17 @@ const LoaderPage = () => {
                         display:flex;
                         justify-content:center;
                         align-items:center;
+                    }
+
+                    .over{
+                        position : fixed;
+                        z-index : 10;
+                        top: 0;
+                        left :0;
+                        width :100vw;
+                        height : 100vh;
+                        
+                        background-color : rgb(255,255,255,0.6);
                     }
          
                 `}

@@ -2,7 +2,7 @@ import axios from 'axios';
 import Swal from "sweetalert2";
 
 
-export const startRegisterClient = () => {
+export const startRegisterClient = (data) => {
     console.log(data);
 }
 

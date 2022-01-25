@@ -1,12 +1,54 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
+import moment from 'moment';
+import Swal from 'sweetalert2';
 import YesmomContext from "../../context/Context";
 import CostSale from "../Sale/CostSale";
 import Orden from "../Sale/Orden";
 
-const CheckoutStep3 = ({ formValues, setSelected , watch , register }) => {
+moment.locale('es');
+
+const CheckoutStep3 = ({ formValues, setSelected , infoDatos ,infoEntrega , register }) => {
 
   const { sale : { delivery }} = useContext(YesmomContext);
-  const {calle , numero, interior, referencia, departamento, provincia, distrito } = watch();
+  const { email , name , identity , phone } = infoDatos();
+  const {calle , numero, interior, referencia, distrito , fechaEntrega , recibePedido} = infoEntrega();
+
+  const makeDate = ( date ) => {
+
+    const dayWord = moment(date).format('dddd');
+    // const dayNumber = moment(date).format('Do');
+    const dayNumber = date.getDate();
+    const monthWord = moment(date).format('MMMM');
+    const year = moment(date).get('year');
+    
+    return { dayWord , dayNumber , monthWord , year } ;
+  }
+
+  const capitalize = ( str ) => {
+
+    return str[0].toUpperCase()+str.slice(1,str.length);
+  }
+  const makeSpanishDate = (date) => {
+  
+    const { dayWord , dayNumber , monthWord , year} = makeDate(date);
+    // console.log({ dayWord , dayNumber , monthWord , year})
+    return `${capitalize(dayWord)}, ${dayNumber} de ${monthWord} del ${year}`
+  }
+
+  const memorizedDate = useMemo(() => makeSpanishDate(fechaEntrega) , [fechaEntrega]);
+
+  const openModalEnvio = () => {
+    return Swal.fire({
+      text : 'Para poder cumplir con tu orden hemos tenido que separarla en distintos despachos, ya que hay productos que tienen distintos métodos de despacho.',
+      customClass : {
+        popup :'popup-container-checkout',
+        htmlContainer :'popup-container-checkout-text'    
+      },
+      showCancelButton : false,
+      showConfirmButton : false
+    })
+  }
+
   return (
     <>
       <div className="fade-in animated checkout-identification-block">
@@ -24,16 +66,16 @@ const CheckoutStep3 = ({ formValues, setSelected , watch , register }) => {
           </div>
           <div className="checkout-identification-block__text-container">
             <p className="checkout-identification-block__text--font-size">
-              Email: {/* {formValues.email} */}
+              Email: {email}
             </p>
             <p className="checkout-identification-block__text--font-size">
-              Nombre: {/* {formValues.name} */}
+              Nombre: {name}
             </p>
             <p className="checkout-identification-block__text--font-size">
-              DNI: {/* {formValues.identity} */}
+              DNI: {identity}
             </p>
             <p className="checkout-identification-block__text--font-size">
-              Teléfono / Móvil: {/* {formValues.phone} */}
+              Teléfono / Móvil: {phone}
             </p>
           </div>
         </div>
@@ -54,11 +96,11 @@ const CheckoutStep3 = ({ formValues, setSelected , watch , register }) => {
           <div className="checkout-identification-block__text-container m-3 flex-container">
             <div className="checkout-identification-block__text-container_left">
               <div className="checkout-identification-block__text--font-size">
-                Cll. Augusto Tamayo 600, Barranco
+                {`${calle} ${numero} ${interior}`}
                 <br />
-                Lima
+                {distrito}
                 <br />
-                Jueves, 22 de Abril del 2021 entre las 9am y 18pm
+                {memorizedDate}
               </div>
             </div>
             <div className="checkout-identification-block__text-container_right">
@@ -77,12 +119,19 @@ const CheckoutStep3 = ({ formValues, setSelected , watch , register }) => {
             </p>
           </div>
         </div>
+        {
+           delivery.length > 1 && 
+           <div className="checkout-envio_separacion">
+            <img src="/image/exclamacion.svg" alt="exclamacion" />
+            <p className="checkout-envio_separacion-text">Hemos dividido tu orden en múltiples envíos <span onClick={openModalEnvio}>¿Por qué?</span></p>
+           </div>
+        }
         <div className="checkout-location-form__box-ordenes">
           {
-            delivery.map(( { productos , total } , i)=>(
+            delivery.map(( { productos , total , nombreTienda} , i)=>(
               <div key={i}>
                 <p className="delivery-numero_envio">{`Envío ${i+1} de ${delivery.length}`}</p>
-                <Orden products = { productos }/>
+                <Orden products = { productos } nombreTienda = { nombreTienda }/>
                 <CostSale price= {total} />
               </div>
             ))
@@ -93,6 +142,19 @@ const CheckoutStep3 = ({ formValues, setSelected , watch , register }) => {
 
       <style jsx>
         {`
+
+          :global(.popup-container-checkout){
+            border : 2px solid #DC6A8D;
+            border-radius : 20px;
+            padding : 2rem 0;
+            border-style : dashed;
+          }
+
+          :global(.popup-container-checkout-text){
+            font-family : "mont-regular";
+            font-size : 1.3rem;
+            color : #575650;
+          }
           .delivery-numero_envio{
             font-family:"mont-bold";
             color : #556EA1;
@@ -408,11 +470,31 @@ const CheckoutStep3 = ({ formValues, setSelected , watch , register }) => {
             margin-right: 5px;
             line-height: 24px;
             vertical-align: text-top;
+            margin-top : -0.5rem;
           }
           .checkout-location-form__input-radio:checked
             + .checkout-location-form__label-radio:before {
             border: 2px solid #556ea1;
             background: url("/image/icon/circle_blue.svg") center/10px no-repeat;
+          }
+
+          .checkout-envio_separacion{
+            display : flex;
+            align-items : center;
+            background-color : #F8F8F8;
+            padding: 1rem 0.5rem ;
+          }
+          .checkout-envio_separacion-text{
+            margin : 0;
+            margin-left : 1rem;
+            font-size : 1.1rem;
+            font-family : 'mont-regular';
+            color : #000000;
+          }
+
+          .checkout-envio_separacion-text span{
+            cursor: pointer;
+            text-decoration : underline;
           }
           @media (min-width: 480px) {
             .container-checkout {
@@ -431,6 +513,10 @@ const CheckoutStep3 = ({ formValues, setSelected , watch , register }) => {
             .shopping-cart-block__checkout {
               width: 100%;
               padding: 2rem 5rem;
+            }
+
+            .checkout-envio_separacion-text{
+              font-size : 1.25rem;
             }
           }
           @media (min-width: 768px) {

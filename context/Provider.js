@@ -1,6 +1,6 @@
 
 import React, { useEffect, useReducer } from 'react'
-import { finishChecking, startChecking, validateToken} from './actions/auth';
+import { finishChecking, startChecking, validateToken ,startLogout,startLogin, startSettingInfo, initializeData} from './actions/auth';
 import { startAddToCart } from './actions/ui';
 import YesmomContext from './Context'
 import { authReducer } from './reducers/authReducer';
@@ -45,7 +45,18 @@ const Provider = ({children }) => {
         const token = localStorage.getItem('YesmomToken');
         if(token){
             dispatchAuth( startChecking());
-            dispatchAuth(await validateToken(token) ); 
+            const result = await validateToken(token);
+            if(result){
+                console.log(result);
+                const [infoAction] = await Promise.all([
+                    initializeData(result.token),
+                    dispatchAuth(startLogin(result))
+                ])
+                
+                dispatchClient(infoAction);
+            }else{
+                dispatchAuth(startLogout)
+            }
             dispatchAuth( finishChecking());
             // console.log("Autenticado de nuevo");
             // dispatchAuth( startLogin({ token }))
@@ -57,7 +68,6 @@ const Provider = ({children }) => {
     const getInitialCartState = () =>{
         const cart = JSON.parse(localStorage.getItem('cart'));
         if(cart){
-            console.log("Existe cart");
             cart.forEach(element => {
                 dispatchUi(startAddToCart(element));
             });

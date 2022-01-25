@@ -3,7 +3,7 @@ import { object, array, number } from "prop-types";
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import YesmomContext from "../../context/Context";
-import { Carousel, Container, } from "react-bootstrap";
+import { Carousel, Container } from "react-bootstrap";
 import CardProduct from "../../components/CardProduct";
 import SidebarProducto from "../../components/tienda/SidebarProducto";
 import BannerTienda from "../../components/tienda/BannerTienda";
@@ -13,20 +13,25 @@ import { getProducts, getCategories } from "../api/request";
 import { setProducts, setCategories } from "../../context/actions/ui";
 
 const imagesMobile = [
-	{ id: 1, image: "/image/tienda/banner-mobile1.png" },
-	{ id: 2, image: "/image/tienda/banner-mobile1.png" },
-	{ id: 3, image: "/image/tienda/banner-mobile1.png" },
+  { id: 1, image: "/image/tienda/banner-mobile1.png" },
+  { id: 2, image: "/image/tienda/banner-mobile2.png" },
+  { id: 3, image: "/image/tienda/banner-mobile3.png" },
 ];
 
 const imagesDesktop = [
-	{ id: 1, image: "/image/tienda/banner-desktop1.png" },
-	{ id: 2, image: "/image/tienda/banner-desktop1.png" },
-/*   { id: 3, image: "/image/tienda/banner-desktop3.png" }, */
+  { id: 1, image: "/image/tienda/banner-desktop1.png" },
+  { id: 2, image: "/image/tienda/banner-desktop2.png" },
+  { id: 3, image: "/image/tienda/banner-desktop3.png" },
 ];
 
 const Product = ({ productList, productsQty, pages, categoryList, path }) => {
-  const { query: { q = "" }, } = useRouter();
-  const { dispatchUi, ui: { category: categorySelected } } = useContext(YesmomContext);
+  const {
+    query: { q = "" },
+  } = useRouter();
+  const {
+    dispatchUi,
+    ui: { category: categorySelected },
+  } = useContext(YesmomContext);
   const [storeFiltered, setStoreFiltered] = useState([]);
 
   useEffect(() => {
@@ -34,27 +39,40 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
     dispatchUi(setCategories(categoryList));
   }, []);
 
-	useEffect(() => {
-		const query = q.toLowerCase().trim();
-		let filterData = productList.filter((el) => el.product.nombre.toLowerCase().trim().includes(query));
+  useEffect(() => {
+    const query = q.toLowerCase().trim();
+    let filterData = productList.filter((el) =>
+      el.product.nombre
+        .toLowerCase()
+        .trim()
+        .includes(query)
+    );
 
-		if (filterData.length === 0) {
-			setStoreFiltered(productList);
-			Swal.fire(
-				"No encontrado",
-				"No existen productos asociados con la búsqueda!",
-				"info"
-			);
-		} else {
-			setStoreFiltered(filterData);
-		}
-	}, [q]);
+    if (filterData.length === 0) {
+      setStoreFiltered(productList);
+      Swal.fire(
+        "No encontrado",
+        "No existen productos asociados con la búsqueda!",
+        "info"
+      );
+    } else {
+      setStoreFiltered(filterData);
+    }
+  }, [q]);
 
   return (
     <AppLayout>
       <Head>
         <title>YesMom - Tienda</title>
-        <meta name="description" content="YesMom es ..."></meta>
+        <meta
+          name="description"
+          content="Yes Mom es una plataforma digital peruana que ayuda a las
+                        mamis a disfrutar su maternidad sin preocupaciones. Queremos
+                        ser la marca aliada que todos los papás estuvieron buscando,
+                        una página web que reúne en un solo lugar todo lo que
+                        necesitan para la llegada de su bebé y acompañar su
+                        crecimiento."
+        ></meta>
         <meta property="og:type" content="website" />
         <meta property="og:title" content="YesMom - Tienda" />
         <meta
@@ -69,7 +87,7 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
         <meta
           property="og:image"
           itemprop="image"
-          content="https://yesmom.vercel.app/image/about-header.png"
+          content="https://www.yesmom.com.pe/_next/image?url=%2Fimage%2Fheader%2Flogo-yesmom.svg&w=128&q=75"
         />
         <meta property="og:image:width" content="1280" />
         <meta property="og:image:height" content="855" />
@@ -88,7 +106,7 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
         />
         <meta
           name="twitter:image"
-          content="https://yesmom.vercel.app/image/about-header.png"
+          content="https://www.yesmom.com.pe/_next/image?url=%2Fimage%2Fheader%2Flogo-yesmom.svg&w=128&q=75"
         />
       </Head>
       <div className="box-producto fade-in animated ">
@@ -109,12 +127,11 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
             {imagesDesktop.map((ban) => (
               <Carousel.Item key={ban.id} className="carousel-item">
                 <img src={ban.image} alt="" className="w-100" />
-                
               </Carousel.Item>
             ))}
           </Carousel>
         </div>
-
+              
         <Container fluid="true">
           <div className="all-content">
             <div className="contenedor">
@@ -125,17 +142,17 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
                 <h4 className="text-title-tienda">{categorySelected?.name}</h4>
                 <hr />
                 <div className="all-products">
-                  {productList.length > 0
-                    ? storeFiltered
-                        .slice(0, 6)
-                        .map((product, i) => (
-                          <CardProduct key={i} {...product} />
-                        ))
-                    : <p>Se encontraron 0 productos</p>}
+                  {productList.length > 0 ? (
+                    storeFiltered
+                      .slice(0, 6)
+                      .map((product, i) => <CardProduct key={i} {...product} />)
+                  ) : (
+                    <p>Se encontraron 0 productos</p>
+                  )}
                 </div>
               </div>
             </div>
-            <BannerTienda />
+            {/* <BannerTienda /> */}
             <div className="contenedor f-right">
               <div className="products">
                 <div className="all-products">
@@ -145,7 +162,7 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
                         .map((product, i) => (
                           <CardProduct key={i} {...product} />
                         ))
-                    :  null}
+                    : null}
                 </div>
               </div>
             </div>
@@ -238,7 +255,7 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
           }
           @media (min-width: 768px) {
             .mt-5r {
-              margin-top: 9.5rem;
+              margin-top: 5.5rem;
             }
           }
           @media (min-width: 1024px) {
@@ -261,10 +278,10 @@ Product.propTypes = {
 };
 
 export const getServerSideProps = async () => {
-	const { productosGeneral, totalDeProductos, pages } = await getProducts(null,'all');
+	const { productosGeneral, totalDeProductos, pages } = await getProducts(null,'all',0,	10);
   const { response } = await getCategories();
-	/* localStorage.setItem('categories', response?.categories) */
-	
+  /* localStorage.setItem('categories', response?.categories) */
+
   if (!productosGeneral) {
     return {
       props: {

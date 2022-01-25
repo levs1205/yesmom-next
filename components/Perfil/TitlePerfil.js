@@ -1,6 +1,20 @@
-import React from 'react'
+import React, { useContext, useMemo } from 'react'
+import YesmomContext from '../../context/Context';
 
 function TitlePerfil({ name, email, main}) {
+
+    const { client } =useContext(YesmomContext); 
+
+    const makeName = useMemo(() => {
+        if(Object.keys(client).length >0 && Object.keys(client.data).length >0){
+            const shortName = client.data.fullname.trim().split(' ')[0];
+            return shortName[0].toUpperCase() + shortName.slice(1,shortName.length);
+        }else{
+            return 'Name';
+        }
+    },[client])
+
+
     return (
         <>
             <div className={`container-title ${main ? "center" : ""}`}>
@@ -14,8 +28,8 @@ function TitlePerfil({ name, email, main}) {
                     </svg>    
                 </div>
                 <div className="contenedor-data">
-                    <p className="p-primary ft-m-600">{`¡Hola ${name}!`}</p>
-                    <p className="p-secondary ft-m-regular">{`${email}`}</p>
+                    <p className="p-primary ft-m-600">{`¡Hola ${makeName ? makeName : ''}!`}</p>
+                    <p className="p-secondary ft-m-regular">{`${email ? email : ''}`}</p>
                 </div>
             </div>
 

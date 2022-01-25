@@ -1,6 +1,8 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, useContext } from "react";
+import { object, array, number } from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
+import YesmomContext from "./../context/Context";
 import { Container, Row, Col, Card, CardDeck } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -10,37 +12,18 @@ import AppLayout from "../components/AppLayout";
 import CardBlog from "../components/CardBlog";
 import Head from "next/head";
 import CardProduct from "../components/CardProduct";
+import { getProducts, getCategories, getBlogs } from "./api/request";
+import { setProducts, setCategories } from "./../context/actions/ui";
+import { useRouter } from "next/router";
 
-// import clienteAxiosBusiness from "../config/axiosBusiness";
-import axios from "axios";
-// import fetch from 'isomorphic-fetch'
-
-const Home = ({ currentData , products}) => {
-  // console.log(currentData, "holis");
-  // const [currentData, setCurrentData] = useState([]);
-  // useEffect(() => {
-  //     blogHome();
-  //   }, []);
-  // const blogHome = async () => {
-  //   await axios
-  //     .get("http://localhost:5000/getBlogAll/user?limit=2")
-  //     .then((res) => {
-  //       if (res.data.MensajeRespuesta === "NO EXISTEN DATOS") {
-  //        setCurrentData([]);
-  //       } else {
-  //         setCurrentData(res.data);
-  //       }
-  //     })
-  //     .catch((e) => {
-  //       console.log(e, "error");
-  //     });
-  // };
-  /* const [respuesta, setRespuesta] = useState([]);
-  useEffect(async () => {
-    const consulta = await axios("https://fakestoreapi.com/products");
-    setRespuesta(consulta.data);
-  }, []); */
-
+const Home = ({
+  productList,
+  productsQty,
+  pages,
+  categoryList,
+  path,
+  blogsList,
+}) => {
   return (
     <AppLayout>
       <Head>
@@ -95,16 +78,16 @@ const Home = ({ currentData , products}) => {
         <section fluid="true" className="box-banner">
           <div className="banner view-desktop ">
             <div className="h-100">
-            {/* <Image */}
-            <img
-              src="/image/home/banner-home1.png"
-              alt="Picture of the author"
-              layout="responsive"
-              // width={500}
-              // height={245} 
-              width={'100%'}
-              height={'100%'}
-            />
+              {/* <Image */}
+              <img
+                src="/image/home/banner-home.png"
+                alt="Picture of the author"
+                layout="responsive"
+                // width={500}
+                // height={245}
+                width={"100%"}
+                height={"100%"}
+              />
             </div>
           </div>
           <div className="banner view-mobile">
@@ -136,7 +119,6 @@ const Home = ({ currentData , products}) => {
                     <a>Crear lista de regalos</a>
                   </div>
                 </Link>
-
                 <Link href="/tienda">
                   <div className="btn-regalos hover-amarillo">
                     <a> ver tienda</a>
@@ -153,13 +135,9 @@ const Home = ({ currentData , products}) => {
               </p>
             </div>
           </div> */}
-
-
         </section>
 
-
-
-        <div className="section-sorteo-home">
+        {/* <div className="section-sorteo-home">
           <Container fluid="true">
             <Row className="sin-margin">
               <Col xs={12} sm={12} md={12} lg={6} xl={6}>
@@ -231,7 +209,7 @@ const Home = ({ currentData , products}) => {
               </Col>
             </Row>
           </Container>
-        </div>
+        </div> */}
         <div className="section-lo-mejor-home">
           <Container fluid="true">
             <div className="nube-up">
@@ -376,15 +354,13 @@ const Home = ({ currentData , products}) => {
           <Container fluid="true">
             <Col>
               <div className="all-products">
-                {
-                  products.slice(0,4).map((product,i)=>(
-                    <CardProduct 
-                      key={i}
-                      {...product}
-                      size="4"
-                    />
-                  ))
-                }
+                {productList.length > 0 ? (
+                  productList
+                    .slice(0, 3)
+                    .map((product, i) => <CardProduct key={i} {...product} />)
+                ) : (
+                  <p>Se encontraron 0 productos</p>
+                )}
               </div>
             </Col>
             <Link href="/tienda">
@@ -429,17 +405,6 @@ const Home = ({ currentData , products}) => {
           </div>
           <Container fluid="true">
             <Row className="sin-margin container-sin-margin">
-              {/* <Col xs={12} md={6} lg={6} xl={6}>
-          <div className="box-img-blog-home">
-            <img src={lineasAzul1} alt="lineas" className="line-up-azul" />
-            <img
-              src={blog}
-              alt="imagen blog yesmom home"
-              className="img-blog"
-            />
-            <img src={lineasAzul2} alt="lineas" className="line-down-azul" />
-          </div>
-        </Col> */}
               <Col xs={12} md={12} lg={5} xl={5}>
                 <div className="box-true-history">
                   <div className="box-text-title">
@@ -473,10 +438,6 @@ const Home = ({ currentData , products}) => {
                           <a>Ver más</a>
                         </div>
                       </Link>
-
-                      {/* <a href="/blog" className="link-a d-block text-center mt-4">
-                Ver más &#8594;
-              </a> */}
                     </Container>
                   </div>
                 </div>
@@ -485,7 +446,7 @@ const Home = ({ currentData , products}) => {
                 <div className="box-blog-card-home">
                   <Container className="container-card-bolg">
                     <CardDeck>
-                      {currentData.map((cardBlog) => (
+                      {blogsList.map((cardBlog) => (
                         <CardBlog blog={cardBlog} key={cardBlog.blog._id} />
                       ))}
                     </CardDeck>
@@ -511,7 +472,6 @@ const Home = ({ currentData , products}) => {
           .text-omnes a {
             font-size: 2rem;
           }
-
           .all-products {
             width: 85%;
             margin: 0 auto;
@@ -527,7 +487,6 @@ const Home = ({ currentData , products}) => {
             position: relative;
             overflow: hidden;
           }
-
           .box-banner-btns {
             position: absolute;
             top: 0%;
@@ -535,12 +494,10 @@ const Home = ({ currentData , products}) => {
             height: 100%;
             width: 40%;
           }
-
           .box-banner-btns-group {
             position: relative;
             top: 38%;
           }
-
           .box-banner-regalos {
             display: flex;
             justify-content: center;
@@ -548,16 +505,14 @@ const Home = ({ currentData , products}) => {
             margin-top: 1rem;
             flex-direction: row;
           }
-
           .box-banner .banner {
             width: 100%;
             object-fit: cover;
             object-position: center;
             height: 100%;
             position: absolute;
-            top:3rem
+            top: 3rem;
           }
-
           .ondas-banner {
             width: 1rem;
           }
@@ -566,7 +521,6 @@ const Home = ({ currentData , products}) => {
             padding-bottom: 5rem;
             position: relative;
           }
-
           .btn-regalos {
             max-width: 90%;
             background-color: #febf41;
@@ -602,12 +556,10 @@ const Home = ({ currentData , products}) => {
             margin: 0rem 1rem 0rem;
             color: #4b66ae;
           }
-
           .ondas {
             width: 8rem;
             text-align: center;
           }
-
           .box-sorteo-home {
             width: 46rem;
             text-align: center;
@@ -616,7 +568,6 @@ const Home = ({ currentData , products}) => {
           .box-img-sorteo-home {
             position: relative;
           }
-
           .img-sorteo {
             width: 90%;
           }
@@ -632,7 +583,6 @@ const Home = ({ currentData , products}) => {
             right: 3rem;
             width: 3rem;
           }
-
           .section-lo-mejor-home {
             background: linear-gradient(
                 270deg,
@@ -647,21 +597,18 @@ const Home = ({ currentData , products}) => {
             background-size: cover;
             width: 100%;
           }
-
           .box-title-lo-mejor-home {
             display: flex;
             justify-content: center;
             align-items: center;
             /* padding: 1rem 0rem 4rem; */
           }
-
           .nube-up {
             position: absolute;
-            top: -10%;
+            top: 10%;
             left: 5%;
             width: 20rem;
           }
-
           .nube-down {
             position: absolute;
             transform: rotate(180deg);
@@ -669,13 +616,11 @@ const Home = ({ currentData , products}) => {
             right: 5%;
             bottom: -12%;
           }
-
           .box-img-lo-mejor {
             margin-left: 6rem !important;
             margin-right: 6rem !important;
             margin: 5rem 0;
           }
-
           .img-lo-mejor {
             border: 2px #575756;
             border-style: dashed;
@@ -688,7 +633,6 @@ const Home = ({ currentData , products}) => {
             height: 22.5rem;
             border-radius: 50%;
           }
-
           .img-lo-mejor img {
             width: 100%;
           }
@@ -700,7 +644,6 @@ const Home = ({ currentData , products}) => {
             top: 0rem;
             text-align: center;
           }
-
           .btn-lo-mejor {
             padding: 1.5rem;
             text-align: center;
@@ -721,7 +664,6 @@ const Home = ({ currentData , products}) => {
             align-items: center;
             cursor: pointer;
           }
-
           .btn-lo-mejor a {
             color: #fff !important;
             font-size: 1.7rem;
@@ -731,7 +673,6 @@ const Home = ({ currentData , products}) => {
             background: #febf41;
             position: relative;
           }
-
           .nube-blanca1 {
             position: absolute;
             left: 5%;
@@ -755,32 +696,27 @@ const Home = ({ currentData , products}) => {
             position: relative;
             padding: 5rem 0;
           }
-
           .line-up-azul {
             position: absolute;
             top: 2.6rem;
             left: 4rem;
             width: 2.5rem;
           }
-
           .line-down-azul {
             position: absolute;
             bottom: 2.8rem;
             right: 0rem;
             width: 2.5rem;
           }
-
           .img-blog {
             width: 90%;
             margin: auto;
             display: block;
             padding-left: 4rem;
           }
-
           .container-blog-home {
             padding: 1rem 0;
           }
-
           .btn-blog-home {
             width: auto;
             height: 7rem;
@@ -798,31 +734,25 @@ const Home = ({ currentData , products}) => {
             align-items: center;
             line-height: 1.2rem;
           }
-
           .box-btn-blog {
             margin: 0rem 5rem 0rem 5rem !important;
           }
-
           .box-true-history {
             width: 80%;
             text-align: center;
             margin: auto;
           }
-
           .box-blog-card-home {
             flex: 0 0 46% !important;
           }
-
           :global(.card-deck .card) {
             align-items: center !important;
             margin-bottom: 1rem;
             justify-content: center !important;
           }
-
           .section-tienda-home {
             padding: 2rem 0rem 5rem 0rem;
           }
-
           .box-product-card-home {
             margin-top: 3rem;
           }
@@ -831,13 +761,14 @@ const Home = ({ currentData , products}) => {
             display: flex;
             justify-content: center;
           }
-
-          {/* @media (max-width: 1200px) {
+           {
+            /* @media (max-width: 1200px) {
             .box-banner {
               height: 60vh;
               width: auto;
             }
-          } */}
+          } */
+          }
           @media (min-width: 1800px) {
             :global(.card-deck) {
               justify-content: center !important;
@@ -1005,7 +936,6 @@ const Home = ({ currentData , products}) => {
               padding: 6rem 0 10rem;
             }
           }
-
           @media (min-width: 992px) and (max-width: 1023px) {
             .box-banner {
               height: 50vh;
@@ -1033,7 +963,6 @@ const Home = ({ currentData , products}) => {
               color: #000000;
             }
           }
-
           @media (min-width: 769px) and (max-width: 991px) {
             :global(.card-deck) {
               justify-content: center !important;
@@ -1058,8 +987,8 @@ const Home = ({ currentData , products}) => {
             .box-banner {
               height: 40rem;
             }
-            .box-text-title{
-              padding-top:3rem
+            .box-text-title {
+              padding-top: 3rem;
             }
             .all-products {
               width: 70%;
@@ -1070,7 +999,6 @@ const Home = ({ currentData , products}) => {
               top: 35%;
               right: 10%;
             }
-
             .text-title {
               font-size: 3rem;
             }
@@ -1171,41 +1099,34 @@ const Home = ({ currentData , products}) => {
               display: block;
               margin: auto;
             }
-
             .box-img-lo-mejor {
               margin: 0rem !important;
               margin-top: 2rem !important;
             }
-
             .img-lo-mejor {
               width: 17.5rem;
               height: 17.5rem;
             }
-
             .line-up {
               width: 1.5rem;
               top: 0.3rem;
               left: 0.7rem;
             }
-
             .line-down {
               bottom: -0.2rem;
               right: 0.5rem;
               width: 1.5rem;
             }
-
             .nube-up {
               width: 10rem;
               left: -2rem;
               top: -2rem;
             }
-
             .nube-down {
               width: 10rem;
               right: 0rem;
               bottom: -2rem;
             }
-
             .btn-lo-mejor {
               font-size: 1rem;
               width: 14rem;
@@ -1222,18 +1143,15 @@ const Home = ({ currentData , products}) => {
             .box-img-blog-home {
               padding: 1rem;
             }
-
             .img-blog {
               padding-left: 0rem;
               width: 80%;
             }
-
             .line-up-azul {
               width: 1.5rem;
               top: -0.7rem;
               left: 1.5rem;
             }
-
             .line-down-azul {
               width: 1.5rem;
               right: 1rem;
@@ -1258,7 +1176,6 @@ const Home = ({ currentData , products}) => {
               flex-direction: column;
               margin-top: 1rem;
             }
-
             .btn-regalos {
               width: 25rem;
               margin: 0.8rem auto;
@@ -1285,33 +1202,45 @@ const Home = ({ currentData , products}) => {
   );
 };
 
-export async function getServerSideProps(){
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogAll/user?limit=2`
-  console.log("**********",url);
-  const res = await fetch(
-    url
+Home.propTypes = {
+  productList: array.isRequired,
+  productsQty: number.isRequired,
+  pages: number,
+  categoryList: object.isRequired,
+  blogsList: object.isRequired,
+};
+
+export const getServerSideProps = async () => {
+  const { productosGeneral, totalDeProductos, pages } = await getProducts(
+    null,
+    "all",
+    0,
+    10
   );
+  const { response } = await getCategories();
+  const blogs = await getBlogs();
 
-  const currentData = await res.json();
-
-  const response = await fetch(`http://localhost:3003/api/product/product`);
-  const products = await response.json();
-
-  if (!currentData) {
+  if (!productosGeneral) {
     return {
-      notFound: true,
+      props: {
+        productList: [],
+        productsQty: 0,
+        pages: 0,
+        categoryList: response,
+        blogsList: blogs,
+      },
     };
   }
-  // By returning { props: posts }, the Blog component
-  // will receive `posts` as a prop at build time
+
   return {
     props: {
-      currentData,
-      products
+      productList: productosGeneral,
+      productsQty: totalDeProductos,
+      pages: pages,
+      categoryList: response,
+      blogsList: blogs,
     },
   };
-}
+};
 
 export default Home;

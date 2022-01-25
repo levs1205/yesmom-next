@@ -1,6 +1,5 @@
 import { useState , useContext , useEffect , useRef} from "react";
-import { Router, useRouter } from "next/router";
-
+import { useRouter } from "next/router";
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import BotonInput from "../../components/Registro/BotonInput";
@@ -33,6 +32,10 @@ const schemaValidator = yup.object().shape({
   password: yup.string().required('*Contraseña es requerida').min(5,'*La contraseña debe tener al menos 5 caracteres'),
   phone : yup.string().matches(phoneRegExp, '*Número de teléfono no es válido'),
 })
+
+
+
+import DatePicker from "react-date-picker/dist/entry.nostyle";
 
 const index = () => {
 
@@ -338,8 +341,12 @@ const index = () => {
                         <p>Fecha de nacimiento de tú bebé</p>
 
                         {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
-
-                        <div className="wrapper-date">
+                        <Controller
+                            name='fechaNacimiento'
+                            control = { control }
+                            render={({ field }) => <DatePicker maxDate={new Date()} {...field} />}
+                        />
+                        {/* <div className="wrapper-date">
                           <div className="select-input">
                             <select placeholder="Mes">
                               <option>Mes</option>
@@ -355,7 +362,7 @@ const index = () => {
                               <option>Año</option>
                             </select>
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                       <div className="wrapper-input">
                         <label>Sexo de tú bebé</label>
@@ -409,6 +416,24 @@ const index = () => {
 
       <style jsx>
         {`
+
+          :global(.react-date-picker){
+            font-size : 1.4rem;
+            font-family : "mont-regular";
+          }
+          :global(.react-date-picker input::placeholder){
+            background-image : none;
+          }
+          :global(.react-date-picker__wrapper){
+            border: none;
+            border-bottom: 1px solid #dadada;
+            padding : 0.5rem;
+          }
+
+          :global(.react-date-picker__inputGroup__input){
+            color : #556ea1;
+            
+          }
           /*RESET*/
           .show-desktop{
             display:none;
@@ -635,7 +660,10 @@ const index = () => {
             }
           }
           @media (min-width: 768px) {
-
+            :global(.react-date-picker__wrapper){
+              border: 1px solid #556ea1;
+              border-radius : 10px;
+            }
             .show-desktop{
               display:block;
             }

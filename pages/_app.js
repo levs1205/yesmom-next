@@ -3,6 +3,9 @@ import React from "react";
 import Provider from "../context/Provider";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import "react-date-picker/dist/DatePicker.css";
+import "react-calendar/dist/Calendar.css";
+
 
 function MyApp({ Component, pageProps }) {
 

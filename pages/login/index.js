@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useContext, useEffect, useRef, useState } from "react";
 import YesmomContext from "../../context/Context";
-import { startLogin, startLoginWithGoogle, startLoginWithFacebook } from "../../context/actions/auth";
+import { startLogin, startLoginWithGoogle, startLoginWithFacebook, initializeData } from "../../context/actions/auth";
 import { useRouter } from "next/router";
 import LoaderPage from '../../components/LoaderPage';
 //manejadores
@@ -46,7 +46,7 @@ const index = ( ) => {
 
   const [ loading , setLoading ] = useState(true);
   const flagRef = useRef(true);
-  const { dispatchAuth , auth : { logged } } = useContext(YesmomContext);
+  const { dispatchAuth, dispatchClient , auth : { logged } } = useContext(YesmomContext);
 
   const submitForm = async (values) => {
     // console.log(values);
@@ -57,6 +57,7 @@ const index = ( ) => {
       const axiosAuth = axios.create({
         baseURL : process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY,
       })
+
       const { data } = await axiosAuth.post('/autenticar?email=1', values);
 
       if (data?.MensajeRespuesta === "REQUEST INVÁLIDO") {
@@ -64,7 +65,8 @@ const index = ( ) => {
       }
       if (data?.mensaje === "Autenticación Correcta") {
         // router.push("/");
-        
+
+        dispatchClient(await initializeData(data.token));
         dispatchAuth(startLogin(data));
         redirectLogged();
       }
@@ -95,6 +97,8 @@ const index = ( ) => {
 
     const { token } = await startLoginWithGoogle(data);
     if(token){
+      const infoAction = await initializeData(token);
+      dispatchClient(infoAction);
       dispatchAuth( startLogin({ token }))
       redirectLogged();
     }
@@ -103,10 +107,12 @@ const index = ( ) => {
   const responseFacebook = async ( data ) => {
 
     // const token = response.accessToken;
-
+    console.log(data);
     const { token } = await startLoginWithFacebook(data);
     if(token){
+      dispatchClient(await initializeData(token));
       dispatchAuth( startLogin({ token }))
+      redirectLogged();
     }
 
   }
@@ -115,10 +121,6 @@ const index = ( ) => {
     console.log(error);
   }
 
-    const hanldeLoginFacebook = async () => {
-      const data = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/facebook`)
-        console.log('facebook data', data)
-    }
 
    //Redirigir
   //  useEffect(()=>{
@@ -270,7 +272,7 @@ const index = ( ) => {
                   </div>
 
                   <FacebookLogin
-                    appId="602718880858377"
+                    appId="852286165441996"
                     // appId="602718880858377"
                     autoLoad = {false}
                     fields="name,email,picture"

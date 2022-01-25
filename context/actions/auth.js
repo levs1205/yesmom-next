@@ -4,6 +4,30 @@ import { types } from "../types"
 
 
 
+export const initializeData = async ( token ) => {
+
+    try{
+        const baseURL = process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY;
+        const { data } = await axios.get(`${baseURL}/profile/U`,{
+            headers :{
+                'access-token' : token
+            }
+        })
+        
+        console.log(data);
+        if(data?._id){
+            return startSettingInfo(data);
+        }else{
+            return startSettingInfo({});
+        }
+
+        
+    }catch(err){
+        console.log(err);
+        return startSettingInfo({});
+    }
+
+}
 export const startLogin = ( data ) => {
 
     return {
@@ -14,14 +38,23 @@ export const startLogin = ( data ) => {
     }
 }
 
+export const startSettingInfo = ( data ) => {
+
+    return {
+        type : types.clientSetInfo,
+        payload : {
+            data 
+        }
+    }
+}
 export const validateToken = async (token) => {
     try{
 
         const { valid , data } = await startValidateToken(token);
 
         // console.log(data);
-        if(!valid) return startLogout;
-        return startLogin( data )
+        if(!valid) return null;
+        return data;
          
     }catch(err){
         console.log(err.message);
@@ -45,6 +78,11 @@ export const startLoginWithGoogle = async ( values ) => {
             // return { token : tokenId}
         }
 
+        if(data?.codigoRespuesta === '11'){
+            alert('Error');
+            return {}
+        }
+
     }catch(error){
         console.log(error);
         alert('Error');
@@ -54,18 +92,20 @@ export const startLoginWithGoogle = async ( values ) => {
 
 export const startLoginWithFacebook = async ( values ) => {
     try {
-        console.log('values', values)
+        //TODO: Quitar mensajes
         const { accessToken, userID } = values
 
+        console.log(accessToken);
+        console.log(userID);
         // const { tokenId } = values ;
         // console.log(tokenId);
         // //LLamar endpoint para generar token
 
-        // const { data } = await axiosAuth.get(`/auth/facebook-profile?userId=${userID}`,{ headers :  {
-        //     'facebook-token' : accessToken
-        // }})
+        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/facebook-profile?userId=${userID}&userType=U`,{ headers :  {
+            'facebook-token' : accessToken
+        }})
         // console.log('data', data)
-        return { token : accessToken}
+        return { token : data.token}
 
     }catch(error){
         console.log(error);

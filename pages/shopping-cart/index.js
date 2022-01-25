@@ -21,7 +21,6 @@ const shoppingCart = () => {
   const igv = (totalPrice - subTotal).toFixed(2);
 
 
-
   const handleAccept = () => {
     setAccept((accept) => !accept);
   };
@@ -123,7 +122,7 @@ const shoppingCart = () => {
                     <tbody className="price-table__tbody">
                       <tr className="price-table__tbody--fount-padding ">
                         <td className="price-table__tbody--text-align-left">
-                          Subtotal
+                          Productos
                         </td>
                         <td className="price-table__tbody--text-align-right">
                           S/ {subTotal}
@@ -139,7 +138,7 @@ const shoppingCart = () => {
                       </tr>
                       <tr className="price-table__tbody--fount-bold-padding price-table__tbody--border-top">
                         <td className="price-table__tbody--text-align-left">
-                          <strong>Total</strong>
+                          <strong>Subtotal</strong>
                         </td>
                         <td className="price-table__tbody--text-align-right">
                           <strong>S/ {totalPrice}</strong>
