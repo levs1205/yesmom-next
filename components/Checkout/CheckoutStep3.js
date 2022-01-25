@@ -9,7 +9,7 @@ moment.locale('es');
 
 const CheckoutStep3 = ({ formValues, setSelected , infoDatos ,infoEntrega , register }) => {
 
-  const { sale : { delivery }} = useContext(YesmomContext);
+  const { sale : { delivery }, ui : { cart }} = useContext(YesmomContext);
   const { email , name , identity , phone } = infoDatos();
   const {calle , numero, interior, referencia, distrito , fechaEntrega , recibePedido} = infoEntrega();
 
@@ -35,6 +35,22 @@ const CheckoutStep3 = ({ formValues, setSelected , infoDatos ,infoEntrega , regi
     return `${capitalize(dayWord)}, ${dayNumber} de ${monthWord} del ${year}`
   }
 
+  const makeTotalPrice = useMemo(( ) => {
+    let acum = 0;
+    if(cart.length >0 ){
+      cart.map((product)=> {
+        if(haveDiscountProduct(product)) {
+          acum = acum + product.precioPromocional * product.quantity;
+        } else {
+          acum = acum + product.precio * product.quantity;
+        }
+      })
+    }else{
+        return 0;
+    }
+
+    return acum;
+  },[cart])
   const memorizedDate = useMemo(() => makeSpanishDate(fechaEntrega) , [fechaEntrega]);
 
   const openModalEnvio = () => {
@@ -105,7 +121,7 @@ const CheckoutStep3 = ({ formValues, setSelected , infoDatos ,infoEntrega , regi
             </div>
             <div className="checkout-identification-block__text-container_right">
               <div className="checkout-identification-block__text--font-size">
-                S/ XX.XX
+                S/ {makeTotalPrice.toFixed(2)}
               </div>
             </div>
           </div>

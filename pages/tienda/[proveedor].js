@@ -1,9 +1,9 @@
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import Image from "next/image";
-import { object, array, number } from "prop-types";
+import { array, number } from "prop-types";
 
-import { Carousel } from "react-bootstrap";
+import { Carousel ,Row, Col, Container} from "react-bootstrap";
 import BannerProveedor from "../../components/Proveedor/BannerProveedor";
 import CardProduct from "../../components/CardProduct";
 /* import SidebarProveedor from "../../components/Proveedor/SidebarProveedor"; */
@@ -87,15 +87,19 @@ const ProveedorSlug = ({ productList, productsQty, pages }) => {
               </div>
 
               <div className="products">
-								<div className="all-products">
-										{productList.length > 0
-											? productList
-													.slice(0, 3)
-													.map((product, i) => (
-														<CardProduct key={i} {...product} />
-													))
-											: <p>Se encontraron 0 productos</p>}
-									</div>
+                <Container>
+                  <Row>
+                      {productList.length > 0
+                        ? productList
+                            .slice(0, 3)
+                            .map((product, i) => (
+                              <Col xs={12} sm={6} md={4}>
+                                <CardProduct key={i} {...product} />
+                              </Col>
+                            ))
+                        : <p>Se encontraron 0 productos</p>}
+                    </Row>
+                </Container>
               </div>
             </div>
           </div>
@@ -131,15 +135,20 @@ const ProveedorSlug = ({ productList, productsQty, pages }) => {
                 <div className="show-mobile">
                   <hr />
                 </div>
-                <div className="all-products">
-										{productList.length > 0
-											? productList
-													.slice(3, 9)
-													.map((product, i) => (
-														<CardProduct key={i} {...product} />
-													))
-											: <p>Se encontraron 0 productos</p>}
-									</div>
+                <Container>
+
+                  <Row>
+                      {productList.length > 0
+                        ? productList
+                            .slice(3, 9)
+                            .map((product, i) => (
+                              <Col xs={12} sm={6} md={4}>
+                                <CardProduct key={i} {...product} />
+                              </Col>
+                            ))
+                        : <p>Se encontraron 0 productos</p>}
+                  </Row>
+                </Container>
               </div>
             </div>
           </section>
@@ -182,13 +191,6 @@ const ProveedorSlug = ({ productList, productsQty, pages }) => {
           .products {
             padding-right: 2rem;
             padding-left: 2rem;
-          }
-          .all-products {
-            padding: 3rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
           }
           .text-title-tienda {
             font-family: "mont-regular" !important;

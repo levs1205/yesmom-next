@@ -28,7 +28,6 @@ const CheckoutStep4 = ({ register, setSelected , infoDatos , infoEntrega }) => {
   const makeSpanishDate = (date) => {
   
     const { dayWord , dayNumber , monthWord , year} = makeDate(date);
-    // console.log({ dayWord , dayNumber , monthWord , year})
     return `${capitalize(dayWord)}, ${dayNumber} de ${monthWord} del ${year}`
   }
 
@@ -110,11 +109,12 @@ const CheckoutStep4 = ({ register, setSelected , infoDatos , infoEntrega }) => {
             type="radio"
             id="f-option"
             name="selector"
+            {...register('typeDocument')}
           />
           <label className="checkout-location-form__label-radio" for="f-option">
             Boleta
           </label>
-          <input
+          {/* <input
             className="checkout-location-form__input-radio"
             type="radio"
             id="f-option2"
@@ -125,7 +125,7 @@ const CheckoutStep4 = ({ register, setSelected , infoDatos , infoEntrega }) => {
             for="f-option2"
           >
             Factura
-          </label>
+          </label> */}
         </div>
       </div>
 

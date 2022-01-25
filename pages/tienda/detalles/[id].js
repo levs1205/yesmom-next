@@ -364,7 +364,7 @@ const DetallesID = ({
               <div className="show--all-content">
                 <div className="show--title-content hide-desktop">
                   <h4 className="title-breadcrumb">
-                    Inicio / Tienda / Solo en Yes Mom / Ropa{" "}
+                    Inicio / Tienda / Ropa / {nombre}
                   </h4>
                 </div>
                 <div className="show--container-content">
@@ -868,7 +868,7 @@ const DetallesID = ({
 
           @media (min-width: 768px) {
             .show--box-main-proveedor {
-              padding-top: 18rem;
+              padding-top: 16rem;
             }
             .hide-desktop {
               display: none;
@@ -1002,6 +1002,17 @@ DetallesID.propTypes = {
 export const getServerSideProps = async ({ query }) => {
   const { id } = query;
   const { producto, tienda, imagenes } = await getProductsById(id);
+
+  if(!producto){
+    return  {
+      redirect: {
+        permanent: false,
+        destination: "/404",
+      },
+      props:{},
+    };
+  }
+
   const { productosGeneral, totalDeProductos, pages } = await getProducts(
     null,
     producto?.categoria,

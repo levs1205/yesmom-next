@@ -26,8 +26,7 @@ const CardProduct = ({ product, imagen }) => {
   return (
     <>
       <Link href={`/tienda/detalles/${product._id}`}>
-       
-				<div className={`card-container size-${product?.nombre}`}>
+				<div className={`card-container`}>
           <Card border="light">
             <div className="card-img-product">
               <Card.Img
@@ -43,33 +42,31 @@ const CardProduct = ({ product, imagen }) => {
 								  {product?.descripcion}
                 </div>
               </Card.Text>
-              <div className="card-text">
-                <div className="container-prices">
-                  {
-                    haveDiscount ? 
-                    <>
-                      <p className="price price-before">
-                        S/ {product.precio.toFixed(2)}
-                      </p>
-                      <div className={`text-price discount`}>
-                        <p className={`${product?.precioPromocional ? "price-now" : "price"}`}>
-                          S/ {product.precioPromocional.toFixed(2)}
-                        </p>
-                      </div>
-                    </>
-                    :
-                    <>
-                      <p className="price price-out">
-                        S/ {product.precio.toFixed(2)}
-                      </p>
-                      <p className="price price-without-discount">
-                          S/ {product.precio.toFixed(2)}
-                      </p>
-                    </>
-                  }
-                </div>
-              </div>
             </Card.Body>
+              <div className="container-prices">
+                {
+                  haveDiscount ? 
+                  <>
+                    <p className="price price-before">
+                      S/ {product.precio.toFixed(2)}
+                    </p>
+                    <div className={`text-price discount`}>
+                      <p className={`${product?.precioPromocional ? "price-now" : "price"}`}>
+                        S/ {product.precioPromocional.toFixed(2)}
+                      </p>
+                    </div>
+                  </>
+                  :
+                  <>
+                    <p className="price price-out">
+                      S/ {product.precio.toFixed(2)}
+                    </p>
+                    <p className="price price-without-discount">
+                        S/ {product.precio.toFixed(2)}
+                    </p>
+                  </>
+                }
+              </div>
           </Card>
         </div>
       </Link>
@@ -96,9 +93,10 @@ const CardProduct = ({ product, imagen }) => {
             overflow: hidden; 
             text-overflow: ellipsis; 
             display: -webkit-box; 
-            -webkit-line-clamp: 3; 
+            -webkit-line-clamp: 4; 
             -webkit-box-orient: vertical;
             height: 6rem;
+            margin-bottom : 1;
           }
           .card-img-product {
             height: 12rem;
@@ -112,8 +110,7 @@ const CardProduct = ({ product, imagen }) => {
             margin: 1.5rem 0.5rem;
           }
           .container-prices {
-            margin-top: 3rem;
-            margin-bottom: 1rem;
+            margin: 2rem 2rem; 
           }
           .hide {
             font-family: "mont-regular" !important;
@@ -125,6 +122,9 @@ const CardProduct = ({ product, imagen }) => {
             color: #4b64a4;
             font-size:2rem;
             font-weight: 600;
+          }
+          .price-before{
+            font-size: 1.5rem;
           }
           .price-before ,.price-out{
             color: #4b64a4;
@@ -160,8 +160,14 @@ const CardProduct = ({ product, imagen }) => {
             .price-without-discount{
               font-size: 2.5rem;
             }
+            .price-before{
+              font-size: 1.6rem;
+            }
             .text-price {
               padding: 0 0.8rem;
+            }
+            .card-container-description{
+              -webkit-line-clamp: 3; 
             }
           }
           @media (min-width: 768px) {
@@ -177,6 +183,9 @@ const CardProduct = ({ product, imagen }) => {
             }
             .card-img-product {
               height: 20rem;
+            }
+            .price-before{
+            font-size: 1.7rem;
             }
           }
         `}

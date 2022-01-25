@@ -50,6 +50,10 @@ const schemaSecond = yup.object().shape({
   fechaEntrega : yup.date().required('Fecha es obligatoria'),
 });
 
+const schemaThird = yup.object().shape({
+  typeDocument : yup.string().oneOf(['on'],'Campo obligatorio'),
+})
+
 
 
 
@@ -69,10 +73,15 @@ const Checkout = () => {
   const { register : register_2, control, handleSubmit : handleSubmit_2, formState: formState_2, watch : watch_2 } = useForm({
     resolver : yupResolver(schemaSecond),
     defaultValues :{
-      nameRecibeTercero : 'Melany Nicolle'
+      nameRecibeTercero : 'Narda crocco'
     }
   })
-  const { register : register_3, handleSubmit : handleSubmit_3, formState: formState_3,reset_3} = useForm({})
+  const { register : register_3, handleSubmit : handleSubmit_3, formState: formState_3,reset_3} = useForm({
+    resolver : yupResolver(schemaThird),
+    defaultValues:{
+      typeDocument : 'on',
+    }
+  })
 
 
 
@@ -835,8 +844,7 @@ export const getServerSideProps = async ({ req, res , resolvedUrl}) => {
   const accepted = {
     props : {}
   }
-  // console.log('URL',resolvedUrl);
-  console.log('TokenCheckout' , token)
+
   if(token){
     const { valid } = await startValidateToken(token);
 

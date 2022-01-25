@@ -14,8 +14,10 @@ import { getProducts, getCategories } from "../../api/request";
 export async function getServerSideProps({ query }) {
   //Todos los productos
   const { category = "", sort = "" } = query;
-	const { productosGeneral, totalDeProductos, pages } = await getProducts(category, null,0,	10);
-	const { response } = await getCategories();
+
+  const [ resp_1 , resp_2 ] = await Promise.all([getProducts(category, null,0,	10),getCategories()])
+	const { productosGeneral, totalDeProductos, pages } = resp_1;
+	const { response } = resp_2;
 
 	if (!productosGeneral) {
     return {
@@ -142,9 +144,9 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
                 </Row>
               </div>
             </div>
-            <div className="box-pagination">
+            {/* <div className="box-pagination">
               <Pagination />
-            </div>
+            </div> */}
           </div>
         </Container>
       </div>
@@ -173,7 +175,6 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
           }
           .banner-baby {
             position: relative;
-            margin-top: 5rem;
           }
           .img-baby {
             width: 100%;
@@ -281,11 +282,8 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
           }
 
           @media (min-width: 768px) {
-            .banner-baby {
-              margin-top: 7.5rem;
-            }
             .box-producto {
-              padding-top: 8.4rem;
+              padding-top: 10rem;
             }
             .all-products {
               padding-top: 0;
@@ -331,9 +329,6 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
           }
 
           @media (min-width: 1024px) {
-            .banner-baby {
-              margin-top: 6rem;
-            }
             .sidebar {
               flex-basis: 30%;
             }

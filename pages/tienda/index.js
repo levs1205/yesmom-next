@@ -263,7 +263,7 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
           }
           @media (min-width: 768px) {
             .mt-5r {
-              margin-top: 5.5rem;
+              margin-top: 5rem;
             }
           }
           @media (min-width: 1024px) {
@@ -286,8 +286,10 @@ Product.propTypes = {
 };
 
 export const getServerSideProps = async () => {
-	const { productosGeneral, totalDeProductos, pages } = await getProducts(null,'all',0,	10);
-  const { response } = await getCategories();
+
+  const [ resp_1, resp_2] = await Promise.all([getProducts(null,'all',0,0),getCategories()])
+	const { productosGeneral, totalDeProductos, pages } = resp_1;
+  const { response } = resp_2;
 
   if (!productosGeneral) {
     return {

@@ -1193,15 +1193,16 @@ Home.propTypes = {
 };
 
 export const getServerSideProps = async () => {
-  const { productosGeneral, totalDeProductos, pages } = await getProducts(
-    null,
-    "all",
-    0,
-    10
-  );
-  const { response } = await getCategories();
-  const blogs = await getBlogs();
+  
+  const [ resp_1,resp_2, blogs] = await Promise.all([
+    getProducts(null,"all",0,3),
+    getCategories(),
+    getBlogs()
+  ])
 
+  const { productosGeneral, totalDeProductos, pages } = resp_1;
+  const { response } = resp_2;
+  
   if (!productosGeneral) {
     return {
       props: {
