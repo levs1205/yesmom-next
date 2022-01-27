@@ -105,6 +105,12 @@ export const uiReducer = ( state = {} , action) => {
                 ...state,
                 cart
             }
+		case types.cleanCart:
+			localStorage.setItem('cart',JSON.stringify([]));
+			return {
+				...state,
+				cart:[]
+			}
         
         case types.removeProduct :
 

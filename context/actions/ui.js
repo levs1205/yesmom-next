@@ -77,6 +77,12 @@ export const startRemoveProduct = (id) => {
     }
 }
 
+export const cleanCart = () => {
+	return {
+		type : types.cleanCart
+	}
+}
+
 export const searchProductCart = (id) => {
 	return {
 			type : types.searchProductCart,

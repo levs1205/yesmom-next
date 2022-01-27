@@ -25,6 +25,7 @@ export const types = {
     addToCart : "ADD_CART",
     removeProduct : "REMOVE_PRODUCT_CART",
 		searchProductCart : "SEARCH_PRODUCT_CART",
+    cleanCart: "CLEAN_CART",
     
     //sales
 

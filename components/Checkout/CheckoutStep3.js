@@ -9,7 +9,7 @@ moment.locale('es');
 
 const CheckoutStep3 = ({ formValues, setSelected , infoDatos ,infoEntrega , register }) => {
 
-  const { sale : { delivery }, ui : { cart }} = useContext(YesmomContext);
+  const { sale : { delivery }, ui : { cart }, sale} = useContext(YesmomContext);
   const { email , name , identity , phone } = infoDatos();
   const {calle , numero, interior, referencia, distrito , fechaEntrega , recibePedido} = infoEntrega();
 
@@ -35,6 +35,34 @@ const CheckoutStep3 = ({ formValues, setSelected , infoDatos ,infoEntrega , regi
     return `${capitalize(dayWord)}, ${dayNumber} de ${monthWord} del ${year}`
   }
 
+
+  const haveDiscountProduct = ( product ) => {
+    if( !product || !product.fechaInicioPromocion || !product.fechaFinPromocion) return false;
+
+    const init_promo = moment(product.fechaInicioPromocion);
+    const end_promo = moment(product.fechaFinPromocion);
+    const now = moment(new Date());
+
+    if(end_promo.isAfter(init_promo) && end_promo.isAfter(now)){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  const getTotalPriceDelivery = useMemo(() => {
+    if(cart && cart.length >0 && sale && sale.delivery){
+        let sum=0;
+        sale.delivery.forEach((val , i) => {
+            sum = sum+val.total;
+        })
+
+        return sum;
+    }else{
+        return 0;
+    }
+  },[sale,cart])
+
   const makeTotalPrice = useMemo(( ) => {
     let acum = 0;
     if(cart.length >0 ){
@@ -45,12 +73,14 @@ const CheckoutStep3 = ({ formValues, setSelected , infoDatos ,infoEntrega , regi
           acum = acum + product.precio * product.quantity;
         }
       })
+      acum = acum+ getTotalPriceDelivery;
     }else{
         return 0;
     }
 
     return acum;
   },[cart])
+
   const memorizedDate = useMemo(() => makeSpanishDate(fechaEntrega) , [fechaEntrega]);
 
   const openModalEnvio = () => {

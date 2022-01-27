@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from "react";
-import { useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import YesmomContext from "../../context/Context";
-import { getTotalPrice } from "../../helpers/getTotalPrice";
+import { getTotalPrice } from "../../helpers/getTotalPrice"
+import moment from 'moment'
 
 const SubtotalComponent = () => {
 
@@ -30,6 +30,39 @@ const SubtotalComponent = () => {
         }
     },[sale,cart])
 
+
+    const haveDiscountProduct = ( product ) => {
+        if( !product || !product.fechaInicioPromocion || !product.fechaFinPromocion) return false;
+    
+        const init_promo = moment(product.fechaInicioPromocion);
+        const end_promo = moment(product.fechaFinPromocion);
+        const now = moment(new Date());
+    
+        if(end_promo.isAfter(init_promo) && end_promo.isAfter(now)){
+          return true;
+        }else{
+          return false;
+        }
+      }
+
+    const makeTotalPrice = useMemo(( ) => {
+        let acum = 0;
+        if(cart.length >0 ){
+          cart.map((product)=> {
+            if(haveDiscountProduct(product)) {
+              acum = acum + product.precioPromocional * product.quantity;
+            } else {
+              acum = acum + product.precio * product.quantity;
+            }
+          })
+          acum = acum+ getTotalPriceDelivery;
+        }else{
+            return 0;
+        }
+    
+        return acum;
+      },[cart])
+
     return (
         <>
             <section className="price-table">
@@ -55,7 +88,7 @@ const SubtotalComponent = () => {
                     <strong className="ft-15">{appliedDelivery ? 'Total' : 'Subtotal'}</strong>
                     </td>
                     <td className="price-table__tbody--text-align-right">
-                    <strong className="ft-15">S/ { appliedDelivery ? subtotalProducts + getTotalPriceDelivery : subtotalProducts }</strong>
+                    <strong className="ft-15">S/ { appliedDelivery ? makeTotalPrice + getTotalPriceDelivery : makeTotalPrice }</strong>
                     </td>
                 </tr>
                 </tbody>
