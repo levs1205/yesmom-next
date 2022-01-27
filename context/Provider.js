@@ -1,6 +1,6 @@
 
 import React, { useEffect, useReducer } from 'react'
-import { finishChecking, startChecking, validateToken ,startLogout,startLogin, startSettingInfo, initializeData} from './actions/auth';
+import { finishChecking, startChecking, validateToken ,startLogout,startLogin, initializeData} from './actions/auth';
 import { startAddToCart } from './actions/ui';
 import YesmomContext from './Context'
 import { authReducer } from './reducers/authReducer';
@@ -8,19 +8,9 @@ import { uiReducer } from './reducers/uiReducer';
 import { clientReducer } from './reducers/clientReducer';
 import { saleReducer } from './reducers/saleReducer';
 
+import {postApiSecurity} from '../helpers/httpCreators';
+import { initRegister, finishRegister, errorRegister } from './actions/client';
 
-/* export async function getServerSideProps(){
-    const res = await fetch("http://localhost:3000/api/product");
-    const product = await res.json();
-  
-  
-    return {
-      props : {
-        product
-      }
-    }
-  
-  } */
 
 const Provider = ({children }) => {
 
@@ -31,8 +21,11 @@ const Provider = ({children }) => {
         token : null,
         checking : true
     }
+    const initialClientState = {
+        isRegistering : false,
+    }
     const [ auth , dispatchAuth ] = useReducer( authReducer , initialAuthState);
-    const [ client , dispatchClient ] = useReducer( clientReducer , initialState);
+    const [ client , dispatchClient ] = useReducer( clientReducer , initialClientState);
     const [ sale , dispatchSale ] = useReducer( saleReducer , initialState);
     const [ ui , dispatchUi ] = useReducer( uiReducer , initialState );
 
@@ -75,6 +68,32 @@ const Provider = ({children }) => {
     }
 
 
+    //SOME ACTIONS
+    //CLIENT
+
+    const startRegisterClient = async(info) => {
+        try{
+            dispatchClient( initRegister())
+            const { data, err } = await postApiSecurity('/user-add/U', info , {
+                params : {
+                    shared : 0,
+                    create : 1 
+                }
+            } )
+            dispatchClient( finishRegister())
+            if(!err){                
+                console.log(data);
+            }else{
+                dispatchClient( errorRegister(err))
+            }
+            
+        }catch(err){
+            dispatchClient( finishRegister())
+            console.log(err);
+        }
+    }
+
+
     return (
         <YesmomContext.Provider value={{
             auth,
@@ -84,12 +103,17 @@ const Provider = ({children }) => {
             dispatchAuth,
             dispatchClient,
             dispatchUi,
-            dispatchSale
+            dispatchSale,
+
+            //
+            startRegisterClient
         }
         }>
             { children }
         </YesmomContext.Provider>
     )
+
+
 }
 
 export default Provider
