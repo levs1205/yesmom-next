@@ -8,8 +8,9 @@ import Sidebar from "../../../components/Perfil/Sidebar";
 import Pagination from "../../../components/Pagination";
 import AccordionCompras from "../../../components/Perfil/compras/AccordionCompras";
 import { getAccess } from "../../../helpers/getAccess";
+import { getPurchases } from "../../api/request";
 
-const index = () => {
+const index = ({ listPurchases, token }) => {
 
 
   return (
@@ -81,7 +82,7 @@ const index = () => {
                 </div>
 
                 <div className="container-accordion">
-                  <AccordionCompras />
+                  <AccordionCompras compras={listPurchases} />
                 </div>
                 <div className="box-pagination">
                   <Pagination />
@@ -240,14 +241,33 @@ const index = () => {
 };
 
 export default index;
+
 export const getServerSideProps = async ({ req , resolvedUrl}) => {
   const token = req?.cookies?.TokenTest;
   
   const cleanUrl = req.url.split("?")[0];
   console.log(resolvedUrl);
-  // console.log(req.url);
-  const resp = await getAccess(cleanUrl , token );
 
-  return resp;
+  const resp = await getAccess(cleanUrl , token );
+	if(resp.hasOwnProperty('redirect')){
+    return resp;
+  }
+
+	const response = await getPurchases(token);
+
+  if (response.CodigoRespuesta === "15") {
+    return {
+      props: {
+        listPurchases: {},
+        token
+      },
+    };
+  }
+  return {
+    props: {
+      listPurchases: response,
+			token
+    },
+  };
     
 }

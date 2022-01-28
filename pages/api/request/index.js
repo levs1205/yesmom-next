@@ -99,3 +99,16 @@ export async function updateProfileInfo(
 	});
   return await response.json();
 }
+
+
+//* PURCHASES
+//? get purchases
+export async function getPurchases(token) {
+  const response = await fetch(`${baseUrlBA}/sale/pagination?delivery=no&userType=user&limit=1&skip=0`,{ 
+		headers: { 
+			'Content-Type': 'application/json', 
+			'access-token': token 
+		},
+	});
+  return await response.json();
+}

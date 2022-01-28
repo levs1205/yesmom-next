@@ -33,3 +33,4 @@ yarn-error.log*
 
 # firebase keys
 firebase/firebase-keys.json
+.vscode/settings.json
