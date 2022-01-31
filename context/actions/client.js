@@ -13,6 +13,24 @@ export const finishRegister = () => ({
     type : types.finishRegister
 })
 
+export const successRegister = (data) => {
+    if(data){
+        const MySwal = withReactContent(Swal);
+        MySwal.fire({
+            html: <h2>Registro exitoso</h2>,
+            customClass:{
+                popup: 'register-error-popup',
+                range: 'register-error-range',
+                title :'register-error-title',
+                actions :'register-error-actions',
+                htmlContainer:'register-error-container',
+            }
+        });
+    }
+
+    return {}
+}
+
 export const errorRegister = (err) => {
     if(err && err.response && err.response.data){
         const { data } = err.response;
@@ -33,7 +51,7 @@ export const errorRegister = (err) => {
             }
         });
     }else{
-
+        Swal.fire('Error');
     }
 
     return {};

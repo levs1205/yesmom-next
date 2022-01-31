@@ -9,7 +9,7 @@ import { clientReducer } from './reducers/clientReducer';
 import { saleReducer } from './reducers/saleReducer';
 
 import {postApiSecurity} from '../helpers/httpCreators';
-import { initRegister, finishRegister, errorRegister } from './actions/client';
+import { initRegister, finishRegister, errorRegister, successRegister } from './actions/client';
 
 
 const Provider = ({children }) => {
@@ -40,7 +40,6 @@ const Provider = ({children }) => {
             dispatchAuth( startChecking());
             const result = await validateToken(token);
             if(result){
-                console.log(result);
                 const [infoAction] = await Promise.all([
                     initializeData(result.token),
                     dispatchAuth(startLogin(result))
@@ -82,7 +81,7 @@ const Provider = ({children }) => {
             } )
             dispatchClient( finishRegister())
             if(!err){                
-                console.log(data);
+                dispatchClient( successRegister(data))
             }else{
                 dispatchClient( errorRegister(err))
             }
