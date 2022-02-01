@@ -13,6 +13,7 @@ const CheckoutStep3 = ({ formValues, setSelected , infoDatos ,infoEntrega , regi
   const { email , name , identity , phone } = infoDatos();
   const {calle , numero, interior, referencia, distrito , fechaEntrega , recibePedido} = infoEntrega();
 
+  console.log(fechaEntrega);
   const makeDate = ( date ) => {
 
     const dayWord = moment(date).format('dddd');

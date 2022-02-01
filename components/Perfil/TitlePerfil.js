@@ -6,9 +6,13 @@ function TitlePerfil({ name, email, main}) {
     const { client } =useContext(YesmomContext); 
 
     const makeName = useMemo(() => {
-        if(Object.keys(client).length >0 && Object.keys(client.data).length >0){
-            const shortName = client.data.fullname.trim().split(' ')[0];
-            return shortName[0].toUpperCase() + shortName.slice(1,shortName.length);
+        if(client && client.data){
+            if(Object.keys(client).length >0 && Object.keys(client.data).length >0){
+                const shortName = client.data.fullname.trim().split(' ')[0];
+                return shortName[0].toUpperCase() + shortName.slice(1,shortName.length);
+            }else{
+                return 'Name';
+            }
         }else{
             return 'Name';
         }
