@@ -9,7 +9,14 @@ export const clientReducer = ( state= { } , action) => {
                 ...state,
                 data : action.payload.data
             }
-        
+        case types.initRegister:
+            return {
+                isRegistering: true
+            }
+        case types.finishRegister:
+            return {
+                isRegistering: false
+            }
         default : 
             return state;
     }

@@ -20,8 +20,6 @@ import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import YesmomContext from "../../context/Context";
 import LoaderPage from "../../components/LoaderPage";
-
-import { startRegisterClient } from '../../context/actions/client'
 import { getAccess } from "../../helpers/getAccess";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -39,11 +37,7 @@ import DatePicker from "react-date-picker/dist/entry.nostyle";
 
 const index = () => {
 
-  // const [value, setValue] = useState(new Date());
-  const [ loading , setLoading ] = useState(true);
-  const { auth : { logged } } = useContext(YesmomContext);
-  const router = useRouter();
-  const flagRef = useRef(true);
+  const { auth : { logged } , client : { isRegistering} , startRegisterClient} = useContext(YesmomContext);
 
   const {
     control,
@@ -114,32 +108,27 @@ const index = () => {
       }
     }else{
       //No tiene hijos
-      delete formValues.firstTime;
+      formValues.firstTime = false;
       delete formValues.genderBaby;
     }
+    if(!formValues.fechaNacimiento){
+      delete formValues.fechaNacimiento
+    }
 
+    formValues.type = 'U';
+    const {principalEmail} = formValues;
+    const username = principalEmail.toLowerCase().split('@')[0];
+    formValues.username = username;
+   
     startRegisterClient(formValues);
   };
 
-  //Redirigir
-  useEffect(( )=>{
-    if(logged){
-      router.push('/perfil/miperfil');
-      flagRef.current = false;
-    }
-    setTimeout(() => {
-      if(flagRef.current){
-        setLoading(false)
-      }
-    }, 1000)
-   },[logged])
 
-
-  if(loading){
-    return <LoaderPage />
-  }
   return (
     <AppLayout>
+      {
+        isRegistering &&<LoaderPage type="over"/>
+      }
       <Head>
         <title>YesMom - Registro</title>
         <meta name="description" content="YesMom es ..."></meta>
@@ -650,6 +639,32 @@ const index = () => {
               font-size:1.2rem;
               color:#ff0033;
           }
+
+          {/* POPUP registro */}
+
+          :global(.register-error-popup){
+            margin-top: 0!important;
+            border : 2px solid #DC6A8D;
+            border-radius : 20px;
+            padding : 2rem 0;
+            border-style : dashed;
+            height:20rem!important;
+          }
+
+          :global(.register-error-container){
+            font-family : "mont-regular";
+            font-size : 1.3rem;
+            color : #575650;
+
+            display:flex!important;
+            justify-content:center!important;
+            align-items:center!important;
+          }
+
+          :global(.register-error-actions){
+            margin-top:0!important;
+          }
+
           @media (min-width: 480px) {
             .all-content {
               width: 45rem;
@@ -739,6 +754,11 @@ const index = () => {
             .phone-container {
               border-radius: 10px;
               border: 1px solid #556ea1;
+            }
+
+            :global(.register-error-popup){
+              width: 40rem!important;
+              height : 18rem!important;
             }
           }
           @media (min-width: 1024px) {

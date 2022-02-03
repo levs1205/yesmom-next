@@ -7,11 +7,12 @@ const today = new Date()
 const tomorrow = new Date(today)
 tomorrow.setDate(tomorrow.getDate() + 1)
 
-const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
+const CheckoutStep2 = ({ register, errors, control, watch, setSelected, thirdPart }) => {
 
 
   const [ locations , setLocations ] = useState([]);
-  const { email , name , identity , phone  } = watch();
+  const { email , name , identity , phone} = watch();
+  const { recibePedido} = thirdPart();
 
   const getLocations = async () => {
     try{
@@ -192,7 +193,7 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
             className="checkout-location-form__input-radio"
             type="radio"
             id="f-option"
-            name="selector"
+            value="yo"
             {...register('recibePedido')}
           />
           <label className="checkout-location-form__label-radio" htmlFor="f-option">
@@ -202,7 +203,7 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
             className="checkout-location-form__input-radio"
             type="radio"
             id="f-option2"
-            name="selector"
+            value="otro"
             {...register('recibePedido')}
           />
           <label
@@ -211,8 +212,25 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
           >
             Otra persona
           </label>
+
         </div>
+        
         <p className="msg-error">{errors?.recibePedido?.message && 'Campo obligatorio'}</p>
+         {
+            recibePedido === 'otro' && 
+            <div className="checkout-location-form__wrapper">
+              <label htmlFor="recibe-tercero" className="checkout-location-form__label">
+                Nombre de quién recibira el pedido:
+              </label>
+              <input
+                  id="recibe-tercero"
+                  className="checkout-location-form__input"
+                  type="text"
+                  {...register('nameRecibeTercero')}
+                />
+            </div>
+          }
+
       </div>
       <style jsx>
         {`

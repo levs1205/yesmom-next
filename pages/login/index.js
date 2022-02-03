@@ -58,7 +58,7 @@ const index = ( ) => {
         baseURL : process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY,
       })
 
-      const { data } = await axiosAuth.post('/autenticar?email=1', values);
+      const { data } = await axiosAuth.post('/autenticar?email=1&type=U', values);
 
       if (data?.MensajeRespuesta === "REQUEST INVÁLIDO") {
         Swal.fire("Info", "No existe usuario con esos accesos", "info");

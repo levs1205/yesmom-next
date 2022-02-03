@@ -10,6 +10,8 @@ export const types = {
 
     //client 
     clientSetInfo : "SET_INFO_CLIENT",
+    initRegister : "INIT_REGISTER_CLIENT",   
+    finishRegister : "FINISH_REGISTER_CLIENT",
 
 
     //ui
