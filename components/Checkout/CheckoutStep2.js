@@ -5,6 +5,9 @@ import DatePicker from "react-date-picker/dist/entry.nostyle";
 
 const today = new Date()
 const tomorrow = new Date(today)
+const nextWeek = new Date(today);
+
+nextWeek.setDate(tomorrow.getDate()+7);
 tomorrow.setDate(tomorrow.getDate() + 1)
 
 const CheckoutStep2 = ({ register, errors, control, watch, setSelected, thirdPart }) => {
@@ -85,7 +88,7 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected, thirdPar
         <Controller
           name='fechaEntrega'
           control = { control }
-          render={({ field }) => <DatePicker minDate={tomorrow} {...field} />}
+          render={({ field }) => <DatePicker minDate={tomorrow} maxDate={nextWeek}{...field} />}
         />
 
         <p className="msg-error">{errors?.fechaEntrega?.message && 'Fecha inválida'}</p>
@@ -107,7 +110,7 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected, thirdPar
 
       <div className="checkout-location-form__wrapper">
         <label htmlFor="numero" className="checkout-location-form__label">
-          Nro.: <span className="ml-4"> EJM : * Jr. 205</span>
+          Nro.: <span className="ml-4"> EJM : * 205</span>
         </label>
         <input
           type="text"
