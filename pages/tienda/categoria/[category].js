@@ -136,11 +136,13 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
                   </div>
                 </div>
                 <Row>
-                  {productosGeneral?.map((product, i) => (
+                  {productosGeneral && productosGeneral.length ? productosGeneral?.map((product, i) => (
                     <Col xs={6} sm={4}>
                       <CardProduct key={i} {...product} />
                     </Col>
-                  ))}
+                  )) :
+                  <p className="out-result">No se ha encontrado ningún resultado de producto.</p>
+                }
                 </Row>
               </div>
             </div>
@@ -152,6 +154,11 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
       </div>
       <style jsx>
         {`
+          .out-result{
+              font-family:"mont-regular"!important;
+              margin : 2rem;
+              font-size:1.4rem;
+            }
           .container-selects {
             display: flex;
             align-items: center;
