@@ -82,7 +82,9 @@ const DetallesID = ({
   };
 
   const handleChange = (e) => {
-    setAmount(e.target.value);
+    if(cantidadDisponible >0){
+      setAmount(e.target.value);
+    }
   };
 
   useEffect(() => {
@@ -320,10 +322,10 @@ const DetallesID = ({
     <>
       <AppLayout>
         <Head>
-          <title>YesMom - Detalles</title>
+          <title>YesMom - {product.nombre.toUpperCase()}</title>
           <meta name="description" content="YesMom es ..."></meta>
           <meta property="og:type" content="website" />
-          <meta property="og:title" content="YesMom - Detalles" />
+          <meta property="og:title" content={`YesMom - ${product.nombre}`} />
           <meta
             property="og:description"
             content="Yes Mom es una plataforma digital peruana que ayuda a las
@@ -333,17 +335,18 @@ const DetallesID = ({
                                     necesitan para la llegada de su bebé y acompañar su
                                     crecimiento."
           />
-          <meta
-            property="og:image"
-            itemprop="image"
-            content="https://yesmom.vercel.app/image/about-header.png"
-          />
           <meta property="og:image:width" content="1280" />
           <meta property="og:image:height" content="855" />
           <meta property="og:site_name" content="Yes Mom" />
           {/* <meta property="og:url" content={`${user.id}`} />  */}
           <meta name="twitter:card" content="summary" />
-          <meta name="twitter:title" content="YesMom - Detalles" />
+          <meta name="twitter:title" content={product.nombre} />
+          <meta
+          property="og:image"
+          itemprop="image"
+          content={images[0].url}
+        />
+          
           <meta
             name="twitter:description"
             content="Yes Mom es una plataforma digital peruana que ayuda a las
@@ -383,6 +386,11 @@ const DetallesID = ({
                     </div>
                     <div className="show--container-details">
                       <section className="show--some-info-product">
+                        {
+                          cantidadDisponible === 0 
+                          &&
+                          <h2 className="product_out_stock">¡Producto agotado!</h2>
+                        }
                         <h5 className="show--ft-semibold">{nombre}</h5>
                         <h6 className="show--ft-light">
                           <Link href={`/tienda/${nombreTiendaUrl}`}>
@@ -436,8 +444,8 @@ const DetallesID = ({
                               type="number"
                               className="input-amount"
                               value={amount}
-															defaultValue={cantidadDisponible}
                               onChange={handleChange}
+                              disabled={cantidadDisponible===0}
                               min={0}
                             />
 
@@ -515,6 +523,11 @@ const DetallesID = ({
       </AppLayout>
       <style jsx>
         {`
+          
+          .product_out_stock{
+            font-family:"mont-regular"!important;
+            color : #ec608d;
+          }
           :global(.carousel .carousel-status){
             display : none!important;
           }
@@ -1001,8 +1014,10 @@ DetallesID.propTypes = {
 
 export const getServerSideProps = async ({ query }) => {
   const { id } = query;
+  console.log(id);
   const { producto, tienda, imagenes } = await getProductsById(id);
 
+  console.log('PRODUCTOO',producto);
   if(!producto){
     return  {
       redirect: {
