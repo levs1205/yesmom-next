@@ -8,21 +8,82 @@ import { setCategory } from "../../context/actions/ui";
 
 const SidebarProducto = ({ setCategorySelected }) => {
   const { query, pathname } = useRouter();
-  const { dispatchUi, ui: { categories, category: categorySelected } } = useContext(YesmomContext);
+  const {
+    dispatchUi,
+    ui: { categories, category: categorySelected },
+  } = useContext(YesmomContext);
   /* const list = JSON.parse(localStorage.getItem("totalCategories")); */ /* || allCategories  */
   const { category } = query;
-  const lisCategories = categories?.totalCategories?.categories ;/* || list?.categories */
+  const lisCategories =
+    categories?.totalCategories?.categories; /* || list?.categories */
   const path = "/tienda/categoria";
 
-	const handleCategorie = (cat) => () => {
-		if(cat){
-			dispatchUi(setCategory(cat));
-		}
+  const handleCategorie = (cat) => () => {
+    if (cat) {
+      dispatchUi(setCategory(cat));
+    }
   };
+
+	let filters = [
+		"Todos",
+		"Solo en Yes Mom",
+		"Lo + vendido",
+		"Lo + seleccionado",
+		"Packs de regalo",
+		"Promociones",
+		"Pañales y Toallitas",
+		"Coches",
+		"Paseo y Organización",
+		"Sillas para Auto",
+		"Lactancia y alimentación",
+		"Baño",
+		"Salud y Cuidado",
+		"Juguetes",
+		"Ropa y Zapatos",
+		"Accesorios",
+		"Dormitorio y Decoración",
+		"Seguridad",
+		"Maternidad",
+		"Servicios",
+		"Educativo",
+		"Otros",
+	];
 
   return (
     <Container>
       <div className="side-bar">
+			<div className="text-title-filtros">
+          <p> Filtros </p>
+        </div>
+        <hr />
+        <ul>
+          <div className="show-desktop">
+            <li
+              className={`${
+                pathname === "/tienda" ? "active-link-categoria" : ""
+              }`}
+              onClick={handleCategorie("Todos")}
+            >
+              <Link href="/tienda">
+                <a>Todos</a>
+              </Link>
+            </li>
+						{lisCategories?.filter((category) =>(category.firts !== false)).map((cat, i) => (
+              <li
+                onClick={handleCategorie(cat)}
+                key={cat._id}
+                className={`${
+                  category == cat.slug ? "active-link-categoria" : ""
+                }`}
+              >
+                <Link href={`${path}/${cat.slug}`}>
+                  <a>{cat.name}</a>
+                </Link>
+              </li>
+            ))}
+          </div>
+        </ul>
+
         <div className="text-title-filtros">
           <p> Filtros </p>
         </div>
@@ -33,17 +94,39 @@ const SidebarProducto = ({ setCategorySelected }) => {
               className={`${
                 pathname === "/tienda" ? "active-link-categoria" : ""
               }`}
-							onClick={handleCategorie('Todos')}
+              onClick={handleCategorie("Todos")}
             >
               <Link href="/tienda">
                 <a>Todos</a>
               </Link>
             </li>
-            {lisCategories?.map((cat, i) => (
+						{lisCategories?.filter((category) =>(category.firts !== false)).map((cat, i) => (
               <li
-								onClick={handleCategorie(cat)}
+                onClick={handleCategorie(cat)}
                 key={cat._id}
-                 className={`${
+                className={`${
+                  category == cat.slug ? "active-link-categoria" : ""
+                }`}
+              >
+                <Link href={`${path}/${cat.slug}`}>
+                  <a>{cat.name}</a>
+                </Link>
+              </li>
+            ))}
+          </div>
+        </ul>
+
+        <div className="text-title-filtros">
+          <p> Categorías </p>
+        </div>
+        <hr />
+        <ul>
+          <div className="show-desktop">
+            {lisCategories?.filter((category) =>(category.firts !== true)).map((cat, i) => (
+              <li
+                onClick={handleCategorie(cat)}
+                key={cat._id}
+                className={`${
                   category == cat.slug ? "active-link-categoria" : ""
                 }`}
               >
