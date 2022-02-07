@@ -150,12 +150,12 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
                         </Col>
                       ))
                   ) : (
-                    <p>Se encontraron 0 productos</p>
+                    <p>No se ha encontrado ningún resultado de producto</p>
                   )}
                 </Row>
               </div>
             </div>
-            <div className="contenedor f-right">
+            {/* <div className="contenedor f-right">
               <div className="products">
                 <Row>
                   {productList.length > 0
@@ -169,7 +169,7 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
                     : null}
                 </Row>
               </div>
-            </div>
+            </div> */}
           </div>
         </Container>
       </div>

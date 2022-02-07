@@ -109,6 +109,17 @@ const HeaderNuevo = () => {
             }`}
           >
             <div className="box-items-menu-responsive">
+            <ActiveLink href="/nosotros" activeClassName="active">
+                <a className="item-menu-yesmom">
+                  <Image
+                    src="/image/header/nosotros.svg"
+                    alt="logo nosotros yesmom "
+                    width={25}
+                    height={25}
+                  />
+                  <h6 className="text-navbar">Nosotros</h6>
+                </a>
+              </ActiveLink>
               <ActiveLink href="/blog" activeClassName="active">
                 <a className="item-menu-yesmom">
                   <Image
@@ -268,7 +279,7 @@ const HeaderNuevo = () => {
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 0rem 0.6rem;
+            margin: 0rem 1rem;
             color: #616160;
             justify-content: flex-start;
             cursor: pointer;
@@ -315,7 +326,7 @@ const HeaderNuevo = () => {
           }
           .text-navbar {
             font-size: 1.3rem;
-            font-family: "mont-semibold";
+            font-family: "mont-regular";
             margin-top: 0.2rem;
           }
           .box-items-menu-responsive {

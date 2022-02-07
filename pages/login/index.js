@@ -235,7 +235,7 @@ const index = ( ) => {
 
                   <div className="wrapper-checkbox">
                     <div className="container-checkbox">
-                      <input
+                      {/* <input
                         type="checkbox"
                         id="checkbox"
                         className="box-remember__checkbox"
@@ -246,7 +246,7 @@ const index = ( ) => {
                       ></label>
                       <label htmlFor="checkbox">
                         <p>Recuerdame</p>
-                      </label>
+                      </label> */}
                     </div>
                     <Link href="/recuperar-password">
                       <a>

@@ -215,7 +215,6 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected, thirdPar
           >
             Otra persona
           </label>
-
         </div>
         
         <p className="msg-error">{errors?.recibePedido?.message && 'Campo obligatorio'}</p>
@@ -536,6 +535,7 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected, thirdPar
             font-family: "mont-regular";
             font-size: 1.2rem;
             padding-right: 20px;
+            display:flex
           }
           .checkout-location-form__label-radio:before {
             content: "";
