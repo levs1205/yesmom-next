@@ -11,6 +11,8 @@ import SidebarProducto from "../../../components/tienda/SidebarProducto";
 import LoaderPage from "../../../components/LoaderPage";
 import { getProducts, getCategories } from "../../api/request";
 
+import Paginaton from '../../../components/Pagination';
+
 export async function getServerSideProps({ query }) {
   //Todos los productos
   const { category = "", sort = "" } = query;
@@ -146,14 +148,23 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
                 </Row>
               </div>
             </div>
-            {/* <div className="box-pagination">
-              <Pagination />
-            </div> */}
+
+            {
+              productosGeneral && productosGeneral.length >0 &&
+              <div className="container-pagination">
+                  <Pagination />
+              </div>
+            }
           </div>
         </Container>
       </div>
       <style jsx>
         {`
+          .container-pagination{
+            display: flex;
+            justify-content:center;
+            align-items:center;
+          }
           .out-result{
               font-family:"mont-regular"!important;
               margin : 2rem;

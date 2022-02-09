@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Link from 'next/link';
 import React, { useContext } from "react";
 import { startRemoveProduct } from "../../context/actions/ui";
 import YesmomContext from "../../context/Context";
 
 const DetailItemCart = ({
-  id,
+  _id,
   nombre,
   imagen,
   noBorder,
@@ -34,7 +35,12 @@ const DetailItemCart = ({
         <div className="card__block-first">
           <img src={imagen} alt="" className="card__img" />
           <div className="card__block-text">
-            <p className="block-text__title">{nombre}</p>
+            <Link href={`/tienda/detalles/${_id}`} >
+              <a className="block-text__title">
+              {nombre}
+              </a>
+            </Link>
+
 
             <p className="block-text__short-description">
               {colourSelected} - {sizeSelected}
@@ -145,6 +151,11 @@ const DetailItemCart = ({
             line-height: 17px;
             color: #575650;
             margin-bottom: 0rem;
+            transition : color 0.3s ease-in-out;
+          }
+          .block-text__title:hover {
+            color: #ec668d;
+            text-decoration : none;
           }
           .block-text__short-description {
             font-family: "mont-light";
