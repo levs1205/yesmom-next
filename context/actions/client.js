@@ -36,11 +36,18 @@ export const registerFormReclamos = async ( values ) => {
                 tiendaSeleccionada
             }
         }
-        const [ response1, response2 ] = await Promise.all([ axios.post(`http://localhost:3700/notificar`, body), axios.post(`http://localhost:3700/claim/register`, body.bodyHtml) ])
-        console.log('response1', response1.data)
-        console.log('response2', response2.data)
-
-        if(response1.data.result){
+        const response = await axios.post(`http://localhost:3700/claim/register`, body)
+        console.log('response after register', response);
+        console.log('res after register', response.data.claim);
+        if(response.data.isSuccess){
+            const dataResponse = await axios.post(`http://localhost:3700/notificar`, response.data.claim)
+            console.log('response2', dataResponse);
+            // .then(response2 => {
+            //     console.log('response exito para notificar', response2);
+            // })
+            // .catch(error => {
+            //     console.log(error);
+            // })
             Swal.fire({
                 position: 'center',
                 icon: 'success',
