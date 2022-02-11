@@ -1,15 +1,16 @@
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import Image from "next/image";
-import { object, array, number } from "prop-types";
+import { array, number } from "prop-types";
 
-import { Carousel } from "react-bootstrap";
+import { Carousel ,Row, Col, Container} from "react-bootstrap";
 import BannerProveedor from "../../components/Proveedor/BannerProveedor";
 import CardProduct from "../../components/CardProduct";
 /* import SidebarProveedor from "../../components/Proveedor/SidebarProveedor"; */
 import SidebarProducto from "../../components/tienda/SidebarProducto";
 import { getProductsByUrlStore, getCategories, getStoreByName } from "../api/request";
 import { setProducts, setCategories } from "../../context/actions/ui";
+import {getApiBusiness} from '../../helpers/httpCreators';
 
 const ProveedorSlug = ({ productList, productsQty, pages }) => {
   
@@ -31,11 +32,11 @@ const ProveedorSlug = ({ productList, productsQty, pages }) => {
         <meta
           property="og:description"
           content="Yes Mom es una plataforma digital peruana que ayuda a las
-                                mamis a disfrutar su maternidad sin preocupaciones. Queremos
-                                ser la marca aliada que todos los papás estuvieron buscando,
-                                una página web que reúne en un solo lugar todo lo que
-                                necesitan para la llegada de su bebé y acompañar su
-                                crecimiento."
+          mamis a disfrutar su maternidad sin preocupaciones. Queremos
+          ser la marca aliada que todos los papás estuvieron buscando,
+          una página web que reúne en un solo lugar todo lo que
+          necesitan para la llegada de su bebé y acompañar su
+          crecimiento."
         />
         <meta
           property="og:image"
@@ -89,15 +90,19 @@ const ProveedorSlug = ({ productList, productsQty, pages }) => {
               </div>
 
               <div className="products">
-								<div className="all-products">
-										{productList.length > 0
-											? productList
-													.slice(0, 3)
-													.map((product, i) => (
-														<CardProduct key={i} {...product} />
-													))
-											: <p>Se encontraron 0 productos</p>}
-									</div>
+                <Container>
+                  <Row>
+                      {productList.length > 0
+                        ? productList
+                            .slice(0, 3)
+                            .map((product, i) => (
+                              <Col xs={12} sm={6} md={4}>
+                                <CardProduct key={i} {...product} />
+                              </Col>
+                            ))
+                        : <p>Se encontraron 0 productos</p>}
+                    </Row>
+                </Container>
               </div>
             </div>
           </div>
@@ -133,15 +138,20 @@ const ProveedorSlug = ({ productList, productsQty, pages }) => {
                 <div className="show-mobile">
                   <hr />
                 </div>
-                <div className="all-products">
-										{productList.length > 0
-											? productList
-													.slice(3, 9)
-													.map((product, i) => (
-														<CardProduct key={i} {...product} />
-													))
-											: <p>Se encontraron 0 productos</p>}
-									</div>
+                <Container>
+
+                  <Row>
+                      {productList.length > 0
+                        ? productList
+                            .slice(3, 9)
+                            .map((product, i) => (
+                              <Col xs={12} sm={6} md={4}>
+                                <CardProduct key={i} {...product} />
+                              </Col>
+                            ))
+                        : <p>Se encontraron 0 productos</p>}
+                  </Row>
+                </Container>
               </div>
             </div>
           </section>
@@ -184,13 +194,6 @@ const ProveedorSlug = ({ productList, productsQty, pages }) => {
           .products {
             padding-right: 2rem;
             padding-left: 2rem;
-          }
-          .all-products {
-            padding: 3rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
           }
           .text-title-tienda {
             font-family: "mont-regular" !important;
@@ -276,7 +279,39 @@ ProveedorSlug.propTypes = {
 export const getServerSideProps = async ({ query }) => {
 	const { proveedor } = query;
   const responseData = await getStoreByName(proveedor);
-  if (responseData.proveedor == null) {
+  if (responseData.proveedor !== null) {
+    return {
+      props: {
+        productList : responseData.proveedor
+      },
+    };
+  }
+
+  const { data , err= null } = await getApiBusiness('/store/verifyname',{
+    params : {
+      storeName : proveedor
+    }
+  })
+
+  const notFound = {
+    redirect: {
+      destination: '/404',
+      permanent: false,
+    },
+  }
+
+  if(!err){
+    if(data.ok){
+      return notFound;
+    }
+  }else{
+    return notFound;
+  }
+
+
+  const { productosGeneral, totalDeProductos, pages } = await getProductsByUrlStore(proveedor, 0,	10);
+
+  if (!productosGeneral) {
     return {
       props: {
         productList: [],
@@ -284,12 +319,6 @@ export const getServerSideProps = async ({ query }) => {
     };
   }
 
-  return {
-    props: {
-      productList : responseData.proveedor
-    },
-  };
 };
 
 export default ProveedorSlug;
-``

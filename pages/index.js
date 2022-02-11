@@ -1,8 +1,7 @@
-import React, { Fragment, useEffect, useState, useContext } from "react";
+import React from "react";
 import { object, array, number } from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
-import YesmomContext from "./../context/Context";
 import { Container, Row, Col, Card, CardDeck } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -77,17 +76,19 @@ const Home = ({
       <div className="fade-in animated">
         <section fluid="true" className="box-banner">
           <div className="banner view-desktop ">
-            <div className="h-100">
+            <div className="">
               {/* <Image */}
-              <img
-                src="/image/home/banner-home.png"
-                alt="Picture of the author"
-                layout="responsive"
-                // width={500}
-                // height={245}
-                width={"100%"}
-                height={"100%"}
-              />
+              <a href="/tienda">
+                <img
+                  src="/image/home/banner-home.png"
+                  alt="Picture of the author"
+                  layout="responsive"
+                  // width={500}
+                  // height={245}
+                  width={"100%"}
+                  height={"100%"}
+                />{" "}
+              </a>
             </div>
           </div>
           <div className="banner view-mobile">
@@ -256,9 +257,9 @@ const Home = ({
                         // className="onda-rosa heartbeat"
                       />
                     </div>
-                    <Link href="/tienda">
+                    <Link href="/tienda/categoria/juguetes">
                       <div className="btn-lo-mejor hover-amarillo">
-                        <a> Tiendas destacadas-</a>
+                        <a> Juguetes</a>
                       </div>
                     </Link>
                   </Col>
@@ -272,25 +273,25 @@ const Home = ({
                         // className="onda-rosa heartbeat"
                       />
                     </div>
-                    <Link href="/tienda/categoria/todos">
+                    <Link href="/tienda/categoria/coches">
                       <div className="btn-lo-mejor bg-fuxia hover-fuxia">
-                        <a> Lo + vendido </a>{" "}
+                        <a> Coches </a>{" "}
                       </div>
                     </Link>
                   </Col>
                   <Col className="mt-5" sm={12} md={6} lg={3}>
                     <div className="img-lo-mejor">
                       <Image
-                        src="/image/home/sin-moverte.png"
+                        src="/image/home/maternidad.png"
                         alt="sin moverte"
                         width={400}
                         height={400}
                         // className="onda-rosa heartbeat"
                       />
                     </div>
-                    <Link href="/construccion">
+                    <Link href="/tienda/categoria/maternidad">
                       <div className="btn-lo-mejor bg-verde hover-verde">
-                        <a>Servicios</a>
+                        <a>Maternidad</a>
                       </div>
                     </Link>
                   </Col>
@@ -305,9 +306,9 @@ const Home = ({
                       />
                     </div>
 
-                    <Link href="/construccion">
+                    <Link href="/tienda/categoria/accesorios">
                       <div className="btn-lo-mejor bg-azul hover-azul">
-                        <a>Solo en Yes Mom</a>
+                        <a>Accesorios</a>
                       </div>
                     </Link>
                   </Col>
@@ -351,18 +352,20 @@ const Home = ({
               mejor para tu pequeño!
             </h6>
           </Container>
-          <Container fluid="true">
-            <Col>
-              <div className="all-products">
+          <Container>
+            <div className="all-products">
+              <Row md={3} className="justify-content-center">
                 {productList.length > 0 ? (
-                  productList
-                    .slice(0, 3)
-                    .map((product, i) => <CardProduct key={i} {...product} />)
+                  productList.slice(0, 3).map((product, i) => (
+                    <Col xs={6} md={4}>
+                      <CardProduct key={i} {...product} />
+                    </Col>
+                  ))
                 ) : (
                   <p>Se encontraron 0 productos</p>
                 )}
-              </div>
-            </Col>
+              </Row>
+            </div>
             <Link href="/tienda">
               <div className="btn-yellow bg-fuxia hover-fuxia text-omnes">
                 <a>Ver más</a>
@@ -462,6 +465,7 @@ const Home = ({
           :global(.card-blog) {
             width: 30rem !important;
           }
+
           .text-change-font {
             font-family: "omnes-bold" !important;
             font-size: 1.6rem;
@@ -472,20 +476,8 @@ const Home = ({
           .text-omnes a {
             font-size: 2rem;
           }
-          .all-products {
-            width: 85%;
-            margin: 0 auto;
-            padding: 3rem 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-          }
           .box-banner {
-            height: 65rem;
-            width: auto;
-            position: relative;
-            overflow: hidden;
+            margin-top: 4rem;
           }
           .box-banner-btns {
             position: absolute;
@@ -505,14 +497,7 @@ const Home = ({
             margin-top: 1rem;
             flex-direction: row;
           }
-          .box-banner .banner {
-            width: 100%;
-            object-fit: cover;
-            object-position: center;
-            height: 100%;
-            position: absolute;
-            top: 3rem;
-          }
+
           .ondas-banner {
             width: 1rem;
           }
@@ -786,8 +771,6 @@ const Home = ({
               color: #000000;
             }
             .box-banner {
-              height: 60vh;
-              width: auto;
             }
             .section-sorteo-home {
               padding-top: 3rem;
@@ -937,9 +920,6 @@ const Home = ({
             }
           }
           @media (min-width: 992px) and (max-width: 1023px) {
-            .box-banner {
-              height: 50vh;
-            }
             :global(.section-blog-home .container-sin-margin) {
               display: flex;
               flex-wrap: wrap;
@@ -984,15 +964,9 @@ const Home = ({
               background: #febf41;
               position: relative;
             }
-            .box-banner {
-              height: 40rem;
-            }
+
             .box-text-title {
               padding-top: 3rem;
-            }
-            .all-products {
-              width: 70%;
-              margin: 0 auto;
             }
             .box-banner-btns-group {
               position: absolute;
@@ -1066,15 +1040,6 @@ const Home = ({
             }
             .title-fuxia {
               font-size: 2rem;
-            }
-            .all-products {
-              width: 90%;
-              margin: 0 auto;
-              padding: 3rem 0;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              flex-wrap: wrap;
             }
             .ondas {
               width: 4rem;
@@ -1211,14 +1176,14 @@ Home.propTypes = {
 };
 
 export const getServerSideProps = async () => {
-  const { productosGeneral, totalDeProductos, pages } = await getProducts(
-    null,
-    "all",
-    0,
-    10
-  );
-  const { response } = await getCategories();
-  const blogs = await getBlogs();
+  const [resp_1, resp_2, blogs] = await Promise.all([
+    getProducts(null, "all", 0, 3),
+    getCategories(),
+    getBlogs(),
+  ]);
+
+  const { productosGeneral, totalDeProductos, pages } = resp_1;
+  const { response } = resp_2;
 
   if (!productosGeneral) {
     return {

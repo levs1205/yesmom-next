@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useMemo } from "react";
 import chroma from "chroma-js";
 import Link from "next/link";
 import Image from "next/image";
@@ -16,6 +16,11 @@ import OtherProducts from "../../../components/tienda/detalle/OtherProducts";
 import Select from "react-select";
 import { getProductsById, getProducts } from "../../api/request";
 import { setProduct } from "../../../context/actions/ui";
+import moment from 'moment';
+
+const defaultImage =
+  "https://bicentenario.gob.pe/biblioteca/themes/biblioteca/assets/images/not-available-es.png";
+
 
 const DetallesID = ({
   product,
@@ -25,8 +30,6 @@ const DetallesID = ({
   productsQty,
   pages,
 }) => {
-  const defaultImage =
-    "https://bicentenario.gob.pe/biblioteca/themes/biblioteca/assets/images/not-available-es.png";
   const { _id: idTienda, nombreTienda, nombreTiendaUrl } = supplier;
   const {
     _id: idProducto,
@@ -79,7 +82,9 @@ const DetallesID = ({
   };
 
   const handleChange = (e) => {
-    setAmount(e.target.value);
+    if(cantidadDisponible >0){
+      setAmount(e.target.value);
+    }
   };
 
   useEffect(() => {
@@ -297,35 +302,46 @@ const DetallesID = ({
 		}),
   };
 
+  const haveDiscount = useMemo(()=>{
+    if( !product || !product.fechaInicioPromocion || !product.fechaFinPromocion) return false;
+
+    const init_promo = moment(product.fechaInicioPromocion);
+    const end_promo = moment(product.fechaFinPromocion);
+    const now = moment(new Date());
+
+    if(end_promo.isAfter(init_promo) && end_promo.isAfter(now)){
+      return true;
+    }else{
+      return false;
+    }
+
+  },[product])
+
 
   return (
     <>
       <AppLayout>
         <Head>
-          <title>YesMom - Detalles</title>
+          <title>YesMom - {product.nombre.toUpperCase()}</title>
           <meta name="description" content="YesMom es ..."></meta>
           <meta property="og:type" content="website" />
-          <meta property="og:title" content="YesMom - Detalles" />
+          <meta property="og:title" content={`YesMom - ${product.nombre}`} />
           <meta
             property="og:description"
-            content="Yes Mom es una plataforma digital peruana que ayuda a las
-                                    mamis a disfrutar su maternidad sin preocupaciones. Queremos
-                                    ser la marca aliada que todos los papás estuvieron buscando,
-                                    una página web que reúne en un solo lugar todo lo que
-                                    necesitan para la llegada de su bebé y acompañar su
-                                    crecimiento."
-          />
-          <meta
-            property="og:image"
-            itemprop="image"
-            content="https://yesmom.vercel.app/image/about-header.png"
+            content={descripcion}
           />
           <meta property="og:image:width" content="1280" />
           <meta property="og:image:height" content="855" />
           <meta property="og:site_name" content="Yes Mom" />
           {/* <meta property="og:url" content={`${user.id}`} />  */}
           <meta name="twitter:card" content="summary" />
-          <meta name="twitter:title" content="YesMom - Detalles" />
+          <meta name="twitter:title" content={nombre} />
+          <meta
+          property="og:image"
+          itemprop="image"
+          content={images[0].url}
+        />
+          
           <meta
             name="twitter:description"
             content="Yes Mom es una plataforma digital peruana que ayuda a las
@@ -346,7 +362,7 @@ const DetallesID = ({
               <div className="show--all-content">
                 <div className="show--title-content hide-desktop">
                   <h4 className="title-breadcrumb">
-                    Inicio / Tienda / Solo en Yes Mom / Ropa{" "}
+                    Inicio / Tienda / Ropa / {nombre}
                   </h4>
                 </div>
                 <div className="show--container-content">
@@ -365,17 +381,20 @@ const DetallesID = ({
                     </div>
                     <div className="show--container-details">
                       <section className="show--some-info-product">
+                        {
+                          cantidadDisponible === 0 
+                          &&
+                          <h2 className="product_out_stock">¡Producto agotado!</h2>
+                        }
                         <h5 className="show--ft-semibold">{nombre}</h5>
-                        {/* <h6 className="show--ft-light">{nombreTienda}</h6> */}
                         <h6 className="show--ft-light">
                           <Link href={`/tienda/${nombreTiendaUrl}`}>
                             <a className="show--ft-light name-store">{nombreTienda}</a>
                           </Link>
                         </h6>
 
-                        {/* <p className="show--text-description">{decripcion}</p> */}
-                        <p className="show--price">S/ {precioPromocional ? precioPromocional?.toFixed(2) : precio?.toFixed(2)}</p>
-												{precioPromocional && <p className="show--price-dcto">S/ {precio?.toFixed(2)}</p>}
+                        <p className="show--price">S/ {haveDiscount ? precioPromocional?.toFixed(2) : precio.toFixed(2)}</p>
+												{haveDiscount && <p className="show--price-dcto">S/ {precio?.toFixed(2)}</p>}
                         <div className="show--container-selects">
                           <div className="show--group-select">
                             <label className="show--text-label" htmlFor="talla">
@@ -420,8 +439,8 @@ const DetallesID = ({
                               type="number"
                               className="input-amount"
                               value={amount}
-															defaultValue={cantidadDisponible}
                               onChange={handleChange}
+                              disabled={cantidadDisponible===0}
                               min={0}
                             />
 
@@ -499,6 +518,14 @@ const DetallesID = ({
       </AppLayout>
       <style jsx>
         {`
+          
+          .product_out_stock{
+            font-family:"mont-regular"!important;
+            color : #ec608d;
+          }
+          :global(.carousel .carousel-status){
+            display : none!important;
+          }
           .container-select {
             width: 200px !important;
           }
@@ -529,6 +556,9 @@ const DetallesID = ({
           :global(.carousel li img) {
             border-radius: 10px !important;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+          }
+          :global(.carousel .thumb ){
+            border-radius: 15px;
           }
           :global(.carousel .thumb img) {
             vertical-align: top;
@@ -846,7 +876,7 @@ const DetallesID = ({
 
           @media (min-width: 768px) {
             .show--box-main-proveedor {
-              padding-top: 18rem;
+              padding-top: 16rem;
             }
             .hide-desktop {
               display: none;
@@ -979,7 +1009,20 @@ DetallesID.propTypes = {
 
 export const getServerSideProps = async ({ query }) => {
   const { id } = query;
+  console.log(id);
   const { producto, tienda, imagenes } = await getProductsById(id);
+
+  console.log('PRODUCTOO',producto);
+  if(!producto){
+    return  {
+      redirect: {
+        permanent: false,
+        destination: "/404",
+      },
+      props:{},
+    };
+  }
+
   const { productosGeneral, totalDeProductos, pages } = await getProducts(
     null,
     producto?.categoria,

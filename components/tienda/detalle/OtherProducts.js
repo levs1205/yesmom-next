@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Container, Row, Col } from "react-bootstrap";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import CardProduct from "../../CardProduct";
 
@@ -26,12 +27,17 @@ const OtherProducts = ({ productList, category, id }) => {
 							></FontAwesomeIcon>
 						</div>
 					</div>
-					<div className="other-products-content">
-						{listFiltered
-							.map((product, i) => (
-								<CardProduct {...product} size={4} />
-							))}
-					</div>
+          <Container>
+            <Row className="justify-content-center">
+              {listFiltered
+                .map((product, i) => (
+                  <Col xs={12} md={6} lg={4}>
+                    <CardProduct {...product} size={4} />
+                  </Col>
+                ))}
+            </Row>
+          </Container>
+
 				</section>
 				: ''
 			}
@@ -41,6 +47,7 @@ const OtherProducts = ({ productList, category, id }) => {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            align-items:center;
           }
 
           .show--other-products {

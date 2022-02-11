@@ -33,25 +33,21 @@ const schemaFirst = yup.object().shape({
   phone: yup.string().matches(phoneRegExp, 'El número de celular no es válido'),
 });
 
-
-//
-
-
 const schemaSecond = yup.object().shape({
   calle: yup.string().required('Ingrese calle'),
   numero: yup.string().matches(/^[0-9]+$/g,'Numero incorrecto').required('Ingrese el número'),
-  interior: yup.string().required('Ingrese interior'),
+  interior: yup.string(),
   referencia : yup.string().required('Ingrese referencia'),
-  recibePedido : yup.string().oneOf(['on'],'Campo obligatorio'),
-  nameRecibeTercero : yup.string(),
+  recibePedido : yup.string().oneOf(['yo','otro'],'Campo obligatorio'),
   // departamento : yup.string().required('Seleccione departamento'),
   // provincia : yup.string().required('Seleccione provincia'),
   distrito : yup.string().required('Seleccione distrito'),
   fechaEntrega : yup.date().required('Fecha es obligatoria'),
 });
 
-
-
+const schemaThird = yup.object().shape({
+  typeDocument : yup.string().oneOf(['on'],'Campo obligatorio'),
+})
 
 
 const Checkout = () => {
@@ -69,10 +65,15 @@ const Checkout = () => {
   const { register : register_2, control, handleSubmit : handleSubmit_2, formState: formState_2, watch : watch_2 } = useForm({
     resolver : yupResolver(schemaSecond),
     defaultValues :{
-      nameRecibeTercero : 'Melany Nicolle'
+      recibePedido :'yo'
+    },
+  })
+  const { register : register_3, handleSubmit : handleSubmit_3, formState: formState_3,reset_3} = useForm({
+    resolver : yupResolver(schemaThird),
+    defaultValues:{
+      typeDocument : 'on',
     }
   })
-  const { register : register_3, handleSubmit : handleSubmit_3, formState: formState_3,reset_3} = useForm({})
 
 
 
@@ -84,7 +85,7 @@ const Checkout = () => {
       const { calle, numero , interior, referencia , distrito , fechaEntrega , recibePedido, nameRecibeTercero} = watch_2();
 
 
-      const recibe = recibePedido==='0' ? name :  'Franco';
+      const recibe = recibePedido==='yo' ? name :  nameRecibeTercero;
 
       setChecking(true);
       const { ok , idPreference } = await generateSale({
@@ -835,8 +836,7 @@ export const getServerSideProps = async ({ req, res , resolvedUrl}) => {
   const accepted = {
     props : {}
   }
-  // console.log('URL',resolvedUrl);
-  console.log('TokenCheckout' , token)
+
   if(token){
     const { valid } = await startValidateToken(token);
 

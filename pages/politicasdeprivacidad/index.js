@@ -5,8 +5,8 @@ import { Container } from "react-bootstrap";
 const index = () => {
   return (
     <AppLayout>
-      <Container className="container-politicas">
-        <div>
+      <Container>
+        <div className="container-politicas">
           <h3>Políticas de privacidad de YES MOM PERU S.A.C</h3>
           <p>
             YES MOM se interesa en la privacidad de sus visitantes, usuarios y
@@ -25,9 +25,9 @@ const index = () => {
             comprende completamente, antes de acceder a o utilizar cualquiera de
             nuestros servicios. 
           </p>
-          <ol>
+          <ul className="ul-politicas">
             <li>
-              <span>Lea con atención:</span>
+              <span>1. Lea con atención:</span>
               <p>
                 Esta política de privacidad de YES MOM (en adelante, "PP")
                 describe como nosotros (YES MOM PERU S.A.C.) tratamos la
@@ -65,7 +65,7 @@ const index = () => {
             <li>
               <span>
                 {" "}
-                ¿Qué información recopilamos?
+                2. ¿Qué información recopilamos?
                 <br />
                 Recopilamos dos tipos de información acerca de nuestros
                 visitantes y usuarios:
@@ -74,42 +74,53 @@ const index = () => {
               <div>
                 {" "}
                 <span>2.1. Información para visitantes y/o usuarios</span>
-                <p>
-                  1. Información no identificada y no identificable relativa a
-                  un visitante o usuario no identificado, que puede ser puesta a
-                  nuestra disposición o recopilada automáticamente a través de
-                  nuestra opción de recibir nuevas noticias. Dicha Información
-                  No Personal no nos permite identificar el visitante o usuario
-                  de quien fue recopilada.
-                </p>
-                <p>
-                  2. La Información identificable individualmente; es decir,
-                  información que identifica a un individuo, puede ser de
-                  naturaleza privada o sensible ("Información Personal").
-                </p>
-                <p>
-                  La Información Personal recopilada por nosotros consiste
-                  principalmente en los datos de contacto (por ejemplo: nombre,
-                  correo electrónico o número de teléfono), los datos de
-                  facturación (nombre, dirección física de facturación, detalles
-                  de las transacciones y método de pago) que solo se recopilan
-                  de usuarios con servicios registrados, y cualquier otra
-                  Información Personal que nos suministren los visitantes o
-                  usuarios a través de su acceso y/o uso de nuestros servicios.
-                </p>
-                <p>
-                  Para evitar cualquier duda, cualquier Información No Personal
-                  que se encuentre conectada o vinculada a la Información
-                  Personal (por ejemplo, con el fin de mejorar los servicios que
-                  ofrecemos) es considerada y tratada por nosotros como
-                  Información Personal, siempre y cuando existe tal conexión o
-                  enlace.
-                </p>
+                <ul>
+                  <li>
+                    {" "}
+                    <p>
+                      <b>1.</b> Información no identificada y no identificable
+                      relativa a un visitante o usuario no identificado, que
+                      puede ser puesta a nuestra disposición o recopilada
+                      automáticamente a través de nuestra opción de recibir
+                      nuevas noticias. Dicha Información No Personal no nos
+                      permite identificar el visitante o usuario de quien fue
+                      recopilada.
+                    </p>
+                  </li>
+                  <li>
+                    {" "}
+                    <p>
+                      <b> 2.</b> La Información identificable individualmente;
+                      es decir, información que identifica a un individuo, puede
+                      ser de naturaleza privada o sensible ("Información
+                      Personal").
+                    </p>{" "}
+                    <p>
+                      La Información Personal recopilada por nosotros consiste
+                      principalmente en los datos de contacto (por ejemplo:
+                      nombre, correo electrónico o número de teléfono), los
+                      datos de facturación (nombre, dirección física de
+                      facturación, detalles de las transacciones y método de
+                      pago) que solo se recopilan de usuarios con servicios
+                      registrados, y cualquier otra Información Personal que nos
+                      suministren los visitantes o usuarios a través de su
+                      acceso y/o uso de nuestros servicios.
+                    </p>
+                    <p>
+                      Para evitar cualquier duda, cualquier Información No
+                      Personal que se encuentre conectada o vinculada a la
+                      Información Personal (por ejemplo, con el fin de mejorar
+                      los servicios que ofrecemos) es considerada y tratada por
+                      nosotros como Información Personal, siempre y cuando
+                      existe tal conexión o enlace.
+                    </p>
+                  </li>
+                </ul>
               </div>
             </li>
 
             <li>
-              <span>¿Cómo recolectamos dicha información?</span>
+              <span>3. ¿Cómo recolectamos dicha información?</span>
               <p>
                 Mediante nuestras diversas plataformas virtuales, nuestra
                 empresa recolecta información de la siguiente manera:
@@ -147,105 +158,146 @@ const index = () => {
                 </li>
                 <li>
                   <p>
-                    3. De ser el caso, recopilamos información que alguno de
-                    nuestros partners/marcas nos proporcione, siempre
+                    <b> 3. </b>De ser el caso, recopilamos información que
+                    alguno de nuestros partners/marcas nos proporcione, siempre
                     salvaguardando el buen tratamiento de datos personales.
                   </p>
                 </li>
               </ul>
             </li>
             <li>
-              <span>¿Por qué recolectamos dicha información?</span>
+              <span>4. ¿Por qué recolectamos dicha información?</span>
               <p>
                 Recopilamos dicha Información Personal y No Personal para los
                 siguientes fines:
               </p>
-              <p>a) Para suministrar y operar nuestros servicios.</p>
-              <p>
-                b) Para desarrollar, personalizar y mejorar más nuestros
-                servicios, con base en las preferencias, experiencias y
-                dificultades comunes o personales de los visitantes y usuarios.
-                En ese sentido, podremos ponernos en contacto con usted para que
-                responda encuestas u opiniones sobre nuestra Plataforma. Para
-                responder consultas, quejas y reclamos realizados.
-              </p>
-              <p>
-                c) Para que nuestros usuarios disfruten de asistencia permanente
-                al cliente y podamos mantenernos comunicados para que pueda
-                acceder a determinados beneficios que tengamos para usted, como
-                promociones, cupones de descuento, entre otros.{" "}
-              </p>
-              <p>
-                d) Para poder contactar a nuestros visitantes y usuarios con
-                notificaciones generales o personalizadas y mensajes,
-                comunicaciones, información, materiales publicitarios o
-                promocionales relacionados con la Plataforma y/o con los
-                Productos y/o Servicios de nuestros Socios, mediante cualquier
-                medio como: llamadas telefónicas, mensajes de texto, mensajes de
-                Whatsapp, correo electrónico, entre otros.
-              </p>
-              <p>
-                e) Para crear datos estadísticos, estudios de mercado, segmentar
-                mercado, medir adherencia a promociones o actividades, métricas,
-                programas, reportes, proyectos y otra Información No Personal
-                agregada o inferida, que nosotros o nuestros socios comerciales
-                podemos utilizar para proporcionar y mejorar nuestros servicios
-                respectivos.
-              </p>
+              <ul>
+                <li>
+                  <p>
+                    <b>a. </b> Para suministrar y operar nuestros servicios.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>b.</b> Para desarrollar, personalizar y mejorar más
+                    nuestros servicios, con base en las preferencias,
+                    experiencias y dificultades comunes o personales de los
+                    visitantes y usuarios. En ese sentido, podremos ponernos en
+                    contacto con usted para que responda encuestas u opiniones
+                    sobre nuestra Plataforma. Para responder consultas, quejas y
+                    reclamos realizados.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>c. </b> Para que nuestros usuarios disfruten de
+                    asistencia permanente al cliente y podamos mantenernos
+                    comunicados para que pueda acceder a determinados beneficios
+                    que tengamos para usted, como promociones, cupones de
+                    descuento, entre otros.{" "}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>d. </b>Para poder contactar a nuestros visitantes y
+                    usuarios con notificaciones generales o personalizadas y
+                    mensajes, comunicaciones, información, materiales
+                    publicitarios o promocionales relacionados con la Plataforma
+                    y/o con los Productos y/o Servicios de nuestros Socios,
+                    mediante cualquier medio como: llamadas telefónicas,
+                    mensajes de texto, mensajes de Whatsapp, correo electrónico,
+                    entre otros.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>e.</b> Para crear datos estadísticos, estudios de
+                    mercado, segmentar mercado, medir adherencia a promociones o
+                    actividades, métricas, programas, reportes, proyectos y otra
+                    Información No Personal agregada o inferida, que nosotros o
+                    nuestros socios comerciales podemos utilizar para
+                    proporcionar y mejorar nuestros servicios respectivos.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>f.</b> Para remitir invitaciones a eventos, actividades o
+                    lanzamientos de productos o servicios de nuestros Socios y/o
+                    de Yes Mom.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>g.</b> Para hacerle llegar muestras de productos de
+                    nuestros Socios de Yes Mom y/o algún premio.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>h.</b> Remitir a través de cualquier medio: encuestas,
+                    estudios, noticias, campañas y/o confirmación de datos
+                    personales.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>i.</b> Remitir promociones, beneficios, concursos,
+                    ofertas y, en general, publicidad sobre productos y
+                    servicios.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>j.</b> Para mejorar la seguridad de los datos y
+                    capacidades de prevención del fraude.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>k.</b> Para cumplir con las leyes y normativas aplicables
+                    en nuestro país.
+                  </p>
+                </li>
+              </ul>
 
-              <p>
-                f) Para remitir invitaciones a eventos, actividades o
-                lanzamientos de productos o servicios de nuestros Socios y/o de
-                Yes Mom.
-              </p>
-              <p>
-                g) Para hacerle llegar muestras de productos de nuestros Socios
-                de Yes Mom y/o algún premio.
-              </p>
-              <p>
-                h) Remitir a través de cualquier medio: encuestas, estudios,
-                noticias, campañas y/o confirmación de datos personales.
-              </p>
-              <p>
-                i) Remitir promociones, beneficios, concursos, ofertas y, en
-                general, publicidad sobre productos y servicios.
-              </p>
-              <p>
-                j) Para mejorar la seguridad de los datos y capacidades de
-                prevención del fraude.
-              </p>
-              <p>
-                k). Para cumplir con las leyes y normativas aplicables en
-                nuestro país.
-              </p>
               <p>
                 Solamente utilizaremos su Información Personal para los
                 siguientes fines:
               </p>
-              <p>
-                a) Nuestro uso de su Información Personal es necesario para
-                cumplir con una obligación legal o normativa relevante que
-                tengamos.
-              </p>
-              <p>
-                b) Nuestro uso de su Información Personal es necesario para
-                apoyar intereses legítimos que tenemos como negocio (por
-                ejemplo, para mantener y mejorar nuestros servicios mediante la
-                identificación de tendencias de usuario y la eficacia y la
-                identificación de asuntos técnicos), siempre y cuando este se
-                conduzca en todo momento de forma tal que sea proporcionado, y
-                que respete sus derechos de privacidad.
-              </p>
-              <p>
-                c) Para poder contactar a nuestros visitantes y usuarios con
-                notificaciones generales o personalizadas y mensajes
-                promocionales relacionados con el servicio, mediante cualquier
-                medio como: llamadas telefónicas, mensajes de texto, mensajes de
-                Whatsapp, correo electrónico, entre otros.
-              </p>
+              <ul>
+                <li>
+                  <p>
+                    <b>a.</b> Nuestro uso de su Información Personal es
+                    necesario para cumplir con una obligación legal o normativa
+                    relevante que tengamos.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>b.</b> Nuestro uso de su Información Personal es
+                    necesario para apoyar intereses legítimos que tenemos como
+                    negocio (por ejemplo, para mantener y mejorar nuestros
+                    servicios mediante la identificación de tendencias de
+                    usuario y la eficacia y la identificación de asuntos
+                    técnicos), siempre y cuando este se conduzca en todo momento
+                    de forma tal que sea proporcionado, y que respete sus
+                    derechos de privacidad.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>c. </b>Para poder contactar a nuestros visitantes y
+                    usuarios con notificaciones generales o personalizadas y
+                    mensajes promocionales relacionados con el servicio,
+                    mediante cualquier medio como: llamadas telefónicas,
+                    mensajes de texto, mensajes de Whatsapp, correo electrónico,
+                    entre otros.
+                  </p>
+                </li>
+              </ul>
             </li>
             <li>
-              <span>¿Dónde almacenamos su información?</span>
+              <span>5. ¿Dónde almacenamos su información?</span>
               <p>
                 La Información Personal o datos personales de los visitantes y
                 los usuarios de YES MOM puede ser mantenida, procesada,
@@ -263,31 +315,43 @@ const index = () => {
                 conformarse con los requerimientos legales menores aplicables en
                 su jurisdicción.
               </p>
-              <p>
-                a) YES MOM PERU S.A.C. es responsable del tratamiento de los
-                datos personales que recibe, bajo la Ley de Protección de Datos
-                Personales, y transferencias posteriores a un tercero que actúa
-                como un agente en su nombre. En ciertas situaciones, YES MOM
-                PERU S.A.C. puede ser obligado a revelar datos personales en
-                respuesta a solicitudes legítimas de los poderes públicos,
-                incluso para cumplir con los requisitos de seguridad o
-                policiales nacionales, y lo hará donde sea permitido por las
-                leyes locales de protección de datos.
-              </p>
-              <p>
-                b) Los proveedores de almacenamiento de datos de YES MOM PERU
-                S.A.C. se comprometen a proteger y asegurar sus datos.
-              </p>
-              <p>
-                c) También podemos recopilar, procesar, almacenar y utilizar
-                dicha información en otros lugares, incluyendo en los Estados
-                Unidos.
-              </p>
-              <p>
-                d) También podemos recopilar, procesar, almacenar y utilizar
-                dicha información en otros lugares, incluyendo en los Estados
-                Unidos.
-              </p>
+              <ul>
+                <li>
+                  <p>
+                    <b>a.</b> YES MOM PERU S.A.C. es responsable del tratamiento
+                    de los datos personales que recibe, bajo la Ley de
+                    Protección de Datos Personales, y transferencias posteriores
+                    a un tercero que actúa como un agente en su nombre. En
+                    ciertas situaciones, YES MOM PERU S.A.C. puede ser obligado
+                    a revelar datos personales en respuesta a solicitudes
+                    legítimas de los poderes públicos, incluso para cumplir con
+                    los requisitos de seguridad o policiales nacionales, y lo
+                    hará donde sea permitido por las leyes locales de protección
+                    de datos.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>b.</b> Los proveedores de almacenamiento de datos de YES
+                    MOM PERU S.A.C. se comprometen a proteger y asegurar sus
+                    datos.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>c. </b>También podemos recopilar, procesar, almacenar y
+                    utilizar dicha información en otros lugares, incluyendo en
+                    los Estados Unidos.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>d.</b> También podemos recopilar, procesar, almacenar y
+                    utilizar dicha información en otros lugares, incluyendo en
+                    los Estados Unidos.
+                  </p>
+                </li>
+              </ul>
             </li>
             <li>
               <span>6. Compartir información personal con terceros</span>
@@ -390,7 +454,7 @@ const index = () => {
               </ul>
             </li>
             <li>
-              <span>Comunicación de YES MOM</span>
+              <span>7. Comunicación de YES MOM</span>
               <ul>
                 <li>
                   <span>7.1. Mensajes promocionales</span>
@@ -426,7 +490,7 @@ const index = () => {
               </ul>
             </li>
             <li>
-              <span>Sus derechos como visitante y/o usuario de YES MOM</span>
+              <span>8. Sus derechos como visitante y/o usuario de YES MOM</span>
               <p>
                 Es muy necesario que tenga control sobre su información
                 personal. Por eso, YES MOM PERU S.A.C. está tomando medidas para
@@ -476,7 +540,7 @@ const index = () => {
               </p>
             </li>
             <li>
-              <span>Retención de datos personales</span>
+              <span>9. Retención de datos personales</span>
               <p>
                 Podemos conservar su Información Personal o Datos Personales
                 durante el tiempo que su cuenta de usuario se encuentre activa,
@@ -498,7 +562,7 @@ const index = () => {
               </p>
             </li>
             <li>
-              <span>Seguridad de la información</span>
+              <span>10. Seguridad de la información</span>
               <p>
                 YES MOM PERU S.A.C. ha implementado medidas de seguridad
                 diseñadas para proteger los datos personales que usted comparte
@@ -528,7 +592,7 @@ const index = () => {
               </p>
             </li>
             <li>
-              <span>Lugares públicos en la red y contenido de usuario</span>
+              <span>11. Lugares públicos en la red y contenido de usuario</span>
               <p>
                 Nuestros servicios ofrecen blogs de acceso público, comunidades,
                 plataformas digitales y foros de soporte. Tenga en cuenta que
@@ -560,7 +624,7 @@ const index = () => {
               </p>
             </li>
             <li>
-              <span>Actualizaciones</span>
+              <span>12. Actualizaciones</span>
               <p>
                 Podemos actualizar esta PP según sea requerido por la ley o
                 reglamento aplicable, y para reflejar cambios en nuestras
@@ -587,7 +651,7 @@ const index = () => {
               </p>
             </li>
             <li>
-              <span>Póngase en contacto con nosotros</span>
+              <span>13. Póngase en contacto con nosotros</span>
               <p>
                 Si tiene alguna pregunta sobre esta PP o desea ejercer
                 cualquiera de sus derechos como titular de sus datos personales,
@@ -597,18 +661,22 @@ const index = () => {
                 normativa vigente en el Perú.
               </p>
             </li>
-          </ol>
+          </ul>
         </div>
       </Container>
       <style jsx>
         {`
           .container-politicas {
             position: relative;
-            top: 15rem;
+            top: 10rem;
             text-align: justify;
-            margin-bottom: 20rem;
-            padding-left: 11rem !important;
-            padding-right: 11rem !important;
+            margin-bottom: 15rem;
+            padding-top: 5rem;
+            padding-left: 13rem !important;
+            padding-right: 13rem !important;
+            padding-bottom: 5rem;
+            box-shadow: 0px 1px 10px #999999d4;
+            background: #ffff;
           }
           .container-politicas h3 {
             text-align: center;
@@ -625,6 +693,14 @@ const index = () => {
           .container-politicas p,
           .container-politicas li {
             font-size: 1.2rem;
+          }
+
+          .container-politicas ul {
+            list-style: none;
+            padding-left: 1.5rem;
+          }
+          .ul-politicas {
+            padding-left: 0rem;
           }
 
           @media (max-width: 768px) {

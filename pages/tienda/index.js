@@ -1,12 +1,11 @@
-import React, { Component, useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { object, array, number } from "prop-types";
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import YesmomContext from "../../context/Context";
-import { Carousel, Container } from "react-bootstrap";
+import { Carousel, Container, Row, Col } from "react-bootstrap";
 import CardProduct from "../../components/CardProduct";
 import SidebarProducto from "../../components/tienda/SidebarProducto";
-import BannerTienda from "../../components/tienda/BannerTienda";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 import { getProducts, getCategories } from "../api/request";
@@ -141,29 +140,19 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
               <div className="products">
                 <h4 className="text-title-tienda">{categorySelected?.name}</h4>
                 <hr />
-                <div className="all-products">
+                <Row>
                   {productList.length > 0 ? (
                     storeFiltered
                       .slice(0, 6)
-                      .map((product, i) => <CardProduct key={i} {...product} />)
-                  ) : (
-                    <p>Se encontraron 0 productos</p>
-                  )}
-                </div>
-              </div>
-            </div>
-            {/* <BannerTienda /> */}
-            <div className="contenedor f-right">
-              <div className="products">
-                <div className="all-products">
-                  {productList.length > 0
-                    ? storeFiltered
-                        .slice(6, 12)
-                        .map((product, i) => (
+                      .map((product, i) => (
+                        <Col xs={6} sm={4}>
                           <CardProduct key={i} {...product} />
-                        ))
-                    : null}
-                </div>
+                        </Col>
+                      ))
+                  ) : (
+                    <p>No se ha encontrado ningún resultado de producto</p>
+                  )}
+                </Row>
               </div>
             </div>
           </div>
@@ -227,10 +216,14 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
             align-items: center;
             flex-wrap: wrap;
           }
+          .show-mobile{
+            margin-top: 8.5rem;
+          }
 
           @media (min-width: 768px) {
             .show-mobile {
               display: none;
+
             }
             .show-desktop {
               display: flex;
@@ -255,7 +248,7 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
           }
           @media (min-width: 768px) {
             .mt-5r {
-              margin-top: 5.5rem;
+              margin-top: 5rem;
             }
           }
           @media (min-width: 1024px) {
@@ -278,9 +271,10 @@ Product.propTypes = {
 };
 
 export const getServerSideProps = async () => {
-	const { productosGeneral, totalDeProductos, pages } = await getProducts(null,'all',0,	10);
-  const { response } = await getCategories();
-  /* localStorage.setItem('categories', response?.categories) */
+
+  const [ resp_1, resp_2] = await Promise.all([getProducts(null,'all',0,0),getCategories()])
+	const { productosGeneral, totalDeProductos, pages } = resp_1;
+  const { response } = resp_2;
 
   if (!productosGeneral) {
     return {

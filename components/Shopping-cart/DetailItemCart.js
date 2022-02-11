@@ -1,14 +1,28 @@
 import Image from "next/image";
+import Link from 'next/link';
 import React, { useContext } from "react";
 import { startRemoveProduct } from "../../context/actions/ui";
 import YesmomContext from "../../context/Context";
 
-const DetailItemCart = ({ id, nombre, imagen, noBorder, precio, quantity, precioPromocional, supplier, sizeSelected, colourSelected, idProductCart }) => {
+const DetailItemCart = ({
+  _id,
+  nombre,
+  imagen,
+  noBorder,
+  precio,
+  quantity,
+  precioPromocional,
+  supplier,
+  sizeSelected,
+  colourSelected,
+  idProductCart,
+}) => {
   const { dispatchUi } = useContext(YesmomContext);
 
   const handleRemoveProduct = () => {
     dispatchUi(startRemoveProduct(idProductCart));
   };
+
   return (
     <>
       <div className={`card card-edited ${noBorder ? "no-border" : ""}`}>
@@ -21,11 +35,16 @@ const DetailItemCart = ({ id, nombre, imagen, noBorder, precio, quantity, precio
         <div className="card__block-first">
           <img src={imagen} alt="" className="card__img" />
           <div className="card__block-text">
-            <p className="block-text__title">
+            <Link href={`/tienda/detalles/${_id}`} >
+              <a className="block-text__title">
               {nombre}
+              </a>
+            </Link>
+
+
+            <p className="block-text__short-description">
+              {colourSelected} - {sizeSelected}
             </p>
-            {/* <p className="block-text__short-description">Modelo - Marca</p> */}
-            <p className="block-text__short-description">{colourSelected} - {sizeSelected}</p>
             <select name="" id="" className="block-text__select">
               <option value="">Cantidad: {quantity}</option>
             </select>
@@ -40,13 +59,16 @@ const DetailItemCart = ({ id, nombre, imagen, noBorder, precio, quantity, precio
             />
             <p className="block-store-text__text">{supplier}</p>
           </div>
-          <p className="block-second__block-store-price">S/ {precioPromocional ? precioPromocional?.toFixed(2) : precio?.toFixed(2)}</p>
+          <p className="block-second__block-store-price">
+            S/{" "}
+            {precioPromocional
+              ? precioPromocional?.toFixed(2)
+              : precio?.toFixed(2)}
+          </p>
         </div>
       </div>
       <style jsx>
         {`
-         
-         
           .card-edited {
             display: flex;
             justify-content: center;
@@ -67,7 +89,7 @@ const DetailItemCart = ({ id, nombre, imagen, noBorder, precio, quantity, precio
             width: 2rem;
             right: 0;
             top: 2rem;
-            cursor: pointer!important;
+            cursor: pointer !important;
           }
           .card--shopping-cart__iconDelete:hover {
             transform: scale(1.05);
@@ -129,6 +151,11 @@ const DetailItemCart = ({ id, nombre, imagen, noBorder, precio, quantity, precio
             line-height: 17px;
             color: #575650;
             margin-bottom: 0rem;
+            transition : color 0.3s ease-in-out;
+          }
+          .block-text__title:hover {
+            color: #ec668d;
+            text-decoration : none;
           }
           .block-text__short-description {
             font-family: "mont-light";
@@ -222,13 +249,13 @@ const DetailItemCart = ({ id, nombre, imagen, noBorder, precio, quantity, precio
               box-shadow: 0px 0px 33px rgba(0, 0, 0, 0.13);
               border-radius: 20px;
             }
-            .card__block-first{
-              width:95%
+            .card__block-first {
+              width: 95%;
             }
-            .card-edited{
-              width:100%
-            }        
-      
+            .card-edited {
+              width: 100%;
+            }
+
             .card__block-first .card__img {
               width: 20%;
               height: 104px;
@@ -258,11 +285,11 @@ const DetailItemCart = ({ id, nombre, imagen, noBorder, precio, quantity, precio
               align-items: center !important;
               flex-direction: row;
             }
-            .card__block-first{
-              width:95%
+            .card__block-first {
+              width: 95%;
             }
-            .card-edited{
-              width:100%
+            .card-edited {
+              width: 100%;
             }
           }
         `}

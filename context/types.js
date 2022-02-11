@@ -10,6 +10,8 @@ export const types = {
 
     //client 
     clientSetInfo : "SET_INFO_CLIENT",
+    initRegister : "INIT_REGISTER_CLIENT",   
+    finishRegister : "FINISH_REGISTER_CLIENT",
 
 
     //ui
@@ -25,6 +27,7 @@ export const types = {
     addToCart : "ADD_CART",
     removeProduct : "REMOVE_PRODUCT_CART",
 		searchProductCart : "SEARCH_PRODUCT_CART",
+    cleanCart: "CLEAN_CART",
     
     //sales
 

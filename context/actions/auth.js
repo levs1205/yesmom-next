@@ -14,7 +14,6 @@ export const initializeData = async ( token ) => {
             }
         })
         
-        console.log(data);
         if(data?._id){
             return startSettingInfo(data);
         }else{

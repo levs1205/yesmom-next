@@ -10,8 +10,6 @@ export const startValidateToken = async(token) => {
         const { data } = await axiosInstance.get('/autenticar/token?delivery=no',{ headers : {
             'access-token' : token
         }})
-
-        // console.log(data);
         if( data?.mensaje === "Token válido"){
             return { valid : true , data}
         }else{

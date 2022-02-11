@@ -16,12 +16,12 @@ class MyDocument extends Document {
             type="image/x-icon"
             href="/image/yesmom-favicon.png"
           />
-          <script
+          {/* <script
             async
             src={`https://www.googletagmanager.com/gtm.js?id=${6003087391}`}
-          />
+          /> */}
 
-          <script
+          {/* <script
             dangerouslySetInnerHTML={{
               __html: `
                   window.dataLayer = window.dataLayer || [];
@@ -30,7 +30,7 @@ class MyDocument extends Document {
                   gtag('config', '${6003087391}');
                   `,
             }}
-          />
+          /> */}
           <script src="https://sdk.mercadopago.com/js/v2"></script>
           {/* <!-- Google Tag Manager -->
           <>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

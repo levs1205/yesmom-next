@@ -3,7 +3,7 @@ import AppLayout from "../../../components/AppLayout";
 import Head from "next/head";
 import Image from "next/image";
 import YesmomContext from "../../../context/Context";
-
+import {  Row, Col } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import CardProduct from "../../../components/CardProduct";
 import Pagination from "../../../components/Pagination";
@@ -11,11 +11,15 @@ import SidebarProducto from "../../../components/tienda/SidebarProducto";
 import LoaderPage from "../../../components/LoaderPage";
 import { getProducts, getCategories } from "../../api/request";
 
+import Paginaton from '../../../components/Pagination';
+
 export async function getServerSideProps({ query }) {
   //Todos los productos
   const { category = "", sort = "" } = query;
-	const { productosGeneral, totalDeProductos, pages } = await getProducts(category, null,0,	10);
-	const { response } = await getCategories();
+
+  const [ resp_1 , resp_2 ] = await Promise.all([getProducts(category, null,0,	10),getCategories()])
+	const { productosGeneral, totalDeProductos, pages } = resp_1;
+	const { response } = resp_2;
 
 	if (!productosGeneral) {
     return {
@@ -124,54 +128,48 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
                     <hr />
                   </div>
                   <div className="container-selects">
-                    {/* <div className="show-mobile">
-                                    <p className="show-between">Mostrar del 1 al 20</p>
-                                </div> */}
-                    {/* <div className="show-desktop">
-                                    <p className="show-quantity-desktop">Mostrar del 1 al 20 de 100</p>
-                                </div> */}
                     <select>
                       <option selected disabled>
                         Ordenar por{" "}
                       </option>
                       <option>Precio de mayor a menor </option>
                       <option>Precio de menor a mayor </option>
-                      {/* <option>Recomendaciones </option>
-                      <option>A-Z (alfabéticamente) </option>
-                      <option>Z-A (alfabéticamente </option>
-                      <option>Los más vendidos </option>
-                      <option>Últimos 30 días </option>
-                      <option> Últimos 6 meses </option> */}
                     </select>
                   </div>
                 </div>
-                <div className="all-products">
-                  {productosGeneral?.map((product, i) => (
-                    <CardProduct key={i} {...product} />
-                  ))}
-                  {/*                       <CardProduct />
-                      <CardProduct discount/>
-                      <CardProduct />
-                      <CardProduct />
-                      <CardProduct discount/>
-                      <CardProduct />
-                      <CardProduct />
-                      <CardProduct discount/>
-                      <CardProduct />
-                      <CardProduct />
-                      <CardProduct discount/>
-                      <CardProduct /> */}
-                </div>
+                <Row>
+                  {productosGeneral && productosGeneral.length ? productosGeneral?.map((product, i) => (
+                    <Col xs={6} sm={4}>
+                      <CardProduct key={i} {...product} />
+                    </Col>
+                  )) :
+                  <p className="out-result">No se ha encontrado ningún resultado de producto.</p>
+                }
+                </Row>
               </div>
             </div>
-            <div className="box-pagination">
-              <Pagination />
-            </div>
+
+            {
+              productosGeneral && productosGeneral.length >0 &&
+              <div className="container-pagination">
+                  <Pagination />
+              </div>
+            }
           </div>
         </Container>
       </div>
       <style jsx>
         {`
+          .container-pagination{
+            display: flex;
+            justify-content:center;
+            align-items:center;
+          }
+          .out-result{
+              font-family:"mont-regular"!important;
+              margin : 2rem;
+              font-size:1.4rem;
+            }
           .container-selects {
             display: flex;
             align-items: center;
@@ -195,7 +193,6 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
           }
           .banner-baby {
             position: relative;
-            margin-top: 5rem;
           }
           .img-baby {
             width: 100%;
@@ -303,11 +300,8 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
           }
 
           @media (min-width: 768px) {
-            .banner-baby {
-              margin-top: 7.5rem;
-            }
             .box-producto {
-              padding-top: 8.4rem;
+              padding-top: 10rem;
             }
             .all-products {
               padding-top: 0;
@@ -353,9 +347,6 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
           }
 
           @media (min-width: 1024px) {
-            .banner-baby {
-              margin-top: 6rem;
-            }
             .sidebar {
               flex-basis: 30%;
             }

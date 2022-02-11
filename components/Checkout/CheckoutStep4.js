@@ -1,11 +1,11 @@
-import React, { useMemo } from "react";
-
+import React, { useMemo, useContext} from "react";
+import YesmomContext from "../../context/Context";
 import moment from 'moment';
 moment.locale('es');
 
 const CheckoutStep4 = ({ register, setSelected , infoDatos , infoEntrega }) => {
 
-
+  const { sale ,ui : { cart }} = useContext(YesmomContext);
   const { email , name , identity , phone } = infoDatos();
   const {calle , numero, interior, referencia, distrito, fechaEntrega } = infoEntrega();
 
@@ -28,11 +28,55 @@ const CheckoutStep4 = ({ register, setSelected , infoDatos , infoEntrega }) => {
   const makeSpanishDate = (date) => {
   
     const { dayWord , dayNumber , monthWord , year} = makeDate(date);
-    // console.log({ dayWord , dayNumber , monthWord , year})
     return `${capitalize(dayWord)}, ${dayNumber} de ${monthWord} del ${year}`
   }
 
   const memorizedDate = useMemo(() => makeSpanishDate(fechaEntrega) , [fechaEntrega]);
+
+  const haveDiscountProduct = ( product ) => {
+    if( !product || !product.fechaInicioPromocion || !product.fechaFinPromocion) return false;
+
+    const init_promo = moment(product.fechaInicioPromocion);
+    const end_promo = moment(product.fechaFinPromocion);
+    const now = moment(new Date());
+
+    if(end_promo.isAfter(init_promo) && end_promo.isAfter(now)){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  const getTotalPriceDelivery = useMemo(() => {
+    if(cart && cart.length >0 && sale && sale.delivery){
+        let sum=0;
+        sale.delivery.forEach((val , i) => {
+            sum = sum+val.total;
+        })
+
+        return sum;
+    }else{
+        return 0;
+    }
+  },[sale,cart])
+
+  const makeTotalPrice = useMemo(( ) => {
+    let acum = 0;
+    if(cart.length >0 ){
+      cart.map((product)=> {
+        if(haveDiscountProduct(product)) {
+          acum = acum + product.precioPromocional * product.quantity;
+        } else {
+          acum = acum + product.precio * product.quantity;
+        }
+      })
+      acum = acum+ getTotalPriceDelivery;
+    }else{
+        return 0;
+    }
+
+    return acum;
+  },[cart])
 
   return (
     <>
@@ -90,7 +134,7 @@ const CheckoutStep4 = ({ register, setSelected , infoDatos , infoEntrega }) => {
             </div>
             <div className="checkout-identification-block__text-container_right">
               <div className="checkout-identification-block__text--font-size">
-                S/ XX.XX
+                S/ {makeTotalPrice.toFixed(2)}
               </div>
             </div>
           </div>
@@ -105,16 +149,18 @@ const CheckoutStep4 = ({ register, setSelected , infoDatos , infoEntrega }) => {
           </div>
         </div>
         <div className="checkout-location-form__box-radio">
-          <input
+          <img src="/image/tienda/mercado-pago.svg"/>
+         {/*   <input
             className="checkout-location-form__input-radio"
             type="radio"
             id="f-option"
             name="selector"
+            {...register('typeDocument')}
           />
           <label className="checkout-location-form__label-radio" for="f-option">
             Boleta
           </label>
-          <input
+           <input
             className="checkout-location-form__input-radio"
             type="radio"
             id="f-option2"
@@ -125,7 +171,7 @@ const CheckoutStep4 = ({ register, setSelected , infoDatos , infoEntrega }) => {
             for="f-option2"
           >
             Factura
-          </label>
+          </label> */}
         </div>
       </div>
 

@@ -7,9 +7,12 @@ import AppLayout from '../../../components/AppLayout';
 import PaymentSuccess from '../../../components/Payments/PaymentSuccess';
 import PaymentFailure from '../../../components/Payments/PaymentFailure';
 import LoaderPage from '../../../components/LoaderPage';
+import YesmomContext from '../../../context/Context';
+import { cleanCart } from '../../../context/actions/ui';
 
 const PaymentResult = () => {
 
+    const { dispatchUi } = useContext(YesmomContext);
     const { query } = useRouter();
     const [ status, setStatus ] = useState();
     const [ checking, setChecking ] = useState(true);
@@ -33,6 +36,7 @@ const PaymentResult = () => {
             console.log(data);
             //TODO: aprobado o desaprobado
             if(data.ok){
+                dispatchUi(cleanCart())
                 setStatus(data.status)
                 setOrderId(data.mpOrderId);
             }else{
