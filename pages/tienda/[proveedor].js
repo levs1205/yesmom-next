@@ -8,21 +8,19 @@ import BannerProveedor from "../../components/Proveedor/BannerProveedor";
 import CardProduct from "../../components/CardProduct";
 /* import SidebarProveedor from "../../components/Proveedor/SidebarProveedor"; */
 import SidebarProducto from "../../components/tienda/SidebarProducto";
-import { getProductsByUrlStore, getCategories } from "../api/request";
+import { getProductsByUrlStore, getCategories, getStoreByName } from "../api/request";
 import { setProducts, setCategories } from "../../context/actions/ui";
 
 const ProveedorSlug = ({ productList, productsQty, pages }) => {
+  
+  console.log('lista proveedor', productList)
+  
+  let logoStore = productList.imagenLogo[0].url;
+  let portadaStore = productList.imagenPortada[0].url;
+  let bannerStore = productList.imagenBanner;
 
-  const imagesMobile = [
-    { id: 1, image: "/image/tienda/banner-first.svg" },
-    { id: 2, image: "/image/tienda/banner-first.svg" },
-    { id: 3, image: "/image/tienda/banner-first.svg" },
-  ];
+  const alternativeLogo = "https://static.thenounproject.com/png/340719-200.png"
 
-  const imagesDesktop = [
-    { id: 1, image: "/image/tienda/banner1.svg" },
-    { id: 2, image: "/image/tienda/banner1.svg" },
-  ];
   return (
     <AppLayout>
       <Head>
@@ -73,16 +71,21 @@ const ProveedorSlug = ({ productList, productsQty, pages }) => {
             <div className="container-products">
               <div className="container-banner center">
                 <Image
-                  src="/image/proveedor/img-proveedor-mobile.png"
+                  loader={() => logoStore}
+                  src= {  logoStore }
                   width="290px"
                   height="110px"
                 />
               </div>
               <div className="show-mobile">
-                <BannerProveedor img="/image/proveedor/img-secondary.svg" />
+                <BannerProveedor 
+                  img={portadaStore}
+                />
               </div>
               <div className="show-desktop">
-                <BannerProveedor img="/image/proveedor/img-secondary-desktop.png" />
+                <BannerProveedor 
+                  img={portadaStore}
+                  />
               </div>
 
               <div className="products">
@@ -103,9 +106,9 @@ const ProveedorSlug = ({ productList, productsQty, pages }) => {
           {/* Carousel mobile */}
           <div className="show-mobile">
             <Carousel className="box-carousel">
-              {imagesMobile.map((ban) => (
-                <Carousel.Item key={ban.id} className="carousel-item">
-                  <img src={ban.image} alt="" className="w-100" />
+              {bannerStore.map((ban) => (
+                <Carousel.Item key={ban._id} className="carousel-item">
+                  <img src={ban.url} alt="" className="w-100" />
                 </Carousel.Item>
               ))}
             </Carousel>
@@ -114,9 +117,9 @@ const ProveedorSlug = ({ productList, productsQty, pages }) => {
 
           <div className="show-desktop">
             <Carousel className="box-carousel">
-              {imagesDesktop.map((ban) => (
-                <Carousel.Item key={ban.id} className="carousel-item">
-                  <img src={ban.image} alt="" className="w-100" />
+              {bannerStore.map((ban) => (
+                <Carousel.Item key={ban._id} className="carousel-item">
+                  <img src={ban.url} alt="" className="w-100" />
                 </Carousel.Item>
               ))}
             </Carousel>
@@ -272,23 +275,18 @@ ProveedorSlug.propTypes = {
 
 export const getServerSideProps = async ({ query }) => {
 	const { proveedor } = query;
-  const { productosGeneral, totalDeProductos, pages } = await getProductsByUrlStore(proveedor, 0,	10);
-
-  if (!productosGeneral) {
+  const responseData = await getStoreByName(proveedor);
+  if (responseData.proveedor == null) {
     return {
       props: {
         productList: [],
-        productsQty: 0,
-        pages: 0,
       },
     };
   }
 
   return {
     props: {
-      productList: productosGeneral,
-      productsQty: totalDeProductos,
-      pages: pages,
+      productList : responseData.proveedor
     },
   };
 };

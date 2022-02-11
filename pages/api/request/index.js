@@ -34,6 +34,12 @@ export const getProductsByUrlStore = async (storeSlug, skip, limit) => {
 	return await response.json();
 };
 
+export const getStoreByName = async (storeName) => {
+	const store_name = storeName !== null ? `storename=${storeName}` : '';
+	const response = await fetch(`${baseUrlBA}/store/byname?${store_name}`)
+	return await response.json();
+}
+
 //? get summary data of product by id
 export async function getProductsById(id) {
   const response = await fetch(`${baseUrlBA}/product?id=${id}`);
