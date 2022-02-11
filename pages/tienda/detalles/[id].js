@@ -396,18 +396,25 @@ const DetallesID = ({
                         <p className="show--price">S/ {haveDiscount ? precioPromocional?.toFixed(2) : precio.toFixed(2)}</p>
 												{haveDiscount && <p className="show--price-dcto">S/ {precio?.toFixed(2)}</p>}
                         <div className="show--container-selects">
-                          <div className="show--group-select">
-                            <label className="show--text-label" htmlFor="talla">
-                              Color
-                            </label>
-														<Select
-															options={color}
-															styles={colourStyles}
-															isSearchable={true}
-															onChange={handleChangeColor}
-															placeholder="Selecciona color"
-														/>
-                          </div>
+                          {
+                            color && color.length > 0 
+                            && 
+                            <div className="show--group-select">
+                              <label className="show--text-label" htmlFor="talla">
+                                Color
+                              </label>
+                              <Select
+                                options={color}
+                                styles={colourStyles}
+                                isSearchable={true}
+                                onChange={handleChangeColor}
+                                placeholder="Selecciona color"
+                              />
+                            </div>
+                          }
+                          {
+                            talla && talla.length > 0 
+                            &&
                           <div className="show--group-select">
                             <label className="show--text-label" htmlFor="talla">
                               Talla
@@ -420,6 +427,7 @@ const DetallesID = ({
 															placeholder="Selecciona talla"
 														/>
                           </div>
+                          }
                         </div>
                         <div className="show--container-cantidad">
                           <p className="show--text-label">Cantidad</p>
