@@ -1,9 +1,9 @@
 import React from 'react'
-function CustomButton({outline , children, fxClick, type}) {
-
+function CustomButton({outline , children, fxClick, type, isDisabled}) {
+console.log('isDisabled', isDisabled)
     return (
         <>
-            <div onClick={fxClick} className="boton">
+            <div onClick={fxClick} className={isDisabled}>
                 <p>
                     {children}
                 </p>
@@ -11,6 +11,17 @@ function CustomButton({outline , children, fxClick, type}) {
             <style jsx>
                 {`
                     .boton{
+                        cursor:pointer;
+                        border-radius: 30px;
+                        border : ${outline ? "1px solid #EC608D" : ""};
+                        background-color:${outline ? "#FFFFFF" : "#EC608D"};
+                        padding: 1rem 0;
+                        margin:2rem 3rem;
+                        transition:0.3s ease-in-out;
+                    }
+                    .btnDisable{
+                        opacity: 0.5 ;
+                        pointer-events: none;
                         cursor:pointer;
                         border-radius: 30px;
                         border : ${outline ? "1px solid #EC608D" : ""};
