@@ -70,7 +70,7 @@ const DetallesID = ({
 	
   const handleAdd = () => {
     /* if (cantidadDisponible > 0 && amount < cantidadDisponible && sizeSelected !== null && colourSelected !== null) { */
-		if (cantidadDisponible > 0 && sizeSelected !== null && colourSelected !== null) {
+		if (cantidadDisponible > 0) {
       setAmount((amount) => amount += 1);
     }
   };
