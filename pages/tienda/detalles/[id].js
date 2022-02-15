@@ -703,7 +703,7 @@ const DetallesID = ({
 
           /**FIRST INFO PRODUCT */
           .show--some-info-product {
-            margin: 3rem 0;
+            margin: 3rem 0rem;
           }
 
           .show--text-description {
@@ -922,6 +922,10 @@ const DetallesID = ({
             .bg-yellow {
               background: #febf41;
             }
+            .show--some-info-product {
+            margin: 3rem 3rem;
+          }
+
           }
 
           @media (min-width: 1024px) {
@@ -985,6 +989,7 @@ const DetallesID = ({
               display: flex;
               flex-direction: column;
             }
+         
           }
 
           @media (min-width: 1280px) {
