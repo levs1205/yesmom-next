@@ -93,7 +93,7 @@ const DetallesID = ({
       "label" : t,
     }))
 		setListSize(optionsSize)
-    if (amount === 0 || sizeSelected === null || colourSelected === null) {
+    if (amount === 0 ) {
       setDisabled(true);
     } else {
       setDisabled(false);
