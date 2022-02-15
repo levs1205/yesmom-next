@@ -71,7 +71,7 @@ const index = ( ) => {
         redirectLogged();
       }
     } catch (e) {
-      console.log(e.message);
+      Swal.fire("Info", "No existe usuario con esos accesos", "info");
     }
   };
 
