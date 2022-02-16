@@ -1,10 +1,11 @@
 import React, { useContext, useMemo } from 'react'
 import YesmomContext from '../../context/Context';
 
-function TitlePerfil({ name, email, main}) {
+const TitlePerfil = ({ main}) => {
 
     const { client } =useContext(YesmomContext); 
 
+    // console.log(client);
     const makeName = useMemo(() => {
         if(client && client.data){
             if(Object.keys(client).length >0 && Object.keys(client.data).length >0){
@@ -33,7 +34,7 @@ function TitlePerfil({ name, email, main}) {
                 </div>
                 <div className="contenedor-data">
                     <p className="p-primary ft-m-600">{`¡Hola ${makeName ? makeName : ''}!`}</p>
-                    <p className="p-secondary ft-m-regular">{`${email ? email : ''}`}</p>
+                    <p className="p-secondary ft-m-regular">{`${client && client.data &&  client.data.principalEmail ? client.data.principalEmail : 'name@gmail.com'}`}</p>
                 </div>
             </div>
 
