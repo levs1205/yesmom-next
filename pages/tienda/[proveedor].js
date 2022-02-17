@@ -1,26 +1,60 @@
+import { useEffect, useState } from "react";
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import Image from "next/image";
 import { array, number } from "prop-types";
+import Pagination from "../../components/Pagination";
 
-import { Carousel ,Row, Col, Container} from "react-bootstrap";
+import { Carousel, Row, Col, Container } from "react-bootstrap";
 import BannerProveedor from "../../components/Proveedor/BannerProveedor";
 import CardProduct from "../../components/CardProduct";
 /* import SidebarProveedor from "../../components/Proveedor/SidebarProveedor"; */
 import SidebarProducto from "../../components/tienda/SidebarProducto";
-import { getProductsByUrlStore, getCategories, getStoreByName } from "../api/request";
+import {
+  getProductsByUrlStore,
+  getCategories,
+  getStoreByName,
+  getProductsByIdStore,
+} from "../api/request";
 import { setProducts, setCategories } from "../../context/actions/ui";
-import {getApiBusiness} from '../../helpers/httpCreators';
+import { getApiBusiness } from "../../helpers/httpCreators";
+import SidebarProductoProveedor from "../../components/tienda/SidebarProductProveedor";
 
-const ProveedorSlug = ({ productList, productsQty, pages }) => {
-  
-  console.log('lista proveedor', productList)
-  
-  let logoStore = productList.imagenLogo[0].url;
-  let portadaStore = productList.imagenPortada[0].url;
-  let bannerStore = productList.imagenBanner;
+const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
+  const [skip, setSkip] = useState(0);
+  const [productsPerPage, setProductsPerPage] = useState(9);
+  const [productList, setProductList] = useState([]);
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [currentpage, setCurrentPage] = useState(1);
+	const [loading, setLoading] = useState(false);
 
-  const alternativeLogo = "https://static.thenounproject.com/png/340719-200.png"
+  let logoStore = dataSupplier.imagenLogo && dataSupplier.imagenLogo[0].url;
+  let portadaStore =
+    dataSupplier.imagenPortada && dataSupplier.imagenPortada[0].url;
+  let bannerStore = dataSupplier && dataSupplier.imagenBanner;
+
+  const alternativeLogo =
+    "https://static.thenounproject.com/png/340719-200.png";
+
+  useEffect(() => {
+    getProducts();
+  }, [skip, currentpage]);
+
+  const getProducts = async () => {
+    try {
+			setLoading(true);
+      const { productosGeneral, totalDeProductos, pages } =
+        await getProductsByIdStore(dataSupplier._id, skip, productsPerPage);
+      
+      setTotalProducts(totalDeProductos);
+      setProductList(productosGeneral);
+      setTotalPages(pages);
+			setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <AppLayout>
@@ -67,94 +101,130 @@ const ProveedorSlug = ({ productList, productsQty, pages }) => {
         <div className="container-contenido">
           <div className="container-contenido-filtro">
             <div className="sidebar-proveedor show-desktop">
-              <SidebarProducto />
+              <SidebarProductoProveedor
+                name={dataSupplier.nombreTienda}
+                slug={dataSupplier.nombreTiendaUrl}
+              />
             </div>
-            <div className="container-products">
-              <div className="container-banner center">
-                <Image
-                  loader={() => logoStore}
-                  src= {  logoStore }
-                  width="290px"
-                  height="110px"
-                />
-              </div>
-              <div className="show-mobile">
-                <BannerProveedor 
-                  img={portadaStore}
-                />
-              </div>
-              <div className="show-desktop">
-                <BannerProveedor 
-                  img={portadaStore}
+            {currentpage === 1 ? (
+              <div className="container-products">
+                <div className="container-banner center">
+                  <Image
+                    loader={() => logoStore}
+                    src={logoStore}
+                    width="290px"
+                    height="110px"
                   />
-              </div>
-
-              <div className="products">
-                <Container>
-                  <Row>
-                      {productList.length > 0
-                        ? productList
-                            .slice(0, 3)
-                            .map((product, i) => (
-                              <Col xs={12} sm={6} md={4}>
-                                <CardProduct key={i} {...product} />
-                              </Col>
-                            ))
-                        : <p>Se encontraron 0 productos</p>}
-                    </Row>
-                </Container>
-              </div>
-            </div>
-          </div>
-
-          {/* CAROUSEL */}
-          {/* Carousel mobile */}
-          <div className="show-mobile">
-            <Carousel className="box-carousel">
-              {bannerStore.map((ban) => (
-                <Carousel.Item key={ban._id} className="carousel-item">
-                  <img src={ban.url} alt="" className="w-100" />
-                </Carousel.Item>
-              ))}
-            </Carousel>
-          </div>
-          {/* Carousel desktop */}
-
-          <div className="show-desktop">
-            <Carousel className="box-carousel">
-              {bannerStore.map((ban) => (
-                <Carousel.Item key={ban._id} className="carousel-item">
-                  <img src={ban.url} alt="" className="w-100" />
-                </Carousel.Item>
-              ))}
-            </Carousel>
-          </div>
-
-          {/*  */}
-          <section className="f-right">
-            <div className="container-products">
-              <div className="products">
-                <h4 className="text-title-tienda">Lo + vendido</h4>
-                <div className="show-mobile">
-                  <hr />
                 </div>
-                <Container>
+                <div className="show-mobile">
+                  <BannerProveedor img={portadaStore} />
+                </div>
+                <div className="show-desktop">
+                  <BannerProveedor img={portadaStore} />
+                </div>
 
-                  <Row>
-                      {productList.length > 0
-                        ? productList
-                            .slice(3, 9)
-                            .map((product, i) => (
-                              <Col xs={12} sm={6} md={4}>
-                                <CardProduct key={i} {...product} />
-                              </Col>
-                            ))
-                        : <p>Se encontraron 0 productos</p>}
-                  </Row>
-                </Container>
+                {loading ? <p>Cargando...</p> : <div className="products">
+                  <Container>
+                    <Row>
+                      {productList?.length > 0 ? (
+                        productList.slice(0, 3).map((product, i) => (
+                          <Col xs={12} sm={6} md={4}>
+                            <CardProduct key={i} {...product} />
+                          </Col>
+                        ))
+                      ) : (
+                        <p>Se encontraron 0 productos</p>
+                      )}
+                    </Row>
+                  </Container>
+                </div>}
               </div>
-            </div>
-          </section>
+            ): <div className="container-products">
+
+						{loading ? <p>Cargando...</p> : <div className="products">
+							<Container>
+								<Row>
+								{productList?.length > 0 ? (
+                        productList.map((product, i) => (
+                          <Col xs={12} sm={6} md={4}>
+                            <CardProduct key={i} {...product} />
+                          </Col>
+                        ))
+                      ) : (
+                        <p>Se encontraron 0 productos</p>
+                      )}
+								</Row>
+							</Container>
+						</div>}
+					</div>}
+          </div>
+          {currentpage === 1 && (
+            <>
+              {/* CAROUSEL */}
+              {/* Carousel mobile */}
+              <div className="show-mobile">
+                <Carousel className="box-carousel">
+                  {bannerStore.length > 0
+                    ? bannerStore.map((ban) => (
+                        <Carousel.Item key={ban._id} className="carousel-item">
+                          <img src={ban.url} alt="" className="w-100" />
+                        </Carousel.Item>
+                      ))
+                    : ""}
+                </Carousel>
+              </div>
+              {/* Carousel desktop */}
+
+              <div className="show-desktop">
+                <Carousel className="box-carousel">
+                  {bannerStore.length > 0
+                    ? bannerStore.map((ban) => (
+                        <Carousel.Item key={ban._id} className="carousel-item">
+                          <img src={ban.url} alt="" className="w-100" />
+                        </Carousel.Item>
+                      ))
+                    : ""}
+                </Carousel>
+              </div>
+            </>
+          )}
+          {/*  */}
+          {currentpage === 1 && (
+            <section className="f-right">
+              <div className="container-products">
+                <div className="products">
+                  <h4 className="text-title-tienda">Lo + vendido</h4>
+                  <div className="show-mobile">
+                    <hr />
+                  </div>
+                  <Container>
+                    <Row>
+                      {productList?.length > 0 ? (
+                        productList.slice(3, 9).map((product, i) => (
+                          <Col xs={12} sm={6} md={4}>
+                            <CardProduct key={i} {...product} />
+                          </Col>
+                        ))
+                      ) : (
+                        <p>Se encontraron 0 productos</p>
+                      )}
+                    </Row>
+                  </Container>
+                </div>
+              </div>
+            </section>
+          ) }
+
+          <div className="box-pagination">
+            <Pagination
+              totalPages={totalPages}
+              currentpage={currentpage}
+              setCurrentPage={setCurrentPage}
+              skip={skip}
+              setSkip={setSkip}
+							productsPerPage={productsPerPage}
+            />
+          </div>
         </div>
       </div>
       <style jsx>
@@ -206,6 +276,12 @@ const ProveedorSlug = ({ productList, productsQty, pages }) => {
           }
           .container-contenido-filtro {
             display: flex;
+          }
+          .box-pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 3.5rem 0 0 0;
           }
 
           @media (min-width: 768px) {
@@ -271,54 +347,53 @@ const ProveedorSlug = ({ productList, productsQty, pages }) => {
 };
 
 ProveedorSlug.propTypes = {
+  dataSupplier: array.isRequired,
   productList: array.isRequired,
   productsQty: number.isRequired,
   pages: number,
 };
 
 export const getServerSideProps = async ({ query }) => {
-	const { proveedor } = query;
+  const { proveedor } = query;
+
   const responseData = await getStoreByName(proveedor);
+  console.log("responseData", responseData);
+  const { productosGeneral, totalDeProductos, pages } =
+    await getProductsByIdStore(responseData._id, 0, 10);
+
   if (responseData.proveedor !== null) {
     return {
       props: {
-        productList : responseData.proveedor
+        dataSupplier: responseData.proveedor,
       },
     };
   }
+  return {
+    props: {
+      dataSupplier: [],
+    },
+  };
 
-  const { data , err= null } = await getApiBusiness('/store/verifyname',{
-    params : {
-      storeName : proveedor
-    }
-  })
+  const { data, err = null } = await getApiBusiness("/store/verifyname", {
+    params: {
+      storeName: proveedor,
+    },
+  });
 
   const notFound = {
     redirect: {
-      destination: '/404',
+      destination: "/404",
       permanent: false,
     },
-  }
+  };
 
-  if(!err){
-    if(data.ok){
+  if (!err) {
+    if (data.ok) {
       return notFound;
     }
-  }else{
+  } else {
     return notFound;
   }
-
-
-  const { productosGeneral, totalDeProductos, pages } = await getProductsByUrlStore(proveedor, 0,	10);
-
-  if (!productosGeneral) {
-    return {
-      props: {
-        productList: [],
-      },
-    };
-  }
-
 };
 
 export default ProveedorSlug;
