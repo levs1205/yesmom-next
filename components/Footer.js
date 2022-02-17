@@ -31,7 +31,6 @@ const Footer = () => {
                   <Link href="/construccion">
                     <a>Regalos</a>
                   </Link>
-                 
                   {/* <Link href="/nosotros">
                   <a>Términos y condiciones</a>
                 </Link> */}

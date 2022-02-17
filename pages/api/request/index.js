@@ -24,6 +24,17 @@ export const getProducts = async (catSlug, category, skip, limit) => {
 	const response = await fetch(`${baseUrlBA}/product/getbyuser?${category_slug}${category_name}${num_skip}${num_limit}`)
 	return await response.json();
 };
+
+//? get summary data of products by id
+export const getProductsByIdStore = async (storeId, skip, limit) => {
+	const store_id = storeId !== null ? `store=${storeId}` : '';
+	const num_skip = skip !== null && skip !== undefined ? `&skip=${skip}` : '';
+	const num_limit = limit !== null && limit !== undefined ? `&limit=${limit}` : '';
+
+	const response = await fetch(`${baseUrlBA}/product/getbyuser?${store_id}${num_skip}${num_limit}`)
+	return await response.json();
+};
+
 //? get summary data of products by url store
 export const getProductsByUrlStore = async (storeSlug, skip, limit) => {
 	const store_slug = storeSlug !== null ? `nombreTiendaUrl=${storeSlug}` : '';
@@ -33,6 +44,12 @@ export const getProductsByUrlStore = async (storeSlug, skip, limit) => {
 	const response = await fetch(`${baseUrlBA}/product/getbyuser?${store_slug}${num_skip}${num_limit}`)
 	return await response.json();
 };
+
+export const getStoreByName = async (storeName) => {
+	const store_name = storeName !== null ? `storename=${storeName}` : '';
+	const response = await fetch(`${baseUrlBA}/store/byname?${store_name}`)
+	return await response.json();
+}
 
 //? get summary data of product by id
 export async function getProductsById(id) {
@@ -98,4 +115,21 @@ export async function updateProfileInfo(
 		body: JSON.stringify(data),
 	});
   return await response.json();
+}
+
+//? Get Sale 
+//
+export const getSales = async (token, delivery, userType, skip, limit) => {
+	const is_delivery = delivery !== null ? `delivery=${delivery}` : '';
+	const type_user = userType !== null ? `&userType=${userType}` : '';
+	const num_skip = skip !== null && skip !== undefined ? `&skip=${skip}` : '';
+	const num_limit = limit !== null && limit !== undefined ? `&limit=${limit}` : '';
+
+	const response = await fetch(`${baseUrlBA}/sale/pagination?${is_delivery}${type_user}${num_skip}${num_limit}`,{ 
+		headers: { 
+
+			'access-token': token 
+		},
+	})
+	return await response.json();
 }

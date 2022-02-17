@@ -1,17 +1,23 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext} from "react";
 
 import Head from "next/head";
 import Link from "next/link";
-
+import YesmomContext from '../../../context/Context';
 import AppLayout from "../../../components/AppLayout";
 import CustomButton from "../../../components/Perfil/CustomButton";
 import TitlePerfil from "../../../components/Perfil/TitlePerfil";
 import Description from "../../../components/Perfil/Description";
 import Sidebar from "../../../components/Perfil/Sidebar";
+import {postApiSecurity} from '../../../helpers/httpCreators'
 import { getAccess } from "../../../helpers/getAccess";
+import Swal from "sweetalert2";
+import LoaderPage from "../../../components/LoaderPage";
+import { startLogout } from "../../../context/actions/auth";
 
 const PerfilDesactivarCuenta = () => {
   const refPassword = useRef();
+  const { auth: {token}, dispatchAuth } = useContext(YesmomContext)
+  const [ checking , setChecking] = useState();
   const [password, setPassword] = useState();
 
   const handleInputChange = (e) => {
@@ -25,9 +31,43 @@ const PerfilDesactivarCuenta = () => {
       : (refPassword.current.type = "password");
   };
 
+  const handleDisableAccount = async () => {
+    if(password.length>=5){
+      try{
+        setChecking(true);
+        const {data,err} = await postApiSecurity('/user/disable?userType=U',{ password }, {
+          headers : {
+            'access-token' : token
+          }
+        })
+
+        setChecking(false);
+
+        if(!err){
+          if(data.MensajeRespuesta === 'ERROR DESCONOCIDO'){
+            return Swal.fire("Info", "No existe usuario con esos accesos", "info");
+          }
+
+          if(data?.response?.ok){
+            Swal.fire("Info", "Su cuenta ha sido desactivada", "info");
+            dispatchAuth(startLogout)
+
+            setTimeout(()=>{
+              window.location.reload()
+            },500)
+          }
+        }
+      }catch(err){
+        console.log(err);
+      }
+    }
+  }
 
   return (
     <AppLayout>
+      {
+        checking && <LoaderPage type="over" />
+      }
       <Head>
         <title>YesMom - Desactivar cuenta</title>
         <meta name="description" content="YesMom es ..."></meta>
@@ -119,19 +159,19 @@ const PerfilDesactivarCuenta = () => {
                         <img src="/image/login/eye-reset.svg" alt="eye-icon" />
                       </div>
                     </div>
-                    <div className="forgot-password">
+                    {/* <div className="forgot-password">
                       <Link href="/recuperar-password">
                         <p className="ft-m-regular">
                           ¿Olvidaste tu contraseña?
                         </p>
                       </Link>
-                    </div>
+                    </div> */}
                   </form>
                 </div>
                 <div className="container-save">
                   <hr className="hide" />
                   <div className="f-to-right">
-                    <CustomButton type="confirm">Guardar</CustomButton>
+                    <CustomButton type="confirm" fxClick={ handleDisableAccount}>Guardar</CustomButton>
                     <CustomButton outline>Cancelar</CustomButton>
                   </div>
                 </div>
