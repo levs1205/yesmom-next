@@ -25,31 +25,6 @@ const SidebarProducto = ({ setCategorySelected }) => {
     }
   };
 
-  let filters = [
-    "Todos",
-    "Solo en Yes Mom",
-    "Lo + vendido",
-    "Lo + seleccionado",
-    "Packs de regalo",
-    "Promociones",
-    "Pañales y Toallitas",
-    "Coches",
-    "Paseo y Organización",
-    "Sillas para Auto",
-    "Lactancia y alimentación",
-    "Baño",
-    "Salud y Cuidado",
-    "Juguetes",
-    "Ropa y Zapatos",
-    "Accesorios",
-    "Dormitorio y Decoración",
-    "Seguridad",
-    "Maternidad",
-    "Servicios",
-    "Educativo",
-    "Otros",
-  ];
-
   return (
     <Container>
       <div className="side-bar">
