@@ -8,9 +8,9 @@ import Sidebar from "../../../components/Perfil/Sidebar";
 import Pagination from "../../../components/Pagination";
 import AccordionCompras from "../../../components/Perfil/compras/AccordionCompras";
 import { getAccess } from "../../../helpers/getAccess";
+import { getSales } from "../../api/request";
 
-const index = () => {
-
+const index = ({ salesList }) => {
 
   return (
     <AppLayout>
@@ -242,12 +242,30 @@ const index = () => {
 export default index;
 export const getServerSideProps = async ({ req , resolvedUrl}) => {
   const token = req?.cookies?.TokenTest;
-  
+	//const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnRpdHlJZCI6IjYxZTE4ZTA0OGQ2ZDUxMzJmZjZkNzM1YiIsImlhdCI6MTY0NDkwMzY0NCwiZXhwIjoxNjQ0OTA3MjQ0fQ.L7QF0r-jeaI8-7ZGbkJwx2u5-aZmSeMuGUPXpVCwAi0'
   const cleanUrl = req.url.split("?")[0];
-  console.log(resolvedUrl);
-  // console.log(req.url);
-  const resp = await getAccess(cleanUrl , token );
 
-  return resp;
-    
+  // console.log(req.url);
+	const resp = await getAccess(cleanUrl , token );
+	if(resp.hasOwnProperty('redirect')){
+    return resp;
+  }
+
+  const response = await getSales(token, 'no', 'user', 20, 0);
+	console.log('response >>', response);
+
+	if (response.CodigoRespuesta === "15") {
+    return {
+      props: {
+        salesList: {},
+        token
+      },
+    };
+  }
+  return {
+    props: {
+      salesList : response,
+			token
+    },
+  };
 }

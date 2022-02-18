@@ -180,7 +180,7 @@ const Blog = ({ currentData }) => {
               align-items :center;
             }
             .container-content-center h4{
-              font-size:3rem;
+              font-size:4rem;
             }
             .container-content-center div{
               width:5rem;

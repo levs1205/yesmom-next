@@ -1,12 +1,12 @@
 import Head from "next/head";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 
 import AppLayout from "../../components/AppLayout";
 import DetailItemCart from "../../components/Shopping-cart/DetailItemCart";
 import YesmomContext from "../../context/Context";
-import { getTotalPrice } from "../../helpers/getTotalPrice";
+
+import moment from 'moment';
 
 const shoppingCart = () => {
   const router = useRouter();
@@ -17,8 +17,42 @@ const shoppingCart = () => {
 
   const [accept, setAccept] = useState(false);
 
-  const totalPrice = getTotalPrice(cart);
-  const subTotal = (totalPrice / 1.18).toFixed(2);
+  
+
+
+  const haveDiscountProduct = ( product ) => {
+    if( !product || !product.fechaInicioPromocion || !product.fechaFinPromocion) return false;
+
+    const init_promo = moment(product.fechaInicioPromocion);
+    const end_promo = moment(product.fechaFinPromocion);
+    const now = moment(new Date());
+
+    if(end_promo.isAfter(init_promo) && end_promo.isAfter(now)){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+const makeTotalPrice = useMemo(( ) => {
+    let acum = 0;
+    if(cart.length >0 ){
+      cart.map((product)=> {
+        if(haveDiscountProduct(product)) {
+          acum = acum + product.precioPromocional * product.quantity;
+        } else {
+          acum = acum + product.precio * product.quantity;
+        }
+      })
+    }else{
+        return 0;
+    }
+
+    return acum;
+  },[cart])
+
+  const totalPrice = makeTotalPrice;
+  const subTotal = (makeTotalPrice / 1.18).toFixed(2);
   const igv = (totalPrice - subTotal).toFixed(2);
 
 
@@ -99,25 +133,6 @@ const shoppingCart = () => {
               </div>
 
               <div className="shopping-cart-block__checkout">
-                {/* <section className="discount-coupon__text">
-                  <p className="discount-coupon__text">
-                    ¿Tienes un código de descuento?
-                  </p>
-                  <div className="discount-coupon__input">
-                    <input
-                      type="text"
-                      placeholder="Ingresa código"
-                      className="discount-coupon__input-text"
-                    />
-                    <input
-                      type="submit"
-                      name=""
-                      id=""
-                      value="Aplicar"
-                      className="discount-coupon__input-submit"
-                    />
-                  </div>
-                </section> */}
                 <section className="price-table">
                   <table className=" price-table__table">
                     <tbody className="price-table__tbody">

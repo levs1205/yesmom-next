@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from 'next/link';
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { startRemoveProduct } from "../../context/actions/ui";
 import YesmomContext from "../../context/Context";
+
+import moment from "moment";
 
 const DetailItemCart = ({
   _id,
@@ -12,6 +14,8 @@ const DetailItemCart = ({
   precio,
   quantity,
   precioPromocional,
+  fechaFinPromocion,
+  fechaInicioPromocion,
   supplier,
   sizeSelected,
   colourSelected,
@@ -22,6 +26,30 @@ const DetailItemCart = ({
   const handleRemoveProduct = () => {
     dispatchUi(startRemoveProduct(idProductCart));
   };
+
+  const haveDiscountProduct = useMemo(() => {
+    if( !fechaInicioPromocion || !fechaFinPromocion) return false;
+
+    const init_promo = moment(fechaInicioPromocion);
+    const end_promo = moment(fechaFinPromocion);
+    const now = moment(new Date());
+
+    if(end_promo.isAfter(init_promo) && end_promo.isAfter(now)){
+      return true;
+    }else{
+      return false;
+    }
+  })
+
+  const getRealPrice = useMemo(()=>{
+    let realPrice = 0;
+    if(haveDiscountProduct) {
+      realPrice= precioPromocional * quantity;
+    }else{
+      realPrice = precio * quantity;
+    }
+    return realPrice;
+  },[_id])
 
   return (
     <>
@@ -62,9 +90,7 @@ const DetailItemCart = ({
           </div>
           <p className="block-second__block-store-price">
             S/{" "}
-            {precioPromocional
-              ? precioPromocional?.toFixed(2)
-              : precio?.toFixed(2)}
+            {getRealPrice.toFixed(2)}
           </p>
         </div>
       </div>

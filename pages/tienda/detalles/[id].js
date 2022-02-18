@@ -70,7 +70,7 @@ const DetallesID = ({
 	
   const handleAdd = () => {
     /* if (cantidadDisponible > 0 && amount < cantidadDisponible && sizeSelected !== null && colourSelected !== null) { */
-		if (cantidadDisponible > 0 && sizeSelected !== null && colourSelected !== null) {
+		if (cantidadDisponible > 0) {
       setAmount((amount) => amount += 1);
     }
   };
@@ -93,7 +93,7 @@ const DetallesID = ({
       "label" : t,
     }))
 		setListSize(optionsSize)
-    if (amount === 0 || sizeSelected === null || colourSelected === null) {
+    if (amount === 0 ) {
       setDisabled(true);
     } else {
       setDisabled(false);
@@ -396,18 +396,25 @@ const DetallesID = ({
                         <p className="show--price">S/ {haveDiscount ? precioPromocional?.toFixed(2) : precio.toFixed(2)}</p>
 												{haveDiscount && <p className="show--price-dcto">S/ {precio?.toFixed(2)}</p>}
                         <div className="show--container-selects">
-                          <div className="show--group-select">
-                            <label className="show--text-label" htmlFor="talla">
-                              Color
-                            </label>
-														<Select
-															options={color}
-															styles={colourStyles}
-															isSearchable={true}
-															onChange={handleChangeColor}
-															placeholder="Selecciona color"
-														/>
-                          </div>
+                          {
+                            color && color.length > 0 
+                            && 
+                            <div className="show--group-select">
+                              <label className="show--text-label" htmlFor="talla">
+                                Color
+                              </label>
+                              <Select
+                                options={color}
+                                styles={colourStyles}
+                                isSearchable={true}
+                                onChange={handleChangeColor}
+                                placeholder="Selecciona color"
+                              />
+                            </div>
+                          }
+                          {
+                            talla && talla.length > 0 
+                            &&
                           <div className="show--group-select">
                             <label className="show--text-label" htmlFor="talla">
                               Talla
@@ -420,6 +427,7 @@ const DetallesID = ({
 															placeholder="Selecciona talla"
 														/>
                           </div>
+                          }
                         </div>
                         <div className="show--container-cantidad">
                           <p className="show--text-label">Cantidad</p>
@@ -703,7 +711,7 @@ const DetallesID = ({
 
           /**FIRST INFO PRODUCT */
           .show--some-info-product {
-            margin: 3rem 0;
+            margin: 3rem 0rem;
           }
 
           .show--text-description {
@@ -922,6 +930,10 @@ const DetallesID = ({
             .bg-yellow {
               background: #febf41;
             }
+            .show--some-info-product {
+            margin: 3rem 3rem;
+          }
+
           }
 
           @media (min-width: 1024px) {
@@ -985,6 +997,7 @@ const DetallesID = ({
               display: flex;
               flex-direction: column;
             }
+         
           }
 
           @media (min-width: 1280px) {

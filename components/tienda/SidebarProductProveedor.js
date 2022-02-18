@@ -6,18 +6,16 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import { setCategory } from "../../context/actions/ui";
 
-const SidebarProducto = ({ setCategorySelected }) => {
+const SidebarProductoProveedor = ({ setCategorySelected, name, slug }) => {
   const { query, pathname } = useRouter();
   const {
     dispatchUi,
     ui: { categories, category: categorySelected },
   } = useContext(YesmomContext); /* || allCategories  */
-  /* const list = JSON.parse(localStorage.getItem("totalCategories")); */ const {
-    category,
-  } = query;
+  const { proveedor } = query;
   const lisCategories =
     categories?.totalCategories?.categories; /* || list?.categories */
-  const path = "/tienda/categoria";
+  const path = "/tienda/";
 
   const handleCategorie = (cat) => () => {
     if (cat) {
@@ -25,6 +23,31 @@ const SidebarProducto = ({ setCategorySelected }) => {
     }
   };
 
+  let filters = [
+    "Todos",
+    "Solo en Yes Mom",
+    "Lo + vendido",
+    "Lo + seleccionado",
+    "Packs de regalo",
+    "Promociones",
+    "Pañales y Toallitas",
+    "Coches",
+    "Paseo y Organización",
+    "Sillas para Auto",
+    "Lactancia y alimentación",
+    "Baño",
+    "Salud y Cuidado",
+    "Juguetes",
+    "Ropa y Zapatos",
+    "Accesorios",
+    "Dormitorio y Decoración",
+    "Seguridad",
+    "Maternidad",
+    "Servicios",
+    "Educativo",
+    "Otros",
+  ];
+  
   return (
     <Container>
       <div className="side-bar">
@@ -36,15 +59,25 @@ const SidebarProducto = ({ setCategorySelected }) => {
           <div className="show-desktop">
             <li
               className={`${
-                pathname === "/tienda" ? "active-link-categoria" : ""
+                `${path}${proveedor}` === `${path}${slug}` ? "active-link-categoria" : ""
               }`}
               onClick={handleCategorie("Todos")}
             >
-              <Link href="/tienda">
-                <a>Todos</a>
+              <Link href={`${path}${slug}`}>
+                <a>Solo en {name}</a>
               </Link>
             </li>
-            {lisCategories
+						<li
+              className={`${
+                `${path}${proveedor}` === `${path}${slug}` ? "active-link-categoria" : ""
+              }`}
+              onClick={handleCategorie("Todos")}
+            >
+              <Link href={`${path}${slug}`}>
+                <a>Promociones</a>
+              </Link>
+            </li>
+            {/* {lisCategories
               ?.filter((category) => category.firts !== false)
               .map((cat, i) => (
                 <li
@@ -58,11 +91,11 @@ const SidebarProducto = ({ setCategorySelected }) => {
                     <a>{cat.name}</a>
                   </Link>
                 </li>
-              ))}
+              ))} */}
           </div>
         </ul>
 
-        <div className="text-title-filtros">
+        {/* <div className="text-title-filtros">
           <p> Categorías </p>
         </div>
         <hr />
@@ -84,7 +117,7 @@ const SidebarProducto = ({ setCategorySelected }) => {
                 </li>
               ))}
           </div>
-        </ul>
+        </ul> */}
       </div>
       <style jsx>
         {`
@@ -148,4 +181,4 @@ const SidebarProducto = ({ setCategorySelected }) => {
   );
 };
 
-export default SidebarProducto;
+export default SidebarProductoProveedor;

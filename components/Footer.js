@@ -19,6 +19,9 @@ const Footer = () => {
                   <b>CONTENIDO</b>
                 </h6>
                 <div className="box-contenido-footer">
+                <Link href="/nosotros">
+                    <a>Nosotros</a>
+                  </Link>
                   <Link href="/blog">
                     <a>Blog</a>
                   </Link>
@@ -26,13 +29,7 @@ const Footer = () => {
                     <a>Tienda</a>
                   </Link>
                   <Link href="/construccion">
-                    <a>Lista</a>
-                  </Link>
-                  <Link href="/construccion">
-                    <a>Ayuda</a>
-                  </Link>
-                  <Link href="/nosotros">
-                    <a>Sobre nosotros</a>
+                    <a>Regalos</a>
                   </Link>
                   {/* <Link href="/nosotros">
                   <a>Términos y condiciones</a>

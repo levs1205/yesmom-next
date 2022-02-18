@@ -95,6 +95,10 @@ export const successRegister = (data) => {
                 htmlContainer:'register-error-container',
             }
         });
+        setTimeout(()=>{
+            window.location.href="/login";
+        },[500])
+
     }
 
     return {}

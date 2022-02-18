@@ -258,7 +258,7 @@ const HeaderNuevo = () => {
             z-index: 9999;
             width: inherit;
             max-width: inherit;
-            box-shadow: 0px 1px 10px #999;
+            background: #fff;
           }
           .navbar-yesmom {
             display: flex;
@@ -269,7 +269,7 @@ const HeaderNuevo = () => {
             background: #fff;
             width: inherit;
             max-width: inherit;
-            box-shadow: 0px 1px 10px #999;
+            box-shadow: 0px 2px 8px rgb(0 0 0 / 15%);
           }
           .burger-yesmom {
             display: none;
