@@ -40,14 +40,15 @@ const DetailItemCart = ({
               {nombre}
               </a>
             </Link>
-
-
             <p className="block-text__short-description">
               {colourSelected} - {sizeSelected}
             </p>
-            <select name="" id="" className="block-text__select">
+            <p className="block-text__short-description">
+              Cantidad: {quantity}
+            </p>
+            {/* <select name="" id="" className="block-text__select">
               <option value="">Cantidad: {quantity}</option>
-            </select>
+            </select> */}
           </div>
         </div>
         <div className="card__block-second">
