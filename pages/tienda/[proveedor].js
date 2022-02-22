@@ -123,40 +123,49 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
                   <BannerProveedor img={portadaStore} />
                 </div>
 
-                {loading ? <p>Cargando...</p> : <div className="products">
-                  <Container>
-                    <Row>
-                      {productList?.length > 0 ? (
-                        productList.slice(0, 3).map((product, i) => (
-                          <Col xs={12} sm={6} md={4}>
-                            <CardProduct key={i} {...product} />
-                          </Col>
-                        ))
-                      ) : (
-                        <p>Se encontraron 0 productos</p>
-                      )}
-                    </Row>
-                  </Container>
-                </div>}
+                {loading ? (
+                  <p>Cargando...</p>
+                ) : (
+                  <div className="products">
+                    <Container>
+                      <Row>
+                        {productList?.length > 0 ? (
+                          productList.slice(0, 3).map((product, i) => (
+                            <Col xs={12} sm={6} md={4}>
+                              <CardProduct key={i} {...product} />
+                            </Col>
+                          ))
+                        ) : (
+                          <p>Se encontraron 0 productos</p>
+                        )}
+                      </Row>
+                    </Container>
+                  </div>
+                )}
               </div>
-            ): <div className="container-products">
-
-						{loading ? <p>Cargando...</p> : <div className="products">
-							<Container>
-								<Row>
-								{productList?.length > 0 ? (
-                        productList.map((product, i) => (
-                          <Col xs={12} sm={6} md={4}>
-                            <CardProduct key={i} {...product} />
-                          </Col>
-                        ))
-                      ) : (
-                        <p>Se encontraron 0 productos</p>
-                      )}
-								</Row>
-							</Container>
-						</div>}
-					</div>}
+            ) : (
+              <div className="container-products">
+                {loading ? (
+                  <p>Cargando...</p>
+                ) : (
+                  <div className="products">
+                    <Container>
+                      <Row>
+                        {productList?.length > 0 ? (
+                          productList.map((product, i) => (
+                            <Col xs={12} sm={6} md={4}>
+                              <CardProduct key={i} {...product} />
+                            </Col>
+                          ))
+                        ) : (
+                          <p>Se encontraron 0 productos</p>
+                        )}
+                      </Row>
+                    </Container>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
           {currentpage === 1 && (
             <>
@@ -193,7 +202,7 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
             <section className="f-right">
               <div className="container-products">
                 <div className="products">
-                  <h4 className="text-title-tienda">Lo + vendido</h4>
+                  {/* <h4 className="text-title-tienda">Lo + vendido</h4> */}
                   <div className="show-mobile">
                     <hr />
                   </div>
@@ -213,7 +222,7 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
                 </div>
               </div>
             </section>
-          ) }
+          )}
 
           <div className="box-pagination">
             <Pagination
@@ -222,7 +231,7 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
               setCurrentPage={setCurrentPage}
               skip={skip}
               setSkip={setSkip}
-							productsPerPage={productsPerPage}
+              productsPerPage={productsPerPage}
             />
           </div>
         </div>
