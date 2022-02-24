@@ -149,7 +149,8 @@ const CheckoutStep4 = ({ register, setSelected , infoDatos , infoEntrega }) => {
           </div>
         </div>
         <div className="checkout-location-form__box-radio">
-          <input
+          <img src="/image/tienda/mercado-pago.svg"/>
+         {/*   <input
             className="checkout-location-form__input-radio"
             type="radio"
             id="f-option"
@@ -159,7 +160,7 @@ const CheckoutStep4 = ({ register, setSelected , infoDatos , infoEntrega }) => {
           <label className="checkout-location-form__label-radio" for="f-option">
             Boleta
           </label>
-          {/* <input
+           <input
             className="checkout-location-form__input-radio"
             type="radio"
             id="f-option2"

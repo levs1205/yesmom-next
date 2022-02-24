@@ -211,9 +211,7 @@ const index = () => {
             flex-direction: column;
             align-items: center;
           }
-          .box-somos-yesmom p {
-            font-size: 1.5rem;
-          }
+       
           .box-somos-yesmom p:first-child {
             margin-bottom: 3rem;
           }
@@ -278,7 +276,7 @@ const index = () => {
           }
           .text-title-blog {
             font-family: "Clicker Script", cursive;
-            font-size: 2.5rem;
+            font-size: 4rem;
             margin: 0rem 0.5rem 0rem;
             color: #fff;
           }
@@ -309,6 +307,9 @@ const index = () => {
               width: calc(100% - 1rem);
               max-height: 30rem;
               position: relative;
+            }
+            .box-somos-yesmom p {
+              font-size:1.15rem
             }
             
           }          
@@ -345,7 +346,7 @@ const index = () => {
               margin-bottom: 2.8px;
             }
             .box-somos-yesmom p {
-              font-size: 1.5rem;
+              font-size: 1.30rem;
             }
             .box-video-somos {
               margin: 5rem 32rem 0 32rem;
@@ -390,10 +391,10 @@ const index = () => {
               margin-bottom: 2.8px;
             }
             .box-somos-yesmom p {
-              font-size: 1.8rem;
+              font-size: 1.50rem;
             }
             .box-video-somos {
-              max-width: 65rem;
+              max-width: 75rem;
               margin: 5.6rem auto 0 auto;
             }
             .video-nosotros {

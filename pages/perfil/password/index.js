@@ -10,23 +10,27 @@ import CustomButton from "../../../components/Perfil/CustomButton";
 import TitlePerfil from "../../../components/Perfil/TitlePerfil";
 import Description from "../../../components/Perfil/Description";
 import Sidebar from "../../../components/Perfil/Sidebar";
+import axios from "axios";
+import cookie from 'cookie-cutter';
 
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import LoaderPage from "../../../components/LoaderPage";
 import YesmomContext from "../../../context/Context";
+import Swal from "sweetalert2";
+import {postApiSecurity } from "../../../helpers/httpCreators";
 
 const schemaValidator = yup.object().shape({
   password: yup.string().required('*Contraseña es requerida'),
   new_password: yup.string().required('*Contraseña es requerida').min(5,'*La contraseña debe tener al menos 5 caracteres'),
-  repeat_password: yup.string().required('*Repita la contraseña').min(5,'*La contraseña debe tener al menos 5 caracteres'),
+  repeat_password: yup.string().oneOf([yup.ref('new_password'),null],'*Las contraseñas no coinciden'),
 })
-const PerfilPassword = () => {
 
-  const {  auth : { logged } } = useContext(YesmomContext);
+const PerfilPassword = () => {
+	const [ loading , setLoading ] = useState(false);
+  const {  auth : { token } , client} = useContext(YesmomContext);
+  const { data : info } = client;
   // const [ loading , setLoading ] = useState(true);
-  const flagRef = useRef(true);
-  const router = useRouter();
 
   const { register , formState : { errors } , handleSubmit} = useForm({
     resolver: yupResolver(schemaValidator)
@@ -38,11 +42,39 @@ const PerfilPassword = () => {
       ? (document.getElementById(id).type = "text")
       : (document.getElementById(id).type = "password");
   };
+	
+	
+	const submitForm = async (values) => {
 
 
-  const submitForm = (data) => {
-    console.log(data);
-  }
+      const { new_password } = values;
+      try{
+
+        console.log(info);
+        setLoading(true);
+        const { data } = await postApiSecurity('/user-update',{password: new_password},{
+          headers : {
+              'access-token' : token
+          },
+          params:{
+              idUser : info._id,
+              shared : '0',
+              type : 'U',
+              delivery: 'no'
+          }
+        })
+        setLoading(false);
+        if(data?.transaction?.ok){
+            reset();
+            Swal.fire('Contraseña restablecida','La contraseña se ha restablecido correctamente' , 'success');
+        }
+  
+      }catch(err){
+        setLoading(false);
+        console.log(err);
+        Swal.fire('Error','Hubo un error' , 'error');
+      }
+}
 
   // useEffect(()=>{
   //   if(!logged){
@@ -61,6 +93,9 @@ const PerfilPassword = () => {
   // }
   return (
     <AppLayout>
+      {
+        loading && <LoaderPage type='over' />
+      }
       <Head>
         <title>YesMom - Perfil_contraseña</title>
         <meta name="description" content="YesMom es ..."></meta>
@@ -171,7 +206,7 @@ const PerfilPassword = () => {
                         <img src="/image/login/eye-reset.svg" alt="icon-eye" />
                       </div>
                     </div>
-
+                    <p className="error-input">{errors?.new_password?.message}</p>
                     <div className="wrapper-input">
                       <label className="show" htmlFor="repeat_password">
                         Repetir nueva contraseña:
@@ -191,6 +226,7 @@ const PerfilPassword = () => {
                         <img src="/image/login/eye-reset.svg" alt="icon-eye" />
                       </div>
                     </div>
+                    <p className="error-input">{errors?.repeat_password?.message}</p>
                   </form>
                 </div>
                 <div className="container-save">
@@ -208,8 +244,12 @@ const PerfilPassword = () => {
 
       <style jsx>
         {`
-          /*RESET*/
-          /********/
+
+          .error-input{
+              font-family:"mont-bold";
+              font-size:1.2rem;
+              color:#ff0033;
+          }
           .input-placeholder::placeholder {
             color: #ffffff;
             background: #ffffff;

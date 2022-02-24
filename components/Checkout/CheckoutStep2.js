@@ -5,13 +5,17 @@ import DatePicker from "react-date-picker/dist/entry.nostyle";
 
 const today = new Date()
 const tomorrow = new Date(today)
+const nextWeek = new Date(today);
+
+nextWeek.setDate(tomorrow.getDate()+7);
 tomorrow.setDate(tomorrow.getDate() + 1)
 
-const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
+const CheckoutStep2 = ({ register, errors, control, watch, setSelected, thirdPart }) => {
 
 
   const [ locations , setLocations ] = useState([]);
-  const { email , name , identity , phone  } = watch();
+  const { email , name , identity , phone} = watch();
+  const { recibePedido} = thirdPart();
 
   const getLocations = async () => {
     try{
@@ -84,7 +88,7 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
         <Controller
           name='fechaEntrega'
           control = { control }
-          render={({ field }) => <DatePicker minDate={tomorrow} {...field} />}
+          render={({ field }) => <DatePicker minDate={tomorrow} maxDate={nextWeek}{...field} />}
         />
 
         <p className="msg-error">{errors?.fechaEntrega?.message && 'Fecha inválida'}</p>
@@ -106,7 +110,7 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
 
       <div className="checkout-location-form__wrapper">
         <label htmlFor="numero" className="checkout-location-form__label">
-          Nro.: <span className="ml-4"> EJM : * Jr. 205</span>
+          Nro.: <span className="ml-4"> EJM : * 205</span>
         </label>
         <input
           type="text"
@@ -192,7 +196,7 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
             className="checkout-location-form__input-radio"
             type="radio"
             id="f-option"
-            name="selector"
+            value="yo"
             {...register('recibePedido')}
           />
           <label className="checkout-location-form__label-radio" htmlFor="f-option">
@@ -202,7 +206,7 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
             className="checkout-location-form__input-radio"
             type="radio"
             id="f-option2"
-            name="selector"
+            value="otro"
             {...register('recibePedido')}
           />
           <label
@@ -212,7 +216,23 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
             Otra persona
           </label>
         </div>
+        
         <p className="msg-error">{errors?.recibePedido?.message && 'Campo obligatorio'}</p>
+         {
+            recibePedido === 'otro' && 
+            <div className="checkout-location-form__wrapper">
+              <label htmlFor="recibe-tercero" className="checkout-location-form__label">
+                Nombre de quién recibira el pedido:
+              </label>
+              <input
+                  id="recibe-tercero"
+                  className="checkout-location-form__input"
+                  type="text"
+                  {...register('nameRecibeTercero')}
+                />
+            </div>
+          }
+
       </div>
       <style jsx>
         {`
@@ -515,6 +535,7 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected }) => {
             font-family: "mont-regular";
             font-size: 1.2rem;
             padding-right: 20px;
+            display:flex
           }
           .checkout-location-form__label-radio:before {
             content: "";

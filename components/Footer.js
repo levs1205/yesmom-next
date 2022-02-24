@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Image } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookF,
@@ -19,6 +19,9 @@ const Footer = () => {
                   <b>CONTENIDO</b>
                 </h6>
                 <div className="box-contenido-footer">
+                <Link href="/nosotros">
+                    <a>Nosotros</a>
+                  </Link>
                   <Link href="/blog">
                     <a>Blog</a>
                   </Link>
@@ -26,13 +29,7 @@ const Footer = () => {
                     <a>Tienda</a>
                   </Link>
                   <Link href="/construccion">
-                    <a>Lista</a>
-                  </Link>
-                  <Link href="/construccion">
-                    <a>Ayuda</a>
-                  </Link>
-                  <Link href="/nosotros">
-                    <a>Sobre nosotros</a>
+                    <a>Regalos</a>
                   </Link>
                   {/* <Link href="/nosotros">
                   <a>Términos y condiciones</a>
@@ -52,18 +49,21 @@ const Footer = () => {
                   <b className="p-1"></b>
                 </h6>
                 <div className="box-contenido-footer">
-
-                  <Link href="terminosycondiciones">
+                  <Link href="/terminos-y-condiciones">
                     <a>Términos y condiciones</a>
                   </Link>
                   <Link href="/politicasdeprivacidad">
                     <a>Política de privacidad</a>
                   </Link>
                   <Link href="/librodereclamaciones">
-                    <a>Libro de reclamaciones</a>
-                  </Link>
-                  <Link href="/construccion">
-                    <a>Terminos de campañas</a>
+                    <a>
+                      <img
+                        src="/image/libro-de-reclamaciones.png"
+                        layout="responsive"
+                        width={"50%"}
+                        height={"50%"}
+                      /><br/>
+                    </a>
                   </Link>
                 </div>
               </div>
@@ -108,7 +108,6 @@ const Footer = () => {
               </div>
             </Col>
           </Row>
-
         </Container>
       </div>
       <style jsx>
@@ -134,14 +133,14 @@ const Footer = () => {
 
           .footer a {
             color: #fff;
-            font-size:1.3rem;
+            font-size: 1.3rem;
             text-decoration: none;
           }
-          .title-footer{
-            font-size:1.6rem;
+          .title-footer {
+            font-size: 1.6rem;
           }
           .footer .padding-left p {
-            font-size:1.3rem;
+            font-size: 1.3rem;
           }
           .footer a:hover {
             color: #ec608d;
@@ -154,7 +153,7 @@ const Footer = () => {
           }
 
           .icon-redes {
-            font-size: 2rem!important;
+            font-size: 2rem !important;
             margin-right: 0.7rem;
             margin-left: 0.7rem;
           }
@@ -169,8 +168,8 @@ const Footer = () => {
             .footer {
               padding: 2.5rem 0;
             }
-            .footer a{
-              font-size:1.8rem;
+            .footer a {
+              font-size: 1.8rem;
             }
             .footer .padding-left {
               padding-left: 0rem;
@@ -184,7 +183,6 @@ const Footer = () => {
               margin-bottom: 0.2rem;
               font-size: 1.8rem;
             }
-            
           }
 
           @media (max-width: 769px) {
@@ -199,7 +197,7 @@ const Footer = () => {
             .footer a {
               color: #fff;
               text-decoration: none;
-              font-size:1.5rem
+              font-size: 1.5rem;
             }
 
             .footer a:hover {
@@ -227,15 +225,15 @@ const Footer = () => {
               margin-bottom: 0.4rem;
               font-size: 1.5rem;
             }
-            .off-mobile{
-              display:none!important;
+            .off-mobile {
+              display: none !important;
             }
           }
           @media (min-width: 576px) and (max-width: 769px) {
             .icon-redes {
               font-size: 1rem;
             }
-            
+
             /* 
             .footer .padding-left p {
               font-size: 0.65rem;

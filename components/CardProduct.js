@@ -3,35 +3,34 @@ import React, { useMemo } from "react";
 import moment from "moment";
 import { Card } from "react-bootstrap";
 
-const defaultImage = "https://bicentenario.gob.pe/biblioteca/themes/biblioteca/assets/images/not-available-es.png"
+const defaultImage =
+  "https://bicentenario.gob.pe/biblioteca/themes/biblioteca/assets/images/not-available-es.png";
 
 const CardProduct = ({ product, imagen }) => {
-
-  const haveDiscount = useMemo(()=>{
-    if( !product || !product.fechaInicioPromocion || !product.fechaFinPromocion) return false;
+  const haveDiscount = useMemo(() => {
+    if (!product || !product.fechaInicioPromocion || !product.fechaFinPromocion)
+      return false;
 
     const init_promo = moment(product.fechaInicioPromocion);
     const end_promo = moment(product.fechaFinPromocion);
     const now = moment(new Date());
 
-    if(end_promo.isAfter(init_promo) && end_promo.isAfter(now)){
+    if (end_promo.isAfter(init_promo) && end_promo.isAfter(now)) {
       return true;
-    }else{
+    } else {
       return false;
     }
+  }, [product]);
 
-  },[product])
-
-  
   return (
     <>
       <Link href={`/tienda/detalles/${product._id}`}>
-				<div className={`card-container`}>
+        <div className={`card-container`}>
           <Card border="light">
             <div className="card-img-product">
               <Card.Img
                 variant="top"
-                src={ imagen && imagen.url ? imagen.url : defaultImage }
+                src={imagen && imagen.url ? imagen.url : defaultImage}
                 className="h-100"
               />
             </div>
@@ -39,34 +38,37 @@ const CardProduct = ({ product, imagen }) => {
               <Card.Title className="title">{product?.nombre}</Card.Title>
               <Card.Text>
                 <div className="card-container-description">
-								  {product?.descripcion}
+                  {product?.descripcion}
                 </div>
               </Card.Text>
             </Card.Body>
-              <div className="container-prices">
-                {
-                  haveDiscount ? 
-                  <>
-                    <p className="price price-before">
-                      S/ {product.precio.toFixed(2)}
+            <div className="container-prices">
+              {haveDiscount ? (
+                <>
+                  <p className="price price-before">
+                    S/ {product.precio.toFixed(2)}
+                  </p>
+                  <div className={`text-price discount`}>
+                    <p
+                      className={`${
+                        product?.precioPromocional ? "price-now" : "price"
+                      }`}
+                    >
+                      S/ {product.precioPromocional.toFixed(2)}
                     </p>
-                    <div className={`text-price discount`}>
-                      <p className={`${product?.precioPromocional ? "price-now" : "price"}`}>
-                        S/ {product.precioPromocional.toFixed(2)}
-                      </p>
-                    </div>
-                  </>
-                  :
-                  <>
-                    <p className="price price-out">
-                      S/ {product.precio.toFixed(2)}
-                    </p>
-                    <p className="price price-without-discount">
-                        S/ {product.precio.toFixed(2)}
-                    </p>
-                  </>
-                }
-              </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="price price-out">
+                    S/ {product.precio.toFixed(2)}
+                  </p>
+                  <p className="price price-without-discount">
+                    S/ {product.precio.toFixed(2)}
+                  </p>
+                </>
+              )}
+            </div>
           </Card>
         </div>
       </Link>
@@ -75,6 +77,16 @@ const CardProduct = ({ product, imagen }) => {
           p {
             margin: 0;
           }
+          :global(.carousel.carousel-slider .control-arrow:hover) {
+            background: none;
+          }
+          :global(.carousel .control-next.control-arrow:before){
+            border-left: 8px solid #EC608D;
+          }
+          :global(.carousel .control-prev.control-arrow:before){
+            border-right: 8px solid #EC608D
+          }
+         
           :global(.card) {
             box-shadow: 0px 10px 20px -3px rgba(0, 0, 0, 0.13);
             border-radius: 3rem !important;
@@ -89,14 +101,14 @@ const CardProduct = ({ product, imagen }) => {
             font-family: "mont-light" !important;
             font-size: 1rem;
           }
-          .card-container-description{
-            overflow: hidden; 
-            text-overflow: ellipsis; 
-            display: -webkit-box; 
-            -webkit-line-clamp: 4; 
+          .card-container-description {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;
             height: 6rem;
-            margin-bottom : 1;
+            margin-bottom: 1;
           }
           .card-img-product {
             height: 12rem;
@@ -110,7 +122,7 @@ const CardProduct = ({ product, imagen }) => {
             margin: 1.5rem 0.5rem;
           }
           .container-prices {
-            margin: 2rem 2rem; 
+            margin: 2rem 2rem;
           }
           .hide {
             font-family: "mont-regular" !important;
@@ -120,13 +132,14 @@ const CardProduct = ({ product, imagen }) => {
           }
           .price {
             color: #4b64a4;
-            font-size:2rem;
+            font-size: 2rem;
             font-weight: 600;
           }
-          .price-before{
+          .price-before {
             font-size: 1.5rem;
           }
-          .price-before ,.price-out{
+          .price-before,
+          .price-out {
             color: #4b64a4;
             text-decoration-line: line-through;
           }
@@ -134,7 +147,7 @@ const CardProduct = ({ product, imagen }) => {
             color: #f22c74;
           }
           .price-out {
-            visibility:hidden;
+            visibility: hidden;
           }
           .text-price {
             display: inline-block;
@@ -147,9 +160,9 @@ const CardProduct = ({ product, imagen }) => {
             font-size: 2rem;
           }
           .discount {
-            border : 2px solid #f22c74;
+            border: 2px solid #f22c74;
           }
-          .price-without-discount{
+          .price-without-discount {
             font-size: 2rem;
             border: 2px solid transparent;
           }
@@ -157,17 +170,17 @@ const CardProduct = ({ product, imagen }) => {
             .text-price p {
               font-size: 2.5rem;
             }
-            .price-without-discount{
+            .price-without-discount {
               font-size: 2.5rem;
             }
-            .price-before{
+            .price-before {
               font-size: 1.6rem;
             }
             .text-price {
               padding: 0 0.8rem;
             }
-            .card-container-description{
-              -webkit-line-clamp: 3; 
+            .card-container-description {
+              -webkit-line-clamp: 3;
             }
           }
           @media (min-width: 768px) {
@@ -184,14 +197,14 @@ const CardProduct = ({ product, imagen }) => {
             .card-img-product {
               height: 20rem;
             }
-            .price-before{
-            font-size: 1.7rem;
+            .price-before {
+              font-size: 1.7rem;
             }
           }
         `}
       </style>
     </>
   );
-}
+};
 
 export default CardProduct;

@@ -11,6 +11,8 @@ import SidebarProducto from "../../../components/tienda/SidebarProducto";
 import LoaderPage from "../../../components/LoaderPage";
 import { getProducts, getCategories } from "../../api/request";
 
+import Paginaton from '../../../components/Pagination';
+
 export async function getServerSideProps({ query }) {
   //Todos los productos
   const { category = "", sort = "" } = query;
@@ -136,22 +138,38 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
                   </div>
                 </div>
                 <Row>
-                  {productosGeneral?.map((product, i) => (
+                  {productosGeneral && productosGeneral.length ? productosGeneral?.map((product, i) => (
                     <Col xs={6} sm={4}>
                       <CardProduct key={i} {...product} />
                     </Col>
-                  ))}
+                  )) :
+                  <p className="out-result">No se ha encontrado ningún resultado de producto.</p>
+                }
                 </Row>
               </div>
             </div>
-            {/* <div className="box-pagination">
-              <Pagination />
-            </div> */}
+
+            {
+              productosGeneral && productosGeneral.length >0 &&
+              <div className="container-pagination">
+                  <Pagination />
+              </div>
+            }
           </div>
         </Container>
       </div>
       <style jsx>
         {`
+          .container-pagination{
+            display: flex;
+            justify-content:center;
+            align-items:center;
+          }
+          .out-result{
+              font-family:"mont-regular"!important;
+              margin : 2rem;
+              font-size:1.4rem;
+            }
           .container-selects {
             display: flex;
             align-items: center;

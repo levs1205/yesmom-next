@@ -244,30 +244,53 @@ export default index;
 
 export const getServerSideProps = async ({ req , resolvedUrl}) => {
   const token = req?.cookies?.TokenTest;
-  
+	//const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnRpdHlJZCI6IjYxZTE4ZTA0OGQ2ZDUxMzJmZjZkNzM1YiIsImlhdCI6MTY0NDkwMzY0NCwiZXhwIjoxNjQ0OTA3MjQ0fQ.L7QF0r-jeaI8-7ZGbkJwx2u5-aZmSeMuGUPXpVCwAi0'
   const cleanUrl = req.url.split("?")[0];
+<<<<<<< HEAD
   console.log(resolvedUrl);
 
   const resp = await getAccess(cleanUrl , token );
+=======
+
+  // console.log(req.url);
+	const resp = await getAccess(cleanUrl , token );
+>>>>>>> b87c74cc239954b402553b6fce378a8804e267eb
 	if(resp.hasOwnProperty('redirect')){
     return resp;
   }
 
+<<<<<<< HEAD
 	const response = await getPurchases(token);
 
   if (response.CodigoRespuesta === "15") {
     return {
       props: {
         listPurchases: {},
+=======
+  const response = await getSales(token, 'no', 'user', 20, 0);
+	console.log('response >>', response);
+
+	if (response.CodigoRespuesta === "15") {
+    return {
+      props: {
+        salesList: {},
+>>>>>>> b87c74cc239954b402553b6fce378a8804e267eb
         token
       },
     };
   }
   return {
     props: {
+<<<<<<< HEAD
       listPurchases: response,
 			token
     },
   };
     
+=======
+      salesList : response,
+			token
+    },
+  };
+>>>>>>> b87c74cc239954b402553b6fce378a8804e267eb
 }

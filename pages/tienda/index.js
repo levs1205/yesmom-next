@@ -150,23 +150,8 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
                         </Col>
                       ))
                   ) : (
-                    <p>Se encontraron 0 productos</p>
+                    <p>No se ha encontrado ningún resultado de producto</p>
                   )}
-                </Row>
-              </div>
-            </div>
-            <div className="contenedor f-right">
-              <div className="products">
-                <Row>
-                  {productList.length > 0
-                    ? storeFiltered
-                        .slice(6, 12)
-                        .map((product, i) => (
-                          <Col xs={6} sm={4}>
-                            <CardProduct key={i} {...product} />
-                          </Col>
-                        ))
-                    : null}
                 </Row>
               </div>
             </div>

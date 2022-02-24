@@ -8,10 +8,7 @@ const SubtotalComponent = () => {
 
     const {ui: { cart = [] }, sale } = useContext(YesmomContext);
 
-    const subtotalProducts = getTotalPrice(cart);
-    const subTotal = (subtotalProducts / 1.18).toFixed(2);
-    const igv = (subtotalProducts - subTotal).toFixed(2);
-
+   
     const appliedDelivery = useMemo(() => {
         return sale && sale.delivery
     },[sale])
@@ -62,6 +59,10 @@ const SubtotalComponent = () => {
     
         return acum;
       },[cart])
+
+      const subtotalProducts = makeTotalPrice;
+      const subTotal = (makeTotalPrice / 1.18).toFixed(2);
+      const igv = (subtotalProducts - subTotal).toFixed(2);
 
     return (
         <>

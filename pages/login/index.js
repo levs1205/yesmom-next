@@ -58,7 +58,7 @@ const index = ( ) => {
         baseURL : process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY,
       })
 
-      const { data } = await axiosAuth.post('/autenticar?email=1', values);
+      const { data } = await axiosAuth.post('/autenticar?email=1&type=U', values);
 
       if (data?.MensajeRespuesta === "REQUEST INVÁLIDO") {
         Swal.fire("Info", "No existe usuario con esos accesos", "info");
@@ -71,7 +71,7 @@ const index = ( ) => {
         redirectLogged();
       }
     } catch (e) {
-      console.log(e.message);
+      Swal.fire("Info", "No existe usuario con esos accesos", "info");
     }
   };
 
@@ -235,7 +235,7 @@ const index = ( ) => {
 
                   <div className="wrapper-checkbox">
                     <div className="container-checkbox">
-                      <input
+                      {/* <input
                         type="checkbox"
                         id="checkbox"
                         className="box-remember__checkbox"
@@ -246,7 +246,7 @@ const index = ( ) => {
                       ></label>
                       <label htmlFor="checkbox">
                         <p>Recuerdame</p>
-                      </label>
+                      </label> */}
                     </div>
                     <Link href="/recuperar-password">
                       <a>
