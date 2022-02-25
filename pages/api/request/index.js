@@ -120,12 +120,16 @@ export async function updateProfileInfo(
 
 //* PURCHASES
 //? get purchases
-export async function getPurchases(token) {
-  const response = await fetch(`${baseUrlBA}/sale/pagination?delivery=no&userType=user&limit=1&skip=0`,{ 
+export const getPurchases =  async (token, delivery, userType, skip, limit) => {
+	const is_delivery = delivery !== null ? `delivery=${delivery}` : '';
+	const type_user = userType !== null ? `&userType=${userType}` : '';
+	const num_skip = skip !== null && skip !== undefined ? `&skip=${skip}` : '';
+	const num_limit = limit !== null && limit !== undefined ? `&limit=${limit}` : '';
+
+	const response = await fetch(`${baseUrlBA}/sale/pagination?${is_delivery}${type_user}${num_skip}${num_limit}`,{ 
 		headers: { 
-			'Content-Type': 'application/json', 
 			'access-token': token 
 		},
-	});
-  return await response.json();
+	})
+	return await response.json();
 }

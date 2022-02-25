@@ -257,9 +257,7 @@ export const getServerSideProps = async ({ req , resolvedUrl}) => {
     return resp;
   }
 
-	const response = await getPurchases(token);
-  console.log(token);
-  console.log(response);
+	const response = await getPurchases(token, 'no', 'user', 0, 20);
   if (response.CodigoRespuesta === "15") {
     return {
       props: {
