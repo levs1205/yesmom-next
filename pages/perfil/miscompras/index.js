@@ -261,7 +261,7 @@ export const getServerSideProps = async ({ req , resolvedUrl}) => {
   if (response.CodigoRespuesta === "15") {
     return {
       props: {
-        listPurchases: {},
+        listPurchases: { salesGeneral : []},
         token
       },
     };

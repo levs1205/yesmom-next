@@ -120,7 +120,7 @@ export async function updateProfileInfo(
 
 //* PURCHASES
 //? get purchases
-export const getPurchases =  async (token, delivery, userType, skip, limit) => {
+export async function getPurchases(token, delivery, userType, skip, limit){
 	const is_delivery = delivery !== null ? `delivery=${delivery}` : '';
 	const type_user = userType !== null ? `&userType=${userType}` : '';
 	const num_skip = skip !== null && skip !== undefined ? `&skip=${skip}` : '';

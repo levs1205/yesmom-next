@@ -8,7 +8,6 @@ import moment from "moment";
 
 const AccordionItem = ({
   ek,
-
   productos,
   fechaCreacion,
   numeroUnico,
