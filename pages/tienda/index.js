@@ -26,6 +26,7 @@ const imagesDesktop = [
 
 const Product = ({ categoryList, path }) => {
   const [skip, setSkip] = useState(0);
+	const [order, setOrder] = useState("order");
   const [totalProducts, setTotalProducts] = useState(0);
   const [productsPerPage, setProductsPerPage] = useState(12);
   const [productList, setProductList] = useState([]);
@@ -48,18 +49,61 @@ const Product = ({ categoryList, path }) => {
 
   useEffect(() => {
     getListProducts();
-  }, [skip, currentpage, q]);
+  }, [skip, currentpage, q, order]);
+
 
   const getListProducts = async () => {
     try {
       setLoading(true);
       const response = await getProducts(null, "all", skip, productsPerPage);
+      if (order === "mayor") {
+        setProductList(
+          response?.productosGeneral.sort(
+            (a, b) => b.product.precio - a.product.precio
+          )
+        );
+      } else if (order === "menor") {
+        setProductList(
+          response?.productosGeneral.sort(
+            (a, b) => a.product.precio - b.product.precio
+          )
+        );
+      } else if (order === "asc") {
+        setProductList(
+          response?.productosGeneral.sort(
+            (a, b) => {
+							if(a.product.nombre.toLowerCase() > b.product.nombre.toLowerCase()) {
+								return 1;
+							}
+							if (a.product.nombre.toLowerCase() < b.product.nombre.toLowerCase()) {
+								return -1;
+							}
+							return 0;
+						}
+          )
+        );
+      } else if (order === "desc") {
+        setProductList(
+          response?.productosGeneral.sort(
+            (a, b) => {
+							if(a.product.nombre.toLowerCase() > b.product.nombre.toLowerCase()) {
+								return -1;
+							}
+							if (a.product.nombre.toLowerCase() < b.product.nombre.toLowerCase()) {
+								return 1;
+							}
+							return 0;
+						}
+          )
+        );
+      } else if (order === "order") {
+        setProductList(response?.productosGeneral);
+      }
       setTotalProducts(response?.totalDeProductos);
-      setProductList(response?.productosGeneral);
-
       setTotalPages(response?.pages);
       setLoading(false);
     } catch (error) {
+			setLoading(false);
       console.log(error);
     }
   };
@@ -90,6 +134,10 @@ const Product = ({ categoryList, path }) => {
     }
   }, [q]);
 
+	const handleChangeOrder = (e) => {
+    setOrder(e.target.value);
+  };
+	
   return (
     <AppLayout>
       <Head>
@@ -169,10 +217,25 @@ const Product = ({ categoryList, path }) => {
                 <SidebarProducto />
               </div>
               <div className="products">
-                <h4 className="text-title-tienda">
-                  {categorySelected?.name ? categorySelected?.name : "Todos"}
-                </h4>
-                <hr />
+								<div className="container-title">
+									<h4 className="text-title-tienda">
+										{categorySelected?.name ? categorySelected?.name : "Todos"}
+									</h4>
+									<div className="container-select">
+									<select value={order} onChange={handleChangeOrder}>
+                      <option value="order" disabled>
+                        Ordenar por
+                      </option>
+                      <option value="mayor">Precio de mayor a menor </option>
+                      <option value="menor">Precio de menor a mayor </option>
+											<option value="asc">A-Z (alfabéticamente) </option>
+											<option value="desc">Z-A (alfabéticamente) </option>
+										{/*	<option value="">Últimos 30 días </option>
+											<option value="">Últimos 6 meses </option> */}
+										</select>
+									</div>
+                </div>
+							
                 {loading ? (
                   <p>Cargando...</p>
                 ) : (
@@ -254,6 +317,10 @@ const Product = ({ categoryList, path }) => {
             padding-top: 5rem;
             border-bottom: 1px solid #5a5a5a;
           }
+					.container-title {
+						display: flex;
+						justify-content: space-between;
+					}
           .text-title-tienda {
             font-family: "mont-regular" !important;
             font-size: 2.5rem;
@@ -262,6 +329,32 @@ const Product = ({ categoryList, path }) => {
             color: #5a5a5a;
             /* border-bottom: 0.5px solid #575650; */
             padding: 0px 0px 5px 0px;
+          }
+					.container-select {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+          }
+					select {
+            cursor: pointer;
+            border: 1px solid #556ea1;
+            box-sizing: border-box;
+            border-radius: 15px;
+            outline: none;
+            font-family: "mont-regular" !important;
+            font-size: 1.3rem;
+            color: #556ea1;
+            padding: 1rem 4rem 1rem 1rem;
+            margin: 2rem 1rem 0 0;
+            /** */
+            background: url("https://i.ibb.co/7WKxh8s/image.png") no-repeat
+              right #ffffff;
+            background-size: 1.25rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-position-x: 92.5%;
+            width: 17rem;
           }
           .contenedor {
             padding: 0 1.5rem;
@@ -281,6 +374,15 @@ const Product = ({ categoryList, path }) => {
           }
           .show-mobile {
             margin-top: 8.5rem;
+          }
+					@media (min-width: 480px) {
+            .container-select select,
+            option {
+              font-size: 1.5rem;
+            }
+            .text-title {
+              font-size: 3.5rem;
+            }
           }
 
           @media (min-width: 768px) {
@@ -312,6 +414,9 @@ const Product = ({ categoryList, path }) => {
             .mt-5r {
               margin-top: 5rem;
             }
+						select {
+							width: 20rem;
+						}
           }
           @media (min-width: 1024px) {
             .contenedor {

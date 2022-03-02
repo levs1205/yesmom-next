@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import Image from "next/image";
-import { array, number } from "prop-types";
+import { array, number, string, bool } from "prop-types";
 import Pagination from "../../components/Pagination";
 
 import { Carousel, Row, Col, Container } from "react-bootstrap";
@@ -20,7 +20,7 @@ import { setProducts, setCategories } from "../../context/actions/ui";
 import { getApiBusiness } from "../../helpers/httpCreators";
 import SidebarProductoProveedor from "../../components/tienda/SidebarProductProveedor";
 
-const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
+const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
   const [skip, setSkip] = useState(0);
   const [productsPerPage, setProductsPerPage] = useState(9);
   const [productList, setProductList] = useState([]);
@@ -34,18 +34,17 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
     dataSupplier.imagenPortada && dataSupplier.imagenPortada[0].url;
   let bannerStore = dataSupplier && dataSupplier.imagenBanner;
 
-  const alternativeLogo =
-    "https://static.thenounproject.com/png/340719-200.png";
+  const alternativeLogo = "https://static.thenounproject.com/png/340719-200.png";
 
   useEffect(() => {
     getProducts();
-  }, [skip, currentpage]);
+  }, [skip, currentpage, slug]);
 
   const getProducts = async () => {
     try {
 			setLoading(true);
       const { productosGeneral, totalDeProductos, pages } =
-        await getProductsByIdStore(dataSupplier._id, skip, productsPerPage);
+        await getProductsByIdStore(dataSupplier._id, skip, productsPerPage, null, isSale ? 2 : 1);
       
       setTotalProducts(totalDeProductos);
       setProductList(productosGeneral);
@@ -112,8 +111,8 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
                   <Image
                     loader={() => logoStore}
                     src={logoStore}
-                    width="290px"
-                    height="110px"
+                    width="446px"
+                    height="168px"
                   />
                 </div>
                 <div className="show-mobile">
@@ -270,6 +269,9 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
             margin-top: 4rem;
             margin-bottom: 4rem;
           }
+					.container-banner img {
+            
+          }
           .products {
             padding-right: 2rem;
             padding-left: 2rem;
@@ -359,27 +361,44 @@ ProveedorSlug.propTypes = {
   dataSupplier: array.isRequired,
   productList: array.isRequired,
   productsQty: number.isRequired,
+	slug: string.isRequired,
   pages: number,
+	isSale: bool.isRequired
 };
 
 export const getServerSideProps = async ({ query }) => {
   const { proveedor } = query;
-
-  const responseData = await getStoreByName(proveedor);
-  console.log("responseData", responseData);
-  const { productosGeneral, totalDeProductos, pages } =
-    await getProductsByIdStore(responseData._id, 0, 10);
+	console.log('proveedor', proveedor)
+	let responseData;
+	let slugString;
+	let isSale = false;
+	if(proveedor.includes('promociones-')){
+		let stringSplit = proveedor.split('promociones-')
+		slugString = stringSplit[1]
+		console.log('SI existe', proveedor.split('promociones-'))
+		responseData = await getStoreByName(stringSplit[1]);
+		isSale = true;
+	} else {
+		console.log('NO existe')
+		responseData = await getStoreByName(proveedor);
+		slugString = proveedor
+	}
+  /* const responseData = await getStoreByName(proveedor); */
 
   if (responseData.proveedor !== null) {
     return {
       props: {
         dataSupplier: responseData.proveedor,
+				slug: proveedor,
+				isSale: isSale
       },
     };
   }
   return {
     props: {
       dataSupplier: [],
+			slug: proveedor,
+			isSale: isSale
     },
   };
 

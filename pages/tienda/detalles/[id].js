@@ -544,7 +544,7 @@ const DetallesID = ({
             font-size: 2rem;
             color: #5a5a5a;
             width: 4rem;
-            border-radius: 10px;
+            border-radius: 15px;
             pointer-events: none;
           }
           .input-amount:focus {

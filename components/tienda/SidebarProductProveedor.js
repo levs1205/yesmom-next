@@ -12,9 +12,8 @@ const SidebarProductoProveedor = ({ setCategorySelected, name, slug }) => {
     dispatchUi,
     ui: { categories, category: categorySelected },
   } = useContext(YesmomContext); /* || allCategories  */
+
   const { proveedor } = query;
-  const lisCategories =
-    categories?.totalCategories?.categories; /* || list?.categories */
   const path = "/tienda/";
 
   const handleCategorie = (cat) => () => {
@@ -23,31 +22,6 @@ const SidebarProductoProveedor = ({ setCategorySelected, name, slug }) => {
     }
   };
 
-  let filters = [
-    "Todos",
-    "Solo en Yes Mom",
-    "Lo + vendido",
-    "Lo + seleccionado",
-    "Packs de regalo",
-    "Promociones",
-    "Pañales y Toallitas",
-    "Coches",
-    "Paseo y Organización",
-    "Sillas para Auto",
-    "Lactancia y alimentación",
-    "Baño",
-    "Salud y Cuidado",
-    "Juguetes",
-    "Ropa y Zapatos",
-    "Accesorios",
-    "Dormitorio y Decoración",
-    "Seguridad",
-    "Maternidad",
-    "Servicios",
-    "Educativo",
-    "Otros",
-  ];
-  
   return (
     <Container>
       <div className="side-bar">
@@ -59,7 +33,9 @@ const SidebarProductoProveedor = ({ setCategorySelected, name, slug }) => {
           <div className="show-desktop">
             <li
               className={`${
-                `${path}${proveedor}` === `${path}${slug}` ? "active-link-categoria" : ""
+                `${path}${proveedor}` === `${path}${slug}`
+                  ? "active-link-categoria"
+                  : ""
               }`}
               onClick={handleCategorie("Todos")}
             >
@@ -67,57 +43,20 @@ const SidebarProductoProveedor = ({ setCategorySelected, name, slug }) => {
                 <a>Solo en {name}</a>
               </Link>
             </li>
-						<li
+            <li
               className={`${
-                `${path}${proveedor}` === `${path}${slug}` ? "active-link-categoria" : ""
+                `${path}${proveedor}` === `${path}promociones-${slug}`
+                  ? "active-link-categoria"
+                  : ""
               }`}
               onClick={handleCategorie("Todos")}
             >
-              <Link href={`${path}${slug}`}>
+              <Link href={`${path}promociones-${slug}`}>
                 <a>Promociones</a>
               </Link>
             </li>
-            {/* {lisCategories
-              ?.filter((category) => category.firts !== false)
-              .map((cat, i) => (
-                <li
-                  onClick={handleCategorie(cat)}
-                  key={cat._id}
-                  className={`${
-                    category == cat.slug ? "active-link-categoria" : ""
-                  }`}
-                >
-                  <Link href={`${path}/${cat.slug}`}>
-                    <a>{cat.name}</a>
-                  </Link>
-                </li>
-              ))} */}
           </div>
         </ul>
-
-        {/* <div className="text-title-filtros">
-          <p> Categorías </p>
-        </div>
-        <hr />
-        <ul>
-          <div className="show-desktop">
-            {lisCategories
-              ?.filter((category) => category.firts !== true)
-              .map((cat, i) => (
-                <li
-                  onClick={handleCategorie(cat)}
-                  key={cat._id}
-                  className={`${
-                    category == cat.slug ? "active-link-categoria" : ""
-                  }`}
-                >
-                  <Link href={`${path}/${cat.slug}`}>
-                    <a>{cat.name}</a>
-                  </Link>
-                </li>
-              ))}
-          </div>
-        </ul> */}
       </div>
       <style jsx>
         {`
