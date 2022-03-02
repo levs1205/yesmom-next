@@ -26,12 +26,14 @@ export const getProducts = async (catSlug, category, skip, limit) => {
 };
 
 //? get summary data of products by id
-export const getProductsByIdStore = async (storeId, skip, limit) => {
+export const getProductsByIdStore = async (storeId, skip, limit, order, filter) => {
 	const store_id = storeId !== null ? `store=${storeId}` : '';
 	const num_skip = skip !== null && skip !== undefined ? `&skip=${skip}` : '';
 	const num_limit = limit !== null && limit !== undefined ? `&limit=${limit}` : '';
+	const num_order = order !== null && order !== undefined ? `&order=${order}` : '';
+	const num_filter = filter !== null && filter !== undefined ? `&filter=${filter}` : '';
 
-	const response = await fetch(`${baseUrlBA}/product/getbyuser?${store_id}${num_skip}${num_limit}`)
+	const response = await fetch(`${baseUrlBA}/product/getbyuser?${store_id}${num_skip}${num_limit}${num_order}${num_order}${num_filter}`)
 	return await response.json();
 };
 

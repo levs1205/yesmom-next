@@ -3,48 +3,132 @@ import AppLayout from "../../../components/AppLayout";
 import Head from "next/head";
 import Image from "next/image";
 import YesmomContext from "../../../context/Context";
-import {  Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import CardProduct from "../../../components/CardProduct";
 import Pagination from "../../../components/Pagination";
 import SidebarProducto from "../../../components/tienda/SidebarProducto";
 import LoaderPage from "../../../components/LoaderPage";
 import { getProducts, getCategories } from "../../api/request";
+import { setProducts, setCategories } from "../../../context/actions/ui";
 
-import Paginaton from '../../../components/Pagination';
+import Paginaton from "../../../components/Pagination";
 
 export async function getServerSideProps({ query }) {
   //Todos los productos
   const { category = "", sort = "" } = query;
 
-  const [ resp_1 , resp_2 ] = await Promise.all([getProducts(category, null,0,	10),getCategories()])
-	const { productosGeneral, totalDeProductos, pages } = resp_1;
-	const { response } = resp_2;
+  const { response } = await getCategories();
 
-	if (!productosGeneral) {
+  if (!response) {
     return {
       props: {
-				category,
-				productosGeneral: [],
-				categoryList: response,
-			},
+        category,
+        categoryList: response,
+      },
     };
   }
   return {
     props: {
       category,
-      productosGeneral,
-			categoryList: response,
+      categoryList: response,
     },
   };
 }
 
-const Categoria = ({ productosGeneral, category, categoryList }) => {
-	const { dispatchUi, ui: { category: categorySelected } } = useContext(YesmomContext);
+const Categoria = ({ category, categoryList }) => {
+  const {
+    dispatchUi,
+    ui: { category: categorySelected },
+  } = useContext(YesmomContext);
+  const [skip, setSkip] = useState(0);
+  const [currentpage, setCurrentPage] = useState(1);
+  const [order, setOrder] = useState("order");
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [productList, setProductList] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [productsPerPage, setProductsPerPage] = useState(12);
 
-  return !productosGeneral? (
-    <LoaderPage />
-  ) : (
+  useEffect(() => {
+    dispatchUi(setCategories(categoryList));
+  }, []);
+
+  useEffect(() => {
+    getListProducts();
+  }, [skip, currentpage, category, order]);
+
+  useEffect(() => {
+    setOrder("order");
+  }, [category]);
+
+  const getListProducts = async () => {
+    try {
+      setLoading(true);
+      const response = await getProducts(category, null, skip, productsPerPage);
+      if (response?.productosGeneral.length > 0) {
+        if (order === "mayor") {
+          setProductList(
+            response?.productosGeneral.sort(
+              (a, b) => b.product.precio - a.product.precio
+            )
+          );
+        } else if (order === "menor") {
+          setProductList(
+            response?.productosGeneral.sort(
+              (a, b) => a.product.precio - b.product.precio
+            )
+          );
+        } else if (order === "asc") {
+          setProductList(
+            response?.productosGeneral.sort((a, b) => {
+              if (
+                a.product.nombre.toLowerCase() > b.product.nombre.toLowerCase()
+              ) {
+                return 1;
+              }
+              if (
+                a.product.nombre.toLowerCase() < b.product.nombre.toLowerCase()
+              ) {
+                return -1;
+              }
+              return 0;
+            })
+          );
+        } else if (order === "desc") {
+          setProductList(
+            response?.productosGeneral.sort((a, b) => {
+              if (
+                a.product.nombre.toLowerCase() > b.product.nombre.toLowerCase()
+              ) {
+                return -1;
+              }
+              if (
+                a.product.nombre.toLowerCase() < b.product.nombre.toLowerCase()
+              ) {
+                return 1;
+              }
+              return 0;
+            })
+          );
+        } else if (order === "order") {
+          setProductList(response?.productosGeneral);
+        }
+      } else setProductList(response?.productosGeneral);
+      setTotalProducts(response?.totalDeProductos);
+      setTotalPages(response?.pages);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+
+  const handleChangeOrder = (e) => {
+    setOrder(e.target.value);
+  };
+
+  return (
     <AppLayout>
       <Head>
         <title>YesMom - Tienda-categoria</title>
@@ -128,48 +212,64 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
                     <hr />
                   </div>
                   <div className="container-selects">
-                    <select>
-                      <option selected disabled>
-                        Ordenar por{" "}
+                    <select value={order} onChange={handleChangeOrder}>
+                      <option value="order" disabled>
+                        Ordenar por
                       </option>
-                      <option>Precio de mayor a menor </option>
-                      <option>Precio de menor a mayor </option>
+                      <option value="mayor">Precio de mayor a menor </option>
+                      <option value="menor">Precio de menor a mayor </option>
+                      <option value="asc">A-Z (alfabéticamente) </option>
+                      <option value="desc">Z-A (alfabéticamente) </option>
                     </select>
                   </div>
                 </div>
-                <Row>
-                  {productosGeneral && productosGeneral.length ? productosGeneral?.map((product, i) => (
-                    <Col xs={6} sm={4}>
-                      <CardProduct key={i} {...product} />
-                    </Col>
-                  )) :
-                  <p className="out-result">No se ha encontrado ningún resultado de producto.</p>
-                }
-                </Row>
+                {loading ? (
+                  <p>Cargando...</p>
+                ) : (
+                  <Row>
+                    {productList && productList.length ? (
+                      productList?.map((product, i) => (
+                        <Col xs={6} sm={4}>
+                          <CardProduct key={i} {...product} />
+                        </Col>
+                      ))
+                    ) : (
+                      <p className="out-result">
+                        No se ha encontrado ningún resultado de producto.
+                      </p>
+                    )}
+                  </Row>
+                )}
               </div>
             </div>
 
-            {
-              productosGeneral && productosGeneral.length >0 &&
+            {productList && productList.length > 0 && (
               <div className="container-pagination">
-                  <Pagination />
+                <Pagination
+                  totalPages={totalPages}
+                  currentpage={currentpage}
+                  setCurrentPage={setCurrentPage}
+                  skip={skip}
+                  setSkip={setSkip}
+                  productsPerPage={productsPerPage}
+                />
               </div>
-            }
+            )}
           </div>
         </Container>
       </div>
       <style jsx>
         {`
-          .container-pagination{
+          .container-pagination {
             display: flex;
-            justify-content:center;
-            align-items:center;
+            justify-content: center;
+            align-items: center;
           }
-          .out-result{
-              font-family:"mont-regular"!important;
-              margin : 2rem;
-              font-size:1.4rem;
-            }
+          .out-result {
+            font-family: "mont-regular" !important;
+            margin: 2rem;
+            font-size: 1.4rem;
+          }
           .container-selects {
             display: flex;
             align-items: center;
@@ -342,7 +442,7 @@ const Categoria = ({ productosGeneral, category, categoryList }) => {
             }
             select {
               margin: 0;
-              border-radius: 10px;
+              border-radius: 15px;
             }
           }
 

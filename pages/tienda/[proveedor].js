@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import Image from "next/image";
-import { array, number } from "prop-types";
+import { array, number, string, bool } from "prop-types";
 import Pagination from "../../components/Pagination";
 
 import { Carousel, Row, Col, Container } from "react-bootstrap";
@@ -20,7 +20,7 @@ import { setProducts, setCategories } from "../../context/actions/ui";
 import { getApiBusiness } from "../../helpers/httpCreators";
 import SidebarProductoProveedor from "../../components/tienda/SidebarProductProveedor";
 
-const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
+const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
   const [skip, setSkip] = useState(0);
   const [productsPerPage, setProductsPerPage] = useState(9);
   const [productList, setProductList] = useState([]);
@@ -34,18 +34,17 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
     dataSupplier.imagenPortada && dataSupplier.imagenPortada[0].url;
   let bannerStore = dataSupplier && dataSupplier.imagenBanner;
 
-  const alternativeLogo =
-    "https://static.thenounproject.com/png/340719-200.png";
+  const alternativeLogo = "https://static.thenounproject.com/png/340719-200.png";
 
   useEffect(() => {
     getProducts();
-  }, [skip, currentpage]);
+  }, [skip, currentpage, slug]);
 
   const getProducts = async () => {
     try {
 			setLoading(true);
       const { productosGeneral, totalDeProductos, pages } =
-        await getProductsByIdStore(dataSupplier._id, skip, productsPerPage);
+        await getProductsByIdStore(dataSupplier._id, skip, productsPerPage, null, isSale ? 2 : 1);
       
       setTotalProducts(totalDeProductos);
       setProductList(productosGeneral);
@@ -112,8 +111,8 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
                   <Image
                     loader={() => logoStore}
                     src={logoStore}
-                    width="290px"
-                    height="110px"
+                    width="446px"
+                    height="168px"
                   />
                 </div>
                 <div className="show-mobile">
@@ -123,40 +122,49 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
                   <BannerProveedor img={portadaStore} />
                 </div>
 
-                {loading ? <p>Cargando...</p> : <div className="products">
-                  <Container>
-                    <Row>
-                      {productList?.length > 0 ? (
-                        productList.slice(0, 3).map((product, i) => (
-                          <Col xs={12} sm={6} md={4}>
-                            <CardProduct key={i} {...product} />
-                          </Col>
-                        ))
-                      ) : (
-                        <p>Se encontraron 0 productos</p>
-                      )}
-                    </Row>
-                  </Container>
-                </div>}
+                {loading ? (
+                  <p>Cargando...</p>
+                ) : (
+                  <div className="products">
+                    <Container>
+                      <Row>
+                        {productList?.length > 0 ? (
+                          productList.slice(0, 3).map((product, i) => (
+                            <Col xs={12} sm={6} md={4}>
+                              <CardProduct key={i} {...product} />
+                            </Col>
+                          ))
+                        ) : (
+                          <p>Se encontraron 0 productos</p>
+                        )}
+                      </Row>
+                    </Container>
+                  </div>
+                )}
               </div>
-            ): <div className="container-products">
-
-						{loading ? <p>Cargando...</p> : <div className="products">
-							<Container>
-								<Row>
-								{productList?.length > 0 ? (
-                        productList.map((product, i) => (
-                          <Col xs={12} sm={6} md={4}>
-                            <CardProduct key={i} {...product} />
-                          </Col>
-                        ))
-                      ) : (
-                        <p>Se encontraron 0 productos</p>
-                      )}
-								</Row>
-							</Container>
-						</div>}
-					</div>}
+            ) : (
+              <div className="container-products">
+                {loading ? (
+                  <p>Cargando...</p>
+                ) : (
+                  <div className="products">
+                    <Container>
+                      <Row>
+                        {productList?.length > 0 ? (
+                          productList.map((product, i) => (
+                            <Col xs={12} sm={6} md={4}>
+                              <CardProduct key={i} {...product} />
+                            </Col>
+                          ))
+                        ) : (
+                          <p>Se encontraron 0 productos</p>
+                        )}
+                      </Row>
+                    </Container>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
           {currentpage === 1 && (
             <>
@@ -193,7 +201,7 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
             <section className="f-right">
               <div className="container-products">
                 <div className="products">
-                  <h4 className="text-title-tienda">Lo + vendido</h4>
+                  {/* <h4 className="text-title-tienda">Lo + vendido</h4> */}
                   <div className="show-mobile">
                     <hr />
                   </div>
@@ -213,7 +221,7 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
                 </div>
               </div>
             </section>
-          ) }
+          )}
 
           <div className="box-pagination">
             <Pagination
@@ -222,7 +230,7 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
               setCurrentPage={setCurrentPage}
               skip={skip}
               setSkip={setSkip}
-							productsPerPage={productsPerPage}
+              productsPerPage={productsPerPage}
             />
           </div>
         </div>
@@ -260,6 +268,9 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
           .container-banner {
             margin-top: 4rem;
             margin-bottom: 4rem;
+          }
+					.container-banner img {
+            
           }
           .products {
             padding-right: 2rem;
@@ -350,27 +361,44 @@ ProveedorSlug.propTypes = {
   dataSupplier: array.isRequired,
   productList: array.isRequired,
   productsQty: number.isRequired,
+	slug: string.isRequired,
   pages: number,
+	isSale: bool.isRequired
 };
 
 export const getServerSideProps = async ({ query }) => {
   const { proveedor } = query;
-
-  const responseData = await getStoreByName(proveedor);
-  console.log("responseData", responseData);
-  const { productosGeneral, totalDeProductos, pages } =
-    await getProductsByIdStore(responseData._id, 0, 10);
+	console.log('proveedor', proveedor)
+	let responseData;
+	let slugString;
+	let isSale = false;
+	if(proveedor.includes('promociones-')){
+		let stringSplit = proveedor.split('promociones-')
+		slugString = stringSplit[1]
+		console.log('SI existe', proveedor.split('promociones-'))
+		responseData = await getStoreByName(stringSplit[1]);
+		isSale = true;
+	} else {
+		console.log('NO existe')
+		responseData = await getStoreByName(proveedor);
+		slugString = proveedor
+	}
+  /* const responseData = await getStoreByName(proveedor); */
 
   if (responseData.proveedor !== null) {
     return {
       props: {
         dataSupplier: responseData.proveedor,
+				slug: proveedor,
+				isSale: isSale
       },
     };
   }
   return {
     props: {
       dataSupplier: [],
+			slug: proveedor,
+			isSale: isSale
     },
   };
 

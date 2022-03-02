@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 import { getProducts, getCategories } from "../api/request";
 import { setProducts, setCategories } from "../../context/actions/ui";
+import Pagination from "../../components/Pagination";
 
 const imagesMobile = [
   { id: 1, image: "/image/tienda/banner-mobile1.png" },
@@ -23,7 +24,16 @@ const imagesDesktop = [
   { id: 3, image: "/image/tienda/banner-desktop3.png" },
 ];
 
-const Product = ({ productList, productsQty, pages, categoryList, path }) => {
+const Product = ({ categoryList, path }) => {
+  const [skip, setSkip] = useState(0);
+	const [order, setOrder] = useState("order");
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [productsPerPage, setProductsPerPage] = useState(12);
+  const [productList, setProductList] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [currentpage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [storeFiltered, setStoreFiltered] = useState([]);
   const {
     query: { q = "" },
   } = useRouter();
@@ -31,7 +41,6 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
     dispatchUi,
     ui: { category: categorySelected },
   } = useContext(YesmomContext);
-  const [storeFiltered, setStoreFiltered] = useState([]);
 
   useEffect(() => {
     dispatchUi(setProducts(productList));
@@ -39,26 +48,96 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
   }, []);
 
   useEffect(() => {
+    getListProducts();
+  }, [skip, currentpage, q, order]);
+
+
+  const getListProducts = async () => {
+    try {
+      setLoading(true);
+      const response = await getProducts(null, "all", skip, productsPerPage);
+      if (order === "mayor") {
+        setProductList(
+          response?.productosGeneral.sort(
+            (a, b) => b.product.precio - a.product.precio
+          )
+        );
+      } else if (order === "menor") {
+        setProductList(
+          response?.productosGeneral.sort(
+            (a, b) => a.product.precio - b.product.precio
+          )
+        );
+      } else if (order === "asc") {
+        setProductList(
+          response?.productosGeneral.sort(
+            (a, b) => {
+							if(a.product.nombre.toLowerCase() > b.product.nombre.toLowerCase()) {
+								return 1;
+							}
+							if (a.product.nombre.toLowerCase() < b.product.nombre.toLowerCase()) {
+								return -1;
+							}
+							return 0;
+						}
+          )
+        );
+      } else if (order === "desc") {
+        setProductList(
+          response?.productosGeneral.sort(
+            (a, b) => {
+							if(a.product.nombre.toLowerCase() > b.product.nombre.toLowerCase()) {
+								return -1;
+							}
+							if (a.product.nombre.toLowerCase() < b.product.nombre.toLowerCase()) {
+								return 1;
+							}
+							return 0;
+						}
+          )
+        );
+      } else if (order === "order") {
+        setProductList(response?.productosGeneral);
+      }
+      setTotalProducts(response?.totalDeProductos);
+      setTotalPages(response?.pages);
+      setLoading(false);
+    } catch (error) {
+			setLoading(false);
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
     const query = q.toLowerCase().trim();
     let filterData = productList.filter((el) =>
-      el.product.nombre
-        .toLowerCase()
-        .trim()
-        .includes(query)
+      el.product.nombre.toLowerCase().trim().includes(query)
     );
 
     if (filterData.length === 0) {
       setStoreFiltered(productList);
-      Swal.fire(
-        "No encontrado",
-        "No existen productos asociados con la búsqueda!",
-        "info"
-      );
+      if (query.length > 0) {
+        Swal.fire(
+          "No encontrado",
+          "No existen productos asociados con la búsqueda!",
+          "info"
+        );
+      }
     } else {
       setStoreFiltered(filterData);
+      const roundNumber =
+        Math.round(filterData.length / 9) < 1
+          ? 1
+          : Math.round(filterData.length / 9);
+      setTotalProducts(filterData.length);
+      setTotalPages(roundNumber);
     }
   }, [q]);
 
+	const handleChangeOrder = (e) => {
+    setOrder(e.target.value);
+  };
+	
   return (
     <AppLayout>
       <Head>
@@ -130,7 +209,7 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
             ))}
           </Carousel>
         </div>
-              
+
         <Container fluid="true">
           <div className="all-content">
             <div className="contenedor">
@@ -138,21 +217,68 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
                 <SidebarProducto />
               </div>
               <div className="products">
-                <h4 className="text-title-tienda">{categorySelected?.name}</h4>
-                <hr />
-                <Row>
-                  {productList.length > 0 ? (
-                    storeFiltered
-                      .slice(0, 6)
-                      .map((product, i) => (
-                        <Col xs={6} sm={4}>
-                          <CardProduct key={i} {...product} />
-                        </Col>
-                      ))
-                  ) : (
-                    <p>No se ha encontrado ningún resultado de producto</p>
-                  )}
-                </Row>
+								<div className="container-title">
+									<h4 className="text-title-tienda">
+										{categorySelected?.name ? categorySelected?.name : "Todos"}
+									</h4>
+									<div className="container-select">
+									<select value={order} onChange={handleChangeOrder}>
+                      <option value="order" disabled>
+                        Ordenar por
+                      </option>
+                      <option value="mayor">Precio de mayor a menor </option>
+                      <option value="menor">Precio de menor a mayor </option>
+											<option value="asc">A-Z (alfabéticamente) </option>
+											<option value="desc">Z-A (alfabéticamente) </option>
+										{/*	<option value="">Últimos 30 días </option>
+											<option value="">Últimos 6 meses </option> */}
+										</select>
+									</div>
+                </div>
+							
+                {loading ? (
+                  <p>Cargando...</p>
+                ) : (
+                  <Row>
+                    {q.trim().length > 0 ? (
+                      <>
+                        {storeFiltered.length > 0 ? (
+                          storeFiltered.map((product, i) => (
+                            <Col xs={6} sm={4}>
+                              <CardProduct key={i} {...product} />
+                            </Col>
+                          ))
+                        ) : (
+                          <p>
+                            No se ha encontrado ningún resultado de producto
+                          </p>
+                        )}
+                      </>
+                    ) : (
+                      <>
+                        {productList.length > 0 ? (
+                          productList.map((product, i) => (
+                            <Col xs={6} sm={4}>
+                              <CardProduct key={i} {...product} />
+                            </Col>
+                          ))
+                        ) : (
+                          <p>
+                            No se ha encontrado ningún resultado de producto
+                          </p>
+                        )}
+                      </>
+                    )}
+                  </Row>
+                )}
+                <Pagination
+                  totalPages={totalPages}
+                  currentpage={currentpage}
+                  setCurrentPage={setCurrentPage}
+                  skip={skip}
+                  setSkip={setSkip}
+                  productsPerPage={productsPerPage}
+                />
               </div>
             </div>
           </div>
@@ -191,6 +317,10 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
             padding-top: 5rem;
             border-bottom: 1px solid #5a5a5a;
           }
+					.container-title {
+						display: flex;
+						justify-content: space-between;
+					}
           .text-title-tienda {
             font-family: "mont-regular" !important;
             font-size: 2.5rem;
@@ -199,6 +329,32 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
             color: #5a5a5a;
             /* border-bottom: 0.5px solid #575650; */
             padding: 0px 0px 5px 0px;
+          }
+					.container-select {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+          }
+					select {
+            cursor: pointer;
+            border: 1px solid #556ea1;
+            box-sizing: border-box;
+            border-radius: 15px;
+            outline: none;
+            font-family: "mont-regular" !important;
+            font-size: 1.3rem;
+            color: #556ea1;
+            padding: 1rem 4rem 1rem 1rem;
+            margin: 2rem 1rem 0 0;
+            /** */
+            background: url("https://i.ibb.co/7WKxh8s/image.png") no-repeat
+              right #ffffff;
+            background-size: 1.25rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-position-x: 92.5%;
+            width: 17rem;
           }
           .contenedor {
             padding: 0 1.5rem;
@@ -216,14 +372,22 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
             align-items: center;
             flex-wrap: wrap;
           }
-          .show-mobile{
+          .show-mobile {
             margin-top: 8.5rem;
+          }
+					@media (min-width: 480px) {
+            .container-select select,
+            option {
+              font-size: 1.5rem;
+            }
+            .text-title {
+              font-size: 3.5rem;
+            }
           }
 
           @media (min-width: 768px) {
             .show-mobile {
               display: none;
-
             }
             .show-desktop {
               display: flex;
@@ -250,6 +414,9 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
             .mt-5r {
               margin-top: 5rem;
             }
+						select {
+							width: 20rem;
+						}
           }
           @media (min-width: 1024px) {
             .contenedor {
@@ -264,24 +431,15 @@ const Product = ({ productList, productsQty, pages, categoryList, path }) => {
 };
 
 Product.propTypes = {
-  productList: array.isRequired,
-  productsQty: number.isRequired,
-  pages: number,
   categoryList: object.isRequired,
 };
 
 export const getServerSideProps = async () => {
+  const { response } = await getCategories();
 
-  const [ resp_1, resp_2] = await Promise.all([getProducts(null,'all',0,0),getCategories()])
-	const { productosGeneral, totalDeProductos, pages } = resp_1;
-  const { response } = resp_2;
-
-  if (!productosGeneral) {
+  if (response.ok) {
     return {
       props: {
-        productList: [],
-        productsQty: 0,
-        pages: 0,
         categoryList: response,
       },
     };
@@ -289,9 +447,6 @@ export const getServerSideProps = async () => {
 
   return {
     props: {
-      productList: productosGeneral,
-      productsQty: totalDeProductos,
-      pages: pages,
       categoryList: response,
     },
   };
