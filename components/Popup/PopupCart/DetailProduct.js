@@ -37,7 +37,6 @@ const DetailProduct = ({
     }
   }, []);
 
-  console.log(sizeSelected,colourSelected);
 
   const makeDetails = useMemo(()=>{
     let tempStr='';
