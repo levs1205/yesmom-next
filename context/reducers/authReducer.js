@@ -14,7 +14,8 @@ export const authReducer = ( state = {} , action) => {
             return {
                 ...state,
                 logged: true,
-                token : action.payload.token
+                token : action.payload.token,
+                isSocialMedia : action.payload.isSocialMedia
             }
         case types.authLogout:
             localStorage.removeItem('YesmomToken');

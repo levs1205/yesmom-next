@@ -67,7 +67,7 @@ const index = ( ) => {
         // router.push("/");
 
         dispatchClient(await initializeData(data.token));
-        dispatchAuth(startLogin(data));
+        dispatchAuth(startLogin({token : data.token , isSocialMedia : false}));
         redirectLogged();
       }
     } catch (e) {
@@ -95,11 +95,11 @@ const index = ( ) => {
   const handleSuccessGoogle = async ( data ) => {
     console.log(data);
 
-    const { token } = await startLoginWithGoogle(data);
+    const { token , isSocialMedia} = await startLoginWithGoogle(data);
     if(token){
       const infoAction = await initializeData(token);
       dispatchClient(infoAction);
-      dispatchAuth( startLogin({ token }))
+      dispatchAuth( startLogin({ token ,isSocialMedia}))
       redirectLogged();
     }
   }
@@ -111,7 +111,7 @@ const index = ( ) => {
     const { token } = await startLoginWithFacebook(data);
     if(token){
       dispatchClient(await initializeData(token));
-      dispatchAuth( startLogin({ token }))
+      dispatchAuth( startLogin({ token ,isSocialMedia}))
       redirectLogged();
     }
 
