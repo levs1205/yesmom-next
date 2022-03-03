@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Link from 'next/dist/client/link';
+import YesmomContext from '../../context/Context';
 
-function Sidebar({ active }) {
+const Sidebar = ({ active }) => {
+
+    const { auth : { isSocialMedia }} = useContext(YesmomContext);
 
     const options=[
-        { text:"Mi perfil" ,name:"miperfil" , path:"/perfil/miperfil" },
-        { text:"Contraseña" ,name:"password" , path:"/perfil/password" },
-        { text:"Desactivar cuenta" ,name:"desactivar" , path:"/perfil/desactivar-cuenta" },
-        { text:"Mis compras" ,name:"miscompras" , path:"/perfil/miscompras" },
+        { text:"Mi perfil" ,name:"miperfil" , path:"/perfil/miperfil" , enabled:true},
+        { text:"Contraseña" ,name:"password" , path:"/perfil/password",enabled: !isSocialMedia },
+        { text:"Desactivar cuenta" ,name:"desactivar" , path:"/perfil/desactivar-cuenta", enabled: !isSocialMedia },
+        { text:"Mis compras" ,name:"miscompras" , path:"/perfil/miscompras", enabled: true },
     ]
     return (
         <>
             <div className="sidebar">
                 <hr />
                 <ul>
-                    {options.map((el,i)=>(
+                    {options.filter(el => el.enabled).map((el,i)=>(
                         <Link key={i} href={`${el.path}`}>
                             <li className={`${active===el.name ? "active" : ""}`}>
                                 <p>{el.text}</p>
