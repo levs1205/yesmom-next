@@ -93,12 +93,20 @@ const DetallesID = ({
       "label" : t,
     }))
 		setListSize(optionsSize)
-    if (amount === 0 ) {
+    if (amount === 0) {
       setDisabled(true);
     } else {
+      if(color && color.length>0 && !colourSelected){
+        setDisabled(true);
+        return;
+      }
+      if(talla && talla.length>0 && !sizeSelected){
+        setDisabled(true);
+        return;
+      }
       setDisabled(false);
     }
-  }, [amount, setDisabled]);
+  }, [colourSelected,sizeSelected,amount, setDisabled]);
 
   //CART
   const handleAddCart = () => {
@@ -118,8 +126,8 @@ const DetallesID = ({
 							quantity: filterCart[0].quantity + amount,
 							supplier: nombreTienda,
 							urlSupplier: nombreTiendaUrl,
-							sizeSelected: sizeSelected,
-							colourSelected: colourSelected
+							sizeSelected: sizeSelected || '',
+							colourSelected: colourSelected || '',
 						};
 						dispatchUi(startRemoveProduct(filterCart[0].idProductCart));
 						dispatchUi(startAddToCart(realProduct));
@@ -131,8 +139,8 @@ const DetallesID = ({
 							quantity: amount,
 							supplier: nombreTienda,
 							urlSupplier: nombreTiendaUrl,
-							sizeSelected: sizeSelected,
-							colourSelected: colourSelected
+							sizeSelected: sizeSelected || '',
+							colourSelected: colourSelected || '',
 						};
 						dispatchUi(startAddToCart(realProduct));
 					}else {
@@ -150,8 +158,8 @@ const DetallesID = ({
 					quantity: amount,
 					supplier: nombreTienda,
 					urlSupplier: nombreTiendaUrl,
-					sizeSelected: sizeSelected,
-					colourSelected: colourSelected
+					sizeSelected: sizeSelected || '',
+					colourSelected: colourSelected || '',
 				};
 				dispatchUi(startAddToCart(realProduct));
 			}
@@ -544,7 +552,7 @@ const DetallesID = ({
             font-size: 2rem;
             color: #5a5a5a;
             width: 4rem;
-            border-radius: 10px;
+            border-radius: 15px;
             pointer-events: none;
           }
           .input-amount:focus {

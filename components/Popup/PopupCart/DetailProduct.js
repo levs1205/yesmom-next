@@ -37,6 +37,21 @@ const DetailProduct = ({
     }
   }, []);
 
+
+  const makeDetails = useMemo(()=>{
+    let tempStr='';
+    if(sizeSelected || colourSelected){
+      if(sizeSelected && sizeSelected.length> 0){
+        tempStr+=`Talla: ${sizeSelected}`
+      }
+      if(colourSelected && colourSelected.length>0){
+        tempStr+=`${sizeSelected && sizeSelected.length ? ' |' : ''}  Color: ${colourSelected}`
+      }
+    }
+
+    return tempStr;
+  },[sizeSelected,colourSelected])
+
   return (
     <>
       <div className="card--shopping-cart">
@@ -58,7 +73,7 @@ const DetailProduct = ({
         <div className="card--shopping-cart__text">
           <p className="card--shopping-cart__title">{nombre}</p>
           <p className="card--shopping-cart__size-color">
-            Talla: {sizeSelected} | Color: {colourSelected}
+            {makeDetails}
           </p>
           <p className="card--shopping-cart__price">
             S/

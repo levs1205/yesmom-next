@@ -33,12 +33,10 @@ const PaymentResult = () => {
                 }
             })
 
-            console.log(data);
-            //TODO: aprobado o desaprobado
-            if(data.ok){
+            if(data.ok && data.sale){
                 dispatchUi(cleanCart())
                 setStatus(data.status)
-                setOrderId(data.mpOrderId);
+                setOrderId(data.sale.numeroUnico);
             }else{
                 setStatus('rejected');
             }

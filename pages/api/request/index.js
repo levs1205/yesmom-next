@@ -26,12 +26,14 @@ export const getProducts = async (catSlug, category, skip, limit) => {
 };
 
 //? get summary data of products by id
-export const getProductsByIdStore = async (storeId, skip, limit) => {
+export const getProductsByIdStore = async (storeId, skip, limit, order, filter) => {
 	const store_id = storeId !== null ? `store=${storeId}` : '';
 	const num_skip = skip !== null && skip !== undefined ? `&skip=${skip}` : '';
 	const num_limit = limit !== null && limit !== undefined ? `&limit=${limit}` : '';
+	const num_order = order !== null && order !== undefined ? `&order=${order}` : '';
+	const num_filter = filter !== null && filter !== undefined ? `&filter=${filter}` : '';
 
-	const response = await fetch(`${baseUrlBA}/product/getbyuser?${store_id}${num_skip}${num_limit}`)
+	const response = await fetch(`${baseUrlBA}/product/getbyuser?${store_id}${num_skip}${num_limit}${num_order}${num_order}${num_filter}`)
 	return await response.json();
 };
 
@@ -117,9 +119,10 @@ export async function updateProfileInfo(
   return await response.json();
 }
 
-//? Get Sale 
-//
-export const getSales = async (token, delivery, userType, skip, limit) => {
+
+//* PURCHASES
+//? get purchases
+export async function getPurchases(token, delivery, userType, skip, limit){
 	const is_delivery = delivery !== null ? `delivery=${delivery}` : '';
 	const type_user = userType !== null ? `&userType=${userType}` : '';
 	const num_skip = skip !== null && skip !== undefined ? `&skip=${skip}` : '';
@@ -127,7 +130,6 @@ export const getSales = async (token, delivery, userType, skip, limit) => {
 
 	const response = await fetch(`${baseUrlBA}/sale/pagination?${is_delivery}${type_user}${num_skip}${num_limit}`,{ 
 		headers: { 
-
 			'access-token': token 
 		},
 	})

@@ -8,10 +8,12 @@ import Sidebar from "../../../components/Perfil/Sidebar";
 import Pagination from "../../../components/Pagination";
 import AccordionCompras from "../../../components/Perfil/compras/AccordionCompras";
 import { getAccess } from "../../../helpers/getAccess";
-import { getSales } from "../../api/request";
+import { getPurchases } from "../../api/request";
 
-const index = ({ salesList }) => {
+const index = ({ listPurchases, token }) => {
 
+  const { salesGeneral=[] } = listPurchases;
+  console.log('TOTAL DE COMPRAS : ',salesGeneral)
   return (
     <AppLayout>
       <Head>
@@ -81,7 +83,10 @@ const index = ({ salesList }) => {
                 </div>
 
                 <div className="container-accordion">
-                  <AccordionCompras />
+                  {
+                    salesGeneral.length >0 && <AccordionCompras compras={salesGeneral} />
+                  }
+                  
                 </div>
                 <div className="box-pagination">
                   <Pagination />
@@ -240,32 +245,32 @@ const index = ({ salesList }) => {
 };
 
 export default index;
+
 export const getServerSideProps = async ({ req , resolvedUrl}) => {
   const token = req?.cookies?.TokenTest;
 	//const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnRpdHlJZCI6IjYxZTE4ZTA0OGQ2ZDUxMzJmZjZkNzM1YiIsImlhdCI6MTY0NDkwMzY0NCwiZXhwIjoxNjQ0OTA3MjQ0fQ.L7QF0r-jeaI8-7ZGbkJwx2u5-aZmSeMuGUPXpVCwAi0'
   const cleanUrl = req.url.split("?")[0];
+  console.log(resolvedUrl);
 
-  // console.log(req.url);
-	const resp = await getAccess(cleanUrl , token );
+  const resp = await getAccess(cleanUrl , token );
 	if(resp.hasOwnProperty('redirect')){
     return resp;
   }
 
-  const response = await getSales(token, 'no', 'user', 20, 0);
-	console.log('response >>', response);
-
-	if (response.CodigoRespuesta === "15") {
+	const response = await getPurchases(token, 'no', 'user', 0, 20);
+  if (response.CodigoRespuesta === "15") {
     return {
       props: {
-        salesList: {},
+        listPurchases: { salesGeneral : []},
         token
       },
     };
   }
   return {
     props: {
-      salesList : response,
+      listPurchases: response,
 			token
     },
   };
+    
 }
