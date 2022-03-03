@@ -45,7 +45,7 @@ const DetailProduct = ({
         tempStr+=`Talla: ${sizeSelected}`
       }
       if(colourSelected && colourSelected.length>0){
-        tempStr+=`${sizeSelected.length ? ' |' : ''}  Color: ${colourSelected}`
+        tempStr+=`${sizeSelected?.length ? ' |' : ''}  Color: ${colourSelected}`
       }
     }
 
