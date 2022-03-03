@@ -51,6 +51,17 @@ const DetailItemCart = ({
     return realPrice;
   },[_id])
 
+  const makeDetails = useMemo(()=>{
+    let tempStr = '';
+    if(colourSelected && sizeSelected.length >0){
+      tempStr+=colourSelected;
+    }
+    if(sizeSelected && sizeSelected.length >0){
+      tempStr+=` - ${sizeSelected}`
+    }
+    
+    return tempStr;
+  },[colourSelected,sizeSelected])
   return (
     <>
       <div className={`card card-edited ${noBorder ? "no-border" : ""}`}>
@@ -71,7 +82,7 @@ const DetailItemCart = ({
 
 
             <p className="block-text__short-description">
-              {colourSelected} - {sizeSelected}
+              {makeDetails}
             </p>
             <select name="" id="" className="block-text__select">
               <option value="">Cantidad: {quantity}</option>
