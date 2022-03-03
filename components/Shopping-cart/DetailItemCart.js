@@ -53,7 +53,7 @@ const DetailItemCart = ({
 
   const makeDetails = useMemo(()=>{
     let tempStr = '';
-    if(colourSelected && sizeSelected.length >0){
+    if(colourSelected && colourSelected.length >0){
       tempStr+=colourSelected;
     }
     if(sizeSelected && sizeSelected.length >0){
