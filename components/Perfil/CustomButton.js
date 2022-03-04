@@ -1,9 +1,8 @@
 import React from 'react'
-function CustomButton({outline , children, fxClick, type, isDisabled}) {
-console.log('isDisabled', isDisabled)
+const  CustomButton = ({outline , children, fxClick, type, isDisabled}) =>{
     return (
         <>
-            <div onClick={fxClick} className={isDisabled}>
+            <div onClick={fxClick} className={`boton ${isDisabled}`}>
                 <p>
                     {children}
                 </p>
