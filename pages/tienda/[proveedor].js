@@ -118,8 +118,8 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
             {currentpage === 1 ? (
               <div className="container-products">
                 <div className="container-banner center">
-                  <Image
-                    loader={() => logoStore}
+                  <img
+										className="logo-store-supplier"
                     src={logoStore}
                     width="446px"
                     height="168px"
@@ -256,6 +256,21 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
           :global(.carousel-indicators li) {
             background-color: #dc6a8d;
           }
+					:global(.show-desktop .box-carousel) {
+            height: 61rem;
+          }
+					:global(.show-desktop .box-carousel .carousel-item) {
+            height: 61rem;
+						object-fit: cover;
+            object-position: center center;
+						width: 100%;
+          }
+					:global(.show-desktop .box-carousel .carousel-item img) {
+            height: 61rem;
+						object-fit: cover;
+            object-position: center center;
+						width: 100%;
+          }
           :global(.carousel-indicators li) {
             border-radius: 50%;
             height: 1.5rem;
@@ -276,17 +291,23 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
             padding: 8.5rem 0;
           }
           .container-banner {
-						width: 30rem;
-						max-height: 11.3rem;
-            margin: 4rem auto !important;
+						width: auto;
+						height: 11rem;
+            margin: 4rem auto;
 						transition: all 0.3s ease-in-out;
           }
-					.container-banner img {
-            border: 1px solid black;
+					.logo-store-supplier {
+						width: auto;
+						height: 11rem;
+					}
+					.carousel-item {
+						width: 100%;
 						height: 100%;
-						object-fit: cover;
-						object-position: center center;
-          }
+					}
+					.carousel-item {
+						width: 100%;
+						height: 100%;
+					}
           .products {
             padding-right: 2rem;
             padding-left: 2rem;
@@ -335,7 +356,7 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
             }
             .container-banner {
 							width: 44.6rem;
-							max-height: 16.8rem;
+							height: auto;
 							margin: 4rem auto !important;
 						}
             .container-products-end {
