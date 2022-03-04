@@ -8,16 +8,15 @@ const PaymentSuccess = ( { orderId }) => {
                 <p className='text-payment'>Gracias por tu compra</p>
                 <p className='text-disclaimer'>Tu compra fue procesada con éxito, te hemos enviado un correo de confirmación con todos los detalles.</p>
                 <p className='text-disclaimer-pedido'>Numero de pedido : #{orderId}</p>
-                <p className='nav-to-option'>Ver detalle del pedido</p>
+                {/* <p className='nav-to-option'>Ver detalle del pedido</p> */}
 
                 <div className='container-redes'>
                     <p className='text-disclaimer-pedido'>Siguenos también en nuestras redes sociales</p>
                     <div className='redes-box'>
-                        {/* TODO: add redes */}
-                        <a href='/' target='_blank'>
+                        <a href='https://www.facebook.com/Yes-Mom-Per%C3%BA-104308198182894' target='_blank'>
                             <img className='img_redes' src="/image/payment/icon-fb.svg" alt="redes-fb" />
                         </a>
-                        <a href='/' target="_blank">
+                        <a href='https://www.instagram.com/yesmomperu/' target="_blank">
                             <img className='img_redes' src="/image/payment/icon-ig.svg" alt="redes-ig" />
                         </a>
                     </div>
