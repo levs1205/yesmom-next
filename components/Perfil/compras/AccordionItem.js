@@ -55,7 +55,7 @@ const AccordionItem = ({
                         <p>Sku: {prod.sku}</p>
                         <p>Cantidad: {prod.cantidad}</p>
                         {/* <p>Acción: Confirmación recibida</p> */}
-                        <p>Precio: S/ {prod.precio_unitario.toFixed(2)}</p>
+                        <p>Precio unitario: S/ {prod.precio_unitario.toFixed(2)}</p>
                         {/* <Link href="#">
                           <p className="contact-tienda">Contactar Tienda</p>
                         </Link> */}

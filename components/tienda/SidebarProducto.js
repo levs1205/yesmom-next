@@ -45,7 +45,7 @@ const SidebarProducto = ({ setCategorySelected }) => {
               </Link>
             </li>
             {lisCategories
-              ?.filter((category) => category.firts !== false)
+              ?.filter((category) => category.type === 'filter')
               .map((cat, i) => (
                 <li
                   onClick={handleCategorie(cat)}
@@ -69,7 +69,7 @@ const SidebarProducto = ({ setCategorySelected }) => {
         <ul>
           <div className="show-desktop">
             {lisCategories
-              ?.filter((category) => category.firts !== true)
+              ?.filter((category) => category.type === 'categorie')
               .map((cat, i) => (
                 <li
                   onClick={handleCategorie(cat)}

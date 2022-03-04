@@ -1177,7 +1177,7 @@ Home.propTypes = {
 
 export const getServerSideProps = async () => {
   const [resp_1, resp_2, blogs] = await Promise.all([
-    getProducts(null, "all", 0, 3),
+    getProducts(null, "all", 0, 3, null, null, null),
     getCategories(),
     getBlogs(),
   ]);
