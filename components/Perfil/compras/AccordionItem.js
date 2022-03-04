@@ -154,6 +154,7 @@ const AccordionItem = ({
           .container-title-compra{
             display : flex;
             flex-direction: column;
+            width : 100%;
           }
           .title-compra-price {
             font-family: "mont-regular" !important;
@@ -238,6 +239,7 @@ const AccordionItem = ({
             }
             .container-title-compra{
               flex-direction : row;
+              justify-content : space-between;
             }
           }
           @media (min-width: 1024px) {
