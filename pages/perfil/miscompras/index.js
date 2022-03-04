@@ -85,8 +85,7 @@ const index = ({ listPurchases, token }) => {
                 <div className="container-accordion">
                   {
                     salesGeneral.length >0 && <AccordionCompras compras={salesGeneral} />
-                  }
-                  
+                  }   
                 </div>
                 <div className="box-pagination">
                   <Pagination />
