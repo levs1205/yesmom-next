@@ -68,7 +68,7 @@ const index = ({ listPurchases, token }) => {
                   path="Mis compras"
                   description="Aquí podrás encontrar todas tus compras y sus estados"
                 />
-                <div className="container-select">
+                {/* <div className="container-select">
                   <select>
                     <option selected disabled>
                       Ordenar por{" "}
@@ -80,7 +80,7 @@ const index = ({ listPurchases, token }) => {
                     <option value="">Últimos 30 días </option>
                     <option value="">Últimos 6 meses </option>
                   </select>
-                </div>
+                </div> */}
 
                 <div className="container-accordion">
                   {
