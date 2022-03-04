@@ -56,7 +56,7 @@ const AccordionItem = ({
                       <div className="description">
                         {/* ESTATICOS - > DINAMICOS */}
                         {
-                          prod && prod.nombreTienda ? <p>{prod.nombreTienda}</p> : <p>Baby Plaza Store</p>
+                          prod && prod.nombreTienda ? <p>{prod.nombreTienda.toUpperCase()}</p> : <p>Baby Plaza Store</p>
                         }
                         {/* <p>N° de compra: {numeroUnico}</p> */}
                         <p>Nombre: {prod.nombre}</p>
@@ -75,7 +75,7 @@ const AccordionItem = ({
                       </div>
                     </div>
                     <div className="stepper">
-                      <Stepper active={estado} />
+                      <Stepper active="P" />
                     </div>
                   </div>
                 </Card.Body>
