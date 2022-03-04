@@ -235,7 +235,7 @@ const AccordionItem = ({
               margin-left: 1.5rem;
             }
             .container-title-compra{
-              flex-direction : column;
+              flex-direction : row;
             }
           }
           @media (min-width: 1024px) {
