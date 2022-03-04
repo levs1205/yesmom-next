@@ -14,11 +14,12 @@ const AccordionItem = ({
   direccion,
   total,
   fechaPedido,
-  estado
+  estado,
 }) => {
   const getDate = (date) => {
     return moment(date).format("DD-MM-YYYY");
   };
+
   return (
     <>
       <Card>
@@ -28,7 +29,7 @@ const AccordionItem = ({
               <div className="container-logo-tienda">
                 {/* <img src="" /> - width :100% || object-fit:cover */}
               </div>
-              <p>{productos[0].nombre}</p>
+              <p>Número de compra : {numeroUnico}</p>
             </div>
             <Expand eventKey={`${ek}`} />
           </div>
@@ -38,47 +39,54 @@ const AccordionItem = ({
         </Card.Header>
         <Accordion.Collapse eventKey={`${ek}`}>
           <>
-            <Card.Body>
-              <div className="all-details">
-                <div className="description-compra">
-                  <div className="img-description">
-                    <img src={productos[0].urlImagen} />
+            {
+              productos.map(( prod , i)=>(
+              <>
+                <Card.Body>
+                  <div className="all-details">
+                    <div className="description-compra">
+                      <div className="img-description">
+                        <img src={prod.urlImagen} />
+                      </div>
+                      <div className="description">
+                        {/* ESTATICOS - > DINAMICOS */}
+                        <p>Baby Plaza Store</p>
+                        {/* <p>N° de compra: {numeroUnico}</p> */}
+                        <p>Sku: {prod.sku}</p>
+                        <p>Cantidad: {prod.cantidad}</p>
+                        {/* <p>Acción: Confirmación recibida</p> */}
+                        <p>Precio unitario: S/ {prod.precio_unitario.toFixed(2)}</p>
+                        {/* <Link href="#">
+                          <p className="contact-tienda">Contactar Tienda</p>
+                        </Link> */}
+                      </div>
+                    </div>
+                    <div className="stepper">
+                      <Stepper active={estado} />
+                    </div>
                   </div>
-                  <div className="description">
-                    {/* ESTATICOS - > DINAMICOS */}
-                    <p>Baby Plaza Store</p>
-                    <p>N° de compra: {numeroUnico}</p>
-                    <p>Sku: SKUUU</p>
-                    <p>Cantidad: {productos[0].cantidad}</p>
-                    <p>Acción: Confirmación recibida</p>
-                    <p>Precio: S/ {total.toFixed(2)}</p>
-                    <Link href="#">
-                      <p className="contact-tienda">Contactar Tienda</p>
-                    </Link>
-                  </div>
-                </div>
-                <div className="stepper">
-                  <Stepper active={estado} />
-                </div>
+                </Card.Body>
+                
+              </>
+              ))
+            }
+          <Card.Footer>
+            <div className="container-details">
+              <div className="ship-details">
+                <img src="/image/calendarImage.svg" alt="fecha de envio" />
+                <p className="title-compra">
+                  <span>Recibe tu compra: </span>{`${getDate(fechaPedido)}`}
+                </p>
               </div>
-            </Card.Body>
-            <Card.Footer>
-              <div className="container-details">
-                <div className="ship-details">
-                  <img src="/image/calendarImage.svg" alt="fecha de envio" />
-                  <p className="title-compra">
-                    <span>Recibe tu compra: </span>{`${getDate(fechaPedido)}`}
-                  </p>
-                </div>
-                <div className="ship-details">
-                  <img src="/image/shipImage.svg" alt="envio" />
-                  <p className="title-compra">
-                    <span>Dirección de entrega: </span>
-                    {direccion}
-                  </p>
-                </div>
+              <div className="ship-details">
+                <img src="/image/shipImage.svg" alt="envio" />
+                <p className="title-compra">
+                  <span>Dirección de entrega: </span>
+                  {direccion}
+                </p>
               </div>
-            </Card.Footer>
+            </div>
+          </Card.Footer>
           </>
         </Accordion.Collapse>
       </Card>

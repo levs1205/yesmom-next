@@ -32,7 +32,8 @@ export const startLogin = ( data ) => {
     return {
         type : types.authLogin,
         payload : {
-            token : data.token
+            token : data.token,
+            isSocialMedia : data.isSocialMedia
         }
     }
 }
@@ -71,9 +72,8 @@ export const startLoginWithGoogle = async ( values ) => {
         const { data } = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/auth/google-profile?userType=U`,{ headers :  {
             'google-token' : tokenId
         }})
-
         if(data?.token){
-            return { token : data.token}
+            return { token : data.token , isSocialMedia : data.isSocialMedia}
             // return { token : tokenId}
         }
 
@@ -104,7 +104,7 @@ export const startLoginWithFacebook = async ( values ) => {
             'facebook-token' : accessToken
         }})
         // console.log('data', data)
-        return { token : data.token}
+        return { token : data.token , isSocialMedia : data.isSocialMedia}
 
     }catch(error){
         console.log(error);

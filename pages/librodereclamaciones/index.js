@@ -43,6 +43,7 @@ const index = () => {
   const [ acuerdo, setAcuerdo ] = useState('');
   const [ tiendas, setTiendas ] = useState([]);
   const [ tiendasSelected, setTiendaSelected ] = useState([]);
+   const [accept, setAccept] = useState(false);
 
 
   console.log('tiendasSelected', tiendasSelected);
@@ -92,6 +93,7 @@ const index = () => {
   const handleChangeAcuerdo = (e) => {
     console.log('e', e.target.value)
     setAcuerdo(e.target.value);
+    setAccept((accept) => !accept);
   }
 
   const handleChangeTienda = (e) => {
@@ -404,7 +406,7 @@ const index = () => {
                         <div className="box-checkbox">
                           <input
                             type="radio"
-                            value="acuerdo"
+                            value={accept}
                             id="acuerdo"
                             name="acuerdo"
                             {...register("acuerdo")}
@@ -418,7 +420,7 @@ const index = () => {
                     </div>
                   </div>
                 </form>
-                <CustomButton  className='btnStyle' fxClick={handleSubmit(submitForm)} >
+                <CustomButton  isDisabled={!accept ? 'btnDisable' : 'boton'} fxClick={handleSubmit(submitForm)} >
                   Enviar
                 </CustomButton>
               </div>

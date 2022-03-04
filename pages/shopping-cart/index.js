@@ -14,6 +14,7 @@ const shoppingCart = () => {
     auth : { logged },
     ui: { cart = [] },
   } = useContext(YesmomContext);
+
   const [accept, setAccept] = useState(false);
 
   
