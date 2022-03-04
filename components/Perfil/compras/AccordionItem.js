@@ -55,7 +55,9 @@ const AccordionItem = ({
                       </div>
                       <div className="description">
                         {/* ESTATICOS - > DINAMICOS */}
-                        <p>Baby Plaza Store</p>
+                        {
+                          prod && prod.nombreTienda ? <p>{prod.nombreTienda}</p> : <p>Baby Plaza Store</p>
+                        }
                         {/* <p>N° de compra: {numeroUnico}</p> */}
                         <p>Nombre: {prod.nombre}</p>
                         <p>Sku: {prod.sku}</p>
@@ -233,6 +235,9 @@ const AccordionItem = ({
             }
             .description {
               margin-left: 1.5rem;
+            }
+            .container-title-compra{
+              flex-direction : row;
             }
           }
           @media (min-width: 1024px) {
