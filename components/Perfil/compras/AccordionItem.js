@@ -33,9 +33,14 @@ const AccordionItem = ({
             </div>
             <Expand eventKey={`${ek}`} />
           </div>
-          <p className="title-compra">
-            <span>Fecha de compra:</span> {`${getDate(fechaCreacion)}`}
-          </p>
+          <div className="container-title-compra">
+            <p className="title-compra">
+              <span>Fecha de compra:</span> {`${getDate(fechaCreacion)}`}
+            </p>
+            <p className="title-compra">
+              <span>Total:</span> S/. {total.toFixed(2)}
+            </p>
+          </div>
         </Card.Header>
         <Accordion.Collapse eventKey={`${ek}`}>
           <>
@@ -50,11 +55,19 @@ const AccordionItem = ({
                       </div>
                       <div className="description">
                         {/* ESTATICOS - > DINAMICOS */}
-                        <p>Baby Plaza Store</p>
+                        {
+                          prod && prod.nombreTienda ? <p>{prod.nombreTienda}</p> : <p>Baby Plaza Store</p>
+                        }
                         {/* <p>N° de compra: {numeroUnico}</p> */}
+                        <p>Nombre: {prod.nombre}</p>
                         <p>Sku: {prod.sku}</p>
                         <p>Cantidad: {prod.cantidad}</p>
-                        {/* <p>Acción: Confirmación recibida</p> */}
+                        {
+                          prod && prod.color && prod.color.length && <p>Color: {prod.color}</p>
+                        }
+                        {
+                          prod && prod.talla && prod.talla.length && <p>Talla: {prod.talla}</p>
+                        }
                         <p>Precio unitario: S/ {prod.precio_unitario.toFixed(2)}</p>
                         {/* <Link href="#">
                           <p className="contact-tienda">Contactar Tienda</p>
@@ -138,6 +151,17 @@ const AccordionItem = ({
           .header-title p {
             margin-left: 2rem;
           }
+          .container-title-compra{
+            display : flex;
+            flex-direction: column;
+            width : 100%;
+          }
+          .title-compra-price {
+            font-family: "mont-regular" !important;
+            color: #575650;
+            letter-spacing: 0.05rem;
+            font-size: 2rem;
+          }
           .title-compra {
             font-family: "mont-regular" !important;
             color: #575650;
@@ -212,6 +236,10 @@ const AccordionItem = ({
             }
             .description {
               margin-left: 1.5rem;
+            }
+            .container-title-compra{
+              flex-direction : row;
+              justify-content : space-between;
             }
           }
           @media (min-width: 1024px) {
