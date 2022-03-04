@@ -17,33 +17,54 @@ import Paginaton from "../../../components/Pagination";
 export async function getServerSideProps({ query }) {
   //Todos los productos
   const { category = "", sort = "" } = query;
+	let filter;
+	let categoryItem;
+	
+	if(category === 'solo-en-yes-mom'){
+		filter = 3;
+		categoryItem = null;
+	} else if(category === 'lo-vendido'){
+		filter = 1;
+		categoryItem = null;
+	} else if(category === 'packs-de-regalo'){
+		filter = 4;
+		categoryItem = null;
+	} else if(category === 'promociones'){
+		filter = 2;
+		categoryItem = null;
+	} else {
+		filter = null;
+		categoryItem = category;
+	}
 
   const { response } = await getCategories();
 
   if (!response) {
     return {
       props: {
-        category,
-        categoryList: response,
+        category: categoryItem,
+        categoryList: {},
+				filter
       },
     };
   }
   return {
     props: {
-      category,
+      category: categoryItem,
       categoryList: response,
+			filter
     },
   };
 }
 
-const Categoria = ({ category, categoryList }) => {
+const Categoria = ({ category, categoryList, filter }) => {
   const {
     dispatchUi,
     ui: { category: categorySelected },
   } = useContext(YesmomContext);
   const [skip, setSkip] = useState(0);
   const [currentpage, setCurrentPage] = useState(1);
-  const [order, setOrder] = useState("order");
+  const [order, setOrder] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
   const [productList, setProductList] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
@@ -56,65 +77,17 @@ const Categoria = ({ category, categoryList }) => {
 
   useEffect(() => {
     getListProducts();
-  }, [skip, currentpage, category, order]);
+  }, [skip, currentpage, category, order, filter]);
 
   useEffect(() => {
-    setOrder("order");
+    setOrder(0);
   }, [category]);
-
+	
   const getListProducts = async () => {
     try {
       setLoading(true);
-      const response = await getProducts(category, null, skip, productsPerPage);
-      if (response?.productosGeneral.length > 0) {
-        if (order === "mayor") {
-          setProductList(
-            response?.productosGeneral.sort(
-              (a, b) => b.product.precio - a.product.precio
-            )
-          );
-        } else if (order === "menor") {
-          setProductList(
-            response?.productosGeneral.sort(
-              (a, b) => a.product.precio - b.product.precio
-            )
-          );
-        } else if (order === "asc") {
-          setProductList(
-            response?.productosGeneral.sort((a, b) => {
-              if (
-                a.product.nombre.toLowerCase() > b.product.nombre.toLowerCase()
-              ) {
-                return 1;
-              }
-              if (
-                a.product.nombre.toLowerCase() < b.product.nombre.toLowerCase()
-              ) {
-                return -1;
-              }
-              return 0;
-            })
-          );
-        } else if (order === "desc") {
-          setProductList(
-            response?.productosGeneral.sort((a, b) => {
-              if (
-                a.product.nombre.toLowerCase() > b.product.nombre.toLowerCase()
-              ) {
-                return -1;
-              }
-              if (
-                a.product.nombre.toLowerCase() < b.product.nombre.toLowerCase()
-              ) {
-                return 1;
-              }
-              return 0;
-            })
-          );
-        } else if (order === "order") {
-          setProductList(response?.productosGeneral);
-        }
-      } else setProductList(response?.productosGeneral);
+      const response = await getProducts(category, null, skip, productsPerPage, null, order, filter);
+     	setProductList(response?.productosGeneral);
       setTotalProducts(response?.totalDeProductos);
       setTotalPages(response?.pages);
       setLoading(false);
@@ -213,13 +186,15 @@ const Categoria = ({ category, categoryList }) => {
                   </div>
                   <div className="container-selects">
                     <select value={order} onChange={handleChangeOrder}>
-                      <option value="order" disabled>
+											<option value={0} disabled>
                         Ordenar por
                       </option>
-                      <option value="mayor">Precio de mayor a menor </option>
-                      <option value="menor">Precio de menor a mayor </option>
-                      <option value="asc">A-Z (alfabéticamente) </option>
-                      <option value="desc">Z-A (alfabéticamente) </option>
+                      <option value={2}>Precio de mayor a menor </option>
+                      <option value={1}>Precio de menor a mayor </option>
+											<option value={3}>A-Z (alfabéticamente) </option>
+											<option value={4}>Z-A (alfabéticamente) </option>
+											{/*	<option value="">Últimos 30 días </option>
+												<option value="">Últimos 6 meses </option> */}
                     </select>
                   </div>
                 </div>

@@ -44,7 +44,7 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
     try {
 			setLoading(true);
       const { productosGeneral, totalDeProductos, pages } =
-        await getProductsByIdStore(dataSupplier._id, skip, productsPerPage, null, isSale ? 2 : 1);
+        await getProductsByIdStore(dataSupplier._id, skip, productsPerPage, null, isSale ? 2 : null);
       
       setTotalProducts(totalDeProductos);
       setProductList(productosGeneral);
@@ -266,11 +266,16 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
             padding: 8.5rem 0;
           }
           .container-banner {
-            margin-top: 4rem;
-            margin-bottom: 4rem;
+						width: 30rem;
+						max-height: 11.3rem;
+            margin: 4rem auto !important;
+						transition: all 0.3s ease-in-out;
           }
 					.container-banner img {
-            
+            border: 1px solid black;
+						height: 100%;
+						object-fit: cover;
+						object-position: center center;
           }
           .products {
             padding-right: 2rem;
@@ -319,8 +324,10 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
               justify-content: space-between;
             }
             .container-banner {
-              margin: 1rem;
-            }
+							width: 44.6rem;
+							max-height: 16.8rem;
+							margin: 4rem auto !important;
+						}
             .container-products-end {
               flex-basis: 70%;
             }
@@ -372,18 +379,16 @@ export const getServerSideProps = async ({ query }) => {
 	let responseData;
 	let slugString;
 	let isSale = false;
+
 	if(proveedor.includes('promociones-')){
 		let stringSplit = proveedor.split('promociones-')
 		slugString = stringSplit[1]
-		console.log('SI existe', proveedor.split('promociones-'))
 		responseData = await getStoreByName(stringSplit[1]);
 		isSale = true;
 	} else {
-		console.log('NO existe')
 		responseData = await getStoreByName(proveedor);
 		slugString = proveedor
 	}
-  /* const responseData = await getStoreByName(proveedor); */
 
   if (responseData.proveedor !== null) {
     return {

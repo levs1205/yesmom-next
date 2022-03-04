@@ -1048,7 +1048,10 @@ export const getServerSideProps = async ({ query }) => {
     null,
     producto?.categoria,
     0,
-    4
+    4,
+    null,
+    null,
+    null
   );
 
   if (!producto) {

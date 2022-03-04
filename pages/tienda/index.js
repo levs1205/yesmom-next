@@ -26,7 +26,7 @@ const imagesDesktop = [
 
 const Product = ({ categoryList, path }) => {
   const [skip, setSkip] = useState(0);
-	const [order, setOrder] = useState("order");
+	const [order, setOrder] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
   const [productsPerPage, setProductsPerPage] = useState(12);
   const [productList, setProductList] = useState([]);
@@ -55,50 +55,8 @@ const Product = ({ categoryList, path }) => {
   const getListProducts = async () => {
     try {
       setLoading(true);
-      const response = await getProducts(null, "all", skip, productsPerPage);
-      if (order === "mayor") {
-        setProductList(
-          response?.productosGeneral.sort(
-            (a, b) => b.product.precio - a.product.precio
-          )
-        );
-      } else if (order === "menor") {
-        setProductList(
-          response?.productosGeneral.sort(
-            (a, b) => a.product.precio - b.product.precio
-          )
-        );
-      } else if (order === "asc") {
-        setProductList(
-          response?.productosGeneral.sort(
-            (a, b) => {
-							if(a.product.nombre.toLowerCase() > b.product.nombre.toLowerCase()) {
-								return 1;
-							}
-							if (a.product.nombre.toLowerCase() < b.product.nombre.toLowerCase()) {
-								return -1;
-							}
-							return 0;
-						}
-          )
-        );
-      } else if (order === "desc") {
-        setProductList(
-          response?.productosGeneral.sort(
-            (a, b) => {
-							if(a.product.nombre.toLowerCase() > b.product.nombre.toLowerCase()) {
-								return -1;
-							}
-							if (a.product.nombre.toLowerCase() < b.product.nombre.toLowerCase()) {
-								return 1;
-							}
-							return 0;
-						}
-          )
-        );
-      } else if (order === "order") {
-        setProductList(response?.productosGeneral);
-      }
+      const response = await getProducts(null, "all", skip, productsPerPage, null, order, null);
+			setProductList(response?.productosGeneral);
       setTotalProducts(response?.totalDeProductos);
       setTotalPages(response?.pages);
       setLoading(false);
@@ -223,13 +181,13 @@ const Product = ({ categoryList, path }) => {
 									</h4>
 									<div className="container-select">
 									<select value={order} onChange={handleChangeOrder}>
-                      <option value="order" disabled>
+                      <option value={0} disabled>
                         Ordenar por
                       </option>
-                      <option value="mayor">Precio de mayor a menor </option>
-                      <option value="menor">Precio de menor a mayor </option>
-											<option value="asc">A-Z (alfabéticamente) </option>
-											<option value="desc">Z-A (alfabéticamente) </option>
+                      <option value={2}>Precio de mayor a menor </option>
+                      <option value={1}>Precio de menor a mayor </option>
+											<option value={3}>A-Z (alfabéticamente) </option>
+											<option value={4}>Z-A (alfabéticamente) </option>
 										{/*	<option value="">Últimos 30 días </option>
 											<option value="">Últimos 6 meses </option> */}
 										</select>
@@ -256,7 +214,7 @@ const Product = ({ categoryList, path }) => {
                       </>
                     ) : (
                       <>
-                        {productList.length > 0 ? (
+                        {productList?.length > 0 ? (
                           productList.map((product, i) => (
                             <Col xs={6} sm={4}>
                               <CardProduct key={i} {...product} />
