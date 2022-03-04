@@ -20,12 +20,7 @@ import { setProducts, setCategories } from "../../context/actions/ui";
 import { getApiBusiness } from "../../helpers/httpCreators";
 import SidebarProductoProveedor from "../../components/tienda/SidebarProductProveedor";
 
-<<<<<<< HEAD
-const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
-  console.log('dataSupplier', dataSupplier);
-=======
 const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
->>>>>>> 7dbeef3c41da1aa9a4e2bb15925b482ade7b973b
   const [skip, setSkip] = useState(0);
   const [productsPerPage, setProductsPerPage] = useState(9);
   const [productList, setProductList] = useState([]);
