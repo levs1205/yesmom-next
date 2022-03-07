@@ -23,6 +23,7 @@ const DetailProduct = ({
   };
 
   const haveDiscount = useMemo(() => {
+    if(precioPromocional) return true;
     if (!fechaInicioPromocion || !fechaFinPromocion)
       return false;
 

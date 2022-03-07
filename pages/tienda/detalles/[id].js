@@ -311,6 +311,7 @@ const DetallesID = ({
   };
 
   const haveDiscount = useMemo(()=>{
+    if(product.precioPromocional > 0 ) return true;
     if( !product || !product.fechaInicioPromocion || !product.fechaFinPromocion) return false;
 
     const init_promo = moment(product.fechaInicioPromocion);
