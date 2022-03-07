@@ -32,7 +32,9 @@ function Pagination({ totalPages, currentpage, setCurrentPage, skip, setSkip, pr
             className={`page ${currentpage === i + 1 ? "page-selected" : ""}`}
 						onClick={() => handleObtainPagination(i + 1)}
           >
-            {i + 1}
+            {
+              i+1
+            }
           </div>
         ))}
         <div className={`next-page ${isDisalbled === true && 'next-page-disabled'}`} onClick= { handleObtainNextPosition }>
@@ -55,6 +57,7 @@ function Pagination({ totalPages, currentpage, setCurrentPage, skip, setSkip, pr
           .container-pages {
             display: flex;
             align-items: center;
+            place-content: center;
           }
           .page,
           .next-page {
