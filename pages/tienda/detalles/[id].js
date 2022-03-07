@@ -663,7 +663,7 @@ const DetallesID = ({
           h5.show--ft-semibold,
           h6.show--ft-light {
             text-align: left;
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: #5a5a5a;
             margin: 1.5rem 0;
             text-decoration: none;
@@ -725,7 +725,7 @@ const DetallesID = ({
 
           .show--text-description {
             font-family: "mont-light" !important;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             color: #5a5a5a;
             margin: 1rem 0;
             letter-spacing: 0.01rem;
