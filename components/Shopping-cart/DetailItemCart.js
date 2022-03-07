@@ -28,6 +28,7 @@ const DetailItemCart = ({
   };
 
   const haveDiscountProduct = useMemo(() => {
+    if( precioPromocional > 0) return true;
     if( !fechaInicioPromocion || !fechaFinPromocion) return false;
 
     const init_promo = moment(fechaInicioPromocion);
