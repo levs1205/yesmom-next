@@ -53,12 +53,12 @@ const schemaThird = yup.object().shape({
 const Checkout = () => {
 
   const router = useRouter();
-  const  { auth : { logged } , dispatchSale , ui : { cart }} = useContext(YesmomContext);
+  const  { auth : { logged } , dispatchSale , ui : { cart } , client} = useContext(YesmomContext);
   const [selected, setSelected] = useState(0);
   const [ checking , setChecking] = useState(false);
   const [idPreference , setIdPreference] = useState(null);
 
-  const { register, handleSubmit, formState:{ errors }, watch  } = useForm({
+  const { register, handleSubmit, formState:{ errors }, watch, setValue  } = useForm({
     resolver: yupResolver(schemaFirst),
   })
 
@@ -190,6 +190,13 @@ const Checkout = () => {
     }
   },[ cart ])
 
+  useEffect(()=>{
+    if(client && client.data){
+      setValue('email' ,client.data.principalEmail);
+      setValue('name',  client.data.fullname);
+      setValue('phone',client.data.phone);
+    }
+  },[client])
   useEffect(()=>{
     openMercadoPago();
   },[idPreference])

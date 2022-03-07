@@ -14,7 +14,7 @@ const AccordionItem = ({
   direccion,
   total,
   fechaPedido,
-  estado
+  estado,
 }) => {
   const getDate = (date) => {
     return moment(date).format("DD-MM-YYYY");
@@ -29,13 +29,18 @@ const AccordionItem = ({
               <div className="container-logo-tienda">
                 {/* <img src="" /> - width :100% || object-fit:cover */}
               </div>
-              <p>{productos[0].nombre}</p>
+              <p>Número de compra : {numeroUnico}</p>
             </div>
             <Expand eventKey={`${ek}`} />
           </div>
-          <p className="title-compra">
-            <span>Fecha de compra:</span> {`${getDate(fechaCreacion)}`}
-          </p>
+          <div className="container-title-compra">
+            <p className="title-compra">
+              <span>Fecha de compra:</span> {`${getDate(fechaCreacion)}`}
+            </p>
+            <p className="title-compra">
+              <span>Total:</span> S/. {total.toFixed(2)}
+            </p>
+          </div>
         </Card.Header>
         <Accordion.Collapse eventKey={`${ek}`}>
           <>
@@ -50,42 +55,51 @@ const AccordionItem = ({
                       </div>
                       <div className="description">
                         {/* ESTATICOS - > DINAMICOS */}
-                        <p>Baby Plaza Store</p>
-                        <p>N° de compra: {numeroUnico}</p>
-                        <p>Sku: SKUUU</p>
+                        {
+                          prod && prod.nombreTienda ? <p>{prod.nombreTienda.toUpperCase()}</p> : <p>Baby Plaza Store</p>
+                        }
+                        {/* <p>N° de compra: {numeroUnico}</p> */}
+                        <p>Nombre: {prod.nombre}</p>
+                        <p>Sku: {prod.sku}</p>
                         <p>Cantidad: {prod.cantidad}</p>
-                        <p>Acción: Confirmación recibida</p>
-                        <p>Precio: S/ {total.toFixed(2)}</p>
-                        <Link href="#">
+                        {
+                          prod && prod.color && prod.color.length && <p>Color: {prod.color}</p>
+                        }
+                        {
+                          prod && prod.talla && prod.talla.length && <p>Talla: {prod.talla}</p>
+                        }
+                        <p>Precio unitario: S/ {prod.precio_unitario.toFixed(2)}</p>
+                        {/* <Link href="#">
                           <p className="contact-tienda">Contactar Tienda</p>
-                        </Link>
+                        </Link> */}
                       </div>
                     </div>
                     <div className="stepper">
-                      <Stepper active={estado} />
+                      <Stepper active={prod && prod.estado ? prod.estado : 'P'} />
                     </div>
                   </div>
                 </Card.Body>
-                <Card.Footer>
-                  <div className="container-details">
-                    <div className="ship-details">
-                      <img src="/image/calendarImage.svg" alt="fecha de envio" />
-                      <p className="title-compra">
-                        <span>Recibe tu compra: </span>{`${getDate(fechaPedido)}`}
-                      </p>
-                    </div>
-                    <div className="ship-details">
-                      <img src="/image/shipImage.svg" alt="envio" />
-                      <p className="title-compra">
-                        <span>Dirección de entrega: </span>
-                        {direccion}
-                      </p>
-                    </div>
-                  </div>
-                </Card.Footer>
+                
               </>
               ))
             }
+          <Card.Footer>
+            <div className="container-details">
+              <div className="ship-details">
+                <img src="/image/calendarImage.svg" alt="fecha de envio" />
+                <p className="title-compra">
+                  <span>Recibe tu compra: </span>{`${getDate(fechaPedido)}`}
+                </p>
+              </div>
+              <div className="ship-details">
+                <img src="/image/shipImage.svg" alt="envio" />
+                <p className="title-compra">
+                  <span>Dirección de entrega: </span>
+                  {direccion}
+                </p>
+              </div>
+            </div>
+          </Card.Footer>
           </>
         </Accordion.Collapse>
       </Card>
@@ -136,6 +150,17 @@ const AccordionItem = ({
           }
           .header-title p {
             margin-left: 2rem;
+          }
+          .container-title-compra{
+            display : flex;
+            flex-direction: column;
+            width : 100%;
+          }
+          .title-compra-price {
+            font-family: "mont-regular" !important;
+            color: #575650;
+            letter-spacing: 0.05rem;
+            font-size: 2rem;
           }
           .title-compra {
             font-family: "mont-regular" !important;
@@ -211,6 +236,10 @@ const AccordionItem = ({
             }
             .description {
               margin-left: 1.5rem;
+            }
+            .container-title-compra{
+              flex-direction : row;
+              justify-content : space-between;
             }
           }
           @media (min-width: 1024px) {

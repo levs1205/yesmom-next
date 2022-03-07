@@ -20,12 +20,7 @@ import { setProducts, setCategories } from "../../context/actions/ui";
 import { getApiBusiness } from "../../helpers/httpCreators";
 import SidebarProductoProveedor from "../../components/tienda/SidebarProductProveedor";
 
-<<<<<<< HEAD
-const ProveedorSlug = ({ dataSupplier, productsQty, pages }) => {
-  console.log('dataSupplier', dataSupplier);
-=======
 const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
->>>>>>> 7dbeef3c41da1aa9a4e2bb15925b482ade7b973b
   const [skip, setSkip] = useState(0);
   const [productsPerPage, setProductsPerPage] = useState(9);
   const [productList, setProductList] = useState([]);
@@ -49,7 +44,7 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
     try {
 			setLoading(true);
       const { productosGeneral, totalDeProductos, pages } =
-        await getProductsByIdStore(dataSupplier._id, skip, productsPerPage, null, isSale ? 2 : 1);
+        await getProductsByIdStore(dataSupplier._id, skip, productsPerPage, null, isSale ? 2 : null);
       
       setTotalProducts(totalDeProductos);
       setProductList(productosGeneral);
@@ -63,15 +58,10 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
   return (
     <AppLayout>
       <Head>
-        <title>YesMom - {dataSupplier.nombreTienda}</title>
-        <meta name="description" content="Yes Mom es una plataforma digital peruana que ayuda a las
-          mamis a disfrutar su maternidad sin preocupaciones. Queremos
-          ser la marca aliada que todos los papás estuvieron buscando,
-          una página web que reúne en un solo lugar todo lo que
-          necesitan para la llegada de su bebé y acompañar su
-          crecimiento."></meta>
+        <title>YesMom - Proveedor</title>
+        <meta name="description" content="YesMom es ..."></meta>
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={`Yesmom - ${dataSupplier.nombreTienda}`} />
+        <meta property="og:title" content="YesMom - Proveedor" />
         <meta
           property="og:description"
           content="Yes Mom es una plataforma digital peruana que ayuda a las
@@ -84,17 +74,14 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
         <meta
           property="og:image"
           itemprop="image"
-          // content="https://yesmom.vercel.app/image/about-header.png"
-          content={
-            dataSupplier.imagenLogo[0].url
-          }
+          content="https://yesmom.vercel.app/image/about-header.png"
         />
         <meta property="og:image:width" content="1280" />
         <meta property="og:image:height" content="855" />
         <meta property="og:site_name" content="Yes Mom" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content={`Yesmom - ${dataSupplier.nombreTienda}`} />
+        <meta name="twitter:title" content="YesMom - Proveedor" />
         <meta
           name="twitter:description"
           content="Yes Mom es una plataforma digital peruana que ayuda a las
@@ -106,9 +93,7 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
         />
         <meta
           name="twitter:image"
-          content={
-            dataSupplier.imagenLogo[0].url
-          }
+          content="https://yesmom.vercel.app/image/about-header.png"
         />
       </Head>
       <div className="contenedor fade-in animated ">
@@ -123,8 +108,8 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
             {currentpage === 1 ? (
               <div className="container-products">
                 <div className="container-banner center">
-                  <Image
-                    loader={() => logoStore}
+                  <img
+										className="logo-store-supplier"
                     src={logoStore}
                     width="446px"
                     height="168px"
@@ -261,6 +246,21 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
           :global(.carousel-indicators li) {
             background-color: #dc6a8d;
           }
+					:global(.show-desktop .box-carousel) {
+            height: 61rem;
+          }
+					:global(.show-desktop .box-carousel .carousel-item) {
+            height: 61rem;
+						object-fit: cover;
+            object-position: center center;
+						width: 100%;
+          }
+					:global(.show-desktop .box-carousel .carousel-item img) {
+            height: 61rem;
+						object-fit: cover;
+            object-position: center center;
+						width: 100%;
+          }
           :global(.carousel-indicators li) {
             border-radius: 50%;
             height: 1.5rem;
@@ -281,12 +281,23 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
             padding: 8.5rem 0;
           }
           .container-banner {
-            margin-top: 4rem;
-            margin-bottom: 4rem;
+						width: auto;
+						height: 11rem;
+            margin: 4rem auto;
+						transition: all 0.3s ease-in-out;
           }
-					.container-banner img {
-            
-          }
+					.logo-store-supplier {
+						width: auto;
+						height: 11rem;
+					}
+					.carousel-item {
+						width: 100%;
+						height: 100%;
+					}
+					.carousel-item {
+						width: 100%;
+						height: 100%;
+					}
           .products {
             padding-right: 2rem;
             padding-left: 2rem;
@@ -334,8 +345,10 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
               justify-content: space-between;
             }
             .container-banner {
-              margin: 1rem;
-            }
+							width: 44.6rem;
+							height: auto;
+							margin: 4rem auto !important;
+						}
             .container-products-end {
               flex-basis: 70%;
             }
@@ -387,18 +400,16 @@ export const getServerSideProps = async ({ query }) => {
 	let responseData;
 	let slugString;
 	let isSale = false;
+
 	if(proveedor.includes('promociones-')){
 		let stringSplit = proveedor.split('promociones-')
 		slugString = stringSplit[1]
-		console.log('SI existe', proveedor.split('promociones-'))
 		responseData = await getStoreByName(stringSplit[1]);
 		isSale = true;
 	} else {
-		console.log('NO existe')
 		responseData = await getStoreByName(proveedor);
 		slugString = proveedor
 	}
-  /* const responseData = await getStoreByName(proveedor); */
 
   if (responseData.proveedor !== null) {
     return {

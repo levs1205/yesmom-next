@@ -1,11 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useContext, useState, useMemo} from "react";
+import YesmomContext from "../context/Context";
 
-function DropMenuMobile({ active, setActive, logged }) {
+const DropMenuMobile = ({ active, setActive, logged }) => {
+
+  const { client } = useContext(YesmomContext);
   const [expand, setExpand] = useState(false);
   const { pathname } = useRouter();
+
+  const makeName = useMemo(() => {
+
+    if(client && client.data){
+        if(Object.keys(client).length >0 && Object.keys(client.data).length >0){
+            const shortName = client.data.fullname.trim().split(' ')[0];
+            return shortName[0].toUpperCase() + shortName.slice(1,shortName.length);
+        }else{
+            return 'Name';
+        }
+    }else{
+        return 'Name';
+    }
+},[client])
 
   const linksPush = [
     { src: "/image/header/nosotros.svg", to: "/nosotros", name: "Nosotros" },
@@ -104,7 +121,7 @@ function DropMenuMobile({ active, setActive, logged }) {
                         />
                       </div>
                       <div>
-                        <h6 className="text-navbar">Perfil - Lucia Q.</h6>
+                        <h6 className="text-navbar">Perfil - {makeName}</h6>
                       </div>
                     </div>
                     <div

@@ -23,6 +23,7 @@ const DetailProduct = ({
   };
 
   const haveDiscount = useMemo(() => {
+    if(precioPromocional >0 ) return true;
     if (!fechaInicioPromocion || !fechaFinPromocion)
       return false;
 
@@ -45,7 +46,7 @@ const DetailProduct = ({
         tempStr+=`Talla: ${sizeSelected}`
       }
       if(colourSelected && colourSelected.length>0){
-        tempStr+=`${sizeSelected && sizeSelected.length ? ' |' : ''}  Color: ${colourSelected}`
+        tempStr+=`${sizeSelected?.length ? ' |' : ''}  Color: ${colourSelected}`
       }
     }
 

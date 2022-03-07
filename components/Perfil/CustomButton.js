@@ -1,8 +1,16 @@
 import React from 'react'
+<<<<<<< HEAD
+function CustomButton({outline , children, fxClick, type}) {
+
+    return (
+        <>
+            <div onClick={fxClick} className="boton">
+=======
 const  CustomButton = ({outline , children, fxClick, type, isDisabled}) =>{
     return (
         <>
             <div onClick={fxClick} className={`boton ${isDisabled}`}>
+>>>>>>> 8bb5048696722495eb60aa009548754c51122fc0
                 <p>
                     {children}
                 </p>
@@ -10,17 +18,6 @@ const  CustomButton = ({outline , children, fxClick, type, isDisabled}) =>{
             <style jsx>
                 {`
                     .boton{
-                        cursor:pointer;
-                        border-radius: 30px;
-                        border : ${outline ? "1px solid #EC608D" : ""};
-                        background-color:${outline ? "#FFFFFF" : "#EC608D"};
-                        padding: 1rem 0;
-                        margin:2rem 3rem;
-                        transition:0.3s ease-in-out;
-                    }
-                    .btnDisable{
-                        opacity: 0.5 ;
-                        pointer-events: none;
                         cursor:pointer;
                         border-radius: 30px;
                         border : ${outline ? "1px solid #EC608D" : ""};

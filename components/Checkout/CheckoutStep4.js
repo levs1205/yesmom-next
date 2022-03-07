@@ -34,6 +34,7 @@ const CheckoutStep4 = ({ register, setSelected , infoDatos , infoEntrega }) => {
   const memorizedDate = useMemo(() => makeSpanishDate(fechaEntrega) , [fechaEntrega]);
 
   const haveDiscountProduct = ( product ) => {
+    if(product.precioPromocional > 0) return true;
     if( !product || !product.fechaInicioPromocion || !product.fechaFinPromocion) return false;
 
     const init_promo = moment(product.fechaInicioPromocion);

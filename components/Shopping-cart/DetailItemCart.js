@@ -26,8 +26,8 @@ const DetailItemCart = ({
   const handleRemoveProduct = () => {
     dispatchUi(startRemoveProduct(idProductCart));
   };
-
   const haveDiscountProduct = useMemo(() => {
+    if( precioPromocional > 0) return true;
     if( !fechaInicioPromocion || !fechaFinPromocion) return false;
 
     const init_promo = moment(fechaInicioPromocion);
@@ -79,24 +79,23 @@ const DetailItemCart = ({
               {nombre}
               </a>
             </Link>
+
+
             <p className="block-text__short-description">
               {makeDetails}
             </p>
-            <p className="block-text__short-description">
-              Cantidad: {quantity}
-            </p>
-            {/* <select name="" id="" className="block-text__select">
+            <select name="" id="" className="block-text__select">
               <option value="">Cantidad: {quantity}</option>
-            </select> */}
+            </select>
           </div>
         </div>
         <div className="card__block-second">
           <div className="block-second__block-store-text">
-            <img
+            {/* <img
               className="block-store-text__img"
               src="https://img.freepik.com/vector-gratis/plantilla-logotipo-bebe-detallada_23-2148776913.jpg?size=338&ext=jpg"
               alt=""
-            />
+            /> */}
             <p className="block-store-text__text">{supplier}</p>
           </div>
           <p className="block-second__block-store-price">

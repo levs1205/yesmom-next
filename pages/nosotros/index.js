@@ -205,7 +205,7 @@ const index = () => {
           .box-somos-yesmom {
             padding: 3.9rem 3.2rem;
             font-family: "mont-regular" !important;
-            font-size: 1rem;
+            font-size: 1.3rem;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -216,7 +216,7 @@ const index = () => {
             margin-bottom: 3rem;
           }
           .box-somos-yesmom > .subtitle-about {
-            width: 9.8rem;
+            width: 14.8rem;
             height: auto;
           }
           .nube1-somos {

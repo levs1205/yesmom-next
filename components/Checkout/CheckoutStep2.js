@@ -3,17 +3,19 @@ import React, { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
 import DatePicker from "react-date-picker/dist/entry.nostyle";
 
-const today = new Date()
-const tomorrow = new Date(today)
-const nextWeek = new Date(today);
+// const today = new Date()
+// const tomorrow = new Date(today)
+// const nextWeek = new Date(today);
 
-nextWeek.setDate(tomorrow.getDate()+7);
-tomorrow.setDate(tomorrow.getDate() + 1)
+// nextWeek.setDate(tomorrow.getDate()+7);
+// tomorrow.setDate(tomorrow.getDate() + 1)
 
 const CheckoutStep2 = ({ register, errors, control, watch, setSelected, thirdPart }) => {
 
 
   const [ locations , setLocations ] = useState([]);
+  const [ minDate, setMinDate ] = useState(null);
+  const [ maxDate, setMaxDate ] = useState(null);
   const { email , name , identity , phone} = watch();
   const { recibePedido} = thirdPart();
 
@@ -31,11 +33,30 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected, thirdPar
     }
   }
 
+  const getRangeAvailable = async () => {
+    try{
+      
+      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/sale/deliveryavailable`);
+      if(data && data.fechaInicio && data.fechaFin){
+        setMaxDate(new Date(data.fechaFin));
+        setMinDate(new Date(data.fechaInicio));
+      }
+    }catch(err){
+      console.log(err);
+      setMaxDate(null);
+      setMinDate(null);
+    }
+  }
+
 
   useEffect(()=>{
     getLocations();
-
-    return () => setLocations([])
+    getRangeAvailable();
+    return () =>{
+      setLocations([]);
+      setMaxDate(null);
+      setMinDate(null);
+    }
   },[])
 
 
@@ -88,7 +109,7 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected, thirdPar
         <Controller
           name='fechaEntrega'
           control = { control }
-          render={({ field }) => <DatePicker minDate={tomorrow} maxDate={nextWeek}{...field} />}
+          render={({ field }) => <DatePicker minDate={minDate} maxDate={maxDate} {...field} />}
         />
 
         <p className="msg-error">{errors?.fechaEntrega?.message && 'Fecha inválida'}</p>
