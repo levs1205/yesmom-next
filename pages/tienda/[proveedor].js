@@ -44,7 +44,7 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
     try {
 			setLoading(true);
       const { productosGeneral, totalDeProductos, pages } =
-        await getProductsByIdStore(dataSupplier._id, skip, productsPerPage, null, isSale ? 2 : 1);
+        await getProductsByIdStore(dataSupplier._id, skip, productsPerPage, null, isSale ? 2 : null);
       
       setTotalProducts(totalDeProductos);
       setProductList(productosGeneral);
@@ -108,8 +108,8 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
             {currentpage === 1 ? (
               <div className="container-products">
                 <div className="container-banner center">
-                  <Image
-                    loader={() => logoStore}
+                  <img
+										className="logo-store-supplier"
                     src={logoStore}
                     width="446px"
                     height="168px"
@@ -246,6 +246,21 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
           :global(.carousel-indicators li) {
             background-color: #dc6a8d;
           }
+					:global(.show-desktop .box-carousel) {
+            height: 61rem;
+          }
+					:global(.show-desktop .box-carousel .carousel-item) {
+            height: 61rem;
+						object-fit: cover;
+            object-position: center center;
+						width: 100%;
+          }
+					:global(.show-desktop .box-carousel .carousel-item img) {
+            height: 61rem;
+						object-fit: cover;
+            object-position: center center;
+						width: 100%;
+          }
           :global(.carousel-indicators li) {
             border-radius: 50%;
             height: 1.5rem;
@@ -266,12 +281,23 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
             padding: 8.5rem 0;
           }
           .container-banner {
-            margin-top: 4rem;
-            margin-bottom: 4rem;
+						width: auto;
+						height: 11rem;
+            margin: 4rem auto;
+						transition: all 0.3s ease-in-out;
           }
-					.container-banner img {
-            
-          }
+					.logo-store-supplier {
+						width: auto;
+						height: 11rem;
+					}
+					.carousel-item {
+						width: 100%;
+						height: 100%;
+					}
+					.carousel-item {
+						width: 100%;
+						height: 100%;
+					}
           .products {
             padding-right: 2rem;
             padding-left: 2rem;
@@ -319,8 +345,10 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
               justify-content: space-between;
             }
             .container-banner {
-              margin: 1rem;
-            }
+							width: 44.6rem;
+							height: auto;
+							margin: 4rem auto !important;
+						}
             .container-products-end {
               flex-basis: 70%;
             }
@@ -372,18 +400,16 @@ export const getServerSideProps = async ({ query }) => {
 	let responseData;
 	let slugString;
 	let isSale = false;
+
 	if(proveedor.includes('promociones-')){
 		let stringSplit = proveedor.split('promociones-')
 		slugString = stringSplit[1]
-		console.log('SI existe', proveedor.split('promociones-'))
 		responseData = await getStoreByName(stringSplit[1]);
 		isSale = true;
 	} else {
-		console.log('NO existe')
 		responseData = await getStoreByName(proveedor);
 		slugString = proveedor
 	}
-  /* const responseData = await getStoreByName(proveedor); */
 
   if (responseData.proveedor !== null) {
     return {

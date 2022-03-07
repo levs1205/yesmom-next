@@ -1,9 +1,16 @@
 import React from 'react'
+<<<<<<< HEAD
 function CustomButton({outline , children, fxClick, type}) {
 
     return (
         <>
             <div onClick={fxClick} className="boton">
+=======
+const  CustomButton = ({outline , children, fxClick, type, isDisabled}) =>{
+    return (
+        <>
+            <div onClick={fxClick} className={`boton ${isDisabled}`}>
+>>>>>>> 8bb5048696722495eb60aa009548754c51122fc0
                 <p>
                     {children}
                 </p>

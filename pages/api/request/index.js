@@ -15,13 +15,16 @@ export async function getBlogs() {
 
 //* PRODUCTS
 //? get summary data of products
-export const getProducts = async (catSlug, category, skip, limit) => {
+export const getProducts = async (catSlug, category, skip, limit, idStore, order, filter) => {
 	const category_slug = catSlug !== null ? `cat_slug=${catSlug}` : '';
 	const category_name = category !== null ? `categorie=${category}` : '';
 	const num_skip = skip !== null && skip !== undefined ? `&skip=${skip}` : '';
 	const num_limit = limit !== null && limit !== undefined ? `&limit=${limit}` : '';
+	const id_store = idStore !== null && idStore !== undefined ? `&store=${idStore}` : '';
+	const num_order = order !== null && order !== undefined ? `&order=${order}` : '';
+	const num_filter = filter !== null && filter !== undefined ? `&filter=${filter}` : '';
 
-	const response = await fetch(`${baseUrlBA}/product/getbyuser?${category_slug}${category_name}${num_skip}${num_limit}`)
+	const response = await fetch(`${baseUrlBA}/product/getbyuser?${category_slug}${category_name}${num_skip}${num_limit}${id_store}${num_order}${num_filter}`)
 	return await response.json();
 };
 
