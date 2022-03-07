@@ -75,7 +75,7 @@ const AccordionItem = ({
                       </div>
                     </div>
                     <div className="stepper">
-                      <Stepper active="P" />
+                      <Stepper active={prod && prod.estado ? prod.estado : 'P'} />
                     </div>
                   </div>
                 </Card.Body>
