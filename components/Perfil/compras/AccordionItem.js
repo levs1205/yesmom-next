@@ -55,11 +55,11 @@ const AccordionItem = ({
                       </div>
                       <div className="description">
                         {/* ESTATICOS - > DINAMICOS */}
+                        <p>Nombre: {prod.nombre.toUpperCase()}</p>
                         {
-                          prod && prod.nombreTienda ? <p>{prod.nombreTienda.toUpperCase()}</p> : <p>Baby Plaza Store</p>
+                          prod && prod.nombreTienda ? <p>{prod.nombreTienda}</p> : <p>Baby Plaza Store</p>
                         }
                         {/* <p>N° de compra: {numeroUnico}</p> */}
-                        <p>Nombre: {prod.nombre}</p>
                         <p>Sku: {prod.sku}</p>
                         <p>Cantidad: {prod.cantidad}</p>
                         {
