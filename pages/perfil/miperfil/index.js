@@ -218,6 +218,7 @@ const index = ({ userInfo, token }) => {
                           id="principalEmail"
                           name="principalEmail"
                           defaultValue={selection.principalEmail}
+                          disabled
                           {...register("principalEmail")}
                         />
                         {errors.principalEmail && <span role="alert">{errors.principalEmail.message}</span>}
