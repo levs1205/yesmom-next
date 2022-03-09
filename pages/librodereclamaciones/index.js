@@ -8,8 +8,7 @@ import axios from 'axios';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-
-import { registerFormReclamos } from '../../context/actions/client'
+import { registerFormReclamos, startRegisterClient } from '../../context/actions/client'
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
