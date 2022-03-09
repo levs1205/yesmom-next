@@ -82,7 +82,9 @@ export const generateSale = async ( dir, products ) => {
             recibe : dir.recibe,
             fecha,
             adicional : dir.referencia,
-            productos
+            productos,
+            numeroDocumento : dir.numeroDocumento,
+            tipoDocumento : 'DNI', 
         }
 
         const token = cookie.get('TokenTest');
