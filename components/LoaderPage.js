@@ -71,6 +71,11 @@ const LoaderPage = ( { type }) => {
                         
                         background-color : rgb(255,255,255,0.6);
                     }
+
+                    .inline{
+                        height : 0vh;
+                        padding: 20px 0px;
+                    }
          
                 `}
             </style>
