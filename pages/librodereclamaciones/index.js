@@ -1,4 +1,4 @@
-import { useState , useContext , useEffect , useRef} from "react";
+import { useState , useEffect } from "react";
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import CustomButton from "../../components/Perfil/CustomButton";
@@ -7,12 +7,9 @@ import axios from 'axios';
 //Validacion
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Controller, useForm } from "react-hook-form";
-import YesmomContext from "../../context/context";
-import LoaderPage from "../../components/LoaderPage";
+import { useForm } from "react-hook-form";
 
-import { registerFormReclamos, startRegisterClient } from '../../context/actions/client'
-import { getAccess } from "../../helpers/getAccess";
+import { registerFormReclamos } from '../../context/actions/client'
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -26,15 +23,12 @@ const schemaValidator = yup.object().shape({
   numberDoc: yup.string().required("El número de documento es obligatorio"),
   apoderado: yup.string().required("INgrese el nombre del apoderado"),
   monto: yup.string().required("El monto es obligatorio"),
-  // name: yup.string().required("Ingrese el nombre de la tienda"),
   pedido: yup.string().required("Ingrese el pedido"),
   detalle: yup.string().required("Ingrese el detalle"),
   monto: yup.string().required("Ingrese el monto reclamado"),
   bienContratado: yup.string().required("Ingrese el bien contratado"),
 
 });
-
-
 
 const index = () => {
 
@@ -44,13 +38,10 @@ const index = () => {
   const [ tiendas, setTiendas ] = useState([]);
   const [ tiendasSelected, setTiendaSelected ] = useState([]);
 
-
-  console.log('tiendasSelected', tiendasSelected);
   
   const fetchData = async () => {
     const API_URL = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/store/listtotal`;
     const { data } = await axios.get(API_URL);
-    console.log('get tiendas', data.stores);
     setTiendas(data.stores);
   }
 
@@ -69,33 +60,26 @@ const index = () => {
 
 
   const submitForm = (values) => {
-    console.log('enviarrr')
-    console.log('values h', values)
     let formValues = {
       ...values,
       tiendaSeleccionada: tiendasSelected,
     };
-    console.log('formValues', formValues);
     registerFormReclamos(formValues);
   };
 
   const handleChangeBien = (e) => {
-    console.log('e', e.target.value)
     setBien(e.target.value);
   }
 
   const handleChangeReclamo = (e) => {
-    console.log('e', e.target.value)
     setTipo(e.target.value);
   }
 
   const handleChangeAcuerdo = (e) => {
-    console.log('e', e.target.value)
     setAcuerdo(e.target.value);
   }
 
   const handleChangeTienda = (e) => {
-    console.log('tienda', e.target.value)
     setTiendaSelected(e.target.value);
   }
 
