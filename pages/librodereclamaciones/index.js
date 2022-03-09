@@ -7,12 +7,10 @@ import axios from 'axios';
 //Validacion
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Controller, useForm } from "react-hook-form";
-import YesmomContext from "../../context/context";
-import LoaderPage from "../../components/LoaderPage";
+import { useForm } from "react-hook-form";
+
 
 import { registerFormReclamos, startRegisterClient } from '../../context/actions/client'
-import { getAccess } from "../../helpers/getAccess";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
