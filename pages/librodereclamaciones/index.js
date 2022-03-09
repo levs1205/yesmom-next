@@ -48,7 +48,7 @@ const index = () => {
   console.log('tiendasSelected', tiendasSelected);
   
   const fetchData = async () => {
-    const API_URL = 'http://localhost:3700/store/listtotal';
+    const API_URL = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/store/listtotal`;
     const { data } = await axios.get(API_URL);
     console.log('get tiendas', data.stores);
     setTiendas(data.stores);
