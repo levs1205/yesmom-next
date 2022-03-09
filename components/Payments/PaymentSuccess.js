@@ -16,7 +16,7 @@ const PaymentSuccess = ( { orderId }) => {
                         <a href='https://www.facebook.com/Yes-Mom-Per%C3%BA-104308198182894' target='_blank'>
                             <img className='img_redes' src="/image/payment/icon-fb.svg" alt="redes-fb" />
                         </a>
-                        <a href='https://www.instagram.com/yesmomperu/' target="_blank">
+                        <a href='https://www.instagram.com/yesmomperu' target="_blank">
                             <img className='img_redes' src="/image/payment/icon-ig.svg" alt="redes-ig" />
                         </a>
                     </div>

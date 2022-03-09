@@ -1,6 +1,5 @@
 import React, { useContext, useMemo } from "react";
 import YesmomContext from "../../context/Context";
-import { getTotalPrice } from "../../helpers/getTotalPrice"
 import moment from 'moment'
 
 const SubtotalComponent = () => {
@@ -65,6 +64,13 @@ const SubtotalComponent = () => {
       const subTotal = (makeTotalPrice / 1.18).toFixed(2);
       const igv = (subtotalProducts - subTotal).toFixed(2);
 
+
+      const totalPrice = useMemo(()=>{
+          const acum = makeTotalPrice + getTotalPriceDelivery;
+          return acum.toFixed(2);
+      },[makeTotalPrice,getTotalPriceDelivery])
+
+      
     return (
         <>
             <section className="price-table">
@@ -90,7 +96,7 @@ const SubtotalComponent = () => {
                     <strong className="ft-15">{appliedDelivery ? 'Total' : 'Subtotal'}</strong>
                     </td>
                     <td className="price-table__tbody--text-align-right">
-                    <strong className="ft-15">S/ { appliedDelivery ? makeTotalPrice.toFixed(2) + getTotalPriceDelivery.toFixed(2) : makeTotalPrice.toFixed(2) }</strong>
+                    <strong className="ft-15">S/ { appliedDelivery ? totalPrice : makeTotalPrice.toFixed(2) }</strong>
                     </td>
                 </tr>
                 </tbody>
