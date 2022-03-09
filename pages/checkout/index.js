@@ -81,7 +81,7 @@ const Checkout = () => {
 
     try{
 
-      const { phone , name } = watch();
+      const { phone , name, identity } = watch();
       const { calle, numero , interior, referencia , distrito , fechaEntrega , recibePedido, nameRecibeTercero} = watch_2();
 
 
@@ -96,7 +96,9 @@ const Checkout = () => {
         fechaEntrega,
         phone,
         recibe,
-        referencia
+        referencia,
+        tipoDocumento : 'DNI',
+        numeroDocumento : identity
       },cart);
       setChecking(false);
       if(ok){
@@ -149,6 +151,7 @@ const Checkout = () => {
       setSelected( selected => selected + 1);
 
     } else {
+      console.log('HOLAAAAAA');
       initSale();
     }
   };

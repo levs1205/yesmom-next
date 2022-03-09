@@ -90,7 +90,7 @@ const SubtotalComponent = () => {
                     <strong className="ft-15">{appliedDelivery ? 'Total' : 'Subtotal'}</strong>
                     </td>
                     <td className="price-table__tbody--text-align-right">
-                    <strong className="ft-15">S/ { appliedDelivery ? makeTotalPrice + getTotalPriceDelivery : makeTotalPrice }</strong>
+                    <strong className="ft-15">S/ { appliedDelivery ? makeTotalPrice.toFixed(2) + getTotalPriceDelivery.toFixed(2) : makeTotalPrice.toFixed(2) }</strong>
                     </td>
                 </tr>
                 </tbody>
