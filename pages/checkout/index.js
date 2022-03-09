@@ -201,7 +201,9 @@ const Checkout = () => {
     }
   },[client])
   useEffect(()=>{
-    openMercadoPago();
+    if(idPreference && idPreference.length) {
+      openMercadoPago();
+    }
   },[idPreference])
 
 

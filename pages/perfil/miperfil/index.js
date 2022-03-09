@@ -99,7 +99,8 @@ const index = ({ userInfo, token }) => {
 			const response = await updateProfileInfo(
 				token, 
 				"U",
-				values.principalEmail,
+				// values.principalEmail,
+				userInfo.principalEmail,
 				values.fullname,
 				formValues.genderBaby,
 				formValues.haveChildren,

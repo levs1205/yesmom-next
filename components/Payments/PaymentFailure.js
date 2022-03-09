@@ -1,22 +1,29 @@
+import { useRouter } from 'next/router'
 import React from 'react'
 
 const PaymentFailure = () => {
+
+    const router = useRouter();
+
+    const handleGoCheckout = () => {
+        router.push('/checkout');
+    }
+
     return (
         <>
             <div className='container_disclaimer'>
                 <img className='img_disclaimer' src="/image/payment/icon-failed.svg" alt="failed-payment" />
                 <p className='text-payment'>PAGO RECHAZADO</p>
                 <p className='text-disclaimer'>No pudimos procesar tu compra,revisa nuevamente los datos ingresados o intenta con otra tarjeta.</p>
-                <p className='nav-to-option'>Volver a intentarlo</p>
+                <p className='nav-to-option' onClick={handleGoCheckout}>Volver a intentarlo</p>
 
                 <div className='container-redes'>
                     <p className='text-disclaimer-pedido'>Siguenos también en nuestras redes sociales</p>
                     <div className='redes-box'>
-                        {/* TODO: add redes */}
-                        <a href='/' target='_blank'>
+                        <a href='https://www.facebook.com/Yes-Mom-Per%C3%BA-104308198182894' target='_blank'>
                             <img className='img_redes' src="/image/payment/icon-fb.svg" alt="redes-fb" />
                         </a>
-                        <a href='/' target="_blank">
+                        <a href='https://www.instagram.com/yesmomperu' target="_blank">
                             <img className='img_redes' src="/image/payment/icon-ig.svg" alt="redes-ig" />
                         </a>
                     </div>

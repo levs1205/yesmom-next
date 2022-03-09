@@ -27,6 +27,7 @@ const CheckoutStep1 = ({ register, errors, watch, handleSubmit }) => {
           className="identification-form__input"
           name="email"
           id="email"
+          disabled
           {...register("email")}
         />
         <p className="msg-error">{errors?.email?.message}</p>
