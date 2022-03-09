@@ -88,7 +88,7 @@ const Checkout = () => {
       const recibe = recibePedido==='yo' ? name :  nameRecibeTercero;
 
       setChecking(true);
-      const { ok , idPreference } = await generateSale({
+      const { ok , idPreference , message} = await generateSale({
         calle,
         numero,
         interior,
@@ -100,6 +100,12 @@ const Checkout = () => {
         tipoDocumento : 'DNI',
         numeroDocumento : identity
       },cart);
+
+      if(!ok){
+        if(message){
+          Swal.fire('Producto sin stock',data.message,'info');
+        }
+      }
       setChecking(false);
       if(ok){
         setIdPreference(idPreference);
