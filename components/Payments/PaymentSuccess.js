@@ -7,7 +7,7 @@ const PaymentSuccess = ( { orderId }) => {
                 <img className='img_disclaimer' src="/image/payment/icon-success.svg" alt="success-payment" />
                 <p className='text-payment'>Gracias por tu compra</p>
                 <p className='text-disclaimer'>Tu compra fue procesada con éxito, te hemos enviado un correo de confirmación con todos los detalles.</p>
-                <p className='text-disclaimer-pedido'>Numero de pedido : #{orderId}</p>
+                <p className='text-disclaimer-pedido'>Número de pedido : #{orderId}</p>
                 {/* <p className='nav-to-option'>Ver detalle del pedido</p> */}
 
                 <div className='container-redes'>
@@ -49,7 +49,7 @@ const PaymentSuccess = ( { orderId }) => {
                     }
                     .text-disclaimer-pedido{
                         font-family : 'mont-bold';
-                        font-size : 1.2rem;
+                        font-size : 1.4rem;
                         color: #5A5A5A;
                         text-align:center;
                     }

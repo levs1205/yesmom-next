@@ -29,10 +29,10 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
   const [currentpage, setCurrentPage] = useState(1);
 	const [loading, setLoading] = useState(false);
 
-  let logoStore = dataSupplier.imagenLogo && dataSupplier.imagenLogo[0].url;
+  let logoStore = dataSupplier?.imagenLogo && dataSupplier?.imagenLogo[0]?.url;
   let portadaStore =
-    dataSupplier.imagenPortada && dataSupplier.imagenPortada[0].url;
-  let bannerStore = dataSupplier && dataSupplier.imagenBanner;
+    dataSupplier?.imagenPortada && dataSupplier?.imagenPortada[0]?.url;
+  let bannerStore = dataSupplier && dataSupplier?.imagenBanner;
 
   const alternativeLogo = "https://static.thenounproject.com/png/340719-200.png";
 
@@ -246,17 +246,32 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
           :global(.carousel-indicators li) {
             background-color: #dc6a8d;
           }
+					/*  */
+					
+					:global(.banner) {
+            height: 27rem;
+						object-fit: cover;
+            object-position: center center;
+						width: 100%;
+          }
+					:global(.banner img) {
+            height: 27rem;
+						object-fit: cover;
+            object-position: center center;
+						width: 100%;
+          }
+					/*  */
 					:global(.show-desktop .box-carousel) {
-            height: 61rem;
+            height: 33rem;
           }
 					:global(.show-desktop .box-carousel .carousel-item) {
-            height: 61rem;
+            height: 33rem;
 						object-fit: cover;
             object-position: center center;
 						width: 100%;
           }
 					:global(.show-desktop .box-carousel .carousel-item img) {
-            height: 61rem;
+            height: 33rem;
 						object-fit: cover;
             object-position: center center;
 						width: 100%;
@@ -313,6 +328,8 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
           }
           .container-contenido-filtro {
             display: flex;
+						justify-content: center;
+						margin-top: 7rem;
           }
           .box-pagination {
             display: flex;
@@ -343,6 +360,7 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
             .container-contenido-filtro {
               padding: 0 1.5rem;
               justify-content: space-between;
+							margin-top: 0;
             }
             .container-banner {
 							width: 44.6rem;

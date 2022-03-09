@@ -27,7 +27,6 @@ const Home = ({
     <AppLayout>
       <Head>
         <title>YesMom - Home</title>
-        {/* <link rel="icon" type="image/x-icon"  href="/yesmom-favicon.png" /> */}
         <meta
           name="description"
           content="Yes Mom es una plataforma digital peruana que ayuda a las
