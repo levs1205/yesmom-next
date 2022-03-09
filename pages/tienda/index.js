@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 import { getProducts, getCategories } from "../api/request";
 import { setProducts, setCategories } from "../../context/actions/ui";
 import Pagination from "../../components/Pagination";
+import LoaderPage from '../../components/LoaderPage';
 
 const imagesMobile = [
   { id: 1, image: "/image/tienda/banner-mobile1.png" },
@@ -193,9 +194,10 @@ const Product = ({ categoryList, path }) => {
 										</select>
 									</div>
                 </div>
-							
                 {loading ? (
-                  <p>Cargando...</p>
+                  <p>
+                    <LoaderPage type="inline" />
+                  </p>
                 ) : (
                   <Row>
                     {q.trim().length > 0 ? (
