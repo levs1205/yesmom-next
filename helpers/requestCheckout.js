@@ -94,6 +94,13 @@ export const generateSale = async ( dir, products ) => {
             }
         })
 
+        //Sin stock
+        if(data && data.CodigoRespuesta === "39"){
+            return {
+                ok : false,
+                message : data.Mensaje
+            }
+        }
 
         if(data?.response?.ok){
             return { 

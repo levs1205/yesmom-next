@@ -44,9 +44,19 @@ const index = () => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
+    setValue
   } = useForm({
     resolver: yupResolver(schemaValidator),
   });
+
+  const email = watch('principalEmail');
+
+  useEffect(()=>{
+    if(email){
+      setValue('principalEmail',email.toLowerCase());
+    }
+  },[email])
 
   //Botones de selección
   const initialSelection = {

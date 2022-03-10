@@ -46,17 +46,15 @@ const index = ({ userInfo, token }) => {
     handleSubmit,
     formState: { errors },
     control,
+    reset,
   } = useForm({
     resolver: yupResolver(schemaValidator),
     userInfo,
   });
 
-  //Botones de selección
-  const defaultSelection = {
-    haveChildren: true,
-    firstTime: false,
-  };
+  console.log(userInfo);
 
+  const [notUpdated,setNotUpdated] = useState(false);
   const [selection, setSelection] = useState(userInfo);
   const [moreChildren, setMoreChildren] = useState(true);
 
@@ -132,6 +130,16 @@ const index = ({ userInfo, token }) => {
 		}
   };
 
+  useEffect(()=>{
+    if(userInfo && !notUpdated){
+      reset({
+        fullname: userInfo.fullname,
+        principalEmail : userInfo.principalEmail,
+        phone : userInfo.phone
+      })
+      setNotUpdated(true);
+    }
+  },[userInfo,notUpdated])
 
   return (
     <AppLayout>
@@ -205,7 +213,6 @@ const index = ({ userInfo, token }) => {
                           type="text"
                           id="fullname"
                           name="fullname"
-                          defaultValue={selection.fullname}
                           {...register("fullname")}
                         />
                         {errors.fullname && <p>{errors.fullname.message}</p>}
@@ -218,7 +225,6 @@ const index = ({ userInfo, token }) => {
                           type="email"
                           id="principalEmail"
                           name="principalEmail"
-                          defaultValue={selection.principalEmail}
                           disabled
                           {...register("principalEmail")}
                         />
