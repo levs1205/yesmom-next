@@ -46,11 +46,11 @@ export const registerFormReclamos = async ( values ) => {
                 tiendaSeleccionada
             }
         }
-        const response = await axios.post(`http://localhost:3700/claim/register`, body)
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/claim/register`, body)
         console.log('response after register', response);
         console.log('res after register', response.data.claim);
         if(response.data.isSuccess){
-            const dataResponse = await axios.post(`http://localhost:3700/notificar`, response.data.claim)
+            const dataResponse = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/notificar`, response.data.claim)
             console.log('response2', dataResponse);
             // .then(response2 => {
             //     console.log('response exito para notificar', response2);
