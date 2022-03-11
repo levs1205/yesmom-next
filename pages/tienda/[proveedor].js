@@ -33,11 +33,8 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
   let portadaStore =
     dataSupplier?.imagenPortada && dataSupplier?.imagenPortada[0]?.url;
   let bannerStore = dataSupplier && dataSupplier?.imagenBanner;
-  console.log('bannerStore', bannerStore)
 
   const alternativeLogo = "https://static.thenounproject.com/png/340719-200.png";
-  console.log('dataSuplier', dataSupplier)
-  console.log('currentPage', currentpage)
 
   useEffect(() => {
     getProducts();
@@ -416,7 +413,6 @@ ProveedorSlug.propTypes = {
 
 export const getServerSideProps = async ({ query }) => {
   const { proveedor } = query;
-	console.log('proveedor', proveedor)
 	let responseData;
 	let slugString;
 	let isSale = false;
