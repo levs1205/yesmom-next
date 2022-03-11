@@ -110,7 +110,7 @@ const index = ( ) => {
     if(token){
       const infoAction = await initializeData(token);
       dispatchClient(infoAction);
-      dispatchAuth( startLogin({ token ,isSocialMedia}))
+      dispatchAuth( startLogin({ token ,isSocialMedia : true}))
       redirectLogged();
     }
   }
@@ -122,7 +122,7 @@ const index = ( ) => {
     const { token } = await startLoginWithFacebook(data);
     if(token){
       dispatchClient(await initializeData(token));
-      dispatchAuth( startLogin({ token ,isSocialMedia}))
+      dispatchAuth( startLogin({ token ,isSocialMedia : true}))
       redirectLogged();
     }
 
