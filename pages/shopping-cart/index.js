@@ -211,6 +211,7 @@ const makeTotalPrice = useMemo(( ) => {
           .container {
             padding: 8rem 2rem 0 2rem;
           }
+          
           .container__text {
             font-family: "mont-semibold";
             font-style: normal;
