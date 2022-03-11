@@ -118,7 +118,7 @@ const index = ( ) => {
   const responseFacebook = async ( data ) => {
 
     // const token = response.accessToken;
-    console.log(data);
+    // console.log(data);
     const { token } = await startLoginWithFacebook(data);
     if(token){
       dispatchClient(await initializeData(token));
