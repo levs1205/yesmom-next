@@ -53,6 +53,7 @@ const index = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm({
     resolver: yupResolver(schemaValidator),
   });
@@ -64,6 +65,10 @@ const index = () => {
       tiendaSeleccionada: tiendasSelected,
     };
     registerFormReclamos(formValues);
+
+    setTimeout(() => {
+      reset();
+    }, 3000);
   };
 
   const handleChangeBien = (e) => {
