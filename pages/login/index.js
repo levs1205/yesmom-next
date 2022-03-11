@@ -40,6 +40,8 @@ const index = ( ) => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
+    setValue
   } = useForm({
     resolver: yupResolver(schemaValidator),
   });
@@ -47,6 +49,14 @@ const index = ( ) => {
   const [ loading , setLoading ] = useState(true);
   const flagRef = useRef(true);
   const { dispatchAuth, dispatchClient , auth : { logged } } = useContext(YesmomContext);
+
+
+  const email = watch('email');
+  useEffect(()=>{
+    if(email){
+      setValue('email',email.toLowerCase());
+    }
+  },[email])
 
   const submitForm = async (values) => {
     // console.log(values);
