@@ -35,6 +35,7 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
   let bannerStore = dataSupplier && dataSupplier?.imagenBanner;
 
   const alternativeLogo = "https://static.thenounproject.com/png/340719-200.png";
+  console.log('dataSuplier', dataSupplier)
 
   useEffect(() => {
     getProducts();
@@ -57,10 +58,10 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
   return (
     <AppLayout>
       <Head>
-        <title>YesMom - Proveedor</title>
+        <title>YesMom - {dataSupplier.nombreTienda}</title>
         <meta name="description" content="YesMom es ..."></meta>
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="YesMom - Proveedor" />
+        <meta property="og:title" content={`Yesmom - ${dataSupplier.nombreTienda}`} />
         <meta
           property="og:description"
           content="Yes Mom es una plataforma digital peruana que ayuda a las
@@ -80,7 +81,7 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
         <meta property="og:site_name" content="Yes Mom" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="YesMom - Proveedor" />
+        <meta name="twitter:title" content={`Yesmom - ${dataSupplier.nombreTienda}`} />
         <meta
           name="twitter:description"
           content="Yes Mom es una plataforma digital peruana que ayuda a las
