@@ -45,7 +45,6 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
 			setLoading(true);
       const { productosGeneral, totalDeProductos, pages } =
         await getProductsByIdStore(dataSupplier._id, skip, productsPerPage, null, isSale ? 2 : null);
-      
       setTotalProducts(totalDeProductos);
       setProductList(productosGeneral);
       setTotalPages(pages);
@@ -74,7 +73,7 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
         <meta
           property="og:image"
           itemprop="image"
-          content="https://yesmom.vercel.app/image/about-header.png"
+          content={dataSupplier.imagenLogo[0]?.url}
         />
         <meta property="og:image:height" content="855" />
         <meta property="og:image:with" content="1180" />
