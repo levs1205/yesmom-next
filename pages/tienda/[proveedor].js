@@ -76,8 +76,8 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
           itemprop="image"
           content="https://yesmom.vercel.app/image/about-header.png"
         />
-        <meta property="og:image:width" content="1280" />
         <meta property="og:image:height" content="855" />
+        <meta property="og:image:with" content="1180" />
         <meta property="og:site_name" content="Yes Mom" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
         <meta name="twitter:card" content="summary" />
