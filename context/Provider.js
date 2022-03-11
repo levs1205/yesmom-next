@@ -1,5 +1,6 @@
 
 import React, { useEffect, useReducer } from 'react'
+import { useRouter } from 'next/router';
 import { finishChecking, startChecking, validateToken ,startLogout,startLogin, initializeData} from './actions/auth';
 import { startAddToCart } from './actions/ui';
 import YesmomContext from './Context'
@@ -15,6 +16,7 @@ import { initRegister, finishRegister, errorRegister, successRegister } from './
 const Provider = ({children }) => {
 
 
+    const router = useRouter();
     const initialState = {};
     const initialAuthState = {
         logged : false,
@@ -82,6 +84,7 @@ const Provider = ({children }) => {
             dispatchClient( finishRegister())
             if(!err){                
                 dispatchClient( successRegister(data))
+                router.push('/login');
             }else{
                 dispatchClient( errorRegister(err))
             }

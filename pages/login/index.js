@@ -16,6 +16,7 @@ import * as yup from "yup";
 // import FacebookLogin from 'react-facebook-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import { getAccess } from "../../helpers/getAccess";
+import ActiveLink from "../../components/ActiveLink";
 
 
 const schemaValidator = yup.object().shape({
@@ -330,11 +331,14 @@ const index = ( ) => {
                   <p>¿Eres nuevo en Yes mom?</p>
                   <hr />
                 </div>
-                <Link href="/registro">
+                <ActiveLink href="/registro">
+                <a >
                   <div className="boton-normal yellow">
                     <p>Crear cuenta</p>
                   </div>
-                </Link>
+                </a>
+                </ActiveLink>
+                
               </div>
             </div>
           </div>
