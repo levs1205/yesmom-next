@@ -35,7 +35,6 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
   let bannerStore = dataSupplier && dataSupplier?.imagenBanner;
 
   const alternativeLogo = "https://static.thenounproject.com/png/340719-200.png";
-  console.log('dataSuplier', dataSupplier)
 
   useEffect(() => {
     getProducts();
@@ -166,7 +165,7 @@ const ProveedorSlug = ({ dataSupplier, productsQty, pages, slug, isSale }) => {
               </div>
             )}
           </div>
-          {currentpage === 1 && (
+          {bannerStore.length !== 0 && (
             <>
               {/* CAROUSEL */}
               {/* Carousel mobile */}
@@ -414,7 +413,6 @@ ProveedorSlug.propTypes = {
 
 export const getServerSideProps = async ({ query }) => {
   const { proveedor } = query;
-	console.log('proveedor', proveedor)
 	let responseData;
 	let slugString;
 	let isSale = false;
