@@ -58,7 +58,6 @@ const index = () => {
     resolver: yupResolver(schemaValidator),
   });
 
-
   const submitForm = (values) => {
     let formValues = {
       ...values,
