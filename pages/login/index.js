@@ -110,7 +110,7 @@ const index = ( ) => {
     if(token){
       const infoAction = await initializeData(token);
       dispatchClient(infoAction);
-      dispatchAuth( startLogin({ token ,isSocialMedia}))
+      dispatchAuth( startLogin({ token ,isSocialMedia : true}))
       redirectLogged();
     }
   }
@@ -118,11 +118,11 @@ const index = ( ) => {
   const responseFacebook = async ( data ) => {
 
     // const token = response.accessToken;
-    console.log(data);
+    // console.log(data);
     const { token } = await startLoginWithFacebook(data);
     if(token){
       dispatchClient(await initializeData(token));
-      dispatchAuth( startLogin({ token ,isSocialMedia}))
+      dispatchAuth( startLogin({ token ,isSocialMedia : true}))
       redirectLogged();
     }
 
@@ -331,13 +331,11 @@ const index = ( ) => {
                   <p>¿Eres nuevo en Yes mom?</p>
                   <hr />
                 </div>
-                <ActiveLink href="/registro">
-                <a >
+                <a href="/registro" >
                   <div className="boton-normal yellow">
                     <p>Crear cuenta</p>
                   </div>
                 </a>
-                </ActiveLink>
                 
               </div>
             </div>
