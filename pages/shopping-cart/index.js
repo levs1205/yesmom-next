@@ -207,6 +207,7 @@ const makeTotalPrice = useMemo(( ) => {
             right: 0;
             top: 2rem;
           }
+          
           .container {
             padding: 8rem 2rem 0 2rem;
           }
