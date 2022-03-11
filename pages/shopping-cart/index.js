@@ -141,7 +141,7 @@ const makeTotalPrice = useMemo(( ) => {
                           Productos
                         </td>
                         <td className="price-table__tbody--text-align-right">
-                          S/ {subTotal}
+                          S/ {subTotal.toFixed(2)}
                         </td>
                       </tr>
                       <tr className="price-table__tbody--fount-padding">
@@ -149,7 +149,7 @@ const makeTotalPrice = useMemo(( ) => {
                           IGV
                         </td>
                         <td className="price-table__tbody--text-align-right">
-                          S/ {igv}
+                          S/ {igv.toFixed(2)}
                         </td>
                       </tr>
                       <tr className="price-table__tbody--fount-bold-padding price-table__tbody--border-top">
@@ -157,7 +157,7 @@ const makeTotalPrice = useMemo(( ) => {
                           <strong>Subtotal</strong>
                         </td>
                         <td className="price-table__tbody--text-align-right">
-                          <strong>S/ {totalPrice}</strong>
+                          <strong>S/ {totalPrice.toFixed(2)}</strong>
                         </td>
                       </tr>
                     </tbody>
