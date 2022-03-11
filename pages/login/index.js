@@ -331,13 +331,11 @@ const index = ( ) => {
                   <p>¿Eres nuevo en Yes mom?</p>
                   <hr />
                 </div>
-                <ActiveLink href="/registro">
-                <a >
+                <a href="/registro" >
                   <div className="boton-normal yellow">
                     <p>Crear cuenta</p>
                   </div>
                 </a>
-                </ActiveLink>
                 
               </div>
             </div>
