@@ -86,7 +86,6 @@ const index = () => {
     setTiendaSelected(e.target.value);
   }
 
-
   return (
     <AppLayout>
       <Head>
