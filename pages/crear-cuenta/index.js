@@ -6,13 +6,13 @@ import BotonInput from "../../components/Registro/BotonInput";
 
 /**PHONEINPUT */
 import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/bootstrap.css";
+// import "react-phone-input-2/lib/bootstrap.css";
 import CustomButton from "../../components/Perfil/CustomButton";
 /** */
 /* DATE INPUT */
 // import DatePicker from "react-datepicker";
 
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
 
 //Validacion
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -33,7 +33,7 @@ const schemaValidator = yup.object().shape({
 
 
 
-import DatePicker from "react-date-picker/dist/entry.nostyle";
+// import DatePicker from "react-date-picker/dist/entry.nostyle";
 
 const index = () => {
 
@@ -44,8 +44,8 @@ const index = () => {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
-    setValue
+    // watch,
+    // setValue
   } = useForm({
     resolver: yupResolver(schemaValidator),
   });
@@ -815,12 +815,12 @@ const index = () => {
 export default index;
 
 export const getServerSideProps = async ({ req , resolvedUrl}) => {
-  const token = req?.cookies?.TokenTest;
+   const token = req?.cookies?.TokenTest;
   
-  const cleanUrl = req.url.split("?")[0];
-  // console.log(req.url);
-  const resp = await getAccess(cleanUrl , token );
+   const cleanUrl = req.url.split("?")[0];
+    // console.log(req.url);
+   const resp = await getAccess(cleanUrl , token );
 
-  return resp;
+   return resp;
 
 }
