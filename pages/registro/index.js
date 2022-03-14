@@ -37,26 +37,26 @@ import DatePicker from "react-date-picker/dist/entry.nostyle";
 
 const index = () => {
 
-  const { auth : { logged } , client : { isRegistering} , startRegisterClient} = useContext(YesmomContext);
+  const { auth : { logged } , client : { isRegistering}} = useContext(YesmomContext);
 
   const {
     control,
     register,
     handleSubmit,
     formState: { errors },
-    watch,
-    setValue
+    // watch,
+    // setValue
   } = useForm({
     resolver: yupResolver(schemaValidator),
   });
 
-  const email = watch('principalEmail');
+  // const email = watch('principalEmail');
 
-  useEffect(()=>{
-    if(email){
-      setValue('principalEmail',email.toLowerCase());
-    }
-  },[email])
+  // useEffect(()=>{
+  //   if(email){
+  //     setValue('principalEmail',email.toLowerCase());
+  //   }
+  // },[email])
 
   //Botones de selección
   const initialSelection = {
@@ -130,7 +130,7 @@ const index = () => {
     const username = principalEmail.toLowerCase().split('@')[0];
     formValues.username = username;
    
-    startRegisterClient(formValues);
+    // startRegisterClient(formValues);
   };
 
 
