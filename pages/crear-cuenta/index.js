@@ -6,7 +6,7 @@ import BotonInput from "../../components/Registro/BotonInput";
 
 /**PHONEINPUT */
 import PhoneInput from "react-phone-input-2";
-import 'react-phone-input-2/lib/style.css'
+// import 'react-phone-input-2/lib/style.css'
 // import "react-phone-input-2/lib/bootstrap.css";
 import CustomButton from "../../components/Perfil/CustomButton";
 /** */
@@ -31,8 +31,6 @@ const schemaValidator = yup.object().shape({
 })
 
 
-
-// import DatePicker from "react-date-picker/dist/entry.nostyle";
 
 const index = () => {
 
