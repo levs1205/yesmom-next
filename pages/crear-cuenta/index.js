@@ -11,9 +11,7 @@ import 'react-phone-input-2/lib/style.css'
 import CustomButton from "../../components/Perfil/CustomButton";
 /** */
 /* DATE INPUT */
-import DatePicker from "react-date-picker/dist/entry.nostyle";
-import "react-date-picker/dist/DatePicker.css";
-import "react-calendar/dist/Calendar.css";
+// import DatePicker from 'react-date-picker';
 
 //Validacion
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -131,7 +129,7 @@ const index = () => {
     const username = principalEmail.toLowerCase().split('@')[0];
     formValues.username = username;
    
-    // startRegisterClient(formValues);
+    startRegisterClient(formValues);
   };
 
 
@@ -341,11 +339,12 @@ const index = () => {
                         <p>Fecha de nacimiento de tú bebé</p>
 
                         {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
-                        <Controller
+                        {/* <Controller
                             name='fechaNacimiento'
                             control = { control }
                             render={({ field }) => <DatePicker maxDate={new Date()} {...field} />}
-                        />
+                        /> */}
+                        <input type="date" />
                         {/* <div className="wrapper-date">
                           <div className="select-input">
                             <select placeholder="Mes">
