@@ -12,8 +12,8 @@ import CustomButton from "../../components/Perfil/CustomButton";
 /* DATE INPUT */
 // import DatePicker from "react-datepicker";
 
-import "react-datepicker/dist/react-datepicker.css";
-
+// import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from "react-date-picker/dist/entry.nostyle";
 //Validacion
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";

@@ -6,12 +6,13 @@ import BotonInput from "../../components/Registro/BotonInput";
 
 /**PHONEINPUT */
 import PhoneInput from "react-phone-input-2";
+import 'react-phone-input-2/lib/style.css'
 // import "react-phone-input-2/lib/bootstrap.css";
 import CustomButton from "../../components/Perfil/CustomButton";
 /** */
 /* DATE INPUT */
+import DatePicker from "react-date-picker/dist/entry.nostyle";
 // import DatePicker from "react-datepicker";
-
 // import "react-datepicker/dist/react-datepicker.css";
 
 //Validacion
@@ -140,10 +141,10 @@ const index = () => {
         isRegistering &&<LoaderPage type="over"/>
       }
       <Head>
-        <title>YesMom - Registro</title>
+        <title>YesMom - Crear cuenta</title>
         <meta name="description" content="YesMom es ..."></meta>
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="YesMom - Registro" />
+        <meta property="og:title" content="YesMom - Crear cuenta" />
         <meta
           property="og:description"
           content="Yes Mom es una plataforma digital peruana que ayuda a las
@@ -163,7 +164,7 @@ const index = () => {
         <meta property="og:site_name" content="Yes Mom" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="YesMom - Registro" />
+        <meta name="twitter:title" content="YesMom - Crear cuenta" />
         <meta
           name="twitter:description"
           content="Yes Mom es una plataforma digital peruana que ayuda a las
