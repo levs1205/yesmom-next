@@ -33,7 +33,7 @@ const schemaValidator = yup.object().shape({
 
 
 
-import DatePicker from "react-date-picker/dist/entry.nostyle";
+import DatePicker from "react-date-picker";
 
 const index = () => {
 
