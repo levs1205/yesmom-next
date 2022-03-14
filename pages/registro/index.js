@@ -33,7 +33,7 @@ const schemaValidator = yup.object().shape({
 
 
 
-import DatePicker from "react-date-picker";
+// import DatePicker from "react-date-picker";
 
 const index = () => {
 
@@ -340,11 +340,12 @@ const index = () => {
                         <p>Fecha de nacimiento de tú bebé</p>
 
                         {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
-                        <Controller
+                        <input type="date" />
+                        {/* <Controller
                             name='fechaNacimiento'
                             control = { control }
                             render={({ field }) => <DatePicker maxDate={new Date()} {...field} />}
-                        />
+                        /> */}
                         {/* <div className="wrapper-date">
                           <div className="select-input">
                             <select placeholder="Mes">
