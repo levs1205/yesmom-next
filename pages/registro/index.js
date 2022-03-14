@@ -6,14 +6,12 @@ import BotonInput from "../../components/Registro/BotonInput";
 
 /**PHONEINPUT */
 import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/bootstrap.css";
+
 import CustomButton from "../../components/Perfil/CustomButton";
 /** */
 /* DATE INPUT */
-// import DatePicker from "react-datepicker";
+// import DatePicker from 'react-date-picker';
 
-// import "react-datepicker/dist/react-datepicker.css";
-// import DatePicker from "react-date-picker/dist/entry.nostyle";
 //Validacion
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -33,7 +31,7 @@ const schemaValidator = yup.object().shape({
 
 
 
-import DatePicker from "react-date-picker";
+// import DatePicker from "react-date-picker/dist/entry.nostyle";
 
 const index = () => {
 
@@ -44,8 +42,8 @@ const index = () => {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
-    setValue
+    // watch,
+    // setValue
   } = useForm({
     resolver: yupResolver(schemaValidator),
   });
@@ -130,7 +128,7 @@ const index = () => {
     const username = principalEmail.toLowerCase().split('@')[0];
     formValues.username = username;
    
-    // startRegisterClient(formValues);
+    startRegisterClient(formValues);
   };
 
 
@@ -140,10 +138,10 @@ const index = () => {
         isRegistering &&<LoaderPage type="over"/>
       }
       <Head>
-        <title>YesMom - Registro</title>
+        <title>YesMom - Crear cuenta</title>
         <meta name="description" content="YesMom es ..."></meta>
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="YesMom - Registro" />
+        <meta property="og:title" content="YesMom - Crear cuenta" />
         <meta
           property="og:description"
           content="Yes Mom es una plataforma digital peruana que ayuda a las
@@ -163,7 +161,7 @@ const index = () => {
         <meta property="og:site_name" content="Yes Mom" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="YesMom - Registro" />
+        <meta name="twitter:title" content="YesMom - Crear cuenta" />
         <meta
           name="twitter:description"
           content="Yes Mom es una plataforma digital peruana que ayuda a las
@@ -340,11 +338,12 @@ const index = () => {
                         <p>Fecha de nacimiento de tú bebé</p>
 
                         {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
-                        <Controller
+                        {/* <Controller
                             name='fechaNacimiento'
                             control = { control }
                             render={({ field }) => <DatePicker maxDate={new Date()} {...field} />}
-                        />
+                        /> */}
+                        <input type="date" />
                         {/* <div className="wrapper-date">
                           <div className="select-input">
                             <select placeholder="Mes">
@@ -815,12 +814,12 @@ const index = () => {
 export default index;
 
 export const getServerSideProps = async ({ req , resolvedUrl}) => {
-  const token = req?.cookies?.TokenTest;
+   const token = req?.cookies?.TokenTest;
   
-  const cleanUrl = req.url.split("?")[0];
-  // console.log(req.url);
-  const resp = await getAccess(cleanUrl , token );
+   const cleanUrl = req.url.split("?")[0];
+    // console.log(req.url);
+   const resp = await getAccess(cleanUrl , token );
 
-  return resp;
+   return resp;
 
 }

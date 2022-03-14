@@ -331,7 +331,7 @@ const index = ( ) => {
                   <p>¿Eres nuevo en Yes mom?</p>
                   <hr />
                 </div>
-                <Link href="/crear-cuenta" >
+                <Link href="/registro" >
                   <div className="boton-normal yellow">
                     <p>Crear cuenta</p>
                   </div>
