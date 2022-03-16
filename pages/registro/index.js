@@ -20,6 +20,7 @@ import { Controller, useForm } from "react-hook-form";
 import YesmomContext from "../../context/Context";
 import LoaderPage from "../../components/LoaderPage";
 import { getAccess } from "../../helpers/getAccess";
+import { useRouter } from "next/router";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -34,7 +35,8 @@ const schemaValidator = yup.object().shape({
 
 const index = () => {
 
-  const { auth : { logged } , client : { isRegistering}} = useContext(YesmomContext);
+  const router = useRouter();
+  const { auth : { logged } , client : { isRegistering} ,startRegisterClient} = useContext(YesmomContext);
 
   const {
     control,
@@ -129,6 +131,10 @@ const index = () => {
    
     startRegisterClient(formValues);
   };
+
+  const handleGoTerms = () => {
+    router.push('/politicasdeprivacidad');
+  }
 
 
   return (
@@ -342,7 +348,7 @@ const index = () => {
                             control = { control }
                             render={({ field }) => <DatePicker maxDate={new Date()} {...field} />}
                         /> */}
-                        <input type="date" />
+                        <input type="date" {...register('fechaNacimiento')}/>
                         {/* <div className="wrapper-date">
                           <div className="select-input">
                             <select placeholder="Mes">
@@ -403,7 +409,7 @@ const index = () => {
               </CustomButton>
               <p className="terminos">
                 ¡Al hacer clic en crear cuenta! aceptas los
-                <span> términos de uso y la política de privacidad </span>
+                <span onClick={handleGoTerms}> términos de uso y la política de privacidad </span>
                 de Yes Mom.
               </p>
             </div>
@@ -569,6 +575,7 @@ const index = () => {
             font-weight: 300;
           }
           .terminos span {
+            cursor : pointer;
             color: #556ea1;
           }
           .flex-country {
