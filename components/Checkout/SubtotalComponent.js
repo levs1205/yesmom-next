@@ -78,11 +78,11 @@ const SubtotalComponent = () => {
                 <tbody className="price-table__tbody">
                 <tr className="price-table__tbody--fount-padding ">
                     <td className="price-table__tbody--text-align-left">Productos</td>
-                    <td className="price-table__tbody--text-align-right">{subTotal}</td>
+                    <td className="price-table__tbody--text-align-right">S/. {subTotal}</td>
                 </tr>
                 <tr className="price-table__tbody--fount-padding">
                     <td className="price-table__tbody--text-align-left">IGV</td>
-                    <td className="price-table__tbody--text-align-right">S/ {igv}</td>
+                    <td className="price-table__tbody--text-align-right">S/. {igv}</td>
                 </tr>
                 {
                     appliedDelivery &&
