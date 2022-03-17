@@ -20,7 +20,7 @@ const schemaValidator = yup.object().shape({
   mail: yup.string().email("El email no es valido").required("El email es obligatorio"),
   domicilio: yup.string().required("Ingrese una dirección de domicilio"),
   numberDoc: yup.string().required("El número de documento es obligatorio"),
-  apoderado: yup.string(),
+  apoderado: yup.string().matches(/^[aA-zZ\s]*$/, "Solo esta permitido letras"),
   monto: yup.string().required("El monto es obligatorio"),
   pedido: yup.string().required("Ingrese el pedido"),
   detalle: yup.string().required("Ingrese el detalle"),
