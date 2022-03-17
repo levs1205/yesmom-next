@@ -19,7 +19,7 @@ const SearchStore = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(nameStore.trim()===""){
-      router.push("",undefined,{ shallow: true });  
+      router.push("/tienda",undefined,{ shallow: true });  
     }else{
       router.push(`/tienda?q=${nameStore}`,undefined,{ shallow: true });
     }

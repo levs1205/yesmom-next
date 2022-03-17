@@ -6,6 +6,10 @@ import { useForm } from "react-hook-form";
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { getAccess } from "../../helpers/getAccess";
+import { useState } from "react";
+import LoaderPage from "../../components/LoaderPage";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const schemaValidator = yup.object().shape({
   email : yup.string().email('*Ingresa un correo válido').required('*Correo es requerido')
@@ -14,17 +18,47 @@ const schemaValidator = yup.object().shape({
 
 const RecuperarPassword = () => {
 
-  const { register , formState: { errors} , handleSubmit} = useForm({
+  const [loading,setLoading] = useState(false);
+  const { register , formState: { errors} , handleSubmit, reset} = useForm({
     resolver : yupResolver(schemaValidator)
   });
 
 
-  const submitForm = (data) => {
-    alert('oksss')
+  const submitForm = async (values) => {
+    try{
+      setLoading(true);
+      const { email } = values;
+      const { data } = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/users/reset`, { email } , {
+          params : {
+              userType : 'U'
+          }
+      });
+
+      setLoading(false);
+
+      if(data?.status === 'success'){
+          reset();
+          Swal.fire('Email enviado', 'Se ha enviado un email con instrucciones para restablecer la contraseña' , 'success');
+      }else{
+          Swal.fire('Error','Hubo un error' ,'error');
+      }
+
+
+    }catch(err){
+        setLoading(false);
+        if(err?.response?.data?.CodigoRespuesta === '34'){
+            return Swal.fire('Correo no encontrado', 'El correo no se encuentra registrado' , 'info');
+        }     
+        console.log(err);
+        Swal.fire('Error','Hubo un error' ,'error');
+    }
   }
 
   return (
     <AppLayout>
+      {
+        loading && <LoaderPage type="over" />
+      }
       <Head>
         <title>YesMom - Recuperar contraseña</title>
         <meta name="description" content="YesMom es ..."></meta>

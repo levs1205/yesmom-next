@@ -56,8 +56,8 @@ const Product = ({ categoryList, path }) => {
   const getListProducts = async () => {
     try {
       setLoading(true);
-      const response = await getProducts(null, "all", skip, productsPerPage, null, order, null);
-			setProductList(response?.productosGeneral);
+      const response = await getProducts(null, "all", skip, productsPerPage, null, order, null, q);
+      setProductList(response?.productosGeneral);
       setTotalProducts(response?.totalDeProductos);
       setTotalPages(response?.pages);
       setLoading(false);
@@ -67,31 +67,31 @@ const Product = ({ categoryList, path }) => {
     }
   };
 
-  useEffect(() => {
-    const query = q.toLowerCase().trim();
-    let filterData = productList.filter((el) =>
-      el.product.nombre.toLowerCase().trim().includes(query)
-    );
+  // useEffect(() => {
+  //   const query = q.toLowerCase().trim();
+  //   let filterData = productList.filter((el) =>
+  //     el.product.nombre.toLowerCase().trim().includes(query)
+  //   );
 
-    if (filterData.length === 0) {
-      setStoreFiltered(productList);
-      if (query.length > 0) {
-        Swal.fire(
-          "No encontrado",
-          "No existen productos asociados con la búsqueda!",
-          "info"
-        );
-      }
-    } else {
-      setStoreFiltered(filterData);
-      const roundNumber =
-        Math.round(filterData.length / 9) < 1
-          ? 1
-          : Math.round(filterData.length / 9);
-      setTotalProducts(filterData.length);
-      setTotalPages(roundNumber);
-    }
-  }, [q]);
+  //   if (filterData.length === 0) {
+  //     setStoreFiltered(productList);
+  //     if (query.length > 0) {
+  //       Swal.fire(
+  //         "No encontrado",
+  //         "No existen productos asociados con la búsqueda!",
+  //         "info"
+  //       );
+  //     }
+  //   } else {
+  //     setStoreFiltered(filterData);
+  //     const roundNumber =
+  //       Math.round(filterData.length / 9) < 1
+  //         ? 1
+  //         : Math.round(filterData.length / 9);
+  //     setTotalProducts(filterData.length);
+  //     setTotalPages(roundNumber);
+  //   }
+  // }, [q]);
 
 	const handleChangeOrder = (e) => {
     setOrder(e.target.value);
@@ -200,23 +200,7 @@ const Product = ({ categoryList, path }) => {
                   </p>
                 ) : (
                   <Row>
-                    {q.trim().length > 0 ? (
-                      <>
-                        {storeFiltered.length > 0 ? (
-                          storeFiltered.map((product, i) => (
-                            <Col xs={6} sm={4}>
-                              <CardProduct key={i} {...product} />
-                            </Col>
-                          ))
-                        ) : (
-                          <p>
-                            No se ha encontrado ningún resultado de producto
-                          </p>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        {productList?.length > 0 ? (
+                    {productList?.length > 0 ? (
                           productList.map((product, i) => (
                             <Col xs={6} sm={4}>
                               <CardProduct key={i} {...product} />
@@ -227,8 +211,6 @@ const Product = ({ categoryList, path }) => {
                             No se ha encontrado ningún resultado de producto
                           </p>
                         )}
-                      </>
-                    )}
                   </Row>
                 )}
                 <Pagination

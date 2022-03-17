@@ -7,20 +7,28 @@ import { useForm } from "react-hook-form";
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { getAccess } from "../../helpers/getAccess";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import LoaderPage from "../../components/LoaderPage";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const schemaValidator = yup.object().shape({
   password:  yup.string().required('*Contraseña es requerida').min(5,'*La contraseña debe tener como mínimo 5 caracteres'),
   password_2: yup.string().oneOf([yup.ref('password'),null], '*Las contraseñas no coinciden'),
 })
-const ResetPassword = () => {
+const ResetPassword = ({ params }) => {
+    const router = useRouter();
 
-  const { register , formState: { errors } , handleSubmit } = useForm({
+    const [loading,setLoading] = useState(false);
+    const { all } = router.query;
+    const [ token , setToken] = useState();
+    const [ idUser , setIdUser] = useState();
+
+  const { register , formState: { errors } , handleSubmit , reset } = useForm({
     resolver : yupResolver(schemaValidator)
   });
 
-  const handleResetPassword = (data) => {
-    console.log('oksss');
-  };
 
   const handleShow = (id) => {
     const type = document.getElementById(id).type;
@@ -29,8 +37,50 @@ const ResetPassword = () => {
       : (document.getElementById(id).type = "password");
   };
 
+  useEffect(()=>{
+    if(all){
+        setToken(all[0]);
+        setIdUser(all[1]);
+    }
+  },[all])
+
+  const submitForm = async (data) => {
+    
+    if(!token || !idUser) return ;
+    const { password } = data;
+    try{
+        setLoading(true);
+        const { data } = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_SECURITY}/user-update`, { password } ,{
+            headers : {
+                'access-token' : token
+            },
+            params:{
+                idUser : idUser,
+                shared : '0',
+                type : 'U'
+            }
+        } )
+        setLoading(false);
+        if(data?.transaction?.ok){
+            reset();
+            Swal.fire('Contraseña restablecida','La contraseña se ha restablecido correctamente' , 'success');
+            setTimeout(()=>{
+                router.push('/login');
+            },[700])
+        }
+
+    }catch(err){
+        setLoading(false);
+        console.log(err);
+        Swal.fire('Error','Hubo un error' , 'error');
+
+    }
+  }
   return (
     <AppLayout>
+        {
+            loading && <LoaderPage type="over" />
+        }
       <Head>
         <title>YesMom - Restablecer contraseña</title>
         <meta name="description" content="YesMom es ..."></meta>
@@ -86,7 +136,7 @@ const ResetPassword = () => {
               </div>
               <div className="container-form">
                 <form
-                  onSubmit={handleSubmit(handleResetPassword)}
+                  onSubmit={handleSubmit(submitForm)}
                 >
                   <div className="wrapper-input">
                     <label htmlFor="password">
@@ -129,7 +179,7 @@ const ResetPassword = () => {
 
                   <p className="error-input">{errors?.password_2?.message}</p>
 
-                  <div className="boton pink" onClick={ handleSubmit(handleResetPassword)}>
+                  <div className="boton pink" onClick={ handleSubmit(submitForm)}>
                     <p className="show">Continuar</p>
                     <p className="hide">Confirmar contraseña</p>
                   </div>
@@ -361,14 +411,23 @@ const ResetPassword = () => {
 
 export default ResetPassword;
 
-export const getServerSideProps = async ({ req , resolvedUrl}) => {
+export const getServerSideProps = async ({ req , resolvedUrl, query}) => {
+ 
   const token = req?.cookies?.YesmomToken;
   
   const cleanUrl = req.url.split("?")[0];
-  // console.log(resolvedUrl);
-  // console.log(req.url);
   const resp = await getAccess(cleanUrl , token );
 
+  const all = query.all;
+  if(all && all.length===0 || all.length >2){
+      return {
+          redirect: {
+            permanent: false,
+            destination: "/404",
+          },
+          props:{},
+        };
+  }
+
   return resp;
-    
 }
