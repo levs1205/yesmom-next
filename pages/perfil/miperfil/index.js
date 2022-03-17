@@ -267,8 +267,8 @@ const index = ({ userInfo, token }) => {
                             />
                           )}
                         />
-                        {errors.phone && <span role="alert">{errors.phone.message}</span>}
                       </div>
+                      {errors.phone && <span role="alert">{errors.phone.message}</span>}
                     </div>
                     <div className="flex-desktop">
                       <div className="w-28r">
