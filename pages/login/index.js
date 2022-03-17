@@ -286,6 +286,7 @@ const index = ( ) => {
                     appId="852286165441996"
                     // appId="602718880858377"
                     isMobile={false}
+                    disableMobileRedirect={true}
                     autoLoad = {false}
                     fields="name,email,picture"
                     render={renderProps => (
