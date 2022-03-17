@@ -207,8 +207,8 @@ const Product = ({ categoryList, path }) => {
                             </Col>
                           ))
                         ) : (
-                          <p>
-                            No se ha encontrado ningún resultado de producto
+                          <p className="out-result">
+                            No se ha encontrado ningún resultado de producto.
                           </p>
                         )}
                   </Row>
@@ -317,6 +317,13 @@ const Product = ({ categoryList, path }) => {
           .show-mobile {
             margin-top: 8.5rem;
           }
+
+          .out-result {
+            font-family: "mont-regular" !important;
+            margin: 2rem;
+            font-size: 1.4rem;
+          }
+
 					@media (min-width: 480px) {
             .container-select select,
             option {

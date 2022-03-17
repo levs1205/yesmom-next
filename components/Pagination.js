@@ -34,7 +34,7 @@ function Pagination({ totalPages, currentpage, setCurrentPage, skip, setSkip, pr
             display: flex;
             align-items: center;
             place-content: center;
-            font-size: 20px;
+            font-size: 17px;
           }
         `}
       </style>
