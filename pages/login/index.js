@@ -285,6 +285,7 @@ const index = ( ) => {
                   <FacebookLogin
                     appId="852286165441996"
                     // appId="602718880858377"
+                    isMobile={false}
                     autoLoad = {false}
                     fields="name,email,picture"
                     render={renderProps => (
