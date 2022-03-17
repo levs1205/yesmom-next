@@ -395,7 +395,7 @@ const index = ({ userInfo, token }) => {
 																	checked={selection.genderBaby === "F" && true}
 																	onClick={() => handleSelectionChange("genderBaby", "F")}
 																/>
-																<span>Girl</span>
+																<span>Niña</span>
 															</label>
 														</div>
 														<div>
@@ -409,7 +409,7 @@ const index = ({ userInfo, token }) => {
 																	checked={selection.genderBaby === "M" && true}
 																	onClick={() => handleSelectionChange("genderBaby", "M")}
 																/>
-																<span>Boy</span>
+																<span>Niño</span>
 															</label>
 														</div>
                           </div>
