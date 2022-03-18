@@ -142,7 +142,7 @@ const HeaderNuevo = () => {
                   <h6 className="text-navbar">Tienda</h6>
                 </a>
               </ActiveLink>
-              <ActiveLink href="/construccion" activeClassName="active">
+              {/* <ActiveLink href="/construccion" activeClassName="active">
                 <a className="item-menu-yesmom">
                   <Image
                     src="/image/header/regalo.svg"
@@ -152,7 +152,7 @@ const HeaderNuevo = () => {
                   />
                   <h6 className="text-navbar">Regalos</h6>
                 </a>
-              </ActiveLink>
+              </ActiveLink> */}
 
               {logged ? (
                 <AvatarLogged />
