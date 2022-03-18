@@ -136,9 +136,12 @@ const RecuperarPassword = () => {
                     <p>Continuar</p>
                   </div>
                   {/* </Link> */}
+                  <a href="/login" className="link-cancelar">
                   <div className="boton yellow">
                     <p>Cancelar</p>
                   </div>
+                  </a>
+                  
                 </form>
               </div>
             </div>
@@ -158,6 +161,9 @@ const RecuperarPassword = () => {
           }
           input::placeholder {
             background: none;
+          }
+          .link-cancelar{
+            text-decoration:none
           }
           .center {
             display: flex;

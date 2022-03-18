@@ -49,7 +49,7 @@ const Footer = () => {
                   <b className="p-1"></b>
                 </h6>
                 <div className="box-contenido-footer">
-                  <Link href="/terminos-y-condiciones">
+                  <Link href="/terminosycondiciones">
                     <a>Términos y condiciones</a>
                   </Link>
                   <Link href="/politicasdeprivacidad">
