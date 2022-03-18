@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { registerFormReclamos, startRegisterClient } from '../../context/actions/client'
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+const numbersRegex = /^[0-9]{1,20}$/
 
 const schemaValidator = yup.object().shape({
   nombres: yup.string().required("El nombre es obligatorio"),
@@ -19,12 +20,12 @@ const schemaValidator = yup.object().shape({
   telf: yup.string().matches(phoneRegExp, "El teléfono no es válido").required("El teléfono es obligatorio"),
   mail: yup.string().email("El email no es valido").required("El email es obligatorio"),
   domicilio: yup.string().required("Ingrese una dirección de domicilio"),
-  numberDoc: yup.string().required("El número de documento es obligatorio"),
-  apoderado: yup.string().required("INgrese el nombre del apoderado"),
+  numberDoc: yup.string().matches(numbersRegex, "Ingrese solo números").required("El número de documento es obligatorio"),
+  apoderado: yup.string().matches(/^[aA-zZ\s]*$/, "Solo esta permitido letras"),
   monto: yup.string().required("El monto es obligatorio"),
   pedido: yup.string().required("Ingrese el pedido"),
   detalle: yup.string().required("Ingrese el detalle"),
-  monto: yup.string().required("Ingrese el monto reclamado"),
+  monto: yup.string().matches(numbersRegex, "Ingrese solo números").required("Ingrese el monto reclamado"),
   bienContratado: yup.string().required("Ingrese el bien contratado"),
 
 });
@@ -58,7 +59,6 @@ const index = () => {
     resolver: yupResolver(schemaValidator),
   });
 
-
   const submitForm = (values) => {
     let formValues = {
       ...values,
@@ -86,7 +86,6 @@ const index = () => {
   const handleChangeTienda = (e) => {
     setTiendaSelected(e.target.value);
   }
-
 
   return (
     <AppLayout>
@@ -165,7 +164,7 @@ const index = () => {
                           Número de Documento (*)
                         </label>
                         <input 
-                          type="number" 
+                          type="text" 
                           id="numberDoc" 
                           name="numberDoc"
                           {...register("numberDoc")}
@@ -211,7 +210,7 @@ const index = () => {
                       <p className="error-input">{errors?.nombres?.message}</p>
                       </div>
                       <div className="wrapper-input">
-                        <label htmlFor="telf">Teléfono</label>
+                        <label htmlFor="telf">Teléfono(*)</label>
                         <input
                           type="text"
                           id="telf"
@@ -223,7 +222,7 @@ const index = () => {
                     </div>
                     <div className="box-item">
                       <div className="wrapper-input">
-                        <label htmlFor="apellidoPat">Domicilio</label>
+                        <label htmlFor="apellidoPat">Domicilio(*)</label>
                         <input
                           type="text"
                           id="domicilio"
@@ -275,7 +274,7 @@ const index = () => {
                       <div className="wrapper-input">
                         <label htmlFor="name">Monto Reclamado:</label>
                         <input 
-                          type="number"
+                          type="text"
                           id="monto"
                           name="monto"
                           {...register("monto")}

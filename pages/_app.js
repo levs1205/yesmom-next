@@ -5,6 +5,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
+
+import 'react-phone-input-2/lib/style.css'
+import "react-phone-input-2/lib/bootstrap.css";
 import '../components/pagination.css'
 
 

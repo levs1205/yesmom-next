@@ -157,7 +157,7 @@ const makeTotalPrice = useMemo(( ) => {
                           <strong>Subtotal</strong>
                         </td>
                         <td className="price-table__tbody--text-align-right">
-                          <strong>S/ {totalPrice}</strong>
+                          <strong>S/ {totalPrice.toFixed(2)}</strong>
                         </td>
                       </tr>
                     </tbody>
@@ -207,9 +207,11 @@ const makeTotalPrice = useMemo(( ) => {
             right: 0;
             top: 2rem;
           }
+          
           .container {
             padding: 8rem 2rem 0 2rem;
           }
+          
           .container__text {
             font-family: "mont-semibold";
             font-style: normal;

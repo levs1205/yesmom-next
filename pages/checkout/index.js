@@ -35,7 +35,7 @@ const schemaFirst = yup.object().shape({
 
 const schemaSecond = yup.object().shape({
   calle: yup.string().required('Ingrese calle'),
-  numero: yup.string().matches(/^[0-9]+$/g,'Numero incorrecto').required('Ingrese el número'),
+  numero: yup.string().required('Ingrese el número'),
   interior: yup.string(),
   referencia : yup.string().required('Ingrese referencia'),
   recibePedido : yup.string().oneOf(['yo','otro'],'Campo obligatorio'),

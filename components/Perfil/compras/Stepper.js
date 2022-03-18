@@ -57,7 +57,7 @@ const Stepper = ({ active }) => {
                         </svg>
                     </div>
                     <div className="description">
-                        <p className="text-description">Orden entregado</p>
+                        <p className="text-description">Orden enviada</p>
                         {/* <div className="paragraph-time">
                             <p>30/08/2020</p>
                             <p>15:00</p>

@@ -118,7 +118,7 @@ const index = ( ) => {
   const responseFacebook = async ( data ) => {
 
     // const token = response.accessToken;
-    console.log(data);
+    // console.log(data);
     const { token } = await startLoginWithFacebook(data);
     if(token){
       dispatchClient(await initializeData(token));
@@ -285,6 +285,8 @@ const index = ( ) => {
                   <FacebookLogin
                     appId="852286165441996"
                     // appId="602718880858377"
+                    isMobile={false}
+                    disableMobileRedirect={true}
                     autoLoad = {false}
                     fields="name,email,picture"
                     render={renderProps => (
@@ -331,11 +333,11 @@ const index = ( ) => {
                   <p>¿Eres nuevo en Yes mom?</p>
                   <hr />
                 </div>
-                <a href="/registro" >
+                <Link href="/registro" >
                   <div className="boton-normal yellow">
                     <p>Crear cuenta</p>
                   </div>
-                </a>
+                </Link>
                 
               </div>
             </div>

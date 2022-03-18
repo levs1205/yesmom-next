@@ -1,18 +1,17 @@
 import { useState , useContext , useEffect , useRef} from "react";
-import { useRouter } from "next/router";
+
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
 import BotonInput from "../../components/Registro/BotonInput";
 
 /**PHONEINPUT */
 import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/bootstrap.css";
+// import 'react-phone-input-2/lib/style.css'
+// import "react-phone-input-2/lib/bootstrap.css";
 import CustomButton from "../../components/Perfil/CustomButton";
 /** */
 /* DATE INPUT */
-// import DatePicker from "react-datepicker";
-
-import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from 'react-date-picker';
 
 //Validacion
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -21,6 +20,7 @@ import { Controller, useForm } from "react-hook-form";
 import YesmomContext from "../../context/Context";
 import LoaderPage from "../../components/LoaderPage";
 import { getAccess } from "../../helpers/getAccess";
+import { useRouter } from "next/router";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -33,30 +33,29 @@ const schemaValidator = yup.object().shape({
 
 
 
-import DatePicker from "react-date-picker/dist/entry.nostyle";
-
 const index = () => {
 
-  const { auth : { logged } , client : { isRegistering} , startRegisterClient} = useContext(YesmomContext);
+  const router = useRouter();
+  const { auth : { logged } , client : { isRegistering} ,startRegisterClient} = useContext(YesmomContext);
 
   const {
     control,
     register,
     handleSubmit,
     formState: { errors },
-    watch,
-    setValue
+    // watch,
+    // setValue
   } = useForm({
     resolver: yupResolver(schemaValidator),
   });
 
-  const email = watch('principalEmail');
+  // const email = watch('principalEmail');
 
-  useEffect(()=>{
-    if(email){
-      setValue('principalEmail',email.toLowerCase());
-    }
-  },[email])
+  // useEffect(()=>{
+  //   if(email){
+  //     setValue('principalEmail',email.toLowerCase());
+  //   }
+  // },[email])
 
   //Botones de selección
   const initialSelection = {
@@ -133,6 +132,10 @@ const index = () => {
     startRegisterClient(formValues);
   };
 
+  const handleGoTerms = () => {
+    router.push('/politicasdeprivacidad');
+  }
+
 
   return (
     <AppLayout>
@@ -140,15 +143,10 @@ const index = () => {
         isRegistering &&<LoaderPage type="over"/>
       }
       <Head>
-        <title>YesMom - Registro</title>
-        <meta name="description" content="Yes Mom es una plataforma digital peruana que ayuda a las
-                        mamis a disfrutar su maternidad sin preocupaciones. Queremos
-                        ser la marca aliada que todos los papás estuvieron buscando,
-                        una página web que reúne en un solo lugar todo lo que
-                        necesitan para la llegada de su bebé y acompañar su
-                        crecimiento."></meta>
+        <title>YesMom - Crear cuenta</title>
+        <meta name="description" content="YesMom es ..."></meta>
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="YesMom - Registro" />
+        <meta property="og:title" content="YesMom - Crear cuenta" />
         <meta
           property="og:description"
           content="Yes Mom es una plataforma digital peruana que ayuda a las
@@ -168,7 +166,7 @@ const index = () => {
         <meta property="og:site_name" content="Yes Mom" />
         {/* <meta property="og:url" content={`${user.id}`} />  */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="YesMom - Registro" />
+        <meta name="twitter:title" content="YesMom - Crear cuenta" />
         <meta
           name="twitter:description"
           content="Yes Mom es una plataforma digital peruana que ayuda a las
@@ -345,11 +343,12 @@ const index = () => {
                         <p>Fecha de nacimiento de tú bebé</p>
 
                         {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
-                        <Controller
+                        {/* <Controller
                             name='fechaNacimiento'
                             control = { control }
                             render={({ field }) => <DatePicker maxDate={new Date()} {...field} />}
-                        />
+                        /> */}
+                        <input type="date" {...register('fechaNacimiento')}/>
                         {/* <div className="wrapper-date">
                           <div className="select-input">
                             <select placeholder="Mes">
@@ -410,7 +409,7 @@ const index = () => {
               </CustomButton>
               <p className="terminos">
                 ¡Al hacer clic en crear cuenta! aceptas los
-                <span> términos de uso y la política de privacidad </span>
+                <span onClick={handleGoTerms}> términos de uso y la política de privacidad </span>
                 de Yes Mom.
               </p>
             </div>
@@ -576,6 +575,7 @@ const index = () => {
             font-weight: 300;
           }
           .terminos span {
+            cursor : pointer;
             color: #556ea1;
           }
           .flex-country {
@@ -820,12 +820,12 @@ const index = () => {
 export default index;
 
 export const getServerSideProps = async ({ req , resolvedUrl}) => {
-  const token = req?.cookies?.TokenTest;
+   const token = req?.cookies?.TokenTest;
   
-  const cleanUrl = req.url.split("?")[0];
-  // console.log(req.url);
-  const resp = await getAccess(cleanUrl , token );
+   const cleanUrl = req.url.split("?")[0];
+    // console.log(req.url);
+   const resp = await getAccess(cleanUrl , token );
 
-  return resp;
+   return resp;
 
 }
