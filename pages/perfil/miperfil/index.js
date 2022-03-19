@@ -197,12 +197,12 @@ const index = ({ userInfo, token }) => {
                 />
                 <div className="about-account">
                   <p className="ft-m-regular">Información de la cuenta</p>
-                  <div className="icon-pencil">
+                  {/* <div className="icon-pencil">
                     <img
                       src="/image/perfil/icon-pencil.svg"
                       alt="icon-pencil"
                     />
-                  </div>
+                  </div> */}
                 </div>
                 <div className="container-form">
                   <form>
@@ -440,9 +440,9 @@ const index = ({ userInfo, token }) => {
                       Guardar
                     </CustomButton>
                   </div>
-                  <div className="btn-cancel">
+                  {/* <div className="btn-cancel">
                     <CustomButton outline>Cancelar</CustomButton>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -480,7 +480,13 @@ const index = ({ userInfo, token }) => {
 						justify-content: center;
 					}
 					.boton:hover{
+						transition: 0.4s ease-in-out;
 						transform: scale(1.05);
+						background: #FEBF41;		
+					}
+					.boton:hover span {
+						transition: 0.4s ease-in-out;
+						color:#FFFFFF;			
 					}
 					.boton span {
 						font-family: "omnes-bold" !important;

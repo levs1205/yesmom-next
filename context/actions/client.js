@@ -110,8 +110,8 @@ export const errorRegister = (err) => {
     if(err && err.response && err.response.data){
         const { data } = err.response;
         let messageError = '';
-        if(data.CodigoRespuesta === '32'){
-            messageError = 'Correo ya se encuentra en uso';
+        if(data.CodigoRespuesta === '31'){
+            messageError = 'El correo ya se encuentra en uso';
         }
 
         const MySwal = withReactContent(Swal);

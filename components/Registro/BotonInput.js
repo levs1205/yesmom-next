@@ -23,6 +23,13 @@ function BotonInput({children , type , width, onClick}) {
                     }
                     .boton:hover{
                         transform: scale(1.05);
+												transition: 0.4s ease-in-out;
+											transform: scale(1.05);
+											background: #FEBF41;		
+                    }
+                    .boton:hover p{
+												transition: 0.4s ease-in-out;
+												color:#FFFFFF;	
                     }
                     p{
                         font-family:"omnes-regular"!important;

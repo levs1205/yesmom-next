@@ -28,9 +28,9 @@ const Footer = () => {
                   <Link href="/tienda">
                     <a>Tienda</a>
                   </Link>
-                  <Link href="/construccion">
+                  {/* <Link href="/construccion">
                     <a>Regalos</a>
-                  </Link>
+                  </Link> */}
                   {/* <Link href="/nosotros">
                   <a>Términos y condiciones</a>
                 </Link> */}
@@ -49,7 +49,7 @@ const Footer = () => {
                   <b className="p-1"></b>
                 </h6>
                 <div className="box-contenido-footer">
-                  <Link href="/terminos-y-condiciones">
+                  <Link href="/terminosycondiciones">
                     <a>Términos y condiciones</a>
                   </Link>
                   <Link href="/politicasdeprivacidad">

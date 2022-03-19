@@ -667,13 +667,15 @@ const index = () => {
       <style jsx>
         {`
           .container-politicas {
+            max-width: 85rem!important;
+            margin:0 auto;
             position: relative;
             top: 10rem;
             text-align: justify;
             margin-bottom: 15rem;
             padding-top: 5rem;
-            padding-left: 13rem !important;
-            padding-right: 13rem !important;
+            padding-left: 12rem !important;
+            padding-right: 12rem !important;
             padding-bottom: 5rem;
             box-shadow: 0px 1px 10px #999999d4;
             background: #ffff;

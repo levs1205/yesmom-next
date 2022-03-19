@@ -27,9 +27,8 @@ function Pagination({ totalPages, currentpage, setCurrentPage, skip, setSkip, pr
         />
       </div>
 
-      <style
-      jsx>
-        {`
+      <style jsx>
+ {`
           .container-pages {
             display: flex;
             align-items: center;
