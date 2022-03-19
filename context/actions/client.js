@@ -47,24 +47,26 @@ export const registerFormReclamos = async ( values ) => {
             }
         }
         const response = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/claim/register`, body)
-        console.log('response after register', response);
-        console.log('res after register', response.data.claim);
+
         if(response.data.isSuccess){
-            const dataResponse = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/notificar`, response.data.claim)
-            console.log('response2', dataResponse);
-            // .then(response2 => {
-            //     console.log('response exito para notificar', response2);
-            // })
-            // .catch(error => {
-            //     console.log(error);
-            // })
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Envió correctamente',
-                showConfirmButton: false,
-                timer: 3000
-            })
+            const { dataResponse } = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/notificar`, response.data.claim)
+            if(dataResponse === undefined){
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Registrado correctamente',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+            }else {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Vuelva a intentarlo',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+            }
         }else{
             Swal.fire({
                 position: 'center',

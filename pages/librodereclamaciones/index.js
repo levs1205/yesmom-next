@@ -27,7 +27,9 @@ const schemaValidator = yup.object().shape({
   detalle: yup.string().required("Ingrese el detalle"),
   monto: yup.string().matches(numbersRegex, "Ingrese solo números").required("Ingrese el monto reclamado"),
   bienContratado: yup.string().required("Ingrese el bien contratado"),
-
+  acuerdo: yup.string().required("Es obligatorio seleccionar el acuerdo").nullable(),
+  tipoReclamo: yup.string().required("Seleccione el tipo de reclamo").nullable(),
+  tipoBien: yup.string().required("Seleccione el tipo de bien").nullable()
 });
 
 const index = () => {
@@ -232,7 +234,7 @@ const index = () => {
                       <p className="error-input">{errors?.domicilio?.message}</p>
                       </div>
                       <div className="wrapper-input">
-                        <label htmlFor="apellidoMat">Email (*)</label>
+                        <label htmlFor="email">Email (*)</label>
                         <input
                           type="email"
                           id="mail"
@@ -309,6 +311,7 @@ const index = () => {
                           <label htmlFor="servicio">Servicio (Relacionado al malestar o descontento
                             respecto a la atención recibida.)</label>
                         </div>
+                        <p className="error-input">{errors?.tipoBien?.message}</p>
                       </div>
                     </div>
                     <div className="box-item box-item-checkbox">
@@ -350,12 +353,13 @@ const index = () => {
                             type="radio"
                             value="queja"
                             id="queja"
-                            name="tipo"
+                            name="queja"
                             {...register("tipoReclamo")}
                             onChange={handleChangeReclamo} 
                           />
                           <label htmlFor="queja">Queja(2)</label>
                         </div>
+                        <p className="error-input">{errors?.tipoReclamo?.message}</p>
                       </div>
                     </div>
                     <div className="box-item box-item-checkbox">
@@ -401,6 +405,7 @@ const index = () => {
                             Reclamaciones. Asimismo confirmo que los datos
                             ingresados son tomados como firma de esta solicitud.</label>
                         </div>
+                        <p className="error-input">{errors?.acuerdo?.message}</p>
                       </div>
                     </div>
                   </div>
