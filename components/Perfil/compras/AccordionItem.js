@@ -15,6 +15,7 @@ const AccordionItem = ({
   total,
   fechaPedido,
   estado,
+	envioTotal
 }) => {
   const getDate = (date) => {
     return moment(date).format("DD-MM-YYYY");
@@ -68,7 +69,7 @@ const AccordionItem = ({
                         {
                           prod && prod.talla && prod.talla.length && <p>Talla: {prod.talla}</p>
                         }
-                        <p>Precio unitario: S/ {prod.precio_unitario.toFixed(2)}</p>
+                        <p>Precio unitario: S/. {prod.precio_unitario.toFixed(2)}</p>
                         {/* <Link href="#">
                           <p className="contact-tienda">Contactar Tienda</p>
                         </Link> */}
@@ -83,6 +84,9 @@ const AccordionItem = ({
               </>
               ))
             }
+						<div className="delivery-price">
+							<p><span>Precio delivery: </span>{' '}S/.  {envioTotal}</p>
+						</div>
           <Card.Footer>
             <div className="container-details">
               <div className="ship-details">
@@ -197,6 +201,18 @@ const AccordionItem = ({
             color: #575650;
             margin-bottom: 0.2rem;
           }
+					.delivery-price {
+						margin-left: 1rem;
+					}
+					.delivery-price p {
+						font-size: 1.4rem;
+            font-family: "mont-light" !important;
+            color: #575650;
+            margin-bottom: 0.2rem;
+					}
+					.delivery-price span {
+						font-family: "mont-heavy" !important;
+					}
           .description p:first-child {
             font-family: "mont-heavy" !important;
             color: #575650;

@@ -5,8 +5,6 @@ import AccordionItem from './AccordionItem';
 
 function AccordionCompras({ compras }) {
 
-	console.log('compras', compras);
-
     return (
 			<Accordion defaultActiveKey="0">
 				{compras && compras.length > 0 ? (
