@@ -108,7 +108,7 @@ const  CustomButton = ({outline , children, fxClick, type, isDisabled}) =>{
                         /**WARNING */
                         :global(.swal2-popup){
                             width:50rem!important;
-                            height:27.5rem!important;
+                            height:15.5rem!important;
                         }
                         :global(.title-warning){
                             font-family:"mont-semibold"!important;
