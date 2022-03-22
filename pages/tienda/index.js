@@ -205,7 +205,16 @@ const Product = ({ categoryList, path }) => {
                             <Col xs={6} sm={4}>
                               <CardProduct key={i} {...product} />
                             </Col>
-                          ))
+                          ),
+                          <Pagination
+                            totalPages={totalPages}
+                            currentpage={currentpage}
+                            setCurrentPage={setCurrentPage}
+                            skip={skip}
+                            setSkip={setSkip}
+                            productsPerPage={productsPerPage}
+                          />
+                          )
                         ) : (
                           <p className="out-result">
                             No se ha encontrado ningún resultado de producto.
@@ -213,14 +222,6 @@ const Product = ({ categoryList, path }) => {
                         )}
                   </Row>
                 )}
-                <Pagination
-                  totalPages={totalPages}
-                  currentpage={currentpage}
-                  setCurrentPage={setCurrentPage}
-                  skip={skip}
-                  setSkip={setSkip}
-                  productsPerPage={productsPerPage}
-                />
               </div>
             </div>
           </div>
