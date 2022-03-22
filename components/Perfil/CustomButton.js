@@ -44,7 +44,7 @@ const  CustomButton = ({outline , children, fxClick, type, isDisabled}) =>{
                         margin-top:8rem!important;
                         border-radius:50px!important;
                         width:34rem!important;
-                        height:40rem!important;
+                        height:15.5rem!important;
                         border:4px dashed #DC6A8D!important;
                     }
                     :global(.form-checkbox){
@@ -149,7 +149,7 @@ const  CustomButton = ({outline , children, fxClick, type, isDisabled}) =>{
                         }
                         :global(.swal2-popup){
                             width:52.5rem!important;
-                            height:27.5rem!important;
+                            height:15.5rem!important;
                         }
 
                         :global(.swal2-styled.swal2-cancel ,.swal2-styled.swal2-confirm ){
@@ -159,7 +159,7 @@ const  CustomButton = ({outline , children, fxClick, type, isDisabled}) =>{
                     @media (min-width:1280px){
                         :global(.swal2-popup){
                             width:55rem!important;
-                            height:30rem!important;
+                            height:15.5rem!important;
                         }
                     }
                 `}
