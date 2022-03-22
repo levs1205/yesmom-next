@@ -126,8 +126,8 @@ const PerfilDesactivarCuenta = () => {
                       <p>
                         Para desactivar tu cuenta, debes ingresar tu contraseña.
                         <br className="show-br" /> Si la has olvidado puedes
-                        <Link href="/registro">
-                          <span className="link-registro ft-m-heavy">
+                        <Link href="/recuperar-password">
+                          <span className="link-registro ft-m-heavy" style={{cursor: "pointer"}}>
                             {" "}
                             crear una nueva
                           </span>

@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import React, { useContext, useMemo, useState } from "react";
 
 import AppLayout from "../../components/AppLayout";
@@ -174,8 +175,13 @@ const makeTotalPrice = useMemo(( ) => {
                   />
                   <label for="term" className="box-terms__text"></label>
                   <p className="box-terms__text-style">
-                    He leído y acepto los nuevos Términos y Condiciones de
-                    compra del sitio. Acepto también la Política de Privacidad y
+                    He leído y acepto los nuevos 
+                    <Link href="/terminosycondiciones">
+                    <a> Términos y condiciones </a>
+                  </Link>
+                    de compra del sitio. Acepto también la <Link href="/politicasdeprivacidad">
+                    <a> Política de privacidad </a>
+                  </Link>y
                     Seguridad y la Política de Cookies.
                   </p>
                 </section>

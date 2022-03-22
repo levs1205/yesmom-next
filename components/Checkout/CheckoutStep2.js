@@ -131,7 +131,7 @@ const CheckoutStep2 = ({ register, errors, control, watch, setSelected, thirdPar
 
       <div className="checkout-location-form__wrapper">
         <label htmlFor="numero" className="checkout-location-form__label">
-          Nro.: <span className="ml-4"> EJM : * 205</span>
+          Nro.: <span className="ml-4"> EJM : MZ, Lt, n°</span>
         </label>
         <input
           type="text"
