@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useState, useMemo} from "react";
+import { startLogout } from "../context/actions/auth";
 import YesmomContext from "../context/Context";
 
 const DropMenuMobile = ({ active, setActive, logged }) => {
