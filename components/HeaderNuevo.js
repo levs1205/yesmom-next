@@ -84,7 +84,7 @@ const HeaderNuevo = () => {
             </a>
           </Link>
           <div className="hide-desktop">
-            <Link href="/tienda" prefetch>
+            <Link href="/shopping-cart">
               <div>
                 {cart.length > 0 && (
                   <div className="box-number-cart ">
@@ -92,14 +92,15 @@ const HeaderNuevo = () => {
                   </div>
                 )}
 
-                <a className="mr-2 logo-yesmom">
-                  <Image
-                    src="/image/header/cesta.svg"
-                    alt="logo tienda yesmom"
-                    width={35}
-                    height={35}
-                  />
-                </a>
+                  <div className="mr-2 logo-yesmom">
+                    <Image
+                      src="/image/header/cesta.svg"
+                      alt="logo tienda yesmom"
+                      width={35}
+                      height={35}
+                    />
+                  </div>
+
               </div>
             </Link>
           </div>

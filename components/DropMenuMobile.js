@@ -6,9 +6,9 @@ import YesmomContext from "../context/Context";
 
 const DropMenuMobile = ({ active, setActive, logged }) => {
 
-  const { client } = useContext(YesmomContext);
+  const { dispatchAuth, client } =useContext(YesmomContext); 
   const [expand, setExpand] = useState(false);
-  const { pathname } = useRouter();
+  const { pathname , push} = useRouter();
 
   const makeName = useMemo(() => {
 
@@ -28,7 +28,6 @@ const DropMenuMobile = ({ active, setActive, logged }) => {
     { src: "/image/header/nosotros.svg", to: "/nosotros", name: "Nosotros" },
     { src: "/image/header/blog.svg", to: "/blog", name: "Blog" },
     { src: "/image/header/tienda.svg", to: "/tienda", name: "Tienda" },
-    { src: "/image/header/regalo.svg", to: "/regalo", name: "Lista" },
   ];
 
   const linkPushPerfil = [
@@ -41,6 +40,11 @@ const DropMenuMobile = ({ active, setActive, logged }) => {
   const handleExpandOptions = () => {
     setExpand((expand) => !expand);
   };
+
+  const handleLogout = () => {
+    push('/login');
+    dispatchAuth(startLogout);
+}
   return (
     <>
       <div className={`drop-menu ${active ? "" : "drop-menu-off"}`}>
@@ -164,6 +168,7 @@ const DropMenuMobile = ({ active, setActive, logged }) => {
                           )}
                         </div>
                       ))}
+                      <p onClick={handleLogout} className="cerrar-sesion">Cerrar sesión</p>
                     </div>
                   )}
                 </>
@@ -182,7 +187,7 @@ const DropMenuMobile = ({ active, setActive, logged }) => {
           .star-active {
             margin-top: -0.15rem;
           }
-          .name-link {
+          .name-link, .cerrar-sesion {
             font-family: "mont-light";
             font-size: 1.5rem;
             color: #575756;
