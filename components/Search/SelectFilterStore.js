@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import YesmomContext from "../../context/Context";
 import OutsideClickHandler from "react-outside-click-handler";
-import Link from "next/link";
+// import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
 import { setCategory } from "../../context/actions/ui";
@@ -57,9 +57,9 @@ function SelectFilterStore() {
                     }`}
                     onClick={handleCategorie("Todos")}
                   >
-                    <Link href="/tienda">
-                      <a>Todos</a>
-                    </Link>
+                    {/* <Link href="/tienda"> */}
+                      <a href="/tienda/">Todos</a>
+                    {/* </Link> */}
                   </li>
                   {lisCategories
                     ?.filter((category) => category.type === "filter")
@@ -71,13 +71,13 @@ function SelectFilterStore() {
                           category == cat.slug ? "active-link-categoria" : ""
                         }`}
                       >
-                        <Link href={`${path}/${cat.slug}`}>
-                          <a>
+                        {/* <Link href={`${path}/${cat.slug}`}> */}
+                          <a href={`/tienda/categoria/${cat.slug}`}>
 														<p>
 															{cat.name}
 														</p>
 													</a>
-                        </Link>
+                        {/* </Link> */}
                       </li>
                     ))}
                 </div>
@@ -98,9 +98,9 @@ function SelectFilterStore() {
                           category == cat.slug ? "active-link-categoria" : ""
                         }`}
                       >
-                        <Link href={`${path}/${cat.slug}`}>
-                          <a>{cat.name}</a>
-                        </Link>
+                        {/* <Link href={`${path}/${cat.slug}`}> */}
+                          <a href={`/tienda/categoria/${cat.slug}`}>{cat.name}</a>
+                        {/* </Link> */}
                       </li>
                     ))}
                 </div>
