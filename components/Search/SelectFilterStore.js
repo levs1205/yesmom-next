@@ -34,13 +34,9 @@ function SelectFilterStore() {
 
   return (
     <>
-      <div className="select-filter-store">
+      <div className="select-filter-store" onClick={() => setIsVisible(!isVisible)}>
         <p className="text-select-filter">Selecciona una categoría</p>
-        <OutsideClickHandler display="inline" onOutsideClick={handleOffFilters}>
-          <div className="expand-icon" onClick={handleExpandFilters}>
             <img src="/image/header/search-store.svg" alt="icon-expand" />
-          </div>
-        </OutsideClickHandler>
       </div>
       {isVisible && (
         <div className="container-options-select-filter">
