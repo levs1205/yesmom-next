@@ -445,6 +445,13 @@ const Categoria = ({ category, categoryList, filter }) => {
               padding-right: 6rem;
             }
           }
+					@media (max-width: 403px) {
+						@media not all and (min-resolution:.001dpcm) {
+							.products {
+								width: 100%;
+							}
+						}
+					}
         `}
       </style>
     </AppLayout>

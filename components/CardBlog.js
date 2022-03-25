@@ -598,6 +598,35 @@ const CardBlog = ({ blog }) => {
               font-size: 1.1rem;
             }
           }
+					@media (max-width: 1700px) {
+						@media not all and (min-resolution:.001dpcm) {
+							.card-img {
+								height: 16.5rem;
+							}
+						}
+					}
+					@media (max-width: 639px) {
+						@media not all and (min-resolution:.001dpcm) {
+							.card-img {
+								height: 16.5rem;
+							}
+						}
+					}
+					@media (max-width: 575px) {
+						@media not all and (min-resolution:.001dpcm) {
+							.card-img {
+								height: 18.5rem;
+							}
+						}
+					}
+					@media (max-width: 378px) {
+						@media not all and (min-resolution:.001dpcm) {
+							.card-img {
+								height: 17.5rem;
+							}
+						}
+					}
+					
         `}
       </style>
     </>
