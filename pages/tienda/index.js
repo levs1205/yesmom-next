@@ -57,6 +57,7 @@ const Product = ({ categoryList, path }) => {
     try {
       setLoading(true);
       const response = await getProducts(null, "all", skip, productsPerPage, null, order, null, q);
+      console.log(response?.productosGeneral);
       setProductList(response?.productosGeneral);
       setTotalProducts(response?.totalDeProductos);
       setTotalPages(response?.pages);
@@ -194,34 +195,40 @@ const Product = ({ categoryList, path }) => {
 										</select>
 									</div>
                 </div>
-                {loading ? (
-                  <p>
-                    <LoaderPage type="inline" />
-                  </p>
-                ) : (
+                {
+                  loading && <LoaderPage type="inline" />
+                }
+
                   <Row>
-                    {productList?.length > 0 ? (
+                    {productList && productList?.length > 0 ? (
+                      <>
+                      {
                           productList.map((product, i) => (
                             <Col xs={6} sm={4}>
                               <CardProduct key={i} {...product} />
                             </Col>
-                          ),
-                          <Pagination
-                            totalPages={totalPages}
-                            currentpage={currentpage}
-                            setCurrentPage={setCurrentPage}
-                            skip={skip}
-                            setSkip={setSkip}
-                            productsPerPage={productsPerPage}
-                          />
-                          )
-                        ) : (
+                          ))
+                      }
+                      </>)
+                         : (
                           <p className="out-result">
                             No se ha encontrado ningún resultado de producto.
                           </p>
                         )}
                   </Row>
-                )}
+
+                  {
+                    productList?.length > 0 && 
+                    <Pagination
+                    totalPages={totalPages}
+                    currentpage={currentpage}
+                    setCurrentPage={setCurrentPage}
+                    skip={skip}
+                    setSkip={setSkip}
+                    productsPerPage={productsPerPage}
+                  />
+                  }
+                  
               </div>
             </div>
           </div>
