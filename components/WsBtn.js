@@ -27,7 +27,8 @@ const WsBtn = () => {
           cursor: pointer;
           box-shadow: 0px 1px 10px #999999d4;
           background:#ffff;
-          padding:.5rem
+          padding:.5rem;
+					z-index: 1;
         }
       
 

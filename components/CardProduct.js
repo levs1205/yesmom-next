@@ -36,7 +36,7 @@ const CardProduct = ({ product, imagen }) => {
               />
             </div>
             <Card.Body>
-              <Card.Title className="title">{product?.nombre}</Card.Title>
+						<Card.Title className="title">{product?.nombre}</Card.Title>
               <Card.Text>
                 <div className="card-container-description">
                   {product?.descripcion}
@@ -96,6 +96,17 @@ const CardProduct = ({ product, imagen }) => {
             color: #575756;
             font-family: "mont-semibold" !important;
             font-size: 1.2rem;
+						/* cortar texto con puntos suspensivos */
+						height: 3.8rem;
+						min-height: 3.8rem;
+						max-height: 3.8rem;
+
+						overflow: hidden;
+						text-overflow: ellipsis;
+						display: -webkit-box;
+						-webkit-line-clamp: 2;
+						-webkit-box-orient: vertical;
+					
           }
           :global(.card-text) {
             color: #000000;

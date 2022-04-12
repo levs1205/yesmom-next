@@ -62,13 +62,13 @@ const makeTotalPrice = useMemo(( ) => {
   };
 
   const handleStartCheckout = () => {
-    if (accept) {
+    /* if (accept) { */
       if(!logged){
         router.push('/login?redirect_uri=checkout')
       }else{
         router.push("/checkout");
       }
-    }
+   /*  } */
   };
 
   
@@ -164,7 +164,7 @@ const makeTotalPrice = useMemo(( ) => {
                     </tbody>
                   </table>
                 </section>
-                <section className="box-terms">
+                {/* <section className="box-terms">
                   <input
                     type="checkbox"
                     id="term"
@@ -184,17 +184,24 @@ const makeTotalPrice = useMemo(( ) => {
                   </Link>y
                     Seguridad y la Política de Cookies.
                   </p>
-                </section>
+                </section> */}
                 <button
-                  className={`buy-button ${!accept ? "bg-gray" : ""}`}
+                  className="buy-button"
+                  /* className={`buy-button ${!accept ? "bg-gray" : ""}`} */
                   onClick={handleStartCheckout}
                 >
                   Comprar
                 </button>
-                <p className="restriction-text">
+                {/* <button
+                  className={`buy-button ${!accept ? "bg-gray" : ""}`}
+                  onClick={handleStartCheckout}
+                >
+                  Comprar
+                </button> */}
+                {/* <p className="restriction-text">
                   *Pueden aplicarse restricciones. No todos los productos son
                   elegibles. Pueden aplicarse recargas por manejo y ubicaciónes
-                </p>
+                </p> */}
               </div>
             </div>
           </section>
