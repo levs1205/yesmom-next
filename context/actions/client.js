@@ -18,13 +18,12 @@ export const finishRegister = () => ({
 
 
 export const registerFormReclamos = async ( values ) => {
-    console.log('datos de formulario', values);
     try {
         // const { tokenId } = values ;
         // console.log(tokenId);
         // LLamar endpoint para generar token
         const { mail, detalle, acuerdo, apellidoMat, apellidoPat, apoderado, bienContratado, domicilio, monto, nombres, numberDoc, pedido, telf, tipoBien, tipoReclamo, tiendaSeleccionada } = values ;
-        const body = { 
+        const body = {
             principalEmail: mail,
             subject : 'Solicitud de Reclamo',
             bodyHtml : {

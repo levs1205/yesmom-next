@@ -15,6 +15,7 @@ import {
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const numbersRegex = /^[0-9]{1,20}$/;
+const montoValidado = /^[1-9]\d{0,2}(?:,?\d{3})*(?:\.\d{2})?$/
 
 const schemaValidator = yup.object().shape({
   nombres: yup.string().required("El nombre es obligatorio"),
@@ -39,7 +40,7 @@ const schemaValidator = yup.object().shape({
   detalle: yup.string().required("Ingrese el detalle"),
   monto: yup
     .string()
-    .matches(numbersRegex, "Ingrese solo números")
+    .matches(montoValidado, "Ingrese un monto válido(ejm: 230.00 / 230)")
     .required("Ingrese el monto reclamado"),
   bienContratado: yup.string().required("Ingrese el bien contratado"),
   acuerdo: yup
@@ -313,12 +314,15 @@ const index = () => {
                       </div>
                       <div className="wrapper-input">
                         <label htmlFor="name">Monto Reclamado:</label>
-                        <input
-                          type="text"
-                          id="monto"
-                          name="monto"
-                          {...register("monto")}
-                        />
+                        <span className="span-monto">
+                            S/
+                          <input
+                            type="text"
+                            id="monto"
+                            name="monto"
+                            {...register("monto")}
+                          />
+                        </span>
                         <p className="error-input">{errors?.monto?.message}</p>
                       </div>
                     </div>
@@ -378,11 +382,11 @@ const index = () => {
                     </div>
                   </div>
                   <div className="">
-                    <h4>3.- DETALLE DEL RECLAMACIÓN</h4>
+                    <h4>3.- DETALLE DE LA RECLAMACIÓN</h4>
 
                     <div className="box-item box-item-checkbox">
                       <div className="wrapper-input">
-                        <label htmlFor="name">Tipo:</label>
+                        <label htmlFor="name">Tipo de reclamación:</label>
                         <div className="box-checkbox">
                           <input
                             type="radio"
@@ -392,7 +396,7 @@ const index = () => {
                             {...register("tipoReclamo")}
                             onChange={handleChangeReclamo}
                           />
-                          <label htmlFor="reclamo">Reclamo(1)</label>
+                          <label htmlFor="reclamo">Reclamo: Disconformidad relacionada a los productos o servicios.</label>
                         </div>
                         <div className="box-checkbox">
                           <input
@@ -403,7 +407,7 @@ const index = () => {
                             {...register("tipoReclamo")}
                             onChange={handleChangeReclamo}
                           />
-                          <label htmlFor="queja">Queja(2)</label>
+                          <label htmlFor="queja">Queja: Malestar o descontento respecto a la atención al usuario.</label>
                         </div>
                         <p className="error-input">
                           {errors?.tipoReclamo?.message}
@@ -412,7 +416,7 @@ const index = () => {
                     </div>
                     <div className="box-item box-item-checkbox">
                       <div className="wrapper-input">
-                        <label htmlFor="name">Detalle:</label>
+                        <label htmlFor="name">Detalle de la reclamación:</label>
                         <div className="box-checkbox">
                           <textarea
                             rows="4"
@@ -428,7 +432,7 @@ const index = () => {
                     </div>
                     <div className="box-item box-item-checkbox">
                       <div className="wrapper-input">
-                        <label htmlFor="name">Pedido:</label>
+                        <label htmlFor="name">Pedido (lo que solicita):</label>
                         <div className="box-checkbox">
                           <textarea
                             rows="4"
@@ -548,6 +552,12 @@ const index = () => {
             text-align: left;
             margin-top: 1rem;
             width: 90%;
+          }
+          .span-monto{
+            font-family: "mont-light" !important;
+            color: #575650;
+            opacity: 0.8;
+            font-size: 1.3rem;
           }
           .box-item-checkbox {
             width: 100%;

@@ -7,7 +7,7 @@ import { types } from "../types";
 } */
 
 export const uiReducer = ( state = {} , action) => {
-	console.log('action',state.cart);
+	// console.log('action',state.cart);
     /* console.log("STATEINICIAL",state);
     console.log('action',action.payload); */
     /* debugger */
