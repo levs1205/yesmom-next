@@ -186,8 +186,8 @@ const Categoria = ({ category, categoryList, filter }) => {
                   </div>
                   <div className="container-selects">
                     <select value={order} onChange={handleChangeOrder}>
-											<option value={0} disabled>
-                        Ordenar por
+											<option value={0}>
+                        Todos
                       </option>
                       <option value={2}>Precio de mayor a menor </option>
                       <option value={1}>Precio de menor a mayor </option>

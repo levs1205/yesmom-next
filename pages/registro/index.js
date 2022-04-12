@@ -1,4 +1,4 @@
-import { useState , useContext , useEffect , useRef} from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 
 import AppLayout from "../../components/AppLayout";
 import Head from "next/head";
@@ -22,21 +22,31 @@ import LoaderPage from "../../components/LoaderPage";
 import { getAccess } from "../../helpers/getAccess";
 import { useRouter } from "next/router";
 
-const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const schemaValidator = yup.object().shape({
-  fullname : yup.string('*Nombres incorrectos').required('*Nombres y apellidos son requeridos'),
-  principalEmail : yup.string().email('*Ingresa un correo válido').required('*Correo electrónico es requerido'),
-  password: yup.string().required('*Contraseña es requerida').min(5,'*La contraseña debe tener al menos 5 caracteres'),
-  phone : yup.string().matches(phoneRegExp, '*Número de teléfono no es válido'),
-})
-
-
+  fullname: yup
+    .string("*Nombres incorrectos")
+    .required("*Nombres y apellidos son requeridos"),
+  principalEmail: yup
+    .string()
+    .email("*Ingresa un correo válido")
+    .required("*Correo electrónico es requerido"),
+  password: yup
+    .string()
+    .required("*Contraseña es requerida")
+    .min(5, "*La contraseña debe tener al menos 5 caracteres"),
+  phone: yup.string().matches(phoneRegExp, "*Número de teléfono no es válido"),
+});
 
 const index = () => {
-
   const router = useRouter();
-  const { auth : { logged } , client : { isRegistering} ,startRegisterClient} = useContext(YesmomContext);
+  const {
+    auth: { logged },
+    client: { isRegistering },
+    startRegisterClient,
+  } = useContext(YesmomContext);
 
   const {
     control,
@@ -59,40 +69,39 @@ const index = () => {
 
   //Botones de selección
   const initialSelection = {
-    haveChildren  : false,
-    firstTime : false,
-  }
+    haveChildren: false,
+    firstTime: false,
+  };
 
-  const [ selection , setSelection ] = useState(initialSelection);
+  const [selection, setSelection] = useState(initialSelection);
 
-  const [ moreChildren , setMoreChildren ] = useState(true);
-  
-/*   
+  const [moreChildren, setMoreChildren] = useState(true);
+
+  /*   
   Si es primeriza -> demas datos , fecha nacimiento y sexo
   Si no -> borrar estos datos
  */
-  const handleSelectionChange = ( name , value) => {
-
+  const handleSelectionChange = (name, value) => {
     setSelection({
       ...selection,
-      [name] : value
-    })
+      [name]: value,
+    });
 
     //Actualizar el mas de un hijo
-    if( name==="firstTime"){
-      if(value){
+    if (name === "firstTime") {
+      if (value) {
         setMoreChildren(false);
-      }else{
+      } else {
         setMoreChildren(true);
       }
     }
-  }
+  };
 
   /* Mas de un hijo*/
 
   const handleMoreChildren = () => {
     setMoreChildren(!moreChildren);
-  }
+  };
 
   const handleRef = () => {
     const type = document.getElementById("password").type;
@@ -102,46 +111,46 @@ const index = () => {
   };
 
   /* console.log(errors); */
-  const submitForm = (values , muah) => {
+  const submitForm = (values, muah) => {
     let formValues = {
       ...values,
-      ...selection
+      ...selection,
     };
 
     //Si presiona no , no se deben añadir mas campos
-    if(selection.haveChildren){
+    if (selection.haveChildren) {
       //Si no es primeriza , activa o no el boton de mas de un hijo
-      if(!selection.firstTime){
-        formValues.moreThanOne = moreChildren
+      if (!selection.firstTime) {
+        formValues.moreThanOne = moreChildren;
         delete formValues.genderBaby;
       }
-    }else{
+    } else {
       //No tiene hijos
       formValues.firstTime = false;
       delete formValues.genderBaby;
     }
-    if(!formValues.fechaNacimiento){
-      delete formValues.fechaNacimiento
+    if (!formValues.fechaNacimiento) {
+      delete formValues.fechaNacimiento;
     }
 
-    formValues.type = 'U';
-    const {principalEmail} = formValues;
-    const username = principalEmail.toLowerCase().split('@')[0];
+    formValues.type = "U";
+    const { principalEmail } = formValues;
+    const username = principalEmail.toLowerCase().split("@")[0];
     formValues.username = username;
-   
+
     startRegisterClient(formValues);
   };
 
   const handleGoTerms = () => {
-    router.push('/politicasdeprivacidad');
-  }
-
+    router.push("/terminosycondiciones");
+  };
+  const handleGoPrivacyPolicies = () => {
+    router.push("/politicasdeprivacidad");
+  };
 
   return (
     <AppLayout>
-      {
-        isRegistering &&<LoaderPage type="over"/>
-      }
+      {isRegistering && <LoaderPage type="over" />}
       <Head>
         <title>YesMom - Crear cuenta</title>
         <meta name="description" content="YesMom es ..."></meta>
@@ -229,8 +238,14 @@ const index = () => {
                   />
 
                   <div className="eye-icon" onClick={handleRef}>
-                    <img className="show-desktop" src="/image/login/eye-login.svg" />
-                    <img className ="hide-desktop" src="/image/login/eye-reset.svg" />
+                    <img
+                      className="show-desktop"
+                      src="/image/login/eye-login.svg"
+                    />
+                    <img
+                      className="hide-desktop"
+                      src="/image/login/eye-reset.svg"
+                    />
                   </div>
                 </div>
                 <p className="error-input">{errors?.password?.message}</p>
@@ -240,46 +255,45 @@ const index = () => {
                 <div className="wrapper-input">
                   <label className="mb-4">Número de teléfono:</label>
                   <div className="phone-container">
-                   <Controller
-                    name="phone"
-                    defaultValue=""
-                    control ={ control}
-                    render={
-                      ({field}) => <PhoneInput
-                      {...field}
-                      countryCodeEditable={false}
-                      country="pe"
-                     
-                      containerClass="class-contain"
-                      inputClass="code-picker"
-                      buttonClass="button-class"
-                      dropdownClass="dropdown-class"
-                      searchClass="search-class"
-                      fullWidth={true}
-                      inputStyle={{
-                        width: "100%",
-                        textAlign: "left",
-                        borderRadius: "15px",
-                        color: "#575650",
-                        opacity: 0.8,
-                        fontFamily: "Mont-regular",
-                        fontStyle: "normal",
-                        fontWeight: 600,
-                        fontSize: "13px",
-                        margin: 0,
-                        border: 0,
-                        outline: 0,
-                      }}
-                      
-                      /* {...register('phone')} */
+                    <Controller
+                      name="phone"
+                      defaultValue=""
+                      control={control}
+                      render={({ field }) => (
+                        <PhoneInput
+                          {...field}
+                          countryCodeEditable={false}
+                          country="pe"
+                          containerClass="class-contain"
+                          inputClass="code-picker"
+                          buttonClass="button-class"
+                          dropdownClass="dropdown-class"
+                          searchClass="search-class"
+                          fullWidth={true}
+                          inputStyle={{
+                            width: "100%",
+                            textAlign: "left",
+                            borderRadius: "15px",
+                            color: "#575650",
+                            opacity: 0.8,
+                            fontFamily: "Mont-regular",
+                            fontStyle: "normal",
+                            fontWeight: 600,
+                            fontSize: "13px",
+                            margin: 0,
+                            border: 0,
+                            outline: 0,
+                          }}
+
+                          /* {...register('phone')} */
+                        />
+                      )}
                     />
-                    }
-                   />
                   </div>
                 </div>
                 <p className="error-input">{errors?.phone?.message}</p>
-                
-                <div className="wrapper-input">
+
+                {/*  <div className="wrapper-input">
                   <label>¿Tienes hijos?</label>
                   <div className="contenedor-buttons">
                       <BotonInput 
@@ -295,61 +309,58 @@ const index = () => {
                         No
                       </BotonInput>
                   </div>
-                </div>
-                {
-                  selection.haveChildren &&
-
+                </div> */}
+                {selection.haveChildren && (
                   <div className="wrapper-input">
                     <label>¿Eres primeriza?</label>
                     <div className="contenedor-buttons">
-                      <BotonInput 
-                        onClick={ () => handleSelectionChange('firstTime',true)}
-                        type = {`${selection.firstTime ? "filled" : "outlined"}`}
+                      <BotonInput
+                        onClick={() => handleSelectionChange("firstTime", true)}
+                        type={`${selection.firstTime ? "filled" : "outlined"}`}
                       >
                         Si
                       </BotonInput>
-                      <BotonInput 
-                        onClick={ () => handleSelectionChange('firstTime',false)}
-                        type = {`${!selection.firstTime ? "filled" : "outlined"}`}
+                      <BotonInput
+                        onClick={() =>
+                          handleSelectionChange("firstTime", false)
+                        }
+                        type={`${!selection.firstTime ? "filled" : "outlined"}`}
                       >
                         No
                       </BotonInput>
                     </div>
                   </div>
-                }
-                {
-                  (!selection.firstTime && selection.haveChildren) && 
-                    <div className="wrapper-checkbox">
-                      <input
-                        type="checkbox"
-                        id="checkbox"
-                        className="box-children__checkbox"
-                        onChange={ handleMoreChildren }
-                        checked = { moreChildren}
-                      />
-                      <label
-                        htmlFor="checkbox"
-                        className="box-children__text"
-                      ></label>
-                      <label htmlFor="checkbox">Tengo más de un hijo.</label>
-                    </div>
-                }
-                {
-                  selection.firstTime && selection.haveChildren &&
+                )}
+                {!selection.firstTime && selection.haveChildren && (
+                  <div className="wrapper-checkbox">
+                    <input
+                      type="checkbox"
+                      id="checkbox"
+                      className="box-children__checkbox"
+                      onChange={handleMoreChildren}
+                      checked={moreChildren}
+                    />
+                    <label
+                      htmlFor="checkbox"
+                      className="box-children__text"
+                    ></label>
+                    <label htmlFor="checkbox">Tengo más de un hijo.</label>
+                  </div>
+                )}
+                {selection.firstTime && selection.haveChildren && (
                   <>
-
                     {/* Control - class : opacity y disabled */}
-                      <div className="container-select">
-                        <p>Fecha de nacimiento de tú bebé</p>
+                    <div className="container-select">
+                      <p>Fecha de nacimiento de tú bebé</p>
 
-                        {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
-                        {/* <Controller
+                      {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
+                      {/* <Controller
                             name='fechaNacimiento'
                             control = { control }
                             render={({ field }) => <DatePicker maxDate={new Date()} {...field} />}
                         /> */}
-                        <input type="date" {...register('fechaNacimiento')}/>
-                        {/* <div className="wrapper-date">
+                      <input type="date" {...register("fechaNacimiento")} />
+                      {/* <div className="wrapper-date">
                           <div className="select-input">
                             <select placeholder="Mes">
                               <option>Mes</option>
@@ -366,26 +377,38 @@ const index = () => {
                             </select>
                           </div>
                         </div> */}
+                    </div>
+                    <div className="wrapper-input">
+                      <label>Sexo de tú bebé</label>
+                      <div className="contenedor-buttons">
+                        <BotonInput
+                          type={`${
+                            selection?.genderBaby === "girl"
+                              ? "filled"
+                              : "outlined"
+                          }`}
+                          onClick={() =>
+                            handleSelectionChange("genderBaby", "girl")
+                          }
+                        >
+                          Niña
+                        </BotonInput>
+                        <BotonInput
+                          type={`${
+                            selection?.genderBaby === "boy"
+                              ? "filled"
+                              : "outlined"
+                          }`}
+                          onClick={() =>
+                            handleSelectionChange("genderBaby", "boy")
+                          }
+                        >
+                          Niño
+                        </BotonInput>
                       </div>
-                      <div className="wrapper-input">
-                        <label>Sexo de tú bebé</label>
-                        <div className="contenedor-buttons">
-                          <BotonInput 
-                            type={`${selection?.genderBaby === "girl" ? "filled" : "outlined"}`}
-                            onClick={ () => handleSelectionChange('genderBaby','girl')}
-                          >
-                            Niña
-                          </BotonInput>
-                          <BotonInput 
-                            type={`${selection?.genderBaby === "boy" ? "filled" : "outlined"}`}
-                            onClick={ () => handleSelectionChange('genderBaby','boy')}
-                          >
-                            Niño
-                          </BotonInput>
-                        </div>
-                      </div>
+                    </div>
 
-                      {/* <div className="wrapper-input">
+                    {/* <div className="wrapper-input">
                         <label>¿Quieres compartir tu perfil con alguien?</label>
                         <div className="contenedor-buttons">
                           <BotonInput type="outlined">No</BotonInput>
@@ -399,7 +422,7 @@ const index = () => {
                         <input type="email" id="email_2" name="email_2" />
                       </div> */}
                   </>
-                }
+                )}
               </form>
             </div>
 
@@ -408,10 +431,23 @@ const index = () => {
                 Crear cuenta
               </CustomButton>
               <p className="terminos">
-                ¡Al hacer clic en crear cuenta! aceptas los
-                <span onClick={handleGoTerms}> términos de uso y la política de privacidad </span>
-                de Yes Mom.
+                Al hacer clic en esta casilla de verificación, acepto los{" "}
+                <span onClick={handleGoTerms}>términos y condiciones</span> del
+                sitio web, la{" "}
+                <span onClick={handleGoPrivacyPolicies}>
+                  política de privacidad
+                </span>{" "}
+                y el uso de mis datos personales para fines de promoción
+                comercial por parte de Yes Mom.
               </p>
+              {/* <p className="terminos">
+                ¡Al hacer clic en crear cuenta! aceptas los
+                <span onClick={handleGoTerms}> términos de uso</span> y
+                <span onClick={handleGoPrivacyPolicies}>
+                  la política de privacidad{" "}
+                </span>
+                de Yes Mom.
+              </p> */}
             </div>
           </div>
         </div>
@@ -419,35 +455,34 @@ const index = () => {
 
       <style jsx>
         {`
-
-          :global(.react-date-picker){
-            font-size : 1.4rem;
-            font-family : "mont-regular";
+          :global(.react-date-picker) {
+            font-size: 1.4rem;
+            font-family: "mont-regular";
           }
-          :global(.react-date-picker input::placeholder){
-            background-image : none;
+          :global(.react-date-picker input::placeholder) {
+            background-image: none;
           }
-          :global(.react-date-picker__wrapper){
+          :global(.react-date-picker__wrapper) {
             border: none;
             border-bottom: 1px solid #dadada;
-            padding : 0.5rem;
+            padding: 0.5rem;
           }
 
-          :global(.react-date-picker__inputGroup__input){
-            color : #556ea1;
-            
+          :global(.react-date-picker__inputGroup__input) {
+            color: #556ea1;
           }
           /*RESET*/
-          .show-desktop{
-            display:none;
+          .show-desktop {
+            display: none;
           }
           /********/
           input {
             text-align: left !important;
           }
-          input:focus , :global(.form-control:focus){
+          input:focus,
+          :global(.form-control:focus) {
             outline: none;
-            box-shadow: none!important;
+            box-shadow: none !important;
           }
           input::placeholder {
             background: none;
@@ -533,27 +568,27 @@ const index = () => {
             display: flex;
             align-items: center;
           }
-          .box-children__checkbox{
-            height:2.4rem;
-            width:2.4rem;
+          .box-children__checkbox {
+            height: 2.4rem;
+            width: 2.4rem;
             border: 2px solid #575756;
-            position:absolute;
-            padding:0;
-            display:none;
-            overflow:hidden;
+            position: absolute;
+            padding: 0;
+            display: none;
+            overflow: hidden;
           }
-          .box-children__text:before{
-            content:"";
-            display:inline-block;
-            width:22px;
-            height:22px;
+          .box-children__text:before {
+            content: "";
+            display: inline-block;
+            width: 22px;
+            height: 22px;
             border: 2px solid #575756;
             border-radius: 5px;
             line-height: 24px;
             vertical-align: text-top;
-            cursor:pointer;
+            cursor: pointer;
           }
-          .box-children__checkbox:checked + .box-children__text:before{
+          .box-children__checkbox:checked + .box-children__text:before {
             border: 2px solid #f22c74;
             background: url("/image/icon/check-pink.svg") center/16px no-repeat;
           }
@@ -575,7 +610,7 @@ const index = () => {
             font-weight: 300;
           }
           .terminos span {
-            cursor : pointer;
+            cursor: pointer;
             color: #556ea1;
           }
           .flex-country {
@@ -619,7 +654,7 @@ const index = () => {
             width: 100%;
             height: 38px;
             color: rgba(87, 86, 80, 1);
-            border: 1px solid #DADADA;
+            border: 1px solid #dadada;
             box-sizing: border-box;
             border-radius: 10px;
             outline: none;
@@ -628,56 +663,73 @@ const index = () => {
             padding: 0.5rem 0.8rem;
             margin: 0.5rem 0;
             /** */
-            background: url("https://i.ibb.co/Hz6T04Y/image.png")
-              no-repeat right #ffffff;
+            background: url("https://i.ibb.co/Hz6T04Y/image.png") no-repeat
+              right #ffffff;
             -webkit-appearance: none;
-            background-size:1.25rem;
+            background-size: 1.25rem;
             -moz-appearance: none;
             appearance: none;
             background-position-x: 87.5%;
-
           }
           .phone-container {
             border-radius: 0;
             border-bottom: 1px solid #dadada;
+            /* overflow: hidden; */
           }
           /********Bloquear******/
           .opacity {
             opacity: 0.5;
           }
 
-          .error-input{
-              height:1.5rem;
-              margin-top:-1rem;
-              margin-bottom:1rem;
-              font-family:"mont-bold";
-              font-size:1.2rem;
-              color:#ff0033;
+          .error-input {
+            height: 1.5rem;
+            margin-top: -1rem;
+            margin-bottom: 1rem;
+            font-family: "mont-bold";
+            font-size: 1.2rem;
+            color: #ff0033;
           }
 
-          {/* POPUP registro */}
-
-          :global(.register-error-popup){
-            margin-top: 0!important;
-            border : 2px solid #DC6A8D;
-            border-radius : 20px;
-            padding : 2rem 0;
-            border-style : dashed;
-            height:20rem!important;
+           {
+            /* POPUP registro */
           }
 
-          :global(.register-error-container){
-            font-family : "mont-regular";
-            font-size : 1.3rem;
-            color : #575650;
-
-            display:flex!important;
-            justify-content:center!important;
-            align-items:center!important;
+          :global(.register-error-popup) {
+            margin-top: 0 !important;
+            border: 2px solid #dc6a8d;
+            border-radius: 20px;
+            padding: 2rem 0;
+            border-style: dashed;
+            height: 20rem !important;
           }
 
-          :global(.register-error-actions){
-            margin-top:0!important;
+          :global(.register-error-container) {
+            font-family: "mont-regular";
+            font-size: 1.3rem;
+            color: #575650;
+
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+          }
+
+          :global(.register-error-actions) {
+            margin-top: 0 !important;
+          }
+          :global(.react-tel-input .flag-dropdown) {
+            border-right: 1px solid red;
+            background: transparent !important;
+            border: none;
+            outline: none;
+          }
+          :global(.react-tel-input .flag-dropdown.open .selected-flag) {
+            border-radius: 10px 0 0 10px;
+          }
+          :global(.react-tel-input .selected-flag:focus:before, .react-tel-input
+              .selected-flag.open:before) {
+            border-color: transparent;
+            -webkit-box-shadow: none;
+            box-shadow: none;
           }
 
           @media (min-width: 480px) {
@@ -690,15 +742,15 @@ const index = () => {
             }
           }
           @media (min-width: 768px) {
-            :global(.react-date-picker__wrapper){
+            :global(.react-date-picker__wrapper) {
               border: 1px solid #556ea1;
-              border-radius : 10px;
+              border-radius: 10px;
             }
-            .show-desktop{
-              display:block;
+            .show-desktop {
+              display: block;
             }
-            .hide-desktop{
-              display:none;
+            .hide-desktop {
+              display: none;
             }
             .all-content {
               width: 50rem;
@@ -719,13 +771,13 @@ const index = () => {
               padding-left: 3.5rem;
             }
             .wrapper-input input {
-              border: 1px solid #556EA1;
+              border: 1px solid #556ea1;
               box-sizing: border-box;
               border-radius: 10px;
               opacity: 0.8;
               padding: 0.8rem 1rem;
               margin-top: 0.5rem;
-              font-size:1.3rem;
+              font-size: 1.3rem;
             }
             .wrapper-checkbox label {
               font-size: 1.3rem;
@@ -771,9 +823,9 @@ const index = () => {
               border: 1px solid #556ea1;
             }
 
-            :global(.register-error-popup){
-              width: 40rem!important;
-              height : 18rem!important;
+            :global(.register-error-popup) {
+              width: 40rem !important;
+              height: 18rem !important;
             }
           }
           @media (min-width: 1024px) {
@@ -819,13 +871,12 @@ const index = () => {
 
 export default index;
 
-export const getServerSideProps = async ({ req , resolvedUrl}) => {
-   const token = req?.cookies?.TokenTest;
-  
-   const cleanUrl = req.url.split("?")[0];
-    // console.log(req.url);
-   const resp = await getAccess(cleanUrl , token );
+export const getServerSideProps = async ({ req, resolvedUrl }) => {
+  const token = req?.cookies?.TokenTest;
 
-   return resp;
+  const cleanUrl = req.url.split("?")[0];
+  // console.log(req.url);
+  const resp = await getAccess(cleanUrl, token);
 
-}
+  return resp;
+};
