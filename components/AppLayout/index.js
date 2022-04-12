@@ -465,7 +465,7 @@ const appLayout = ({ children }) => {
           }
           input:focus {
             outline: none;
-            box-shadow: 0px 0px 3px #dc6a8d;
+            box-shadow: 0px 0px 3px #f8f9fa;
           }
           input::placeholder {
             background-image: url("/image/header/lupa.svg");
