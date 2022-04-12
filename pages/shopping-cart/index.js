@@ -198,10 +198,10 @@ const makeTotalPrice = useMemo(( ) => {
                 >
                   Comprar
                 </button> */}
-                <p className="restriction-text">
+                {/* <p className="restriction-text">
                   *Pueden aplicarse restricciones. No todos los productos son
                   elegibles. Pueden aplicarse recargas por manejo y ubicaciónes
-                </p>
+                </p> */}
               </div>
             </div>
           </section>
