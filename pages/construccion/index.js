@@ -7,7 +7,7 @@ const index = () => {
     <AppLayout>
       <div className="box-building fade-in animated">
         <div className="section-building">
-          <div className="img-foto tilt-in-fwd-tr">
+          <div climgassName="img-foto tilt-in-fwd-tr">
             <Image
               src="/image/construccion/proximamente.png"
               alt="mamá con su bebé"
@@ -30,7 +30,7 @@ const index = () => {
                 alt="flecha"
                 width="250px"
                 height="100px"
-              ></Image>
+              />
             </div>
           </div>
         </div>

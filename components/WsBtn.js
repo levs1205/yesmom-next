@@ -9,8 +9,8 @@ const WsBtn = () => {
           <Image
             src="/image/ws-yesmom.png"
             alt="sin moverte"
-            width={40}
-            height={40}
+            width={70}
+            height={70}
             // className="onda-rosa heartbeat"
           />
         </div>
@@ -20,15 +20,17 @@ const WsBtn = () => {
           position: fixed;
           bottom: 5%;
           right: 4%;
-          background: #fff;
-          padding: 0.8rem;
+          padding: 0rem;
           border-radius: 50%;
           display: flex;
           justify-content: center;
-          align-items: center;
           cursor: pointer;
           box-shadow: 0px 1px 10px #999999d4;
+          background:#ffff;
+          padding:.5rem;
+					z-index: 1;
         }
+      
 
         @keyframes animateHeart {
           0% {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Image } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookF,
@@ -19,49 +19,41 @@ const Footer = () => {
                   <b>CONTENIDO</b>
                 </h6>
                 <div className="box-contenido-footer">
+                  <Link href="/nosotros">
+                    <a>Nosotros</a>
+                  </Link>
                   <Link href="/blog">
                     <a>Blog</a>
                   </Link>
-                  <Link href="/construccion">
+                  <Link href="/tienda">
                     <a>Tienda</a>
                   </Link>
-                  <Link href="/construccion">
-                    <a>Regalos</a>
-                  </Link>
-                  <Link href="/nosotros">
-                    <a>Sobre nosotros</a>
-                  </Link>
-                  {/* <Link href="/nosotros">
-                  <a>Términos y condiciones</a>
-                </Link> */}
-                  {/* <Link href="/nosotros">
-                  <a>Política de privacidad</a>
-                </Link> */}
-                  {/* <Link href="/nosotros">
-                  <a>Libro de reclamaciones</a>
-                </Link> */}
                 </div>
               </div>
             </Col>
             <Col xs={12} sm={12} md={3} lg={3} xl={3}>
               <div className="padding-left text-left pb-1">
-                <h6 className="title-footer">
-                  <b className="p-1"></b>
+                <h6 className="title-footer off-mobile">
+                  <b className="p-1">SERVICIO AL CLIENTE</b>
                 </h6>
                 <div className="box-contenido-footer">
-
-                  <Link href="/construccion">
-                  <a>Términos y condiciones</a>
-                </Link>
-                  <Link href="/construccion">
-                  <a>Política de privacidad</a>
-                </Link>
-                  <Link href="/construccion">
-                  <a>Libro de reclamaciones</a>
-                </Link>
-                <Link href="/construccion">
-                  <a>Políticas de campañas</a>
-                </Link>
+                  <Link href="/terminosycondiciones">
+                    <a>Términos y condiciones</a>
+                  </Link>
+                  <Link href="/politicasdeprivacidad">
+                    <a>Política de privacidad</a>
+                  </Link>
+                  <Link href="/librodereclamaciones">
+                    <a>
+                      <img
+                        src="/image/libro-de-reclamaciones.png"
+                        layout="responsive"
+                        width={"50%"}
+                        height={"50%"}
+                      />
+                      <br />
+                    </a>
+                  </Link>
                 </div>
               </div>
             </Col>
@@ -88,13 +80,6 @@ const Footer = () => {
                 >
                   <FontAwesomeIcon icon={faFacebookF}></FontAwesomeIcon>
                 </a>
-                {/* <a className="icon-redes">
-                  <FontAwesomeIcon
-                    icon={faTwitter}
-                    className="icon-redes"
-                  ></FontAwesomeIcon>
-                </a> */}
-
                 <a
                   className="icon-redes"
                   href="https://www.instagram.com/yesmomperu/"
@@ -102,6 +87,18 @@ const Footer = () => {
                 >
                   <FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon>
                 </a>
+                <h6 className="title-footer">
+                  <b>MEDIOS DE PAGO</b>
+                </h6>
+                <div className="container-payment">
+                  <img
+                    src="/image/payment/payment-methods.png"
+                    layout="responsive"
+                    width={"100%"}
+                    height={"100%"}
+                  />
+                  <br />
+                </div>
               </div>
             </Col>
           </Row>
@@ -127,12 +124,21 @@ const Footer = () => {
             display: flex;
             flex-direction: column;
           }
-
+					.container-payment {
+						background: #ffffff;
+						padding: 0.5rem;
+					}
           .footer a {
             color: #fff;
+            font-size: 1.3rem;
             text-decoration: none;
           }
-
+          .title-footer {
+            font-size: 1.6rem;
+          }
+          .footer .padding-left p {
+            font-size: 1.3rem;
+          }
           .footer a:hover {
             color: #ec608d;
             text-decoration: none;
@@ -144,7 +150,7 @@ const Footer = () => {
           }
 
           .icon-redes {
-            font-size: 1.5rem;
+            font-size: 2rem !important;
             margin-right: 0.7rem;
             margin-left: 0.7rem;
           }
@@ -159,17 +165,20 @@ const Footer = () => {
             .footer {
               padding: 2.5rem 0;
             }
+            .footer a {
+              font-size: 1.8rem;
+            }
             .footer .padding-left {
               padding-left: 0rem;
             }
             .title-footer {
               margin-bottom: 1rem;
               margin-top: 1rem;
-              font-size: 0.8rem;
+              font-size: 2.3rem;
             }
             .footer .padding-left p {
               margin-bottom: 0.2rem;
-              font-size: 0.7rem;
+              font-size: 1.8rem;
             }
           }
 
@@ -185,7 +194,7 @@ const Footer = () => {
             .footer a {
               color: #fff;
               text-decoration: none;
-              font-size:.8rem
+              font-size: 1.5rem;
             }
 
             .footer a:hover {
@@ -196,7 +205,7 @@ const Footer = () => {
             .title-footer {
               margin-bottom: 0.5rem;
               margin-top: 1rem;
-              font-size: 0.9rem;
+              font-size: 2rem;
             }
 
             .icon-redes {
@@ -211,13 +220,18 @@ const Footer = () => {
             }
             .footer .padding-left p {
               margin-bottom: 0.4rem;
-              font-size: 0.8rem;
+              font-size: 1.5rem;
+            }
+            .off-mobile {
+              display: none !important;
             }
           }
           @media (min-width: 576px) and (max-width: 769px) {
             .icon-redes {
               font-size: 1rem;
             }
+
+            /* 
             .footer .padding-left p {
               font-size: 0.65rem;
             }
@@ -226,7 +240,7 @@ const Footer = () => {
             }
             .footer a {
               font-size: 0.65rem;
-            }
+            } */
           }
         `}
       </style>

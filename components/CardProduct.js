@@ -1,150 +1,222 @@
-import React from 'react';
+import Link from "next/link";
+import React, { useMemo } from "react";
+import moment from "moment";
 import { Card } from "react-bootstrap";
 
-const CardProduct = ({product}) => {
+const defaultImage =
+  "https://bicentenario.gob.pe/biblioteca/themes/biblioteca/assets/images/not-available-es.png";
 
-    return(
-        <>
-            <div>
-                <Card>
-                    <div className="card-product">
-                        <div className="card-img">
-                            <Card.Img
-                                variant="top"
-                                src={product.image}
-                                className="card-img-product"
-                            />
-                        </div>
-                        <Card.Body>
-                            <Card.Title>
-                                <div className="card-product-title">{product.title}</div>
-                            </Card.Title>
+const CardProduct = ({ product, imagen }) => {
+  const haveDiscount = useMemo(() => {
+    if(product.precioPromocional > 0) return true;
+    if (!product || !product.fechaInicioPromocion || !product.fechaFinPromocion)
+      return false;
 
-                            <Card.Text>
-                                <div className="card-product-description">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima velit.
-                                </div>
-                                <div className="card-product-descuento">
-                                    {product.id}% Sale
-                                </div>
-                                <div className="card-product-precio">
-                                    S/. {product.price}
-                                </div>
-                            </Card.Text>
-                        </Card.Body>
-                    </div>
-                </Card>
+    const init_promo = moment(product.fechaInicioPromocion);
+    const end_promo = moment(product.fechaFinPromocion);
+    const now = moment(new Date());
+
+    if (end_promo.isAfter(init_promo) && end_promo.isAfter(now)) {
+      return true;
+    } else {
+      return false;
+    }
+  }, [product]);
+
+  return (
+    <>
+      <Link href={`/tienda/detalles/${product._id}`}>
+        <div className={`card-container`}>
+          <Card border="light">
+            <div className="card-img-product">
+              <Card.Img
+                variant="top"
+                src={imagen && imagen.url ? imagen.url : defaultImage}
+                className="h-100"
+              />
             </div>
-            <style jsx >
-                {`
+            <Card.Body>
+						<Card.Title className="title">{product?.nombre}</Card.Title>
+              <Card.Text>
+                <div className="card-container-description">
+                  {product?.descripcion}
+                </div>
+              </Card.Text>
+            </Card.Body>
+            <div className="container-prices">
+              {haveDiscount ? (
+                <>
+                  <p className="price price-before">
+                    S/ {product.precio.toFixed(2)}
+                  </p>
+                  <div className={`text-price discount`}>
+                    <p
+                      className={`${
+                        product?.precioPromocional ? "price-now" : "price"
+                      }`}
+                    >
+                      S/ {product.precioPromocional.toFixed(2)}
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="price price-out">
+                    S/ {product.precio.toFixed(2)}
+                  </p>
+                  <p className="price price-without-discount">
+                    S/ {product.precio.toFixed(2)}
+                  </p>
+                </>
+              )}
+            </div>
+          </Card>
+        </div>
+      </Link>
+      <style jsx>
+        {`
+          p {
+            margin: 0;
+          }
+          :global(.carousel.carousel-slider .control-arrow:hover) {
+            background: none;
+          }
+          :global(.carousel .control-next.control-arrow:before){
+            border-left: 8px solid #EC608D;
+          }
+          :global(.carousel .control-prev.control-arrow:before){
+            border-right: 8px solid #EC608D
+          }
+         
+          :global(.card) {
+            box-shadow: 0px 10px 20px -3px rgba(0, 0, 0, 0.13);
+            border-radius: 3rem !important;
+          }
+          :global(.card-title) {
+            color: #575756;
+            font-family: "mont-semibold" !important;
+            font-size: 1.2rem;
+						/* cortar texto con puntos suspensivos */
+						height: 3.8rem;
+						min-height: 3.8rem;
+						max-height: 3.8rem;
 
-                .card-product {
-                    text-align: center;
-                    background: #ffffff;
-                    box-shadow: 0px 14px 20px -5px rgba(0, 0, 0, 0.2);
-                    border-radius: 20px;
-                    font-family: "mont-regular" !important;
-                    width: 22rem;
-                    height: auto;
-                    margin-bottom: 30px;
-                }
-                .card-img {
-
-                    margin: auto;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-
-                }
-                .card-product-title {
-                    font-size: 18px;
-                    font-weight:600;
-                    font-family: "mont-regular" !important;
-                    text-align: start;
-                }
-                .card-product-description {
-                    font-size: 14px ;
-                    font-family: "mont-regular" !important;
-                    font-weight: 300;
-                    text-align: start;
-                }
-                :global(.card-img img) {
-                    height: auto !important;
-                    width: 100% !important;
-                    max-height: 250px;
-                    padding: 20px;
-                }
-                :global(.card){
-                    border: 0px solid rgba(0,0,0,.125) !important;
-                }
-                .card-product-descuento{
-                    font-size: 1.5rem;
-                    border: 2px solid #F22C74;
-                    margin: 1rem 0rem;
-                    text-align-last: start;
-                    max-width: max-content;
-                    padding: 0.2rem 1.5rem;
-                    border-radius: 0.5rem;
-                    color: #F22C74;
-                }
-                .card-product-precio{
-                    font-size: 30px;
-                    text-align-last: start;
-                    font-family: "mont-regular" !important;
-                    font-weight: 300;
-                    color: #4B64A4;
-                }
-                @media (min-width: 2449px) {
-                    .card-product {
-                        width: 18rem;
-                        height: auto;
-                    }
-                    .card-product-description {
-                        font-size: 14px ;
-                        font-family: "mont-regular" !important;
-                        font-weight: 300;
-                        text-align: start;
-                    }
-                }
-                @media (max-width: 768px) {
-                    .card-blog {
-                        text-align: center;
-                        background: #ffffff;
-                        box-shadow: 0px 14px 20px -5px rgba(0, 0, 0, 0.2);
-                        border-radius: 20px;
-                        font-family: "Montserrat", sans-serif;
-                        border-radius: 1.28rem !important;
-                        width: 100%;
-                    }
-                    .card-product-title {
-                        font-size: 1rem ;
-                        font-weight:bold
-                    }
-                    .card-product-description {
-                        font-size: 14px ;
-                        font-family: "mont-regular" !important;
-                        font-weight: 300;
-                        text-align: start;
-                    }
-                    .card-product-descuento{
-                        font-size: 1.2rem;
-                    }
-                }
-                @media (max-width: 420px) {
-                    .card-product {
-                        width: 100%;
-                    }
-                    .card-product-description {
-                        font-size: 14px ;
-                        font-family: "mont-regular" !important;
-                        font-weight: 300;
-                        text-align: start;
-                    }
-                }
-                `}
-            </style>
-        </>
-    );
+						overflow: hidden;
+						text-overflow: ellipsis;
+						display: -webkit-box;
+						-webkit-line-clamp: 2;
+						-webkit-box-orient: vertical;
+					
+          }
+          :global(.card-text) {
+            color: #000000;
+            font-family: "mont-light" !important;
+            font-size: 1rem;
+          }
+          .card-container-description {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            height: 6rem;
+            margin-bottom: 1;
+          }
+          .card-img-product {
+            height: 12rem;
+          }
+          :global(.card-img-product img) {
+            object-fit: cover;
+            object-position: center center;
+          }
+          .card-container {
+            cursor: pointer;
+            margin: 1.5rem 0.5rem;
+          }
+          .container-prices {
+            margin: 2rem 2rem;
+          }
+          .hide {
+            font-family: "mont-regular" !important;
+            font-size: 1.5rem;
+            color: transparent;
+            margin: 1rem 0;
+          }
+          .price {
+            color: #4b64a4;
+            font-size: 2rem;
+            font-weight: 600;
+          }
+          .price-before {
+            font-size: 1.5rem;
+          }
+          .price-before,
+          .price-out {
+            color: #4b64a4;
+            text-decoration-line: line-through;
+          }
+          .price-now {
+            color: #f22c74;
+          }
+          .price-out {
+            visibility: hidden;
+          }
+          .text-price {
+            display: inline-block;
+            padding: 0 0.2rem;
+            border-radius: 0.5rem;
+            border: 0.25rem solid transparent;
+          }
+          .text-price p {
+            font-family: "mont-semibold" !important;
+            font-size: 2rem;
+          }
+          .discount {
+            border: 2px solid #f22c74;
+          }
+          .price-without-discount {
+            font-size: 2rem;
+            border: 2px solid transparent;
+          }
+          @media (min-width: 480px) {
+            .text-price p {
+              font-size: 2.5rem;
+            }
+            .price-without-discount {
+              font-size: 2.5rem;
+            }
+            .price-before {
+              font-size: 1.6rem;
+            }
+            .text-price {
+              padding: 0 0.8rem;
+            }
+            .card-container-description {
+              -webkit-line-clamp: 3;
+            }
+          }
+          @media (min-width: 768px) {
+            :global(.card-title) {
+              color: #575756;
+              font-family: "mont-semibold" !important;
+              font-size: 1.6rem;
+            }
+            :global(.card-text) {
+              color: #000000;
+              font-family: "mont-light" !important;
+              font-size: 1.4rem;
+            }
+            .card-img-product {
+              height: 20rem;
+            }
+            .price-before {
+              font-size: 1.7rem;
+            }
+          }
+        `}
+      </style>
+    </>
+  );
 };
 
 export default CardProduct;

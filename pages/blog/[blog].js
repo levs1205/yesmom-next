@@ -69,7 +69,7 @@ const CardBlogEspecific = ({ currentData }) => {
               alt="ondas"
               width={100}
               height={20}
-              // layout="responsive"
+            // layout="responsive"
             />
           </div>
           <h4 className="text-title-blog">Detalles de blog</h4>
@@ -79,7 +79,7 @@ const CardBlogEspecific = ({ currentData }) => {
               alt="ondas"
               width={100}
               height={20}
-              // layout="responsive"
+            // layout="responsive"
             />
           </div>
         </div>
@@ -139,20 +139,21 @@ const CardBlogEspecific = ({ currentData }) => {
             <div className="box-articulo-title-blog">
               <FontAwesomeIcon
                 icon={faStar}
-                className="star-blog heartbeat cl-fuxia"
+                className="star-blog heartbeat cl-yellow"
               ></FontAwesomeIcon>
               <h2> {currentData.blog.titulo}</h2>
               <FontAwesomeIcon
                 icon={faStar}
-                className="star-blog heartbeat cl-fuxia"
+                className="star-blog heartbeat cl-yellow"
               ></FontAwesomeIcon>
             </div>
             <JoditEditor
               config={config}
               value={currentData.blog.contenido}
               name="contenido"
-              // onBlur={handleBlurAreaChange}
+            // onBlur={handleBlurAreaChange}
             />
+            
 
             <div className="box-fb">
               <a
@@ -289,8 +290,10 @@ const CardBlogEspecific = ({ currentData }) => {
             color: #575756;
             margin: 2rem 0rem;
           }
-          .star-blog {
+          :global(.box-articulo-title-blog .star-blog) {
             color: #febf41;
+            font-size: 1.2rem;
+            transform: rotate(36.46deg);
           }
           .nube1 {
             position: absolute;
@@ -455,6 +458,7 @@ const CardBlogEspecific = ({ currentData }) => {
               font-size: 0.8rem;
             }
             .box-articulo-title-blog h2 {
+              max-width: 100%;
               font-size: 1.3rem;
             }
             .star-blog {
@@ -577,6 +581,10 @@ const CardBlogEspecific = ({ currentData }) => {
             .img-blog-especific {
               width: 100%;
             }
+            .box-articulo-title-blog h2 {
+              max-width: 18rem;
+              font-size: 1.3rem;
+            }
           }
         `}
       </style>
@@ -603,14 +611,10 @@ const CardBlogEspecific = ({ currentData }) => {
 export async function getServerSideProps(params) {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-
-  //hola
-  const routerParams = params
-  console.log(routerParams)
-  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogParameters/user?id=${routerParams.query.id}`
-  const res = await fetch(
-    url
-  );
+  const routerParams = params;
+  // console.log(routerParams);
+  let url = `${process.env.NEXT_PUBLIC_REACT_APP_BACKEND_URL_BUSINESS}/getBlogParameters/user?id=${routerParams.query.id}`;
+  const res = await fetch(url);
 
   const currentData = await res.json();
   if (!currentData) {
